@@ -2458,9 +2458,13 @@ $results_icon_size: 24px;
 $provider_details_width: 120px;
 $provider_icon_size: 32px; // for < 3.25
 
-#searchResultsBin { max-width: 1000px; }
+@if $ver < 3.31 {
+  #searchResultsBin { max-width: 1000px; }
+}
 
 #searchResultsContent {
+  @if $ver >= 3.31 { max-width: 1000px; } // for 3.33/34 cycle
+
   @if $ver > 3.25 {
     spacing: if($ref_weight >= 1.0, $results_icon_size / 3,
                                     $results_icon_size / 6);
