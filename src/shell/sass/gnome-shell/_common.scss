@@ -3150,9 +3150,15 @@ $grid_size: 136px;
 //  ***************************/
 
 // horizontal padding to make sure scrollbars or dash don't overlap content
-.search-display > StBoxLayout,
-.all-apps,
-.frequent-apps > StBoxLayout { padding: 0 88px 10px 88px; }
+@if $ver < 3.31 {
+  .search-display > StBoxLayout,
+  .all-apps,
+  .frequent-apps > StBoxLayout { padding: 0 88px 10px 88px; }
+}
+@else { // for 3.33/34 cycle
+  .all-apps,
+  .frequent-apps > StBoxLayout { padding: 0 88px 10px 88px; }
+}
 
 %status_text {
   @include fontscaling(2.0);
