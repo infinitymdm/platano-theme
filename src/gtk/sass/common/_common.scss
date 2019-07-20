@@ -5309,6 +5309,11 @@ stacksidebar {
 placessidebar {
   @extend %scrolledwindow; // needs for overshoot / undershoot
 
+  @if $maj_ver == 4 {
+    // viewport.frame is deprecated
+    > scrolledwindow.frame { border-style: none; } // for double-borders
+  }
+
   list {
     // Background color for Nautilus and FileChooser sidebar
     @extend %sidebar_template;
