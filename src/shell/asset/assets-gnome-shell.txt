@@ -28,6 +28,8 @@ dark/toggle-off.svg .
 common/dash-placeholder.svg assets r2
 common/go-down.svg assets r2
 common/go-up.svg assets r2
+common/go-left.svg assets r2
+common/go-right.svg assets r2
 common/media-control-active.svg assets r2
 common/media-control-hover.svg assets r2
 common/more-results.svg assets r2

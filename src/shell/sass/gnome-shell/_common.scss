@@ -1123,19 +1123,31 @@ $avatar_width: $icon_size * 1.5;
   &-container { @extend %osd-panel; }
 }
 
+%switcher_arrow_active {
+  height: if($ref_weight >= 1.0, 50px, 36px);
+  border-radius: $r_2;
+  background-size: 24px;
+  background-color: if($variant != light, opacity($inv_acc_fg, $a_trk_2),
+                                          opacity($acc_fg, $a_trk_2));
+}
+
 .ws-switcher {
-  &-active-up,
-  &-active-down {
-    height: if($ref_weight >= 1.0, 50px, 36px);
-    background-color: if($variant != light, opacity($inv_acc_fg, $a_trk_2),
-                                            opacity($acc_fg, $a_trk_2));
-    background-size: 24px;
-    border-radius: $r_2;
+  @if $ver < 3.31 {
+    @each $d in up, down {
+      &-active-#{$d} {
+        @extend %switcher_arrow_active;
+        @include image-loader($url: 'assets/go-#{$d}.svg');
+      }
+    }
   }
-
-  &-active-up { @include image-loader($url: 'assets/go-up.svg'); }
-
-  &-active-down { @include image-loader($url: 'assets/go-down.svg'); }
+  @else {
+    @each $d in up, down, left, right {
+      &-active-#{$d} {
+        @extend %switcher_arrow_active;
+        @include image-loader($url: 'assets/go-#{$d}.svg');
+      }
+    }
+  }
 
   &-box {
     height: if($ref_weight >= 1.0, 50px, 36px);

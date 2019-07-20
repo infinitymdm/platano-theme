@@ -63,6 +63,8 @@ shell_asset_file = \
 	$(shelldir)/assets/checkbox.svg \
 	$(shelldir)/assets/dash-placeholder.svg \
 	$(shelldir)/assets/go-down.svg \
+	$(shelldir)/assets/go-left.svg \
+	$(shelldir)/assets/go-right.svg \
 	$(shelldir)/assets/go-up.svg \
 	$(shelldir)/assets/media-control-active.svg \
 	$(shelldir)/assets/media-control-hover.svg \
@@ -145,6 +147,8 @@ shell_lumine_asset_file = \
 	$(shellluminedir)/assets/checkbox.svg \
 	$(shellluminedir)/assets/dash-placeholder.svg \
 	$(shellluminedir)/assets/go-down.svg \
+	$(shellluminedir)/assets/go-left.svg \
+	$(shellluminedir)/assets/go-right.svg \
 	$(shellluminedir)/assets/go-up.svg \
 	$(shellluminedir)/assets/media-control-active.svg \
 	$(shellluminedir)/assets/media-control-hover.svg \
@@ -206,6 +210,8 @@ shell_noir_asset_file = \
 	$(shellnoirdir)/assets/checkbox.svg \
 	$(shellnoirdir)/assets/dash-placeholder.svg \
 	$(shellnoirdir)/assets/go-down.svg \
+	$(shellnoirdir)/assets/go-left.svg \
+	$(shellnoirdir)/assets/go-right.svg \
 	$(shellnoirdir)/assets/go-up.svg \
 	$(shellnoirdir)/assets/media-control-active.svg \
 	$(shellnoirdir)/assets/media-control-hover.svg \
@@ -267,6 +273,8 @@ shell_compact_asset_file = \
 	$(shellcompactdir)/assets/checkbox.svg \
 	$(shellcompactdir)/assets/dash-placeholder.svg \
 	$(shellcompactdir)/assets/go-down.svg \
+	$(shellcompactdir)/assets/go-left.svg \
+	$(shellcompactdir)/assets/go-right.svg \
 	$(shellcompactdir)/assets/go-up.svg \
 	$(shellcompactdir)/assets/media-control-active.svg \
 	$(shellcompactdir)/assets/media-control-hover.svg \
@@ -328,6 +336,8 @@ shell_lumine_compact_asset_file = \
 	$(shellluminecompactdir)/assets/checkbox.svg \
 	$(shellluminecompactdir)/assets/dash-placeholder.svg \
 	$(shellluminecompactdir)/assets/go-down.svg \
+	$(shellluminecompactdir)/assets/go-left.svg \
+	$(shellluminecompactdir)/assets/go-right.svg \
 	$(shellluminecompactdir)/assets/go-up.svg \
 	$(shellluminecompactdir)/assets/media-control-active.svg \
 	$(shellluminecompactdir)/assets/media-control-hover.svg \
@@ -388,6 +398,8 @@ shell_noir_compact_asset_file = \
 	$(shellnoircompactdir)/assets/checkbox.svg \
 	$(shellnoircompactdir)/assets/dash-placeholder.svg \
 	$(shellnoircompactdir)/assets/go-down.svg \
+	$(shellnoircompactdir)/assets/go-left.svg \
+	$(shellnoircompactdir)/assets/go-right.svg \
 	$(shellnoircompactdir)/assets/go-up.svg \
 	$(shellnoircompactdir)/assets/media-control-active.svg \
 	$(shellnoircompactdir)/assets/media-control-hover.svg \
@@ -891,6 +903,8 @@ CLEANFILES += \
 	$(srcdir)/gnome-shell-dark-compact/extensions/workspaces-to-dock/assets/*.svg \
 	$(srcdir)/asset/assets-gnome-shell/common/dash-placeholder.svg \
 	$(srcdir)/asset/assets-gnome-shell/common/go-down.svg \
+	$(srcdir)/asset/assets-gnome-shell/common/go-left.svg \
+	$(srcdir)/asset/assets-gnome-shell/common/go-right.svg \
 	$(srcdir)/asset/assets-gnome-shell/common/go-up.svg \
 	$(srcdir)/asset/assets-gnome-shell/common/key-shift-latched-uppercase.svg \
 	$(srcdir)/asset/assets-gnome-shell/common/key-shift-uppercase.svg \
