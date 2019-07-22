@@ -288,7 +288,8 @@ $z-depth-1-label: 0 0 1px rgba(0, 0, 0, 0.26),
 // $ln: linked state
 //
 // possible $t values:
-// normal, focus, disabled, flat-normal, flat-focus, flat-disabled;
+// normal, focus, disabled, flat-normal, flat-focus, flat-disabled,
+// block-cursor;
 //
 
 @mixin entry($t, $c: $base, $tc: $fg, $fc: $sel_bg) {
@@ -324,6 +325,11 @@ $z-depth-1-label: 0 0 1px rgba(0, 0, 0, 0.26),
     background-color: track($tc, $a_trk_1 / 2 * $a_fg_dis);
     color: track($tc, $a_fg_dis);
     box-shadow: none;
+  }
+  @else if $t == block-cursor {
+    // flip fg <-> bg
+    background-color: $tc;
+    color: $c;
   }
 }
 

@@ -366,6 +366,10 @@ entry {
     @include radius($r, none);
   }
 
+  @if $maj_ver == 4 {
+    block-cursor { @include entry(block-cursor); }
+  }
+
   @at-root %flat_entry_sizing,
   toolbar *:not(.linked) &,
   popover *:not(.linked):not(combobox) > &:not(.combo),
@@ -475,11 +479,9 @@ entry {
     }
   }
 
-  headerbar & {
-    @if $variant == mixed { @extend %inv_entry; }
-  }
-
   @if $variant == mixed {
+    headerbar & { @extend %inv_entry; }
+
     &.osd,
     .osd & {
       @extend %flat_entry_sizing;
@@ -493,6 +495,12 @@ entry {
       }
 
       selection { @extend %selected_items; }
+
+      @if $maj_ver == 4 {
+        block-cursor {
+          @include entry(block-cursor, $tc: $inv_fg, $c: $inv_base);
+        }
+      }
     }
   }
 
@@ -785,6 +793,12 @@ entry {
   }
 
   selection { @extend %selected_items; }
+
+  @if $maj_ver == 4 {
+    block-cursor {
+      @include entry(block-cursor, $tc: $inv_fg, $c: $inv_base);
+    }
+  }
 }
 
 // /***********
@@ -1962,6 +1976,12 @@ combobox {
       &:disabled {
         background-color: track($dis_inv_fg, $a_trk_1 / 2 * $a_fg_dis);
         color: $dis_inv_fg;
+      }
+
+      @if $maj_ver == 4 {
+        block-cursor {
+          @include entry(block-cursor, $tc: $inv_fg, $c: $inv_base);
+        }
       }
     }
   }
