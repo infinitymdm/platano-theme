@@ -5538,12 +5538,22 @@ paned {
 //  * GtkInfoBar *
 //  **************/
 
-infobar {
+%inforbar_box {
   padding: $toolbar_padding;
-  border-width: 0 0 1px;
-  border-style: solid;
-  border-color: $div_sld_fg; // do not use transparentize
+  border-bottom: 1px solid $div_sld_fg; // do not use transparentize
   background-color: $dark_bg;
+}
+
+infobar {
+  @if $maj_ver == 3 {
+    @if $mnr_ver < 23 { @extend %inforbar_box; }
+    @else {
+      > revealer > box { @extend %inforbar_box; }
+    }
+  }
+  @else {
+    > revealer > box { @extend %inforbar_box; }
+  }
 
   selection {
     &, &:focus { @extend %selected_items; }
@@ -5566,9 +5576,27 @@ infobar {
                          (warning, $warn_bg),
                          (error, $err_bg) {
   infobar.#{$_type} {
-    background-color: if($variant == dark,
-                         mix($_color, $bg, percentage($a_trk_1)),
-                         mix($_color, $dark_bg, percentage($a_trk_2)));
+    @if $maj_ver == 3 {
+      @if $mnr_ver < 23 {
+        background-color: if($variant == dark,
+                             mix($_color, $bg, percentage($a_trk_1)),
+                             mix($_color, $dark_bg, percentage($a_trk_2)));
+      }
+      @else {
+        > revealer > box {
+          background-color: if($variant == dark,
+                               mix($_color, $bg, percentage($a_trk_1)),
+                               mix($_color, $dark_bg, percentage($a_trk_2)));
+        }
+      }
+    }
+    @else {
+      > revealer > box {
+        background-color: if($variant == dark,
+                             mix($_color, $bg, percentage($a_trk_1)),
+                             mix($_color, $dark_bg, percentage($a_trk_2)));
+      }
+    }
     color: mix($fg, $_color, percentage($a_fg_3rd));
 
     progressbar { // use 'white' bit and trough
