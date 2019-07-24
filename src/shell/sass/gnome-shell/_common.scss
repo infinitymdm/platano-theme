@@ -2100,6 +2100,7 @@ $avatar_width: $icon_size * 1.5;
 //  ************/
 
 #appMenu {
+  // spinner-image propertly will be deprecated in 3.33/34 cycle
   @include image-loader($url: 'process-working.svg', $type: sp);
   padding: if($ref_weight >= 1.0, 0 10px, 0 6px);
 
