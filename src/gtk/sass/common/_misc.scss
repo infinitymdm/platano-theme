@@ -2824,6 +2824,33 @@ button.round-button { // categories expander button
   @include radius($r);
 }
 
+@if $maj_ver == 3 {
+  @if $mnr_ver > 23 { // >= 3.32.0, origin-box container
+    window.background.csd > headerbar.titlebar > box.horizontal {
+      > label.dim-label + button.popup.toggle {
+        @extend %origin_box_button; // enforce text-and-image-button styling
+      }
+    }
+  }
+}
+@else {
+  window.background.csd > headerbar.titlebar > box.horizontal {
+    > label.dim-label + button.popup.toggle { @extend %origin_box_button; }
+  }
+}
+
+%origin_box_button {
+  &:not(.flat):not(.text-button):not(.image-button) {
+    &:dir(ltr), &:dir(rtl) { // specificity bump
+      @include radius($r_2, none);
+      padding: 0 rem($txt_button_lr_space / 2);
+
+      label,
+      image { padding: 0 rem($txt_button_lr_space / 2); }
+    }
+  }
+}
+
 // /****************
 //  * Gnome-Photos *
 //  ****************/
