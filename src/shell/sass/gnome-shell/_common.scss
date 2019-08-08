@@ -2942,6 +2942,14 @@ $grid_size: 136px;
     transition-duration: $tr_d_sht;
   }
 
+  @if $ver > 3.31 {
+    &:drop .overview-icon { // for 3.33/34 cycle
+      border: none; // for safety
+      background-color: opacity($sel_bg, $a_trk_out);
+      box-shadow: inset 0 0 0 1px $sel_bg;
+    }
+  }
+
   &:active .overview-icon {
     border-image: none;
     background-color: $ovv_fill_bg;
