@@ -2697,38 +2697,47 @@ window:not(.maximized):not(.fullscreen):not(.tiled):not(.solid-csd) {
   }
 }
 
-@if $maj_ver == 4 {
+@if $maj_ver == 3 {
   // Development versions of apps to use a differently styled headerbar
+  @if $mnr_ver > 23 {
+    headerbar.titlebar:not(.selection-mode) {
+      // devel-mode does not work properly in selection-mode?
+      window.devel & { @extend %devel_headerbar; }
+    }
+  }
+}
+@else {
   headerbar.titlebar:not(.selection-mode) {
-    // devel-mode does not work properly in selection-mode?
-    window.devel & {
-      @if $variant == light {
-        background-image: -gtk-scaled(
-                          url("assets/dev-mode.png"),
-                          url("assets/dev-mode@2.png"));
-      }
-      @else {
-        background-image: -gtk-scaled(
-                          url("assets/dev-mode-dark.png"),
-                          url("assets/dev-mode-dark@2.png"));
-      }
-      background-position: 75% top;
-      background-size: $dev_asset_size $dev_asset_size;
-      background-repeat: no-repeat;
-      &:backdrop {
-        @if $variant == light {
-          background-image: image(track($bg, $a_fg_bdp)),
-                            -gtk-scaled(
-                            url("assets/dev-mode.png"),
-                            url("assets/dev-mode@2.png"));
-        }
-        @else {
-          background-image: image(track($inv_bg, $a_fg_bdp)),
-                            -gtk-scaled(
-                            url("assets/dev-mode-dark.png"),
-                            url("assets/dev-mode-dark@2.png")),
-        }
-      }
+    window.devel & { @extend %devel_headerbar; }
+  }
+}
+
+%devel_headerbar {
+  @if $variant == light {
+    background-image: -gtk-scaled(
+                      url("assets/dev-mode.png"),
+                      url("assets/dev-mode@2.png"));
+  }
+  @else {
+    background-image: -gtk-scaled(
+                      url("assets/dev-mode-dark.png"),
+                      url("assets/dev-mode-dark@2.png"));
+  }
+  background-position: 75% top;
+  background-size: $dev_asset_size $dev_asset_size;
+  background-repeat: no-repeat;
+  &:backdrop {
+    @if $variant == light {
+      background-image: image(track($bg, $a_fg_bdp)),
+                        -gtk-scaled(
+                        url("assets/dev-mode.png"),
+                        url("assets/dev-mode@2.png"));
+    }
+    @else {
+      background-image: image(track($inv_bg, $a_fg_bdp)),
+                        -gtk-scaled(
+                        url("assets/dev-mode-dark.png"),
+                        url("assets/dev-mode-dark@2.png")),
     }
   }
 }
