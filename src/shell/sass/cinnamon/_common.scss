@@ -2151,6 +2151,7 @@ $large_item: 10px;
 //  * About Dialog (applet.js and desklet.js) *
 //  *******************************************/
 
+// Deprecated > 4.2.3, GtkDialog is used instead.
 .about {
   &-content {
     width: 550px;
