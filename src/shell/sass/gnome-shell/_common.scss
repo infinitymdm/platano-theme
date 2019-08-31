@@ -862,7 +862,10 @@ $avatar_width: $icon_size * 1.5;
 
 .popup-menu-boxpointer,
 .candidate-popup-boxpointer {
-  -arrow-border-radius: $icon_size * 1.5; // affects boxpointer placement
+  @if $ver < 3.33 { // affects boxpointer placement
+    -arrow-border-radius: $icon_size * 1.5;
+  }
+  @else { -arrow-border-radius: 0; }
   -arrow-border-width: 0;
   -arrow-border-color: transparent;
   -arrow-base: 0;
