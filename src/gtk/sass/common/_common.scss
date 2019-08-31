@@ -4251,19 +4251,30 @@ check {
   }
 
   .background:not(#MozillaGtkWidget) menuitem & {
-    min-width: $icon_size;
-    min-height: $icon_size;
+    @extend %memnuitem_check_radio;
     margin: 0;
-    padding: 0;
     &:dir(ltr) { margin-right: rem($menuitem_padding); }
     &:dir(rtl) { margin-left: rem($menuitem_padding); }
-    &:not(:backdrop) { // FIXME: use button reset mixin
-      background-image: none;
-      color: inherit;
+    &:not(:backdrop) { // unset transitions/animations
       -gtk-icon-transform: unset;
       @include transition(reset);
       animation: none;
     }
+  }
+
+  .background:not(#MozillaGtkWidget) popover modelbutton & {
+    @extend %memnuitem_check_radio;
+    margin: 0 rem($menuitem_padding);
+  }
+}
+
+%memnuitem_check_radio {
+  min-width: $icon_size;
+  min-height: $icon_size;
+  padding: 0;
+  &:not(:backdrop) {
+    background-image: none;
+    color: inherit;
   }
 }
 
