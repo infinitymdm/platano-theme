@@ -551,8 +551,9 @@ StScrollBar {
 
   &-password-box {
     spacing: 1em;
-    // FIXME: 3.33/34 cycle, we should drop this?
-    padding-bottom: if($ref_weight >= 1.0, 1em, 0.7em);
+    @if $ver < 3.33 {
+      padding-bottom: if($ref_weight >= 1.0, 1em, 0.7em);
+    }
   }
 
   &-error-label {
@@ -952,8 +953,7 @@ $avatar_width: $icon_size * 1.5;
                     ($avatar_width - $icon_size) / 2);
     }
   }
-  @else {
-    // deprecated >= 3.33, use .popup-menu-icon class instead
+  @elif $ver < 3.33 {
     icon-size: $icon_size;
     padding: 0 if($ref_weight >= 1.0,
                   ($avatar_width - $icon_size + $extra_spacing) / 2,
@@ -961,7 +961,7 @@ $avatar_width: $icon_size * 1.5;
   }
 }
 
-@if $ver >= 3.31 { // for 3.33/34 cycle
+@if $ver > 3.33 {
   // /*************
   //  * App Icons *
   //  *************/
@@ -2164,8 +2164,8 @@ $ripple_d: 52px;
   &:rtl { border-radius: 0 0 0 $ripple_d; } // top-right corner
 }
 
-@if $ver > 3.31 {
-  .ripple-pointer-location { // >= 3.33/3.34 cycle
+@if $ver > 3.33 {
+  .ripple-pointer-location {
     width: $ripple_d;
     height: $ripple_d;
     border-radius: $ripple_d / 2;
@@ -2245,10 +2245,10 @@ $close_button_size: 32px;
 //  * Pie Timer *
 //  *************/
 
-@if $ver > 3.31 {
+@if $ver > 3.33 {
   $progress_width: 3px;
 
-  .pie-timer { // >= 3.33/3.34 cycle
+  .pie-timer {
     width: $ripple_d + ($progress_width * 2);
     height: $ripple_d + ($progress_width * 2);
     -pie-border-width: $progress_width;
@@ -2487,10 +2487,12 @@ $provider_details_width: 120px;
 $provider_icon_size: 32px; // for < 3.25
 
 #searchResults {
-  &Bin { max-width: 1000px; } // keep this for =< 3.32
+  @if $ver < 3.33 {
+    &Bin { max-width: 1000px; } // keep this for =< 3.32
+  }
 
   &Content {
-    @if $ver >= 3.31 { max-width: 1000px; } // for 3.33/34 cycle
+    @if $ver > 3.33 { max-width: 1000px; }
 
     @if $ver > 3.25 {
       spacing: if($ref_weight >= 1.0, $results_icon_size / 3,
@@ -2942,8 +2944,8 @@ $grid_size: 136px;
     transition-duration: $tr_d_sht;
   }
 
-  @if $ver > 3.31 {
-    &:drop .overview-icon { // for 3.33/34 cycle
+  @if $ver > 3.33 {
+    &:drop .overview-icon {
       border: none; // for safety
       background-color: opacity($sel_bg, $a_trk_out);
       box-shadow: inset 0 0 0 1px $sel_bg;
@@ -3186,12 +3188,12 @@ $grid_size: 136px;
 //  ***************************/
 
 // horizontal padding to make sure scrollbars or dash don't overlap content
-@if $ver < 3.31 {
+@if $ver < 3.33 {
   .search-display > StBoxLayout,
   .all-apps,
   .frequent-apps > StBoxLayout { padding: 0 88px 10px 88px; }
 }
-@else { // for 3.33/34 cycle
+@else {
   .all-apps,
   .frequent-apps > StBoxLayout { padding: 0 88px 10px 88px; }
 }
