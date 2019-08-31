@@ -2405,40 +2405,42 @@ button.carousel-item.flat.menu.radio:focus {
   outline-width: 0;
 }
 
-// > 3.25.90
-scrolledwindow.view > viewport.frame > stack > list { // left-pane
-  @extend %sidebar_template;
+scrolledwindow.view > viewport.frame > stack { // left-pane
+  > list, // > 3.25.90
+  > box.vertical > entry.search + list { // > 3.33.90
+    @extend %sidebar_template;
 
-  > row.activatable {
-    padding: 0; // unset padding
-    color: $sec_fg;
-    font-weight: 500;
+    > row.activatable {
+      padding: 0; // unset padding
+      color: $sec_fg;
+      font-weight: 500;
 
-    image.dim-label { opacity: $a_fg_2nd; } // tone up icons
-
-    label,
-    image { color: $sec_fg; }
-
-    &:hover,
-    &:active {
-      color: $fg;
+      image.dim-label { opacity: $a_fg_2nd; } // tone up icons
 
       label,
-      image { color: $fg; }
-    }
+      image { color: $sec_fg; }
 
-    &:selected {
-      &:dir(ltr) { @include radius(0 $r $r 0); }
-      &:dir(rtl) { @include radius($r 0 0 $r); }
-
-      &, &:focus { outline-width: 0; } // unset focus outlines
-
-      &, &:hover {
-        background-color: $trk_bg;
-        color: $sel_label;
+      &:hover,
+      &:active {
+        color: $fg;
 
         label,
-        image { color: $sel_label; }
+        image { color: $fg; }
+      }
+
+      &:selected {
+        &:dir(ltr) { @include radius(0 $r $r 0); }
+        &:dir(rtl) { @include radius($r 0 0 $r); }
+
+        &, &:focus { outline-width: 0; } // unset focus outlines
+
+        &, &:hover {
+          background-color: $trk_bg;
+          color: $sel_label;
+
+          label,
+          image { color: $sel_label; }
+        }
       }
     }
   }
