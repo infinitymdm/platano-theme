@@ -1848,6 +1848,7 @@ $avatar_width: $icon_size * 1.5;
     @if $ver > 3.25 {
       padding: if($ref_weight >= 1.0, 0.6em, 0.45em);
       background-color: $base;
+      @if $ver > 3.33 { border: 1px solid $base; }
     }
     @else {
       background-color: $semi_fill_bg;
@@ -1872,6 +1873,9 @@ $avatar_width: $icon_size * 1.5;
     &:focus {
       @if $ver > 3.25 {
         background-color: mix($fg, $base, percentage($a_trk_1)); // use opaque
+        @if $ver > 3.33 {
+          border: 1px solid mix($fg, $base, percentage($a_trk_1));
+        }
       }
       @else {
         background-color: $acc_semi_fill_bg;
@@ -1900,6 +1904,9 @@ $avatar_width: $icon_size * 1.5;
     &:active {
       @if $ver > 3.25 {
         background-color: mix($fg, $base, percentage($a_trk_2));
+        @if $ver > 3.33 {
+          border: 1px solid mix($fg, $base, percentage($a_trk_2));
+        }
       }
       @else {
         background-color: $acc_fill_bg;
