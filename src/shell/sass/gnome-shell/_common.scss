@@ -115,7 +115,14 @@ StEntry {
 
 StScrollView {
   // disable undershoots
-  &.vfade { -st-vfade-offset: 0; }
+  &.vfade {
+    @if $ver < 3.33 { -st-vfade-offset: 0; }
+    @else {
+      &.search-display {
+        -st-vfade-offset: $icon_size * 3;
+      }
+    }
+  }
   &.hfade { -st-hfade-offset: 0; }
 }
 
