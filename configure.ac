@@ -142,7 +142,7 @@ AC_MSG_RESULT([
         -----------------------------------------------------------------
 
          Budgie-Desktop:         always (>= 10.4)
-         GNOME:                  $ENABLE_GNOME (SCSS ver. $GNOME_SCSS_VERSION) (default: yes)
+         GNOME:                  $ENABLE_GNOME (default: yes) (SCSS ver. $GNOME_SCSS_VERSION)
          Cinnamon:               $ENABLE_CINNAMON (default: yes)
          GNOME-Flashback:        $ENABLE_FLASHBACK (default: yes)
          XFce:                   $ENABLE_XFCE (default: yes)
