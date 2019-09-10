@@ -354,7 +354,7 @@ $a_dtp_trk_2: if($variant == light, $a_trk_2,
 //  * Desktop Icons Extension *
 //  ***************************/
 
-$rename_box_spacing: 6px; // botton-box has 6px spacing?
+$rename_box_spacing: 6px;
 
 .rename-popup {
   @extend %popover_content;

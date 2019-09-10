@@ -942,6 +942,18 @@ $avatar_width: $icon_size * 1.5;
   background-color: transparent;
 }
 
+@if $ver > 3.33 {
+  // Rename popup
+
+  $rename_box_spacing: 6px;
+
+  .rename-folder-popup-box {
+    spacing: $rename_box_spacing;
+    margin-left: $rename_box_spacing - 2px;
+    margin-right: $rename_box_spacing - 2px;
+  }
+}
+
 // Background menu
 .background-menu {
   -boxpointer-gap: 0;
