@@ -898,14 +898,18 @@ $avatar_width: $icon_size * 1.5;
     -arrow-background-color: transparent;
 
     .popup-menu-content {
-      margin: 3px 5px 12px;
+      @extend %popover_content;
       padding: if($ref_weight >= 1.0, 0.3em 0, 0.21em 0);
-      border-radius: $r_4;
       border: 1px solid $div_sld_fg;
       background-color: $dark_bg;
-      box-shadow: $z-depth-3;
     }
   }
+}
+
+%popover_content {
+  margin: 3px 5px 12px;
+  border-radius: $r_4;
+  box-shadow: $z-depth-3;
 }
 
 .candidate-popup-boxpointer {
@@ -919,11 +923,9 @@ $avatar_width: $icon_size * 1.5;
   }
   @else {
     .candidate-popup-content {
-      margin: 3px 5px 12px;
-      border-radius: $r_4;
+      @extend %popover_content;
       background-color: opacity($osd_bg, $a_osd);
       color: $osd_sec_fg;
-      box-shadow: $z-depth-3;
     }
   }
 }
