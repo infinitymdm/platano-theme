@@ -1858,14 +1858,31 @@ window.background.budgie-settings-window.csd {
 
     entry { @extend %greeter_entry; }
 
-    infobar.error { // notification revealer
-      margin: 0 4px; // prevent unwanted overflow
+    infobar { // notification revealer
       border: none;
-      background-color: transparent;
-      color: $err;
       font-weight: 700;
       font-size: 110%;
       transition: none; // transition causes visual glitches
+
+      &.error,
+      &.info { // .info class for XFce4-screensaver
+        @if $maj_ver == 3 {
+          @if $mnr_ver < 23 { background-color: transparent; }
+          @else {
+            > revealer > box { background-color: transparent; }
+          }
+        }
+        @else {
+          > revealer > box { background-color: transparent; }
+        }
+      }
+
+      &.error {
+        margin: 0 4px; // prevent unwanted overflow
+        color: $err;
+      }
+
+      &.info { color: $info; }
     }
   }
 
