@@ -2400,9 +2400,6 @@ $panel_child_spacing: if($ref_weight < 1.0, 2px, 3px);
   frame > border { border: 0 none transparent; }
 
   &#XfcePanelWindow { // main panel container >= 4.13.3?
-    // FIXME: unneeded 1px borders are reserved by its code itself
-    border: 1px solid $panel_bg;
-
     &, &.marching-ants { transition: none; } // unset transitions
   }
 
