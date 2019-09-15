@@ -2038,12 +2038,7 @@ window.background.lightdm {
 .nemo-window {
   // tone down unfocused splitted-pane
   box.nemo-inactive-pane > notebook {
-    @if $maj_ver == 3 {
-      > stack > box.vertical { opacity: $a_fg_3rd; }
-    }
-    @else {
-      > box > stack > box.vertical { opacity: $a_fg_3rd; }
-    }
+    > stack > box.vertical { opacity: $a_fg_3rd; }
   }
 
   treeview.places-treeview { // use opaque colors
@@ -2077,16 +2072,8 @@ window.background.lightdm {
 
   // tweak notebook color
   grid > paned > box > paned > box > notebook {
-    @if $maj_ver == 3 {
-      &, > stack:not(:only-child) {
-        background-color: $base;
-      }
-    }
-    @else {
-      &, > box > stack:not(:only-child) {
-        background-color: $base;
-      }
-    }
+    &,
+    > stack:not(:only-child) { background-color: $base; }
   }
 
   // remove double-border
@@ -3221,25 +3208,13 @@ window.background:not(.solid-csd) > box.vertical {
       &.frame {
         border: none;
 
-        @if $maj_ver == 3 {
-          > stack {
-            border-width: 1px;
-            border-style: solid;
-            border-color: $bg;
-            box-shadow: none;
-            &:dir(ltr) { border-left-color: $div_pane_fg; }
-            &:dir(rtl) { border-right-color: $div_pane_fg; }
-          }
-        }
-        @else {
-          > box > stack {
-            border-width: 1px;
-            border-style: solid;
-            border-color: $bg;
-            box-shadow: none;
-            &:dir(ltr) { border-left-color: $div_pane_fg; }
-            &:dir(rtl) { border-right-color: $div_pane_fg; }
-          }
+        > stack {
+          border-width: 1px;
+          border-style: solid;
+          border-color: $bg;
+          box-shadow: none;
+          &:dir(ltr) { border-left-color: $div_pane_fg; }
+          &:dir(rtl) { border-right-color: $div_pane_fg; }
         }
       }
     }
@@ -3264,17 +3239,9 @@ window.background:not(.solid-csd) > box.vertical {
 
   .pluma-window {
     paned.horizontal notebook {
-      @if maj_ver == 3 {
-        > header.top { // revive top-border when tabs are shown
-          border-top: 1px solid $div_fg;
-          background-color: $bg;
-        }
-      }
-      @else {
-        > box > header.top { // revive top-border when tabs are shown
-          border-top: 1px solid $div_fg;
-          background-color: $bg;
-        }
+      > header.top { // revive top-border when tabs are shown
+        border-top: 1px solid $div_fg;
+        background-color: $bg;
       }
     }
 
@@ -3527,17 +3494,9 @@ window.background:not(.solid-csd) {
     border: 0 none transparent; // unset borders
     background-color: $base;
 
-    @if maj_ver == 3 {
-      > stack {
-        border: none;
-        box-shadow: none;
-      }
-    }
-    @else {
-      > box > stack {
-        border: none;
-        box-shadow: none;
-      }
+    > stack {
+      border: none;
+      box-shadow: none;
     }
   }
 }
@@ -4297,21 +4256,11 @@ window#GeanyMainWindow {
     paned.horizontal > notebook.frame {
       border: none; // remove double borders around the L/R panes
 
-      @if $maj_ver == 3 {
-        > stack > scrolledwindow { // left-pane
-          @extend %sidebar_template;
+      > stack > scrolledwindow { // left-pane
+        @extend %sidebar_template;
 
-          // Geany overrides theme's font settings anyway
-          treeview.view { @extend %sidebar_treeview; }
-        }
-      }
-      @else {
-        > box > stack > scrolledwindow { // left-pane
-          @extend %sidebar_template;
-
-          // Geany overrides theme's font settings anyway
-          treeview.view { @extend %sidebar_treeview; }
-        }
+        // Geany overrides theme's font settings anyway
+        treeview.view { @extend %sidebar_treeview; }
       }
     }
   }

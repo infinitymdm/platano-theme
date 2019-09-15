@@ -3673,34 +3673,15 @@ notebook {
     border: 1px solid $div_sld_fg;
 
     // remove madness borders around header
-    @if $maj_ver == 3 {
-      > header { @extend %header_frame; }
-    }
-    @else {
-      > box > header { @extend %header_frame; }
-    }
+    > header { @extend %header_frame; }
   }
 
-  @if $maj_ver == 3 {
-    > stack { @extend %notebook_stack; }
-  }
-  @else {
-    > box > stack { @extend %notebook_stack; }
-  }
+  > stack { @extend %notebook_stack; }
 
-  @if $maj_ver == 3 {
-    > header {
-      @extend %static_tabs;
-      @extend %reorderable_tab;
-      @extend %tab_arrows;
-    }
-  }
-  @else {
-    > box > header {
-      @extend %static_tabs;
-      @extend %reorderable_tab;
-      @extend %tab_arrows;
-    }
+  > header {
+    @extend %static_tabs;
+    @extend %reorderable_tab;
+    @extend %tab_arrows;
   }
 }
 

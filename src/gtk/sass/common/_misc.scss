@@ -519,16 +519,9 @@ $gf_margin: 12px;
 //  ************/
 
 .nautilus-desktop-window {
-  @if $maj_ver == 3 {
-    &,
-    notebook,
-    notebook > stack { background: transparent; }
-  }
-  @else {
-    &,
-    notebook,
-    notebook > box > stack { background: transparent; }
-  }
+  &,
+  notebook,
+  notebook > stack { background: transparent; }
 }
 
 .nautilus-desktop.nautilus-canvas-item {
@@ -942,15 +935,8 @@ headerbar.titlebar.incognito-mode {
 }
 
 // reset inverted foreground color
-@if $maj_ver == 3 {
-  notebook > stack > box.vertical > paned.vertical > overlay {
-    > .floating-bar { color: $sec_fg; }
-  }
-}
-@else {
-  notebook > box > stack > box.vertical > paned.vertical > overlay {
-    > .floating-bar { color: $sec_fg; }
-  }
+notebook > stack > box.vertical > paned.vertical > overlay {
+  > .floating-bar { color: $sec_fg; }
 }
 
 // overrides foregrounds for 3.24's ssd-mode
@@ -1204,23 +1190,11 @@ window.background > box.vertical > toolbar.primary-toolbar {
   }
 }
 
-@if $maj_ver == 3 {
-  notebook > stack grid.horizontal > grid.horizontal > grid.horizontal {
-    button.flat.toggle { // 'edit' and 'browse' button
-      &:checked { // draw underline indicator
-        background-color: $sel_bg;
-        color: $sel_fg;
-      }
-    }
-  }
-}
-@else {
-  notebook > box > stack grid.horizontal > grid.horizontal > grid.horizontal {
-    button.flat.toggle { // 'edit' and 'browse' button
-      &:checked { // draw underline indicator
-        background-color: $sel_bg;
-        color: $sel_fg;
-      }
+notebook > stack grid.horizontal > grid.horizontal > grid.horizontal {
+  button.flat.toggle { // 'edit' and 'browse' button
+    &:checked { // draw underline indicator
+      background-color: $sel_bg;
+      color: $sel_fg;
     }
   }
 }
@@ -1737,12 +1711,7 @@ dzl {
     list.open-pages { background-color: transparent; }
 
     // no need to highlighten headers
-    @if $maj_ver == 3 {
-      buildpanel notebook > header.top { background-color: transparent; }
-    }
-    @else {
-      buildpanel notebook > box > header.top { background-color: transparent; }
-    }
+    buildpanel notebook > header.top { background-color: transparent; }
   }
 
   &menubuttonsection { // child elements in their GtkPopovers
