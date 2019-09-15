@@ -2522,6 +2522,7 @@ headerbar {
   }
 
   @extend %fade_effect; // add fade_effect
+  @if $maj_ver == 4 { border-spacing: 6px; }
   // draw borders
   border-width: 1px 0 1px;
   border-style: solid;
@@ -2557,8 +2558,15 @@ headerbar {
 
   // reduce hidden gap reserved for separators
   > box.horizontal {
-    &.left { margin-right: -6px; }
-    &.right { margin-left: -6px; }
+    @if $maj_ver == 3 {
+      &.left { margin-right: -6px; }
+
+      &.right { margin-left: -6px; }
+    }
+    @else {
+      &.left,
+      &.right { border-spacing: 0; }
+    }
   }
 
   // To avoid double-padding, set it only for titlebar in case it
