@@ -1135,6 +1135,8 @@ $avatar_width: $icon_size * 1.5;
 //  * Workspace Switcher *
 //  **********************/
 
+$ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
+
 .workspace-switcher {
   padding: 0;
   spacing: if($ref_weight >= 1.0, 8px, 6px);
@@ -1148,7 +1150,8 @@ $avatar_width: $icon_size * 1.5;
 }
 
 %switcher_arrow_active {
-  height: if($ref_weight >= 1.0, 50px, 36px);
+  height: $ws_container_size + (2px * 2); // concern the box's border width
+  border: 0 none transparent;
   border-radius: $r_2;
   background-size: 24px;
   background-color: if($variant != light, opacity($inv_acc_fg, $a_trk_2),
@@ -1174,7 +1177,7 @@ $avatar_width: $icon_size * 1.5;
   }
 
   &-box {
-    height: if($ref_weight >= 1.0, 50px, 36px);
+    height: $ws_container_size;
     border: 2px solid $osd_out_fg;
     border-radius: $r_2;
     background: transparent;
