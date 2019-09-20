@@ -1037,6 +1037,13 @@ flowboxchild.bookmark-tag-widget {
  &-selected { color: $sel_fg; } // checked
 }
 
+// search result counter labels
+.linked > entry.search > entry { // enforce "no-relief" labels
+  min-height: unset;
+  border: unset;
+  background: none;
+}
+
 // /************
 //  * Seahorse *
 //  ************/
