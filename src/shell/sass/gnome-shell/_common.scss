@@ -947,30 +947,38 @@ $avatar_width: $icon_size * 1.5;
 
   .rename-folder-popup { // concern .popup-menu-item
     .popup-menu {
-      &-content { padding: ($rename_popup_content * 1.5) 0; }
+      &-content { padding: $rename_popup_content 0; }
 
       &-ornament { width: 0; } // clear unneeded ornament
-    }
 
-    &-item {
-      spacing: $rename_popup_content / 2;
-      &:ltr,
-      &:rtl { padding: 0; }
+      &-item {
+        spacing: $rename_popup_content;
+        &:ltr { padding: 0 $rename_popup_content 0 0; }
+        &:rtl { padding: 0 0 0 $rename_popup_content; }
+      }
     }
 
     StEntry {
     }
 
-    .button { // action-style text buttons
-      padding: if($ref_weight >= 1.0, 7px 16px 8px, 5px 12px 6px);
+    .button { // suggested-action button
+      padding: if($ref_weight >= 1.0, // subtract borders
+                  (7px - 2px) (16px - 2px) (8px - 2px),
+                  (5px - 2px) (12px - 2px) (6px - 2px));
       border-radius: $r_2;
-      border: none;
       font-weight: 500;
-      @include button(flat-normal, $tc: $acc_fg);
-      &:hover { @include button(flat-hover, $tc: $acc_fg); }
-      &:focus { @include button(flat-focus, $tc: $acc_fg); }
-      &:active { @include button(flat-active, $tc: $acc_fg); }
-      &:insensitive { @include button(flat-disabled, $tc: $fg); }
+      @include button(suggested-normal, $c: $sggt_bg, $tc: $sel_fg);
+      &:hover {
+        @include button(suggested-hover, $c: $sggt_bg, $tc: $sel_fg);
+      }
+      &:focus {
+        @include button(suggested-focus, $c: $sggt_bg, $tc: $sel_fg);
+      }
+      &:active { @include button(suggested-active); }
+      &:insensitive {
+        padding: if($ref_weight >= 1.0, 7px 16px 8px, 5px 12px 6px);
+        @include button(suggested-disabled, $tc: $fg);
+      }
     }
   }
 }
@@ -3937,7 +3945,7 @@ $grid_size: 136px;
     &:active { @include button(flat-active, $tc: $ovv_fg); }
     &:insensitive { @include button(flat-disabled, $tc: $ovv_fg); }
     &:default { // suggested-action button
-      padding: (7px - 2px)  (16px - 2px) (8px - 2px); // subtract borders
+      padding: (7px - 2px) (16px - 2px) (8px - 2px); // subtract borders
       @include button(suggested-normal, $c: $sggt_bg, $tc: $sel_fg);
       &:hover {
         @include button(suggested-hover, $c: $sggt_bg, $tc: $sel_fg);
