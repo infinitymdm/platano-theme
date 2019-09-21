@@ -943,12 +943,19 @@ $avatar_width: $icon_size * 1.5;
 }
 
 @if $ver > 3.33 { // rename popup-menu
+  $rename_popup_content: if($ref_weight >= 1.0, 8px, 6px);
+
   .rename-folder-popup { // concern .popup-menu-item
+    .popup-menu {
+      &-content { padding: ($rename_popup_content * 1.5) 0; }
+
+      &-ornament { width: 0; } // clear unneeded ornament
+    }
+
     &-item {
-      spacing: if($ref_weight >= 1.0, $avatar_width / 2 - $extra_spacing,
-                                      $avatar_width / 2);
+      spacing: $rename_popup_content / 2;
       &:ltr,
-      &:rtl { padding: 0 $avatar_width; }
+      &:rtl { padding: 0; }
     }
 
     StEntry {
