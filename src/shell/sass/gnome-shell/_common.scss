@@ -942,15 +942,29 @@ $avatar_width: $icon_size * 1.5;
   background-color: transparent;
 }
 
-@if $ver > 3.33 {
-  // Rename popup
+@if $ver > 3.33 { // rename popup-menu
+  .rename-folder-popup { // concern .popup-menu-item
+    &-item {
+      spacing: if($ref_weight >= 1.0, $avatar_width / 2 - $extra_spacing,
+                                      $avatar_width / 2);
+      &:ltr,
+      &:rtl { padding: 0 $avatar_width; }
+    }
 
-  $rename_box_spacing: 6px;
+    StEntry {
+    }
 
-  .rename-folder-popup-box {
-    spacing: $rename_box_spacing;
-    margin-left: $rename_box_spacing - 2px;
-    margin-right: $rename_box_spacing - 2px;
+    .button { // action-style text buttons
+      padding: if($ref_weight >= 1.0, 7px 16px 8px, 5px 12px 6px);
+      border-radius: $r_2;
+      border: none;
+      font-weight: 500;
+      @include button(flat-normal, $tc: $acc_fg);
+      &:hover { @include button(flat-hover, $tc: $acc_fg); }
+      &:focus { @include button(flat-focus, $tc: $acc_fg); }
+      &:active { @include button(flat-active, $tc: $acc_fg); }
+      &:insensitive { @include button(flat-disabled, $tc: $fg); }
+    }
   }
 }
 
