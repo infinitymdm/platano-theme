@@ -2235,7 +2235,7 @@ toolbar {
   }
 }
 
-// searchbar, location-bar, inline-toolbar & actionbar
+// searchbar, location-bar, inline-toolbar, statusbar & actionbar
 @each $_type, $_width in ('.inline-toolbar', 0 1px 1px),
                          ('.location-bar', 0 0 1px) {
   #{$_type} {
@@ -2267,6 +2267,15 @@ actionbar {
 
   // actual padding
   > revealer > box { padding: $toolbar_padding; }
+}
+
+@if $maj_ver == 3 {
+  @if $mnr_ver > 23 {
+    statusbar { padding: $toolbar_padding; }
+  }
+}
+@else {
+  statusbar { padding: $toolbar_padding; }
 }
 
 // /***************
