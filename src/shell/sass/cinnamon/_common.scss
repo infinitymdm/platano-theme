@@ -2309,46 +2309,6 @@ $bottom_gap: 0.25em;
   padding: 0;
 }
 
-// /**********************
-//  * XApp Status Applet *
-//  **********************/
-
-.xapp-status {
-  &-icon {
-    padding: 0 3px;
-    background-color: $hidden_fill_bg;
-    color: $osd_fg;
-    text-shadow: none;
-    &:hover,
-    &:checked {
-      color: if($variant != light, $sel_fg, black);
-      background-color: $hidden_fill_bg;
-    }
-
-    @each $_pos, $_line in (top, 0 2px),
-                           (bottom, 0 -2px),
-                           (left, 2px 0),
-                           (right, -2px 0) {
-      .panel-#{$_pos} & {
-        &:hover { box-shadow: inset #{$_line} $osd_out_fg; }
-        &:checked { box-shadow: inset #{$_line} $sel_bg; }
-      }
-    }
-  }
-
-  &-label {
-    font-weight: 700;
-    &:ltr { padding: 0 0 0 3px; }
-    &:rtl { padding: 0 3px 0 0; }
-  }
-
-  &-icon.vertical {
-    padding: 3px 0;
-
-    > .xapp-status-label { padding: 3px 0 0; }
-  }
-}
-
 // /********************
 //  * Slingshot Applet *
 //  ********************/
