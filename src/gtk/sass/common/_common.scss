@@ -4976,46 +4976,55 @@ row:selected { @extend %selected_items; }
 //  * Expanders *
 //  *************/
 
-expander {
-  label {
-    color: $sec_fg;
-    &:hover,
-    &:active { color: $fg; }
-    &:selected { color: $sel_fg; }
-    &:disabled { color: $dis_fg; }
+%expander_label {
+  color: $sec_fg;
+  &:hover,
+  &:active { color: $fg; }
+  &:selected { color: $sel_fg; }
+  &:disabled { color: $dis_fg; }
+}
+
+%expander_label_spacing {
+  margin-bottom: rem($baseline, $sw: 1.0);
+  // spacer between arrow and label
+  &:dir(ltr) { padding-left: rem($menu_padding, $sw: 1.0); }
+  &:dir(rtl) { padding-right: rem($menu_padding, $sw: 1.0); }
+}
+
+%expander_arrow {
+  @extend %arrow_size;
+  -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
+  &:dir(rtl) { -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl'); }
+  &:checked { -gtk-icon-source: -gtk-icontheme('pan-down-symbolic'); }
+  &:not(:hover):not(:active) { color: track(currentColor, $a_fg_2nd); }
+  &:selected { color: $sel_fg; }
+  &:disabled { color: $dis_fg; }
+}
+
+@if $maj_ver == 3 {
+  expander {
+    label { @extend %expander_label; }
+
+    title {
+      padding: rem($menu_padding) rem($menuitem_padding);
+
+      > arrow { @extend %expander_arrow; }
+    }
+
+    > label { @extend %expander_label_spacing; }
   }
+}
+@else {
+  expander {
+    @extend %expander_label;
+    @extend %expander_arrow;
 
-  title {
-    padding: rem($menu_padding) rem($menuitem_padding);
+    &-widget {
+      label { @extend %expander_label; }
 
-    > arrow {
-      @extend %arrow_size;
-      -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
-      &:dir(rtl) { -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl'); }
-      @if $maj_ver == 3 {
-        &:checked { -gtk-icon-source: -gtk-icontheme('pan-down-symbolic'); }
-      }
-      &:not(:hover):not(:active) { color: track(currentColor, $a_fg_2nd); }
-      &:selected { color: $sel_fg; }
-      &:disabled { color: $dis_fg; }
-    }
+      title { padding: rem($menu_padding) rem($menuitem_padding); }
 
-    @if $maj_ver == 4 {
-      &:hover > arrow { color: $fg; }
-    }
-
-    > label {
-      margin-bottom: rem($baseline, $sw: 1.0);
-      // spacer between arrow and label
-      &:dir(ltr) { padding-left: rem($menu_padding, $sw: 1.0); }
-      &:dir(rtl) { padding-right: rem($menu_padding, $sw: 1.0); }
-    }
-  }
-
-  @if $maj_ver == 4 {
-    title > arrow:checked,
-    title:checked > arrow {
-      -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
+      > label { @extend %expander_label_spacing; }
     }
   }
 }
