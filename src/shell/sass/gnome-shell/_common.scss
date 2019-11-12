@@ -26,7 +26,7 @@ $font-family-for-ornament: Sans-Serif;
 
 stage {
   @include fontscaling(1.0);
-  font-family: $font-family;
+  @if $ver < 3.35 { font-family: $font-family; }
   color: $fg;
 }
 
@@ -4325,7 +4325,7 @@ $tool_icon_size: 24px;
     min-height: $tool_icon_size + if($ref_weight >= 1.0, 8px, 6px);
     padding: if($ref_weight >= 1.0, 0 8px * 2, 0 6px * 2);
     color: $osd_ter_fg;
-    font-family: $font-family; // stop using fixed-fonts
+    @if $ver < 3.35 { font-family: $font-family; } // stop using fixed-fonts
     font-weight: 500;
     transition-duration: $tr_d_std;
     &:hover {
