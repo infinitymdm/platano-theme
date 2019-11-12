@@ -31,7 +31,7 @@ else
         echo Processing for GNOME '>=' $GNOME_SCSS_VERSION
     elif [ $GIO_MINOR_VERSION -ge "61" ]; then
         GNOME_SCSS_VERSION="3.34"
-        echo Processing for GNOME '>=' $GNOME_SCSS_VERSION
+        echo Processing for GNOME '=' $GNOME_SCSS_VERSION
     elif [ $GIO_MINOR_VERSION -ge "59" ]; then
         GNOME_SCSS_VERSION="3.32"
         echo Processing for GNOME '=' $GNOME_SCSS_VERSION
