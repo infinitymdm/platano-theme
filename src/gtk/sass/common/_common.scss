@@ -2462,7 +2462,6 @@ headerbar {
   }
 }
 
-
 @if $maj_ver == 3 { // for Epiphany
   @if $mnr_ver > 23 {
     window.incognito-mode headerbar,
@@ -2591,6 +2590,7 @@ headerbar {
 
 %headerbar_child_margins {
   button, // set spacer with vertical margin
+  menubutton,
   entry,
   spinbutton,
   scale { margin: $toolbar_padding 0; }
@@ -2603,6 +2603,8 @@ headerbar {
 
     > label.subtitle { margin: rem(-$baseline * 2) 0; }
   }
+
+  menubutton > button { margin: 0; } // reset child button node T/B margins
 }
 
 .background:not(.maximized):not(.fullscreen):not(.tiled):not(.solid-csd) {
