@@ -6209,6 +6209,10 @@ cursor-handle {
 //  * Shortcut Window *
 //  *******************/
 
+@if $maj_ver == 4 {
+  shortcut { border-spacing: 6px; }
+}
+
 .keycap {
   min-width: rem($widget_size / 2, $sw: 1.0);
   min-height: rem($widget_size / 2, $sw: 1.0);
