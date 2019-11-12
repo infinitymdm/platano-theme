@@ -3489,6 +3489,8 @@ combobox > window.popup { // combobox specific context-menu popup
     }
 
     &.menu {
+      padding: 0; // NEEDS_REVIEW
+
       box { // button containers
         &.inline-buttons {
           padding: 0 $popover_padding;
