@@ -2187,24 +2187,29 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 .aggregate-menu {
   min-width: 24em;
 
-  .popup-menu-icon { padding: if($ref_weight >= 1.0, 0 6px, 0 4px); }
+  .popup-menu-icon {
+    padding: if($ref_weight >= 1.0, 0 6px, 0 4px);
+    @if $ver > 3.35 { -st-icon-style: symbolic; }
+  }
 }
 
-.system-menu-action {
-  padding: if($ref_weight >= 1.0, 10px, 8px);
-  border-radius: $r;
-  @include button(normal);
-  @if $ver > 3.25 { -st-icon-style: symbolic; } // >= 3.29.90
-  &:hover { @include button(hover); }
-  &:focus { @include button(focus); }
-  &:active {
-    &, &:focus { @include button(active); }
-  }
-  &:checked { // this might not be needed
-    &, &:focus { @include button(checked); }
-  }
+@if $ver < 3.35 {
+  .system-menu-action {
+    padding: if($ref_weight >= 1.0, 10px, 8px);
+    border-radius: $r;
+    @include button(normal);
+    @if $ver > 3.25 { -st-icon-style: symbolic; } // >= 3.29.90
+    &:hover { @include button(hover); }
+    &:focus { @include button(focus); }
+    &:active {
+      &, &:focus { @include button(active); }
+    }
+    &:checked { // this might not be needed
+      &, &:focus { @include button(checked); }
+    }
 
-  > StIcon { icon-size: $icon_size; }
+    > StIcon { icon-size: $icon_size; }
+  }
 }
 
 // /**********************

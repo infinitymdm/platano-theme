@@ -26,7 +26,10 @@ if [ $GIO_MAJOR_VERSION -eq "2" ] && [ $GIO_MINOR_VERSION -lt "48" ]; then
     echo Unmet dependency: glib-2.0 >= 2.48.0
     exit 1
 else
-    if [ $GIO_MINOR_VERSION -ge "61" ]; then
+    if [ $GIO_MINOR_VERSION -ge "63" ]; then
+        GNOME_SCSS_VERSION="3.36"
+        echo Processing for GNOME '>=' $GNOME_SCSS_VERSION
+    elif [ $GIO_MINOR_VERSION -ge "61" ]; then
         GNOME_SCSS_VERSION="3.34"
         echo Processing for GNOME '>=' $GNOME_SCSS_VERSION
     elif [ $GIO_MINOR_VERSION -ge "59" ]; then
