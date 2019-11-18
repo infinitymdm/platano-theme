@@ -4336,3 +4336,49 @@ window.background {
     }
   }
 }
+
+// /************
+//  * Sequeler *
+//  ************/
+
+grid.horizontal {
+  &.library-titlebar {
+    // override stylesheet.css
+    border-image: image($bg) 0 0 1 / 0 0 1px;
+
+    label { color: $ter_fg; }
+  }
+
+  &.library-toolbar {
+    border-image: image($div_sld_fg) 1 0 0 / 1px 0 0;
+
+    separator.vertical { // hide unneeded separators
+      min-width: 0;
+      min-height: 0;
+      background: none;
+    }
+
+    button.flat { @include radius(0); }
+  }
+}
+
+flowbox flowboxchild.library-box { // GtkFlowBox in sidebar
+  &, &:hover {
+    grid.library-inner-box { // override stylecsheet.css
+      grid,
+      label { color: $fg; }
+    }
+  }
+
+  &:selected {
+    @extend %selected_sidebar_row;
+    &, &:hover {
+      background-image: image(track($sel_label, $a_trk_1));
+
+      grid.library-inner-box {
+        grid,
+        label { color: $sel_label; }
+      }
+    }
+  }
+}
