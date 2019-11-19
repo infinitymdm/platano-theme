@@ -214,6 +214,9 @@ headerbar.titlebar.tweak-titlebar {
   &-left,
   &-right { // unset baseline correction
     > label.title { margin-bottom: 0; }
+
+    // for hdyleaflet
+    + separator.vertical { background-color: $div_sld_dark_fg; }
   }
 }
 

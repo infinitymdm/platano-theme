@@ -2787,7 +2787,7 @@ dialog.background.csd > headerbar.titlebar {
   headerbar:not(.titlebar):not(:only-child) {
     background-color: transparent;
 
-    + separator { background-color: $div_sld_dark_fg }
+    + separator { background-color: $div_sld_dark_fg; }
   }
 
   &.selection-mode headerbar:not(.titlebar):not(:only-child) {
