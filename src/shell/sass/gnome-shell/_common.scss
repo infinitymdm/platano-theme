@@ -2113,6 +2113,12 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   }
 }
 
+@if $ver > 3.35 {
+  // NEEDS_REVIEW: Was this really needed?
+  .message-close-button {
+  }
+}
+
 .message-media-control {
   padding: 0 8px;
   margin: 0 6px;
