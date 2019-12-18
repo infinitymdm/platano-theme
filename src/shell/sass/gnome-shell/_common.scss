@@ -1594,7 +1594,13 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   }
 
   .weather {
-    &-box { spacing: 0.4em; }
+    @if $ver > 3.35 {
+      &-box,
+      &-header-box { spacing: 0.4em; }
+    }
+    @else {
+      &-box { spacing: 0.4em; }
+    }
 
     &-header.location {
       @include fontscaling(0.9);
