@@ -80,6 +80,11 @@ stage {
 //  * Entries *
 //  ***********/
 
+%entry_icon_sizing {
+  icon-size: $icon_size;
+  padding: 0 0.3em;
+}
+
 StEntry {
   min-height: if($ref_weight >= 1.0, 1em + 0.7em + 0.8em,
                                      1em + 0.5em + 0.6em);
@@ -102,10 +107,15 @@ StEntry {
     &:insensitive { @include entry(disabled, $tc: $fg); }
   }
 
-  StIcon.capslock-warning {
-    icon-size: $icon_size;
-    padding: 0 0.3em;
-    warning-color: $warn;
+  StIcon {
+    &.capslock-warning {
+      @extend %entry_icon_sizing;
+      warning-color: $warn;
+    }
+
+    @if $ver > 3.35 {
+      &.peek-password { @extend %entry_icon_sizing; }
+    }
   }
 }
 
