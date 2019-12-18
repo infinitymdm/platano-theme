@@ -584,6 +584,13 @@ StScrollBar {
     &-button.button {
     }
   }
+
+  @if $ver > 3.35 {
+    &-caps-lock-warning {
+      @extend .prompt-dialog-error-label;
+      padding-left: if($ref_weight >= 1.0, 8px, 6px);
+    }
+  }
 }
 
 .hidden { color: transparent; }
