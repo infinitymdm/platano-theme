@@ -1637,6 +1637,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       }
 
       &-time {
+        @if $ver > 3.35 { padding: 0.2em 0 0.4em; }
         @include fontscaling(0.8);
         color: $ter_fg;
       }
