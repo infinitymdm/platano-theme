@@ -1877,7 +1877,9 @@ spinbutton {
 
 %spin_entry_reset {
   @if $maj_ver == 3 {
-    entry {
+    entry,
+    toolbar & entry,
+    popover & > entry:not(.combo) { // specificity bump
       &, // unset all of fallback mode
       &:focus,
       &:disabled {
