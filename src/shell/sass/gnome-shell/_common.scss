@@ -275,7 +275,14 @@ StScrollBar {
   // FIXME: Lock drop-shadows until upstream computes proper shadow-region
   @else { box-shadow: $empty_shadow; }
 
-  &-content-box { padding: if($ref_weight >= 1.0, 24px, 20px); }
+  &-content-box {
+    padding: if($ref_weight >= 1.0, 24px, 20px);
+    @if $ver > 3.35 {
+      max-width: 28em;
+      margin: if($ref_weight >= 1.0, 32px 40px, 24px 32px);
+      spacing: if($ref_weight >= 1.0, 32px, 24px);
+    }
+  }
 
   .run-dialog {
     &-entry {
@@ -323,10 +330,12 @@ StScrollBar {
   //  ******************/
 
   .message-dialog {
-    &-main-layout {
-      padding: if($ref_weight >= 1.0, 12px 20px 0,
-                                      8px 16px 0);
-      spacing: if($ref_weight >= 1.0, 12px, 8px);
+    @if $ver < 3.35 {
+      &-main-layout {
+        padding: if($ref_weight >= 1.0, 12px 20px 0,
+                                        8px 16px 0);
+        spacing: if($ref_weight >= 1.0, 12px, 8px);
+      }
     }
 
     &-content {
@@ -550,10 +559,12 @@ StScrollBar {
   width: 34em;
   border: none;
 
-  .message-dialog {
-    &-main-layout {
-      spacing: if($ref_weight >= 1.0, 24px, 18px);
-      padding: if($ref_weight >= 1.0, 10px, 8px);
+  @if $ver < 3.35 {
+    .message-dialog {
+      &-main-layout {
+        spacing: if($ref_weight >= 1.0, 24px, 18px);
+        padding: if($ref_weight >= 1.0, 10px, 8px);
+      }
     }
 
     &-content { spacing: if($ref_weight >= 1.0, 16px, 12px); }
@@ -728,10 +739,12 @@ StScrollBar {
   //  ********************/
 
   .extension-dialog {
-    .message-dialog {
-      &-main-layout {
-        padding: if($ref_weight >= 1.0, 12px, 8px);
-        spacing: if($ref_weight >= 1.0, 24px, 16px);
+    @if $ver < 3.35 {
+      .message-dialog {
+        &-main-layout {
+          padding: if($ref_weight >= 1.0, 12px, 8px);
+          spacing: if($ref_weight >= 1.0, 24px, 16px);
+        }
       }
 
       &-title {
