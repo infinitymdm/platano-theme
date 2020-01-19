@@ -837,7 +837,8 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
   margin-from-right-edge-of-screen: 20px;
   padding: 13px;
   border-radius: $r_8;
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: if($variant == mixed, opacity($inv_tooltip_bg, $a_osd),
+                                          opacity($tooltip_bg, $a_osd));
   color: $osd_fg;
   box-shadow: $z-depth-4;
 
