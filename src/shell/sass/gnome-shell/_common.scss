@@ -467,10 +467,19 @@ StScrollBar {
           &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
         }
 
-        &-body {
-          width: 28em;
-          &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
-          &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+        @if $ver < 3.35 {
+          &-body {
+            width: 28em;
+            &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+            &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+          }
+        }
+        @else {
+          &-description {
+            width: 28em;
+            &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+            &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+          }
         }
       }
     }
