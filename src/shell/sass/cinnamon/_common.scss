@@ -16,11 +16,14 @@
 
 $font-family: Roboto, Sans-Serif;
 
+// font-family is deprecated with 4.4.9? or higher,
+// we may need to specify the stage node for upcoming version somehow...
+
 stage {
-  @include fontscaling(1.0);
   color: $fg;
   font-family: $font-family;
   font-weight: 400;
+  font-size: 10pt;
 }
 
 .label-shadow { color: transparent; }
@@ -175,10 +178,10 @@ StScrollBar {
   }
 
   StLabel {
-    @include fontscaling(1.0);
     padding-top: 0.1em;
     padding-bottom: 0.1em + 0.1em;
     font-weight: 400;
+    font-size: 100%
   }
 }
 
@@ -265,7 +268,6 @@ StScrollBar {
 //  ***********/
 
 #Tooltip {
-  @include fontscaling(1.0);
   padding: 7px 8px 8px;
   border-radius: $r_2;
   background-color: if($variant == mixed, opacity($inv_tooltip_bg, $a_osd),
@@ -273,6 +275,7 @@ StScrollBar {
   color: $osd_fg;
   box-shadow: $empty_shadow;
   font-weight: 400;
+  font-size: 100%;
   text-align: center;
 }
 
@@ -397,7 +400,6 @@ StScrollBar {
 //  *********/
 
 #panel {
-  @include fontscaling(1.0);
   // setting under 32px width causes blurred window-list icons
   // in vertical panels
   min-width: 32px; // = 2.4em
@@ -407,6 +409,7 @@ StScrollBar {
   color: $osd_fg;
   background-color: $panel_bg;
   font-weight: 700;
+  font-size: 100%
 
   &:highlight { background-color: $acc_fill_bg; }
 }
@@ -683,8 +686,8 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
 }
 
 .overview-empty-placeholder {
-  @include fontscaling(2.0);
   color: opacity($ovv_fg, $a_fg_3rd);
+  font-size: 200%
 }
 
 // /*****************
@@ -716,21 +719,21 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
   }
 
   &-month-label {
-    @include fontscaling(0.9);
     margin: 0 0.2em;
     padding-top: (0.45em - 0.1em); // label centering
     color: $fg;
     font-weight: 400;
+    font-size: 90%
   }
 
   &-change-month-back,
   &-change-month-forward {
-    @include fontscaling(0.9);
     width: 1.5em + 0.5em; // embed padding of -month-label
     height: 1.5em + 0.5em;
     margin: 0;
     padding: 0;
     border-radius: $r;
+    font-size: 90%
     &:hover { background-color: $semi_fill_bg; }
     &:active { background-color: $fill_bg; }
   }
@@ -765,17 +768,16 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
   color: $fg;
 
   &-base {
-    @include fontscaling(0.9);
     width: 2.4em;
     height: 2.4em;
     padding: 0;
     margin: 0.2em;
     border-radius: $r;
+    font-size: 90%;
     text-align: center;
   }
 
   &-heading {
-    @include fontscaling(0.9);
     width: 2.4em;
     height: 1.9em;
     margin-top: 0.2em;
@@ -783,6 +785,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
     background-color: transparent;
     color: $ter_fg;
     font-weight: 500;
+    font-size: 90%;
     text-align: center;
   }
 
@@ -1059,24 +1062,24 @@ $ripple_r: 52px;
   > * { padding: 0; }
 
   &-label {
-    @include fontscaling(0.9);
     padding-bottom: 0;
     color: $osd_ter_fg;
     font-weight: 400;
+    font-size: 90%;
   }
 
   &-error-label { color: $err; }
 
   &-error-box {
-    @include fontscaling(0.9);
     padding-top: 15px;
     spacing: 5px;
     color: $err;
+    font-size: 90%;
   }
 
   &-completion-box {
-    @include fontscaling(1.0);
     padding-left: 15px;
+    font-size: 100%;
   }
 
   &-entry {
@@ -1151,7 +1154,7 @@ $ripple_r: 52px;
     &-icon:ltr { padding-right: 17px; }
     &-icon:rtl { padding-left: 17px; }
 
-    &-name { @include fontscaling(1.1); }
+    &-name { font-size: 110%; }
   }
 }
 
@@ -1422,16 +1425,16 @@ $large_item: 10px;
     }
 
     &-title {
-      @include fontscaling(0.9);
       margin-top: 0.4em;
       color: $sec_fg;
       font-weight: 700;
+      font-size: 90%;
     }
 
     &-description {
-      @include fontscaling(0.9);
       max-width: 150px;
       color: $ter_fg;
+      font-size: 90%;
     }
   }
 
@@ -1492,7 +1495,7 @@ $large_item: 10px;
   font-weight: 700;
   text-align: center;
 
-  .osd-monitor-label { @include fontscaling(3.0); }
+  .osd-monitor-label { font-size: 300%; }
 
   .level { // for legacy
     height: 3px;
@@ -2083,10 +2086,10 @@ $large_item: 10px;
   }
 
   &-label {
-    @include fontscaling(1.0);
     margin: 0;
     color: $fg;
     font-weight: 700;
+    font-size: 100%;
   }
 }
 
@@ -2124,9 +2127,9 @@ $large_item: 10px;
   }
 
   &-header {
-    @include fontscaling(1.0);
     border-radius-topleft: $r_8;
     border-radius-topright: $r_8;
+    font-size: 100%;
   }
 
   &-drag-placeholder { 
@@ -2162,13 +2165,13 @@ $large_item: 10px;
   }
 
   &-title {
-    @include fontscaling(2.0);
     font-weight: 700;
+    font-size: 200%;
   }
 
   &-uuid {
-    @include fontscaling(1.0);
     color: $ter_fg;
+    font-size: 100%;
   }
 
   &-icon {
@@ -2195,9 +2198,9 @@ $large_item: 10px;
   }
 
   &-version {
-    @include fontscaling(1.0);
     padding-left: 7px;
     color: $ter_fg;
+    font-size: 100%;
   }
 }
 
@@ -2206,13 +2209,13 @@ $large_item: 10px;
 //  *****************/
 
 .workspace-osd { // workspace name
-  @include fontscaling(3.0);
   padding: 0.2em 0.8em;
   border-radius: $r_8;
   background-color: opacity($osd_bg, $a_osd);
   color: $osd_fg;
   box-shadow: $z-depth-4;
   font-weight: 400;
+  font-size: 300%;
   text-shadow: none;
 }
 
@@ -2221,7 +2224,6 @@ $bottom_gap: 0.25em;
 
 .expo {
   &-workspaces-name-entry {
-    @include fontscaling(0.9);
     -cinnamon-caption-spacing: 12px;
     // FIXME: use 'height' property instead of min-height since total height
     // affects to the size of vertically gap between thumbnails. And we can't
@@ -2238,6 +2240,7 @@ $bottom_gap: 0.25em;
     selection-background-color: $sel_bg;
     selected-color: $sel_fg;
     font-weight: 700;
+    font-size: 90%;
     &:focus { @include entry(focus, $tc: $osd_fg); }
 
     &#selected {
@@ -2442,9 +2445,9 @@ $bottom_gap: 0.25em;
   }
 
   .window-icon-list-numlabel {
-    @include fontscaling(0.9);
     color: if($variant != light, $sel_fg, black);
     font-weight: 700;
+    font-size: 90%;
   }
 }
 

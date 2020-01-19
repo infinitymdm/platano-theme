@@ -3,14 +3,6 @@
   @return scale-color($c, $alpha: percentage(-1 + $a));
 }
 
-// provide font size in rem, with px fallback
-$ref_size: 13.33px;
-
-@mixin fontscaling($s: 1.0) {
-  font-size:
-    round(($ref_size / ($ref_size * 0 + 1)) * $s * 72 / 96 * 10) / 10 + pt;
-}
-
 // image loader
 @mixin image-loader($url: '', $type: bg) {
   @if $type == bg {
