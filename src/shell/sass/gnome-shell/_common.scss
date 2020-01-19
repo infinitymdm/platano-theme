@@ -336,11 +336,13 @@ StScrollBar {
       color: $osd_fg;
     }
 
-    &-icon {
-      min-width: $icon_size * 3;
-      color: $osd_fg;
-      icon-size: $icon_size * 3;
-      -st-icon-style: symbolic;
+    @if $ver < 3.35 {
+      &-icon {
+        min-width: $icon_size * 3;
+        color: $osd_fg;
+        icon-size: $icon_size * 3;
+        -st-icon-style: symbolic;
+      }
     }
 
     &-title {
