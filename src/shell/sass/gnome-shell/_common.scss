@@ -360,11 +360,18 @@ StScrollBar {
       font-weight: 500;
     }
 
-    &-subtitle {
-      color: $osd_sec_fg;
-      font-weight: 400;
+    @if $ver < 3.35 {
+      &-subtitle { @extend %message_dialog_subtitle; }
+    }
+    @else {
+      &-description { @extend %message_dialog_subtitle; }
     }
   }
+}
+
+%message_dialog_subtitle {
+  color: $osd_sec_fg;
+  font-weight: 400;
 }
 
 // /**********************
