@@ -8,12 +8,8 @@
     border-radius: 2px;
     border: 1px solid $div_fg;
     color: if($variant == mixed, $inv_fg, $fg);
-    @if $variant == mixed {
-      background-color: track($inv_dark_bg, $a_osd);
-    }
-    @else {
-      background-color: track($dark_bg, $a_osd);
-    }
+    @if $variant == mixed { background-color: track($inv_tooltip_bg, $a_osd); }
+    @else { background-color: track($tooltip_bg, $a_osd); }
     box-shadow: none;
   }
 
