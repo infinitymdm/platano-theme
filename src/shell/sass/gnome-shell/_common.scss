@@ -290,7 +290,9 @@ StScrollBar {
       color: $err;
     }
 
-    &-button-box { padding-top: if($ref_weight >= 1.0, 1em, 0.7em); }
+    @if $ver < 3.35 {
+      &-button-box { padding-top: if($ref_weight >= 1.0, 1em, 0.7em); }
+    }
 
     &-label {
       @include fontscaling(1.1);
