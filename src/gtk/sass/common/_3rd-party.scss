@@ -1213,25 +1213,24 @@ window.budgie-popover.workspace-popover {
 }
 
 // notifications
-%budgie_notification_window,
+%budgie_notification_window_base,
 .budgie-notification-window,
 .budgie-osd-window {
-  border-radius: $r_8;
   background-color: transparent;
 
+  &, .drop-shadow { border-radius: $r_8; }
+}
+
+%budgie_notification_window_styling,
+.budgie-notification-window .drop-shadow {
   // draw actual backgrounds
-  @if $variant == mixed {
-    .drop-shadow {
-      border-radius: $r_8;
-      background-color: track($inv_dark_bg, $a_osd);
-    }
-  }
-  @else {
-    .drop-shadow {
-      border-radius: $r_8;
-      background-color: track($dark_bg, $a_osd);
-    }
-  }
+  @if $variant == mixed { background-color: track($inv_tooltip_bg, $a_osd); }
+  @else { background-color: track($tooltip_bg, $a_osd); }
+}
+
+.budgie-osd-window .drop-shadow {
+  @if $variant == mixed { background-color: track($inv_dark_bg, $a_osd); }
+  @else { background-color: track($dark_bg, $a_osd); }
 }
 
 %budgie_notification,
@@ -3469,9 +3468,10 @@ window.background:not(.solid-csd) > box.vertical {
   // use budgie-style OSDs
   .slate-notification {
     &-window {
-      @extend %budgie_notification_window;
+      @extend %budgie_notification_window_base;
 
       .drop-shadow {
+        @extend %budgie_notification_window_styling;
         margin: $shadow_margin_3; // enlarge the shadow area
         border-radius: $r_8;
       }
