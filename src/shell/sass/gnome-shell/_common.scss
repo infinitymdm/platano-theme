@@ -2931,16 +2931,16 @@ $provider_icon_size: 32px; // for < 3.25
   -x-offset: 8px;
 }
 
-// /******************
-//  * App Vault/Grid *
-//  ******************/
-
 %tooltip_template {
   color: $osd_fg;
   background-color: if($variant == mixed, opacity($inv_tooltip_bg, $a_osd),
                                           opacity($tooltip_bg, $a_osd));
   box-shadow: $empty_shadow;
 }
+
+// /******************
+//  * App Vault/Grid *
+//  ******************/
 
 $grid_size: 136px;
 
@@ -3317,12 +3317,11 @@ $grid_size: 136px;
   margin: 6px;
   border: none;
   border-radius: $r_8;
-  background-color: opacity($osd_bg, $a_osd);
-  color: $osd_fg;
-  box-shadow: $z-depth-2;
+  &,
   &:hover,
   &:focus {
-    background-color: opacity($osd_bg, $a_osd);
+    background-color: if($variant == mixed, opacity($inv_tooltip_bg, $a_osd),
+                                            opacity($tooltip_bg, $a_osd));
     color: $osd_fg;
     box-shadow: $z-depth-2;
   }
