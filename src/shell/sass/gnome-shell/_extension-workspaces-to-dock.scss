@@ -227,8 +227,8 @@
     border-radius: $r;
     color: $osd_ter_fg;
     background-color: $osd_bg;
-    font-size: 12px; // 90% scaling
     font-weight: 700;
+    font-size: 90%;
     text-align: center;
     box-shadow: $z-depth-1;
 
@@ -245,8 +245,8 @@
     border-radius: 2px;
     color: $osd_ter_fg;
     background-color: $osd_bg;
-    font-size: 12px; // 90% scaling
     font-weight: 700;
+    font-size: 90%;
     text-align: center;
     box-shadow: $z-depth-1;
 
@@ -262,8 +262,8 @@
     border: none;
     color: $osd_ter_fg;
     background-color: transparent;
-    font-size: 12px; // 90% scaling
     font-weight: 700;
+    font-size: 90%;
     text-align: center;
 
     &-current { color: $osd_fg; }

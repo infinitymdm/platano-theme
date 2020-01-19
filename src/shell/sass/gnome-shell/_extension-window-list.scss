@@ -11,8 +11,8 @@
 }
 
 .window-list {
-  @include fontscaling(1.0);
   spacing: 2px;
+  font-size: 100%;
 }
 
 .window-button {

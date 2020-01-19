@@ -25,9 +25,12 @@ $font-family: Roboto, Sans-Serif;
 $font-family-for-ornament: Sans-Serif;
 
 stage {
-  @include fontscaling(1.0);
-  @if $ver < 3.35 { font-family: $font-family; }
   color: $fg;
+  @if $ver < 3.35 {
+    font-family: $font-family;
+    font-size: 10pt;
+  }
+  @else { font-size: 100%; }
 }
 
 // /***********
@@ -260,7 +263,7 @@ StScrollBar {
 //  * Modal Dialogs *
 //  *****************/
 
-.headline { @include fontscaling(1.1); }
+.headline { font-size: 110%; }
 
 .lightbox { background-color: black; }
 
@@ -291,10 +294,10 @@ StScrollBar {
     }
 
     &-error-box {
-      @include fontscaling(0.9);
       padding-top: if($ref_weight >= 1.0, 16px, 12px);
       spacing: if($ref_weight >= 1.0, 6px, 4px);
       color: $err;
+      font-size: 90%;
     }
 
     @if $ver < 3.35 {
@@ -302,10 +305,10 @@ StScrollBar {
     }
 
     &-label {
-      @include fontscaling(1.1);
       padding-bottom: if($ref_weight >= 1.0, 0.4em, 0.3em);
       font-weight: 400;
       color: $osd_ter_fg;
+      font-size: 110%;
     }
   }
 }
@@ -313,14 +316,14 @@ StScrollBar {
 @if $ver > 3.25 {
   .mount-dialog-subject,
   .end-session-dialog-subject { // this should be a generic header class
-    @include fontscaling(1.3);
+    font-size: 130%;
   }
 }
 @else {
   .show-processes-dialog-subject,
   .mount-question-dialog-subject,
   .end-session-dialog-subject { // this should be a generic header class
-    @include fontscaling(1.3);
+    font-size: 130%;
   }
 }
 
@@ -358,8 +361,8 @@ StScrollBar {
     }
 
     &-title {
-      @include fontscaling(1.3);
       color: $osd_fg;
+      font-size: 130%;
       @if $ver > 3.35 {
         font-weight: 700;
         text-align: center;
@@ -452,8 +455,8 @@ StScrollBar {
   &-session-list-item-name { font-weight: 700; }
 
   &-app-list-item-description {
-    @include fontscaling(1.0);
     color: $osd_ter_fg;
+    font-size: 100%;
   }
 }
 
@@ -541,7 +544,7 @@ StScrollBar {
         &:rtl { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
       }
 
-      &-item-name { @include fontscaling(1.0); }
+      &-item-name { font-size: 100%; }
     }
   }
 }
@@ -571,7 +574,7 @@ StScrollBar {
         &:rtl { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
       }
 
-      &-item-name { @include fontscaling(1.0); }
+      &-item-name { font-size: 100%; }
     }
   }
 }
@@ -596,9 +599,9 @@ StScrollBar {
     &-content { spacing: if($ref_weight >= 1.0, 16px, 12px); }
 
     &-title {
-      @include fontscaling(1.3);
       color: $osd_fg;
       font-weight: 500;
+      font-size: 130%;
     }
   }
 
@@ -615,15 +618,15 @@ StScrollBar {
   }
 
   &-error-label {
-    @include fontscaling(1.0);
     padding-bottom: if($ref_weight >= 1.0, 8px, 6px);
     color: $err;
+    font-size: 100%;
   }
 
   &-info-label,
   &-null-label {
-    @include fontscaling(1.0);
     padding-bottom: 8px;
+    font-size: 100%;
   }
 
   @if $ver > 3.31 {
@@ -734,9 +737,9 @@ StScrollBar {
     &-title { font-weight: 700; }
 
     &-subtitle {
-      @include fontscaling(1.1);
       color: $osd_ter_fg;
       font-weight: 700;
+      font-size: 110%;
     }
   }
 }
@@ -774,9 +777,9 @@ StScrollBar {
       }
 
       &-title {
-        // @include fontscaling(1.0);
         // color: $osd_sec_fg;
         // font-weight: 400;
+        // font-size: 100%;
       }
     }
   }
@@ -1101,7 +1104,7 @@ $avatar_width: $icon_size * 1.5;
   font-weight: 700;
   text-align: center;
 
-  .osd-monitor-label { @include fontscaling(3.0); }
+  .osd-monitor-label { font-size: 300%; }
 
   .level {
     height: 3px;
@@ -1206,9 +1209,9 @@ $avatar_width: $icon_size * 1.5;
 }
 
 .input-source-switcher-symbol {
-  @include fontscaling(if($ref_weight >= 1.0, 3.0, 2.4));
   width: if($ref_weight >= 1.0, 96px, 72px);
   height: if($ref_weight >= 1.0, 96px, 72px);
+  font-size: if($ref_weight >= 1.0, 300%, 240%);
 }
 
 // /*****************
@@ -1595,8 +1598,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   }
 
   .date-label {
-    @include fontscaling(1.5);
     color: $sec_fg;
+    font-size: 150%;
   }
 
   &:hover,
@@ -1638,18 +1641,18 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
   .world-clocks {
     &-city {
-      @include fontscaling(0.9);
       font-weight: 700;
+      font-size: 90%;
     }
 
     &-time {
-      @include fontscaling(1.0);
       color: $sec_fg;
+      font-size: 100%;
     }
 
     &-timezone {
-      @include fontscaling(0.9);
       color: $ter_fg;
+      font-size: 90%;
     }
   }
 
@@ -1663,9 +1666,9 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     }
 
     &-header.location {
-      @include fontscaling(0.9);
       color: $sec_fg;
       font-weight: 400;
+      font-size: 90%;
     }
 
     &-forecast {
@@ -1681,8 +1684,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
       &-time {
         @if $ver > 3.35 { padding: 0.2em 0 0.4em; }
-        @include fontscaling(0.8);
         color: $ter_fg;
+        font-size: 80%;
       }
 
       @if $ver > 3.35 {
@@ -1772,12 +1775,12 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 }
 
 .calendar-day-base {
-  @include fontscaling(0.9);
   width: 2.4em;
   height: 2.4em;
   padding: 0;
   margin: 0.2em;
   border-radius: $r;
+  font-size: 90%;
   text-align: center;
   transition-duration: $tr_d_sht;
 
@@ -1793,7 +1796,6 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   }
 
   &.calendar-day-heading { // day of week heading
-    @include fontscaling(0.9);
     width: 2.4em;
     height: 1.9em;
     margin-top: 0.2em;
@@ -1801,6 +1803,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     background-color: transparent;
     color: $ter_fg;
     font-weight: 500;
+    font-size: 90%;
     text-align: center;
   }
 }
@@ -2104,15 +2107,15 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
     > .event-time {
       @if $ver > 3.25 {
-        @include fontscaling(0.9);
         min-height: $icon_size - 4px;
         margin-bottom: (1.15em - 0.9em) * 1.22;
         padding: 0;
+        font-size: 90%;
       }
       @else {
-        @include fontscaling(0.8);
         // '.message-title' padding + extra 0.1em for finer base-line
         padding-bottom: 0.5em + 0.1em;
+        font-size: 80%;
       }
       color: $osd_ter_fg;
     }
@@ -2129,7 +2132,6 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   }
 
   &-title {
-    @include fontscaling(1.1);
     @if $ver > 3.25 {
       min-height: $icon_size - 4px;
       margin-bottom: 0.1em; // base-line correction
@@ -2140,6 +2142,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     }
     color: $osd_fg;
     font-weight: 700;
+    font-size: 110%;
   }
 
   &-content {
@@ -2147,8 +2150,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       padding: 0;
     }
     @else {
-      @include fontscaling(0.9);
       padding: 0 8px 4px;
+      font-size: 90%;
     }
     color: $osd_fg;
 
@@ -2425,9 +2428,9 @@ $close_button_size: 32px;
   }
 
   &-header { // title
-    @include fontscaling(1.1);
     color: $osd_fg;
     font-weight: 700;
+    font-size: 110%;
   }
 
   &-header-icon {
@@ -2473,11 +2476,11 @@ $close_button_size: 32px;
   &-scroll-view { border: 1px solid $div_fg; }
 
   &-item {
-    @include fontscaling(1.0);
     spacing: if($ref_weight >= 1.0, 20px, 16px);
     padding: if($ref_weight >= 1.0, 12px, 8px);
     background-color: transparent; // shut up 3rd-party gresources
     color: $osd_fg;
+    font-size: 100%;
     &:selected {
       background-color: $sel_bg;
       color: $sel_fg;
@@ -2820,8 +2823,8 @@ $provider_icon_size: 32px; // for < 3.25
     }
 
     &-title {
-      @include fontscaling(1.1);
       font-weight: 700;
+      font-size: 110%;
       @if $ver > 3.25 { color: $osd_sec_fg; }
       @else { color: $ovv_fg; }
 
@@ -2847,8 +2850,8 @@ $provider_icon_size: 32px; // for < 3.25
         color: $osd_ter_fg;
       }
       @else {
-        @include fontscaling(0.9);
         color: $ovv_sec_fg;
+        font-size: 90%;
       }
     }
   }
@@ -2863,8 +2866,8 @@ $provider_icon_size: 32px; // for < 3.25
       }
 
       &-details { // labels at the right-side of -icon
-        @include fontscaling(0.9);
         width: $provider_details_width;
+        font-size: 90%;
         @if $ver > 3.25 {
           color: $osd_ter_fg;
           &:ltr {
@@ -2941,12 +2944,12 @@ $provider_icon_size: 32px; // for < 3.25
 //  *************/
 
 #dash {
-  @include fontscaling(0.9);
   padding: 0;
   border: none;
   border-radius: 0;
   background-color: transparent;
   box-shadow: $empty_shadow;
+  font-size: 90%;
   transition-duration: $tr_d_lng;
 
   .placeholder {
@@ -3347,9 +3350,9 @@ $grid_size: 136px;
 }
 
 %status_text {
-  @include fontscaling(2.0);
-  font-weight: 700;
   color: $ovv_ter_fg;
+  font-weight: 700;
+  font-size: 200%;
 }
 
 // /********************************
@@ -3360,11 +3363,11 @@ $grid_size: 136px;
 
 // Banners
 .notification-banner {
-  @include fontscaling(1.1);
   width: 34em;
   margin: 6px;
   border: none;
   border-radius: $r_8;
+  font-size: 110%;
   &,
   &:hover,
   &:focus {
@@ -3428,12 +3431,12 @@ $grid_size: 136px;
 }
 
 .summary-source-counter {
-  @include fontscaling(1.0);
   width: 1.6em;
   height: 1.6em;
   border-radius: 0.9em; // should be 0.8 but whatever; wish I could do 50%;
   border: 2px solid $sel_fg;
   font-weight: 700;
+  font-size: 100%;
   -shell-counter-overlap-x: 3px;
   -shell-counter-overlap-y: 3px;
   background-color: $sggt_bg;
@@ -3465,9 +3468,9 @@ $grid_size: 136px;
   }
 
   &-meta-message {
-    @include fontscaling(0.9);
-    font-weight: 700;
     color: $dis_osd_fg;
+    font-weight: 700;
+    font-size: 90%;
     &:ltr { padding-left: 4px; }
     &:rtl { padding-right: 4px; }
   }
@@ -3806,11 +3809,11 @@ $grid_size: 136px;
 @if $ver > 3.25 {
   // OSK suggestion actor
   .word-suggestions {
-    @include fontscaling(1.3);
     min-height: 1.6em;
     spacing: $ref_size * 1.3;
     padding: $ref_size * 0.3 0 0;
     font-weight: 500;
+    font-size: 130%;
 
     StButton {
       padding: 0 $ref_size * 1.3;
@@ -3902,10 +3905,10 @@ $grid_size: 136px;
   }
 
   &-box {
-    @include fontscaling(1.1);
     padding: 0.3em 0.5em;
     border-radius: $r_2;
     color: $osd_sec_fg;
+    font-size: 110%;
     transition-duration: $tr_d_non;
     &:hover {
       background-color: $osd_semi_fill_bg;
@@ -4017,9 +4020,9 @@ $grid_size: 136px;
   .modal-dialog-button-box { spacing: 1em; }
 
   .modal-dialog-button {
-    @include fontscaling(1.1);
     padding: 7px 16px 8px;
     font-weight: 500;
+    font-size: 110%;
     @include button(flat-normal, $tc: $ovv_fg);
     &:hover { @include button(flat-hover, $tc: $ovv_fg); }
     &:focus { @include button(flat-focus, $tc: $ovv_fg); }
@@ -4047,9 +4050,9 @@ $grid_size: 136px;
 @if $ver > 3.25 {
   .login-dialog-username,
   .user-widget-label {
-    @include fontscaling(1.2);
     color: $ovv_fg;
     font-weight: 700;
+    font-size: 120%;
     text-align: left;
 
     &:ltr { padding-left: 1em; }
@@ -4083,11 +4086,11 @@ $grid_size: 136px;
   }
 
   &-not-listed-label {
-    @include fontscaling(0.9);
     padding: 4px 8px 5px;
     border-radius: $r_2;
     color: $ovv_acc_fg;
     font-weight: 500;
+    font-size: 90%;
     text-align: center;
 
     .login-dialog-not-listed-button:focus & {
@@ -4227,10 +4230,10 @@ $grid_size: 136px;
 @if $ver < 3.25 {
   .login-dialog-username,
   .user-widget-label {
-    @include fontscaling(1.2);
     padding-left: 15px;
     color: $ovv_fg;
     font-weight: 700;
+    font-size: 120%;
     text-align: left;
   }
 
@@ -4249,9 +4252,9 @@ $grid_size: 136px;
   }
 
   &-label {
-    @include fontscaling(1.0);
     padding-top: 1em;
     color: $ovv_ter_fg;
+    font-size: 100%;
   }
 }
 
@@ -4294,14 +4297,14 @@ $grid_size: 136px;
     text-align: center;
 
     &-time {
-      @include fontscaling(8.4);
       font-weight: 300;
+      font-size: 840%;
       text-shadow: $z-depth-1;
     }
 
     &-date {
-      @include fontscaling(1.3);
       font-weight: 700;
+      font-size: 130%;
       text-shadow: $z-depth-1;
     }
   }
@@ -4397,12 +4400,12 @@ $tool_icon_size: 24px;
   .labels { spacing: 0; }
 
   .notebook-tab {
-    @include fontscaling(0.9);
     min-height: $tool_icon_size + if($ref_weight >= 1.0, 8px, 6px);
     padding: if($ref_weight >= 1.0, 0 8px * 2, 0 6px * 2);
     color: $osd_ter_fg;
     @if $ver < 3.35 { font-family: $font-family; } // stop using fixed-fonts
     font-weight: 500;
+    font-size: 90%;
     transition-duration: $tr_d_std;
     &:hover {
       border-bottom-width: 0;
@@ -4449,9 +4452,9 @@ $tool_icon_size: 24px;
 }
 
 .lg-completions-text {
-  @include fontscaling(0.9);
   color: $osd_sec_fg;
   font-style: italic;
+  font-size: 90%;
 }
 
 .lg-obj-inspector {
@@ -4493,8 +4496,8 @@ $tool_icon_size: 24px;
   border-radius: $r_2;
 
   &-name {
-    @include fontscaling(1.5);
     font-weight: 700;
+    font-size: 150%;
   }
 
   &-meta { spacing: 6px; }
