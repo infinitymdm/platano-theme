@@ -125,6 +125,12 @@ $inv_acc_fg:if($variant == light,
               lighten($acc_bg, percentage($a_trk_1)),
               percentage($a_trk_1)));
 $inv_sec_acc_fg: track($inv_acc_fg, $a_fg_2nd);
+$inv_acc_semi_fill_bg: if($variant == mixed,
+                          opacity($inv_acc_fg, $a_trk_1),
+                          opacity($acc_fg, $a_trk_1));
+$inv_acc_fill_bg: if($variant == mixed,
+                     opacity($inv_acc_fg, $a_trk_2),
+                     opacity($acc_fg, $a_trk_2));
 $ovv_acc_fg: saturate(
              lighten($acc_bg, percentage($a_trk_1)),
              percentage($a_trk_1));

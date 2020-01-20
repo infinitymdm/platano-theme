@@ -1181,9 +1181,8 @@ $avatar_width: $icon_size * 1.5;
       border: 2px solid $osd_out_fg;
     }
     &:selected {
-      background-color: if($variant != light, opacity($inv_acc_fg, $a_trk_2),
-                                              opacity($acc_fg, $a_trk_2));
-      color: if($variant != light, $inv_acc_fg, $acc_fg);
+      background-color: $inv_acc_fill_bg;
+      color: $inv_acc_fg;
     }
   }
 
@@ -1246,8 +1245,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   border: 0 none transparent;
   border-radius: $r_2;
   background-size: 24px;
-  background-color: if($variant != light, opacity($inv_acc_fg, $a_trk_2),
-                                          opacity($acc_fg, $a_trk_2));
+  background-color: $inv_acc_fill_bg;
 }
 
 .ws-switcher {
@@ -2165,18 +2163,33 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         icon-size: 1.09em;
       }
       border-radius: $r;
-      color: $sec_acc_fg;
     }
 
-    // FIXME: how do you do this in sass?
-    *:hover > StIcon,
-    *:focus > StIcon {
-      color: $acc_fg;
-      background-color: $acc_semi_fill_bg;
+    StButton > StIcon { // close button
+      // FIXME: alpha blended secondary color can't be rendered in OSD?
+      color: $inv_acc_fg;
+
+      .popup-menu & { color: $sec_acc_fg; }
     }
-    *:active > StIcon {
-      color: $acc_fg;
-      background-color: $acc_fill_bg;
+
+    StButton:hover > StIcon,
+    StButton:focus > StIcon {
+      color: $inv_acc_fg;
+      background-color: $inv_acc_semi_fill_bg;
+
+      .popup-menu & {
+        color: $acc_fg;
+        background-color: $acc_semi_fill_bg;
+      }
+    }
+    StButton:active > StIcon {
+      color: $inv_acc_fg;
+      background-color: $inv_acc_fill_bg;
+
+      .popup-menu & {
+        color: $acc_fg;
+        background-color: $acc_fill_bg;
+      }
     }
   }
 }
@@ -3395,37 +3408,24 @@ $grid_size: 136px;
 
   .secondary-icon { icon-size: $icon_size; }
 
-  * > StIcon { color: if($variant != light, $inv_sec_acc_fg, $sec_acc_fg); }
-
-  *:hover > StIcon,
-  *:focus > StIcon {
-    color: if($variant != light, $inv_acc_fg, $acc_fg);
-    background-color: $acc_semi_fill_bg;
-  }
-
-  *:active > StIcon {
-    color: if($variant != light, $inv_acc_fg, $acc_fg);
-    background-color: $acc_fill_bg;
-  }
-
   .notification-button {
     padding: if($ref_weight >= 1.0, 9px 4px 10px, 6px 3px 7px);
     border-radius: 0 0 $r_8 $r_8;
     background-color: transparent;
-    color: if($variant != light, $inv_sec_acc_fg, $sec_acc_fg);
+    color: $inv_sec_acc_fg;
     font-weight: 500;
 
     &:first-child { border-radius: 0 0 0 $r_8; }
     &:last-child { border-radius: 0 0 $r_8 0; }
 
     &:hover {
-      color: if($variant != light, $inv_acc_fg, $acc_fg);
-      background-color: $acc_semi_fill_bg;
+      color: $inv_acc_fg;
+      background-color: $inv_acc_semi_fill_bg;
     }
-    &:focus { color: if($variant != light, $inv_acc_fg, $acc_fg); }
+    &:focus { color: $inv_acc_fg; }
     &:active {
-      color: if($variant != light, $inv_acc_fg, $acc_fg);
-      background-color: $acc_fill_bg;
+      color: $inv_acc_fg;
+      background-color: $inv_acc_fill_bg;
     }
   }
 }
@@ -3485,19 +3485,19 @@ $grid_size: 136px;
 
   &-notification-item {
     padding: 2px 10px;
-    color: if($variant != light, $inv_sec_acc_fg, $sec_acc_fg);
+    color: $inv_sec_acc_fg;
     font-weight: 700;
     &:hover {
-      color: if($variant != light, $inv_acc_fg, $acc_fg);
-      background-color: $acc_semi_fill_bg;
+      color: $inv_acc_fg;
+      background-color: $inv_acc_semi_fill_bg;
     }
     &:active {
-      color: if($variant != light, $inv_acc_fg, $acc_fg);
-      background-color: $acc_fill_bg;
+      color: $inv_acc_fg;
+      background-color: $inv_acc_fill_bg;
     }
     &:focus {
       // padding: 1px 71px 1px 11px;
-      color: if($variant != light, $inv_acc_fg, $acc_fg);
+      color: $inv_acc_fg;
     }
     &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
 
