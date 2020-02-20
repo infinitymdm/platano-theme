@@ -23,9 +23,7 @@
                                  (right, $r_2 0 0 $r-2, 3px 0) {
       .#{$_pos} & {
         padding: #{$_pad}; // prepare for rounded corners
-
-        // corner-rounding on solid-mode panels only
-        &:not(.transparent) { border-radius: #{$_rad}; }
+        border-radius: #{$_rad};
       }
     }
   }
