@@ -2064,7 +2064,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     }
     @else {
       .message-icon-bin > StIcon,
-      .message-icon-bin > .fallback-window-icon,
+      .message-icon-bin > .fallback-app-icon,
       .message-title,
       .message-content { color: $sec_fg; }
     }
@@ -2091,7 +2091,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       }
       @else {
         .message-icon-bin > StIcon,
-        .message-icon-bin > .fallback-window-icon,
+        .message-icon-bin > .fallback-app-icon,
         .message-title,
         .message-content { color: $fg; }
       }
@@ -2122,7 +2122,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       }
       @else {
         .message-icon-bin > StIcon,
-        .message-icon-bin > .fallback-window-icon,
+        .message-icon-bin > .fallback-app-icon,
         .message-title,
         .message-content { color: $fg; }
       }
@@ -2157,7 +2157,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     }
     @else {
       > StIcon,
-      > .fallback-window-icon {
+      > .fallback-app-icon {
         min-width: $icon_size;
         min-height: $icon_size;
         color: $osd_fg;
