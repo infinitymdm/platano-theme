@@ -3251,35 +3251,69 @@ $grid_size: 136px;
   }
 }
 
-.app-folder-popup { // expanded collection
-  -arrow-border-radius: 0;
-  -arrow-border-width: 0; // FIXME: damned ubuntu-session draws unneeded borders
-  -arrow-border-color: transparent;
-  -arrow-background-color: transparent;
-  -arrow-base: 0;
-  -arrow-rise: 12px;
+@if $ver < 3.35 {
+  .app-folder-popup { // expanded collection
+    -arrow-border-radius: 0;
+    -arrow-border-width: 0; // FIXME: damned ubuntu-session draws unneeded borders
+    -arrow-border-color: transparent;
+    -arrow-background-color: transparent;
+    -arrow-base: 0;
+    -arrow-rise: 12px;
 
-  &-bin {
-    padding: 5px;
+    &-bin {
+      padding: 5px;
+      border-radius: $r_8;
+      background-color: opacity($osd_bg, $a_osd);
+      box-shadow: $z-depth-1;
+
+      .app-well-app { // enforce variant specific colors
+        .overview-icon { color: $osd_sec_fg; }
+
+        &:focus,
+        &:hover,
+        &:selected {
+          .overview-icon {
+            background-color: $osd_semi_fill_bg;
+            color: $osd_fg;
+          }
+        }
+
+        &:active .overview-icon {
+          background-color: $osd_fill_bg;
+          color: $osd_fg;
+        }
+      }
+    }
+  }
+}
+@else {
+  .app-folder-dialog {
+    spacing: 24px; // NEEDS_REVIEW
     border-radius: $r_8;
     background-color: opacity($osd_bg, $a_osd);
     box-shadow: $z-depth-1;
 
-    .app-well-app { // enforce variant specific colors
-      .overview-icon { color: $osd_sec_fg; }
+    &-container { // NEEDS_REVIEW
+      width: 800px;
+      height: 600px;
+      padding: 12px + 5px;
 
-      &:focus,
-      &:hover,
-      &:selected {
-        .overview-icon {
-          background-color: $osd_semi_fill_bg;
+      .app-well-app {
+        .overview-icon { color: $osd_sec_fg; }
+
+        &:focus,
+        &:hover,
+        &:selected {
+          .overview-icon {
+            background-color: $osd_semi_fill_bg;
+            color: $osd_fg;
+          }
+        }
+
+        &:active .overview-icon {
+          background-color: $osd_fill_bg;
           color: $osd_fg;
         }
-      }
-
-      &:active .overview-icon {
-        background-color: $osd_fill_bg;
-        color: $osd_fg;
       }
     }
   }
