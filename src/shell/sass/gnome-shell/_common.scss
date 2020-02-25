@@ -4326,6 +4326,7 @@ $login_dialog_width: 23em;
 
   @if $ver > 3.35 { // circular buttons
     .cancel-button,
+    .switch-user-button,
     .login-dialog-session-list-button {
       width: $icon_size * 2;
       height: $icon_size * 2;
