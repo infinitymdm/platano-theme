@@ -120,6 +120,12 @@ StEntry {
       &.peek-password { @extend %entry_icon_sizing; }
     }
   }
+
+  @if $ver > 3.35 {
+    .hint-text { // placeholder labels
+      color: if($variant != light, $osd_ter_fg, $ter_fg);
+    }
+  }
 }
 
 // /**************
@@ -939,6 +945,10 @@ $avatar_width: $icon_size * 1.5;
     &:hover { @include entry(hover); }
     &:focus { @include entry(focus); }
     &:insensitive { @include entry(disabled); }
+
+    @if $ver > 3.35 {
+      .hint-text { color: $ter_fg; }
+    }
   }
 
   StScrollBar {
@@ -4157,6 +4167,10 @@ $grid_size: 136px;
     &:insensitive { @include entry(disabled, $tc: $ovv_fg); }
 
     StIcon.capslock-warning { color: $warn; } // CapsLock warning
+
+    @if $ver > 3.35 {
+      .hint-text { color: $ovv_ter_fg; }
+    }
   }
 
   .modal-dialog-button-box { spacing: 1em; }
