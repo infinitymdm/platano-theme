@@ -327,6 +327,39 @@ StScrollBar {
   }
 }
 
+@if $ver > 3.35 {
+  .dialog-list {
+    spacing: if($ref_weight >= 1.0, 16px, 12px);
+
+    &-title {
+      color: $osd_fg;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    &-scrollview { max-height: 200px; } // NEEDS_REVIEW
+
+    &-box {
+      spacing: 1em;
+
+      .dialog-list-item {
+        spacing: 1em; // NEEDS_REVIEW
+
+        &-title {
+          color: $osd_fg;
+          font-weight: 700;
+        }
+
+        &-description {
+          color: $osd_sec_fg;
+          font-weight: 400;
+          font-size: 90%;
+        }
+      }
+    }
+  }
+}
+
 @if $ver > 3.25 {
   // /******************
   //  * Message Dialog *
