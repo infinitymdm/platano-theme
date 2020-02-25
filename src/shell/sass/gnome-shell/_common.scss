@@ -4656,7 +4656,10 @@ $login_dialog_width: 23em;
     &-clock {
       @extend %unlock_clock;
 
-      &-time { @extend %unlock_time; }
+      &-time {
+        padding-top: 0.5em;
+        @extend %unlock_time;
+      }
 
       &-date { @extend %unlock_date; }
     }
