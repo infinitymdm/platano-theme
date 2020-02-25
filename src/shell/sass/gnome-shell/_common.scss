@@ -4563,13 +4563,11 @@ $grid_size: 136px;
 %unlock_time {
   font-weight: 300;
   font-size: 840%;
-  text-shadow: $z-depth-1;
 }
 
 %unlock_date {
   font-weight: 700;
   font-size: 130%;
-  text-shadow: $z-depth-1;
 }
 
 %unlock_container {
@@ -4646,9 +4644,15 @@ $grid_size: 136px;
     &-clock {
       @extend %unlock_clock;
 
-      &-time { @extend %unlock_time; }
+      &-time {
+        @extend %unlock_time;
+        text-shadow: $z-depth-1;
+      }
 
-      &-date { @extend %unlock_date; }
+      &-date {
+        @extend %unlock_date;
+        text-shadow: $z-depth-1;
+      }
     }
 
     &-notifications {
