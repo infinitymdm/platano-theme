@@ -296,27 +296,43 @@ StScrollBar {
   }
 
   .run-dialog {
-    &-entry {
-      width: 20em;
-      margin-bottom: if($ref_weight >= 1.0, 6px, 4px);
+    @if $ver > 3.35 {
+      .modal-dialog-content-box {
+        margin-top: if($ref_weight >= 1.0, 24px, 18px);
+        margin-bottom: if($ref_weight >= 1.0, 14px, 10px);
+      }
     }
 
-    &-error-box {
-      padding-top: if($ref_weight >= 1.0, 16px, 12px);
-      spacing: if($ref_weight >= 1.0, 6px, 4px);
-      color: $err;
-      font-size: 90%;
+    &-entry {
+      width: 20em;
+      @if $ver < 3.35 {
+        margin-bottom: if($ref_weight >= 1.0, 6px, 4px);
+      }
     }
 
     @if $ver < 3.35 {
-      &-button-box { padding-top: if($ref_weight >= 1.0, 1em, 0.7em); }
-    }
+      &-error-box {
+        padding-top: if($ref_weight >= 1.0, 16px, 12px);
+        spacing: if($ref_weight >= 1.0, 6px, 4px);
+        color: $err;
+        font-size: 90%;
+      }
 
-    &-label {
-      padding-bottom: if($ref_weight >= 1.0, 0.4em, 0.3em);
-      font-weight: 400;
-      color: $osd_ter_fg;
-      font-size: 110%;
+      &-button-box { padding-top: if($ref_weight >= 1.0, 1em, 0.7em); }
+
+      &-label {
+        padding-bottom: if($ref_weight >= 1.0, 0.4em, 0.3em);
+        font-weight: 400;
+        color: $osd_ter_fg;
+        font-size: 110%;
+      }
+    }
+    @else {
+      &-description {
+        color: $osd_ter_fg;
+        font-size: 90%;
+        text-align: center;
+      }
     }
   }
 }
@@ -433,7 +449,8 @@ StScrollBar {
 //  **********************/
 
 .end-session-dialog {
-  spacing: if($ref_weight >= 1.0, 42px, 30px);
+  @if $ver > 3.35 { width: 30em; }
+  @else { spacing: if($ref_weight >= 1.0, 42px, 30px); }
   border: none;
 
   &-list { padding-top: if($ref_weight >= 1.0, 20px, 14px); }
@@ -517,117 +534,113 @@ StScrollBar {
 //  * ShellMountOperation Dialogs *
 //  *******************************/
 
-.shell-mount-operation-icon { icon-size: $icon_size * 3; }
 
-@if $ver > 3.25 {
-  .mount {
-    &-dialog {
-      spacing: if($ref_weight >= 1.0, 24px, 18px);
+@if $ver < 3.35 {
+  .shell-mount-operation-icon { icon-size: $icon_size * 3; }
 
-      .message-dialog {
-        &-title {
-          max-width: 34em;
-          padding-top: if($ref_weight >= 1.0, 10px, 8px);
-          padding-bottom: if($ref_weight >= 1.0, 6px, 5px);
-          &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
-          &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
-        }
+  @if $ver > 3.25 {
+    .mount {
+      &-dialog {
+        spacing: if($ref_weight >= 1.0, 24px, 18px);
 
-        @if $ver < 3.35 {
+        .message-dialog {
+          &-title {
+            max-width: 34em;
+            padding-top: if($ref_weight >= 1.0, 10px, 8px);
+            padding-bottom: if($ref_weight >= 1.0, 6px, 5px);
+            &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+            &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+          }
+
           &-body {
             width: 28em;
             &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
             &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
           }
         }
-        @else {
-          &-description {
-            width: 28em;
-            &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
-            &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
-          }
+      }
+    }
+  }
+  @else {
+    .show-processes,
+    .mount-question {
+      &-dialog { spacing: if($ref_weight >= 1.0, 24px, 18px); }
+
+      &-dialog-subject {
+        padding-top: if($ref_weight >= 1.0, 10px, 8px);
+        padding-bottom: if($ref_weight >= 1.0, 6px, 5px);
+        &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+        &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+      }
+
+      &-dialog-description {
+        width: 28em;
+        &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+        &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+      }
+    }
+  }
+}
+
+@if $ver < 3.35 {
+  @if $ver > 3.25 {
+    .mount {
+      &-dialog-app-list {
+        max-height: if($ref_weight >= 1.0, 200px, 180px);
+        padding-top: if($ref_weight >= 1.0, 24px, 18px);
+        &:ltr {
+          padding-left: if($ref_weight >= 1.0, 49px, 37px);
+          padding-right: if($ref_weight >= 1.0, 32px, 26px);
         }
+        &:rtl {
+          padding-right: if($ref_weight >= 1.0, 49px, 37px);
+          padding-left: if($ref_weight >= 1.0, 32px, 26px);
+        }
+
+        &-item {
+          color: $osd_sec_fg;
+          &:hover { color: $osd_fg; }
+          &:ltr { padding-right: if($ref_weight >= 1.0, 1em, 0.7em); }
+          &:rtl { padding-left: if($ref_weight >= 1.0, 1em, 0.7em); }
+        }
+
+        &-item-icon {
+          &:ltr { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+          &:rtl { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+        }
+
+        &-item-name { font-size: 100%; }
       }
     }
   }
-}
-@else {
-  .show-processes,
-  .mount-question {
-    &-dialog { spacing: if($ref_weight >= 1.0, 24px, 18px); }
+  @else {
+    .show-processes-dialog {
+      &-app-list {
+        max-height: if($ref_weight >= 1.0, 200px, 180px);
+        padding-top: if($ref_weight >= 1.0, 24px, 18px);
+        &:ltr {
+          padding-left: if($ref_weight >= 1.0, 49px, 37px);
+          padding-right: if($ref_weight >= 1.0, 32px, 26px);
+        }
+        &:rtl {
+          padding-right: if($ref_weight >= 1.0, 49px, 37px);
+          padding-left: if($ref_weight >= 1.0, 32px, 26px);
+        }
 
-    &-dialog-subject {
-      padding-top: if($ref_weight >= 1.0, 10px, 8px);
-      padding-bottom: if($ref_weight >= 1.0, 6px, 5px);
-      &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
-      &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
-    }
+        &-item {
+          color: $osd_sec_fg;
+          &:hover { color: $osd_fg; }
+          &:ltr { padding-right: if($ref_weight >= 1.0, 1em, 0.7em); }
+          &:rtl { padding-left: if($ref_weight >= 1.0, 1em, 0.7em); }
+        }
 
-    &-dialog-description {
-      width: 28em;
-      &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
-      &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
-    }
-  }
-}
+        &-item-icon {
+          &:ltr { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+          &:rtl { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+        }
 
-@if $ver > 3.25 {
-  .mount {
-    &-dialog-app-list {
-      max-height: if($ref_weight >= 1.0, 200px, 180px);
-      padding-top: if($ref_weight >= 1.0, 24px, 18px);
-      &:ltr {
-        padding-left: if($ref_weight >= 1.0, 49px, 37px);
-        padding-right: if($ref_weight >= 1.0, 32px, 26px);
+        &-item-name { font-size: 100%; }
       }
-      &:rtl {
-        padding-right: if($ref_weight >= 1.0, 49px, 37px);
-        padding-left: if($ref_weight >= 1.0, 32px, 26px);
-      }
-
-      &-item {
-        color: $osd_sec_fg;
-        &:hover { color: $osd_fg; }
-        &:ltr { padding-right: if($ref_weight >= 1.0, 1em, 0.7em); }
-        &:rtl { padding-left: if($ref_weight >= 1.0, 1em, 0.7em); }
-      }
-
-      &-item-icon {
-        &:ltr { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
-        &:rtl { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
-      }
-
-      &-item-name { font-size: 100%; }
-    }
-  }
-}
-@else {
-  .show-processes-dialog {
-    &-app-list {
-      max-height: if($ref_weight >= 1.0, 200px, 180px);
-      padding-top: if($ref_weight >= 1.0, 24px, 18px);
-      &:ltr {
-        padding-left: if($ref_weight >= 1.0, 49px, 37px);
-        padding-right: if($ref_weight >= 1.0, 32px, 26px);
-      }
-      &:rtl {
-        padding-right: if($ref_weight >= 1.0, 49px, 37px);
-        padding-left: if($ref_weight >= 1.0, 32px, 26px);
-      }
-
-      &-item {
-        color: $osd_sec_fg;
-        &:hover { color: $osd_fg; }
-        &:ltr { padding-right: if($ref_weight >= 1.0, 1em, 0.7em); }
-        &:rtl { padding-left: if($ref_weight >= 1.0, 1em, 0.7em); }
-      }
-
-      &-item-icon {
-        &:ltr { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
-        &:rtl { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
-      }
-
-      &-item-name { font-size: 100%; }
     }
   }
 }
@@ -729,21 +742,30 @@ StScrollBar {
 //  **************************/
 
 .audio-device-selection-dialog {
-  spacing: if($ref_weight >= 1.0, 3em, 2.2em);
+  @if $ver < 3.35 {
+    spacing: if($ref_weight >= 1.0, 32px, 24px);
+  }
+  @else {
+    .modal-dialog-content-box {
+      margin-bottom: if($ref_weight >= 1.0, 28px, 21px);
+    }
+  }
 }
 
 .audio-selection {
-  &-content {
-    padding: if($ref_weight >= 1.0, 2.2em, 1.8em);
-    spacing: if($ref_weight >= 1.0, 2em, 1.6em);
+  @if $ver < 3.35 {
+    &-content {
+      padding: if($ref_weight >= 1.0, 24px, 20px);
+      spacing: if($ref_weight >= 1.0, 20px, 16px);
+    }
+
+    &-title {
+      font-weight: 700;
+      text-align: center;
+    }
   }
 
-  &-title {
-    font-weight: 700;
-    text-align: center;
-  }
-
-  &-box { spacing: if($ref_weight >= 1.0, 2em, 1.6em); }
+  &-box { spacing: if($ref_weight >= 1.0, 20px, 16px); }
 
   &-device {
     border: 1px solid $div_fg;
@@ -801,7 +823,9 @@ StScrollBar {
 //  * Geolocation Dialog *
 //  **********************/
 
-.geolocation-dialog { spacing: if($ref_weight >= 1.0, 30px, 24px); }
+@if $ver < 3.35 {
+  .geolocation-dialog { spacing: if($ref_weight >= 1.0, 32px, 24px); }
+}
 
 @if $ver < 3.25 {
   .geolocation-dialog {
@@ -827,12 +851,12 @@ StScrollBar {
           padding: if($ref_weight >= 1.0, 12px, 8px);
           spacing: if($ref_weight >= 1.0, 24px, 16px);
         }
-      }
 
-      &-title {
-        // color: $osd_sec_fg;
-        // font-weight: 400;
-        // font-size: 100%;
+        &-title {
+          // color: $osd_sec_fg;
+          // font-weight: 400;
+          // font-size: 100%;
+        }
       }
     }
   }
@@ -843,7 +867,11 @@ StScrollBar {
   //  * Inhibit-Shortcuts Dialog *
   //  ****************************/
 
-  .inhibit-shortcuts-dialog { spacing: if($ref_weight >= 1.0, 30px, 24px); }
+  @if $ver < 3.35 {
+    .inhibit-shortcuts-dialog {
+      spacing: if($ref_weight >= 1.0, 32px, 24px);
+    }
+  }
 }
 
 // /************************
