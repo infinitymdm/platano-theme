@@ -4571,9 +4571,7 @@ $grid_size: 136px;
 }
 
 %unlock_container {
-  max-height: 500px;
   spacing: 6px;
-  width: 30em;
   background-color: transparent;
 
   .summary-notification-stack-scrollview {
@@ -4611,19 +4609,23 @@ $grid_size: 136px;
 
     &-notifications {
       &-container {
+        width: 23em;
+        margin: if($ref_weight >= 1.0, 12px 0, 8px 0);
         @extend %unlock_container;
 
         .notification,
         .unlock-dialog-notification-source { @extend %onlock_notification; }
-
-        // compensate for space allocated to the scrollbar
-        .notification { margin-right: 15px; }
       }
 
-      &-label { font-weight: 700; }
+      &-label {
+        padding: 0 0 0 12px;
+        font-weight: 400;
+      }
 
-      &-label,
-      &-count-text { padding: 0 0 0 12px; }
+      &-count-text {
+        padding: 0 12px;
+        font-weight: 700;
+      }
     }
   }
 }
@@ -4657,6 +4659,8 @@ $grid_size: 136px;
 
     &-notifications {
       &-container {
+        width: 30em;
+        max-height: 500px;
         @extend %unlock_container;
 
         .notification,
