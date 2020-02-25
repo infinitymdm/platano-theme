@@ -4323,6 +4323,17 @@ $login_dialog_width: 23em;
       }
     }
   }
+
+  @if $ver > 3.35 {
+    .cancel-button {
+      width: $icon_size * 2;
+      height: $icon_size * 2;
+      padding: 0;
+      border-radius: $r;
+
+      StIcon { icon-size: $icon_size; }
+    }
+  }
 }
 
 %login_label_sizing {
