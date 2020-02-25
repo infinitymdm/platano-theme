@@ -4267,9 +4267,11 @@ $grid_size: 136px;
 //  * Login Dialog *
 //  ****************/
 
+$login_dialog_width: 23em;
+
 .login-dialog {
   &-banner-view {
-    max-width: 23em;
+    max-width: $login_dialog_width;
     padding-top: 24px;
   }
 
@@ -4387,7 +4389,10 @@ $grid_size: 136px;
 
   &-banner { color: $ovv_sec_fg; }
 
-  &-button-box { spacing: 1em; }
+  &-button-box {
+    @if $ver > 3.35 { width: $login_dialog_width; }
+    spacing: 1em;
+  }
 
   &-message-warning { color: $warn; }
 
@@ -4434,7 +4439,7 @@ $grid_size: 136px;
   }
 
   &-user-list {
-    width: 23em;
+    width: $login_dialog_width;
     spacing: 12px;
 
     &:expanded .login-dialog-user-list-item {
@@ -4551,10 +4556,17 @@ $grid_size: 136px;
 
 .login-dialog-prompt {
   &-layout {
-    width: 23em;
+    width: $login_dialog_width;
     spacing: 1em;
     padding-top: 24px;
     padding-bottom: 12px;
+  }
+
+  @if $ver > 3.35 {
+    &-entry {
+      width: $login_dialog_width - 5em;
+      height: 1.5em;
+    }
   }
 
   &-label {
@@ -4640,7 +4652,7 @@ $grid_size: 136px;
 
     &-notifications {
       &-container {
-        width: 23em;
+        width: $login_dialog_width;
         margin: if($ref_weight >= 1.0, 12px 0, 8px 0);
         @extend %unlock_container;
 
