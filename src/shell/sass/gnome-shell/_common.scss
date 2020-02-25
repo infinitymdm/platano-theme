@@ -4510,15 +4510,17 @@ $grid_size: 136px;
 //  *****************/
 
 .screen-shield {
-  &-arrows {
-    padding-bottom: 3em;
+  @if $ver < 3.35 {
+    &-arrows {
+      padding-bottom: 3em;
 
-    Gjs_Arrow {
-      width: 80px;
-      height: 48px;
-      -arrow-thickness: 12px;
-      -arrow-shadow: none;
-      color: $ovv_fg;
+      Gjs_Arrow {
+        width: 80px;
+        height: 48px;
+        -arrow-thickness: 12px;
+        -arrow-shadow: none;
+        color: $ovv_fg;
+      }
     }
   }
 
