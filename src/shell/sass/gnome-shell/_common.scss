@@ -1451,16 +1451,16 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   transition-timing-function: $tr_t_std;
   transition-duration: $tr_d_lng;
 
-  &:overview,
-  &.unlock-screen,
-  &.login-screen,
-  &.lock-screen {
-    background-color: if($variant == light, opacity($panel_bg, $a_fg_3rd),
-                                            $panel_hidden_bg);
-    @if $ver > 3.25 { box-shadow: $empty_shadow; }
-    @else { box-shadow: inset 0 2px $panel_bg; }
-    transition-timing-function: $tr_t_dec;
-    transition-duration: $tr_d_lng;
+  @if $ver > 3.35 {
+    &:overview,
+    &.unlock-screen,
+    &.login-screen { @extend %translucent_panel; }
+  }
+  @else {
+    &:overview,
+    &.unlock-screen,
+    &.login-screen,
+    &.lock-screen { @extend %translucent_panel; }
   }
 
   #panelLeft, // spacing between activities<>app menu and such
@@ -1484,13 +1484,14 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       box-shadow: inset 0 2px $sel_bg;
     }
 
-    &.lock-screen,
-    &.login-screen,
-    &.unlock-screen {
-      -panel-corner-radius: 0;
-      -panel-corner-background-color: transparent;
-      -panel-corner-border-width: 0;
-      -panel-corner-border-color: transparent;
+    @if $ver > 3.35 {
+      &.login-screen,
+      &.unlock-screen { @extend %translucent_panel_corner; }
+    }
+    @else {
+      &.lock-screen,
+      &.login-screen,
+      &.unlock-screen { @extend %translucent_panel_corner; }
     }
 
     StLabel { padding: if($ref_weight >= 1.0, 0 4px 1px, 0 2px 1px); }
@@ -1546,21 +1547,26 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
     StIcon { margin-top: 1px; } // reset base-line
 
-    &,
-    &:hover,
-    &:active,
-    &:focus,
-    &:checked,
-    &:overview,
-    &.unlock-screen,
-    &.login-screen,
-    &.lock-screen {
-      .popup-menu-arrow { // hide down-arrows
-        width: 0;
-        height: 0;
-        color: transparent;
-        icon-shadow: none; // unset drop-shadow
-      }
+    @if $ver > 3.35 {
+      &,
+      &:hover,
+      &:active,
+      &:focus,
+      &:checked,
+      &:overview,
+      &.unlock-screen,
+      &.login-screen { @extend %panel_arrow; }
+    }
+    @else {
+      &,
+      &:hover,
+      &:active,
+      &:focus,
+      &:checked,
+      &:overview,
+      &.unlock-screen,
+      &.login-screen,
+      &.lock-screen { @extend %panel_arrow; }
     }
 
     @if $ver > 3.25 {
@@ -1614,20 +1620,59 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
           &:focus,
           &:checked { color: if($variant != light, $sel_fg, black); }
 
-          &,
-          &:hover,
-          &:active,
-          &:focus,
-          &:checked,
-          &:overview,
-          &.unlock-screen,
-          &.login-screen,
-          &.lock-screen {
-            > .system-status-icon { icon-shadow: none; }
+          @if $ver > 3.35 {
+            &,
+            &:hover,
+            &:active,
+            &:focus,
+            &:checked,
+            &:overview,
+            &.unlock-screen,
+            &.login-screen {
+              > .system-status-icon { icon-shadow: none; }
+            }
+          }
+          @else {
+            &,
+            &:hover,
+            &:active,
+            &:focus,
+            &:checked,
+            &:overview,
+            &.unlock-screen,
+            &.login-screen,
+            &.lock-screen {
+              > .system-status-icon { icon-shadow: none; }
+            }
           }
         }
       }
     }
+  }
+}
+
+%translucent_panel {
+  background-color: if($variant == light, opacity($panel_bg, $a_fg_3rd),
+                                          $panel_hidden_bg);
+  @if $ver > 3.25 { box-shadow: $empty_shadow; }
+  @else { box-shadow: inset 0 2px $panel_bg; }
+  transition-timing-function: $tr_t_dec;
+  transition-duration: $tr_d_lng;
+}
+
+%translucent_panel_corner {
+  -panel-corner-radius: 0;
+  -panel-corner-background-color: transparent;
+  -panel-corner-border-width: 0;
+  -panel-corner-border-color: transparent;
+}
+
+%panel_arrow {
+  .popup-menu-arrow { // hide down-arrows
+    width: 0;
+    height: 0;
+    color: transparent;
+    icon-shadow: none; // unset drop-shadow
   }
 }
 
