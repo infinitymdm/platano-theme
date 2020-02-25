@@ -2000,7 +2000,10 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   }
 
   // labels for empty messages/events
-  &-placeholder { color: $ter_fg; }
+  &-placeholder {
+    @if $ver > 3.35 { spacing: if($ref_weight >= 1.0, 12px, 8px); }
+    color: $ter_fg;
+  }
 }
 
 .message {
