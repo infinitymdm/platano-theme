@@ -130,6 +130,16 @@ StEntry {
   }
 }
 
+@if $ver > 3.35 {
+  .capslock-warning-label {
+    padding-bottom: if($ref_weight >= 1.0, 0.75em, 0.55em);
+    color: $warn;
+    font-size: 90%;
+    &:ltr { padding-left: if($ref_weight >= 1.0, 6.2em, 4.5em); }
+    &:rtl { padding-right: if($ref_weight >= 1.0, 6.2em, 4.5em); }
+  }
+}
+
 // /**************
 //  * Scrollbars *
 //  **************/
