@@ -4587,11 +4587,6 @@ $grid_size: 136px;
   background-color: if($variant == mixed, opacity($inv_tooltip_bg, $a_osd),
                                           opacity($tooltip_bg, $a_osd));
   color: $osd_fg;
-
-  &.critical {
-    background-color: $dest_bg;
-    color: $sel_fg;
-  }
 }
 
 %unlock_scrollbar {
@@ -4620,12 +4615,19 @@ $grid_size: 136px;
         @extend %unlock_container;
 
         .notification,
-        .unlock-dialog-notification-source { @extend %onlock_notification; }
+        .unlock-dialog-notification-source {
+          @extend %onlock_notification;
+
+          &.critical {
+            background-color: $dest_bg;
+            color: $sel_fg;
+          }
+        }
       }
 
       &-label {
         padding: 0 0 0 12px;
-        font-weight: 400;
+        font-weight: 500;
       }
 
       &-count-text {
