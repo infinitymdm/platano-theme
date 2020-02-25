@@ -1550,6 +1550,10 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 //  * Calendar Popover *
 //  ********************/
 
+@if $ver > 3.35 { // NEEDS_REVIEW
+  .clock-display-box { spacing: if($ref_weight >= 1.0, 1em, 0.7em); }
+}
+
 #calendarArea { padding: if($ref_weight >= 1.0, 0.75em 1.0em, 0.5em 0.7em); }
 
 .calendar { margin-bottom: if($ref_weight >= 1.0, 1em, 0.7em); }
