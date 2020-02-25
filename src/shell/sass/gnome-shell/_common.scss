@@ -1050,11 +1050,13 @@ $avatar_width: $icon_size * 1.5;
   &-icon { icon-size: $icon_size; }
 
   &-ornament {
-    width: 1em; // protect the region
-    height: 0; // trick for minimum separator-menu-item height
+    @if $ver < 3.35 {
+      width: 1em; // protect the region
+      height: 0; // trick for minimum separator-menu-item height
+      text-align: right;
+      font-size: $icon_size; // fixed size
+    }
     color: $sel_label;
-    text-align: right;
-    font-size: $icon_size; // fixed size
     font-family: $font-family-for-ornament;
     font-weight: 700;
   }
@@ -1124,15 +1126,28 @@ $avatar_width: $icon_size * 1.5;
 }
 
 .popup-separator-menu-item {
-  height: 1px; // not really the whole box
-  margin: 0;
-  spacing: 0;
-  border-color: if($variant != dark,
-                   $div_fg,
-                   mix(white, $dark_bg, percentage($a_div_2)));
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  background-color: transparent;
+  @if $ver < 3.35 {
+    height: 1px; // not really the whole box
+    margin: 0;
+    spacing: 0;
+    border-color: if($variant != dark,
+                     $div_fg,
+                     mix(white, $dark_bg, percentage($a_div_2)));
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    background-color: transparent;
+  }
+  @else {
+    padding: 0;
+
+    .popup-separator-menu-item-separator {
+      height: 1px;
+      margin: 0.3em 0;
+      background-color: if($variant != dark,
+                           $div_fg,
+                           mix(white, $dark_bg, percentage($a_div_2)));
+    }
+  }
 }
 
 @if $ver > 3.33 { // rename popup-menu
