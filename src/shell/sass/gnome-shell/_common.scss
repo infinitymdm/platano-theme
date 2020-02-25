@@ -4324,14 +4324,23 @@ $login_dialog_width: 23em;
     }
   }
 
-  @if $ver > 3.35 {
-    .cancel-button {
+  @if $ver > 3.35 { // circular buttons
+    .cancel-button,
+    .login-dialog-session-list-button {
       width: $icon_size * 2;
       height: $icon_size * 2;
       padding: 0;
       border-radius: $r;
 
       StIcon { icon-size: $icon_size; }
+    }
+
+    .login-dialog-session-list-button {
+      &:active,
+      &:checked {
+        background-color: $sel_bg;
+        color: $sel_fg;
+      }
     }
   }
 }
@@ -4587,19 +4596,21 @@ $login_dialog_width: 23em;
   }
 }
 
-.login-dialog-session {
-  &-list-button {
-    padding: 4px;
-    border-radius: $r;
-    @include button(flat-normal, $tc: $ovv_fg);
-    &:focus { @include button(flat-focus, $tc: $ovv_fg); }
-    &:hover { @include button(flat-hover, $tc: $ovv_fg); }
-    &:active {
-      background-color: $sel_bg;
-      color: $sel_fg;
-    }
+@if $ver < 3.35 {
+  .login-dialog-session {
+    &-list-button {
+      padding: 4px;
+      border-radius: $r;
+      @include button(flat-normal, $tc: $ovv_fg);
+      &:focus { @include button(flat-focus, $tc: $ovv_fg); }
+      &:hover { @include button(flat-hover, $tc: $ovv_fg); }
+      &:active {
+        background-color: $sel_bg;
+        color: $sel_fg;
+      }
 
-    StIcon { icon-size: $icon_size; }
+      StIcon { icon-size: $icon_size; }
+    }
   }
 }
 
