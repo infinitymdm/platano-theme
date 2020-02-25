@@ -3971,7 +3971,7 @@ $grid_size: 136px;
     @if $ver > 3.25 {
       &.default-key {
         background-color: mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2));
-        background-size: ($ref_size - 0.33) * 2;
+        @if $ver < 3.35 { background-size: ($ref_size - 0.33) * 2; }
         color: $osd_sec_fg;
         &:focus,
         &:hover,
@@ -4000,28 +4000,41 @@ $grid_size: 136px;
       &.enter-key {
         border-color: $sggt_bg;
         background-color: $sggt_bg;
-        @include image-loader($url: 'key-enter.svg');
+        @if $ver < 3.35 { @include image-loader($url: 'key-enter.svg'); }
+        @else { color: $sec_sel_fg; }
         &:focus,
         &:hover,
         &:checked {
-          @include image-loader($url: 'key-enter-active.svg');
           border-color: mix($sggt_bg, $sel_fg, percentage($a_fg_2nd));
           background-color: mix($sggt_bg, $sel_fg, percentage($a_fg_2nd));
+          @if $ver < 3.35 {
+            @include image-loader($url: 'key-enter-active.svg');
+          }
+          @else { color: $sel_fg; }
         }
         &:active {
-          @include image-loader($url: 'key-enter-active.svg');
           border-color: $sel_bg;
           background-color: $sel_bg;
+          @if $ver < 3.35 {
+            @include image-loader($url: 'key-enter-active.svg');
+          }
+          @else { color: $sel_fg; }
         }
       }
 
       &.shift-key {
         &-lowercase {
-          @include image-loader($url: 'key-shift.svg');
+          @if $ver < 3.35 {
+            @include image-loader($url: 'key-shift.svg');
+          }
+          @else { color: $osd_sec_fg; }
         }
 
         &-uppercase {
-          @include image-loader($url: 'key-shift-uppercase.svg');
+          @if $ver < 3.35 {
+            @include image-loader($url: 'key-shift-uppercase.svg');
+          }
+          @else { color: $sel_bg; }
           &:focus,
           &:hover,
           &:checked {
@@ -4041,7 +4054,10 @@ $grid_size: 136px;
                   $sel_bg, percentage(1 - $a_trk_2));
           }
           &:latched {
-            @include image-loader($url: 'key-shift-latched-uppercase.svg');
+            @if $ver < 3.35 {
+              @include image-loader($url: 'key-shift-latched-uppercase.svg');
+            }
+            @else { color: $sel_bg; }
             border-color:
               mix(mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2)),
                   $sel_bg, percentage($a_fg_2nd));
@@ -4062,9 +4078,15 @@ $grid_size: 136px;
         }
       }
 
-      &.hide-key { @include image-loader($url: 'key-hide.svg'); }
+      @if $ver < 3.35 {
+        &.hide-key { @include image-loader($url: 'key-hide.svg'); }
 
-      &.layout-key { @include image-loader($url: 'key-layout.svg'); }
+        &.layout-key { @include image-loader($url: 'key-layout.svg'); }
+      }
+    }
+
+    @if $ver > 3.35 {
+      StIcon { icon-size: $ref_size * 2; }
     }
   }
 
