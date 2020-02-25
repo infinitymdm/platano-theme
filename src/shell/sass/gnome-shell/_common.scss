@@ -4324,13 +4324,57 @@ $grid_size: 136px;
 }
 
 @if $ver > 3.25 {
+  @if $ver < 3.35 {
+    .login-dialog-username,
+    .user-widget-label {
+      color: $ovv_fg;
+      font-weight: 700;
+      font-size: 120%;
+      text-align: left;
+
+      &:ltr { padding-left: 1em; }
+      &:rtl { padding-right: 1em; }
+    }
+  }
+  @else {
+    .user-widget-label {
+      color: $ovv_fg;
+
+      .user-widget.horizontal & {
+        font-weight: 700;
+        font-size: 120%;
+        text-align: left;
+
+        &:ltr { padding-left: 1em; }
+        &:rtl { padding-right: 1em; }
+      }
+
+      .user-widget.vertical & {
+        padding-top: if($ref_weight >= 1.0, 12px, 8px);
+        font-weight: 500;
+        font-size: 150%;
+        text-align: center;
+      }
+    }
+
+    .user-icon {
+      .user-widget.horizontal & { icon-size: $icon_size * 4; }
+
+      .user-widget.vertical & { icon-size: $icon_size * 8; }
+    }
+  }
+}
+@else {
   .login-dialog-username,
   .user-widget-label {
+    padding-left: 15px;
     color: $ovv_fg;
     font-weight: 700;
     font-size: 120%;
     text-align: left;
+  }
 
+  .user-widget-label {
     &:ltr { padding-left: 1em; }
     &:rtl { padding-right: 1em; }
   }
@@ -4500,22 +4544,6 @@ $grid_size: 136px;
     &:focus .login-dialog-timed-login-indicator {
       background-color: $acc_bg;
     }
-  }
-}
-
-@if $ver < 3.25 {
-  .login-dialog-username,
-  .user-widget-label {
-    padding-left: 15px;
-    color: $ovv_fg;
-    font-weight: 700;
-    font-size: 120%;
-    text-align: left;
-  }
-
-  .user-widget-label {
-    &:ltr { padding-left: 1em; }
-    &:rtl { padding-right: 1em; }
   }
 }
 
