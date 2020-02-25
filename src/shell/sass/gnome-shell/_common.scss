@@ -4698,6 +4698,11 @@ $login_dialog_width: 23em;
           &.critical {
             background-color: $dest_bg;
             color: $sel_fg;
+
+            .unlock-dialog-notification-count-text {
+              background-color: $sel_fg;
+              color: $dest_bg;
+            }
           }
         }
       }
@@ -4708,7 +4713,10 @@ $login_dialog_width: 23em;
       }
 
       &-count-text {
-        padding: 0 12px;
+        padding: 0 6px;
+        border-radius: $r_2;
+        background-color: $sggt_bg;
+        color: $sel_fg;
         font-weight: 700;
       }
     }
