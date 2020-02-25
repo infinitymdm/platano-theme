@@ -3388,7 +3388,7 @@ $grid_size: 136px;
 }
 @else {
   .app-folder-dialog {
-    spacing: 24px; // NEEDS_REVIEW
+    spacing: if($ref_weight >= 1.0, 16px, 12px); // NEEDS_REVIEW
     border-radius: $r_8;
     background-color: opacity($osd_bg, $a_osd);
     box-shadow: $z-depth-1;
@@ -3418,7 +3418,7 @@ $grid_size: 136px;
     }
 
     .folder-name-container {
-      padding: if($ref_weight >= 1.0, 10px 16px, 8px 12px);
+      padding: if($ref_weight >= 1.0, 24px, 20px);
       spacing: if($ref_weight >= 1.0, 10px, 8px);
 
       .folder-name {
