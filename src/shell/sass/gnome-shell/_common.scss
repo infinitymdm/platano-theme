@@ -409,12 +409,11 @@ StScrollBar {
     &:rtl { text-align: right; }
   }
 
-  &-warning {
-    width: 28em;
-    padding-top: if($ref_weight >= 1.0, 6px, 4px);
-    color: $warn;
-    &:ltr { text-align: left; }
-    &:rtl { text-align: right; }
+  @if $ver > 3.35 {
+    &-battery-warning { @extend %battery_warning; }
+  }
+  @else {
+    &-warning { @extend %battery_warning; }
   }
 
   &-logout-icon {
@@ -458,6 +457,14 @@ StScrollBar {
     color: $osd_ter_fg;
     font-size: 100%;
   }
+}
+
+%battery_warning {
+  width: 28em;
+  padding-top: if($ref_weight >= 1.0, 6px, 4px);
+  color: $warn;
+  &:ltr { text-align: left; }
+  &:rtl { text-align: right; }
 }
 
 // /*******************************
