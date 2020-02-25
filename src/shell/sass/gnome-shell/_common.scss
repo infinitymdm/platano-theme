@@ -124,6 +124,8 @@ StEntry {
   @if $ver > 3.35 {
     .hint-text { // placeholder labels
       color: if($variant != light, $osd_ter_fg, $ter_fg);
+      &:ltr { margin-left: 2px; }
+      &:rtl { margin-right: 2px; }
     }
   }
 }
