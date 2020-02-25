@@ -337,13 +337,13 @@ StScrollBar {
       font-weight: 700;
     }
 
-    &-scrollview { max-height: 200px; } // NEEDS_REVIEW
+    &-scrollview { max-height: if($ref_weight >= 1.0, 200px, 180px); }
 
     &-box {
-      spacing: 1em;
+      spacing: if($ref_weight >= 1.0, 1em, 0.7em);
 
       .dialog-list-item {
-        spacing: 1em; // NEEDS_REVIEW
+        spacing: if($ref_weight >= 1.0, 1em, 0.7em);
 
         &-title {
           color: $osd_fg;
