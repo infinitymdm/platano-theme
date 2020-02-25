@@ -4414,6 +4414,10 @@ $login_dialog_width: 23em;
     spacing: 1em;
   }
 
+  @if $ver > 3.35 {
+    &-message { text-align: center; }
+  }
+
   &-message-warning { color: $warn; }
 
   &-message-hint {
