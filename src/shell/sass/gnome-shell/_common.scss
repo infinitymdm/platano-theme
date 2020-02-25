@@ -681,9 +681,11 @@ StScrollBar {
     }
   }
 
-  &-description {
-    &:ltr { text-align: left; }
-    &:rtl { text-align: right; }
+  @if $ver < 3.35 {
+    &-description {
+      &:ltr { text-align: left; }
+      &:rtl { text-align: right; }
+    }
   }
 
   @if $ver < 3.35 {
@@ -922,9 +924,6 @@ StScrollBar {
 @if $ver < 3.35 {
   .network-dialog-secret-table,
   .keyring-dialog-control-table { @extend %table_grid_spacing; }
-}
-@else {
-  .network-dialog-secret-table { @extend %table_grid_spacing; }
 }
 
 %table_grid_spacing {
