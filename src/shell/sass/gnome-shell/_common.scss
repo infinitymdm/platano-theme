@@ -4509,8 +4509,83 @@ $grid_size: 136px;
 //  * Screen Shield *
 //  *****************/
 
-.screen-shield {
-  @if $ver < 3.35 {
+%unlock_clock {
+  padding-bottom: 1.5em;
+  color: $ovv_fg;
+  text-align: center;
+}
+
+%unlock_time {
+  font-weight: 300;
+  font-size: 840%;
+  text-shadow: $z-depth-1;
+}
+
+%unlock_date {
+  font-weight: 700;
+  font-size: 130%;
+  text-shadow: $z-depth-1;
+}
+
+%unlock_container {
+  max-height: 500px;
+  spacing: 6px;
+  width: 30em;
+  background-color: transparent;
+
+  .summary-notification-stack-scrollview {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+%onlock_notification {
+  padding: 12px 6px;
+  border: none;
+  border-radius: $r_2;
+  background-color: opacity($osd_bg, $a_osd);
+  color: $osd_fg;
+}
+
+%unlock_scrollbar {
+  StButton#vhandle,
+  StButton#hhandle {
+    background-color: opacity($ovv_fg, $a_fg_3rd * $a_fg_3rd);
+    &:hover { background-color: opacity($ovv_fg, $a_fg_2nd * $a_fg_3rd); }
+    &:active { background-color: $ovv_fg; }
+  }
+}
+
+@if $ver > 3.35 {
+  .unlock-dialog {
+    &-clock {
+      @extend %unlock_clock;
+
+      &-time { @extend %unlock_time; }
+
+      &-date { @extend %unlock_date; }
+    }
+
+    &-notifications {
+      &-container {
+        @extend %unlock_container;
+
+        .notification,
+        .unlock-dialog-notification-source { @extend %onlock_notification; }
+
+        // compensate for space allocated to the scrollbar
+        .notification { margin-right: 15px; }
+      }
+
+      &-label { font-weight: 700; }
+
+      &-label,
+      &-count-text { padding: 0 0 0 12px; }
+    }
+  }
+}
+@else {
+  .screen-shield {
     &-arrows {
       padding-bottom: 3em;
 
@@ -4522,60 +4597,35 @@ $grid_size: 136px;
         color: $ovv_fg;
       }
     }
-  }
 
-  &-clock {
-    padding-bottom: 1.5em;
-    color: $ovv_fg;
-    text-align: center;
+    &-clock {
+      @extend %unlock_clock;
 
-    &-time {
-      font-weight: 300;
-      font-size: 840%;
-      text-shadow: $z-depth-1;
+      &-time { @extend %unlock_time; }
+
+      &-date { @extend %unlock_date; }
     }
 
-    &-date {
-      font-weight: 700;
-      font-size: 130%;
-      text-shadow: $z-depth-1;
-    }
-  }
+    &-notifications {
+      &-container {
+        @extend %unlock_container;
 
-  &-notifications-container {
-    max-height: 500px;
-    spacing: 6px;
-    width: 30em;
-    background-color: transparent;
+        .notification,
+        .screen-shield-notification-source { @extend %onlock_notification; }
 
-    .summary-notification-stack-scrollview {
-      padding-top: 0;
-      padding-bottom: 0;
+        .notification { margin-right: 15px; }
+      }
+
+      &-label { font-weight: 700; }
+
+      &-label,
+      &-count-text { padding: 0 0 0 12px; }
     }
 
-    .notification,
-    .screen-shield-notification-source {
-      padding: 12px 6px;
-      border: none;
-      border-radius: $r_2;
-      background-color: opacity($osd_bg, $a_osd);
-      color: $osd_fg;
+    &-background { // just the shadow, really
+      background: black;
+      box-shadow: $z-depth-5;
     }
-
-    // compensate for space allocated to the scrollbar
-    .notification { margin-right: 15px; }
-  }
-
-  &-notification-label {
-    padding: 0 0 0 12px;
-    font-weight: 700;
-  }
-
-  &-notification-count-text { padding: 0 0 0 12px; }
-
-  &-background { // just the shadow, really
-    background: black;
-    box-shadow: $z-depth-5;
   }
 }
 
@@ -4585,14 +4635,14 @@ $grid_size: 136px;
   background-repeat: repeat;
 }
 
-#screenShieldNotifications {
-  StButton#vhandle,
-  StButton#hhandle {
-    background-color: opacity($ovv_fg, $a_fg_3rd * $a_fg_3rd);
-    &:hover { background-color: opacity($ovv_fg, $a_fg_2nd * $a_fg_3rd); }
-    &:active { background-color: $ovv_fg; }
-  }
+
+@if $ver > 3.35 {
+  #unlockDialogNotifications { @extend %unlock_scrollbar; }
 }
+@else {
+  #screenShieldNotifications { @extend %unlock_scrollbar; }
+}
+
 
 // /*****************
 //  * Looking Glass *
