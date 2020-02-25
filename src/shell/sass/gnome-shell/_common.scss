@@ -4690,10 +4690,15 @@ $grid_size: 136px;
   }
 }
 
-#lockDialogGroup {
-  background-color: mix(color($grey, 900), black, 87%);
-  @include image-loader($url: 'noise-texture.png');
-  background-repeat: repeat;
+@if $ver > 3.35 {
+  #lockDialogGroup { background-color: mix(color($grey, 900), black, 87%); }
+}
+@else {
+  #lockDialogGroup {
+    background-color: mix(color($grey, 900), black, 87%);
+    @include image-loader($url: 'noise-texture.png');
+    background-repeat: repeat;
+  }
 }
 
 
