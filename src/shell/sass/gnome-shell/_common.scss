@@ -4670,6 +4670,7 @@ $login_dialog_width: 23em;
   .unlock-dialog {
     &-clock {
       @extend %unlock_clock;
+      spacing: if($ref_weight >= 1.0, 24px, 18px);
 
       &-time {
         padding-top: 0.5em;
@@ -4677,6 +4678,11 @@ $login_dialog_width: 23em;
       }
 
       &-date { @extend %unlock_date; }
+
+      &-hint {
+        padding-top: if($ref_weight >= 1.0, 24px * 2, 18px * 2);
+        font-weight: 400;
+      }
     }
 
     &-notifications {
