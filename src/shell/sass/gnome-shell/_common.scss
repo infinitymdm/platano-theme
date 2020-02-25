@@ -4323,17 +4323,30 @@ $grid_size: 136px;
   }
 }
 
+%login_label_sizing {
+  font-weight: 700;
+  font-size: 120%;
+  text-align: left;
+}
+
+%login_label_sizing_vrt {
+  font-weight: 500;
+  font-size: 150%;
+  text-align: center;
+}
+
+%login_label_spacing {
+  &:ltr { padding-left: 1em; }
+  &:rtl { padding-right: 1em; }
+}
+
 @if $ver > 3.25 {
   @if $ver < 3.35 {
     .login-dialog-username,
     .user-widget-label {
       color: $ovv_fg;
-      font-weight: 700;
-      font-size: 120%;
-      text-align: left;
-
-      &:ltr { padding-left: 1em; }
-      &:rtl { padding-right: 1em; }
+      @extend %login_label_sizing;
+      @extend %login_label_spacing;
     }
   }
   @else {
@@ -4341,19 +4354,13 @@ $grid_size: 136px;
       color: $ovv_fg;
 
       .user-widget.horizontal & {
-        font-weight: 700;
-        font-size: 120%;
-        text-align: left;
-
-        &:ltr { padding-left: 1em; }
-        &:rtl { padding-right: 1em; }
+        @extend %login_label_sizing;
+        @extend %login_label_spacing;
       }
 
       .user-widget.vertical & {
         padding-top: if($ref_weight >= 1.0, 12px, 8px);
-        font-weight: 500;
-        font-size: 150%;
-        text-align: center;
+        @extend %login_label_sizing_vrt;
       }
     }
 
@@ -4369,15 +4376,10 @@ $grid_size: 136px;
   .user-widget-label {
     padding-left: 15px;
     color: $ovv_fg;
-    font-weight: 700;
-    font-size: 120%;
-    text-align: left;
+    @extend %login_label_sizing;
   }
 
-  .user-widget-label {
-    &:ltr { padding-left: 1em; }
-    &:rtl { padding-right: 1em; }
-  }
+  .user-widget-label { @extend %login_label_spacing; }
 }
 
 .login-dialog {
