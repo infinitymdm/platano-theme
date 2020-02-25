@@ -693,27 +693,26 @@ StScrollBar {
     }
   }
 
-  &-error-label {
-    padding-bottom: if($ref_weight >= 1.0, 8px, 6px);
-    color: $err;
-    font-size: 100%;
-  }
+  &-error-label { color: $err; }
 
+  &-error-label,
   &-info-label,
   &-null-label {
-    padding-bottom: 8px;
+    padding-bottom: if($ref_weight >= 1.0, 8px, 6px);
     font-size: 100%;
   }
 
-  @if $ver > 3.31 {
-    &-pim-box,
-    &-keyfiles-box { spacing: 1em; }
+  @if $ver < 3.35 {
+    @if $ver > 3.31 {
+      &-pim-box,
+      &-keyfiles-box { spacing: 1em; }
 
-    &-grid { @extend %table_grid_spacing; }
-
-    &-button.button {
+      &-button.button {
+      }
     }
   }
+
+  &-grid { @extend %table_grid_spacing; }
 
   @if $ver > 3.35 {
     &-caps-lock-warning {
