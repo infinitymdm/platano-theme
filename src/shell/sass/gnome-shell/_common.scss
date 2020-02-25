@@ -347,9 +347,16 @@ StScrollBar {
 }
 
 @if $ver > 3.25 {
-  .mount-dialog-subject,
-  .end-session-dialog-subject { // this should be a generic header class
-    font-size: 130%;
+  @if $ver < 3.35 {
+    .mount-dialog-subject,
+    .end-session-dialog-subject { // this should be a generic header class
+      font-size: 130%;
+    }
+  }
+  @else {
+    .end-session-dialog-subject { // this should be a generic header class
+      font-size: 130%;
+    }
   }
 }
 @else {
@@ -836,7 +843,9 @@ StScrollBar {
 //  * Access Dialog *
 //  *****************/
 
-.access-dialog { spacing: if($ref_weight >= 1.0, 30px, 24px); }
+@if $ver < 3.35 {
+  .access-dialog { spacing: if($ref_weight >= 1.0, 30px, 24px); }
+}
 
 @if $ver < 3.25 {
   .access-dialog {
