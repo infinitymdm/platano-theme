@@ -4583,9 +4583,15 @@ $grid_size: 136px;
 %onlock_notification {
   padding: 12px 6px;
   border: none;
-  border-radius: $r_2;
-  background-color: opacity($osd_bg, $a_osd);
+  border-radius: $r_8;
+  background-color: if($variant == mixed, opacity($inv_tooltip_bg, $a_osd),
+                                          opacity($tooltip_bg, $a_osd));
   color: $osd_fg;
+
+  &.critical {
+    background-color: $dest_bg;
+    color: $sel_fg;
+  }
 }
 
 %unlock_scrollbar {
