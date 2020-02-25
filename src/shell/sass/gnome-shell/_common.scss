@@ -4615,10 +4615,7 @@ $login_dialog_width: 23em;
   }
 
   @if $ver > 3.35 {
-    &-entry {
-      width: $login_dialog_width - 5em;
-      height: 1.5em;
-    }
+    &-entry { height: 1.5em; }
   }
 
   &-label {
