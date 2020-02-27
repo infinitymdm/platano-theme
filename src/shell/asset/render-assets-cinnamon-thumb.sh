@@ -52,25 +52,22 @@ else
 fi
 
 if [ "$ink_maj_ver" -ge 1 ]; then
-    ink_export_option="--export-type=png --export-filename"
+    ink_export_option="--export-file"
 else
     ink_export_option="--export-png"
 fi
 
 # Renderer
 render-non-scale() {
-    cd $ASSETS_DIR && \
     $INKSCAPE --export-dpi="$non_scale_dpi" \
-              $ink_export_option=$THUMB.png ../../asset/$SRC_DIR/$THUMB.svg \
-              >/dev/null 2>>../../asset/inkscape.log
-    cd ../$ASSETS_LIGHT_DIR && \
+              $ink_export_option=$ASSETS_DIR/$THUMB.png $SRC_DIR/$THUMB.svg \
+              >/dev/null 2>>inkscape.log
     $INKSCAPE --export-dpi="$non_scale_dpi" \
-              $ink_export_option=$THUMB.png ../../asset/$SRC_LIGHT_DIR/$THUMB.svg \
-              >/dev/null 2>>../../asset/inkscape.log
-    cd ../$ASSETS_DARK_DIR && \
+              $ink_export_option=$ASSETS_LIGHT_DIR/$THUMB.png $SRC_LIGHT_DIR/$THUMB.svg \
+              >/dev/null 2>>inkscape.log
     $INKSCAPE --export-dpi="$non_scale_dpi" \
-              $ink_export_option=$THUMB.png ../../asset/$SRC_DARK_DIR/$THUMB.svg \
-              >/dev/null 2>>../../asset/inkscape.log
+              $ink_export_option=$ASSETS_DARK_DIR/$THUMB.png $SRC_DARK_DIR/$THUMB.svg \
+              >/dev/null 2>>inkscape.log
 }
 
 # Generate PNG file
