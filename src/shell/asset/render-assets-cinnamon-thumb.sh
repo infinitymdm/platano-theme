@@ -60,13 +60,16 @@ fi
 # Renderer
 render-non-scale() {
     $INKSCAPE --export-dpi="$non_scale_dpi" \
-              $ink_export_option=$ASSETS_DIR/$THUMB.png $SRC_DIR/$THUMB.svg \
+              $ink_export_option=$ASSETS_DIR/$THUMB.png \
+              $SRC_DIR/$THUMB.svg \
               >/dev/null 2>>inkscape.log
     $INKSCAPE --export-dpi="$non_scale_dpi" \
-              $ink_export_option=$ASSETS_LIGHT_DIR/$THUMB.png $SRC_LIGHT_DIR/$THUMB.svg \
+              $ink_export_option=$ASSETS_LIGHT_DIR/$THUMB.png \
+              $SRC_LIGHT_DIR/$THUMB.svg \
               >/dev/null 2>>inkscape.log
     $INKSCAPE --export-dpi="$non_scale_dpi" \
-              $ink_export_option=$ASSETS_DARK_DIR/$THUMB.png $SRC_DARK_DIR/$THUMB.svg \
+              $ink_export_option=$ASSETS_DARK_DIR/$THUMB.png \
+              $SRC_DARK_DIR/$THUMB.svg \
               >/dev/null 2>>inkscape.log
 }
 
