@@ -37,8 +37,8 @@ render-non-scale() {
     $INKSCAPE --export-id=$ID \
               --export-dpi="$non_scale_dpi" \
               --export-id-only \
-              $ink_export_option=$i.png $SRC_FILE >/dev/null \
-                                                  2>>../inkscape.log
+              $ink_export_option=$ASSETS_DIR/$i.png $SRC_FILE \
+                  >/dev/null 2>>../inkscape.log
 }
 
 # Generate PNG files
