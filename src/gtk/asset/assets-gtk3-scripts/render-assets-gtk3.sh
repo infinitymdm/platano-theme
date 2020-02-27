@@ -14,7 +14,6 @@ INKSCAPE="`command -v inkscape`"
 
 SRC_FILE="../assets-gtk3.svg"
 ASSETS_DIR="../assets-gtk3"
-SCRIPT_DIR="../assets-gtk3-scripts"
 INDEX_SRC="assets-gtk3.txt"
 INDEX=""
 KEY_FILE="../../sass/common/_key_colors.scss"
@@ -30,15 +29,14 @@ else
 fi
 
 if [ "$ink_maj_ver" -ge 1 ]; then
-    ink_export_option="--export-type=png --export-filename"
+    ink_export_option="--export-file"
 else
     ink_export_option="--export-png"
 fi
 
 #Renderer
 render-non-scale() {
-    $INKSCAPE --without-gui \
-              --export-id=$i \
+    $INKSCAPE --export-id=$i \
               --export-dpi="$non_scale_dpi" \
               --export-id-only \
               $ink_export_option=$i.png $SRC_FILE >/dev/null \
@@ -46,8 +44,7 @@ render-non-scale() {
 }
 
 render-scale() {
-    $INKSCAPE --without-gui \
-              --export-id=$i \
+    $INKSCAPE --export-id=$i \
               --export-dpi="$scale_dpi" \
               --export-id-only \
               $ink_export_option=$i@2.png $SRC_FILE >/dev/null \
@@ -57,23 +54,22 @@ render-scale() {
 # Generate PNG files
 case "$1" in
     checkbox)
-        INDEX=($(grep -e checkbox $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e checkbox $INDEX_SRC))
         ;;
     misc)
-        INDEX=($(grep -e thumb -e dev -e needs -e handle -e grip \
-              $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e thumb -e dev -e needs -e handle -e grip $INDEX_SRC))
         ;;
     radio)
-        INDEX=($(grep -e radio $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e radio $INDEX_SRC))
         ;;
     slider)
-        INDEX=($(grep -e slider $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e slider $INDEX_SRC))
         ;;
     toggle)
-        INDEX=($(grep -e toggle $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e toggle $INDEX_SRC))
         ;;
     all)
-        INDEX=$(<$SCRIPT_DIR/$INDEX_SRC)
+        INDEX=$(<$INDEX_SRC)
         ;;
     *)
         exit 1
@@ -83,8 +79,6 @@ esac
 if [ '!' -d $ASSETS_DIR ]; then
     mkdir -p $ASSETS_DIR;
 fi
-
-cd $ASSETS_DIR
 
 for i in ${INDEX[@]}
 do 

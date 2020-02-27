@@ -13,7 +13,6 @@
 INKSCAPE="`command -v inkscape`"
 SRC_FILE="../assets-gtk2.svg"
 ASSETS_DIR="../assets-gtk2"
-SCRIPT_DIR="../assets-gtk2-scripts"
 INDEX_SRC="assets-gtk2.txt"
 INDEX=""
 KEY_FILE="../../sass/common/_key_colors.scss"
@@ -27,7 +26,7 @@ else
 fi
 
 if [ "$ink_maj_ver" -ge 1 ]; then
-    ink_export_option="--export-type=png --export-filename"
+    ink_export_option="--export-file"
 else
     ink_export_option="--export-png"
 fi
@@ -45,45 +44,43 @@ render-non-scale() {
 # Generate PNG files
 case "$1" in
     arrow)
-        INDEX=($(grep -e Arrows $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e Arrows $INDEX_SRC))
         ;;
     button)
-        INDEX=($(grep -e Buttons $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e Buttons $INDEX_SRC))
         ;;
     checkradio)
-        INDEX=($(grep -e Check-Radio $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e Check-Radio $INDEX_SRC))
         ;;
     column)
-        INDEX=($(grep -e Column $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e Column $INDEX_SRC))
         ;;
     entry)
-        INDEX=($(grep -e Entry $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e Entry $INDEX_SRC))
         ;;
     handle)
-        INDEX=($(grep -e Handles $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e Handles $INDEX_SRC))
         ;;
     misc)
         INDEX=($(grep -e Lines -e Others -e ProgressBar -e Shadows -e Toolbar \
-              $SCRIPT_DIR/$INDEX_SRC))
+              $INDEX_SRC))
         ;;
     range)
-        INDEX=($(grep -e Range $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e Range $INDEX_SRC))
         ;;
     scrollbar)
-        INDEX=($(grep -e Scrollbars $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e Scrollbars $INDEX_SRC))
         ;;
     spin)
-        INDEX=($(grep -e Spin $SCRIPT_DIR/$INDEX_SRC))
+        INDEX=($(grep -e Spin $INDEX_SRC))
         ;;
     all)
-        INDEX=$(<$SCRIPT_DIR/$INDEX_SRC)
+        INDEX=$(<$INDEX_SRC)
         ;;
     *)
         exit 1
         ;;
 esac
-
-cd $ASSETS_DIR
 
 for i in ${INDEX[@]}
 do
