@@ -1597,8 +1597,27 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     }
 
     @if $ver > 3.25 {
-      // notification dot at the right-side of clock label
       &.clock-display {
+        // do-not-disturb icon + clock label
+        @if $ver > 3.35 {
+          &:hover,
+          &:active,
+          &:focus,
+          &:checked,
+          &:overview { box-shadow: $empty_shadow; }
+
+          // draw line highlight on StLabel only
+          &:hover .clock { box-shadow: inset 0 2px $osd_out_fg; }
+
+          &:active,
+          &:focus,
+          &:checked,
+          &:overview {
+            .clock { box-shadow: inset 0 2px $sel_bg; }
+          }
+        }
+
+        // notification dot at the right-side of clock label
         > StBoxLayout > StIcon {
           padding-bottom: 1px; // keep the StLabel baseline
           icon-size: $icon_size;
@@ -1708,7 +1727,14 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 //  ********************/
 
 @if $ver > 3.35 { // NEEDS_REVIEW
-  .clock-display-box { spacing: if($ref_weight >= 1.0, 1em, 0.7em); }
+  .clock-display-box {
+    spacing: if($ref_weight >= 1.0, 1em, 0.7em);
+
+    StLabel.clock {
+      padding-left: 0.4em;
+      padding-right: 0.4em;
+    }
+  }
 }
 
 #calendarArea { padding: if($ref_weight >= 1.0, 0.75em 1.0em, 0.5em 0.7em); }
