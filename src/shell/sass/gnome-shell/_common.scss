@@ -4463,9 +4463,30 @@ $login_dialog_width: 23em;
     }
 
     .user-icon {
-      .user-widget.horizontal & { icon-size: $icon_size * 4; }
+      $hrz_padding: 10px;
+      $vrt_padding: 20px;
 
-      .user-widget.vertical & { icon-size: $icon_size * 8; }
+      .user-widget.horizontal & {
+        icon-size: $icon_size * 4;
+
+        StIcon {
+          width: ($icon_size * 4) - ($hrz_padding * 2);
+          height: ($icon_size * 4) - ($hrz_padding * 2);
+          padding: ($hrz_padding - 1px) $hrz_padding
+                   ($hrz_padding + 1px) $hrz_padding;
+        }
+      }
+
+      .user-widget.vertical & {
+        icon-size: $icon_size * 8;
+
+        StIcon {
+          width: ($icon_size * 8) - ($vrt_padding * 2);
+          height: ($icon_size * 8) - ($vrt_padding * 2);
+          padding: ($vrt_padding - 2px) $vrt_padding
+                   ($vrt_padding + 2px) $vrt_padding;
+        }
+      }
     }
   }
 }
