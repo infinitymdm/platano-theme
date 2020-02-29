@@ -29,7 +29,7 @@ else
 fi
 
 if [ "$ink_maj_ver" -ge 1 ]; then
-    ink_export_option="--export-file"
+    ink_export_option="--export-type=png --export-file"
 else
     ink_export_option="--export-png"
 fi
