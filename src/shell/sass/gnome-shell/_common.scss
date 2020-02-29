@@ -3697,7 +3697,11 @@ $grid_size: 136px;
 //  * Notifications & Message Tray *
 //  ********************************/
 
-.url-highlighter { link-color: $link_fg; }
+.url-highlighter {
+  link-color: $link_fg;
+
+  .notification-banner & { link-color: $osd_link_fg; }
+}
 
 // Banners
 .notification-banner {
