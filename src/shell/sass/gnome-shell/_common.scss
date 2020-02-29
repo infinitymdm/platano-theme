@@ -3701,6 +3701,8 @@ $grid_size: 136px;
 
 // Banners
 .notification-banner {
+  @if $ver > 3.33 { min-height: 0; }
+
   width: 34em;
   margin: 6px;
   border: none;
@@ -3734,6 +3736,8 @@ $grid_size: 136px;
   .secondary-icon { icon-size: $icon_size; }
 
   .notification-button {
+    @if $ver > 3.33 { min-height: 0; }
+
     padding: if($ref_weight >= 1.0, 9px 4px 10px, 6px 3px 7px);
     border-radius: 0 0 $r_8 $r_8;
     background-color: transparent;
