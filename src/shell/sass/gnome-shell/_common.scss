@@ -3702,7 +3702,10 @@ $grid_size: 136px;
 // Banners
 .notification-banner {
   // override Adwaita's protection
-  @if $ver > 3.33 { min-height: 0; }
+  @if $ver > 3.33 {
+    min-height: if($ref_weight >= 1.0, $icon_size + (8px * 2),
+                                       $icon_size + (6px * 2));
+  }
 
   width: 34em;
   margin: 6px;
@@ -3738,7 +3741,7 @@ $grid_size: 136px;
 
   .notification-button {
     // override Adwaita's protection
-    @if $ver > 3.33 { min-height: 0; }
+    @if $ver > 3.33 { min-height: 1em; }
 
     padding: if($ref_weight >= 1.0, 9px 4px 10px, 6px 3px 7px);
     border-radius: 0 0 $r_8 $r_8;
