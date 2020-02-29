@@ -18,7 +18,8 @@ Plata strongly depends on Material Design resources, especially its **fonts**.
 
 | |Primary|Fallback|
 |:-----|:-----:|:-----:|
-|Gnome-Shell|**Roboto**|Sans-serif|
+|Gnome-Shell =< 3.34|**Roboto**|Sans-serif|
+|Gnome-Shell >= 3.36|follow system settings||
 |Cinnamon   |**Roboto**|Sans-serif|
 
 Plata is designed with nominal **13px (or 14px)** Roboto Regular font.
