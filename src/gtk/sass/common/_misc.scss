@@ -2896,6 +2896,34 @@ dialog.background {
   }
 }
 
+@if $maj_ver == 3 {
+  @if $mnr_ver > 23 {
+    // for weird GtkButton with mis-halign-ed search icon
+    stack.suggestionbutton > button > image {
+      &:dir(ltr) {
+        padding-left: calc(#{rem($widget_size)} / 2 - 0.5px
+                      - (#{$icon_size} / 2));
+      }
+      &:dir(rtl) {
+        padding-right: calc(#{rem($widget_size)} / 2 - 0.5px
+                       - (#{$icon_size} / 2));
+      }
+    }
+  }
+}
+@else {
+  stack.suggestionbutton > button > image {
+    &:dir(ltr) {
+      padding-left: calc(#{rem($widget_size)} / 2 - 0.5px
+                    - (#{$icon_size} / 2));
+    }
+    &:dir(rtl) {
+      padding-right: calc(#{rem($widget_size)} / 2 - 0.5px
+                     - (#{$icon_size} / 2));
+    }
+  }
+}
+
 // /*****************
 //  * Gnome-Recipes *
 //  *****************/
