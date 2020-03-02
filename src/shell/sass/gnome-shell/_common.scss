@@ -50,9 +50,15 @@ stage {
 }
 
 .modal-dialog-linked-button {
+  @extend %modal_dialog_button;
   padding: if($ref_weight >= 1.0, 9px 16px 10px, 6px 12px 7px);
-  border: none;
+}
+
+%modal_dialog_button {
+  border: 0 none transparent;
   font-weight: 500;
+  text-shadow: none;
+  icon-shadow: none;
   @if $variant != light {
     @include button(flat-normal, $tc: $inv_acc_fg);
     &:hover { @include button(flat-hover, $tc: $inv_acc_fg); }
@@ -67,16 +73,9 @@ stage {
     &:active { @include button(flat-active, $tc: $acc_fg); }
     &:insensitive { @include button(flat-disabled, $tc: $fg); }
   }
-
   &:first-child { border-radius: 0 0 0 $r_8; }
-  &:last-child {
-    border-right-width: 0;
-    border-radius: 0 0 $r_8 0;
-  }
-  &:first-child:last-child {
-    border-right-width: 0;
-    border-radius: 0 0 $r_8 $r_8;
-  }
+  &:last-child { border-radius: 0 0 $r_8 0; }
+  &:first-child:last-child { border-radius: 0 0 $r_8 $r_8; }
 }
 
 // /***********
@@ -3842,27 +3841,10 @@ $grid_size: 136px;
   .secondary-icon { icon-size: $icon_size; }
 
   .notification-button {
+    @extend %modal_dialog_button;
     // override Adwaita's protection
     @if $ver > 3.33 { min-height: 1em; }
-
     padding: if($ref_weight >= 1.0, 9px 4px 10px, 6px 3px 7px);
-    border-radius: 0 0 $r_8 $r_8;
-    background-color: transparent;
-    color: $inv_sec_acc_fg;
-    font-weight: 500;
-
-    &:first-child { border-radius: 0 0 0 $r_8; }
-    &:last-child { border-radius: 0 0 $r_8 0; }
-
-    &:hover {
-      color: $inv_acc_fg;
-      background-color: $inv_acc_semi_fill_bg;
-    }
-    &:focus { color: $inv_acc_fg; }
-    &:active {
-      color: $inv_acc_fg;
-      background-color: $inv_acc_fill_bg;
-    }
   }
 }
 
@@ -3920,22 +3902,8 @@ $grid_size: 136px;
   }
 
   &-notification-item {
+    @extend %modal_dialog_button;
     padding: 2px 10px;
-    color: $inv_sec_acc_fg;
-    font-weight: 700;
-    &:hover {
-      color: $inv_acc_fg;
-      background-color: $inv_acc_semi_fill_bg;
-    }
-    &:active {
-      color: $inv_acc_fg;
-      background-color: $inv_acc_fill_bg;
-    }
-    &:focus {
-      // padding: 1px 71px 1px 11px;
-      color: $inv_acc_fg;
-    }
-    &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
 
     &-icon {
       padding: 2px 5px;
