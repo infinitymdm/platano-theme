@@ -517,6 +517,52 @@ $gf_margin: 12px;
   }
 }
 
+@if $maj_ver == 3 {
+  @if $mnr_ver > 23 {
+    gf-screensaver-panel { @extend %gf_ss_panel; }
+
+    gf-icon { @extend %gf_icon; }
+  }
+}
+@else {
+  gf-screensaver-panel { @extend %gf_ss_panel; }
+
+  gf-icon { @extend %gf_icon; }
+}
+
+%gf_ss_panel {
+  @extend %gnome_panel_toplevel;
+  @extend %gnome_panel_applet;
+  padding: 4px 10px; // NEEDS_REVIEW
+
+  label,
+  image { color: if($variant == mixed, $inv_fg, $fg); }
+}
+
+%gf_icon {
+  margin: 2px;
+  @extend .nautilus-desktop.nautilus-canvas-item;
+  &:hover,
+  &:selected {
+    image {
+      @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+      @else { -gtk-icon-filter: brightness(1.2); }
+    }
+  }
+
+  &:selected {
+    label {
+      background-color: $sel_bg;
+      color: $sel_fg;
+    }
+  }
+
+  label {
+    padding: $r_2;
+    border-radius: $r_2;
+  }
+}
+
 // /************
 //  * Nautilus *
 //  ************/
