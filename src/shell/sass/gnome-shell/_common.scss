@@ -299,16 +299,14 @@ StScrollBar {
     padding: if($ref_weight >= 1.0, 24px, 20px);
     @if $ver > 3.35 {
       max-width: 28em;
-      margin: if($ref_weight >= 1.0, 32px 40px, 24px 32px);
-      spacing: if($ref_weight >= 1.0, 32px, 24px);
+      margin: if($ref_weight >= 1.0, 16px, 12px);
+      spacing: if($ref_weight >= 1.0, 16px, 12px);
     }
   }
 
   .run-dialog {
     @if $ver > 3.35 {
       .modal-dialog-content-box {
-        margin-top: if($ref_weight >= 1.0, 24px, 18px);
-        margin-bottom: if($ref_weight >= 1.0, 14px, 10px);
       }
     }
 
@@ -935,7 +933,9 @@ StScrollBar {
 
 @if $ver < 3.35 {
   .network-dialog-secret-table,
-  .keyring-dialog-control-table { @extend %table_grid_spacing; }
+  .keyring-dialog-control-table {
+    @extend %table_grid_spacing;
+  }
 }
 
 %table_grid_spacing {
@@ -2773,7 +2773,11 @@ $close_button_size: 32px;
     &-text { color: $osd_fg; }
   }
 
-  &-scroll-view { border: 1px solid $div_fg; }
+  &-scroll-view {
+    padding: 0;
+    border: 1px solid $div_fg;
+    background-color: transparent;
+  }
 
   &-item {
     spacing: if($ref_weight >= 1.0, 20px, 16px);
