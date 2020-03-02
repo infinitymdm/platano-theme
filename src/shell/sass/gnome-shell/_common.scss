@@ -2826,6 +2826,11 @@ $close_button_size: 32px;
     max-width: 75em; // set horizontal limit for damned looong web page titles
     padding: if($ref_weight >= 1.0, 0.6em 1.2em 0.7em, 0.4em 0.9em 0.5em);
     border-radius: $r;
+    @if $ver > 3.35 {
+      border: 0 none transparent;
+      font-size: 100%;
+      font-weight: 400;
+    }
     // FIXME: Still label width computing is quite weird in Wayland session
     // (brings unwanted larger L/R padding than we set) though, at least
     // we should align StLabel in the center of finalized widget width
