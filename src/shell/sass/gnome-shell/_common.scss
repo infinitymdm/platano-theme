@@ -3024,6 +3024,11 @@ $provider_icon_size: 32px; // for < 3.25
       border-radius: $r_8;
       background-color: opacity($osd_bg, $a_osd);
       box-shadow: $z-depth-2;
+      @if $ver > 3.35 {
+        border: 0 none transparent;
+        text-shadow: none;
+        icon-shadow: none;
+      }
     }
   }
 }
@@ -3176,6 +3181,10 @@ $provider_icon_size: 32px; // for < 3.25
 
       &-details { // labels at the right-side of -icon
         width: $provider_details_width;
+        @if $ver > 3.35 {
+          margin-top: if($ref_weight >= 1.0, $results_icon_size / 3 * 2,
+                                             $results_icon_size / 6 * 2);
+        }
         font-size: 90%;
         @if $ver > 3.25 {
           color: $osd_ter_fg;
