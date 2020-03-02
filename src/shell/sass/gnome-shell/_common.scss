@@ -960,16 +960,8 @@ $avatar_width: $icon_size * 1.5;
     box-shadow: inset 0 2px 2px opacity(black, $a_trk_1);
     @if $ver > 3.35 {
       .popup-menu-item {
-        &:ltr {
-          padding-left: if($ref_weight >= 1.0,
-                           $avatar_width / 2 - $extra_spacing,
-                           $avatar_width / 2);
-        }
-        &:rtl {
-          padding-right: if($ref_weight >= 1.0,
-                            $avatar_width / 2 - $extra_spacing,
-                            $avatar_width / 2);
-        }
+        &:ltr { padding-left: if($ref_weight >= 1.0, 8px, 6px); }
+        &:rtl { padding-right: if($ref_weight >= 1.0, 8px, 6px); }
       }
     }
   }
@@ -979,18 +971,33 @@ $avatar_width: $icon_size * 1.5;
   }
 
   .popup-menu-item {
-    spacing: if($ref_weight >= 1.0, $avatar_width / 2 - $extra_spacing,
-                                    $avatar_width / 2);
+    @if $ver < 3.35 {
+      spacing: if($ref_weight >= 1.0, $avatar_width / 2 - $extra_spacing,
+                                      $avatar_width / 2);
+    }
+    @else { spacing: if($ref_weight >= 1.0, 8px, 6px); }
     color: $sec_fg;
     font-weight: 400;
     transition-duration: $tr_d_non;
     &:ltr {
-      padding: if($ref_weight >= 1.0, 0.45em $avatar_width 0.45em 0,
-                                      0.3em $avatar_width 0.3em 0);
+      @if $ver < 3.35 {
+        padding: if($ref_weight >= 1.0, 0.45em $avatar_width 0.45em 0,
+                                        0.3em $avatar_width 0.3em 0);
+      }
+      @else {
+        padding: if($ref_weight >= 1.0, 0.45em ($icon_size + 8px) 0.45em 0,
+                                        0.3em ($icon_size + 6px) 0.3em 0);
+      }
     }
     &:rtl {
-      padding: if($ref_weight >= 1.0, 0.45em 0 0.45em $avatar_width,
-                                      0.3em 0 0.3em $avatar_width);
+      @if $ver < 3.35 {
+        padding: if($ref_weight >= 1.0, 0.45em 0 0.45em $avatar_width,
+                                        0.3em 0 0.3em $avatar_width);
+      }
+      @else {
+        padding: if($ref_weight >= 1.0, 0.45em 0 0.45em ($icon_size + 8px),
+                                        0.3em 0 0.3em ($icon_size + 8px));
+      }
     }
 
     &:checked {
@@ -1168,7 +1175,7 @@ $avatar_width: $icon_size * 1.5;
 
     .popup-separator-menu-item-separator {
       height: 1px;
-      margin: 0.3em 0;
+      margin: 0;
       background-color: if($variant != dark,
                            $div_fg,
                            mix(white, $dark_bg, percentage($a_div_2)));
