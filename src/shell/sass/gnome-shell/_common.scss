@@ -1757,9 +1757,28 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   }
 }
 
-#calendarArea { padding: if($ref_weight >= 1.0, 0.75em 1.0em, 0.5em 0.7em); }
+#calendarArea {
+  @if $ver < 3.35 {
+    padding: if($ref_weight >= 1.0, 0.75em 1.0em, 0.5em 0.7em);
+  }
+  @else {
+    padding: if($ref_weight >= 1.0, 0.75em 0, 0.5em 0);
+  }
+}
 
-.calendar { margin-bottom: if($ref_weight >= 1.0, 1em, 0.7em); }
+%reset_cal {
+  border: 0 none transparent;
+  background-color: transparent;
+  box-shadow: $empty_shadow;
+  text-shadow: none;
+  icon-shadow: none;
+}
+
+.calendar {
+  margin-bottom: if($ref_weight >= 1.0, 1em, 0.7em);
+  border-radius: $r_2;
+  @if $ver > 3.35 { @extend %reset_cal; }
+}
 
 .calendar,
 .datemenu-today-button,
@@ -1790,6 +1809,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .world-clocks-button,
   .weather-button,
   .events-section-title {
+    @if $ver > 3.35 { @extend %reset_cal; }
     padding: 0.4em;
     border-radius: $r_2;
   }
@@ -1850,6 +1870,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .date-label {
     color: $sec_fg;
     font-size: 150%;
+    font-weight: 500;
   }
 
   &:hover,
