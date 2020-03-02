@@ -1784,7 +1784,11 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 .calendar {
   margin-bottom: if($ref_weight >= 1.0, 1em, 0.7em);
   border-radius: $r_2;
-  @if $ver > 3.35 { @extend %reset_cal; }
+  @if $ver > 3.35 {
+    @extend %reset_cal;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .calendar,
