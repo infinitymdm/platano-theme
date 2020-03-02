@@ -2657,7 +2657,8 @@ $ripple_d: 52px;
 //  * Close Buttons *
 //  *****************/
 
-$close_button_size: 32px;
+$close_button_size: if($ver < 3.35, 32px,
+                                    if($ref_weight >= 1.0, 2.5em, 1.8em));
 
 .window-close {
   width: $close_button_size;
@@ -5100,7 +5101,12 @@ $tool_icon_size: 24px;
 
   &-button {
     // subtract bottom-padding and outlined button borders
-    height: $close_button_size - 1px - (1px * 2);
+    @if $ver < 3.35 {
+      height: $close_button_size - 1px - (1px * 2);
+    }
+    @else {
+      height: calc(#{$close_button_size} - 1px - (1px * 2));
+    }
     padding: if($ref_weight >= 1.0, 0 16px 1px, 0 12px 1px);
     border-radius: $r_2;
     font-weight: 500;
