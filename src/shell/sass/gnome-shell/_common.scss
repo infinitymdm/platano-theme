@@ -307,6 +307,8 @@ StScrollBar {
   .run-dialog {
     @if $ver > 3.35 {
       .modal-dialog-content-box {
+        margin-top: 0;
+        margin-bottom: 0;
       }
     }
 
