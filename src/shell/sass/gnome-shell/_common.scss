@@ -3532,12 +3532,14 @@ $grid_size: 136px;
 }
 @else {
   .app-folder-dialog {
-    spacing: if($ref_weight >= 1.0, 16px, 12px); // NEEDS_REVIEW
+    spacing: if($ref_weight >= 1.0, 16px, 12px);
+    padding-bottom: $r_8; // do not cut-off scrollbars
     border-radius: $r_8;
+    border: 0 none transparent;
     background-color: opacity($osd_bg, $a_osd);
-    box-shadow: $z-depth-1;
+    box-shadow: $z-depth-4;
 
-    &-container { // NEEDS_REVIEW
+    &-container {
       width: 800px;
       height: 600px;
       padding: 12px;
@@ -3568,15 +3570,24 @@ $grid_size: 136px;
       .folder-name {
         &-label,
         &-entry {
+          &:ltr { // centering titles/entries
+            margin-left: if($ref_weight >= 1.0, $icon_size + (10px * 2),
+                                                $icon_size + (7px * 2));
+          }
+          &:rtl {
+            margin-right: if($ref_weight >= 1.0, $icon_size + (10px * 2),
+                                                 $icon_size + (7px * 2));
+          }
           font-weight: 700;
           font-size: 150%;
         }
 
-        &-entry { width: 300px; } // NEEDS_REVIEW
+        &-entry {
+          width: if($ref_weight >= 1.0, 300px, 200px);
+        }
 
         &-label { // use the same internal padding with StEntry
-          padding: if($ref_weight >= 1.0, 0.7em 0.8em 0.8em,
-                                          0.5em 0.6em 0.6em);
+          padding: if($ref_weight >= 1.0, 0.75em 0.8em, 0.55em 0.6em);
         }
       }
     }
