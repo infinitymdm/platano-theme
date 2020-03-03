@@ -5148,6 +5148,11 @@ $tool_icon_size: 24px;
   }
 }
 
+StBoxLayout#Windows {
+  &:ltr { padding-left: (6px * 2); }
+  &:rtl { padding-right: (6px * 2); }
+}
+
 #LookingGlassPropertyInspector {
   padding: 6px;
   border: 1px solid if($variant != light,
