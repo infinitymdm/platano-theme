@@ -5123,13 +5123,29 @@ $tool_icon_size: 24px;
   padding: 4px;
   border: none;
   border-radius: $r_2;
+  @if $ver > 3.35 { background-color: transparent; }
 
   &-name {
+    padding: (6px / 2) 0;
+    color: $osd_fg;
     font-weight: 700;
-    font-size: 150%;
+    font-size: 130%;
   }
 
-  &-meta { spacing: 6px; }
+  &-description {
+    color: $osd_sec_fg;
+    font-weight: 400;
+    font-size: 90%;
+    &:ltr { padding: 6px 0 6px (6px * 2); }
+    &:rtl { padding: 6px (6px * 2) 6px 6px; }
+  }
+
+  &-meta {
+    spacing: 6px;
+    font-size: 100%;
+    &:ltr { padding: 6px 0 6px (6px * 2); }
+    &:rtl { padding: 6px (6px * 2) 6px 6px; }
+  }
 }
 
 #LookingGlassPropertyInspector {
