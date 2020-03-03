@@ -5026,9 +5026,13 @@ $tool_icon_size: 24px;
   .notebook-tab {
     min-height: $tool_icon_size + if($ref_weight >= 1.0, 8px, 6px);
     padding: if($ref_weight >= 1.0, 0 8px * 2, 0 6px * 2);
+    border-bottom-width: 0;
     color: $osd_ter_fg;
-    @if $ver < 3.35 { font-family: $font-family; } // stop using fixed-fonts
-    font-weight: 500;
+    @if $ver < 3.35 { // stop using fixed-fonts
+      font-family: $font-family;
+      font-weight: 500;
+    }
+    @else { font-weight: 700; } // fixed-fonts are used
     font-size: 90%;
     transition-duration: $tr_d_std;
     &:hover {
