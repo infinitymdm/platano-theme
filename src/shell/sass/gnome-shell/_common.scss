@@ -1796,6 +1796,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     @extend %reset_cal;
     padding-left: 0;
     padding-right: 0;
+    color: $fg;
   }
 }
 
@@ -1931,6 +1932,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
   .world-clocks {
     &-city {
+      color: $fg;
       font-weight: 700;
       font-size: 90%;
     }
@@ -2201,6 +2203,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   @if $ver > 3.35 { // parent container of button and switch
     &-controls {
       margin:  if($ref_weight >= 1.0, 1.5em 1.5em 0, 1.2em 1.2em 0);
+
+      > StLabel { color: $fg; } // 'Do Not Disturb' label
     }
   }
 
@@ -3626,6 +3630,7 @@ $grid_size: 136px;
 
         &-label { // use the same internal padding with StEntry
           padding: if($ref_weight >= 1.0, 0.75em 0.8em, 0.55em 0.6em);
+          color: $osd_fg;
         }
       }
     }
