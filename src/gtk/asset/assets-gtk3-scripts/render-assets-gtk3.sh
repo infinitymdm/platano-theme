@@ -18,8 +18,8 @@ INDEX_SRC="assets-gtk3.txt"
 INDEX=""
 KEY_FILE="../../sass/common/_key_colors.scss"
 
-ink_maj_ver="`$INKSCAPE --version | awk '{print $2}' | cut -c 1`"
-ink_mnr_ver="`$INKSCAPE --version | awk '{print $2}' | cut -c 3-4`"
+ink_maj_ver="`$INKSCAPE --version | grep Ink | awk '{print $2}' | cut -c 1`"
+ink_mnr_ver="`$INKSCAPE --version | grep Ink | awk '{print $2}' | cut -c 3-4`"
 if [ "$ink_maj_ver"."$ink_mnr_ver" = 0.91 ]; then
     non_scale_dpi=90
     scale_dpi=180
