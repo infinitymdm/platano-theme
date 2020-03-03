@@ -2671,6 +2671,9 @@ $close_button_size: if($ver < 3.35, 32px,
     -st-background-image-shadow: $z-depth-1;
   }
   @else {
+    @if $ver > 3.35 {
+      margin: 0.1em; // previent unwanted truncated button top
+    }
     border-radius: $r;
     border: 0 none transparent;
     background-color: $dest_bg;
