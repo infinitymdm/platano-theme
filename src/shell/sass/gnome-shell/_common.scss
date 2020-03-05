@@ -969,8 +969,8 @@ $avatar_width: $icon_size * 1.5;
     box-shadow: inset 0 2px 2px opacity(black, $a_trk_1);
     @if $ver > 3.35 {
       .popup-menu-item {
-        &:ltr { padding-left: if($ref_weight >= 1.0, 8px, 6px); }
-        &:rtl { padding-right: if($ref_weight >= 1.0, 8px, 6px); }
+        &:ltr { padding-left: if($ref_weight >= 1.0, 8px * 1.5, 6px); }
+        &:rtl { padding-right: if($ref_weight >= 1.0, 8px * 1.5, 6px); }
       }
     }
   }
@@ -1005,7 +1005,7 @@ $avatar_width: $icon_size * 1.5;
       }
       @else {
         padding: if($ref_weight >= 1.0, 0.45em 0 0.45em ($icon_size + 8px),
-                                        0.3em 0 0.3em ($icon_size + 8px));
+                                        0.3em 0 0.3em ($icon_size + 6px));
       }
     }
 
