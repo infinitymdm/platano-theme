@@ -4936,7 +4936,7 @@ row:selected { @extend %selected_items; }
 
 %app_slider {
   margin: $shadow_margin_2;
-  padding: $toolbar_padding rem($menuitem_padding);
+  padding: $toolbar_padding $toolbar_padding * 2;
   @include radius(0 0 $r_8 $r_8, none);
   background-clip: border-box;
   box-shadow: $z-depth-2;
@@ -4952,6 +4952,8 @@ row:selected { @extend %selected_items; }
     background-color: track($tooltip_bg, $a_osd);
     color: $fg;
   }
+
+  > box.horizontal > label { padding: 0 rem($entry_lr_space); }
 
   box.vertical {
     > label {
