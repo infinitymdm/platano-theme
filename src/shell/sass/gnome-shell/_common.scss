@@ -295,12 +295,13 @@ StScrollBar {
   @else { box-shadow: $empty_shadow; }
 
   &-content-box {
-    padding: if($ref_weight >= 1.0, 24px, 20px);
     @if $ver > 3.35 {
       max-width: 28em;
-      margin: if($ref_weight >= 1.0, 16px, 12px);
-      spacing: if($ref_weight >= 1.0, 16px, 12px);
+      margin: if($ref_weight >= 1.0, 24px, 20px);
+      spacing: if($ref_weight >= 1.0, 24px, 20px);
+      padding: 0;
     }
+    @else { padding: if($ref_weight >= 1.0, 24px, 20px); }
   }
 
   .run-dialog {
