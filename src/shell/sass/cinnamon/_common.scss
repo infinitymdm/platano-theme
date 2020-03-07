@@ -181,7 +181,7 @@ StScrollBar {
     padding-top: 0.1em;
     padding-bottom: 0.1em + 0.1em;
     font-weight: 400;
-    font-size: 100%
+    font-size: 100%;
   }
 }
 
@@ -409,7 +409,7 @@ StScrollBar {
   color: $osd_fg;
   background-color: $panel_bg;
   font-weight: 700;
-  font-size: 100%
+  font-size: 100%;
 
   &:highlight { background-color: $acc_fill_bg; }
 }
@@ -687,7 +687,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
 
 .overview-empty-placeholder {
   color: opacity($ovv_fg, $a_fg_3rd);
-  font-size: 200%
+  font-size: 200%;
 }
 
 // /*****************
@@ -723,7 +723,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
     padding-top: (0.45em - 0.1em); // label centering
     color: $fg;
     font-weight: 400;
-    font-size: 90%
+    font-size: 90%;
   }
 
   &-change-month-back,
@@ -733,7 +733,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
     margin: 0;
     padding: 0;
     border-radius: $r;
-    font-size: 90%
+    font-size: 90%;
     &:hover { background-color: $semi_fill_bg; }
     &:active { background-color: $fill_bg; }
   }
