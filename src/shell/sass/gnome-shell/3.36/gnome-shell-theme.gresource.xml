@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/org/gnome/shell/theme">
+    <file>calendar-today-other.svg</file>
+    <file>calendar-today.svg</file>
     <file>assets/checkbox.svg</file>
     <file>assets/checkbox-hover.svg</file>
     <file>assets/checkbox-off.svg</file>
