@@ -2073,10 +2073,10 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   padding: 0;
   margin: 0.2em;
   border-radius: $r;
+  @if $ver > 3.35 { border: 0 none transparent; }
   font-size: 90%;
   text-align: center;
   transition-duration: $tr_d_sht;
-
   &:hover,
   &:focus { background-color: $semi_fill_bg; }
   &:active,
@@ -2125,6 +2125,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     color: $link_fg;
     font-weight: 500;
     @if $ver < 3.35 { text-decoration: underline; }
+    @else { @include image-loader($url: 'calendar-today.svg'); }
     &:hover,
     &:focus { background-color: opacity($link_fg, $a_trk_1); }
     &:active,
@@ -2134,6 +2135,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       &:focus {
         color: $sel_fg;
         background-color: $sel_bg;
+        @if $ver > 3.35 { background-image: none; }
         border-color: transparent;
       }
     }
@@ -2177,6 +2179,9 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
   &.calendar-day-with-events {
     color: opacity($link_fg, $a_fg_3rd * $a_fg_3rd);
+    @if $ver > 3.35 {
+      @include image-loader($url: 'calendar-today-other.svg');
+    }
     &:hover,
     &:focus {
       color: opacity($link_fg, $a_fg_3rd);

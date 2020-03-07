@@ -44,6 +44,8 @@ mixed/calendar-arrow-left-hover.svg assets
 mixed/calendar-arrow-left.svg assets
 mixed/calendar-arrow-right-hover.svg assets
 mixed/calendar-arrow-right.svg assets
+mixed/calendar-today.svg .
+mixed/calendar-today-other.svg .
 light/checkbox-hover.svg assets r1
 light/checkbox.svg assets r1
 light/checkbox-off-hover.svg assets
@@ -52,6 +54,8 @@ light/calendar-arrow-left-hover.svg assets
 light/calendar-arrow-left.svg assets
 light/calendar-arrow-right-hover.svg assets
 light/calendar-arrow-right.svg assets
+light/calendar-today.svg .
+light/calendar-today-other.svg .
 dark/checkbox-hover.svg assets r1
 dark/checkbox.svg assets r1
 dark/checkbox-off-hover.svg assets
@@ -60,6 +64,8 @@ dark/calendar-arrow-left-hover.svg assets
 dark/calendar-arrow-left.svg assets
 dark/calendar-arrow-right-hover.svg assets
 dark/calendar-arrow-right.svg assets
+dark/calendar-today.svg .
+dark/calendar-today-other.svg .
 
 workspaces-to-dock/four-bottom.svg extensions/workspaces-to-dock/assets r1
 workspaces-to-dock/four-left.svg extensions/workspaces-to-dock/assets r1

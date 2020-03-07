@@ -7,6 +7,7 @@ luminecompactdir = $(DESTDIR)$(themedir)/Plata-Lumine-Compact
 noircompactdir   = $(DESTDIR)$(themedir)/Plata-Noir-Compact
 
 shelldir   = $(srcdir)/gnome-shell
+if !GNOME_IS_336_OR_NEWER
 shell_file = \
 	$(shelldir)/gnome-shell.css \
 	$(shelldir)/gnome-shell-theme.gresource \
@@ -25,6 +26,21 @@ shell_file = \
 	$(shelldir)/process-working.svg \
 	$(shelldir)/toggle-off.svg \
 	$(shelldir)/toggle-on.svg
+endif
+if GNOME_IS_336_OR_NEWER
+shell_file = \
+	$(shelldir)/gnome-shell.css \
+	$(shelldir)/gnome-shell-theme.gresource \
+	$(shelldir)/calendar-today.svg \
+	$(shelldir)/calendar-today-other.svg \
+	$(shelldir)/message-indicator-symbolic.svg \
+	$(shelldir)/no-events.svg \
+	$(shelldir)/no-notifications.svg \
+	$(shelldir)/pad-osd.css \
+	$(shelldir)/process-working.svg \
+	$(shelldir)/toggle-off.svg \
+	$(shelldir)/toggle-on.svg
+endif
 shell_classic_file = \
 	$(shelldir)/extensions/window-list/classic.css \
 	$(shelldir)/extensions/window-list/stylesheet.css
@@ -93,6 +109,7 @@ shell_extension_workspace_asset_file = \
 	$(shelldir)/extensions/workspaces-to-dock/assets/two-top.svg
 
 shellluminedir   = $(srcdir)/gnome-shell-light
+if !GNOME_IS_336_OR_NEWER
 shell_lumine_file = \
 	$(shellluminedir)/gnome-shell.css \
 	$(shellluminedir)/gnome-shell-theme.gresource \
@@ -111,6 +128,21 @@ shell_lumine_file = \
 	$(shellluminedir)/process-working.svg \
 	$(shellluminedir)/toggle-off.svg \
 	$(shellluminedir)/toggle-on.svg
+endif
+if GNOME_IS_336_OR_NEWER
+shell_lumine_file = \
+	$(shellluminedir)/gnome-shell.css \
+	$(shellluminedir)/gnome-shell-theme.gresource \
+	$(shellluminedir)/calendar-today.svg \
+	$(shellluminedir)/calendar-today-other.svg \
+	$(shellluminedir)/message-indicator-symbolic.svg \
+	$(shellluminedir)/no-events.svg \
+	$(shellluminedir)/no-notifications.svg \
+	$(shellluminedir)/pad-osd.css \
+	$(shellluminedir)/process-working.svg \
+	$(shellluminedir)/toggle-off.svg \
+	$(shellluminedir)/toggle-on.svg
+endif
 shell_lumine_classic_file = \
 	$(shellluminedir)/extensions/window-list/classic.css \
 	$(shellluminedir)/extensions/window-list/stylesheet.css
@@ -156,6 +188,7 @@ shell_lumine_asset_file = \
 endif
 
 shellnoirdir    = $(srcdir)/gnome-shell-dark
+if !GNOME_IS_336_OR_NEWER
 shell_noir_file = \
 	$(shellnoirdir)/gnome-shell.css \
 	$(shellnoirdir)/gnome-shell-theme.gresource \
@@ -174,6 +207,21 @@ shell_noir_file = \
 	$(shellnoirdir)/process-working.svg \
 	$(shellnoirdir)/toggle-off.svg \
 	$(shellnoirdir)/toggle-on.svg
+endif
+if GNOME_IS_336_OR_NEWER
+shell_noir_file = \
+	$(shellnoirdir)/gnome-shell.css \
+	$(shellnoirdir)/gnome-shell-theme.gresource \
+	$(shellnoirdir)/calendar-today.svg \
+	$(shellnoirdir)/calendar-today-other.svg \
+	$(shellnoirdir)/message-indicator-symbolic.svg \
+	$(shellnoirdir)/no-events.svg \
+	$(shellnoirdir)/no-notifications.svg \
+	$(shellnoirdir)/pad-osd.css \
+	$(shellnoirdir)/process-working.svg \
+	$(shellnoirdir)/toggle-off.svg \
+	$(shellnoirdir)/toggle-on.svg
+endif
 shell_noir_classic_file = \
 	$(shellnoirdir)/extensions/window-list/classic.css \
 	$(shellnoirdir)/extensions/window-list/stylesheet.css
@@ -219,6 +267,7 @@ shell_noir_asset_file = \
 endif
 
 shellcompactdir   = $(srcdir)/gnome-shell-compact
+if !GNOME_IS_336_OR_NEWER
 shell_compact_file = \
 	$(shellcompactdir)/gnome-shell.css \
 	$(shellcompactdir)/gnome-shell-theme.gresource \
@@ -237,6 +286,21 @@ shell_compact_file = \
 	$(shellcompactdir)/process-working.svg \
 	$(shellcompactdir)/toggle-off.svg \
 	$(shellcompactdir)/toggle-on.svg
+endif
+if GNOME_IS_336_OR_NEWER
+shell_compact_file = \
+	$(shellcompactdir)/gnome-shell.css \
+	$(shellcompactdir)/gnome-shell-theme.gresource \
+	$(shellcompactdir)/calendar-today.svg \
+	$(shellcompactdir)/calendar-today-other.svg \
+	$(shellcompactdir)/message-indicator-symbolic.svg \
+	$(shellcompactdir)/no-events.svg \
+	$(shellcompactdir)/no-notifications.svg \
+	$(shellcompactdir)/pad-osd.css \
+	$(shellcompactdir)/process-working.svg \
+	$(shellcompactdir)/toggle-off.svg \
+	$(shellcompactdir)/toggle-on.svg
+endif
 shell_compact_classic_file = \
 	$(shellcompactdir)/extensions/window-list/classic.css \
 	$(shellcompactdir)/extensions/window-list/stylesheet.css
@@ -282,6 +346,7 @@ shell_compact_asset_file = \
 endif
 
 shellluminecompactdir   = $(srcdir)/gnome-shell-light-compact
+if !GNOME_IS_336_OR_NEWER
 shell_lumine_compact_file = \
 	$(shellluminecompactdir)/gnome-shell.css \
 	$(shellluminecompactdir)/gnome-shell-theme.gresource \
@@ -300,6 +365,21 @@ shell_lumine_compact_file = \
 	$(shellluminecompactdir)/process-working.svg \
 	$(shellluminecompactdir)/toggle-off.svg \
 	$(shellluminecompactdir)/toggle-on.svg
+endif
+if GNOME_IS_336_OR_NEWER
+shell_lumine_compact_file = \
+	$(shellluminecompactdir)/gnome-shell.css \
+	$(shellluminecompactdir)/gnome-shell-theme.gresource \
+	$(shellluminecompactdir)/calendar-today.svg \
+	$(shellluminecompactdir)/calendar-today-other.svg \
+	$(shellluminecompactdir)/message-indicator-symbolic.svg \
+	$(shellluminecompactdir)/no-events.svg \
+	$(shellluminecompactdir)/no-notifications.svg \
+	$(shellluminecompactdir)/pad-osd.css \
+	$(shellluminecompactdir)/process-working.svg \
+	$(shellluminecompactdir)/toggle-off.svg \
+	$(shellluminecompactdir)/toggle-on.svg
+endif
 shell_lumine_compact_classic_file = \
 	$(shellluminecompactdir)/extensions/window-list/classic.css \
 	$(shellluminecompactdir)/extensions/window-list/stylesheet.css
@@ -345,6 +425,7 @@ shell_lumine_compact_asset_file = \
 endif
 
 shellnoircompactdir     = $(srcdir)/gnome-shell-dark-compact
+if !GNOME_IS_336_OR_NEWER
 shell_noir_compact_file = \
 	$(shellnoircompactdir)/gnome-shell.css \
 	$(shellnoircompactdir)/gnome-shell-theme.gresource \
@@ -362,6 +443,20 @@ shell_noir_compact_file = \
 	$(shellnoircompactdir)/process-working.svg \
 	$(shellnoircompactdir)/toggle-off.svg \
 	$(shellnoircompactdir)/toggle-on.svg
+endif
+if GNOME_IS_336_OR_NEWER
+shell_noir_compact_file = \
+	$(shellnoircompactdir)/gnome-shell.css \
+	$(shellnoircompactdir)/gnome-shell-theme.gresource \
+	$(shellnoircompactdir)/calendar-today.svg \
+	$(shellnoircompactdir)/calendar-today-other.svg \
+	$(shellnoircompactdir)/message-indicator-symbolic.svg \
+	$(shellnoircompactdir)/no-events.svg \
+	$(shellnoircompactdir)/no-notifications.svg \
+	$(shellnoircompactdir)/process-working.svg \
+	$(shellnoircompactdir)/toggle-off.svg \
+	$(shellnoircompactdir)/toggle-on.svg
+endif
 shell_noir_compact_classic_file = \
 	$(shellnoircompactdir)/extensions/window-list/classic.css \
 	$(shellnoircompactdir)/extensions/window-list/stylesheet.css
