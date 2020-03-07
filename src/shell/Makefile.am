@@ -37,7 +37,6 @@ shell_file = \
 	$(shelldir)/no-events.svg \
 	$(shelldir)/no-notifications.svg \
 	$(shelldir)/pad-osd.css \
-	$(shelldir)/process-working.svg \
 	$(shelldir)/toggle-off.svg \
 	$(shelldir)/toggle-on.svg
 endif
@@ -139,7 +138,6 @@ shell_lumine_file = \
 	$(shellluminedir)/no-events.svg \
 	$(shellluminedir)/no-notifications.svg \
 	$(shellluminedir)/pad-osd.css \
-	$(shellluminedir)/process-working.svg \
 	$(shellluminedir)/toggle-off.svg \
 	$(shellluminedir)/toggle-on.svg
 endif
@@ -218,7 +216,6 @@ shell_noir_file = \
 	$(shellnoirdir)/no-events.svg \
 	$(shellnoirdir)/no-notifications.svg \
 	$(shellnoirdir)/pad-osd.css \
-	$(shellnoirdir)/process-working.svg \
 	$(shellnoirdir)/toggle-off.svg \
 	$(shellnoirdir)/toggle-on.svg
 endif
@@ -297,7 +294,6 @@ shell_compact_file = \
 	$(shellcompactdir)/no-events.svg \
 	$(shellcompactdir)/no-notifications.svg \
 	$(shellcompactdir)/pad-osd.css \
-	$(shellcompactdir)/process-working.svg \
 	$(shellcompactdir)/toggle-off.svg \
 	$(shellcompactdir)/toggle-on.svg
 endif
@@ -376,7 +372,6 @@ shell_lumine_compact_file = \
 	$(shellluminecompactdir)/no-events.svg \
 	$(shellluminecompactdir)/no-notifications.svg \
 	$(shellluminecompactdir)/pad-osd.css \
-	$(shellluminecompactdir)/process-working.svg \
 	$(shellluminecompactdir)/toggle-off.svg \
 	$(shellluminecompactdir)/toggle-on.svg
 endif
@@ -453,7 +448,6 @@ shell_noir_compact_file = \
 	$(shellnoircompactdir)/message-indicator-symbolic.svg \
 	$(shellnoircompactdir)/no-events.svg \
 	$(shellnoircompactdir)/no-notifications.svg \
-	$(shellnoircompactdir)/process-working.svg \
 	$(shellnoircompactdir)/toggle-off.svg \
 	$(shellnoircompactdir)/toggle-on.svg
 endif
