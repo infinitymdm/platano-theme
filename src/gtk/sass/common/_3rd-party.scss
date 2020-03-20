@@ -626,7 +626,6 @@ $switcher_width: 127px;
 $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
 %raven_switcher_radio_button {
-  min-width: rem($switcher_height, $sw: 1.0);
   min-height: rem($switcher_height, $sw: 1.0);
   outline-style: none; // unset outlines
 }
@@ -649,8 +648,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
       background-color: transparent;
 
       stackswitcher.linked {
-        // limit child spacing
-        padding: 0 $raven_box_spacing;
+        margin: -$raven_box_spacing 0 0;
 
         button.text-button.radio { // switcher buttons
           @extend %raven_switcher_radio_button;
@@ -719,6 +717,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
         > button.text-button.radio {
           @extend %raven_switcher_radio_button;
+          min-width: rem($switcher_height, $sw: 1.0);
           margin-bottom: if($ref_weight < 1.0, 3px, 4px);
           border: 1px solid transparent;
           @include button(normal);
