@@ -885,7 +885,7 @@ window.sound-popover.background {
         &:dir(#{$_dir}) {
           background-image:
             linear-gradient(to $_opp_end,
-                            track($sccs_bg, $a_trk_out) calc(66% - 1px),
+                            $trk_out_fg calc(66% - 1px),
                             track($dest_bg, $a_trk_out) calc(66% - 1px),
                             track($dest_bg, $a_trk_out) 100%);
         }
