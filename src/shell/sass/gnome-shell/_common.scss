@@ -2309,10 +2309,18 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       .message-content { color: $sec_fg; }
     }
     @else {
-      .message-icon-bin > StIcon,
-      .message-icon-bin > .fallback-app-icon,
-      .message-title,
-      .message-content { color: $sec_fg; }
+      @if $ver > 3.35 {
+        .message-icon-bin > StIcon,
+        .message-icon-bin > .fallback-app-icon,
+        .message-title,
+        .message-body { color: $sec_fg; }
+      }
+      @else {
+        .message-icon-bin > StIcon,
+        .message-icon-bin > .fallback-app-icon,
+        .message-title,
+        .message-content { color: $sec_fg; }
+      }
     }
 
     &:hover,
@@ -2336,10 +2344,18 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         .message-content { color: $fg; }
       }
       @else {
-        .message-icon-bin > StIcon,
-        .message-icon-bin > .fallback-app-icon,
-        .message-title,
-        .message-content { color: $fg; }
+        @if $ver > 3.35 {
+          .message-icon-bin > StIcon,
+          .message-icon-bin > .fallback-app-icon,
+          .message-title,
+          .message-body { color: $fg; }
+        }
+        @else {
+          .message-icon-bin > StIcon,
+          .message-icon-bin > .fallback-app-icon,
+          .message-title,
+          .message-content { color: $fg; }
+        }
       }
 
       .message-secondary-bin {
@@ -2367,10 +2383,18 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         .message-content { color: $fg; }
       }
       @else {
-        .message-icon-bin > StIcon,
-        .message-icon-bin > .fallback-app-icon,
-        .message-title,
-        .message-content { color: $fg; }
+        @if $ver > 3.35 {
+          .message-icon-bin > StIcon,
+          .message-icon-bin > .fallback-app-icon,
+          .message-title,
+          .message-body { color: $fg; }
+        }
+        @else {
+          .message-icon-bin > StIcon,
+          .message-icon-bin > .fallback-app-icon,
+          .message-title,
+          .message-content { color: $fg; }
+        }
       }
 
       .message-secondary-bin {
@@ -2512,6 +2536,10 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         background-color: $acc_fill_bg;
       }
     }
+  }
+
+  @if $ver > 3.35 {
+    &-body { color: $osd_fg; }
   }
 }
 
