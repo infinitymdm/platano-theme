@@ -1665,7 +1665,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         > StBoxLayout > StIcon {
           padding-bottom: 1px; // keep the StLabel baseline
           icon-size: $icon_size;
-          color: if($variant == light, $acc_fg, $acc_bg);
+          color: $sggt_bg;
         }
       }
     }
