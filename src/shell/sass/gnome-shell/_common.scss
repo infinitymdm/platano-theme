@@ -1635,12 +1635,20 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     @if $ver > 3.25 {
       &.clock-display {
         // do-not-disturb icon + clock label
-        @if $ver > 3.35 {
+        @if $ver > 3.35 { // move L/R padding to child StLabel
+          -natural-hpadding: 0;
+          -minimum-hpadding: 0;
           &:hover,
           &:active,
           &:focus,
           &:checked,
           &:overview { box-shadow: $empty_shadow; }
+
+          .clock {
+            padding-left: if($ref_weight >= 1.0, 10px, 6px);
+            padding-right: if($ref_weight >= 1.0, 10px, 6px);
+            background-color: $panel_hidden_bg; // for line-indicators
+          }
 
           // draw line highlight on StLabel only
           &:hover .clock { box-shadow: inset 0 2px $osd_out_fg; }
