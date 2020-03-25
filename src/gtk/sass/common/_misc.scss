@@ -2480,6 +2480,21 @@ dialog.background.csd {
   }
 }
 
+@if $maj_ver == 3 {
+  @if $mnr_ver > 23 {
+    flowboxchild > overlay > image + button.image-button.osd.remove-button {
+      // subtract app's CSS T/B padding
+      min-height: calc(#{rem($widget_size)} - 1px * 2);
+    }
+  }
+}
+@else {
+  flowboxchild > overlay > image + button.image-button.osd.remove-button {
+    // subtract app's CSS T/B padding
+    min-height: calc(#{rem($widget_size)} - 1px * 2);
+  }
+}
+
 // /****************
 //  * Dconf-Editor *
 //  ****************/
