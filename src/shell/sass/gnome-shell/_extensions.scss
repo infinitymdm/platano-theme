@@ -296,6 +296,25 @@ $a_dtp_trk_2: if($variant == light, $a_trk_2,
       &:overview { box-shadow: inset #{$_line} $sel_bg; }
     }
 
+    @if $ver > 3.35 {
+      .panel-button.clock-display {
+        &:hover,
+        &:active,
+        &:focus,
+        &:checked,
+        &:overview { box-shadow: $empty_shadow; }
+
+        &:hover .clock { box-shadow: inset #{$_line} $osd_out_fg; }
+
+        &:active,
+        &:focus,
+        &:checked,
+        &:overview {
+          .clock { box-shadow: inset #{$_line} $sel_bg; }
+        }
+      }
+    }
+
     .app-well-app,
     .show-apps {
       &:focus,
