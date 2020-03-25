@@ -294,6 +294,8 @@ $a_dtp_trk_2: if($variant == light, $a_trk_2,
       &:focus,
       &:checked,
       &:overview { box-shadow: inset #{$_line} $sel_bg; }
+
+      StLabel { padding-bottom: 0; } // reset baseline
     }
 
     @if $ver > 3.35 {
