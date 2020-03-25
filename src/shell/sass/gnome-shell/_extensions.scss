@@ -35,26 +35,6 @@
 //  * Arc Menu Extension *
 //  **********************/
 
-.main-box {
-  background-color: $dark_bg;
-
-  .popup-menu {
-    &:ltr { padding-right: 4px; }
-    &:rtl { padding-left: 4px; }
-  }
-
-  StScrollView.apps-menu { // left-pane
-    margin-bottom: if($ref_weight >= 1.0, 6px, 4px);
-    padding: 0;
-    border-width: 1px;
-    border-style: solid;
-    border-color: if($variant != dark,
-                     $div_fg,
-                     mix(white, $dark_bg, percentage($a_div_2)));
-    background-color: $base;
-  }
-}
-
 // /*************************
 //  * OpenWeather Extension *
 //  *************************/
