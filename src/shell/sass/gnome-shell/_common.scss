@@ -5046,7 +5046,7 @@ $tool_icon_size: 24px;
   box-shadow: $z-depth-4;
 
   &.lg-dialog {
-    padding: 0;
+    padding: 0 0 $r_8;
     border-radius: 0 0 $r_8 $r_8; // shape bottom-only radius for main window
   }
 
