@@ -3703,7 +3703,8 @@ $grid_size: 136px;
 }
 
 .page-indicator {
-  padding: $icon_size ($icon_size * 1.5);
+  padding: if($ref_weight >= 1.0, $icon_size ($icon_size * 1.5),
+                                  $icon_size);
 
   @if $ver > 3.35 {
     .page-indicator-icon { // there's no :checked state
