@@ -2133,7 +2133,10 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     color: $link_fg;
     font-weight: 500;
     @if $ver < 3.35 { text-decoration: underline; }
-    @else { @include image-loader($url: 'calendar-today.svg'); }
+    @else {
+      @include image-loader($url: 'calendar-today.svg');
+      background-size: contain;
+    }
     &:hover,
     &:focus { background-color: opacity($link_fg, $a_trk_1); }
     &:active,
