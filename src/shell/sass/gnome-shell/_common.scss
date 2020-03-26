@@ -3660,16 +3660,8 @@ $grid_size: 136px;
       .folder-name {
         &-label,
         &-entry {
-          &:ltr { // centering titles/entries
-            margin-left: if($ref_weight >= 1.0, $icon_size + (10px * 2),
-                                                $icon_size + (7px * 2));
-          }
-          &:rtl {
-            margin-right: if($ref_weight >= 1.0, $icon_size + (10px * 2),
-                                                 $icon_size + (7px * 2));
-          }
           font-weight: 700;
-          font-size: 150%;
+          font-size: 120%;
         }
 
         &-entry {
