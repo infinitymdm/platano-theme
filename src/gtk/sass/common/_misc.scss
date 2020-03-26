@@ -563,6 +563,71 @@ $gf_margin: 12px;
   }
 }
 
+@if $maj_ver == 3 {
+  @if $mnr_ver > 23 {
+    gf-unlock-dialog { @extend %gf_unlock_dialog; }
+  }
+}
+@else {
+  gf-unlock-dialog { @extend %gf_unlock_dialog; }
+}
+
+%gf_unlock_dialog {
+  border-radius: $r_8;
+  box-shadow: $z-depth-4;
+
+  &,
+  &.background { background: transparent; }
+
+  > frame {
+    border-radius: $r_8;
+    @if $variant == mixed { // alpha compositing doesn't work though
+      background-color: track($inv_dark_bg, $a_osd);
+      color: $inv_fg;
+    }
+    @else {
+      background-color: track($dark_bg, $a_osd);
+      color: $fg;
+    }
+
+    &, > border { border: none; }
+  }
+
+  notebook {
+    button {
+      @if $variant == mixed { @extend %inv_flat_button; }
+      @else { @extend %flat_button; }
+    }
+
+    entry:not(.flat) {
+      min-height: rem($widget_size);
+      @include radius($r_4 $r_4 0 0, none);
+      border: none;
+      @if $variant == mixed {
+        @include entry(flat-normal, $tc: $inv_fg);
+        caret-color: $inv_fg;
+        &:focus { @include entry(flat-focus, $tc: $inv_fg); }
+        &:disabled { @include entry(flat-disabled, $tc: $inv_fg); }
+
+        selection { @extend %selected_items; }
+      }
+      @else {
+        @include entry(flat-normal, $tc: $fg);
+        caret-color: $fg;
+        &:focus { @include entry(flat-focus, $tc: $fg); }
+        &:disabled { @include entry(flat-disabled, $tc: $fg); }
+      }
+    }
+  }
+
+  buttonbox:not(.linked) button { // specificity bump
+    &:not(.suggested-action):not(.destructive-action) {
+      @if $variant == mixed { @extend %inv-action-area-button; }
+      @else { @extend %action-area-button; }
+    }
+  }
+}
+
 // /************
 //  * Nautilus *
 //  ************/
