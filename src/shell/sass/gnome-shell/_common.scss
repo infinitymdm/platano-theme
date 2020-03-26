@@ -3410,7 +3410,7 @@ $grid_size: 136px;
 
 .app-view-controls { // favorites | all toggle container
   width: if($ref_weight >= 1.0, 400px, 340px);
-  margin-bottom: if($ref_weight >= 1.0, 24px, 18px);
+  margin-bottom: if($ref_weight >= 1.0, 12px, 9px);
   border-radius: $r;
   background-color: $hidden_fill_bg !important;
   box-shadow: $empty_shadow;
