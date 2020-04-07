@@ -1521,8 +1521,8 @@ $large_item: 10px;
   background-color: $hidden_fill_bg;
   color: $osd_fg;
   box-shadow: $empty_shadow;
+  font-weight: 400;
 
-  &,
   StLabel { font-weight: 400; }
 
   StLabel {
@@ -1549,7 +1549,19 @@ $large_item: 10px;
 }
 
 %item_box_active {
-  &, &:hover {
+  background-color: $osd_semi_fill_bg;
+  color: if($variant != light, $sel_fg, black);
+
+  @each $position, $_indicator in (top, 0 2px),
+                                  (bottom, 0 -2px),
+                                  (left, 2px 0),
+                                  (right, -2px 0) {
+    .panel-#{$position} & {
+      box-shadow: inset #{$_indicator} $sel_bg;
+    }
+  }
+
+  &:hover {
     background-color: $osd_semi_fill_bg;
     color: if($variant != light, $sel_fg, black);
 
