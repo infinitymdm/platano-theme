@@ -480,10 +480,6 @@ button.flat.budgie-menu-launcher {
       color: $sec_fg;
       transition-duration: $tr_d_non;
     }
-
-    button.flat {
-      &, &:hover { transition-duration: $tr_d_non; }
-    }
   }
 
   .categories { // left-paned elements of GtkPopover
