@@ -1381,7 +1381,6 @@ window.budgie-switcher-window {
       row.activatable {
         background-color: transparent;
         color: if($variant == mixed, $inv_sec_fg, $sec_fg);
-        @include transition(reset);
 
         .dim-label {
           color: if($variant == mixed, $inv_sec_fg, $sec_fg);
