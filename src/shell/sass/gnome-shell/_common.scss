@@ -1806,7 +1806,14 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 .message-list-sections { margin: if($ref_weight >= 1.0, 0 1.5em, 0 1em); }
 
 .datemenu { // optimize spacing
-  &-calendar-column { spacing: 0.5em; }
+  &-calendar-column {
+    spacing: 0.5em;
+    @if $ver > 3.35 {
+      padding: if($ref_weight >= 1.0, 0 1em, 0 0.7em);
+      &:ltr,
+      &:rtl { margin: 0; } // override Adwaita's theming
+    }
+  }
 
   &-displays-section { padding-bottom: 0; }
 
