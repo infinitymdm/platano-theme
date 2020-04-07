@@ -1224,9 +1224,10 @@ window.budgie-popover.workspace-popover {
 %budgie_notification_window_base,
 .budgie-notification-window,
 .budgie-osd-window {
+  border-radius: $r_8;
   background-color: transparent;
 
-  &, .drop-shadow { border-radius: $r_8; }
+  .drop-shadow { border-radius: $r_8; }
 }
 
 %budgie_notification_window_styling,
@@ -1706,12 +1707,14 @@ menuitem.budgie-menubar { // appindicator-applet?
 
 %greeter_panel_window {
   background-image: image($panel_bg);
+  background-color: transparent;
   color: if($variant == mixed, $inv_fg, $fg);
   box-shadow: none;
   font-weight: 700;
   text-shadow: none;
 
-  &, &.background,
+  &.background { background-color: transparent; }
+
   > * > * { background-color: transparent; } // FIXME: ugly wildcard
 
   // avoid translucent top-bar
@@ -1742,16 +1745,21 @@ menuitem.budgie-menubar { // appindicator-applet?
 
 %greeter_panel_menu_menuitem {
   padding: $toolbar_padding rem($entry_lr_space);
+  color: $sec_fg;
   font-weight: 400;
   text-shadow: none;
 
-  &, label { color: $sec_fg; }
+  label { color: $sec_fg; }
 
   &:hover {
-    &, label { color: $fg; }
+    color: $fg;
+
+    label { color: $fg; }
   }
   &:disabled {
-    &, label { color: $dis_fg; }
+    color: $dis_fg;
+
+    label { color: $dis_fg; }
   }
 }
 
@@ -1916,12 +1924,11 @@ $greeter_panel_shadow: 11px; // pixmap shadow region
 
 %greeter_panel_menubar_menuitem_misc {
   padding: 0 rem($entry_lr_space);
+  color: if($variant != dark, $inv_fg, $fg);
 
-  &,
-  label,
-  image {
-    color: if($variant != dark, $inv_fg, $fg);
-  }
+  label { color: if($variant != dark, $inv_fg, $fg); }
+
+  image { color: if($variant != dark, $inv_fg, $fg); }
 
   &:hover { box-shadow: inset 0 2px $sel_bg; }
 

@@ -21,12 +21,10 @@
 }
 
 %gnome_panel_menubar {
+  border: unset;
   color: if($variant == mixed, $inv_fg, $fg);
   background-color: transparent;
   font-weight: 700;
-
-  &,
-  .background & { border: unset; }
 }
 
 %gnome_panel_menuitem {
@@ -55,7 +53,11 @@ panel-toplevel > grid.horizontal > widget > widget {
 
 .gnome-panel-menu-bar,
 gp-applet > menubar,
-#clock-applet-button { @extend %gnome_panel_menubar; }
+#clock-applet-button {
+  @extend %gnome_panel_menubar;
+
+  .background & { border: unset; }
+}
 
 @if $maj_ver == 3 {
   .gnome-panel-menu-bar > menuitem,
@@ -380,7 +382,12 @@ dialog.background.csd > box.dialog-vbox.vertical {
 $gf_margin: 12px;
 
 %gf_window {
-  &, &.solid {
+  @if $variant == mixed { color: $inv_fg; }
+  @else { color: $fg; }
+
+  levelbar block:not(.empty) { background-color: $sccs_bg; }
+
+  &.solid {
     @if $variant == mixed { color: $inv_fg; }
     @else { color: $fg; }
 
@@ -575,8 +582,8 @@ $gf_margin: 12px;
 %gf_unlock_dialog {
   border-radius: $r_8;
   box-shadow: $z-depth-4;
+  background: transparent;
 
-  &,
   &.background { background: transparent; }
 
   > frame {
@@ -854,9 +861,15 @@ dialog.background.csd > box.dialog-vbox > grid.horizontal {
     background-color: $bg;
     font-weight: 400; // reset weight
     &:selected {
-      &, &:focus {
+      background-color: track($sel_bg, $a_trk_2);
+      color: $fg;
+      &:hover { background-color: track($sel_bg, $a_trk_2); }
+      &:dir(ltr) { box-shadow: inset 4px 0 $sel_bg; }
+      &:dir(rtl) { box-shadow: inset -4px 0 $sel_bg; }
+      &:focus {
+        background-color: track($sel_bg, $a_trk_2);
         color: $fg;
-        &, &:hover { background-color: track($sel_bg, $a_trk_2); }
+        &:hover { background-color: track($sel_bg, $a_trk_2); }
         &:dir(ltr) { box-shadow: inset 4px 0 $sel_bg; }
         &:dir(rtl) { box-shadow: inset -4px 0 $sel_bg; }
       }
@@ -1599,15 +1612,15 @@ eggsearchbar box.search-bar { background-color: $dark_bg; }
     @if $variant == mixed {
       background-image:
         image(mix($inv_fg, $inv_base, percentage($a_trk_1 / 2)));
+      color: $inv_sec_fg;
       caret-color: $inv_sec_fg;
 
-      &,
       label { color: $inv_sec_fg; }
     }
     @else {
+      color: $sec_fg;
       caret-color: $sec_fg;
 
-      &,
       label { color: $sec_fg; }
     }
   }
@@ -1616,15 +1629,15 @@ eggsearchbar box.search-bar { background-color: $dark_bg; }
     @if $variant == mixed {
       background-image:
         image(mix($inv_fg, $inv_base, percentage($a_trk_1 / 2)));
+      color: $inv_fg;
       caret-color: $inv_fg;
 
-      &,
       label { color: $inv_fg; }
     }
     @else {
+      color: $fg;
       caret-color: $fg;
 
-      &,
       label { color: $fg; }
     }
   }
@@ -1633,9 +1646,9 @@ eggsearchbar box.search-bar { background-color: $dark_bg; }
     &, &:focus {
       border-color: $sel_bg;
       background-image: image($sel_bg);
+      color: $sel_fg;
       caret-color: $sel_fg;
 
-      &,
       label { color: $sel_fg; }
     }
   }

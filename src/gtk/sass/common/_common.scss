@@ -1731,7 +1731,23 @@ spinbutton {
     // color
     &:disabled { color: $dis_fg; }
 
-    @extend %spin_entry_reset;
+    @if $maj_ver == 3 {
+      entry,
+      toolbar & entry,
+      popover & > entry:not(.combo) { // specificity bump
+        &, // unset all of fallback mode
+        &:focus,
+        &:disabled { @extend %spin_entry_reset; }
+
+        progress {  @include radius($r_4, none); }
+      }
+    }
+    @else { // NEEDS_REVIEW
+      text {
+      }
+
+      progress > trough > progress { @include radius($r_4, none); }
+    }
 
     button {
       min-width: $icon_size;
@@ -1826,7 +1842,23 @@ spinbutton {
     &:focus { @include entry(focus); }
     &:disabled { @include entry(disabled); }
 
-    @extend %spin_entry_reset;
+    @if $maj_ver == 3 {
+      entry,
+      toolbar & entry,
+      popover & > entry:not(.combo) { // specificity bump
+        &, // unset all of fallback mode
+        &:focus,
+        &:disabled { @extend %spin_entry_reset; }
+
+        progress {  @include radius($r_4, none); }
+      }
+    }
+    @else { // NEEDS_REVIEW
+      text {
+      }
+
+      progress > trough > progress { @include radius($r_4, none); }
+    }
 
     button {
       min-width: calc(#{rem($widget_size)} - 2px * 2);
@@ -1876,28 +1908,10 @@ spinbutton {
 }
 
 %spin_entry_reset {
-  @if $maj_ver == 3 {
-    entry,
-    toolbar & entry,
-    popover & > entry:not(.combo) { // specificity bump
-      &, // unset all of fallback mode
-      &:focus,
-      &:disabled {
-        margin: 0;
-        background: none;
-        border: none;
-        box-shadow: none;
-      }
-
-      progress {  @include radius($r_4, none); }
-    }
-  }
-  @else { // NEEDS_REVIEW
-    text {
-    }
-
-    progress > trough > progress { @include radius($r_4, none); }
-  }
+  margin: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 
 // /**************
@@ -2202,11 +2216,11 @@ toolbar {
     color: if($variant == light, $fg, $inv_fg);
     box-shadow: $z-depth-3;
 
-   &.toolbar { // unset drop-shadows for Gnome-documents since that app can't
-               // deal with outer margins at all.
-     margin: unset;
-     box-shadow: none;
-   }
+    &.toolbar { // unset drop-shadows for Gnome-documents since that app can't
+                // deal with outer margins at all.
+      margin: unset;
+      box-shadow: none;
+    }
 
     button,
     .linked > button {
@@ -4802,17 +4816,23 @@ printdialog {
   border-radius: 0;
   border: 1px solid $div_fg;
   box-shadow: none;
-
-  &.flat { border-style: none; }
 }
 
 @if $maj_ver == 3 {
   frame > border,
-  .frame { @extend %basic_frame; }
+  .frame {
+    @extend %basic_frame;
+
+    &.flat { border-style: none; }
+  }
 }
 @else {
   frame,
-  .frame { @extend %basic_frame; }
+  .frame {
+    @extend %basic_frame;
+
+    &.flat { border-style: none; }
+  }
 }
 
 actionbar {
@@ -4880,7 +4900,6 @@ row {
   }
 }
 
-%activatable_row,
 row.activatable {
   @include ink-reaction(normal, $fc: $ter_fg, $tr: ink-normal-row, $bs: 7);
 
@@ -5300,12 +5319,18 @@ filechooserbutton:drop(active) {
 }
 
 %selected_sidebar_row {
+  outline-width: 0; // unset focus outlines
+  background-color: $trk_bg;
+  color: $sel_label;
+
   &:dir(ltr) { @include radius(0 $r $r 0); }
   &:dir(rtl) { @include radius($r 0 0 $r); }
 
-  &, &:focus { outline-width: 0; } // unset focus outlines
+  &:focus { outline-width: 0; }
 
-  &, &:hover {
+  label { color: $sel_label; }
+
+  &:hover {
     background-color: $trk_bg;
     color: $sel_label;
 
@@ -6110,7 +6135,13 @@ headerbar.titlebar.default-decoration {
 //  *************/
 
 %selected_items {
-  &, &:focus {
+  background-color: $sel_bg;
+  color: $sel_fg;
+  &:disabled {
+    background-color: track($sel_bg, $a_fg_dis);
+    color: $dis_sel_fg;
+  }
+  &:focus {
     background-color: $sel_bg;
     color: $sel_fg;
     &:disabled {
@@ -6121,7 +6152,23 @@ headerbar.titlebar.default-decoration {
 }
 
 %selected_texts {
-  &, &:focus {
+  @if $variant == dark {
+    background-color: $sel_bg;
+    color: $sel_fg;
+    &:disabled {
+      background-color: track($sel_bg, $a_fg_dis);
+      color: $dis_sel_fg;
+    }
+  }
+  @else {
+    background-color: track($sel_bg, $a_fg_bdp);
+    color: $fg;
+    &:disabled {
+      background-color: track($sel_bg, $a_trk_out);
+      color: $dis_fg;
+    }
+  }
+  &:focus {
     @if $variant == dark {
       background-color: $sel_bg;
       color: $sel_fg;
