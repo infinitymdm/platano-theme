@@ -1644,6 +1644,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
           &:checked,
           &:overview { box-shadow: $empty_shadow; }
 
+          .clock-display-box { spacing: if($ref_weight >= 1.0, 10px, 6px); }
+
           .clock {
             padding-left: if($ref_weight >= 1.0, 10px, 6px);
             padding-right: if($ref_weight >= 1.0, 10px, 6px);
@@ -1769,17 +1771,6 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 // /********************
 //  * Calendar Popover *
 //  ********************/
-
-@if $ver > 3.35 { // NEEDS_REVIEW
-  .clock-display-box {
-    spacing: if($ref_weight >= 1.0, 1em, 0.7em);
-
-    StLabel.clock {
-      padding-left: 0.4em;
-      padding-right: 0.4em;
-    }
-  }
-}
 
 #calendarArea {
   @if $ver < 3.35 {
