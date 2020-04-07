@@ -541,7 +541,7 @@ $gf_margin: 12px;
 
 %gf_icon {
   margin: 2px;
-  @extend .nautilus-desktop.nautilus-canvas-item;
+  @extend %nautilus_desktop_items;
   &:hover,
   &:selected {
     image {
@@ -632,17 +632,19 @@ $gf_margin: 12px;
 //  * Nautilus *
 //  ************/
 
+%nautilus_desktop_items {
+  color: $sel_fg;
+  text-shadow: $z-depth-1-label; // non-sense for me
+  &:selected { text-shadow: none; }
+}
+
 .nautilus-desktop-window {
   &,
   notebook,
   notebook > stack { background: transparent; }
 }
 
-.nautilus-desktop.nautilus-canvas-item {
-  color: $sel_fg;
-  text-shadow: $z-depth-1-label; // non-sense for me
-  &:selected { text-shadow: none; }
-}
+.nautilus-desktop.nautilus-canvas-item { @extend %nautilus_desktop_items; }
 
 .background.nautilus-window:not(.nautilus-desktop-window) {
   &:not(nautilus-desktop-window) {

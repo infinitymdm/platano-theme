@@ -2045,7 +2045,7 @@ window.background.lightdm {
 //  ********/
 
 .nemo-desktop.nemo-canvas-item {
-  @extend .nautilus-desktop.nautilus-canvas-item;
+  @extend %nautilus_desktop_items;
 }
 
 .nemo {
@@ -3299,7 +3299,7 @@ window.background:not(.solid-csd) > box.vertical {
 }
 
 .caja-desktop { // desktop icon-grid styling
-  &.caja-canvas-item { @extend .nautilus-desktop.nautilus-canvas-item; }
+  &.caja-canvas-item { @extend %nautilus_desktop_items; }
 
   > widget.entry { // = EelEditableLabel.entry
     &, &:focus {
