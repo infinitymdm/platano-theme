@@ -29,7 +29,11 @@ else
 fi
 
 if [ "$ink_maj_ver" -ge 1 ]; then
-    ink_export_option="--export-file"
+    if [ "$ink_mnr_ver" = '0b' ]; then
+        ink_export_option="--export-file"
+    else
+        ink_export_option="--export-filename"
+    fi
 else
     ink_export_option="--export-png"
 fi
