@@ -1366,13 +1366,11 @@ $avatar_width: $icon_size * 1.5;
   &-item-container { spacing: if($ref_weight >= 1.0, 8px, 6px); }
 
   .item-box {
-    padding: if($ref_weight >= 1.0, 8px, 6px);
+    padding: if($ref_weight >= 1.0, 6px, 4px);
+    border: 2px solid transparent;
     border-radius: $r_2;
 
-    &:outlined {
-      padding: if($ref_weight >= 1.0, 6px, 4px);
-      border: 2px solid $osd_out_fg;
-    }
+    &:outlined { border: 2px solid $osd_out_fg; }
     &:selected {
       background-color: $inv_acc_fill_bg;
       color: $inv_acc_fg;
