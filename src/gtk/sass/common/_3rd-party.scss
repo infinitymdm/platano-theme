@@ -2181,7 +2181,14 @@ overlay grid.sidebar {
   viewport.frame > list { background-color: $bg; }
 
   // side-pane row height
-  row.activatable.row-big { min-height: 0; } // unlock min-height
+  row.activatable.row-big {
+    min-height: 0; // unlock min-height
+
+    + row.activatable { // separator row
+      min-height: 0;
+      padding: 0;
+    }
+  }
 }
 
 // /***************************
