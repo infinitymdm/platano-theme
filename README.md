@@ -77,6 +77,7 @@ Installation from Package(s)
  * Solus: Official repository
  * Void: [**Official repository**](https://github.com/void-linux/void-packages/tree/master/srcpkgs/plata-theme)
  * Flatpak: Official flathub repository (current package branch = **3.22**)
+ * Fedora (Copr): [**tonyjames/plata-theme**](https://copr.fedorainfracloud.org/coprs/tonyjames/plata-theme/) 
  * My Personal Package Archives (PPA): [**plata-theme**](https://launchpad.net/~tista/+archive/ubuntu/plata-theme)
 
 Installation from Git Source
