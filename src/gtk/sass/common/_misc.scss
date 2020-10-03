@@ -2224,13 +2224,13 @@ window.background > box.vertical box.horizontal {
 //  ******************/
 
 terminal-window {
-  // FIXME: In XWayland mode, downstream 'transparency' patch causes
-  // solid outer margin artifact when users keep enabling transparent
-  // background.
-  &.csd.background { background-color: transparent; }
-
   @if $maj_ver == 3 {
     @if $mnr_ver < 23 {
+      // FIXME: In XWayland mode, downstream 'transparency' patch causes
+      // solid outer margin artifact when users keep enabling transparent
+      // background.
+      &.csd.background { background-color: transparent; }
+
       &.background:not(.csd),
       vte-terminal {
         background-color: if($variant == mixed, $inv_base,
