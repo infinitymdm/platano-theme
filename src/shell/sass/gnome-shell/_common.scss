@@ -1960,14 +1960,10 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   }
 
   .world-clocks {
-    &-city {
-      color: $fg;
-      font-weight: 700;
-      font-size: 90%;
-    }
-
+    &-city,
     &-time {
-      color: $sec_fg;
+      color: $fg;
+      font-weight: 400;
       font-size: 100%;
     }
 
