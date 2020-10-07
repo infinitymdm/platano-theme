@@ -4504,7 +4504,7 @@ $grid_size: 136px;
 
 %framed_user_icon {
   background-size: contain;
-  border: none;
+  border: 0 none transparent;
   color: $osd_fg;
   &:hover {
     border-color: $osd_fg;
