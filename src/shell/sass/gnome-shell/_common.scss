@@ -3304,8 +3304,10 @@ $provider_icon_size: 32px; // for < 3.25
   }
 }
 
+$icon_grid_spacing: if($ref_weight >= 1.0, 36px, 28px); // >= 3.38 cycle
+
 @if $ver > 3.35 { // >= 3.38 cycle
-  .grid-search-results { spcaing: if($ref_weight >= 1.0, 36px, 28px); }
+  .grid-search-results { spcaing: $icon_grid_spacing; }
 }
 
 .search-provider-icon {
@@ -3411,11 +3413,18 @@ $provider_icon_size: 32px; // for < 3.25
 $grid_size: 136px;
 
 .icon-grid {
+  // =< 3.36 cycle
   spacing: 30px;
   -shell-grid-horizontal-item-size: $grid_size;
   -shell-grid-vertical-item-size: $grid_size;
 
   .overview-icon { icon-size: $icon_size * 6; }
+
+  // >= 3.38 cycle
+  row-spacing: $icon_grid_spacing;
+  column-spacing: $icon_grid_spacing;
+  max-row-spacing: $icon_grid_spacing * 2;
+  max-column-spacing: $icon_grid_spacing * 2;
 }
 
 @if $ver > 3.25 {
