@@ -5121,6 +5121,18 @@ $tool_icon_size: 24px;
     &:focus { @include entry(focus, $tc: $osd_fg); }
     &:insensitive { @include entry(disabled, $tc: $osd_fg); }
   }
+
+  .shell-link {
+    color: opacity($osd_link_fg, $a_fg_2nd);
+    &:hover,
+    &:active { color: $osd_link_fg; }
+  }
+
+  .actor-link { // >= 3.38 cycle
+    color: $osd_sec_fg;
+    &:hover,
+    &:active { color: $osd_fg; }
+  }
 }
 
 .lg-completions-text {
