@@ -441,7 +441,8 @@ StScrollBar {
         text-align: center;
 
         // for loooong titles
-        &.leightweight { font-size: 90%; }
+        &.leightweight,
+        &.lightweight { font-size: 90%; } // type fixed in 3.38 cycle?
       }
       @else { font-weight: 500; }
     }
@@ -1965,6 +1966,11 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       color: $fg;
       font-weight: 400;
       font-size: 100%;
+    }
+
+    &-time { // >= 3.38 cycle
+      &:ltr { text-align: right; }
+      &:rtl { text-align: left; }
     }
 
     &-timezone {
