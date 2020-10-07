@@ -2739,7 +2739,7 @@ $close_button_size: if($ver < 3.35, 32px,
 .window-close {
   width: $close_button_size;
   height: $close_button_size;
-  -shell-close-overlap: $close_button_size * 0.75;
+  -shell-close-overlap: $close_button_size * 0.75; // =< 3.36 cycle
   @if $ver < 3.31 {
     @include image-loader($url: 'assets/window-close.svg');
     background-size: $close_button_size;
