@@ -2931,9 +2931,10 @@ $close_button_size: if($ver < 3.35, 32px,
 
 .window-picker { // container around window thumbnails
   @if $ver > 3.25 {
-    -horizontal-spacing: if($ref_weight >= 1.0, 16px, 12px);
-    -vertical-spacing: if($ref_weight >= 1.0, 16px, 12px);
-    padding: if($ref_weight >= 1.0, 0 16px 16px, 0 12px 12px);
+    -horizontal-spacing: if($ref_weight >= 1.0, 16px, 12px); // =< 3.36 cycle
+    -vertical-spacing: if($ref_weight >= 1.0, 16px, 12px); // =< 3.36 cycle
+    padding: if($ref_weight >= 1.0, 16px, 12px);
+    spacing: if($ref_weight >= 1.0, 16px / 2, 12px / 2); // >= 3.38 cycle
   }
   @else {
     -horizontal-spacing: if($ref_weight >= 1.0, 32px, 26px);
