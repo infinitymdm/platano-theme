@@ -3408,6 +3408,7 @@ $grid_size: 136px;
   }
 }
 
+// =< 3.36 cycle
 .app-view-controls { // favorites | all toggle container
   width: if($ref_weight >= 1.0, 400px, 340px);
   margin-bottom: if($ref_weight >= 1.0, 12px, 9px);
@@ -3416,6 +3417,7 @@ $grid_size: 136px;
   box-shadow: $empty_shadow;
 }
 
+// =< 3.36 cycle
 .app-view-control { // favorites | all toggle button
   padding: if($ref_weight >= 1.0, 7px 32px 8px, 5px 32px 6px);
   border-radius: $r;
@@ -3770,6 +3772,7 @@ $grid_size: 136px;
   }
 }
 
+// =< 3.36 cycle
 .no-frequent-applications-label { @extend %status_text; }
 
 // /*******************
@@ -3834,7 +3837,7 @@ $grid_size: 136px;
 // horizontal padding to make sure scrollbars or dash don't overlap content
 @if $ver < 3.33 {
   .search-display > StBoxLayout,
-  .all-apps,
+  .all-apps, // .frequent-apps =< 3.36 cycle
   .frequent-apps > StBoxLayout { padding: 0 88px 10px 88px; }
 }
 @else {
