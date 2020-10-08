@@ -7,41 +7,14 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   sodipodi:docname="keyboard-layout-filled-symbolic.svg"
    inkscape:version="1.0rc1 (09960d6f05, 2020-04-09)"
-   id="svg8"
+   sodipodi:docname="keyboard-layout-filled-symbolic.svg"
+   id="svg10"
    version="1.1"
-   viewBox="0 0 4.233333 4.233333"
    height="16"
    width="16">
-  <defs
-     id="defs2" />
-  <sodipodi:namedview
-     inkscape:document-rotation="0"
-     inkscape:window-maximized="1"
-     inkscape:window-y="0"
-     inkscape:window-x="0"
-     inkscape:window-height="1379"
-     inkscape:window-width="2160"
-     units="px"
-     showgrid="true"
-     inkscape:current-layer="layer1"
-     inkscape:document-units="px"
-     inkscape:cy="8.3900121"
-     inkscape:cx="6.9991992"
-     inkscape:zoom="26.390625"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     borderopacity="1.0"
-     bordercolor="#666666"
-     pagecolor="#ffffff"
-     id="base">
-    <inkscape:grid
-       id="grid4576"
-       type="xygrid" />
-  </sodipodi:namedview>
   <metadata
-     id="metadata5">
+     id="metadata16">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -69,15 +42,47 @@
       </cc:License>
     </rdf:RDF>
   </metadata>
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     inkscape:current-layer="svg10"
+     inkscape:cy="8"
+     inkscape:cx="8"
+     inkscape:zoom="31.625"
+     showgrid="false"
+     id="namedview12"
+     inkscape:window-height="480"
+     inkscape:window-width="640"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
   <g
-     transform="translate(0,-288.53334)"
-     id="layer1"
-     inkscape:groupmode="layer"
-     inkscape:label="Layer 1">
+     id="g8"
+     fill-rule="evenodd"
+     fill="#2e3436">
     <path
-       inkscape:connector-curvature="0"
-       d="M 0.77339879,290.16155 H 3.4599341 m -2.68653531,0.97691 H 3.4599341 M 2.7272522,290.65 A 0.6105857,1.4653868 0 0 1 2.1166665,292.11539 0.6105857,1.4653868 0 0 1 1.5060809,290.65 0.6105857,1.4653868 0 0 1 2.1166665,289.18462 0.6105857,1.4653868 0 0 1 2.7272522,290.65 m 0.8547992,0 A 1.4653849,1.4653791 0 0 1 2.1166665,292.11538 1.4653849,1.4653791 0 0 1 0.65128163,290.65 1.4653849,1.4653791 0 0 1 2.1166665,289.18462 1.4653849,1.4653791 0 0 1 3.5820514,290.65 Z"
-       style="fill:none;fill-opacity:1;stroke:#2e3436;stroke-width:0.24423;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path831-6" />
+       id="path2"
+       overflow="visible"
+       font-family="sans-serif"
+       font-weight="400"
+       color="#000"
+       style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;white-space:normal;shape-padding:0;isolation:auto;mix-blend-mode:normal;solid-color:#000;solid-opacity:1"
+       d="M2 1v14h2V1z" />
+    <path
+       id="path4"
+       overflow="visible"
+       font-family="sans-serif"
+       font-weight="400"
+       color="#000"
+       style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;white-space:normal;shape-padding:0;isolation:auto;mix-blend-mode:normal;solid-color:#000;solid-opacity:1"
+       d="M3 1a1 1 0 00-1 1v6a1 1 0 001 1h3.383l.722 1.447A1 1 0 008 11h5a1 1 0 001-1V4a1 1 0 00-1-1H9.617l-.722-1.447A1 1 0 008 1zm1 2h3.383l.722 1.447A1 1 0 009 5h3v4H8.617l-.722-1.447A1 1 0 007 7H4z" />
+    <path
+       id="path6"
+       d="M3 8h4l1 2h5V4H9L8 2H3z" />
   </g>
 </svg>
