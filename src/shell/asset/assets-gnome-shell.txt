@@ -12,6 +12,8 @@ common/keyboard-hide-symbolic.svg .
 common/keyboard-layout-filled-symbolic.svg .
 common/keyboard-shift-filled-symbolic.svg .
 common/keyboard-caps-lock-filled-symbolic.svg .
+common/eye-open-negative-filled-symbolic.svg .
+common/eye-not-looking-symbolic.svg .
 
 mixed/key-hide.svg .
 mixed/key-layout.svg .

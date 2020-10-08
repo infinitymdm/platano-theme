@@ -19,6 +19,8 @@
     <file>no-events.svg</file>
     <file>no-notifications.svg</file>
     <file>pad-osd.css</file>
+    <file alias="icons/eye-open-negative-filled-symbolic.svg">eye-open-negative-filled-symbolic.svg</file>
+    <file alias="icons/eye-not-looking-symbolic.svg">eye-not-looking-symbolic.svg</file>
     <file alias="icons/scalable/status/keyboard-caps-lock-filled-symbolic.svg">keyboard-caps-lock-filled-symbolic.svg</file>
     <file alias="icons/scalable/status/keyboard-enter-symbolic.svg">keyboard-enter-symbolic.svg</file>
     <file alias="icons/scalable/status/keyboard-hide-symbolic.svg">keyboard-hide-symbolic.svg</file>
