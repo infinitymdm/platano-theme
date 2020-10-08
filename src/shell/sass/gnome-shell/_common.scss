@@ -2154,7 +2154,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   width: 2.4em;
   height: 1.9em;
   margin: 0.2em;
-  padding: 0.5em 0 0;
+  @if $ver < 3.37 { padding: 0.5em 0 0; }
   background-color: transparent;
   color: $ter_fg;
   font-weight: 500;
