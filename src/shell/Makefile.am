@@ -34,6 +34,11 @@ shell_file = \
 	$(shelldir)/gnome-shell-theme.gresource \
 	$(shelldir)/calendar-today.svg \
 	$(shelldir)/calendar-today-other.svg \
+	$(shelldir)/keyboard-caps-lock-filled-symbolic.svg \
+	$(shelldir)/keyboard-enter-symbolic.svg \
+	$(shelldir)/keyboard-hide-symbolic.svg \
+	$(shelldir)/keyboard-layout-filled-symbolic.svg \
+	$(shelldir)/keyboard-shift-filled-symbolic.svg \
 	$(shelldir)/message-indicator-symbolic.svg \
 	$(shelldir)/no-events.svg \
 	$(shelldir)/no-notifications.svg \
@@ -49,6 +54,11 @@ shell_file = \
 	$(shelldir)/calendar-today.svg \
 	$(shelldir)/calendar-today-other.svg \
 	$(shelldir)/color-pick.svg \
+	$(shelldir)/keyboard-caps-lock-filled-symbolic.svg \
+	$(shelldir)/keyboard-enter-symbolic.svg \
+	$(shelldir)/keyboard-hide-symbolic.svg \
+	$(shelldir)/keyboard-layout-filled-symbolic.svg \
+	$(shelldir)/keyboard-shift-filled-symbolic.svg \
 	$(shelldir)/message-indicator-symbolic.svg \
 	$(shelldir)/no-events.svg \
 	$(shelldir)/no-notifications.svg \
@@ -183,6 +193,11 @@ shell_lumine_file = \
 	$(shellluminedir)/gnome-shell-theme.gresource \
 	$(shellluminedir)/calendar-today.svg \
 	$(shellluminedir)/calendar-today-other.svg \
+	$(shellluminedir)/keyboard-caps-lock-filled-symbolic.svg \
+	$(shellluminedir)/keyboard-enter-symbolic.svg \
+	$(shellluminedir)/keyboard-hide-symbolic.svg \
+	$(shellluminedir)/keyboard-layout-filled-symbolic.svg \
+	$(shellluminedir)/keyboard-shift-filled-symbolic.svg \
 	$(shellluminedir)/message-indicator-symbolic.svg \
 	$(shellluminedir)/no-events.svg \
 	$(shellluminedir)/no-notifications.svg \
@@ -198,6 +213,11 @@ shell_lumine_file = \
 	$(shellluminedir)/calendar-today.svg \
 	$(shellluminedir)/calendar-today-other.svg \
 	$(shellluminedir)/color-pick.svg \
+	$(shellluminedir)/keyboard-caps-lock-filled-symbolic.svg \
+	$(shellluminedir)/keyboard-enter-symbolic.svg \
+	$(shellluminedir)/keyboard-hide-symbolic.svg \
+	$(shellluminedir)/keyboard-layout-filled-symbolic.svg \
+	$(shellluminedir)/keyboard-shift-filled-symbolic.svg \
 	$(shellluminedir)/message-indicator-symbolic.svg \
 	$(shellluminedir)/no-events.svg \
 	$(shellluminedir)/no-notifications.svg \
@@ -309,6 +329,11 @@ shell_noir_file = \
 	$(shellnoirdir)/gnome-shell-theme.gresource \
 	$(shellnoirdir)/calendar-today.svg \
 	$(shellnoirdir)/calendar-today-other.svg \
+	$(shellnoirdir)/keyboard-caps-lock-filled-symbolic.svg \
+	$(shellnoirdir)/keyboard-enter-symbolic.svg \
+	$(shellnoirdir)/keyboard-hide-symbolic.svg \
+	$(shellnoirdir)/keyboard-layout-filled-symbolic.svg \
+	$(shellnoirdir)/keyboard-shift-filled-symbolic.svg \
 	$(shellnoirdir)/message-indicator-symbolic.svg \
 	$(shellnoirdir)/no-events.svg \
 	$(shellnoirdir)/no-notifications.svg \
@@ -324,6 +349,11 @@ shell_noir_file = \
 	$(shellnoirdir)/calendar-today.svg \
 	$(shellnoirdir)/calendar-today-other.svg \
 	$(shellnoirdir)/color-pick.svg \
+	$(shellnoirdir)/keyboard-caps-lock-filled-symbolic.svg \
+	$(shellnoirdir)/keyboard-enter-symbolic.svg \
+	$(shellnoirdir)/keyboard-hide-symbolic.svg \
+	$(shellnoirdir)/keyboard-layout-filled-symbolic.svg \
+	$(shellnoirdir)/keyboard-shift-filled-symbolic.svg \
 	$(shellnoirdir)/message-indicator-symbolic.svg \
 	$(shellnoirdir)/no-events.svg \
 	$(shellnoirdir)/no-notifications.svg \
@@ -436,6 +466,11 @@ shell_compact_file = \
 	$(shellcompactdir)/gnome-shell-theme.gresource \
 	$(shellcompactdir)/calendar-today.svg \
 	$(shellcompactdir)/calendar-today-other.svg \
+	$(shellcompactdir)/keyboard-caps-lock-filled-symbolic.svg \
+	$(shellcompactdir)/keyboard-enter-symbolic.svg \
+	$(shellcompactdir)/keyboard-hide-symbolic.svg \
+	$(shellcompactdir)/keyboard-layout-filled-symbolic.svg \
+	$(shellcompactdir)/keyboard-shift-filled-symbolic.svg \
 	$(shellcompactdir)/message-indicator-symbolic.svg \
 	$(shellcompactdir)/no-events.svg \
 	$(shellcompactdir)/no-notifications.svg \
@@ -451,6 +486,11 @@ shell_compact_file = \
 	$(shellcompactdir)/calendar-today.svg \
 	$(shellcompactdir)/calendar-today-other.svg \
 	$(shellcompactdir)/color-pick.svg \
+	$(shellcompactdir)/keyboard-caps-lock-filled-symbolic.svg \
+	$(shellcompactdir)/keyboard-enter-symbolic.svg \
+	$(shellcompactdir)/keyboard-hide-symbolic.svg \
+	$(shellcompactdir)/keyboard-layout-filled-symbolic.svg \
+	$(shellcompactdir)/keyboard-shift-filled-symbolic.svg \
 	$(shellcompactdir)/message-indicator-symbolic.svg \
 	$(shellcompactdir)/no-events.svg \
 	$(shellcompactdir)/no-notifications.svg \
@@ -563,6 +603,11 @@ shell_lumine_compact_file = \
 	$(shellluminecompactdir)/gnome-shell-theme.gresource \
 	$(shellluminecompactdir)/calendar-today.svg \
 	$(shellluminecompactdir)/calendar-today-other.svg \
+	$(shellluminecompactdir)/keyboard-caps-lock-filled-symbolic.svg \
+	$(shellluminecompactdir)/keyboard-enter-symbolic.svg \
+	$(shellluminecompactdir)/keyboard-hide-symbolic.svg \
+	$(shellluminecompactdir)/keyboard-layout-filled-symbolic.svg \
+	$(shellluminecompactdir)/keyboard-shift-filled-symbolic.svg \
 	$(shellluminecompactdir)/message-indicator-symbolic.svg \
 	$(shellluminecompactdir)/no-events.svg \
 	$(shellluminecompactdir)/no-notifications.svg \
@@ -578,6 +623,11 @@ shell_lumine_compact_file = \
 	$(shellluminecompactdir)/calendar-today.svg \
 	$(shellluminecompactdir)/calendar-today-other.svg \
 	$(shellluminecompactdir)/color-pick.svg \
+	$(shellluminecompactdir)/keyboard-caps-lock-filled-symbolic.svg \
+	$(shellluminecompactdir)/keyboard-enter-symbolic.svg \
+	$(shellluminecompactdir)/keyboard-hide-symbolic.svg \
+	$(shellluminecompactdir)/keyboard-layout-filled-symbolic.svg \
+	$(shellluminecompactdir)/keyboard-shift-filled-symbolic.svg \
 	$(shellluminecompactdir)/message-indicator-symbolic.svg \
 	$(shellluminecompactdir)/no-events.svg \
 	$(shellluminecompactdir)/no-notifications.svg \
@@ -688,6 +738,11 @@ shell_noir_compact_file = \
 	$(shellnoircompactdir)/gnome-shell-theme.gresource \
 	$(shellnoircompactdir)/calendar-today.svg \
 	$(shellnoircompactdir)/calendar-today-other.svg \
+	$(shellnoircompactdir)/keyboard-caps-lock-filled-symbolic.svg \
+	$(shellnoircompactdir)/keyboard-enter-symbolic.svg \
+	$(shellnoircompactdir)/keyboard-hide-symbolic.svg \
+	$(shellnoircompactdir)/keyboard-layout-filled-symbolic.svg \
+	$(shellnoircompactdir)/keyboard-shift-filled-symbolic.svg \
 	$(shellnoircompactdir)/message-indicator-symbolic.svg \
 	$(shellnoircompactdir)/no-events.svg \
 	$(shellnoircompactdir)/no-notifications.svg \
@@ -702,6 +757,11 @@ shell_noir_compact_file = \
 	$(shellnoircompactdir)/calendar-today.svg \
 	$(shellnoircompactdir)/calendar-today-other.svg \
 	$(shellnoircompactdir)/color-pick.svg \
+	$(shellnoircompactdir)/keyboard-caps-lock-filled-symbolic.svg \
+	$(shellnoircompactdir)/keyboard-enter-symbolic.svg \
+	$(shellnoircompactdir)/keyboard-hide-symbolic.svg \
+	$(shellnoircompactdir)/keyboard-layout-filled-symbolic.svg \
+	$(shellnoircompactdir)/keyboard-shift-filled-symbolic.svg \
 	$(shellnoircompactdir)/message-indicator-symbolic.svg \
 	$(shellnoircompactdir)/no-events.svg \
 	$(shellnoircompactdir)/no-notifications.svg \

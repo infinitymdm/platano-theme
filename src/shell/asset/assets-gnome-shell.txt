@@ -7,6 +7,12 @@ common/key-enter-active.svg .
 common/key-shift-uppercase.svg . r1
 common/key-shift-latched-uppercase.svg . r1
 common/color-pick.svg .
+common/keyboard-enter-symbolic.svg .
+common/keyboard-hide-symbolic.svg .
+common/keyboard-layout-filled-symbolic.svg .
+common/keyboard-shift-filled-symbolic.svg .
+common/keyboard-caps-lock-filled-symbolic.svg .
+
 mixed/key-hide.svg .
 mixed/key-layout.svg .
 mixed/key-shift.svg .
