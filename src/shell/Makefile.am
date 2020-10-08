@@ -48,6 +48,7 @@ shell_file = \
 	$(shelldir)/gnome-shell-theme.gresource \
 	$(shelldir)/calendar-today.svg \
 	$(shelldir)/calendar-today-other.svg \
+	$(shelldir)/color-pick.svg \
 	$(shelldir)/message-indicator-symbolic.svg \
 	$(shelldir)/no-events.svg \
 	$(shelldir)/no-notifications.svg \
@@ -196,6 +197,7 @@ shell_lumine_file = \
 	$(shellluminedir)/gnome-shell-theme.gresource \
 	$(shellluminedir)/calendar-today.svg \
 	$(shellluminedir)/calendar-today-other.svg \
+	$(shellluminedir)/color-pick.svg \
 	$(shellluminedir)/message-indicator-symbolic.svg \
 	$(shellluminedir)/no-events.svg \
 	$(shellluminedir)/no-notifications.svg \
@@ -321,6 +323,7 @@ shell_noir_file = \
 	$(shellnoirdir)/gnome-shell-theme.gresource \
 	$(shellnoirdir)/calendar-today.svg \
 	$(shellnoirdir)/calendar-today-other.svg \
+	$(shellnoirdir)/color-pick.svg \
 	$(shellnoirdir)/message-indicator-symbolic.svg \
 	$(shellnoirdir)/no-events.svg \
 	$(shellnoirdir)/no-notifications.svg \
@@ -447,6 +450,7 @@ shell_compact_file = \
 	$(shellcompactdir)/gnome-shell-theme.gresource \
 	$(shellcompactdir)/calendar-today.svg \
 	$(shellcompactdir)/calendar-today-other.svg \
+	$(shellcompactdir)/color-pick.svg \
 	$(shellcompactdir)/message-indicator-symbolic.svg \
 	$(shellcompactdir)/no-events.svg \
 	$(shellcompactdir)/no-notifications.svg \
@@ -573,6 +577,7 @@ shell_lumine_compact_file = \
 	$(shellluminecompactdir)/gnome-shell-theme.gresource \
 	$(shellluminecompactdir)/calendar-today.svg \
 	$(shellluminecompactdir)/calendar-today-other.svg \
+	$(shellluminecompactdir)/color-pick.svg \
 	$(shellluminecompactdir)/message-indicator-symbolic.svg \
 	$(shellluminecompactdir)/no-events.svg \
 	$(shellluminecompactdir)/no-notifications.svg \
@@ -696,6 +701,7 @@ shell_noir_compact_file = \
 	$(shellnoircompactdir)/gnome-shell-theme.gresource \
 	$(shellnoircompactdir)/calendar-today.svg \
 	$(shellnoircompactdir)/calendar-today-other.svg \
+	$(shellnoircompactdir)/color-pick.svg \
 	$(shellnoircompactdir)/message-indicator-symbolic.svg \
 	$(shellnoircompactdir)/no-events.svg \
 	$(shellnoircompactdir)/no-notifications.svg \
