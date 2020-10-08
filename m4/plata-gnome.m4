@@ -30,6 +30,11 @@ AC_DEFUN([PLATA_GNOME], [
                 [test `echo $GIO_MINOR_VERSION` -ge "63"],
                 [GNOME_SCSS_VERSION="3.36"]
             )
+            AS_IF(
+                # switch to gnome-shell 3.38 theming if GIO >= 2.65
+                [test `echo $GIO_MINOR_VERSION` -ge "65"],
+                [GNOME_SCSS_VERSION="3.38"]
+            )
             AC_SUBST([GNOME_SCSS_VERSION])
             AC_MSG_RESULT([checking for Gnome-Shell SCSS version... $GNOME_SCSS_VERSION])
         ])

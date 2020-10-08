@@ -7,6 +7,7 @@ luminecompactdir = $(DESTDIR)$(themedir)/Plata-Lumine-Compact
 noircompactdir   = $(DESTDIR)$(themedir)/Plata-Noir-Compact
 
 shelldir   = $(srcdir)/gnome-shell
+if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
 shell_file = \
 	$(shelldir)/gnome-shell.css \
@@ -40,6 +41,20 @@ shell_file = \
 	$(shelldir)/toggle-off.svg \
 	$(shelldir)/toggle-on.svg
 endif
+endif
+if GNOME_IS_338_OR_NEWER
+shell_file = \
+	$(shelldir)/gnome-shell.css \
+	$(shelldir)/gnome-shell-theme.gresource \
+	$(shelldir)/calendar-today.svg \
+	$(shelldir)/calendar-today-other.svg \
+	$(shelldir)/message-indicator-symbolic.svg \
+	$(shelldir)/no-events.svg \
+	$(shelldir)/no-notifications.svg \
+	$(shelldir)/pad-osd.css \
+	$(shelldir)/toggle-off.svg \
+	$(shelldir)/toggle-on.svg
+endif
 shell_classic_file = \
 	$(shelldir)/extensions/window-list/classic.css \
 	$(shelldir)/extensions/window-list/stylesheet.css
@@ -50,6 +65,8 @@ shell_wtd_file = \
 if !GNOME_IS_320_TO_324
 shell_gdm3_file = $(shelldir)/gdm3-Plata.css
 endif
+if !GNOME_IS_338_OR_NEWER
+if !GNOME_IS_336_OR_NEWER
 if !GNOME_IS_332_OR_NEWER
 shell_asset_file = \
 	$(shelldir)/assets/calendar-arrow-left-hover.svg \
@@ -70,6 +87,7 @@ shell_asset_file = \
 	$(shelldir)/assets/window-close-hover.svg \
 	$(shelldir)/assets/window-close.svg
 endif
+endif
 if GNOME_IS_332_OR_NEWER
 shell_asset_file = \
 	$(shelldir)/assets/checkbox-hover.svg \
@@ -84,6 +102,35 @@ shell_asset_file = \
 	$(shelldir)/assets/media-control-active.svg \
 	$(shelldir)/assets/media-control-hover.svg \
 	$(shelldir)/assets/more-results.svg
+endif
+if GNOME_IS_336_OR_NEWER
+shell_asset_file = \
+	$(shelldir)/assets/checkbox-hover.svg \
+	$(shelldir)/assets/checkbox-off-hover.svg \
+	$(shelldir)/assets/checkbox-off.svg \
+	$(shelldir)/assets/checkbox.svg \
+	$(shelldir)/assets/dash-placeholder.svg \
+	$(shelldir)/assets/go-down.svg \
+	$(shelldir)/assets/go-left.svg \
+	$(shelldir)/assets/go-right.svg \
+	$(shelldir)/assets/go-up.svg \
+	$(shelldir)/assets/media-control-active.svg \
+	$(shelldir)/assets/media-control-hover.svg
+endif
+endif
+if GNOME_IS_338_OR_NEWER
+shell_asset_file = \
+	$(shelldir)/assets/checkbox-hover.svg \
+	$(shelldir)/assets/checkbox-off-hover.svg \
+	$(shelldir)/assets/checkbox-off.svg \
+	$(shelldir)/assets/checkbox.svg \
+	$(shelldir)/assets/dash-placeholder.svg \
+	$(shelldir)/assets/go-down.svg \
+	$(shelldir)/assets/go-left.svg \
+	$(shelldir)/assets/go-right.svg \
+	$(shelldir)/assets/go-up.svg \
+	$(shelldir)/assets/media-control-active.svg \
+	$(shelldir)/assets/media-control-hover.svg
 endif
 shell_extension_workspace_asset_file = \
 	$(shelldir)/extensions/workspaces-to-dock/assets/four-bottom.svg \
@@ -108,6 +155,7 @@ shell_extension_workspace_asset_file = \
 	$(shelldir)/extensions/workspaces-to-dock/assets/two-top.svg
 
 shellluminedir   = $(srcdir)/gnome-shell-light
+if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
 shell_lumine_file = \
 	$(shellluminedir)/gnome-shell.css \
@@ -141,6 +189,20 @@ shell_lumine_file = \
 	$(shellluminedir)/toggle-off.svg \
 	$(shellluminedir)/toggle-on.svg
 endif
+endif
+if GNOME_IS_338_OR_NEWER
+shell_lumine_file = \
+	$(shellluminedir)/gnome-shell.css \
+	$(shellluminedir)/gnome-shell-theme.gresource \
+	$(shellluminedir)/calendar-today.svg \
+	$(shellluminedir)/calendar-today-other.svg \
+	$(shellluminedir)/message-indicator-symbolic.svg \
+	$(shellluminedir)/no-events.svg \
+	$(shellluminedir)/no-notifications.svg \
+	$(shellluminedir)/pad-osd.css \
+	$(shellluminedir)/toggle-off.svg \
+	$(shellluminedir)/toggle-on.svg
+endif
 shell_lumine_classic_file = \
 	$(shellluminedir)/extensions/window-list/classic.css \
 	$(shellluminedir)/extensions/window-list/stylesheet.css
@@ -149,6 +211,8 @@ shell_lumine_wtd_file = \
 if !GNOME_IS_320_TO_324
 shell_lumine_gdm3_file  = $(shellluminedir)/gdm3-Plata-Lumine.css
 endif
+if !GNOME_IS_338_OR_NEWER
+if !GNOME_IS_336_OR_NEWER
 if !GNOME_IS_332_OR_NEWER
 shell_lumine_asset_file = \
 	$(shellluminedir)/assets/calendar-arrow-left-hover.svg \
@@ -169,6 +233,7 @@ shell_lumine_asset_file = \
 	$(shellluminedir)/assets/window-close-hover.svg \
 	$(shellluminedir)/assets/window-close.svg
 endif
+endif
 if GNOME_IS_332_OR_NEWER
 shell_lumine_asset_file = \
 	$(shellluminedir)/assets/checkbox-hover.svg \
@@ -184,8 +249,38 @@ shell_lumine_asset_file = \
 	$(shellluminedir)/assets/media-control-hover.svg \
 	$(shellluminedir)/assets/more-results.svg
 endif
+if GNOME_IS_336_OR_NEWER
+shell_lumine_asset_file = \
+	$(shellluminedir)/assets/checkbox-hover.svg \
+	$(shellluminedir)/assets/checkbox-off-hover.svg \
+	$(shellluminedir)/assets/checkbox-off.svg \
+	$(shellluminedir)/assets/checkbox.svg \
+	$(shellluminedir)/assets/dash-placeholder.svg \
+	$(shellluminedir)/assets/go-down.svg \
+	$(shellluminedir)/assets/go-left.svg \
+	$(shellluminedir)/assets/go-right.svg \
+	$(shellluminedir)/assets/go-up.svg \
+	$(shellluminedir)/assets/media-control-active.svg \
+	$(shellluminedir)/assets/media-control-hover.svg
+endif
+endif
+if GNOME_IS_338_OR_NEWER
+shell_lumine_asset_file = \
+	$(shellluminedir)/assets/checkbox-hover.svg \
+	$(shellluminedir)/assets/checkbox-off-hover.svg \
+	$(shellluminedir)/assets/checkbox-off.svg \
+	$(shellluminedir)/assets/checkbox.svg \
+	$(shellluminedir)/assets/dash-placeholder.svg \
+	$(shellluminedir)/assets/go-down.svg \
+	$(shellluminedir)/assets/go-left.svg \
+	$(shellluminedir)/assets/go-right.svg \
+	$(shellluminedir)/assets/go-up.svg \
+	$(shellluminedir)/assets/media-control-active.svg \
+	$(shellluminedir)/assets/media-control-hover.svg
+endif
 
 shellnoirdir    = $(srcdir)/gnome-shell-dark
+if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
 shell_noir_file = \
 	$(shellnoirdir)/gnome-shell.css \
@@ -219,6 +314,21 @@ shell_noir_file = \
 	$(shellnoirdir)/toggle-off.svg \
 	$(shellnoirdir)/toggle-on.svg
 endif
+endif
+if GNOME_IS_338_OR_NEWER
+shell_noir_file = \
+	$(shellnoirdir)/gnome-shell.css \
+	$(shellnoirdir)/gnome-shell-theme.gresource \
+	$(shellnoirdir)/calendar-today.svg \
+	$(shellnoirdir)/calendar-today-other.svg \
+	$(shellnoirdir)/message-indicator-symbolic.svg \
+	$(shellnoirdir)/no-events.svg \
+	$(shellnoirdir)/no-notifications.svg \
+	$(shellnoirdir)/pad-osd.css \
+	$(shellnoirdir)/toggle-off.svg \
+	$(shellnoirdir)/toggle-on.svg
+endif
+
 shell_noir_classic_file = \
 	$(shellnoirdir)/extensions/window-list/classic.css \
 	$(shellnoirdir)/extensions/window-list/stylesheet.css
@@ -227,6 +337,8 @@ shell_noir_wtd_file = \
 if !GNOME_IS_320_TO_324
 shell_noir_gdm3_file = $(shellnoirdir)/gdm3-Plata-Noir.css
 endif
+if !GNOME_IS_338_OR_NEWER
+if !GNOME_IS_336_OR_NEWER
 if !GNOME_IS_332_OR_NEWER
 shell_noir_asset_file = \
 	$(shellnoirdir)/assets/calendar-arrow-left-hover.svg \
@@ -247,6 +359,7 @@ shell_noir_asset_file = \
 	$(shellnoirdir)/assets/window-close-hover.svg \
 	$(shellnoirdir)/assets/window-close.svg
 endif
+endif
 if GNOME_IS_332_OR_NEWER
 shell_noir_asset_file = \
 	$(shellnoirdir)/assets/checkbox-hover.svg \
@@ -262,8 +375,38 @@ shell_noir_asset_file = \
 	$(shellnoirdir)/assets/media-control-hover.svg \
 	$(shellnoirdir)/assets/more-results.svg
 endif
+if GNOME_IS_336_OR_NEWER
+shell_noir_asset_file = \
+	$(shellnoirdir)/assets/checkbox-hover.svg \
+	$(shellnoirdir)/assets/checkbox-off-hover.svg \
+	$(shellnoirdir)/assets/checkbox-off.svg \
+	$(shellnoirdir)/assets/checkbox.svg \
+	$(shellnoirdir)/assets/dash-placeholder.svg \
+	$(shellnoirdir)/assets/go-down.svg \
+	$(shellnoirdir)/assets/go-left.svg \
+	$(shellnoirdir)/assets/go-right.svg \
+	$(shellnoirdir)/assets/go-up.svg \
+	$(shellnoirdir)/assets/media-control-active.svg \
+	$(shellnoirdir)/assets/media-control-hover.svg
+endif
+endif
+if GNOME_IS_338_OR_NEWER
+shell_noir_asset_file = \
+	$(shellnoirdir)/assets/checkbox-hover.svg \
+	$(shellnoirdir)/assets/checkbox-off-hover.svg \
+	$(shellnoirdir)/assets/checkbox-off.svg \
+	$(shellnoirdir)/assets/checkbox.svg \
+	$(shellnoirdir)/assets/dash-placeholder.svg \
+	$(shellnoirdir)/assets/go-down.svg \
+	$(shellnoirdir)/assets/go-left.svg \
+	$(shellnoirdir)/assets/go-right.svg \
+	$(shellnoirdir)/assets/go-up.svg \
+	$(shellnoirdir)/assets/media-control-active.svg \
+	$(shellnoirdir)/assets/media-control-hover.svg
+endif
 
 shellcompactdir   = $(srcdir)/gnome-shell-compact
+if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
 shell_compact_file = \
 	$(shellcompactdir)/gnome-shell.css \
@@ -297,6 +440,21 @@ shell_compact_file = \
 	$(shellcompactdir)/toggle-off.svg \
 	$(shellcompactdir)/toggle-on.svg
 endif
+endif
+if GNOME_IS_338_OR_NEWER
+shell_compact_file = \
+	$(shellcompactdir)/gnome-shell.css \
+	$(shellcompactdir)/gnome-shell-theme.gresource \
+	$(shellcompactdir)/calendar-today.svg \
+	$(shellcompactdir)/calendar-today-other.svg \
+	$(shellcompactdir)/message-indicator-symbolic.svg \
+	$(shellcompactdir)/no-events.svg \
+	$(shellcompactdir)/no-notifications.svg \
+	$(shellcompactdir)/pad-osd.css \
+	$(shellcompactdir)/toggle-off.svg \
+	$(shellcompactdir)/toggle-on.svg
+endif
+
 shell_compact_classic_file = \
 	$(shellcompactdir)/extensions/window-list/classic.css \
 	$(shellcompactdir)/extensions/window-list/stylesheet.css
@@ -305,6 +463,8 @@ shell_compact_wtd_file = \
 if !GNOME_IS_320_TO_324
 shell_compact_gdm3_file = $(shellcompactdir)/gdm3-Plata-Compact.css
 endif
+if !GNOME_IS_338_OR_NEWER
+if !GNOME_IS_336_OR_NEWER
 if !GNOME_IS_332_OR_NEWER
 shell_compact_asset_file = \
 	$(shellcompactdir)/assets/calendar-arrow-left-hover.svg \
@@ -325,6 +485,7 @@ shell_compact_asset_file = \
 	$(shellcompactdir)/assets/window-close-hover.svg \
 	$(shellcompactdir)/assets/window-close.svg
 endif
+endif
 if GNOME_IS_332_OR_NEWER
 shell_compact_asset_file = \
 	$(shellcompactdir)/assets/checkbox-hover.svg \
@@ -340,8 +501,38 @@ shell_compact_asset_file = \
 	$(shellcompactdir)/assets/media-control-hover.svg \
 	$(shellcompactdir)/assets/more-results.svg
 endif
+if GNOME_IS_336_OR_NEWER
+shell_compact_asset_file = \
+	$(shellcompactdir)/assets/checkbox-hover.svg \
+	$(shellcompactdir)/assets/checkbox-off-hover.svg \
+	$(shellcompactdir)/assets/checkbox-off.svg \
+	$(shellcompactdir)/assets/checkbox.svg \
+	$(shellcompactdir)/assets/dash-placeholder.svg \
+	$(shellcompactdir)/assets/go-down.svg \
+	$(shellcompactdir)/assets/go-left.svg \
+	$(shellcompactdir)/assets/go-right.svg \
+	$(shellcompactdir)/assets/go-up.svg \
+	$(shellcompactdir)/assets/media-control-active.svg \
+	$(shellcompactdir)/assets/media-control-hover.svg
+endif
+endif
+if GNOME_IS_338_OR_NEWER
+shell_compact_asset_file = \
+	$(shellcompactdir)/assets/checkbox-hover.svg \
+	$(shellcompactdir)/assets/checkbox-off-hover.svg \
+	$(shellcompactdir)/assets/checkbox-off.svg \
+	$(shellcompactdir)/assets/checkbox.svg \
+	$(shellcompactdir)/assets/dash-placeholder.svg \
+	$(shellcompactdir)/assets/go-down.svg \
+	$(shellcompactdir)/assets/go-left.svg \
+	$(shellcompactdir)/assets/go-right.svg \
+	$(shellcompactdir)/assets/go-up.svg \
+	$(shellcompactdir)/assets/media-control-active.svg \
+	$(shellcompactdir)/assets/media-control-hover.svg
+endif
 
 shellluminecompactdir   = $(srcdir)/gnome-shell-light-compact
+if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
 shell_lumine_compact_file = \
 	$(shellluminecompactdir)/gnome-shell.css \
@@ -375,6 +566,20 @@ shell_lumine_compact_file = \
 	$(shellluminecompactdir)/toggle-off.svg \
 	$(shellluminecompactdir)/toggle-on.svg
 endif
+endif
+if GNOME_IS_338_OR_NEWER
+shell_lumine_compact_file = \
+	$(shellluminecompactdir)/gnome-shell.css \
+	$(shellluminecompactdir)/gnome-shell-theme.gresource \
+	$(shellluminecompactdir)/calendar-today.svg \
+	$(shellluminecompactdir)/calendar-today-other.svg \
+	$(shellluminecompactdir)/message-indicator-symbolic.svg \
+	$(shellluminecompactdir)/no-events.svg \
+	$(shellluminecompactdir)/no-notifications.svg \
+	$(shellluminecompactdir)/pad-osd.css \
+	$(shellluminecompactdir)/toggle-off.svg \
+	$(shellluminecompactdir)/toggle-on.svg
+endif
 shell_lumine_compact_classic_file = \
 	$(shellluminecompactdir)/extensions/window-list/classic.css \
 	$(shellluminecompactdir)/extensions/window-list/stylesheet.css
@@ -383,6 +588,8 @@ shell_lumine_compact_wtd_file = \
 if !GNOME_IS_320_TO_324
 shell_lumine_compact_gdm3_file = $(shellluminecompactdir)/gdm3-Plata-Lumine-Compact.css
 endif
+if !GNOME_IS_338_OR_NEWER
+if !GNOME_IS_336_OR_NEWER
 if !GNOME_IS_332_OR_NEWER
 shell_lumine_compact_asset_file = \
 	$(shellluminecompactdir)/assets/calendar-arrow-left-hover.svg \
@@ -403,6 +610,7 @@ shell_lumine_compact_asset_file = \
 	$(shellluminecompactdir)/assets/window-close-hover.svg \
 	$(shellluminecompactdir)/assets/window-close.svg
 endif
+endif
 if GNOME_IS_332_OR_NEWER
 shell_lumine_compact_asset_file = \
 	$(shellluminecompactdir)/assets/checkbox-hover.svg \
@@ -418,8 +626,38 @@ shell_lumine_compact_asset_file = \
 	$(shellluminecompactdir)/assets/media-control-hover.svg \
 	$(shellluminecompactdir)/assets/more-results.svg
 endif
+if GNOME_IS_336_OR_NEWER
+shell_lumine_compact_asset_file = \
+	$(shellluminecompactdir)/assets/checkbox-hover.svg \
+	$(shellluminecompactdir)/assets/checkbox-off-hover.svg \
+	$(shellluminecompactdir)/assets/checkbox-off.svg \
+	$(shellluminecompactdir)/assets/checkbox.svg \
+	$(shellluminecompactdir)/assets/dash-placeholder.svg \
+	$(shellluminecompactdir)/assets/go-down.svg \
+	$(shellluminecompactdir)/assets/go-left.svg \
+	$(shellluminecompactdir)/assets/go-right.svg \
+	$(shellluminecompactdir)/assets/go-up.svg \
+	$(shellluminecompactdir)/assets/media-control-active.svg \
+	$(shellluminecompactdir)/assets/media-control-hover.svg
+endif
+endif
+if GNOME_IS_338_OR_NEWER
+shell_lumine_compact_asset_file = \
+	$(shellluminecompactdir)/assets/checkbox-hover.svg \
+	$(shellluminecompactdir)/assets/checkbox-off-hover.svg \
+	$(shellluminecompactdir)/assets/checkbox-off.svg \
+	$(shellluminecompactdir)/assets/checkbox.svg \
+	$(shellluminecompactdir)/assets/dash-placeholder.svg \
+	$(shellluminecompactdir)/assets/go-down.svg \
+	$(shellluminecompactdir)/assets/go-left.svg \
+	$(shellluminecompactdir)/assets/go-right.svg \
+	$(shellluminecompactdir)/assets/go-up.svg \
+	$(shellluminecompactdir)/assets/media-control-active.svg \
+	$(shellluminecompactdir)/assets/media-control-hover.svg
+endif
 
 shellnoircompactdir     = $(srcdir)/gnome-shell-dark-compact
+if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
 shell_noir_compact_file = \
 	$(shellnoircompactdir)/gnome-shell.css \
@@ -451,6 +689,19 @@ shell_noir_compact_file = \
 	$(shellnoircompactdir)/toggle-off.svg \
 	$(shellnoircompactdir)/toggle-on.svg
 endif
+endif
+if GNOME_IS_338_OR_NEWER
+shell_noir_compact_file = \
+	$(shellnoircompactdir)/gnome-shell.css \
+	$(shellnoircompactdir)/gnome-shell-theme.gresource \
+	$(shellnoircompactdir)/calendar-today.svg \
+	$(shellnoircompactdir)/calendar-today-other.svg \
+	$(shellnoircompactdir)/message-indicator-symbolic.svg \
+	$(shellnoircompactdir)/no-events.svg \
+	$(shellnoircompactdir)/no-notifications.svg \
+	$(shellnoircompactdir)/toggle-off.svg \
+	$(shellnoircompactdir)/toggle-on.svg
+endif
 shell_noir_compact_classic_file = \
 	$(shellnoircompactdir)/extensions/window-list/classic.css \
 	$(shellnoircompactdir)/extensions/window-list/stylesheet.css
@@ -459,6 +710,8 @@ shell_noir_compact_wtd_file = \
 if !GNOME_IS_320_TO_324
 shell_noir_compact_gdm3_file = $(shellnoircompactdir)/gdm3-Plata-Noir-Compact.css
 endif
+if !GNOME_IS_338_OR_NEWER
+if !GNOME_IS_336_OR_NEWER
 if !GNOME_IS_332_OR_NEWER
 shell_noir_compact_asset_file = \
 	$(shellnoircompactdir)/assets/calendar-arrow-left-hover.svg \
@@ -479,6 +732,7 @@ shell_noir_compact_asset_file = \
 	$(shellnoircompactdir)/assets/window-close-hover.svg \
 	$(shellnoircompactdir)/assets/window-close.svg
 endif
+endif
 if GNOME_IS_332_OR_NEWER
 shell_noir_compact_asset_file = \
 	$(shellnoircompactdir)/assets/checkbox-hover.svg \
@@ -493,6 +747,35 @@ shell_noir_compact_asset_file = \
 	$(shellnoircompactdir)/assets/media-control-active.svg \
 	$(shellnoircompactdir)/assets/media-control-hover.svg \
 	$(shellnoircompactdir)/assets/more-results.svg
+endif
+if GNOME_IS_336_OR_NEWER
+shell_noir_compact_asset_file = \
+	$(shellnoircompactdir)/assets/checkbox-hover.svg \
+	$(shellnoircompactdir)/assets/checkbox-off-hover.svg \
+	$(shellnoircompactdir)/assets/checkbox-off.svg \
+	$(shellnoircompactdir)/assets/checkbox.svg \
+	$(shellnoircompactdir)/assets/dash-placeholder.svg \
+	$(shellnoircompactdir)/assets/go-down.svg \
+	$(shellnoircompactdir)/assets/go-left.svg \
+	$(shellnoircompactdir)/assets/go-right.svg \
+	$(shellnoircompactdir)/assets/go-up.svg \
+	$(shellnoircompactdir)/assets/media-control-active.svg \
+	$(shellnoircompactdir)/assets/media-control-hover.svg
+endif
+endif
+if GNOME_IS_338_OR_NEWER
+shell_noir_compact_asset_file = \
+	$(shellnoircompactdir)/assets/checkbox-hover.svg \
+	$(shellnoircompactdir)/assets/checkbox-off-hover.svg \
+	$(shellnoircompactdir)/assets/checkbox-off.svg \
+	$(shellnoircompactdir)/assets/checkbox.svg \
+	$(shellnoircompactdir)/assets/dash-placeholder.svg \
+	$(shellnoircompactdir)/assets/go-down.svg \
+	$(shellnoircompactdir)/assets/go-left.svg \
+	$(shellnoircompactdir)/assets/go-right.svg \
+	$(shellnoircompactdir)/assets/go-up.svg \
+	$(shellnoircompactdir)/assets/media-control-active.svg \
+	$(shellnoircompactdir)/assets/media-control-hover.svg
 endif
 
 cinnamondir   = $(srcdir)/cinnamon
