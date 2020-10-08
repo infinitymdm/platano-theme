@@ -441,8 +441,13 @@ StScrollBar {
         text-align: center;
 
         // for loooong titles
-        &.leightweight,
-        &.lightweight { font-size: 90%; } // type fixed in 3.38 cycle?
+        @if $ver < 3.37 {
+          &.leightweight { font-size: 90%; }
+        }
+        @else {
+          &.leightweight,
+          &.lightweight { font-size: 90%; }
+        }
       }
       @else { font-weight: 500; }
     }
@@ -1831,14 +1836,26 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 }
 
 @if $ver > 3.25 {
-  .events-button, // >= 3.38 cycle
-  .datemenu-today-button,
-  .world-clocks-button,
-  .weather-button,
-  .events-section-title {
-    @if $ver > 3.35 { @extend %reset_cal; }
-    padding: 0.4em;
-    border-radius: $r_2;
+  @if $ver < 3.37 {
+    .datemenu-today-button,
+    .world-clocks-button,
+    .weather-button,
+    .events-section-title {
+      @if $ver > 3.35 { @extend %reset_cal; }
+      padding: 0.4em;
+      border-radius: $r_2;
+    }
+  }
+  @else {
+    .events-button,
+    .datemenu-today-button,
+    .world-clocks-button,
+    .weather-button,
+    .events-section-title {
+      @extend %reset_cal;
+      padding: 0.4em;
+      border-radius: $r_2;
+    }
   }
 }
 @else {
@@ -1888,8 +1905,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   }
 }
 
-@if $ver > 3.35 {
-  .events-button { // >= 3.38 cycle
+@if $ver > 3.37 {
+  .events-button {
     color: $fg;
 
     .events {
@@ -1968,9 +1985,11 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       font-size: 100%;
     }
 
-    &-time { // >= 3.38 cycle
-      &:ltr { text-align: right; }
-      &:rtl { text-align: left; }
+    @if $ver > 3.37 {
+      &-time {
+        &:ltr { text-align: right; }
+        &:rtl { text-align: left; }
+      }
     }
 
     &-timezone {
@@ -2745,7 +2764,7 @@ $close_button_size: if($ver < 3.35, 32px,
 .window-close {
   width: $close_button_size;
   height: $close_button_size;
-  -shell-close-overlap: $close_button_size * 0.75; // =< 3.36 cycle
+  @if $ver < 3.37 { -shell-close-overlap: $close_button_size * 0.75; }
   @if $ver < 3.31 {
     @include image-loader($url: 'assets/window-close.svg');
     background-size: $close_button_size;
@@ -2937,10 +2956,12 @@ $close_button_size: if($ver < 3.35, 32px,
 
 .window-picker { // container around window thumbnails
   @if $ver > 3.25 {
-    -horizontal-spacing: if($ref_weight >= 1.0, 16px, 12px); // =< 3.36 cycle
-    -vertical-spacing: if($ref_weight >= 1.0, 16px, 12px); // =< 3.36 cycle
+    @if $ver < 3.37 {
+      -horizontal-spacing: if($ref_weight >= 1.0, 16px, 12px);
+      -vertical-spacing: if($ref_weight >= 1.0, 16px, 12px);
+      spacing: if($ref_weight >= 1.0, 16px / 2, 12px / 2);
+    }
     padding: if($ref_weight >= 1.0, 16px, 12px);
-    spacing: if($ref_weight >= 1.0, 16px / 2, 12px / 2); // >= 3.38 cycle
   }
   @else {
     -horizontal-spacing: if($ref_weight >= 1.0, 32px, 26px);
@@ -3311,9 +3332,9 @@ $provider_icon_size: 32px; // for < 3.25
   }
 }
 
-$icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px); // >= 3.38 cycle
+$icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
 
-@if $ver > 3.35 { // >= 3.38 cycle
+@if $ver > 3.37 {
   .grid-search-results { spcaing: $icon_grid_spacing; }
 }
 
@@ -3420,18 +3441,19 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px); // >= 3.38 cycle
 $grid_size: 136px;
 
 .icon-grid {
-  // =< 3.36 cycle
-  spacing: 30px;
-  -shell-grid-horizontal-item-size: $grid_size;
-  -shell-grid-vertical-item-size: $grid_size;
+  @if $ver < 3.37 {
+    spacing: 30px;
+    -shell-grid-horizontal-item-size: $grid_size;
+    -shell-grid-vertical-item-size: $grid_size;
+  }
+  @else {
+    row-spacing: $icon_grid_spacing;
+    column-spacing: $icon_grid_spacing;
+    max-row-spacing: $icon_grid_spacing * 2;
+    max-column-spacing: $icon_grid_spacing * 2;
+  }
 
   .overview-icon { icon-size: $icon_size * 6; }
-
-  // >= 3.38 cycle
-  row-spacing: $icon_grid_spacing;
-  column-spacing: $icon_grid_spacing;
-  max-row-spacing: $icon_grid_spacing * 2;
-  max-column-spacing: $icon_grid_spacing * 2;
 }
 
 @if $ver > 3.25 {
@@ -3444,51 +3466,51 @@ $grid_size: 136px;
   }
 }
 
-// =< 3.36 cycle
-.app-view-controls { // favorites | all toggle container
-  width: if($ref_weight >= 1.0, 400px, 340px);
-  margin-bottom: if($ref_weight >= 1.0, 12px, 9px);
-  border-radius: $r;
-  background-color: $hidden_fill_bg !important;
-  box-shadow: $empty_shadow;
-}
-
-// =< 3.36 cycle
-.app-view-control { // favorites | all toggle button
-  padding: if($ref_weight >= 1.0, 7px 32px 8px, 5px 32px 6px);
-  border-radius: $r;
-  color: $ovv_sec_fg;
-  background-color: $hidden_fill_bg !important;
-  box-shadow: inset 0 0 0 1px $ovv_out_fg;
-  font-weight: 500;
-  &:ltr {
-    &:first-child { margin-right: 6px; }
-    &:last-child { margin-left: 6px; }
-  }
-  &:rtl {
-    &:first-child { margin-left: 6px; }
-    &:last-child { margin-right: 6px; }
+@if $ver < 3.37 {
+  .app-view-controls { // favorites | all toggle container
+    width: if($ref_weight >= 1.0, 400px, 340px);
+    margin-bottom: if($ref_weight >= 1.0, 12px, 9px);
+    border-radius: $r;
+    background-color: $hidden_fill_bg !important;
+    box-shadow: $empty_shadow;
   }
 
-  &:hover {
-    color: $ovv_fg;
-    background-color: $ovv_semi_fill_bg !important;
-    box-shadow: $empty_shadow;
-  }
-  &:active {
-    color: $ovv_fg;
-    background-color: $ovv_fill_bg !important;
-    box-shadow: $empty_shadow;
-  }
-  &:checked {
-    color: $sel_fg;
-    background-color: $sel_bg !important;
-    box-shadow: $empty_shadow;
-  }
-  &:hover:checked {
-    color: $sel_fg;
-    background-color: mix($sel_bg, $sel_fg, percentage($a_fg_2nd)) !important;
-    box-shadow: $empty_shadow;
+  .app-view-control { // favorites | all toggle button
+    padding: if($ref_weight >= 1.0, 7px 32px 8px, 5px 32px 6px);
+    border-radius: $r;
+    color: $ovv_sec_fg;
+    background-color: $hidden_fill_bg !important;
+    box-shadow: inset 0 0 0 1px $ovv_out_fg;
+    font-weight: 500;
+    &:ltr {
+      &:first-child { margin-right: 6px; }
+      &:last-child { margin-left: 6px; }
+    }
+    &:rtl {
+      &:first-child { margin-left: 6px; }
+      &:last-child { margin-right: 6px; }
+    }
+
+    &:hover {
+      color: $ovv_fg;
+      background-color: $ovv_semi_fill_bg !important;
+      box-shadow: $empty_shadow;
+    }
+    &:active {
+      color: $ovv_fg;
+      background-color: $ovv_fill_bg !important;
+      box-shadow: $empty_shadow;
+    }
+    &:checked {
+      color: $sel_fg;
+      background-color: $sel_bg !important;
+      box-shadow: $empty_shadow;
+    }
+    &:hover:checked {
+      color: $sel_fg;
+      background-color: mix($sel_bg, $sel_fg, percentage($a_fg_2nd)) !important;
+      box-shadow: $empty_shadow;
+    }
   }
 }
 
@@ -3738,15 +3760,17 @@ $grid_size: 136px;
       > StIcon { icon-size: $icon_size; }
     }
 
-    .icon-grid { // >= 3.38 cycle
-      row-spacing: $icon_grid_spacing / 3;
-      column-spacing: $icon_grid_spacing / 2;
-    }
+    @if $ver > 3.37 {
+      .icon-grid {
+        row-spacing: $icon_grid_spacing / 3;
+        column-spacing: $icon_grid_spacing / 2;
+      }
 
-    .page-indicators { // >= 3.38 cycle
-      margin-bottom: $icon_size;
+      .page-indicators {
+        margin-bottom: $icon_size;
 
-      .page-indicator { padding: 0 ($icon_size / 2) $icon_size; }
+        .page-indicator { padding: 0 ($icon_size / 2) $icon_size; }
+      }
     }
   }
 }
@@ -3819,8 +3843,9 @@ $grid_size: 136px;
   }
 }
 
-// =< 3.36 cycle
-.no-frequent-applications-label { @extend %status_text; }
+@if $ver < 3.37 {
+  .no-frequent-applications-label { @extend %status_text; }
+}
 
 // /*******************
 //  * Workspace Pager *
@@ -3888,8 +3913,13 @@ $grid_size: 136px;
   .frequent-apps > StBoxLayout { padding: 0 88px 10px 88px; }
 }
 @else {
-  .all-apps,
-  .frequent-apps > StBoxLayout { padding: 0 88px 10px 88px; }
+  @if $ver < 3.37 {
+    .all-apps,
+    .frequent-apps > StBoxLayout { padding: 0 88px 10px 88px; }
+  }
+  @else {
+    .all-apps { padding: 0 88px 10px 88px; }
+  }
 }
 
 %status_text {
@@ -5175,10 +5205,12 @@ $tool_icon_size: 24px;
     &:active { color: $osd_link_fg; }
   }
 
-  .actor-link { // >= 3.38 cycle
-    color: $osd_sec_fg;
-    &:hover,
-    &:active { color: $osd_fg; }
+  @if $ver > 3.37 {
+    .actor-link {
+      color: $osd_sec_fg;
+      &:hover,
+      &:active { color: $osd_fg; }
+    }
   }
 }
 
