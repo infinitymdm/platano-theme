@@ -3682,16 +3682,25 @@ $grid_size: 136px;
 }
 @else {
   .app-folder-dialog {
-    spacing: if($ref_weight >= 1.0, 16px, 12px);
-    padding-bottom: $r_8; // do not cut-off scrollbars
+    @if $ver < 3.37 {
+      spacing: if($ref_weight >= 1.0, 16px, 12px);
+      padding-bottom: $r_8; // do not cut-off scrollbars
+    }
+    @else { padding: if($ref_weight >= 1.0, 12px, 8px); }
     border-radius: $r_8;
     border: 0 none transparent;
     background-color: opacity($osd_bg, $a_osd);
     box-shadow: $z-depth-4;
 
     &-container {
-      width: if($ref_weight >= 1.0, 800px, 600px);
-      height: if($ref_weight >= 1.0, 600px, 400px);
+      @if $ver < 3.37 {
+        width: if($ref_weight >= 1.0, 800px, 600px);
+        height: if($ref_weight >= 1.0, 600px, 400px);
+      }
+      @else {
+        width: if($ref_weight >= 1.0, 600px, 500px);
+        height: if($ref_weight >= 1.0, 700px, 600px);
+      }
       padding: if($ref_weight >= 1.0, 12px, 8px);
 
       .app-well-app {
