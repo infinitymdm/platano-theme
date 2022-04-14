@@ -1,0 +1,402 @@
+// /*************************
+//  * VolumeMixer Extension *
+//  *************************/
+
+.masterslider.smaller {
+  .masterlabel,
+  .slider {
+    min-width: 15em - (0.4em * 2);
+  }
+}
+
+// /*******************************
+//  * Applications Menu Extension *
+//  *******************************/
+
+.popup-menu {
+  // '.apps-menu' is the child boxLayout (right-pane)
+  StScrollView.apps-menu {
+    margin: 0 4px;
+    border-style: solid;
+    border-color: $div_fg;
+
+    &:ltr {
+      padding: if($ref_weight >= 1.0, 0 0 0 12px, 0 0 0 8px);
+      border-left-width: 1px;
+    }
+    &:rtl {
+      padding: if($ref_weight >= 1.0, 0 12px 0 0, 0 8px 0 0);
+      border-right-width: 1px;
+    }
+  }
+}
+
+// /**********************
+//  * Arc Menu Extension *
+//  **********************/
+
+// /*************************
+//  * OpenWeather Extension *
+//  *************************/
+
+.openweather {
+  &-button,
+  &-menu-button-container,
+  &-button-box {
+  }
+
+  &-provider {
+    // generic text buttons are allocated with y-expand-ed
+    padding: if($ref_weight >= 1.0, 0 16px, 0 12px);
+    font-weight: 500;
+    @include button(flat-normal);
+    &:hover { @include button(flat-hover); }
+    &:focus { @include button(flat-focus); }
+    &:active { @include button(flat-active); }
+    &:insensitive { @include button(flat-disabled); }
+  }
+
+  &-current {
+    &-icon,
+    &-summary,
+    &-summarybox {
+      background: none;
+      color: $fg;
+    }
+
+    &-databox-values {
+      background: none;
+      color: $ter_fg;
+    }
+
+    &-databox-captions {
+      background: none;
+      color: $ter_fg;
+    }
+  }
+
+  &-forecast {
+    &-icon,
+    &-summary {
+      background: none;
+      color: $sec_fg;
+    }
+
+    &-day,
+    &-temperature {
+      background: none;
+      color: $ter_fg;
+    }
+  }
+
+  &-sunrise-icon,
+  &-sunset-icon,
+  &-build-icon { color: $sec_fg; }
+}
+
+// /**************************
+//  * Dash to Dock Extension *
+//  **************************/
+
+$hard_coded_alpha: 0.2;
+$alpha_override: 0.54 - $hard_coded_alpha;
+$icon_padding: 9px;
+
+#dashtodockContainer {
+  background: transparent;
+
+  #dash,
+  &:overview #dash,
+  &.extended #dash,
+  &.extended:overview #dash {
+    padding: 0;
+    border: none;
+    transition-duration: $tr_d_lng;
+  }
+
+  @each $_dock, $_radius in (top, 0 0 $r_2 $r_2),
+                            (bottom, $r_2 $r_2 0 0),
+                            (left, 0 $r_2 $r_2 0),
+                            (right, $r_2 0 0 $r_2) {
+    &.#{$_dock} #dash,
+    &.#{$_dock}:overview #dash { border-radius: #{$_radius}; }
+
+    &.#{$_dock}.extended #dash,
+    &.#{$_dock}.extended:overview #dash { border-radius: 0; }
+  }
+
+  #dash { // default-mode
+    background-color: $panel_bg;
+    box-shadow: $empty_shadow;
+  }
+
+  &.opaque #dash { // solid-mode
+    background-color: $panel_bg;
+    // FIXME: enforce opaque background
+    box-shadow: inset 0 0 0 9999px $panel_bg;
+  }
+
+  &.transparent #dash { // translucent-mode
+    background-color: $panel_hidden_bg; // does not work
+    // FIXME: add lacked alpha via box-shadow property
+    box-shadow: inset 0 0 0 9999px opacity($panel_bg,
+                                           $alpha_override);
+  }
+
+  &:overview #dash { // overview-mode #1
+    background-color: if($variant == light, opacity($panel_bg, $a_fg_3rd),
+                                            $panel_hidden_bg);
+    box-shadow: $empty_shadow;
+  }
+
+  &.opaque:overview,
+  &.transparent:overview { // overview-mode #2
+    #dash {
+      background-color: if($variant == light, opacity($panel_bg, $a_fg_3rd),
+                                              transparent !important);
+      box-shadow: none !important;
+    }
+  }
+
+  &.extended:overview, // overview-mode #3
+  &.opaque.extended:overview,
+  &.transparent.extended:overview {
+    #dash {
+      background-color: if($variant == light, opacity($panel_bg, $a_fg_3rd),
+                                              $panel_hidden_bg);
+      box-shadow: $empty_shadow;
+    }
+  }
+
+  .app-well-app,
+  .show-apps {
+    .overview-icon {
+      padding: $icon_padding;
+      background-size: contain;
+    }
+  }
+
+  .app-well-app,
+  .show-apps {
+    &:focus .overview-icon,
+    &:hover .overview-icon,
+    &:selected .overview-icon { background-color: $osd_semi_fill_bg; }
+
+    &:active .overview-icon { background-color: $osd_fill_bg; }
+
+    &:checked:hover .overview-icon {
+      background-color: mix($sel_fg, $sel_bg, percentage($a_trk_1));
+    }
+  }
+
+  .dash-item-container { // actual parent container
+    background: transparent;
+
+    > StWidget { background-size: contain; }
+
+    .app-well-app-running-dot { // set specific shape, color and sizes
+      width: 6px;
+      height: 3px;
+      margin-bottom: 0;
+      border-radius: 0;
+      background-color: $osd_sel_label;
+    }
+
+    > StWidget.focused .app-well-app-running-dot {
+      width: $icon_size + $icon_padding * 2;
+      background-color: $sel_bg;
+    }
+  }
+
+  .number-overlay,
+  .notification-badge {
+    min-width: if($ref_weight >= 1.0, 1.6em, 1.4em);
+    min-height: if($ref_weight >= 1.0, 1.6em, 1.4em);
+    margin: 0; // unset margin/padding
+    padding: 0;
+    border-radius: $r;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: $z-depth-2;
+  }
+
+  .number-overlay {
+    background-color: $osd_bg;
+    color: $osd_fg;
+  }
+
+  .notification-badge {
+    background-color: $sggt_bg;
+    color: $sel_fg;
+  }
+}
+
+@each $_dock in top, bottom, left, right {
+  #dashtodockContainer.#{$_dock},
+  #dashtodockContainer.extended.#{$_dock} {
+    // fill whole focused backgrounds
+    .dash-item-container > .app-well-app.focused {
+      .overview-icon {
+        border-radius: 0;
+        background-color: $osd_semi_fill_bg;
+      }
+
+      &:hover .overview-icon {
+        border-radius: 0;
+        background-color: $osd_fill_bg;
+      }
+    }
+  }
+}
+
+// /***************************
+//  * Dash To Panel Extension *
+//  ***************************/
+
+$a_dtp_trk_1: if($variant == light, $a_trk_1,
+                                    $a_trk_1 - 0.08);
+$a_dtp_trk_2: if($variant == light, $a_trk_2,
+                                    $a_trk_2 - 0.15);
+
+@each $_position, $_line in (Top, 0 2px),
+                            (Bottom, 0 -2px) {
+  #panel.dashtopanelMainPanel.dashtopanel#{$_position} {
+    // FIXME: prevent weird double density
+    background-gradient-start: $panel_hidden_bg;
+    background-gradient-end: $panel_hidden_bg;
+
+    #panelLeft,
+    #panelCenter,
+    .panel-corner,
+    .panel-button {
+      &:hover { box-shadow: inset #{$_line} $osd_out_fg; }
+      &:active,
+      &:focus,
+      &:checked,
+      &:overview { box-shadow: inset #{$_line} $sel_bg; }
+
+      StLabel { padding-bottom: 0; } // reset baseline
+    }
+
+    @if $ver > 3.35 {
+      .panel-button.clock-display {
+        &:hover,
+        &:active,
+        &:focus,
+        &:checked,
+        &:overview { box-shadow: $empty_shadow; }
+
+        &:hover .clock { box-shadow: inset #{$_line} $osd_out_fg; }
+
+        &:active,
+        &:focus,
+        &:checked,
+        &:overview {
+          .clock { box-shadow: inset #{$_line} $sel_bg; }
+        }
+      }
+    }
+
+    .app-well-app,
+    .show-apps {
+      &:focus,
+      &:hover,
+      &:active,
+      &:checked {
+        .overview-icon { // unset styling
+          border-radius: 0;
+          background-color: $hidden_fill_bg;
+          box-shadow: $empty_shadow;
+        }
+      }
+    }
+
+    #dashtopanelScrollview {
+      padding: 0;
+
+      .app-well-app { // stylesheet.css gets in our way
+        &:focus .dtp-container,
+        &:hover .dtp-container {
+          background-color: $osd_semi_fill_bg;
+          box-shadow: inset 0 0 0 999px opacity($osd_fg, $a_dtp_trk_1);
+        }
+        &:active .dtp-container {
+          background-color: $osd_fill_bg;
+          box-shadow: inset 0 0 0 999px opacity($osd_fg, $a_dtp_trk_2);
+        }
+
+        // unfocused dot(s)
+        .app-well-app-running-dot { background-color: $osd_sel_label; }
+        // focused dot(s)
+        &.focused .app-well-app-running-dot { background-color: $sel_bg; }
+      }
+    }
+
+    StButton.show-apps {
+      &:focus,
+      &:hover {
+        background-color: $osd_semi_fill_bg;
+        box-shadow: $empty_shadow;
+      }
+      &:active {
+        background-color: $osd_fill_bg;
+        box-shadow: inset #{$_line} $sel_bg;
+      }
+      &:checked {
+        background-color: $panel_hidden_bg;
+        box-shadow: inset #{$_line} $sel_bg;
+        &:hover { background-color: $osd_semi_fill_bg; }
+      }
+    }
+  }
+}
+
+// /***************************
+//  * Desktop Icons Extension *
+//  ***************************/
+
+$rename_box_spacing: 6px;
+
+.rename-popup {
+  @extend %popover_content;
+  padding: ($rename_box_spacing + 4px) $rename_box_spacing $rename_box_spacing;
+  background-color: opacity($osd_bg, $a_osd);
+  color: $osd_sec_fg;
+
+  StEntry { // OSD-style-ed entry
+    margin: 0 ($rename_box_spacing - 2px);
+    @if $variant != light {
+      @include entry(normal, $tc: $osd_fg);
+      &:hover { @include entry(hover, $tc: $osd_fg); }
+      &:focus { @include entry(focus, $tc: $osd_fg); }
+      &:insensitive { @include entry(disabled, $tc: $osd_fg); }
+    }
+    @else {
+      @include entry(normal, $tc: $fg);
+      &:hover { @include entry(hover, $tc: $fg); }
+      &:focus { @include entry(focus, $tc: $fg); }
+      &:insensitive { @include entry(disabled, $tc: $fg); }
+    }
+  }
+
+  .button { // standard text buttons
+    padding: if($ref_weight >= 1.0, 7px 16px 8px, 5px 12px 6px);
+    border-radius: $r_2;
+    border: none;
+    font-weight: 500;
+    @if $variant != light {
+      @include button(flat-normal, $tc: $inv_acc_fg);
+      &:hover { @include button(flat-hover, $tc: $inv_acc_fg); }
+      &:focus { @include button(flat-focus, $tc: $inv_acc_fg); }
+      &:active { @include button(flat-active, $tc: $inv_acc_fg); }
+      &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
+    }
+    @else {
+      @include button(flat-normal, $tc: $acc_fg);
+      &:hover { @include button(flat-hover, $tc: $acc_fg); }
+      &:focus { @include button(flat-focus, $tc: $acc_fg); }
+      &:active { @include button(flat-active, $tc: $acc_fg); }
+      &:insensitive { @include button(flat-disabled, $tc: $fg); }
+    }
+  }
+}

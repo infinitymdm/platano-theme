@@ -1,0 +1,45 @@
+common/checkbox/radiobutton-checked r1
+common/misc/close-active r1
+common/misc/close-hover r3
+common/misc/close r3
+common/misc/overview-hover
+common/misc/overview
+common/panel/activities-active r2
+common/panel/activities
+common/switch/switch-on r1
+
+light/checkbox/checkbox-checked r1
+light/checkbox/checkbox-unchecked
+light/checkbox/radiobutton-unchecked
+light/misc/add-workspace-active
+light/misc/add-workspace-hover
+light/misc/add-workspace
+light/misc/calendar-arrow-left
+light/misc/calendar-arrow-right
+light/misc/osd
+light/misc/trash-icon
+light/switch/switch-off
+
+mixed/checkbox/checkbox-checked r1
+mixed/checkbox/checkbox-unchecked
+mixed/checkbox/radiobutton-unchecked
+mixed/misc/add-workspace-active
+mixed/misc/add-workspace-hover
+mixed/misc/add-workspace
+mixed/misc/calendar-arrow-left
+mixed/misc/calendar-arrow-right
+mixed/misc/osd
+mixed/misc/trash-icon
+mixed/switch/switch-off
+
+dark/checkbox/checkbox-checked r1
+dark/checkbox/checkbox-unchecked
+dark/checkbox/radiobutton-unchecked
+dark/misc/add-workspace-active
+dark/misc/add-workspace-hover
+dark/misc/add-workspace
+dark/misc/calendar-arrow-left
+dark/misc/calendar-arrow-right
+dark/misc/osd
+dark/misc/trash-icon
+dark/switch/switch-off

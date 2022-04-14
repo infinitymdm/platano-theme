@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/gnome/shell/theme">
+    <file>calendar-today-other.svg</file>
+    <file>calendar-today.svg</file>
+    <file>assets/checkbox.svg</file>
+    <file>assets/checkbox-hover.svg</file>
+    <file>assets/checkbox-off.svg</file>
+    <file>assets/checkbox-off-hover.svg</file>
+    <file>assets/dash-placeholder.svg</file>
+    <file>gnome-shell.css</file>
+    <file>assets/go-down.svg</file>
+    <file>assets/go-left.svg</file>
+    <file>assets/go-right.svg</file>
+    <file>assets/go-up.svg</file>
+    <file>assets/media-control-active.svg</file>
+    <file>assets/media-control-hover.svg</file>
+    <file alias="icons/message-indicator-symbolic.svg">message-indicator-symbolic.svg</file>
+    <file>no-events.svg</file>
+    <file>no-notifications.svg</file>
+    <file>pad-osd.css</file>
+    <file alias="icons/eye-open-negative-filled-symbolic.svg">eye-open-negative-filled-symbolic.svg</file>
+    <file alias="icons/eye-not-looking-symbolic.svg">eye-not-looking-symbolic.svg</file>
+    <file alias="icons/scalable/status/keyboard-caps-lock-filled-symbolic.svg">keyboard-caps-lock-filled-symbolic.svg</file>
+    <file alias="icons/scalable/status/keyboard-enter-symbolic.svg">keyboard-enter-symbolic.svg</file>
+    <file alias="icons/scalable/status/keyboard-hide-symbolic.svg">keyboard-hide-symbolic.svg</file>
+    <file alias="icons/scalable/status/keyboard-layout-filled-symbolic.svg">keyboard-layout-filled-symbolic.svg</file>
+    <file alias="icons/scalable/status/keyboard-shift-filled-symbolic.svg">keyboard-shift-filled-symbolic.svg</file>
+    <file>toggle-off.svg</file>
+    <file>toggle-on.svg</file>
+  </gresource>
+</gresources>
