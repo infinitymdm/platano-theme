@@ -1,20 +1,20 @@
-<img src=".gitlab/logo_thumb_small.png" alt="Logo" align="left" width="85" height="85"/>
+### Platano-theme
 
-### Plata-theme
+Adapted from [Plata-theme by tista500 on Gitlab](https://gitlab.com/tista500/plata-theme).
 
-A Gtk theme based on Material Design Refresh.
+A Gtk theme based on Material Design.
 
 ----------------------------------------------
 
 Typography
 ----------
 
-Plata strongly depends on Material Design resources, especially its **fonts**.
+Platano strongly depends on Material Design resources, especially its **fonts**.
 
  1. [**Roboto**](https://fonts.google.com/specimen/Roboto)
    - Very famous as the default truetype font in Android (English ver.).
    - Multilingual support is not good.
-   - Weight used in Plata: 300, 400, 500, 700
+   - Weight used in Platano: 300, 400, 500, 700
 
 | |Primary|Fallback|
 |:-----|:-----:|:-----:|
@@ -22,7 +22,7 @@ Plata strongly depends on Material Design resources, especially its **fonts**.
 |Gnome-Shell >= 3.36|follow system settings||
 |Cinnamon   |**Roboto**|Sans-serif|
 
-Plata is designed with nominal **13px (or 14px)** Roboto Regular font.
+Platano is designed with nominal **13px (or 14px)** Roboto Regular font.
 In Gnome, "window-scaling-factor = 1.0" means `-gtk-dpi = 96`, it also means:
   ```
   13 [px] x 72 [pt/inch] / 96 [px/inch] = 9.75 [pt]
@@ -38,7 +38,7 @@ That's the reason why `13.33px = 10pt` is used for rem/px conversion in Gtk 3.2x
 
 Required Components
 -------------------
-Plata supports Gtk 2.24.x, 3.20.x, 3.22.x and 3.24.x.
+Platano supports Gtk 2.24.x, 3.20.x, 3.22.x and 3.24.x.
 
  ```
  * Gtk-3.0             >= 3.20.0
@@ -68,31 +68,21 @@ Unsupported Gtk Based Desktop(s)
 
  > **Note:**
  >
- >   * Plata does NOT support elementaryOS.
-
-Installation from Package(s)
-----------------------------
- * Arch (AUR): [**plata-theme**](https://aur.archlinux.org/packages/plata-theme)
- * OpenSUSE: [**Official repository**](https://software.opensuse.org/package/plata-theme)
- * Solus: Official repository
- * Void: [**Official repository**](https://github.com/void-linux/void-packages/tree/master/srcpkgs/plata-theme)
- * Flatpak: Official flathub repository (current package branch = **3.22**)
- * Fedora (Copr): [**tonyjames/plata-theme**](https://copr.fedorainfracloud.org/coprs/tonyjames/plata-theme/) 
- * My Personal Package Archives (PPA): [**plata-theme**](https://launchpad.net/~tista/+archive/ubuntu/plata-theme)
+ >   * Platano does NOT support elementaryOS.
 
 Installation from Git Source
 ----------------------------
 1. If previous versions were installed/existed, remove them first.
 
  ```
- sudo rm -rf /usr/share/themes/{Plata,Plata-Compact,Plata-Lumine,Plata-Lumine-Compact,Plata-Noir,Plata-Noir-Compact}
- sudo rm -rf /usr/local/share/themes/{Plata,Plata-Compact,Plata-Lumine,Plata-Lumine-Compact,Plata-Noir,Plata-Noir-Compact}
- rm -rf ~/.local/share/themes/{Plata,Plata-Compact,Plata-Lumine,Plata-Lumine-Compact,Plata-Noir,Plata-Noir-Compact}
- rm -rf ~/.themes/{Plata,Plata-Compact,Plata-Lumine,Plata-Lumine-Compact,Plata-Noir,Plata-Noir-Compact}
+ sudo rm -rf /usr/share/themes/{Platano,Platano-Compact,Platano-Lumine,Platano-Lumine-Compact,Platano-Noir,Platano-Noir-Compact}
+ sudo rm -rf /usr/local/share/themes/{Platano,Platano-Compact,Platano-Lumine,Platano-Lumine-Compact,Platano-Noir,Platano-Noir-Compact}
+ rm -rf ~/.local/share/themes/{Platano,Platano-Compact,Platano-Lumine,Platano-Lumine-Compact,Platano-Noir,Platano-Noir-Compact}
+ rm -rf ~/.themes/{Platano,Platano-Compact,Platano-Lumine,Platano-Lumine-Compact,Platano-Noir,Platano-Noir-Compact}
  ```
 
 2. Check build-requirements:
- Currently Plata bundles neither pre-generated stylesheets nor PNG images.
+ Currently Platano bundles neither pre-generated stylesheets nor PNG images.
  So users and/or contributors should generate proper CSSs, PNGs and gresources at build-time.
 
  ```
@@ -119,9 +109,9 @@ Installation from Git Source
  >     gdk-pixbuf-devel        >= 2.32.2
  >     ```
  >
- >   * Plata employs **SassC** wrapper of `libsass` to generate CSS stylesheets.
- >   * Plata uses `inkscape` to generate installable PNG files.
- >   * Plata uses `glib-compile-resources` to compile the gresource files for Gtk and Gnome-Shell.
+ >   * Platano employs **SassC** wrapper of `libsass` to generate CSS stylesheets.
+ >   * Platano uses `inkscape` to generate installable PNG files.
+ >   * Platano uses `glib-compile-resources` to compile the gresource files for Gtk and Gnome-Shell.
  >   * `glib-2.0 >= 2.53`, Gnome-Shell 3.26 theming is used if `--enable-gnome`.
 
 3. Build and install system-wide:
@@ -152,7 +142,7 @@ Installation from Git Source
  >   * This feature requires GNU `parallel`, so please add `parallel` to build-requirements.
  >     Parallel can execute multiple scripts and binaries to be suitable for multi-threading.
  >     It could especially shorten the rendering-time via `inkscape`.
- >   * `-jN` option to be passed to GNU `make` is surely usable, but Plata currently employs `parallel`.
+ >   * `-jN` option to be passed to GNU `make` is surely usable, but Platano currently employs `parallel`.
  >   * This feature should not be applied when packaging on remote/shared build-servers.
 
 5. To disable some DE supports, pass these specific options to `autogen.sh`:
@@ -203,12 +193,12 @@ Installation from Git Source
  >     This switchese the theme to Teal selection colors.
  >   * Basically `selection_color` and `suggestion_color` should use `500` colors,
  >     and `accent_color` should use `300` colors.
- >   * While doing `make`, Plata changes those 4 colors in all stylesheets and images,
+ >   * While doing `make`, Platano changes those 4 colors in all stylesheets and images,
  >     and `make clean` cleans up all generated files from source directories.
 
 GtkSourceView/Gedit Color Scheme Support
 ----------------------------------------
- 2 theme files `plata-light.xml` and `plata-dark.xml` are installed by default into `Plata*/gtksourceview` directories.
+ 2 theme files `Platano-light.xml` and `Platano-dark.xml` are installed by default into `Platano*/gtksourceview` directories.
 
  > **Note:**
  >
@@ -219,11 +209,11 @@ Extra Browser Support
 ---------------------
 To try our color samples for FirefoxColor test pilot, check these URLs:
 
-  1. [**Plata**](https://color.firefox.com/?theme=XQAAAAL8AAAAAAAAAABBKYhm849SCia2CaaEGccwS-xNKliFvd9NUAF6ENY3kBjKL2oHo45W2-O_o0hH8v9jyb1gPLS8xyg320t5BtQBRbshC37eqwUpEtrNzUXzzCCGCEnPVujOpTgJBqePqVNh4q1nxYUIdLIFaoaGFtpU8UGWTHdYK89VREGS2_uycyNkLyT_fUsp3rt8085FMcIrk2zP6zlQ8nXHifYExWUlXde95kD4F3H_cvgAAA)
+  1. [**Platano**](https://color.firefox.com/?theme=XQAAAAL8AAAAAAAAAABBKYhm849SCia2CaaEGccwS-xNKliFvd9NUAF6ENY3kBjKL2oHo45W2-O_o0hH8v9jyb1gPLS8xyg320t5BtQBRbshC37eqwUpEtrNzUXzzCCGCEnPVujOpTgJBqePqVNh4q1nxYUIdLIFaoaGFtpU8UGWTHdYK89VREGS2_uycyNkLyT_fUsp3rt8085FMcIrk2zP6zlQ8nXHifYExWUlXde95kD4F3H_cvgAAA)
 
-  2. [**Plata-Lumine**](https://color.firefox.com/?theme=XQAAAAL8AAAAAAAAAABBKYhm849SCia2CaaEGccwS-xNKliFvd9NUAF6ENY3kBjKL2oHo45W2-O_o0hH8v9jyb1gPLS8xyg3NbO0xf8CWW1IQ-VFBeST-c2ya550Jq-AJT3qXk84PCZgv4Q1Ip6G8KMxah3hVdR8-Zr9ze0kGqgOtR7bn1Nps1cYGNzQQkA8ajSLlQnjaMNzy_Cgfm6TGsTtSGCZPEHAaGevqPSrPV7L_8f2AAA)
+  2. [**Platano-Lumine**](https://color.firefox.com/?theme=XQAAAAL8AAAAAAAAAABBKYhm849SCia2CaaEGccwS-xNKliFvd9NUAF6ENY3kBjKL2oHo45W2-O_o0hH8v9jyb1gPLS8xyg3NbO0xf8CWW1IQ-VFBeST-c2ya550Jq-AJT3qXk84PCZgv4Q1Ip6G8KMxah3hVdR8-Zr9ze0kGqgOtR7bn1Nps1cYGNzQQkA8ajSLlQnjaMNzy_Cgfm6TGsTtSGCZPEHAaGevqPSrPV7L_8f2AAA)
 
-  3. [**Plata-Noir**](https://color.firefox.com/?theme=XQAAAAL8AAAAAAAAAABBKYhm849SCia2CaaEGccwS-xNKlhR4U3ii01izoNSwV8EzxA9i34l-h9kNzmmbht5egIz1VwqGu4asy3bC0Iu-fSfcIJAVAwKwUYrdnMCFPHjDRh3WIEk3D10l1b0yhJ2JJ4iidXrDdOeHtPXECgT4mWPRinIv4rInTDn_LmydH4PXIv_OPeKQZiffADmQZvxlSWtpsLQfUznQX8sEtOtxfBaEVM7_-LnUAA)
+  3. [**Platano-Noir**](https://color.firefox.com/?theme=XQAAAAL8AAAAAAAAAABBKYhm849SCia2CaaEGccwS-xNKlhR4U3ii01izoNSwV8EzxA9i34l-h9kNzmmbht5egIz1VwqGu4asy3bC0Iu-fSfcIJAVAwKwUYrdnMCFPHjDRh3WIEk3D10l1b0yhJ2JJ4iidXrDdOeHtPXECgT4mWPRinIv4rInTDn_LmydH4PXIv_OPeKQZiffADmQZvxlSWtpsLQfUznQX8sEtOtxfBaEVM7_-LnUAA)
 
  > **Note:**
  >
@@ -253,71 +243,14 @@ Extra Dock Support
 
  > **Note:**
  >
- >   * Both Plata and Plata-Noir shares the dark theming, Plata-Lumine uses light theming.
+ >   * Both Platano and Platano-Noir shares the dark theming, Platano-Lumine uses light theming.
  >   * Don't expect too much. Plank is NOT a themeable widget for me!
 
 Extra Compositor Support
 ------------------------
- Compton is the famous stand-alone compositor that works well with the Openbox window-manager. The installer installs recommended configuration file `compton.conf` into `Plata/openbox-3` directory if Openbox support is enabled.
+ Compton is the famous stand-alone compositor that works well with the Openbox window-manager. The installer installs recommended configuration file `compton.conf` into `Platano/openbox-3` directory if Openbox support is enabled.
 
- Next, copy that file into `~/.config/` and restart compton to read the settings.  That compositor still has some limitations in its features for Plata, however.
-
-Extra Telegram Support
-----------------------
- To try "Telegram 1.0" theming, pass this option:
-
- ```
- --enable-telegram      enable Telegram 1.0 support (type: bool)
- ```
-
- The installer installs compressed `tdesktop-theme` files into `Plata*/telegram` directories if Telegram support is enabled.
- Then open the file via Telegram > Main Menu > Settings > Chat background > Choose from file.
-
- > **Note:**
- >
- >   * The `plata.tdesktop-theme` and `plata-lumine.tdesktop-theme` are for light-variant, and `plata-noir.tdesktop-theme` is for dark-variant.
- >   * Bundled noise-texture images are for *tiled* mode.
- >   * Telegram support is a W.I.P currently.
-
-Extra Tweetdeck Support
------------------------
- To try "Colordeck for Tweetdeck" extension theming, pass this option:
-
- ```
- --enable-tweetdeck      enable Tweetdeck-colordeck support (type: bool)
- ```
-
- The installer installs `cdk` files into `Plata*/tweetdeck` directories if Tweetdeck support is enabled.
- Then open the file via Colordeck -> import > "Colors" -> Choose File.
-
- > **Note:**
- >
- >   * [**Chrome Web Store**](https://chrome.google.com/webstore/detail/colordeck-for-tweetdeck/jgoilgghdiafcdpgaddhfnlnhjhiejjl)
- >   * [**Firefox Add-ons**](https://addons.mozilla.org/en-US/firefox/addon/colordeck/)
- >   * Mixed and dark variants are supported.
- >   * Currently those files support "Colors" only, so enabling "Colors" checkbox is enough.
-
-Extra Air-for-Steam Support
----------------------------
- To try "Air for Steam" colors and themes, pass this option (dark-variant only):
-
- ```
- --enable-airforsteam      enable Air-for-Steam support (type: bool)
- ```
-
- You should veify that you've already installed Air-for-Steam skin to `~/.steam/skins` directory.
- The installer installs 2 files into `Plata-Noir/airforsteam` directory if Air-for-Steam support is enabled:
-  * Copy `Resource/colors/plata-noir.styles` to `~/.steam/skins/Air-for-Steam-*/Resource/colors` or
-    `~/.steam/skins/Air-for-Steam-*/Resource/colors/user`.
-  * Copy `Resource/themes/_plata-noir.styles` to `~/.steam/skins/Air-for-Steam-*/Resource/themes`.
-
- Edit `~/.steam/skins/Air-for-Steam-*/config.init` to activate those styles, then restart the Steam app.
-
-Work in Progress
-----------------
-
-TODO
-----
+ Next, copy that file into `~/.config/` and restart compton to read the settings.  That compositor still has some limitations in its features for Platano, however.
 
 Public License
 --------------
@@ -329,12 +262,3 @@ Public License
  >
  > And an icon-theme in Cinnamon thumbnails:
  > [**Paper Icons**](http://snwh.org/paper/icons) by Sam Hewitt is licensed under CC-SA-4.0.
-
-Donations
----------
-
-Special Thanks to
---------------
- Nana-4, the developer of Materia (formerly Flat-Plat)
-
- Sam Hewitt, the developer of Paper-icon theme
