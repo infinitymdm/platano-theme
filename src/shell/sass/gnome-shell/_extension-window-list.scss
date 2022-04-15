@@ -113,8 +113,8 @@
   &:focus > StWidget {
     border: 1px solid $sel_bg;
     background-gradient-drection: vertical;
-    background-gradient-start: opacity($sel_bg, $a_trk_out);
-    background-gradient-end: opacity($sel_bg, $a_trk_out);
+    background-gradient-start: opacity($sel_bg, $alpha_track_out);
+    background-gradient-end: opacity($sel_bg, $alpha_track_out);
     color: $osd_fg;
   }
 }

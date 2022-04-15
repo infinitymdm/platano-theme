@@ -111,7 +111,7 @@ $icon_padding: 9px;
   &.extended:overview #dash {
     padding: 0;
     border: none;
-    transition-duration: $tr_d_lng;
+    transition-duration: $transition_d_long;
   }
 
   @each $_dock, $_radius in (top, 0 0 $r_2 $r_2),
@@ -144,7 +144,7 @@ $icon_padding: 9px;
   }
 
   &:overview #dash { // overview-mode #1
-    background-color: if($variant == light, opacity($panel_bg, $a_fg_3rd),
+    background-color: if($variant == light, opacity($panel_bg, $alpha_foreground_3rd),
                                             $panel_hidden_bg);
     box-shadow: $empty_shadow;
   }
@@ -152,7 +152,7 @@ $icon_padding: 9px;
   &.opaque:overview,
   &.transparent:overview { // overview-mode #2
     #dash {
-      background-color: if($variant == light, opacity($panel_bg, $a_fg_3rd),
+      background-color: if($variant == light, opacity($panel_bg, $alpha_foreground_3rd),
                                               transparent !important);
       box-shadow: none !important;
     }
@@ -162,7 +162,7 @@ $icon_padding: 9px;
   &.opaque.extended:overview,
   &.transparent.extended:overview {
     #dash {
-      background-color: if($variant == light, opacity($panel_bg, $a_fg_3rd),
+      background-color: if($variant == light, opacity($panel_bg, $alpha_foreground_3rd),
                                               $panel_hidden_bg);
       box-shadow: $empty_shadow;
     }
@@ -185,7 +185,7 @@ $icon_padding: 9px;
     &:active .overview-icon { background-color: $osd_fill_bg; }
 
     &:checked:hover .overview-icon {
-      background-color: mix($sel_fg, $sel_bg, percentage($a_trk_1));
+      background-color: mix($sel_fg, $sel_bg, percentage($alpha_track_1));
     }
   }
 
@@ -253,10 +253,10 @@ $icon_padding: 9px;
 //  * Dash To Panel Extension *
 //  ***************************/
 
-$a_dtp_trk_1: if($variant == light, $a_trk_1,
-                                    $a_trk_1 - 0.08);
-$a_dtp_trk_2: if($variant == light, $a_trk_2,
-                                    $a_trk_2 - 0.15);
+$a_dtp_trk_1: if($variant == light, $alpha_track_1,
+                                    $alpha_track_1 - 0.08);
+$a_dtp_trk_2: if($variant == light, $alpha_track_2,
+                                    $alpha_track_2 - 0.15);
 
 @each $_position, $_line in (Top, 0 2px),
                             (Bottom, 0 -2px) {
@@ -360,7 +360,7 @@ $rename_box_spacing: 6px;
 .rename-popup {
   @extend %popover_content;
   padding: ($rename_box_spacing + 4px) $rename_box_spacing $rename_box_spacing;
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: opacity($osd_bg, $alpha_osd);
   color: $osd_sec_fg;
 
   StEntry { // OSD-style-ed entry

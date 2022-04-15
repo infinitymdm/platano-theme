@@ -16,13 +16,13 @@
 
 $fg: if($variant == dark, color($grey, 100),
                           mix(color($grey, 900), black));
-$sec_fg: opacity($fg, $a_fg_2nd);
-$ter_fg: opacity($fg, $a_fg_3rd);
-$dis_fg: opacity($fg, $a_fg_dis);
-$dis_sec_fg: opacity($sec_fg, $a_fg_dis);
+$sec_fg: opacity($fg, $alpha_foreground_2nd);
+$ter_fg: opacity($fg, $alpha_foreground_3rd);
+$dis_fg: opacity($fg, $alpha_foreground_dis);
+$dis_sec_fg: opacity($sec_fg, $alpha_foreground_dis);
 
 $sel_fg: white;
-$sec_sel_fg: opacity($sel_fg, $a_fg_sel_2nd);
+$sec_sel_fg: opacity($sel_fg, $alpha_foreground_sel_2nd);
 
 //
 // OSD Foreground colors
@@ -30,15 +30,15 @@ $sec_sel_fg: opacity($sel_fg, $a_fg_sel_2nd);
 
 $osd_fg: if($variant == light, mix(color($grey, 900), black),
                                color($grey, 100));
-$osd_sec_fg: opacity($osd_fg, $a_fg_2nd);
-$osd_ter_fg: opacity($osd_fg, $a_fg_3rd);
-$dis_osd_fg: opacity($osd_fg, $a_fg_dis);
-$dis_osd_sec_fg: opacity($osd_sec_fg, $a_fg_dis);
+$osd_sec_fg: opacity($osd_fg, $alpha_foreground_2nd);
+$osd_ter_fg: opacity($osd_fg, $alpha_foreground_3rd);
+$dis_osd_fg: opacity($osd_fg, $alpha_foreground_dis);
+$dis_osd_sec_fg: opacity($osd_sec_fg, $alpha_foreground_dis);
 
 $ovv_fg: white;
-$ovv_sec_fg: opacity($ovv_fg, $a_fg_2nd);
-$ovv_ter_fg: opacity($ovv_fg, $a_fg_3rd);
-$ovv_dis_fg: opacity($ovv_fg, $a_fg_dis);
+$ovv_sec_fg: opacity($ovv_fg, $alpha_foreground_2nd);
+$ovv_ter_fg: opacity($ovv_fg, $alpha_foreground_3rd);
+$ovv_dis_fg: opacity($ovv_fg, $alpha_foreground_dis);
 
 //
 // Background colors
@@ -54,27 +54,27 @@ $dark_bg: if($variant == dark,
              mix(color($grey, 900), black, 25%),
              mix(color($grey, 200), color($grey, 300)));
 
-$semi_fill_bg: opacity($fg, $a_trk_1);
-$fill_bg: opacity($fg, $a_trk_2);
+$semi_fill_bg: opacity($fg, $alpha_track_1);
+$fill_bg: opacity($fg, $alpha_track_2);
 $hidden_fill_bg: rgba(0, 0, 0, 0.01);
 
 $sel_bg: $key_selection_color;
 $sel_label: if($variant == dark,
                saturate(
-                 lighten($sel_bg, percentage($a_trk_2)),
-                 percentage($a_trk_2)),
+                 lighten($sel_bg, percentage($alpha_track_2)),
+                 percentage($alpha_track_2)),
                $sel_bg);
 $osd_sel_label: if($variant != light,
                    saturate(
-                     lighten($sel_bg, percentage($a_trk_2)),
-                     percentage($a_trk_2)),
+                     lighten($sel_bg, percentage($alpha_track_2)),
+                     percentage($alpha_track_2)),
                    $sel_bg);
 $ovv_sel_label: saturate(
-                  lighten($sel_bg, percentage($a_trk_2)),
-                  percentage($a_trk_2));
+                  lighten($sel_bg, percentage($alpha_track_2)),
+                  percentage($alpha_track_2));
 
-$out_fg: opacity($fg, $a_trk_out);
-$dis_out_fg: opacity($out_fg, $a_fg_dis);
+$out_fg: opacity($fg, $alpha_track_out);
+$dis_out_fg: opacity($out_fg, $alpha_foreground_dis);
 
 //
 // OSD Background colors
@@ -83,20 +83,20 @@ $dis_out_fg: opacity($out_fg, $a_fg_dis);
 $osd_bg: if($variant == light,
             mix(color($grey, 200), color($grey, 300)),
             mix(color($grey, 900), black, 25%));
-$osd_semi_fill_bg: opacity($osd_fg, $a_trk_1);
-$osd_fill_bg: opacity($osd_fg, $a_trk_2);
+$osd_semi_fill_bg: opacity($osd_fg, $alpha_track_1);
+$osd_fill_bg: opacity($osd_fg, $alpha_track_2);
 
 $osd_base: if($variant == light,
               white,
               mix(color($grey, 900), black));
 
-$osd_out_fg: opacity($osd_fg, $a_trk_out);
-$dis_osd_out_fg: opacity($osd_out_fg, $a_fg_dis);
+$osd_out_fg: opacity($osd_fg, $alpha_track_out);
+$dis_osd_out_fg: opacity($osd_out_fg, $alpha_foreground_dis);
 
-$ovv_semi_fill_bg: opacity($ovv_fg, $a_trk_1);
-$ovv_fill_bg: opacity($ovv_fg, $a_trk_2);
+$ovv_semi_fill_bg: opacity($ovv_fg, $alpha_track_1);
+$ovv_fill_bg: opacity($ovv_fg, $alpha_track_2);
 
-$ovv_out_fg: opacity($ovv_fg, $a_trk_out);
+$ovv_out_fg: opacity($ovv_fg, $alpha_track_out);
 
 //
 // Accent colors
@@ -105,60 +105,60 @@ $ovv_out_fg: opacity($ovv_fg, $a_trk_out);
 $acc_bg: $key_accent_color;
 $acc_fg: if($variant == dark,
             saturate(
-              lighten($acc_bg, percentage($a_trk_1)),
-              percentage($a_trk_1)),
+              lighten($acc_bg, percentage($alpha_track_1)),
+              percentage($alpha_track_1)),
             saturate(
-              darken($acc_bg, percentage($a_trk_2)),
-              percentage($a_trk_2)));
-$sec_acc_fg: opacity($acc_fg, $a_fg_2nd);
-$dis_acc_fg: opacity($acc_fg, $a_fg_dis);
+              darken($acc_bg, percentage($alpha_track_2)),
+              percentage($alpha_track_2)));
+$sec_acc_fg: opacity($acc_fg, $alpha_foreground_2nd);
+$dis_acc_fg: opacity($acc_fg, $alpha_foreground_dis);
 
-$acc_semi_fill_bg: opacity($acc_fg, $a_trk_1);
-$acc_fill_bg: opacity($acc_fg, $a_trk_2);
-$acc_out_fg: opacity($acc_fg, $a_trk_out);
+$acc_semi_fill_bg: opacity($acc_fg, $alpha_track_1);
+$acc_fill_bg: opacity($acc_fg, $alpha_track_2);
+$acc_out_fg: opacity($acc_fg, $alpha_track_out);
 
 $inv_acc_fg:if($variant == light,
             saturate(
-              darken($acc_bg, percentage($a_trk_2)),
-              percentage($a_trk_2)),
+              darken($acc_bg, percentage($alpha_track_2)),
+              percentage($alpha_track_2)),
             saturate(
-              lighten($acc_bg, percentage($a_trk_1)),
-              percentage($a_trk_1)));
-$inv_sec_acc_fg: track($inv_acc_fg, $a_fg_2nd);
+              lighten($acc_bg, percentage($alpha_track_1)),
+              percentage($alpha_track_1)));
+$inv_sec_acc_fg: track($inv_acc_fg, $alpha_foreground_2nd);
 $inv_acc_semi_fill_bg: if($variant == mixed,
-                          opacity($inv_acc_fg, $a_trk_1),
-                          opacity($acc_fg, $a_trk_1));
+                          opacity($inv_acc_fg, $alpha_track_1),
+                          opacity($acc_fg, $alpha_track_1));
 $inv_acc_fill_bg: if($variant == mixed,
-                     opacity($inv_acc_fg, $a_trk_2),
-                     opacity($acc_fg, $a_trk_2));
+                     opacity($inv_acc_fg, $alpha_track_2),
+                     opacity($acc_fg, $alpha_track_2));
 $ovv_acc_fg: saturate(
-             lighten($acc_bg, percentage($a_trk_1)),
-             percentage($a_trk_1));
-$ovv_sec_acc_fg: track($ovv_acc_fg, $a_fg_2nd);
+             lighten($acc_bg, percentage($alpha_track_1)),
+             percentage($alpha_track_1));
+$ovv_sec_acc_fg: track($ovv_acc_fg, $alpha_foreground_2nd);
 
 //
 // Misc colors
 //
 
-$div_fg: if($variant == dark, opacity(black, $a_div_0),
-                              opacity(black, $a_div_1));
-$div_sld_fg: if($variant == dark, mix(black, $base, percentage($a_div_0)),
-                                  mix(black, $bg, percentage($a_div_1)));
+$div_fg: if($variant == dark, opacity(black, $alpha_div_0),
+                              opacity(black, $alpha_div_1));
+$div_sld_fg: if($variant == dark, mix(black, $base, percentage($alpha_div_0)),
+                                  mix(black, $bg, percentage($alpha_div_1)));
 
 $link: color($blue, $primary_level);
 $link_vst: color($purple, $primary_level);
 
 $link_fg: if($variant == dark,
-             saturate(lighten($link, percentage($a_trk_1)),
-               percentage($a_trk_1)),
+             saturate(lighten($link, percentage($alpha_track_1)),
+               percentage($alpha_track_1)),
              $link);
 $link_vst_fg: if($variant == dark,
-                 saturate(lighten($link_vst, percentage($a_trk_2)),
-                   percentage($a_trk_2)),
+                 saturate(lighten($link_vst, percentage($alpha_track_2)),
+                   percentage($alpha_track_2)),
                  $link_vst);
 $osd_link_fg: if($variant != light,
-                 saturate(lighten($link, percentage($a_trk_1)),
-                   percentage($a_trk_1)),
+                 saturate(lighten($link, percentage($alpha_track_1)),
+                   percentage($alpha_track_1)),
                  $link);
 
 $warn: color($orange, $primary_level);

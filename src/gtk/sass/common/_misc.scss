@@ -103,7 +103,7 @@ gp-applet > menubar,
     &:checked {
       &, &:hover {
         @include button(flat-lined-checked, $tc: $sel_fg);
-        background-color: track($sel_fg, $a_trk_1);
+        background-color: track($sel_fg, $alpha_track_1);
       }
     }
 
@@ -120,7 +120,7 @@ gp-applet > menubar,
     &:checked {
       &, &:hover {
         @include button(flat-lined-checked, $tc: black);
-        background-color: track(black, $a_trk_1);
+        background-color: track(black, $alpha_track_1);
       }
     }
 
@@ -152,32 +152,32 @@ gp-applet > menubar,
 wnck-pager {
   @if $variant != light {
     background-color: transparent;
-    color: mix($inv_fg, $panel_bg, percentage($a_fg_3rd)); // use opaque
+    color: mix($inv_fg, $panel_bg, percentage($alpha_foreground_3rd)); // use opaque
     box-shadow:
-      inset 0 0 0 1px mix($inv_fg, $panel_bg, percentage($a_fg_bdp));
+      inset 0 0 0 1px mix($inv_fg, $panel_bg, percentage($alpha_foreground_bdp));
     &:hover {
       background-color: $trk_bg;
       color: $inv_fg;
       box-shadow: inset 0 0 0 1px $trk_out_fg;
     }
     &:selected {
-      background-color: track($sel_bg, $a_trk_out);
+      background-color: track($sel_bg, $alpha_track_out);
       color: $inv_fg;
       box-shadow: inset 0 0 0 1px $sel_bg;
     }
   }
   @else {
     background-color: transparent;
-    color: mix($fg, $panel_bg, percentage($a_fg_3rd)); // use opaque
+    color: mix($fg, $panel_bg, percentage($alpha_foreground_3rd)); // use opaque
     box-shadow:
-      inset 0 0 0 1px mix($fg, $panel_bg, percentage($a_fg_bdp));
+      inset 0 0 0 1px mix($fg, $panel_bg, percentage($alpha_foreground_bdp));
     &:hover {
       background-color: $trk_bg;
       color: $fg;
       box-shadow: inset 0 0 0 1px $trk_out_fg;
     }
     &:selected {
-      background-color: track($sel_bg, $a_trk_out);
+      background-color: track($sel_bg, $alpha_track_out);
       color: $fg;
       box-shadow: inset 0 0 0 1px $sel_bg;
     }
@@ -309,8 +309,8 @@ list.tweak-group-startup { background-color: $bg; }
   outline-width: 0; // hide outlines
   &:hover {
     > grid {
-      background-image: image(track($sec_fg, $a_trk_1));
-      transition: background-image $tr_d_std $tr_t_dec;
+      background-image: image(track($sec_fg, $alpha_track_1));
+      transition: background-image $transition_d_standard $transition_t_dec;
     }
   }
   &:active { @include transition(reset); } // disable ripples
@@ -318,7 +318,7 @@ list.tweak-group-startup { background-color: $bg; }
   > grid { // actual container
     @include radius($r_2);
     padding: rem($entry_lr_space);
-    transition: background-image $tr_d_std $tr_t_dec;
+    transition: background-image $transition_d_standard $transition_t_dec;
 
     > button { // 'remove' buttons
       @include button(raised-normal, $c: $dest_bg, $tc: $sec_sel_fg);
@@ -331,8 +331,8 @@ list.tweak-group-startup { background-color: $bg; }
       &:checked {
         @include button(raised-checked);
         &:disabled {
-          border-color: mix($dest_bg, $bg, percentage($a_trk_1));
-          background-color: mix($dest_bg, $bg, percentage($a_trk_1));
+          border-color: mix($dest_bg, $bg, percentage($alpha_track_1));
+          background-color: mix($dest_bg, $bg, percentage($alpha_track_1));
           color: $dis_sel_fg;
         }
       }
@@ -399,8 +399,8 @@ $gf_margin: 12px;
 
     > box {
       padding: $gf_margin;
-      @if $variant == mixed { background-color: track($inv_dark_bg, $a_osd); }
-      @else { background-color: track($dark_bg, $a_osd); }
+      @if $variant == mixed { background-color: track($inv_dark_bg, $alpha_osd); }
+      @else { background-color: track($dark_bg, $alpha_osd); }
     }
   }
 
@@ -408,8 +408,8 @@ $gf_margin: 12px;
   &.solid {
     border-radius: 0;
     border: 1px solid $div_fg;
-    @if $variant == mixed { background-color: track($inv_dark_bg, $a_osd); }
-    @else { background-color: track($dark_bg, $a_osd); }
+    @if $variant == mixed { background-color: track($inv_dark_bg, $alpha_osd); }
+    @else { background-color: track($dark_bg, $alpha_osd); }
   }
 }
 
@@ -589,11 +589,11 @@ $gf_margin: 12px;
   > frame {
     border-radius: $r_8;
     @if $variant == mixed { // alpha compositing doesn't work though
-      background-color: track($inv_dark_bg, $a_osd);
+      background-color: track($inv_dark_bg, $alpha_osd);
       color: $inv_fg;
     }
     @else {
-      background-color: track($dark_bg, $a_osd);
+      background-color: track($dark_bg, $alpha_osd);
       color: $fg;
     }
 
@@ -772,8 +772,8 @@ $gf_margin: 12px;
 
   &.free {
     @include radius($r, none);
-    background-color: mix($fg, $base, percentage($a_trk_1)); // legacy
-    color: mix($fg, $base, percentage($a_trk_1)); // >= 3.29.90
+    background-color: mix($fg, $base, percentage($alpha_track_1)); // legacy
+    color: mix($fg, $base, percentage($alpha_track_1)); // >= 3.29.90
   }
 
   &.used {
@@ -783,8 +783,8 @@ $gf_margin: 12px;
   }
 
   &.unknown {
-    background-color: mix($acc_bg, $base, percentage($a_fg_3rd));
-    color: mix($acc_bg, $base, percentage($a_fg_3rd));
+    background-color: mix($acc_bg, $base, percentage($alpha_foreground_3rd));
+    color: mix($acc_bg, $base, percentage($alpha_foreground_3rd));
   }
 }
 
@@ -814,7 +814,7 @@ dialog.background.csd > box.dialog-vbox > grid.horizontal {
     &.dim-label {
       color: $ter_fg;
       &:selected {
-        &, &:focus { color: mix($sel_fg, $sel_bg, percentage($a_fg_3rd)); }
+        &, &:focus { color: mix($sel_fg, $sel_bg, percentage($alpha_foreground_3rd)); }
       }
     }
   }
@@ -822,7 +822,7 @@ dialog.background.csd > box.dialog-vbox > grid.horizontal {
   &-list-dim-label {
     color: $ter_fg;
     &:selected {
-      &, &:focus { color: mix($sel_fg, $sel_bg, percentage($a_fg_3rd)); }
+      &, &:focus { color: mix($sel_fg, $sel_bg, percentage($alpha_foreground_3rd)); }
     }
   }
 }
@@ -861,15 +861,15 @@ dialog.background.csd > box.dialog-vbox > grid.horizontal {
     background-color: $bg;
     font-weight: 400; // reset weight
     &:selected {
-      background-color: track($sel_bg, $a_trk_2);
+      background-color: track($sel_bg, $alpha_track_2);
       color: $fg;
-      &:hover { background-color: track($sel_bg, $a_trk_2); }
+      &:hover { background-color: track($sel_bg, $alpha_track_2); }
       &:dir(ltr) { box-shadow: inset 4px 0 $sel_bg; }
       &:dir(rtl) { box-shadow: inset -4px 0 $sel_bg; }
       &:focus {
-        background-color: track($sel_bg, $a_trk_2);
+        background-color: track($sel_bg, $alpha_track_2);
         color: $fg;
-        &:hover { background-color: track($sel_bg, $a_trk_2); }
+        &:hover { background-color: track($sel_bg, $alpha_track_2); }
         &:dir(ltr) { box-shadow: inset 4px 0 $sel_bg; }
         &:dir(rtl) { box-shadow: inset -4px 0 $sel_bg; }
       }
@@ -923,15 +923,15 @@ window.background > box.vertical > paned.horizontal > frame {
       background-color: transparent;
 
       slider {
-        background-color: track($fix_fg, $a_fg_3rd * $a_fg_3rd);
-        &:hover { background-color: track($fix_fg, $a_fg_2nd * $a_fg_3rd); }
+        background-color: track($fix_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+        &:hover { background-color: track($fix_fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
         &:active { background-color: $fix_fg; }
-        &:disabled { opacity: $a_fg_bdp; }
+        &:disabled { opacity: $alpha_foreground_bdp; }
       }
 
       &.overlay-indicator {
         &:not(.dragging):not(.hovering) slider {
-          background-color: track($fix_fg, $a_fg_3rd * $a_fg_3rd);
+          background-color: track($fix_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
         }
       }
     }
@@ -1085,7 +1085,7 @@ notebook > stack > box.vertical > paned.vertical > overlay {
 
   // render yellow 'star' icon if bookmarked
   &.starred > image.right {
-    color: track($ques_bg, $a_fg_2nd);
+    color: track($ques_bg, $alpha_foreground_2nd);
     &:hover,
     &:active,
     &:checked { color: $ques_bg; }
@@ -1156,7 +1156,7 @@ notebook > stack > box.vertical > paned.vertical > overlay {
 
 // bookmark-tag flowbox-childs (almost hard-coded)
 flowboxchild.bookmark-tag-widget {
-  color: track($fix_fg, $a_fg_3rd); // unchecked
+  color: track($fix_fg, $alpha_foreground_3rd); // unchecked
   font-weight: 500;
 
   label { margin-bottom: rem($baseline, $sw: 1.0); }
@@ -1200,13 +1200,13 @@ window.background box.vertical > paned.horizontal > box.vertical {
     &.inactive {
       &:not(:hover):not(:active):not(:selected) {
         label,
-        image { opacity: $a_fg_3rd; }
+        image { opacity: $alpha_foreground_3rd; }
       }
     }
 
     &:selected {
       background-image:
-        image(mix($sel_bg, $bg, percentage($a_trk_2)));
+        image(mix($sel_bg, $bg, percentage($alpha_track_2)));
       &:dir(ltr) { box-shadow: inset 4px 0 $sel_bg; }
       &:dir(rtl) { box-shadow: inset -4px 0 $sel_bg; }
     }
@@ -1397,7 +1397,7 @@ window.background {
 
 scrolledwindow {
   &.history-view.frame {
-    border-bottom-color: if($variant == dark, track(white, $a_div_2),
+    border-bottom-color: if($variant == dark, track(white, $alpha_div_2),
                                               $div_fg);
 
     row.history-entry widget > label { color: $ter_fg; }
@@ -1411,7 +1411,7 @@ scrolledwindow {
 .gedit-bottom-panel-paned {
   .gedit-search-slider {
     @extend %app_slider;
-    background-color: track($tooltip_bg, $a_osd);
+    background-color: track($tooltip_bg, $alpha_osd);
     color: $fg;
   }
 }
@@ -1611,7 +1611,7 @@ eggsearchbar box.search-bar { background-color: $dark_bg; }
   &:not(:hover):not(:active) > entry {
     @if $variant == mixed {
       background-image:
-        image(mix($inv_fg, $inv_base, percentage($a_trk_1 / 2)));
+        image(mix($inv_fg, $inv_base, percentage($alpha_track_1 / 2)));
       color: $inv_sec_fg;
       caret-color: $inv_sec_fg;
 
@@ -1628,7 +1628,7 @@ eggsearchbar box.search-bar { background-color: $dark_bg; }
   &:hover > entry {
     @if $variant == mixed {
       background-image:
-        image(mix($inv_fg, $inv_base, percentage($a_trk_1 / 2)));
+        image(mix($inv_fg, $inv_base, percentage($alpha_track_1 / 2)));
       color: $inv_fg;
       caret-color: $inv_fg;
 
@@ -1681,7 +1681,7 @@ omnibar.linked {
 
     trough { background-color: transparent; }
 
-    progress { background-color: track($acc_bg, $a_trk_out); }
+    progress { background-color: track($acc_bg, $alpha_track_out); }
   }
 
   // child buttons have fixed 24px min-height/width via shared-omnibar.css
@@ -1932,7 +1932,7 @@ button.dzlmenubuttonitem.check { // menuitem buttons
   @include transition(reset); // unset transition
   font-weight: 400; // reset weight
 
-  box > image { opacity: $a_fg_2nd; }
+  box > image { opacity: $alpha_foreground_2nd; }
 
   label { padding: rem(5.3px) 0 rem(6.7px); }
 
@@ -2132,8 +2132,8 @@ window.background > box.vertical box.horizontal {
       &:active { color: $fg; }
       &:not(:disabled) { // for quicker response
         background-image: none;
-        transition-duration: $tr_d_sht;
-        transition-delay: $tr_d_non;
+        transition-duration: $transition_d_short;
+        transition-delay: $transition_d_none;
         animation: none;
       }
 
@@ -2147,12 +2147,12 @@ window.background > box.vertical box.horizontal {
         background-image: image($bg);
         color: $fg;
         &:hover {
-          background-image: image(mix($fg, $bg, percentage($a_trk_1 / 2)));
+          background-image: image(mix($fg, $bg, percentage($alpha_track_1 / 2)));
           color: $fg;
         }
         &:active {
           &, &:focus {
-            background-image: image(mix($fg, $bg, percentage($a_trk_1)));
+            background-image: image(mix($fg, $bg, percentage($alpha_track_1)));
             color: $fg;
           }
         }
@@ -2170,17 +2170,17 @@ window.background > box.vertical box.horizontal {
                                  border-image,
                                  background-image,
                                  box-shadow;
-            transition-duration: $tr_d_sht;
+            transition-duration: $transition_d_short;
             animation: none;
           }
           &:hover {
             background-image: image(mix($sel_label,
-                                        $base, percentage($a_trk_1 / 2)));
+                                        $base, percentage($alpha_track_1 / 2)));
           }
           &:active {
             &, &:focus {
               background-image: image(mix($sel_label,
-                                          $base, percentage($a_trk_1)));
+                                          $base, percentage($alpha_track_1)));
               color: $sel_label;
             }
           }
@@ -2188,7 +2188,7 @@ window.background > box.vertical box.horizontal {
           label.compressed-entries-label {
             background-image: image($sel_bg);
             color: $sel_fg;
-            transition-duration: $tr_d_non;
+            transition-duration: $transition_d_none;
           }
         }
       }
@@ -2240,12 +2240,12 @@ terminal-window {
 
       @if $variant == mixed {
         scrollbar {
-          background-color: track($inv_base, $a_fg_3rd);
+          background-color: track($inv_base, $alpha_foreground_3rd);
 
           slider {
-            background-color: track($inv_fg, $a_fg_3rd * $a_fg_3rd);
+            background-color: track($inv_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
             &:hover {
-              background-color: track($inv_fg, $a_fg_2nd * $a_fg_3rd);
+              background-color: track($inv_fg, $alpha_foreground_2nd * $alpha_foreground_3rd);
             }
             &:active { background-color: $inv_fg; }
           }
@@ -2369,25 +2369,25 @@ frame#weather-page-content-view { // condition-specific
         $_mask_alpha,
         $_mix_pct in
   (clear,
-    $fix_fg, $sel_fg, $sel_fg, $a_fg_3rd, $a_trk_1, 100%),
+    $fix_fg, $sel_fg, $sel_fg, $alpha_foreground_3rd, $alpha_track_1, 100%),
   (few-clouds,
-    $fix_fg, $sel_fg, $sel_fg, $a_fg_3rd, $a_trk_1, 10%),
+    $fix_fg, $sel_fg, $sel_fg, $alpha_foreground_3rd, $alpha_track_1, 10%),
   (showers,
-    $sel_fg, $fix_fg, $fix_fg, $a_fg_2nd, $a_trk_1, 50%),
+    $sel_fg, $fix_fg, $fix_fg, $alpha_foreground_2nd, $alpha_track_1, 50%),
   (showers-scattered,
-    $sel_fg, $fix_fg, $fix_fg, $a_fg_2nd, $a_trk_1, 50%),
+    $sel_fg, $fix_fg, $fix_fg, $alpha_foreground_2nd, $alpha_track_1, 50%),
   (storm,
-    $sel_fg, $fix_fg, $fix_fg, $a_fg_2nd, $a_trk_1, 50%),
+    $sel_fg, $fix_fg, $fix_fg, $alpha_foreground_2nd, $alpha_track_1, 50%),
   (overcast,
-    $fix_fg, $sel_fg, $inv_fg, $a_fg_2nd, $a_fg_3rd, 75%),
+    $fix_fg, $sel_fg, $inv_fg, $alpha_foreground_2nd, $alpha_foreground_3rd, 75%),
   (fog,
-    $fix_fg, $sel_fg, $inv_fg, $a_fg_2nd, $a_fg_3rd, 75%),
+    $fix_fg, $sel_fg, $inv_fg, $alpha_foreground_2nd, $alpha_foreground_3rd, 75%),
   (snow,
-    $sel_fg, $link_fg, $sel_fg, $a_fg_3rd, $a_trk_1, 80%),
+    $sel_fg, $link_fg, $sel_fg, $alpha_foreground_3rd, $alpha_track_1, 80%),
   (few-clouds-night,
-    $sel_fg, $link_fg, $sel_fg, $a_fg_3rd, $a_trk_1, 80%),
+    $sel_fg, $link_fg, $sel_fg, $alpha_foreground_3rd, $alpha_track_1, 80%),
   (clear-night,
-    $inv_acc_fg, $sel_fg, $sel_fg, $a_fg_2nd, $a_trk_1, 100%) {
+    $inv_acc_fg, $sel_fg, $sel_fg, $alpha_foreground_2nd, $alpha_track_1, 100%) {
 
     &.weather-#{$_condition} {
       button.radio.text-button,
@@ -2403,7 +2403,7 @@ frame#weather-page-content-view { // condition-specific
         &:active {
           // FIXME: ink reaction can't be rendered smoothly,
           // so fill background instead.
-          background-color: track($_label_1_color, $a_trk_2);
+          background-color: track($_label_1_color, $alpha_track_2);
           color: #{$_label_1_color};
           animation: none;
         }
@@ -2520,7 +2520,7 @@ scrolledwindow.view > viewport.frame > stack { // left-pane
       color: $sec_fg;
       font-weight: 500;
 
-      image.dim-label { opacity: $a_fg_2nd; } // tone up icons
+      image.dim-label { opacity: $alpha_foreground_2nd; } // tone up icons
 
       label,
       image { color: $sec_fg; }
@@ -2709,8 +2709,8 @@ dialog.background.csd {
     &:hover:not(.active) label.item {
       color: if($variant == mixed, $inv_fg, $fg);
       box-shadow: inset 0 -2px if($variant == mixed,
-                                 track($inv_fg, $a_trk_out),
-                                 track($fg, $a_trk_out));
+                                 track($inv_fg, $alpha_track_out),
+                                 track($fg, $alpha_track_out));
     }
 
     &.active label.item { // redraw underline indicators
@@ -2791,17 +2791,17 @@ scrolledwindow.character-list-scroll {
     background-color: transparent;
 
     slider {
-      background-color: track($ter_fix_fg, $a_fg_3rd);
+      background-color: track($ter_fix_fg, $alpha_foreground_3rd);
       &:hover {
-        background-color: track($sec_fix_fg, $a_fg_3rd);
+        background-color: track($sec_fix_fg, $alpha_foreground_3rd);
       }
       &:active { background-color: $fix_fg; }
-      &:disabled { opacity: $a_fg_bdp; }
+      &:disabled { opacity: $alpha_foreground_bdp; }
     }
 
     &.overlay-indicator {
       &:not(.dragging):not(.hovering) slider {
-        background-color: track($ter_fix_fg, $a_fg_3rd);
+        background-color: track($ter_fix_fg, $alpha_foreground_3rd);
       }
     }
   }
@@ -3127,20 +3127,20 @@ window.background > box.vertical > overlay > stack > box.horizontal {
 // tiles view buttons
 button.tile.view { // damned stock CSS
   flowbox > flowboxchild > & {
-    &:hover { box-shadow: inset 0 0 0 9999px track($fg, $a_trk_1); }
-    &:active { box-shadow: inset 0 0 0 9999px track($fg, $a_trk_2); }
+    &:hover { box-shadow: inset 0 0 0 9999px track($fg, $alpha_track_1); }
+    &:active { box-shadow: inset 0 0 0 9999px track($fg, $alpha_track_2); }
   }
 
   box > grid > & {
     &:hover {
       box-shadow: inset 0 0 0 9999px if($variant != dark,
-                                        track($inv_fg, $a_trk_1),
-                                        track($fg, $a_trk_1));
+                                        track($inv_fg, $alpha_track_1),
+                                        track($fg, $alpha_track_1));
     }
     &:active {
       box-shadow: inset 0 0 0 9999px if($variant != dark,
-                                        track($inv_fg, $a_trk_2),
-                                        track($fg, $a_trk_2));
+                                        track($inv_fg, $alpha_track_2),
+                                        track($fg, $alpha_track_2));
     }
   }
 
@@ -3149,16 +3149,16 @@ button.tile.view { // damned stock CSS
     &:active { box-shadow: none; }
 
     overlay.recipe > image {
-      opacity: if($variant != dark, 1.0, $a_osd);
+      opacity: if($variant != dark, 1.0, $alpha_osd);
       transition-property: opacity,
                            box-shadow;
-      transition-timing-function: $tr_t_dec;
-      transition-duration: $tr_d_lng;
+      transition-timing-function: $transition_t_dec;
+      transition-duration: $transition_d_long;
     }
 
     &:hover,
     &:active {
-      overlay.recipe > image { opacity: if($variant != dark, $a_osd, 1.0); }
+      overlay.recipe > image { opacity: if($variant != dark, $alpha_osd, 1.0); }
     }
   }
 }
@@ -3171,7 +3171,7 @@ label.content.note { color: $fix_fg; } // enforce dark label color
 // title and author box
 overlay.recipe > image + box {
   margin-bottom: 6px; // make room from bottom edge of images
-  opacity: $a_osd;
+  opacity: $alpha_osd;
   &:dir(ltr) {
     margin-right: 12px;
 
@@ -3249,13 +3249,13 @@ widget {
   color: $sec_fg;
   font-weight: 500;
   &:hover { // use opaque
-    background-image: image(mix($bg, $fg, percentage($a_fg_2nd)));
+    background-image: image(mix($bg, $fg, percentage($alpha_foreground_2nd)));
     color: $fg;
   }
   &:active,
   &:checked { // use opaque
     background-image: image( // use outline-track alpha
-                        mix($sel_bg, $bg, percentage($a_trk_out)));
+                        mix($sel_bg, $bg, percentage($alpha_track_out)));
     color: $sel_label;
     animation: none;
   }
@@ -3280,7 +3280,7 @@ box.speedometer {
   // (progress bit still looks a bit brighter than we expected though)
   &-outter { background-image: image($acc_bg); }
 
-  &-inner { box-shadow: inset 0 0 0 5px track($acc_bg, $a_trk_out); }
+  &-inner { box-shadow: inset 0 0 0 5px track($acc_bg, $alpha_track_out); }
 
   &-content-area label { color: $acc_fg; }
 }

@@ -7,8 +7,8 @@
 //  ***********/
 
 * {
-  transition-timing-function : $tr_t_std;
-  transition-duration: $tr_d_std;
+  transition-timing-function : $transition_t_standard;
+  transition-duration: $transition_d_standard;
 
   text-shadow: none;
   icon-shadow: none;
@@ -123,8 +123,8 @@ StScrollBar {
   StButton#vhandle, StButton#hhandle {
     margin: 0;
     border-radius: 0;
-    background-color: opacity($fg, $a_fg_3rd * $a_fg_3rd);
-    &:hover { background-color: opacity($fg, $a_fg_2nd * $a_fg_3rd); }
+    background-color: opacity($fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+    &:hover { background-color: opacity($fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
     &:active { background-color: $fg; }
   }
 }
@@ -139,7 +139,7 @@ StScrollBar {
   padding: 0;
   border-color: if($variant != dark,
                    $div_fg,
-                   mix(white, $dark_bg, percentage($a_div_2)));
+                   mix(white, $dark_bg, percentage($alpha_div_2)));
   border-bottom-width: 1px;
   border-bottom-style: solid;
   background-color: transparent;
@@ -255,11 +255,11 @@ StScrollBar {
   text-decoration: underline;
   &:hover {
     color: $link_fg;
-    background-color: pacity($link_fg, $a_trk_1);
+    background-color: pacity($link_fg, $alpha_track_1);
   }
   &:active {
     color: $link_fg;
-    background-color: opacity($link_fg, $a_trk_2);
+    background-color: opacity($link_fg, $alpha_track_2);
   }
 }
 
@@ -270,8 +270,8 @@ StScrollBar {
 #Tooltip {
   padding: 7px 8px 8px;
   border-radius: $r_2;
-  background-color: if($variant == mixed, opacity($inv_tooltip_bg, $a_osd),
-                                          opacity($tooltip_bg, $a_osd));
+  background-color: if($variant == mixed, opacity($inv_tooltip_bg, $alpha_osd),
+                                          opacity($tooltip_bg, $alpha_osd));
   color: $osd_fg;
   box-shadow: $empty_shadow;
   font-weight: 400;
@@ -298,7 +298,7 @@ StScrollBar {
     border-bottom: 1px solid $div_fg;
     background-color: $bg;
     background-gradient-direction: none;
-    box-shadow: inset 0 2px 2px opacity(black, $a_trk_1);
+    box-shadow: inset 0 2px 2px opacity(black, $alpha_track_1);
 
     StScrollBar {
       padding: 4px;
@@ -360,7 +360,7 @@ StScrollBar {
     border: 1px solid $div_fg;
     border-radius: $r_4;
     color: $osd_fg;
-    background-color: opacity($osd_bg, $a_osd);
+    background-color: opacity($osd_bg, $alpha_osd);
   }
 
   &-image-menu-item {
@@ -374,7 +374,7 @@ StScrollBar {
     padding: 0;
     border-color: if($variant != dark,
                      $div_fg,
-                     mix(white, $dark_bg, percentage($a_div_2)));
+                     mix(white, $dark_bg, percentage($alpha_div_2)));
     border-bottom-width: 1px;
     border-bottom-style: solid;
     background-color: transparent;
@@ -421,8 +421,8 @@ StScrollBar {
 
     &:dnd {
       background-gradient-direction: vertical;
-      background-gradient-start: opacity($err, $a_fg_bdp);
-      background-gradient-end: opacity($err, $a_fg_bdp);
+      background-gradient-start: opacity($err, $alpha_foreground_bdp);
+      background-gradient-end: opacity($err, $alpha_foreground_bdp);
     }
     &:ltr { padding-right: 4px; }
     &:rtl { padding-left: 4px; }
@@ -436,8 +436,8 @@ StScrollBar {
   &Right {
     &:dnd {
       background-gradient-direction: vertical;
-      background-gradient-start: opacity($link, $a_fg_bdp);
-      background-gradient-end: opacity($link, $a_fg_bdp);
+      background-gradient-start: opacity($link, $alpha_foreground_bdp);
+      background-gradient-end: opacity($link, $alpha_foreground_bdp);
     }
     &:ltr {
       padding-left: 4px;
@@ -459,8 +459,8 @@ StScrollBar {
 
     &:dnd {
       background-gradient-direction: vertical;
-      background-gradient-start: opacity($sccs, $a_fg_bdp);
-      background-gradient-end: opacity($sccs, $a_fg_bdp);
+      background-gradient-start: opacity($sccs, $alpha_foreground_bdp);
+      background-gradient-end: opacity($sccs, $alpha_foreground_bdp);
     }
 
     &.vertical {
@@ -475,7 +475,7 @@ StScrollBar {
 
   &-dummy {
     // placeholder fill-area for 'Move Panels'
-    background-color: opacity($panel_bg, $a_fg_bdp);
+    background-color: opacity($panel_bg, $alpha_foreground_bdp);
 
     &:entered { background-color: $acc_fill_bg; }
   }
@@ -496,7 +496,7 @@ StScrollBar {
     background-color: $hidden_fill_bg;
     color: $osd_fg;
     font-weight: 700;
-    transition-duration: $tr_d_std;
+    transition-duration: $transition_d_standard;
     &:hover,
     &:active {
       color: if($variant != light, $sel_fg, black);
@@ -594,7 +594,7 @@ StScrollBar {
   padding: 0.3em 0.9em 0.4em;
   border-radius: $r_2;
   color: $osd_fg;
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: opacity($osd_bg, $alpha_osd);
   box-shadow: $empty_shadow;
 
   &#selected, // legacy
@@ -627,20 +627,20 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
     height: 200px;
     width: 35px;
     background-image: url("assets/misc/add-workspace.svg");
-    transition-duration: $tr_d_std;
+    transition-duration: $transition_d_standard;
     &:hover {
       background-image: url("assets/misc/add-workspace-hover.svg");
-      transition-duration: $tr_d_std;
+      transition-duration: $transition_d_standard;
     }
     &:active {
       background-image: url("assets/misc/add-workspace-active.svg");
-      transition-duration: $tr_d_std;
+      transition-duration: $transition_d_standard;
     }
   }
 
   &-overview-background-shade {
-    background-color: if($variant != light, opacity(black, $a_fg_3rd),
-                                            opacity(white, $a_fg_dis));
+    background-color: if($variant != light, opacity(black, $alpha_foreground_3rd),
+                                            opacity(white, $alpha_foreground_dis));
   }
 }
 
@@ -679,14 +679,14 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
   border: none;
   border-radius: $r_2;
   color: $osd_fg;
-  transition-duration: $tr_d_std;
+  transition-duration: $transition_d_standard;
   text-align: center;
 
   StLabel { padding-top: 6px; }
 }
 
 .overview-empty-placeholder {
-  color: opacity($ovv_fg, $a_fg_3rd);
+  color: opacity($ovv_fg, $alpha_foreground_3rd);
   font-size: 200%;
 }
 
@@ -699,7 +699,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
   padding: 6px;
   border: none;
   border-radius: $r_8;
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: opacity($osd_bg, $alpha_osd);
   color: $osd_fg;
   box-shadow: $z-depth-4;
 }
@@ -826,7 +826,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
     font-weight: 700;
   }
 
-  &-other-month-day { color: opacity($ter_fg, $a_fg_3rd); }
+  &-other-month-day { color: opacity($ter_fg, $alpha_foreground_3rd); }
 }
 
 // /*****************
@@ -840,8 +840,8 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
   margin-from-right-edge-of-screen: 20px;
   padding: 13px;
   border-radius: $r_8;
-  background-color: if($variant == mixed, opacity($inv_tooltip_bg, $a_osd),
-                                          opacity($tooltip_bg, $a_osd));
+  background-color: if($variant == mixed, opacity($inv_tooltip_bg, $alpha_osd),
+                                          opacity($tooltip_bg, $alpha_osd));
   color: $osd_fg;
   box-shadow: $z-depth-4;
 
@@ -850,8 +850,8 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
     &, &.multi-line-notification {
       padding: 9px;
       border-radius: 0;
-      border: 1px solid if($variant == dark, opacity(white, $a_div_1),
-                                             opacity(black, $a_div_1));
+      border: 1px solid if($variant == dark, opacity(white, $alpha_div_1),
+                                             opacity(black, $alpha_div_1));
       background-color: $base;
       color: $fg;
       box-shadow: $empty_shadow;
@@ -936,7 +936,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
     width: 1px;
     background: if($variant != dark,
                    $div_fg,
-                   mix(white, $dark_bg, percentage($a_div_2)));
+                   mix(white, $dark_bg, percentage($alpha_div_2)));
   }
 }
 
@@ -950,7 +950,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
   border: none;
   border-radius: $r_8;
   color: $osd_fg;
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: opacity($osd_bg, $alpha_osd);
   box-shadow: $z-depth-4;
 
   > StBoxLayout { padding: 4px; }
@@ -999,7 +999,7 @@ $ripple_r: 52px;
     height: $ripple_r * 2;
     border-radius: $ripple_r * 2;
     background-image: none;
-    background-color: opacity($acc_bg, $a_fg_3rd);
+    background-color: opacity($acc_bg, $alpha_foreground_3rd);
     box-shadow: $empty_shadow;
   }
 }
@@ -1013,7 +1013,7 @@ $ripple_r: 52px;
   border: none;
   border-radius: $r_8;
   color: $osd_fg;
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: opacity($osd_bg, $alpha_osd);
   box-shadow: $z-depth-4;
 
   > StBoxLayout:first-child { padding: 20px 10px 10px 10px; }
@@ -1055,7 +1055,7 @@ $ripple_r: 52px;
 .run-dialog {
   padding: 0 15px 10px 15px;
   border-radius: $r_8;
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: opacity($osd_bg, $alpha_osd);
   box-shadow: $z-depth-4;
 
   > * { padding: 0; }
@@ -1174,8 +1174,8 @@ $ripple_r: 52px;
 
 #keyboard {
   border-width: 0;
-  background-color: if($variant != light, opacity(black, $a_fg_3rd),
-                                          opacity(white, $a_fg_dis));
+  background-color: if($variant != light, opacity(black, $alpha_foreground_3rd),
+                                          opacity(white, $alpha_foreground_dis));
 }
 
 .keyboard {
@@ -1190,7 +1190,7 @@ $ripple_r: 52px;
     min-height: $ref_size * 2;
     min-width: $ref_size * 2;
     border-radius: $r_2;
-    border: 1px solid mix($osd_sec_fg, $osd_bg, percentage($a_div_1));
+    border: 1px solid mix($osd_sec_fg, $osd_bg, percentage($alpha_div_1));
     background-color: $osd_bg;
     color: $osd_sec_fg;
     box-shadow: $empty_shadow;
@@ -1198,27 +1198,27 @@ $ripple_r: 52px;
     icon-shadow: none;
     font-size: $ref_size * 2; // use unscalable unit
     font-weight: 700;
-    transition-timing-function: $tr_t_dec;
+    transition-timing-function: $transition_t_dec;
     &:focus,
     &:hover,
     &:checked {
       color: $osd_fg;
-      border-color: mix($osd_bg, $osd_fg, percentage($a_fg_2nd));
-      background-color: mix($osd_bg, $osd_fg, percentage($a_fg_2nd));
-      transition-timing-function: $tr_t_dec;
+      border-color: mix($osd_bg, $osd_fg, percentage($alpha_foreground_2nd));
+      background-color: mix($osd_bg, $osd_fg, percentage($alpha_foreground_2nd));
+      transition-timing-function: $transition_t_dec;
     }
     &:active {
-      border-color: mix($osd_bg, $osd_fg, percentage(1 - $a_trk_2));
-      background-color: mix($osd_bg, $osd_fg, percentage(1 - $a_trk_2));
+      border-color: mix($osd_bg, $osd_fg, percentage(1 - $alpha_track_2));
+      background-color: mix($osd_bg, $osd_fg, percentage(1 - $alpha_track_2));
       color: $osd_fg;
-      transition-timing-function: $tr_t_dec;
+      transition-timing-function: $transition_t_dec;
     }
     &:grayed { // FIXME
       border-color: mix($osd_sec_fg, $osd_bg,
-                        percentage($a_div_1 * $a_fg_dis));
+                        percentage($alpha_div_1 * $alpha_foreground_dis));
       background-color: $panel_bg;
       color: $osd_ter_fg;
-      transition-timing-function: $tr_t_dec;
+      transition-timing-function: $transition_t_dec;
     }
   }
 
@@ -1245,13 +1245,13 @@ $ripple_r: 52px;
       &:hover,
       &:checked {
         border: 0 none transparent;
-        background-color: opacity($sel_fg, $a_trk_1);
+        background-color: opacity($sel_fg, $alpha_track_1);
         color: $sel_fg;
         box-shadow: $empty_shadow;
       }
       &:active {
         border: 0 none transparent;
-        background-color: opacity($sel_fg, $a_trk_2);
+        background-color: opacity($sel_fg, $alpha_track_2);
         color: $sel_fg;
         box-shadow: $empty_shadow;
       }
@@ -1309,7 +1309,7 @@ $large_item: 10px;
     padding: $menu_spacing $menu_spacing 0 $menu_spacing;
     border: 0 solid if($variant != dark,
                        $div_fg,
-                       mix(white, $dark_bg, percentage($a_div_2)));
+                       mix(white, $dark_bg, percentage($alpha_div_2)));
     &:ltr { border-right-width: 1px; }
     &:rtl { border-left-width: 1px; }
   }
@@ -1396,7 +1396,7 @@ $large_item: 10px;
 
     &-hover,
     &-selected {
-      background-color: opacity($sel_bg, $a_trk_1);
+      background-color: opacity($sel_bg, $alpha_track_1);
       color: $sel_label;
       &:ltr { border-radius: $r_2 $r $r $r_2; }
       &:rtl { border-radius: $r $r_2 $r_2 $r; }
@@ -1405,7 +1405,7 @@ $large_item: 10px;
     &-greyed {
       color: $dis_fg;
 
-      StIcon { opacity: $a_fg_3rd; }
+      StIcon { opacity: $alpha_foreground_3rd; }
     }
 
     &-label { // embed vertical padding directly
@@ -1473,7 +1473,7 @@ $large_item: 10px;
   spacing: 1em;
   padding: 16px;
   border-radius: $r_8;
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: opacity($osd_bg, $alpha_osd);
   color: $osd_fg;
   box-shadow: $z-depth-4;
   text-align: center;
@@ -1489,7 +1489,7 @@ $large_item: 10px;
   border: none;
   border-radius: $r_8;
   color: $osd_fg;
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: opacity($osd_bg, $alpha_osd);
   box-shadow: $z-depth-4;
   font-weight: 700;
   text-align: center;
@@ -1616,7 +1616,7 @@ $large_item: 10px;
   border: none;
   border-radius: $r_8;
   color: $osd_fg;
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: opacity($osd_bg, $alpha_osd);
   box-shadow: $z-depth-4;
 }
 
@@ -1696,7 +1696,7 @@ $large_item: 10px;
       border: none;
       border-radius: $r_8;
       color: $osd_fg;
-      background-color: opacity($osd_bg, $a_osd);
+      background-color: opacity($osd_bg, $alpha_osd);
       box-shadow: $z-depth-4;
 
       @extend %switcher_item_box_child;
@@ -1718,8 +1718,8 @@ $large_item: 10px;
 
   &-badge { // backgrounds for num-labels
     border-radius: $r;
-    background-color: if($variant == mixed, opacity($inv_tooltip_bg, $a_osd),
-                                            opacity($tooltip_bg, $a_osd));
+    background-color: if($variant == mixed, opacity($inv_tooltip_bg, $alpha_osd),
+                                            opacity($tooltip_bg, $alpha_osd));
     box-shadow: $z-depth-1;
     &:ltr { margin: 1px 0 0 1px; }
     &:rtl { margin: 1px 1px 0 0; }
@@ -1766,7 +1766,7 @@ $large_item: 10px;
     border: 0 solid $osd_bg;
     border-bottom-width: 1px;
     color: $osd_fg;
-    background: opacity($osd_bg, $a_osd);
+    background: opacity($osd_bg, $alpha_osd);
 
     StButton {
       width: $icon_size * 2;
@@ -1791,7 +1791,7 @@ $large_item: 10px;
     -slider-height: 4px;
     // FIXME: do not use transparentize
     -slider-background-color: mix($dark_bg,
-                                  $acc_bg, percentage(1 - $a_trk_out));
+                                  $acc_bg, percentage(1 - $alpha_track_out));
     -slider-border-color: transparent;
     -slider-active-background-color: $acc_bg;
     -slider-active-border-color: transparent;
@@ -1817,7 +1817,7 @@ $large_item: 10px;
     #panel#{$position}:dnd & {
       &.edit-mode {
         &, &:highlight {
-          background-color: opacity($_color, $a_trk_2);
+          background-color: opacity($_color, $alpha_track_2);
           box-shadow: inset 0 0 0 1px $_color;
         }
       }
@@ -1861,7 +1861,7 @@ $large_item: 10px;
   // padding: 0 6px; // NEEDS_REVIEW
   color: $osd_fg;
   background-color: $hidden_fill_bg;
-  transition-duration: $tr_d_std;
+  transition-duration: $transition_d_standard;
 
   // .vertical & { padding: 3px; } // NEEDS_REVIEW
 
@@ -1902,27 +1902,27 @@ $large_item: 10px;
   spacing: 3px;
 
   .workspace {
-    border: 1px solid opacity($osd_fg, $a_trk_out);
+    border: 1px solid opacity($osd_fg, $alpha_track_out);
     background-gradient-direction: none;
     background-color: $panel_bg;
     &:active {
       border: 1px solid $sel_bg;
       background-gradient-direction: none;
-      background-color: mix($sel_bg, $osd_bg, percentage($a_fg_bdp));
+      background-color: mix($sel_bg, $osd_bg, percentage($alpha_foreground_bdp));
     }
 
     .windows {
-      -active-window-background: mix($osd_fg, $osd_bg, percentage($a_trk_2));
-      -active-window-border: opacity($osd_fg, $a_trk_out);
-      -inactive-window-background: mix($osd_fg, $osd_bg, percentage($a_trk_1));
-      -inactive-window-border: opacity($osd_fg, $a_trk_out);
+      -active-window-background: mix($osd_fg, $osd_bg, percentage($alpha_track_2));
+      -active-window-border: opacity($osd_fg, $alpha_track_out);
+      -inactive-window-background: mix($osd_fg, $osd_bg, percentage($alpha_track_1));
+      -inactive-window-border: opacity($osd_fg, $alpha_track_out);
     }
   }
 
   .workspace:active .windows {
     -active-window-background: $sel_bg;
     -active-window-border: $sel_bg;
-    -inactive-window-background: mix($sel_bg, $osd_bg, percentage($a_fg_bdp));
+    -inactive-window-background: mix($sel_bg, $osd_bg, percentage($alpha_foreground_bdp));
     -inactive-window-border: $sel_bg;
   }
 }
@@ -1966,7 +1966,7 @@ $large_item: 10px;
 .launcher {
   padding: 2px;
   spacing: 2px;
-  transition-duration: $tr_d_std;
+  transition-duration: $transition_d_standard;
   &:hover {
     border: 0 solid $sel_bg;
     background-gradient-direction: none;
@@ -2111,7 +2111,7 @@ $large_item: 10px;
 %desklet {
   padding: 6px;
   border: 0 none transparent;
-  background-color: opacity($osd_bg, $a_fg_3rd);
+  background-color: opacity($osd_bg, $alpha_foreground_3rd);
   color: $osd_fg;
   box-shadow: $z-depth-2;
 }
@@ -2144,7 +2144,7 @@ $large_item: 10px;
   }
 
   &-drag-placeholder { 
-    background-color: opacity($acc_bg, $a_trk_out);
+    background-color: opacity($acc_bg, $alpha_track_out);
     box-shadow: inset 0 0 0 2px $acc_bg;
   }
 
@@ -2222,7 +2222,7 @@ $large_item: 10px;
 .workspace-osd { // workspace name
   padding: 0.2em 0.8em;
   border-radius: $r_8;
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: opacity($osd_bg, $alpha_osd);
   color: $osd_fg;
   box-shadow: $z-depth-4;
   font-weight: 400;
@@ -2245,8 +2245,8 @@ $bottom_gap: 0.25em;
     border-top: $top_gap solid transparent; // add extra top gap
     border-bottom: $bottom_gap solid transparent; // add extra bottom gap
     background-color: $hidden_fill_bg;
-    color: opacity($osd_fg, $a_fg_2nd);
-    caret-color: opacity($osd_fg, $a_fg_2nd);
+    color: opacity($osd_fg, $alpha_foreground_2nd);
+    caret-color: opacity($osd_fg, $alpha_foreground_2nd);
     caret-size: 1px;
     selection-background-color: $sel_bg;
     selected-color: $sel_fg;
@@ -2272,8 +2272,8 @@ $bottom_gap: 0.25em;
   }
 
   &-background {
-    background-color: if($variant != light, opacity(black, $a_fg_3rd),
-                                            opacity(white, $a_fg_dis));
+    background-color: if($variant != light, opacity(black, $alpha_foreground_3rd),
+                                            opacity(white, $alpha_foreground_dis));
   }
 }
 
@@ -2299,7 +2299,7 @@ $bottom_gap: 0.25em;
   &.snap {
     border: 1px solid $sel_bg;
     border-radius: 0;
-    background-color: opacity($sel_bg, $a_trk_out);
+    background-color: opacity($sel_bg, $alpha_track_out);
   }
 }
 
@@ -2369,7 +2369,7 @@ $bottom_gap: 0.25em;
     &:active:checked {
       &, &:hover {
         border-color: transparent;
-        background-color: opacity($sel_bg, $a_trk_2);
+        background-color: opacity($sel_bg, $alpha_track_2);
         color: $sel_label;
       }
     }
@@ -2469,14 +2469,14 @@ StBin.menu {
   StBoxLayout.switcher-list {
     margin: 3px 5px (12px - 2px); // reduce bottom margin a bit
     border-radius: $r_8;
-    background-color: opacity($osd_bg, $a_osd);
+    background-color: opacity($osd_bg, $alpha_osd);
 
     .item-box {
       margin: 0.3em;
       background-color: $hidden_fill_bg;
       border-radius: $r_4;
       &:selected {
-        background-color: opacity($acc_bg, $a_trk_2);
+        background-color: opacity($acc_bg, $alpha_track_2);
       }
 
       > StBoxLayout { // icon and title

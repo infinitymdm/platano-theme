@@ -81,17 +81,17 @@
 }
 
 *:disabled {
-  @if $maj_ver == 4 { -gtk-icon-filter: opacity($a_fg_3rd); }
+  @if $maj_ver == 4 { -gtk-icon-filter: opacity($alpha_foreground_3rd); }
   @else { -gtk-icon-effect: dim; }
 }
 
 // for backdrop, tone down element surfaces with transparentize
 %fade_effect {
-  > * { @include transition(acc-acc, $p: $tr_p_hdb); }
+  > * { @include transition(acc-acc, $p: $transition_p_hdb); }
 
   &:backdrop > * {
-    opacity: $a_fg_bdp;
-    @include transition(dec-dec, $p: $tr_p_hdb);
+    opacity: $alpha_foreground_bdp;
+    @include transition(dec-dec, $p: $transition_p_hdb);
   }
 }
 
@@ -99,11 +99,11 @@
   background-color: $bg;
   color: $sec_fg;
   &:hover {
-    background-color: mix($fg, $bg, percentage($a_trk_1));
+    background-color: mix($fg, $bg, percentage($alpha_track_1));
     color: $fg;
   }
   &:active {
-    background-color: mix($fg, $bg, percentage($a_trk_2));
+    background-color: mix($fg, $bg, percentage($alpha_track_2));
     color: $fg;
   }
   &:disabled {
@@ -159,7 +159,7 @@ iconview { @extend %view; }
 
 %rubberband {
   border: 1px solid $sel_bg;
-  background-color: track($sel_bg, $a_trk_out);
+  background-color: track($sel_bg, $alpha_track_out);
 }
 
 rubberband {
@@ -192,10 +192,10 @@ label {
 }
 
 %dim_label,
-.dim-label { opacity: $a_fg_3rd; }
+.dim-label { opacity: $alpha_foreground_3rd; }
 
 %osd,
-.osd { opacity: $a_osd; }
+.osd { opacity: $alpha_osd; }
 
 .monospace { font-family: Monospace; }
 
@@ -209,7 +209,7 @@ separator {
   menu > &,
   menuitem & { // dark variant specific
     @if $variant == dark {
-      background-color: track(white, $a_div_2);
+      background-color: track(white, $alpha_div_2);
     }
   }
 }
@@ -241,7 +241,7 @@ frame.content-view flowbox > flowboxchild.tile {
   box-shadow: $z-depth-1;
   @include transition(dec);
   &:selected {
-    background-color: track($sel_bg, $a_trk_out);
+    background-color: track($sel_bg, $alpha_track_out);
     color: $fg;
     box-shadow: $z-depth-2;
     @include transition(dec);
@@ -294,10 +294,10 @@ spinner {
   opacity: 0; // non spinning spinner makes no sense
   &:checked {
     opacity: 1.0;
-    animation: spinner $tr_d_spin $tr_t_lin infinite;
+    animation: spinner $transition_d_spin $transition_t_lin infinite;
     &:backdrop { opacity: 1.0; }
   }
-  &:disabled { color: track($acc_fg, $a_fg_bdp); }
+  &:disabled { color: track($acc_fg, $alpha_foreground_bdp); }
   &:backdrop { opacity: 0; }
 
   .osd &,
@@ -307,7 +307,7 @@ spinner {
   messagedialog & {
     @if $variant == mixed {
       color: $inv_acc_fg;
-      &:disabled { color: track($inv_acc_fg, $a_fg_bdp); }
+      &:disabled { color: track($inv_acc_fg, $alpha_foreground_bdp); }
     }
   }
 }
@@ -446,7 +446,7 @@ entry {
     &:focus > placeholder { opacity: 0; } // hide placeholders when focused
 
     &.password image.caps-lock-indicator {
-      color: track(currentColor, $a_fg_3rd); // dim CapsLock icon
+      color: track(currentColor, $alpha_foreground_3rd); // dim CapsLock icon
     }
   }
 
@@ -766,16 +766,16 @@ entry {
 }
 
 %entry_icon {
-  &:not(:hover):not(:active) { color: track(currentColor, $a_fg_2nd); }
+  &:not(:hover):not(:active) { color: track(currentColor, $alpha_foreground_2nd); }
   &:active { color: $sel_bg; }
-  &:disabled { color: track(currentColor, $a_fg_dis); }
+  &:disabled { color: track(currentColor, $alpha_foreground_dis); }
 }
 
 %entry_progress {
   margin: 0 rem(-$entry_lr_space);
   padding: 0 rem($entry_lr_space);
   @include radius($r, none);
-  background-color: track($acc_bg, $a_trk_out);
+  background-color: track($acc_bg, $alpha_track_out);
 }
 
 %inv_entry {
@@ -824,7 +824,7 @@ button {
 
   // active state for non-native apps
   &:active {
-    background-color: mix($fg, $base, percentage($a_trk_2));
+    background-color: mix($fg, $base, percentage($alpha_track_2));
   }
 
   // active state for native apps
@@ -1068,15 +1068,15 @@ button {
       min-width: rem($widget_size);
       padding: rem($txt_button_lr_space / 2);
       &:not(:disabled) {
-        background-color: if($variant == light, track($dark_bg, $a_osd),
-                                                track($inv_dark_bg, $a_osd));
+        background-color: if($variant == light, track($dark_bg, $alpha_osd),
+                                                track($inv_dark_bg, $alpha_osd));
         &:hover {
           background-color:
             if($variant == light,
-               track(mix($dark_bg, $acc_fg, percentage($a_fg_2nd)),
-                     $a_osd),
-               track(mix($inv_dark_bg, $acc_fg, percentage($a_fg_2nd)),
-                     $a_osd));
+               track(mix($dark_bg, $acc_fg, percentage($alpha_foreground_2nd)),
+                     $alpha_osd),
+               track(mix($inv_dark_bg, $acc_fg, percentage($alpha_foreground_2nd)),
+                     $alpha_osd));
         }
       }
     }
@@ -1088,15 +1088,15 @@ button {
           padding: rem($txt_button_lr_space / 2);
           @include radius($r_2);
           background-color: if($variant == light,
-                               track($dark_bg, $a_osd),
-                               track($inv_dark_bg, $a_osd));
+                               track($dark_bg, $alpha_osd),
+                               track($inv_dark_bg, $alpha_osd));
           &:hover {
             background-color:
               if($variant == light,
-                 track(mix($dark_bg, $acc_fg, percentage($a_fg_2nd)),
-                       $a_osd),
-                 track(mix($inv_dark_bg, $acc_fg, percentage($a_fg_2nd)),
-                       $a_osd));
+                 track(mix($dark_bg, $acc_fg, percentage($alpha_foreground_2nd)),
+                       $alpha_osd),
+                 track(mix($inv_dark_bg, $acc_fg, percentage($alpha_foreground_2nd)),
+                       $alpha_osd));
           }
         }
         &:first-child {
@@ -1135,8 +1135,8 @@ button {
         &:checked {
           @include button(raised-checked);
           &:disabled {
-            border-color: mix($b_color, $bg, percentage($a_trk_1));
-            background-color: mix($b_color, $bg, percentage($a_trk_1));
+            border-color: mix($b_color, $bg, percentage($alpha_track_1));
+            background-color: mix($b_color, $bg, percentage($alpha_track_1));
             color: $dis_sel_fg;
           }
         }
@@ -1441,7 +1441,7 @@ button {
   background-repeat: no-repeat;
   background-position: right 2px;
   background-size: $attention;
-  animation: needs_attention $tr_d_lng $tr_t_dec forwards;
+  animation: needs_attention $transition_d_long $transition_t_dec forwards;
   &:dir(rtl) { background-position: left 2px; }
 }
 
@@ -1511,7 +1511,7 @@ button.color {
 
   &:disabled colorswatch {
     &, &:disabled {
-      &, overlay { opacity: $a_fg_dis; }
+      &, overlay { opacity: $alpha_foreground_dis; }
     }
   }
 }
@@ -1691,7 +1691,7 @@ buttonbox {
   @at-root %selected_link,
   &:selected { color: $sec_sel_fg; }
 
-  &:disabled { opacity: $a_fg_bdp; }
+  &:disabled { opacity: $alpha_foreground_bdp; }
 }
 
 link {
@@ -1701,7 +1701,7 @@ link {
 
 button.flat.link { // specificity bump with .flat class
   @extend %link;
-  &:hover { background-color: track(currentColor, $a_trk_1); }
+  &:hover { background-color: track(currentColor, $alpha_track_1); }
 
   > label {
     color: inherit;
@@ -1762,14 +1762,14 @@ spinbutton {
       &.down { // '-' button
         &:hover,
         &:active {
-          background-color: track($err, $a_trk_1);
+          background-color: track($err, $alpha_track_1);
           color: $err;
         }
       }
       &.up { // '+' button
         &:hover,
         &:active {
-          background-color: track($sccs_bg, $a_trk_1);
+          background-color: track($sccs_bg, $alpha_track_1);
           color: $sccs_bg;
         }
       }
@@ -1781,11 +1781,11 @@ spinbutton {
       &:not(.vertical),
       &.vertical { // specificity bump
         // set default foregrounds in top node
-        background-color: track($inv_fg, $a_trk_1);
+        background-color: track($inv_fg, $alpha_track_1);
         color: $inv_fg;
         caret-color: $inv_fg;
         &:focus {
-          background-color: track($inv_fg, $a_trk_2);
+          background-color: track($inv_fg, $alpha_track_2);
           color: $inv_fg;
           caret-color: $inv_fg;
         }
@@ -1874,7 +1874,7 @@ spinbutton {
         @include radius($r_4 $r_4 0 0);
         &:hover,
         &:active {
-          background-color: track($sccs_bg, $a_trk_1);
+          background-color: track($sccs_bg, $alpha_track_1);
           color: $sccs_bg;
         }
       }
@@ -1883,7 +1883,7 @@ spinbutton {
         @include radius(0 0 $r_4 $r_4);
         &:hover,
         &:active {
-          background-color: track($err, $a_trk_1);
+          background-color: track($err, $alpha_track_1);
           color: $err;
         }
       }
@@ -1958,10 +1958,10 @@ combobox {
       background-color: $base; // tone down
       &:hover,
       &:active,
-      &:checked { background-color: track($fg, $a_trk_1); }
+      &:checked { background-color: track($fg, $alpha_track_1); }
       &:disabled {
         background-color:
-          mix($fg, $base, percentage(($a_trk_1 * 2 / 3) * $a_fg_dis));
+          mix($fg, $base, percentage(($alpha_track_1 * 2 / 3) * $alpha_foreground_dis));
       }
     }
   }
@@ -1981,16 +1981,16 @@ combobox {
   @if $variant == mixed {
     @at-root %inv_combobox,
     .osd & {
-      background-color: track($inv_sec_fg, $a_trk_1 / 2);
+      background-color: track($inv_sec_fg, $alpha_track_1 / 2);
       color: $inv_sec_fg;
       &:hover,
       &:active,
       &:checked {
-        background-color: track($inv_fg, $a_trk_1);
+        background-color: track($inv_fg, $alpha_track_1);
         color: $inv_fg;
       }
       &:disabled {
-        background-color: track($dis_inv_fg, $a_trk_1 / 2 * $a_fg_dis);
+        background-color: track($dis_inv_fg, $alpha_track_1 / 2 * $alpha_foreground_dis);
         color: $dis_inv_fg;
       }
 
@@ -2432,15 +2432,15 @@ headerbar {
     &:backdrop {
       @if $variant == mixed {
         border-top-color: mix($dark_sel_bg,
-                              $inv_bg, percentage($a_fg_bdp));
+                              $inv_bg, percentage($alpha_foreground_bdp));
         background-color: mix($dark_sel_bg,
-                              $inv_bg, percentage($a_fg_bdp));
+                              $inv_bg, percentage($alpha_foreground_bdp));
       }
       @else {
         border-top-color: mix($dark_sel_bg,
-                              $bg, percentage($a_fg_bdp));
+                              $bg, percentage($alpha_foreground_bdp));
         background-color: mix($dark_sel_bg,
-                              $bg, percentage($a_fg_bdp));
+                              $bg, percentage($alpha_foreground_bdp));
       }
     }
 
@@ -2467,11 +2467,11 @@ headerbar {
       &:backdrop {
         @if $variant == mixed {
           border-top-color: mix($dark_sel_bg,
-                                $inv_bg, percentage($a_fg_bdp));
+                                $inv_bg, percentage($alpha_foreground_bdp));
         }
         @else {
           border-top-color: mix($dark_sel_bg,
-                                $bg, percentage($a_fg_bdp));
+                                $bg, percentage($alpha_foreground_bdp));
         }
       }
     }
@@ -2526,8 +2526,8 @@ headerbar {
 
 %incognito_headerbar_bg {
   border-top-color: if($variant == mixed,
-                       mix(white, $inv_tooltip_bg, percentage($a_div_1)),
-                       mix(white, $tooltip_bg, percentage($a_div_2)));
+                       mix(white, $inv_tooltip_bg, percentage($alpha_div_1)),
+                       mix(white, $tooltip_bg, percentage($alpha_div_2)));
   background-color: if($variant == mixed, $inv_tooltip_bg, $tooltip_bg);
   &:backdrop {
     border-top-color: if($variant == mixed, $inv_bg, $bg);
@@ -2763,13 +2763,13 @@ window:not(.maximized):not(.fullscreen):not(.tiled):not(.solid-csd) {
   background-repeat: no-repeat;
   &:backdrop {
     @if $variant == light {
-      background-image: image(track($bg, $a_fg_bdp)),
+      background-image: image(track($bg, $alpha_foreground_bdp)),
                         -gtk-scaled(
                         url("assets/dev-mode.png"),
                         url("assets/dev-mode@2.png"));
     }
     @else {
-      background-image: image(track($inv_bg, $a_fg_bdp)),
+      background-image: image(track($inv_bg, $alpha_foreground_bdp)),
                         -gtk-scaled(
                         url("assets/dev-mode-dark.png"),
                         url("assets/dev-mode-dark@2.png")),
@@ -2811,11 +2811,11 @@ dialog.background.csd > headerbar.titlebar {
     &:backdrop { // override default border-top color
       @if $variant == mixed {
         border-top-color: mix($dark_sel_bg,
-                              $inv_bg, percentage($a_fg_bdp));
+                              $inv_bg, percentage($alpha_foreground_bdp));
       }
       @else {
         border-top-color: mix($dark_sel_bg,
-                              $bg, percentage($a_fg_bdp));
+                              $bg, percentage($alpha_foreground_bdp));
       }
     }
 
@@ -2938,7 +2938,7 @@ dialog.background.csd > headerbar.titlebar {
       &:hover,
       &:active {
         background-color: track(if($variant == mixed, $inv_fg, $fg),
-                                $a_trk_1);
+                                $alpha_track_1);
       }
     }
   }
@@ -3066,9 +3066,9 @@ treeview.view {
   }
 
   &.trough { // progressbar trough in treeviews
-    box-shadow: inset 0 (-$progress_size) track($acc_bg, $a_trk_out);
+    box-shadow: inset 0 (-$progress_size) track($acc_bg, $alpha_track_out);
     &:selected {
-      box-shadow: inset 0 (-$progress_size) track($sel_fg, $a_trk_out);
+      box-shadow: inset 0 (-$progress_size) track($sel_fg, $alpha_track_out);
     }
   }
 
@@ -3160,7 +3160,7 @@ menubar {
 
   .background & {
     border-bottom: 1px solid if($variant == mixed,
-                                mix(black, $inv_dark_bg, percentage($a_div_0)),
+                                mix(black, $inv_dark_bg, percentage($alpha_div_0)),
                                 $div_sld_fg);
     @extend %fade_effect; // add fade_effect
   }
@@ -3282,7 +3282,7 @@ menu {
       padding: 0 0 rem($menu_padding);
       -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
       @include radius($r_4 $r_4 0 0, none);
-      border-bottom: 1px solid if($variant == dark, track(white, $a_div_2),
+      border-bottom: 1px solid if($variant == dark, track(white, $alpha_div_2),
                                                     $div_fg);
     }
     &:last-child {
@@ -3291,7 +3291,7 @@ menu {
       padding: rem($menu_padding) 0 0;
       -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
       @include radius(0 0 $r_4 $r_4, none);
-      border-top: 1px solid if($variant == dark, track(white, $a_div_2),
+      border-top: 1px solid if($variant == dark, track(white, $alpha_div_2),
                                                  $div_fg);
     }
   }
@@ -3300,7 +3300,7 @@ menu {
 }
 
 menuitem {
-  accelerator { color: track(currentColor, $a_fg_3rd); }
+  accelerator { color: track(currentColor, $alpha_foreground_3rd); }
 
   separator { margin: rem($menu_padding) 0; }
 }
@@ -3726,9 +3726,9 @@ notebook {
       @include ink-reaction(tab-normal, $fc: $sel_bg, $bs: 10, $i: 2); }
     &:hover {
       // do not use alpha-blended borders
-      border-color: mix($fg, $bg, percentage($a_trk_out));
+      border-color: mix($fg, $bg, percentage($alpha_track_out));
       color: $sec_fg;
-      transition-duration: $tr_d_std;
+      transition-duration: $transition_d_standard;
     }
     &:checked {
       color: $sel_label;
@@ -3824,7 +3824,7 @@ scrollbar {
     }
   }
 
-  background-color: track($base, $a_fg_3rd);
+  background-color: track($base, $alpha_foreground_3rd);
 
   // scrollbar border
   @each $_side,$_margin in ('top', '0 0 -2px 0'),
@@ -3846,11 +3846,11 @@ scrollbar {
 
   // slider coloring
   slider {
-    background-color: track($fg, $a_fg_3rd * $a_fg_3rd);
+    background-color: track($fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
     @include transition(std);
-    &:hover { background-color: track($fg, $a_fg_2nd * $a_fg_3rd); }
+    &:hover { background-color: track($fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
     &:active { background-color: $fg; }
-    &:disabled { opacity: $a_fg_bdp; }
+    &:disabled { opacity: $alpha_foreground_bdp; }
   }
 
   // slider sizing
@@ -3895,10 +3895,10 @@ scrollbar {
         margin: 0;
         border: 0 none transparent;
         // FIXME: for WebKitGtk2
-        background-color: track(mix($fix_fg, $fix_base), $a_fg_3rd);
+        background-color: track(mix($fix_fg, $fix_base), $alpha_foreground_3rd);
 
         .background & { // standard color
-          background-color: track($fg, $a_fg_3rd * $a_fg_3rd);
+          background-color: track($fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
         }
       }
 
@@ -3907,7 +3907,7 @@ scrollbar {
         min-height: $slider_min_width;
         border-radius: 0;
         border: none;
-        background-color: track($fg, $a_fg_3rd * $a_fg_3rd);
+        background-color: track($fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
         -gtk-icon-source: none;
       }
 
@@ -3931,15 +3931,15 @@ scrollbar {
     }
 
     &.dragging,
-    &.hovering { opacity: $a_fg_bdp * 2; }
+    &.hovering { opacity: $alpha_foreground_bdp * 2; }
 
     &.hovering { // slow-down when deforming
       &.vertical slider {
-        animation: slow_down_vert $tr_d_std $tr_t_lin forwards;
+        animation: slow_down_vert $transition_d_standard $transition_t_lin forwards;
       }
 
       &.horizontal slider {
-        animation: slow_down_horz $tr_d_std $tr_t_lin forwards;
+        animation: slow_down_horz $transition_d_standard $transition_t_lin forwards;
       }
     }
   }
@@ -4342,8 +4342,8 @@ scale {
     transition-property: background-image,
                          background-size,
                          box-shadow;
-    transition-timing-function: $tr_t_acc;
-    transition-duration: $tr_d_std;
+    transition-timing-function: $transition_t_acc;
+    transition-duration: $transition_d_standard;
 
     @each $s, $as in ('', ''),
                      (':hover', '',),
@@ -4413,7 +4413,7 @@ scale {
   fill {
     @extend %scale_trough;
 
-    background-color: track($acc_bg, $a_trk_1);
+    background-color: track($acc_bg, $alpha_track_1);
 
     &:disabled {
       border-color: transparent;
@@ -4429,11 +4429,11 @@ scale {
       .floating-bar &,
       headerbar &,
       messagedialog & {
-        value { color: track($inv_fg, $a_fg_3rd); }
+        value { color: track($inv_fg, $alpha_foreground_3rd); }
       }
     }
     @else {
-      value { color: track($fg, $a_fg_3rd); }
+      value { color: track($fg, $alpha_foreground_3rd); }
     }
   }
 
@@ -4446,7 +4446,7 @@ scale {
 scale { // marks color
   @if $maj_ver == 3 {
     marks {
-      color: track(currentColor, $a_fg_3rd);
+      color: track(currentColor, $alpha_foreground_3rd);
       @each $marks_class, $marks_pos, $marks_margin in (top, top, bottom),
                                                        (bottom, bottom, top),
                                                        (top, left, right),
@@ -4475,7 +4475,7 @@ scale { // marks color
   @else {
     &.horizontal > marks,
     &.vertical > marks {
-      color: track(currentColor, $a_fg_3rd);
+      color: track(currentColor, $alpha_foreground_3rd);
 
       indicator { background-color: currentColor; }
     }
@@ -4483,7 +4483,7 @@ scale { // marks color
     &.horizontal > value,
     &.vertical > value {
       // same opacity value with dim-label
-      color: track(currentColor, $a_fg_3rd);
+      color: track(currentColor, $alpha_foreground_3rd);
     }
 
     // NEED_REVIEW: need to compute proper values in future
@@ -4677,7 +4677,7 @@ progressbar {
   trough {
     box-shadow: none;
     border-radius: 0;
-    background-color: track($acc_bg, $a_trk_out);
+    background-color: track($acc_bg, $alpha_track_out);
   }
 
   progress {
@@ -4715,7 +4715,7 @@ progressbar {
     trough {
       border-style: none;
       box-shadow: none;
-      background-color: track($acc_bg, $a_trk_out);
+      background-color: track($acc_bg, $alpha_track_out);
     }
 
     @if $maj_ver == 4 {
@@ -4915,7 +4915,7 @@ row.activatable {
   }
   &:selected {
     &:hover {
-      background-color: mix($sel_fg, $sel_bg, percentage($a_trk_1));
+      background-color: mix($sel_fg, $sel_bg, percentage($alpha_track_1));
     }
   }
 }
@@ -4964,11 +4964,11 @@ row:selected { @extend %selected_items; }
 .app-notification {
   @extend %app_slider;
   @if $variant == mixed {
-    background-color: track($inv_tooltip_bg, $a_osd);
+    background-color: track($inv_tooltip_bg, $alpha_osd);
     color: $inv_fg;
   }
   @else {
-    background-color: track($tooltip_bg, $a_osd);
+    background-color: track($tooltip_bg, $alpha_osd);
     color: $fg;
   }
 
@@ -5026,7 +5026,7 @@ row:selected { @extend %selected_items; }
   -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
   &:dir(rtl) { -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl'); }
   &:checked { -gtk-icon-source: -gtk-icontheme('pan-down-symbolic'); }
-  &:not(:hover):not(:active) { color: track(currentColor, $a_fg_2nd); }
+  &:not(:hover):not(:active) { color: track(currentColor, $alpha_foreground_2nd); }
   &:selected { color: $sel_fg; }
   &:disabled { color: $dis_fg; }
 }
@@ -5080,7 +5080,7 @@ calendar {
 
   &.header {
     border: 1px solid transparent;
-    border-bottom-color: if($variant == dark, track(white, $a_div_2),
+    border-bottom-color: if($variant == dark, track(white, $alpha_div_2),
                                               $div_fg);
   }
 
@@ -5098,7 +5098,7 @@ calendar {
     }
   }
 
-  &:indeterminate { color: track($fg, $a_fg_3rd * $a_fg_3rd); }
+  &:indeterminate { color: track($fg, $alpha_foreground_3rd * $alpha_foreground_3rd); }
 
   &.highlight { // padding for week-number column
     padding-top: 0;
@@ -5115,8 +5115,8 @@ messagedialog {
   &.background {
     color: if($variant == light, $fg, $inv_fg);
     background-color:
-      if($variant == light, track($dark_bg, $a_osd),
-                            track($inv_dark_bg, $a_osd));
+      if($variant == light, track($dark_bg, $alpha_osd),
+                            track($inv_dark_bg, $alpha_osd));
 
     &.csd {
       // rounded bottom border styling for csd version
@@ -5132,8 +5132,8 @@ messagedialog {
               border-top-left-radius: $r_8;
               border-top-right-radius: $r_8;
               background-color:
-                if($variant == light, track($dark_bg, $a_osd),
-                                      track($inv_dark_bg, $a_osd));
+                if($variant == light, track($dark_bg, $alpha_osd),
+                                      track($inv_dark_bg, $alpha_osd));
             }
           }
         }
@@ -5338,7 +5338,7 @@ filechooserbutton:drop(active) {
   }
 
   button {
-    color: track($sel_label, $a_fg_2nd);
+    color: track($sel_label, $alpha_foreground_2nd);
     &:hover,
     &:active,
     &:checked { color: $sel_label; }
@@ -5420,7 +5420,7 @@ placessidebar {
     > revealer { padding: 0 12px; }
 
     image.sidebar-icon {
-      opacity: $a_fg_2nd;
+      opacity: $alpha_foreground_2nd;
       &:dir(ltr) { padding-right: rem($pathbar_min_size * 2, $sw: 1.0); }
       &:dir(rtl) { padding-left: rem($pathbar_min_size * 2, $sw: 1.0); }
     }
@@ -5650,28 +5650,28 @@ infobar {
     @if $maj_ver == 3 {
       @if $mnr_ver < 23 {
         background-color: if($variant == dark,
-                             mix($_color, $bg, percentage($a_trk_1)),
-                             mix($_color, $dark_bg, percentage($a_trk_2)));
+                             mix($_color, $bg, percentage($alpha_track_1)),
+                             mix($_color, $dark_bg, percentage($alpha_track_2)));
       }
       @else {
         > revealer > box {
           background-color: if($variant == dark,
-                               mix($_color, $bg, percentage($a_trk_1)),
-                               mix($_color, $dark_bg, percentage($a_trk_2)));
+                               mix($_color, $bg, percentage($alpha_track_1)),
+                               mix($_color, $dark_bg, percentage($alpha_track_2)));
         }
       }
     }
     @else {
       > revealer > box {
         background-color: if($variant == dark,
-                             mix($_color, $bg, percentage($a_trk_1)),
-                             mix($_color, $dark_bg, percentage($a_trk_2)));
+                             mix($_color, $bg, percentage($alpha_track_1)),
+                             mix($_color, $dark_bg, percentage($alpha_track_2)));
       }
     }
-    color: mix($fg, $_color, percentage($a_fg_3rd));
+    color: mix($fg, $_color, percentage($alpha_foreground_3rd));
 
     progressbar { // use 'white' bit and trough
-      trough { background-color: track($_color, $a_trk_out); }
+      trough { background-color: track($_color, $alpha_track_out); }
 
       progress { background-color: $_color; }
     }
@@ -5690,10 +5690,10 @@ tooltip {
       // even if alpha-value was 0.1%, so real backgrounds are drawn with
       // background-image property instead.
       background-color: track($base, 0.001);
-      background-image: image(track($inv_tooltip_bg, ($a_osd + 0.001)));
+      background-image: image(track($inv_tooltip_bg, ($alpha_osd + 0.001)));
     }
     @else {
-      background-color: track($tooltip_bg, $a_osd);
+      background-color: track($tooltip_bg, $alpha_osd);
     }
   }
 
@@ -5750,9 +5750,9 @@ colorswatch {
   }
 
   // indicator and keynav outline colors
-  &.color-dark { color: track(white, $a_fg_2nd); }
+  &.color-dark { color: track(white, $alpha_foreground_2nd); }
 
-  &.color-light { color: track(black, $a_fg_2nd); }
+  &.color-light { color: track(black, $alpha_foreground_2nd); }
 
   // make the add color button looks like, well, a button
   &#add-color-button {
@@ -5860,7 +5860,7 @@ button.flat.scale { // standalone Speaker/Mic buttons
   background-color: if($variant == mixed, $inv_tooltip_bg,
                                           $tooltip_bg);
   font-size: 90%;
-  opacity: $a_osd;
+  opacity: $alpha_osd;
 }
 
 .floating-bar {
@@ -6086,15 +6086,15 @@ headerbar.titlebar.default-decoration {
     &:not(.close) {
       &:active { // draw solid bg instead
         background-color: if($variant == mixed,
-                             track($inv_fg,  $a_trk_2),
-                             track($fg, $a_trk_2));
+                             track($inv_fg,  $alpha_track_2),
+                             track($fg, $alpha_track_2));
       }
       &:backdrop {
-        color: if($variant == mixed, track($inv_sec_fg, $a_fg_bdp),
-                                     track($sec_fg, $a_fg_bdp));
+        color: if($variant == mixed, track($inv_sec_fg, $alpha_foreground_bdp),
+                                     track($sec_fg, $alpha_foreground_bdp));
         &:hover {
-          color: if($variant == mixed, track($inv_fg, $a_fg_bdp),
-                                       track($fg, $a_fg_bdp));
+          color: if($variant == mixed, track($inv_fg, $alpha_foreground_bdp),
+                                       track($fg, $alpha_foreground_bdp));
         }
         &:active { color: if($variant == mixed, $inv_fg, $fg); }
       }
@@ -6111,11 +6111,11 @@ headerbar.titlebar.default-decoration {
         color: $sel_fg;
       }
       &:backdrop {
-        color: if($variant == mixed, track($inv_sec_fg, $a_fg_bdp),
-                                     track($sec_fg, $a_fg_bdp));
+        color: if($variant == mixed, track($inv_sec_fg, $alpha_foreground_bdp),
+                                     track($sec_fg, $alpha_foreground_bdp));
         &:hover {
-          background-color: track($dest_bg, $a_fg_bdp);
-          color: track($sel_fg, $a_fg_bdp);
+          background-color: track($dest_bg, $alpha_foreground_bdp);
+          color: track($sel_fg, $alpha_foreground_bdp);
         }
         &:active {
           background-color: $sel_bg;
@@ -6138,14 +6138,14 @@ headerbar.titlebar.default-decoration {
   background-color: $sel_bg;
   color: $sel_fg;
   &:disabled {
-    background-color: track($sel_bg, $a_fg_dis);
+    background-color: track($sel_bg, $alpha_foreground_dis);
     color: $dis_sel_fg;
   }
   &:focus {
     background-color: $sel_bg;
     color: $sel_fg;
     &:disabled {
-      background-color: track($sel_bg, $a_fg_dis);
+      background-color: track($sel_bg, $alpha_foreground_dis);
       color: $dis_sel_fg;
     }
   }
@@ -6156,15 +6156,15 @@ headerbar.titlebar.default-decoration {
     background-color: $sel_bg;
     color: $sel_fg;
     &:disabled {
-      background-color: track($sel_bg, $a_fg_dis);
+      background-color: track($sel_bg, $alpha_foreground_dis);
       color: $dis_sel_fg;
     }
   }
   @else {
-    background-color: track($sel_bg, $a_fg_bdp);
+    background-color: track($sel_bg, $alpha_foreground_bdp);
     color: $fg;
     &:disabled {
-      background-color: track($sel_bg, $a_trk_out);
+      background-color: track($sel_bg, $alpha_track_out);
       color: $dis_fg;
     }
   }
@@ -6173,15 +6173,15 @@ headerbar.titlebar.default-decoration {
       background-color: $sel_bg;
       color: $sel_fg;
       &:disabled {
-        background-color: track($sel_bg, $a_fg_dis);
+        background-color: track($sel_bg, $alpha_foreground_dis);
         color: $dis_sel_fg;
       }
     }
     @else {
-      background-color: track($sel_bg, $a_fg_bdp);
+      background-color: track($sel_bg, $alpha_foreground_bdp);
       color: $fg;
       &:disabled {
-        background-color: track($sel_bg, $a_trk_out);
+        background-color: track($sel_bg, $alpha_track_out);
         color: $dis_fg;
       }
     }

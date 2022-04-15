@@ -12,10 +12,10 @@
                        background-color,
                        background-image,
                        box-shadow;
-  transition-timing-function: $tr_t_std;
-  transition-duration: $tr_d_std;
+  transition-timing-function: $transition_t_standard;
+  transition-duration: $transition_d_standard;
   // quicker response for keyboard operations
-  &:focus { transition-duration: $tr_d_non; }
+  &:focus { transition-duration: $transition_d_none; }
 
   text-shadow: none;
   icon-shadow: none;
@@ -95,7 +95,7 @@ StEntry {
   border-width: 0;
   selection-background-color: $sel_bg;
   selected-color: $sel_fg;
-  transition-duration: $tr_d_non;
+  transition-duration: $transition_d_none;
   @if $variant != light {
     @include entry(normal, $tc: $osd_fg);
     &:hover { @include entry(hover, $tc: $osd_fg); }
@@ -166,15 +166,15 @@ StScrollBar {
   StBin#trough {
     margin: 0;
     border-radius: 0;
-    background-color: opacity($osd_fg, $a_trk_1);
+    background-color: opacity($osd_fg, $alpha_track_1);
   }
 
   StButton#vhandle,
   StButton#hhandle {
     margin: 0;
     border-radius: 0;
-    background-color: opacity($osd_fg, $a_fg_3rd * $a_fg_3rd);
-    &:hover { background-color: opacity($osd_fg, $a_fg_2nd * $a_fg_3rd); }
+    background-color: opacity($osd_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+    &:hover { background-color: opacity($osd_fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
     &:active { background-color: $osd_fg; }
   }
 }
@@ -289,7 +289,7 @@ StScrollBar {
   border: none;
   border-radius: $r_8;
   color: $osd_fg;
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: opacity($osd_bg, $alpha_osd);
   @if $ver < 3.31 { box-shadow: $z-depth-4; }
   // FIXME: Lock drop-shadows until upstream computes proper shadow-region
   @else { box-shadow: $empty_shadow; }
@@ -972,7 +972,7 @@ $avatar_width: $icon_size * 1.5;
       border-color: $div_fg;
     }
     background-color: $bg;
-    box-shadow: inset 0 2px 2px opacity(black, $a_trk_1);
+    box-shadow: inset 0 2px 2px opacity(black, $alpha_track_1);
     @if $ver > 3.35 {
       .popup-menu-item {
         &:ltr { padding-left: if($ref_weight >= 1.0, 8px * 1.5, 6px); }
@@ -993,7 +993,7 @@ $avatar_width: $icon_size * 1.5;
     @else { spacing: if($ref_weight >= 1.0, 8px, 6px); }
     color: $sec_fg;
     font-weight: 400;
-    transition-duration: $tr_d_non;
+    transition-duration: $transition_d_none;
     &:ltr {
       @if $ver < 3.35 {
         padding: if($ref_weight >= 1.0, 0.45em $avatar_width 0.45em 0,
@@ -1022,24 +1022,24 @@ $avatar_width: $icon_size * 1.5;
         box-shadow: $empty_shadow;
       }
       &:hover {
-        background-color: opacity($sel_bg, $a_trk_1);
+        background-color: opacity($sel_bg, $alpha_track_1);
         color: $sel_label;
       }
       &:active {
-        background-color: opacity($sel_bg, $a_trk_2);
+        background-color: opacity($sel_bg, $alpha_track_2);
         color: $sel_label;
       }
-      &:insensitive { color: opacity($sel_label, $a_fg_bdp); }
+      &:insensitive { color: opacity($sel_label, $alpha_foreground_bdp); }
     }
     &.selected {
       background-color: $semi_fill_bg;
       color: $fg;
-      transition-duration: $tr_d_non;
+      transition-duration: $transition_d_none;
     }
     &:active {
       background-color: $fill_bg;
       color: $fg;
-      transition-duration: $tr_d_std;
+      transition-duration: $transition_d_standard;
     }
     &.selected:active { color: $fg; }
     &:insensitive { color: $dis_fg; }
@@ -1063,7 +1063,7 @@ $avatar_width: $icon_size * 1.5;
 
   StEntry { // use variant-sensitive foreground colors
     @include entry(normal);
-    transition-duration: $tr_d_non;
+    transition-duration: $transition_d_none;
     &:hover { @include entry(hover); }
     &:focus { @include entry(focus); }
     &:insensitive { @include entry(disabled); }
@@ -1074,12 +1074,12 @@ $avatar_width: $icon_size * 1.5;
   }
 
   StScrollBar {
-    StBin#trough { background-color: opacity($base, $a_fg_3rd); }
+    StBin#trough { background-color: opacity($base, $alpha_foreground_3rd); }
 
     StButton#vhandle,
     StButton#hhandle { // use variant-sensitive slider-bit
-      background-color: opacity($fg, $a_fg_3rd * $a_fg_3rd);
-      &:hover { background-color: opacity($fg, $a_fg_2nd * $a_fg_3rd); }
+      background-color: opacity($fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+      &:hover { background-color: opacity($fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
       &:active { background-color: $fg; }
     }
   }
@@ -1161,13 +1161,13 @@ $avatar_width: $icon_size * 1.5;
   background: transparent; // needs to reset?
   // candidate popups are rendered as OSDs, so no need to set edge borders
   @if $ver < 3.25 {
-    background-color: opacity($osd_bg, $a_osd);
+    background-color: opacity($osd_bg, $alpha_osd);
     color: $osd_sec_fg;
   }
   @else {
     .candidate-popup-content {
       @extend %popover_content;
-      background-color: opacity($osd_bg, $a_osd);
+      background-color: opacity($osd_bg, $alpha_osd);
       color: $osd_sec_fg;
     }
   }
@@ -1180,7 +1180,7 @@ $avatar_width: $icon_size * 1.5;
     spacing: 0;
     border-color: if($variant != dark,
                      $div_fg,
-                     mix(white, $dark_bg, percentage($a_div_2)));
+                     mix(white, $dark_bg, percentage($alpha_div_2)));
     border-bottom-width: 1px;
     border-bottom-style: solid;
     background-color: transparent;
@@ -1193,11 +1193,11 @@ $avatar_width: $icon_size * 1.5;
       margin: 0;
       background-color: if($variant != dark,
                            $div_fg,
-                           mix(white, $dark_bg, percentage($a_div_2)));
+                           mix(white, $dark_bg, percentage($alpha_div_2)));
 
       @if $ver > 3.35 and $variant == dark {
         .popup-sub-menu & {
-          background-color: mix(white, $bg, percentage($a_div_2));
+          background-color: mix(white, $bg, percentage($alpha_div_2));
         }
       }
     }
@@ -1338,7 +1338,7 @@ $avatar_width: $icon_size * 1.5;
 .pad-osd {
   &-window {
     padding: if($ref_weight >= 1.0, 32px, 26px);
-    background-color: opacity($osd_bg, $a_osd);
+    background-color: opacity($osd_bg, $alpha_osd);
 
     .pad-osd-title {
       &-box { spacing: if($ref_weight >= 1.0, 12px, 10px); }
@@ -1394,7 +1394,7 @@ $avatar_width: $icon_size * 1.5;
     width: 1px;
     background: if($variant != dark,
                    $div_fg,
-                   mix(white, $dark_bg, percentage($a_div_2)));
+                   mix(white, $dark_bg, percentage($alpha_div_2)));
   }
 }
 
@@ -1478,7 +1478,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   border-radius: $r_8;
   border: 0 none transparent;
   color: $osd_fg;
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: opacity($osd_bg, $alpha_osd);
   box-shadow: $z-depth-4;
 }
 
@@ -1489,7 +1489,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 .tile-preview { // no radius
   border: 1px solid $sel_bg;
   border-radius: 0;
-  background-color: opacity($sel_bg, $a_trk_out);
+  background-color: opacity($sel_bg, $alpha_track_out);
 
   &-left.on-primary,
   &-left.on-primary.tile-preview-right,
@@ -1508,15 +1508,15 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   // this should be always smaller than min-height if f-s-f < 1.0
   height: if($ref_weight >= 1.0, 2.1em, 1.8em);
   @if ($ver > 3.25) and ($ver < 3.31) {
-    background-color: opacity($panel_bg, $a_fg_3rd);
+    background-color: opacity($panel_bg, $alpha_foreground_3rd);
     box-shadow: $empty_shadow;
   }
   @else {
     background-color: $panel_bg;
   }
   font-weight: 700;
-  transition-timing-function: $tr_t_std;
-  transition-duration: $tr_d_lng;
+  transition-timing-function: $transition_t_standard;
+  transition-duration: $transition_d_long;
 
   @if $ver > 3.35 {
     &:overview,
@@ -1538,7 +1538,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     -panel-corner-background-color: $panel_hidden_bg;
     -panel-corner-border-width: 0;
     -panel-corner-border-color: transparent;
-    transition-duration: $tr_d_non;
+    transition-duration: $transition_d_none;
 
     &:hover,
     &:focus {
@@ -1578,7 +1578,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     // FIXME: once these buttons are placed in panel-corners,
     // all of transition properties are ignored?
     // So stop using transition as default...
-    transition-duration: $tr_d_non;
+    transition-duration: $transition_d_none;
 
     .app-menu-icon { // dimensions of the icon are hardcoded
       -st-icon-style: symbolic;
@@ -1704,8 +1704,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         // FIXME: override ugly ubuntu.css
         background-gradient-start: $panel_bg;
         background-gradient-end: $panel_bg;
-        transition-timing-function: $tr_t_dec;
-        transition-duration: $tr_d_lng; // transparent -> solid
+        transition-timing-function: $transition_t_dec;
+        transition-duration: $transition_d_long; // transparent -> solid
 
         .panel-corner { -panel-corner-background-color: $panel_bg; }
 
@@ -1748,12 +1748,12 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 }
 
 %translucent_panel {
-  background-color: if($variant == light, opacity($panel_bg, $a_fg_3rd),
+  background-color: if($variant == light, opacity($panel_bg, $alpha_foreground_3rd),
                                           $panel_hidden_bg);
   @if $ver > 3.25 { box-shadow: $empty_shadow; }
   @else { box-shadow: inset 0 2px $panel_bg; }
-  transition-timing-function: $tr_t_dec;
-  transition-duration: $tr_d_lng;
+  transition-timing-function: $transition_t_dec;
+  transition-duration: $transition_d_long;
 }
 
 %translucent_panel_corner {
@@ -1829,7 +1829,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   border-style: solid;
   border-color: if($variant != dark,
                    $div_fg,
-                   mix(white, $dark_bg, percentage($a_div_2)));
+                   mix(white, $dark_bg, percentage($alpha_div_2)));
 
   &:ltr { border-left-width: 1px; }
   &:rtl { border-right-width: 1px; }
@@ -2018,7 +2018,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         width: 2.4em; // = .calendar-day-base
         height: 2.4em;
         border-radius: $r;
-        background-color: opacity($sec_fg, $a_trk_1);
+        background-color: opacity($sec_fg, $alpha_track_1);
         color: $sec_fg;
         icon-size: if($ref_weight >= 1.0, $icon_size * 1.5,
                                           $icon_size);
@@ -2125,7 +2125,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   @if $ver > 3.35 { border: 0 none transparent; }
   font-size: 90%;
   text-align: center;
-  transition-duration: $tr_d_sht;
+  transition-duration: $transition_d_short;
   &:hover,
   &:focus { background-color: $semi_fill_bg; }
   &:active,
@@ -2133,7 +2133,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     &, &:hover {
       color: $sel_fg;
       background-color: $sel_bg;
-      transition-duration: $tr_d_std;
+      transition-duration: $transition_d_standard;
     }
   }
 
@@ -2179,7 +2179,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       background-size: contain;
     }
     &:hover,
-    &:focus { background-color: opacity($link_fg, $a_trk_1); }
+    &:focus { background-color: opacity($link_fg, $alpha_track_1); }
     &:active,
     &:selected {
       &,
@@ -2222,22 +2222,22 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 }
 
 .calendar-other-month-day {
-  color: opacity($ter_fg, $a_fg_3rd);
+  color: opacity($ter_fg, $alpha_foreground_3rd);
   &:hover,
   &:focus {
     color: $ter_fg;
-    background-color: opacity($ter_fg, $a_trk_1);
+    background-color: opacity($ter_fg, $alpha_track_1);
   }
 
   &.calendar-day-with-events {
-    color: opacity($link_fg, $a_fg_3rd * $a_fg_3rd);
+    color: opacity($link_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
     @if $ver > 3.35 {
       @include image-loader($url: 'calendar-today-other.svg');
     }
     &:hover,
     &:focus {
-      color: opacity($link_fg, $a_fg_3rd);
-      background-color: opacity($link_fg, $a_fg_3rd * $a_trk_1);
+      color: opacity($link_fg, $alpha_foreground_3rd);
+      background-color: opacity($link_fg, $alpha_foreground_3rd * $alpha_track_1);
     }
   }
 }
@@ -2313,8 +2313,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         border: 1px solid if($variant == dark, $hidden_fill_bg,
                                                opacity(white, 0.01));
         // set a half of div_fg for internal separators
-        background-color: if($variant == dark, opacity(white, $a_div_2),
-                                               opacity(black, $a_div_2));
+        background-color: if($variant == dark, opacity(white, $alpha_div_2),
+                                               opacity(black, $alpha_div_2));
       }
     }
   }
@@ -2378,15 +2378,15 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     &:hover,
     &:focus {
       @if $ver > 3.25 {
-        background-color: mix($fg, $base, percentage($a_trk_1)); // use opaque
+        background-color: mix($fg, $base, percentage($alpha_track_1)); // use opaque
         @if $ver > 3.33 {
-          border: 1px solid mix($fg, $base, percentage($a_trk_1));
+          border: 1px solid mix($fg, $base, percentage($alpha_track_1));
         }
       }
       @else {
         background-color: $acc_semi_fill_bg;
-        &:ltr { box-shadow: inset 4px 0 opacity($acc_bg, $a_fg_2nd); }
-        &:rtl { box-shadow: inset -4px 0 opacity($acc_bg, $a_fg_2nd); }
+        &:ltr { box-shadow: inset 4px 0 opacity($acc_bg, $alpha_foreground_2nd); }
+        &:rtl { box-shadow: inset -4px 0 opacity($acc_bg, $alpha_foreground_2nd); }
       }
       color: $fg;
 
@@ -2417,9 +2417,9 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     }
     &:active {
       @if $ver > 3.25 {
-        background-color: mix($fg, $base, percentage($a_trk_2));
+        background-color: mix($fg, $base, percentage($alpha_track_2));
         @if $ver > 3.33 {
-          border: 1px solid mix($fg, $base, percentage($a_trk_2));
+          border: 1px solid mix($fg, $base, percentage($alpha_track_2));
         }
       }
       @else {
@@ -2714,7 +2714,7 @@ $ripple_d: 52px;
 
 %ripple_bg {
   border: 0 none transparent; // for safety
-  background-color: opacity($acc_bg, $a_fg_3rd);
+  background-color: opacity($acc_bg, $alpha_foreground_3rd);
   box-shadow: $empty_shadow;
 }
 
@@ -2743,7 +2743,7 @@ $ripple_d: 52px;
 
 %rubberband {
   border: 1px solid $sel_bg;
-  background-color: opacity($sel_bg, $a_trk_out);
+  background-color: opacity($sel_bg, $alpha_track_out);
   box-shadow: $empty_shadow; // for safety
 }
 
@@ -2784,14 +2784,14 @@ $close_button_size: if($ver < 3.35, 32px,
   }
   // FIXME: image duration causes weird deformation of images
   // while transitioning, keep non-duration here
-  transition-duration: $tr_d_non;
+  transition-duration: $transition_d_none;
   &:hover {
     @if $ver < 3.31 {
       @include image-loader($url: 'assets/window-close-hover.svg');
       -st-background-image-shadow: $z-depth-2;
     }
     @else {
-      background-color: mix($dest_bg, $sel_fg, percentage(1 - $a_trk_1));
+      background-color: mix($dest_bg, $sel_fg, percentage(1 - $alpha_track_1));
       color: $sel_fg;
       box-shadow: $z-depth-2;
     }
@@ -2821,7 +2821,7 @@ $close_button_size: if($ver < 3.35, 32px,
     height: $ripple_d + ($progress_width * 2);
     -pie-border-width: $progress_width;
     -pie-border-color: $acc_bg; // progress bit
-    -pie-background-color: opacity($acc_bg, $a_trk_out); // trough
+    -pie-background-color: opacity($acc_bg, $alpha_track_out); // trough
   }
 }
 
@@ -2930,24 +2930,24 @@ $close_button_size: if($ver < 3.35, 32px,
   &-controls { padding-bottom: if($ref_weight >= 1.0, 32px, 26px); }
 
   StScrollBar {
-    StBin#trough { background-color: opacity(black, $a_trk_1); }
+    StBin#trough { background-color: opacity(black, $alpha_track_1); }
 
     StButton#vhandle,
     StButton#hhandle { // use variant-sensitive slider-bit
-      background-color: opacity($ovv_fg, $a_fg_3rd * $a_fg_3rd);
-      &:hover { background-color: opacity($ovv_fg, $a_fg_2nd * $a_fg_3rd); }
+      background-color: opacity($ovv_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+      &:hover { background-color: opacity($ovv_fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
       &:active { background-color: $ovv_fg; }
     }
   }
 
   @if $variant == light { // for .app-folder-popup
     StScrollView.all-apps StScrollBar {
-      StBin#trough { background-color: opacity($base, $a_fg_3rd); }
+      StBin#trough { background-color: opacity($base, $alpha_foreground_3rd); }
 
       StButton#vhandle,
       StButton#hhandle {
-        background-color: opacity($fg, $a_fg_3rd * $a_fg_3rd);
-        &:hover { background-color: opacity($fg, $a_fg_2nd * $a_fg_3rd); }
+        background-color: opacity($fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+        &:hover { background-color: opacity($fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
         &:active { background-color: $fg; }
       }
     }
@@ -3007,7 +3007,7 @@ $close_button_size: if($ver < 3.35, 32px,
     spacing: if($ref_weight >= 1.0, 25px, 19px);
     padding: if($ref_weight >= 1.0, 0.3em 0.9em 0.4em, 0.2em 0.6em 0.3em);
     border-radius: $r_2;
-    background-color: opacity($osd_bg, $a_osd);
+    background-color: opacity($osd_bg, $alpha_osd);
     -shell-caption-spacing: if($ref_weight >= 1.0, 12px, 8px);
     &:hover {
       color: $osd_fg;
@@ -3022,10 +3022,10 @@ $close_button_size: if($ver < 3.35, 32px,
   padding: if($ref_weight >= 1.0, 0.4em 0.8em, 0.3em 0.6em);
   border-radius: $r;
   border: 2px solid transparent;
-  background-color: opacity($base, $a_fg_3rd);
+  background-color: opacity($base, $alpha_foreground_3rd);
   box-shadow: $empty_shadow;
   font-weight: 400;
-  transition-duration: $tr_d_std;
+  transition-duration: $transition_d_standard;
 
   selection-background-color: $sel_bg;
   selected-color: $sel_fg;
@@ -3143,7 +3143,7 @@ $provider_icon_size: 32px; // for < 3.25
     @if $ver > 3.25 {
       padding: if($ref_weight >= 1.0, 8px, 6px);
       border-radius: $r_8;
-      background-color: opacity($osd_bg, $a_osd);
+      background-color: opacity($osd_bg, $alpha_osd);
       box-shadow: $z-depth-2;
       @if $ver > 3.35 {
         border: 0 none transparent;
@@ -3166,11 +3166,11 @@ $provider_icon_size: 32px; // for < 3.25
       &:ltr {
         // concern the inset fake border width
         padding-left: if($ref_weight >= 1.0, 8px, 6px) + 1px;
-        box-shadow: inset 1px 0 opacity($osd_fg, $a_trk_out);
+        box-shadow: inset 1px 0 opacity($osd_fg, $alpha_track_out);
       }
       &:rtl {
         padding-right: if($ref_weight >= 1.0, 8px, 6px) + 1px;
-        box-shadow: inset -1px 0 opacity($osd_fg, $a_trk_out);
+        box-shadow: inset -1px 0 opacity($osd_fg, $alpha_track_out);
       }
     }
     @else { spacing: 3px; }
@@ -3183,11 +3183,11 @@ $provider_icon_size: 32px; // for < 3.25
     }
     padding: 0;
     border-radius: $r_2;
-    transition-duration: $tr_d_non;
+    transition-duration: $transition_d_none;
     &:focus,
     &:selected,
     &:hover {
-      transition-duration: $tr_d_non;
+      transition-duration: $transition_d_none;
       @if $ver > 3.25 {
         background-color: $osd_semi_fill_bg;
 
@@ -3208,7 +3208,7 @@ $provider_icon_size: 32px; // for < 3.25
       }
     }
     &:active {
-      transition-duration: $tr_d_std;
+      transition-duration: $transition_d_standard;
       @if $ver > 3.25 {
         background-color: $osd_fill_bg;
 
@@ -3230,7 +3230,7 @@ $provider_icon_size: 32px; // for < 3.25
     }
     &:checked {
       background-color: $sel_bg;
-      transition-duration: $tr_d_std;
+      transition-duration: $transition_d_standard;
 
       .list-search-result {
         &-title { color: $sel_fg; }
@@ -3355,23 +3355,23 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
     color: $ovv_sec_fg;
   }
   border: none;
-  transition-duration: $tr_d_non;
+  transition-duration: $transition_d_none;
   &:focus,
   &:selected,
   &:hover {
     @if $ver > 3.25 { background-color: $osd_semi_fill_bg; }
     @else { background-color: $ovv_semi_fill_bg; }
-    transition-duration: $tr_d_non;
+    transition-duration: $transition_d_none;
   }
   &:active {
     @if $ver > 3.25 { background-color: $osd_fill_bg; }
     @else { background-color: $ovv_fill_bg; }
-    transition-duration: $tr_d_std;
+    transition-duration: $transition_d_standard;
   }
   &:checked {
     background-color: $sel_bg;
     color: $sel_fg;
-    transition-duration: $tr_d_std;
+    transition-duration: $transition_d_standard;
   }
 
   @if $ver < 3.25 {
@@ -3395,7 +3395,7 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
   background-color: transparent;
   box-shadow: $empty_shadow;
   font-size: 90%;
-  transition-duration: $tr_d_lng;
+  transition-duration: $transition_d_long;
 
   .placeholder {
     width: 24px;
@@ -3429,8 +3429,8 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
 
 %tooltip_template {
   color: $osd_fg;
-  background-color: if($variant == mixed, opacity($inv_tooltip_bg, $a_osd),
-                                          opacity($tooltip_bg, $a_osd));
+  background-color: if($variant == mixed, opacity($inv_tooltip_bg, $alpha_osd),
+                                          opacity($tooltip_bg, $alpha_osd));
   box-shadow: $empty_shadow;
 }
 
@@ -3460,7 +3460,7 @@ $grid_size: 136px;
   .system-action-icon { // system-action icons in search results
     icon-size: $icon_size * 3;
     border-radius: $r;
-    background-color: opacity($osd_bg, $a_osd);
+    background-color: opacity($osd_bg, $alpha_osd);
     color: $osd_fg;
     box-shadow: $z-depth-2;
   }
@@ -3508,7 +3508,7 @@ $grid_size: 136px;
     }
     &:hover:checked {
       color: $sel_fg;
-      background-color: mix($sel_bg, $sel_fg, percentage($a_fg_2nd)) !important;
+      background-color: mix($sel_bg, $sel_fg, percentage($alpha_foreground_2nd)) !important;
       box-shadow: $empty_shadow;
     }
   }
@@ -3527,7 +3527,7 @@ $grid_size: 136px;
     box-shadow: $empty_shadow;
     font-weight: 700;
     text-align: center;
-    transition-duration: $tr_d_non;
+    transition-duration: $transition_d_none;
 
     // FIXME: on some GPUs, text-shadow property strongly affects to rendering
     // performance while transitioning #overview <-> .all-apps, so do not set
@@ -3547,13 +3547,13 @@ $grid_size: 136px;
     background-image: none;
     color: $ovv_fg;
     box-shadow: $empty_shadow;
-    transition-duration: $tr_d_sht;
+    transition-duration: $transition_d_short;
   }
 
   @if $ver > 3.33 {
     &:drop .overview-icon {
       border: none; // for safety
-      background-color: opacity($sel_bg, $a_trk_out);
+      background-color: opacity($sel_bg, $alpha_track_out);
       box-shadow: inset 0 0 0 1px $sel_bg;
     }
   }
@@ -3564,19 +3564,19 @@ $grid_size: 136px;
     background-image: none;
     color: $ovv_fg;
     box-shadow: $empty_shadow;
-    transition-duration: $tr_d_std;
+    transition-duration: $transition_d_standard;
   }
 
   &:checked .overview-icon {
     background-color: $sel_bg;
     color: $sel_fg;
     box-shadow: $empty_shadow;
-    transition-duration: $tr_d_non;
+    transition-duration: $transition_d_none;
   }
 
   &:checked:hover .overview-icon {
-    background-color: mix($sel_fg, $sel_bg, percentage($a_trk_1));
-    transition-duration: $tr_d_sht;
+    background-color: mix($sel_fg, $sel_bg, percentage($alpha_track_1));
+    transition-duration: $transition_d_short;
   }
 }
 
@@ -3657,7 +3657,7 @@ $grid_size: 136px;
     &-bin {
       padding: 5px;
       border-radius: $r_8;
-      background-color: opacity($osd_bg, $a_osd);
+      background-color: opacity($osd_bg, $alpha_osd);
       box-shadow: $z-depth-1;
 
       .app-well-app { // enforce variant specific colors
@@ -3689,7 +3689,7 @@ $grid_size: 136px;
     @else { padding: if($ref_weight >= 1.0, 12px, 8px); }
     border-radius: $r_8;
     border: 0 none transparent;
-    background-color: opacity($osd_bg, $a_osd);
+    background-color: opacity($osd_bg, $alpha_osd);
     box-shadow: $z-depth-4;
 
     &-container {
@@ -3825,7 +3825,7 @@ $grid_size: 136px;
       margin: 2px;
       padding: 0;
       background-image: none;
-      background-color: opacity($sel_bg, $a_fg_2nd);
+      background-color: opacity($sel_bg, $alpha_foreground_2nd);
       box-shadow: $empty_shadow;
     }
 
@@ -3841,11 +3841,11 @@ $grid_size: 136px;
       margin: 0;
       padding: 2px;
       background-image: none;
-      background-color: mix($sel_bg, $sel_fg, percentage($a_fg_2nd));
+      background-color: mix($sel_bg, $sel_fg, percentage($alpha_foreground_2nd));
       @if $ver < 3.31 {
         box-shadow: 0 0 0 ($icon_size / 2)
-                    opacity(mix($sel_bg, $sel_fg, percentage($a_fg_2nd)),
-                            $a_trk_out);
+                    opacity(mix($sel_bg, $sel_fg, percentage($alpha_foreground_2nd)),
+                            $alpha_track_out);
       }
       @else { box-shadow: $empty_shadow; }
     }
@@ -3963,8 +3963,8 @@ $grid_size: 136px;
   &,
   &:hover,
   &:focus {
-    background-color: if($variant == mixed, opacity($inv_tooltip_bg, $a_osd),
-                                            opacity($tooltip_bg, $a_osd));
+    background-color: if($variant == mixed, opacity($inv_tooltip_bg, $alpha_osd),
+                                            opacity($tooltip_bg, $alpha_osd));
     color: $osd_fg;
     box-shadow: $z-depth-2;
   }
@@ -4150,8 +4150,8 @@ $grid_size: 136px;
 
 // On-screen Keyboard
 #keyboard {
-  background-color: if($variant != light, opacity(black, $a_fg_3rd),
-                                          opacity(white, $a_fg_dis));
+  background-color: if($variant != light, opacity(black, $alpha_foreground_3rd),
+                                          opacity(white, $alpha_foreground_dis));
 
   @if $ver > 3.31 {
     .page-indicator { // in the .emoji-panel
@@ -4189,7 +4189,7 @@ $grid_size: 136px;
     min-width: $ref_size * 2;
     padding: 0;
     border-radius: $r_2;
-    border: 1px solid mix($osd_sec_fg, $osd_bg, percentage($a_div_1));
+    border: 1px solid mix($osd_sec_fg, $osd_bg, percentage($alpha_div_1));
     background-color: $osd_bg;
     color: $osd_sec_fg;
     box-shadow: $empty_shadow;
@@ -4197,55 +4197,55 @@ $grid_size: 136px;
     icon-shadow: none;
     font-size: $ref_size * 2; // use unscalable unit
     font-weight: 700;
-    transition-timing-function: $tr_t_std;
+    transition-timing-function: $transition_t_standard;
     &:focus,
     &:hover,
     &:checked {
-      border-color: mix($osd_bg, $osd_fg, percentage($a_fg_2nd));
-      background-color: mix($osd_bg, $osd_fg, percentage($a_fg_2nd));
+      border-color: mix($osd_bg, $osd_fg, percentage($alpha_foreground_2nd));
+      background-color: mix($osd_bg, $osd_fg, percentage($alpha_foreground_2nd));
       color: $osd_fg;
-      transition-timing-function: $tr_t_std;
+      transition-timing-function: $transition_t_standard;
     }
     &:active {
-      border-color: mix($osd_bg, $osd_fg, percentage(1 - $a_trk_2));
-      background-color: mix($osd_bg, $osd_fg, percentage(1 - $a_trk_2));
+      border-color: mix($osd_bg, $osd_fg, percentage(1 - $alpha_track_2));
+      background-color: mix($osd_bg, $osd_fg, percentage(1 - $alpha_track_2));
       color: $osd_fg;
-      transition-timing-function: $tr_t_dec;
+      transition-timing-function: $transition_t_dec;
     }
     &:grayed { // FIXME
       border-color: mix($osd_sec_fg, $osd_bg,
-                        percentage($a_div_1 * $a_fg_dis));
+                        percentage($alpha_div_1 * $alpha_foreground_dis));
       background-color: $panel_bg;
       color: $osd_ter_fg;
-      transition-timing-function: $tr_t_std;
+      transition-timing-function: $transition_t_standard;
     }
 
     @if $ver > 3.25 {
       &.default-key {
-        background-color: mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2));
+        background-color: mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2));
         @if $ver < 3.35 { background-size: ($ref_size - 0.33) * 2; }
         color: $osd_sec_fg;
         &:focus,
         &:hover,
         &:checked {
           border-color:
-            mix(mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2)),
-                $osd_fg, percentage($a_fg_2nd));
+            mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+                $osd_fg, percentage($alpha_foreground_2nd));
           background-color:
-            mix(mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2)),
-                $osd_fg, percentage($a_fg_2nd));
+            mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+                $osd_fg, percentage($alpha_foreground_2nd));
           color: $osd_fg;
-          transition-timing-function: $tr_t_std;
+          transition-timing-function: $transition_t_standard;
         }
         &:active {
           border-color:
-            mix(mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2)),
-                $osd_fg, percentage(1 - $a_trk_2));
+            mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+                $osd_fg, percentage(1 - $alpha_track_2));
           background-color:
-            mix(mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2)),
-                $osd_fg, percentage(1 - $a_trk_2));
+            mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+                $osd_fg, percentage(1 - $alpha_track_2));
           color: $osd_fg;
-          transition-timing-function: $tr_t_dec;
+          transition-timing-function: $transition_t_dec;
         }
       }
 
@@ -4257,8 +4257,8 @@ $grid_size: 136px;
         &:focus,
         &:hover,
         &:checked {
-          border-color: mix($sggt_bg, $sel_fg, percentage($a_fg_2nd));
-          background-color: mix($sggt_bg, $sel_fg, percentage($a_fg_2nd));
+          border-color: mix($sggt_bg, $sel_fg, percentage($alpha_foreground_2nd));
+          background-color: mix($sggt_bg, $sel_fg, percentage($alpha_foreground_2nd));
           @if $ver < 3.35 {
             @include image-loader($url: 'key-enter-active.svg');
           }
@@ -4291,19 +4291,19 @@ $grid_size: 136px;
           &:hover,
           &:checked {
             border-color:
-              mix(mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2)),
-                  $sel_bg, percentage($a_fg_2nd));
+              mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+                  $sel_bg, percentage($alpha_foreground_2nd));
             background-color:
-              mix(mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2)),
-                  $sel_bg, percentage($a_fg_2nd));
+              mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+                  $sel_bg, percentage($alpha_foreground_2nd));
           }
           &:active {
             border-color:
-              mix(mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2)),
-                  $sel_bg, percentage(1 - $a_trk_2));
+              mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+                  $sel_bg, percentage(1 - $alpha_track_2));
             background-color:
-              mix(mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2)),
-                  $sel_bg, percentage(1 - $a_trk_2));
+              mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+                  $sel_bg, percentage(1 - $alpha_track_2));
           }
           &:latched {
             @if $ver < 3.35 {
@@ -4311,20 +4311,20 @@ $grid_size: 136px;
             }
             @else { color: $sel_bg; }
             border-color:
-              mix(mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2)),
-                  $sel_bg, percentage($a_fg_2nd));
+              mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+                  $sel_bg, percentage($alpha_foreground_2nd));
             background-color:
-              mix(mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2)),
-                  $sel_bg, percentage($a_fg_2nd));
-            transition-timing-function: $tr_t_std;
+              mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+                  $sel_bg, percentage($alpha_foreground_2nd));
+            transition-timing-function: $transition_t_standard;
             &:focus,
             &:hover {
               border-color:
-                mix(mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2)),
-                    $sel_bg, percentage(1 - $a_trk_2));
+                mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+                    $sel_bg, percentage(1 - $alpha_track_2));
               background-color:
-                mix(mix($osd_bg, $panel_bg, percentage(1 - $a_trk_2)),
-                    $sel_bg, percentage(1 - $a_trk_2));
+                mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+                    $sel_bg, percentage(1 - $alpha_track_2));
             }
           }
         }
@@ -4365,13 +4365,13 @@ $grid_size: 136px;
       &:hover,
       &:checked {
         border: 0 none transparent;
-        background-color: opacity($sel_fg, $a_trk_1);
+        background-color: opacity($sel_fg, $alpha_track_1);
         color: $sel_fg;
         box-shadow: $empty_shadow;
       }
       &:active {
         border: 0 none transparent;
-        background-color: opacity($sel_fg, $a_trk_2);
+        background-color: opacity($sel_fg, $alpha_track_2);
         color: $sel_fg;
         box-shadow: $empty_shadow;
       }
@@ -4395,7 +4395,7 @@ $grid_size: 136px;
       color: $sec_sel_fg;
       &:hover,
       &:focus {
-        background-color: mix($sel_fg, $sggt_bg, percentage($a_trk_1));
+        background-color: mix($sel_fg, $sggt_bg, percentage($alpha_track_1));
         color: $sel_fg;
       }
       &:active {
@@ -4428,12 +4428,12 @@ $grid_size: 136px;
           border-color: $sel_bg;
           background-color: $sel_bg;
           &:hover {
-            border-color: mix($sel_fg, $sel_bg, percentage($a_trk_1));
-            background-color: mix($sel_fg, $sel_bg, percentage($a_trk_1));
+            border-color: mix($sel_fg, $sel_bg, percentage($alpha_track_1));
+            background-color: mix($sel_fg, $sel_bg, percentage($alpha_track_1));
           }
           &:active {
-            border-color: mix($sel_fg, $sel_bg, percentage($a_trk_2));
-            background-color: mix($sel_fg, $sel_bg, percentage($a_trk_2));
+            border-color: mix($sel_fg, $sel_bg, percentage($alpha_track_2));
+            background-color: mix($sel_fg, $sel_bg, percentage($alpha_track_2));
           }
         }
       }
@@ -4447,12 +4447,12 @@ $grid_size: 136px;
         &:focus,
         &:hover {
           border: 0 none transparent;
-          background-color: opacity($ovv_fg, $a_trk_1);
+          background-color: opacity($ovv_fg, $alpha_track_1);
           color: $ovv_fg;
         }
         &:active {
           border: 0 none transparent;
-          background-color: opacity($ovv_fg, $a_trk_2);
+          background-color: opacity($ovv_fg, $alpha_track_2);
           color: $ovv_fg;
         }
       }
@@ -4482,7 +4482,7 @@ $grid_size: 136px;
     border-radius: $r_2;
     color: $osd_sec_fg;
     font-size: 110%;
-    transition-duration: $tr_d_non;
+    transition-duration: $transition_d_none;
     &:hover {
       background-color: $osd_semi_fill_bg;
       color: $osd_fg;
@@ -4584,7 +4584,7 @@ $login_dialog_width: 23em;
     @include entry(normal, $tc: $ovv_fg);
     selection-background-color: $sel_bg;
     selected-color: $sel_fg;
-    transition-duration: $tr_d_non;
+    transition-duration: $transition_d_none;
     &:hover { @include entry(hover, $tc: $ovv_fg); }
     &:focus { @include entry(focus, $tc: $ovv_fg); }
     &:insensitive { @include entry(disabled, $tc: $ovv_fg); }
@@ -4808,29 +4808,29 @@ $login_dialog_width: 23em;
       &:selected {
         &, &:focus {
           background-color: $hidden_fill_bg;
-          box-shadow: inset 0 0 0 2px opacity($sel_bg, $a_trk_out);
+          box-shadow: inset 0 0 0 2px opacity($sel_bg, $alpha_track_out);
         }
         &:hover,
         &:hover:focus {
-          background-color: opacity($sel_bg, $a_trk_1);
+          background-color: opacity($sel_bg, $alpha_track_1);
         }
         &:active,
         &:active:focus {
-          background-color: opacity($sel_bg, $a_trk_2);
+          background-color: opacity($sel_bg, $alpha_track_2);
         }
       }
 
       &:logged-in {
         border-radius: 0;
-        background-color: opacity($sel_bg, $a_trk_2);
+        background-color: opacity($sel_bg, $alpha_track_2);
         &:focus,
         &:hover {
-          background-color: mix(opacity($sel_bg, $a_trk_2),
-                                opacity($ovv_semi_fill_bg, $a_fg_3rd));
+          background-color: mix(opacity($sel_bg, $alpha_track_2),
+                                opacity($ovv_semi_fill_bg, $alpha_foreground_3rd));
         }
         &:active {
-          background-color: mix(opacity($sel_bg, $a_trk_2),
-                                opacity($ovv_fill_bg, $a_fg_3rd));
+          background-color: mix(opacity($sel_bg, $alpha_track_2),
+                                opacity($ovv_fill_bg, $alpha_foreground_3rd));
         }
 
         &:ltr { box-shadow: inset 4px 0 $sel_bg; }
@@ -4844,7 +4844,7 @@ $login_dialog_width: 23em;
   &-user-list-item {
     padding: 4px 4px 0;
     border-radius: $r_2;
-    transition-duration: $tr_d_sht;
+    transition-duration: $transition_d_short;
 
     // exclude timed-login-indicator
     &:ltr .user-widget { padding-right: 1em; }
@@ -4864,15 +4864,15 @@ $login_dialog_width: 23em;
     &:selected {
       &, &:focus {
         background-color: $hidden_fill_bg;
-        box-shadow: inset 0 0 0 2px opacity($sel_bg, $a_trk_out);
+        box-shadow: inset 0 0 0 2px opacity($sel_bg, $alpha_track_out);
       }
       &:hover,
       &:hover:focus {
-        background-color: opacity($sel_bg, $a_trk_1);
+        background-color: opacity($sel_bg, $alpha_track_1);
       }
       &:active,
       &:active:focus {
-        background-color: opacity($sel_bg, $a_trk_2);
+        background-color: opacity($sel_bg, $alpha_track_2);
       }
     }
 
@@ -4892,7 +4892,7 @@ $login_dialog_width: 23em;
     .login-dialog-timed-login-indicator {
       height: 4px;
       margin: 4px 0 0 0;
-      background-color: opacity($acc_bg, $a_fg_2nd);
+      background-color: opacity($acc_bg, $alpha_foreground_2nd);
     }
 
     &:focus .login-dialog-timed-login-indicator {
@@ -4972,16 +4972,16 @@ $login_dialog_width: 23em;
   padding: 12px 6px;
   border: none;
   border-radius: $r_8;
-  background-color: if($variant == mixed, opacity($inv_tooltip_bg, $a_osd),
-                                          opacity($tooltip_bg, $a_osd));
+  background-color: if($variant == mixed, opacity($inv_tooltip_bg, $alpha_osd),
+                                          opacity($tooltip_bg, $alpha_osd));
   color: $osd_fg;
 }
 
 %unlock_scrollbar {
   StButton#vhandle,
   StButton#hhandle {
-    background-color: opacity($ovv_fg, $a_fg_3rd * $a_fg_3rd);
-    &:hover { background-color: opacity($ovv_fg, $a_fg_2nd * $a_fg_3rd); }
+    background-color: opacity($ovv_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+    &:hover { background-color: opacity($ovv_fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
     &:active { background-color: $ovv_fg; }
   }
 }
@@ -5126,7 +5126,7 @@ $tool_icon_size: 24px;
   padding: 8px;
   border: none;
   border-radius: $r_8; // affects small OSD while inspecting
-  background-color: opacity($osd_bg, $a_osd);
+  background-color: opacity($osd_bg, $alpha_osd);
   color: $osd_fg;
   box-shadow: $z-depth-4;
 
@@ -5142,8 +5142,8 @@ $tool_icon_size: 24px;
     background-color: $hidden_fill_bg;
     box-shadow:
       inset 0 -1px if($variant != light,
-                      mix(white, $osd_bg, percentage($a_div_2)),
-                      mix(black, $dark_bg, percentage($a_div_1)));
+                      mix(white, $osd_bg, percentage($alpha_div_2)),
+                      mix(black, $dark_bg, percentage($alpha_div_1)));
 
     > StIcon { // 'color-picker' and 'trash'
       // base-line shift
@@ -5164,7 +5164,7 @@ $tool_icon_size: 24px;
     }
     @else { font-weight: 700; } // fixed-fonts are used
     font-size: 90%;
-    transition-duration: $tr_d_std;
+    transition-duration: $transition_d_standard;
     &:hover {
       border-bottom-width: 0;
       border-color: transparent;
@@ -5172,7 +5172,7 @@ $tool_icon_size: 24px;
       color: $osd_fg;
       box-shadow: inset 0 -2px $osd_out_fg;
       text-shadow: none;
-      transition-duration: $tr_d_std;
+      transition-duration: $transition_d_standard;
     }
     &:selected {
       border-bottom-width: 0;
@@ -5180,12 +5180,12 @@ $tool_icon_size: 24px;
       background-color: $hidden_fill_bg;
       color:
         if($variant != light,
-           saturate(lighten($sel_bg, percentage($a_trk_2)),
-             percentage($a_trk_2)),
+           saturate(lighten($sel_bg, percentage($alpha_track_2)),
+             percentage($alpha_track_2)),
            $sel_bg);
       box-shadow: inset 0 -2px $sel_bg;
       text-shadow: none;
-      transition-duration: $tr_d_std;
+      transition-duration: $transition_d_standard;
     }
 
     StLabel { padding-bottom: 0.1em; }
@@ -5209,7 +5209,7 @@ $tool_icon_size: 24px;
   }
 
   .shell-link {
-    color: opacity($osd_link_fg, $a_fg_2nd);
+    color: opacity($osd_link_fg, $alpha_foreground_2nd);
     &:hover,
     &:active { color: $osd_link_fg; }
   }
@@ -5304,7 +5304,7 @@ StBoxLayout#Windows {
 #LookingGlassPropertyInspector {
   padding: 6px;
   border: 1px solid if($variant != light,
-                       mix(white, $osd_bg, percentage($a_div_2)),
+                       mix(white, $osd_bg, percentage($alpha_div_2)),
                        $div_sld_fg);
   border-radius: 0;
   background-color: $osd_bg;

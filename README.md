@@ -205,32 +205,6 @@ GtkSourceView/Gedit Color Scheme Support
  >   * The color-scheme can be used in Gnome-Builder, Gnome-Sushi, Meld and Gedit if installed to 
  >     `~/.local/share/gtksourceview-3.0/styles` or `~/.local/share/gtksourceview-4/styles` directory.
 
-Extra Browser Support
----------------------
-To try our color samples for FirefoxColor test pilot, check these URLs:
-
-  1. [**Platano**](https://color.firefox.com/?theme=XQAAAAL8AAAAAAAAAABBKYhm849SCia2CaaEGccwS-xNKliFvd9NUAF6ENY3kBjKL2oHo45W2-O_o0hH8v9jyb1gPLS8xyg320t5BtQBRbshC37eqwUpEtrNzUXzzCCGCEnPVujOpTgJBqePqVNh4q1nxYUIdLIFaoaGFtpU8UGWTHdYK89VREGS2_uycyNkLyT_fUsp3rt8085FMcIrk2zP6zlQ8nXHifYExWUlXde95kD4F3H_cvgAAA)
-
-  2. [**Platano-Lumine**](https://color.firefox.com/?theme=XQAAAAL8AAAAAAAAAABBKYhm849SCia2CaaEGccwS-xNKliFvd9NUAF6ENY3kBjKL2oHo45W2-O_o0hH8v9jyb1gPLS8xyg3NbO0xf8CWW1IQ-VFBeST-c2ya550Jq-AJT3qXk84PCZgv4Q1Ip6G8KMxah3hVdR8-Zr9ze0kGqgOtR7bn1Nps1cYGNzQQkA8ajSLlQnjaMNzy_Cgfm6TGsTtSGCZPEHAaGevqPSrPV7L_8f2AAA)
-
-  3. [**Platano-Noir**](https://color.firefox.com/?theme=XQAAAAL8AAAAAAAAAABBKYhm849SCia2CaaEGccwS-xNKlhR4U3ii01izoNSwV8EzxA9i34l-h9kNzmmbht5egIz1VwqGu4asy3bC0Iu-fSfcIJAVAwKwUYrdnMCFPHjDRh3WIEk3D10l1b0yhJ2JJ4iidXrDdOeHtPXECgT4mWPRinIv4rInTDn_LmydH4PXIv_OPeKQZiffADmQZvxlSWtpsLQfUznQX8sEtOtxfBaEVM7_-LnUAA)
-
- > **Note:**
- >
- >   * We no longer support "Normal" UI layout in Chrome(ium). Use "Refresh" instead.
- >
- >   * Vivaldi can make custom themes via settings like these:
- >     ```
- >     Background: #F8F8F8 (#1D1D1D)
- >     Foreground: #111111 (#F5F5F5)
- >     Highlight:  #3F51B5
- >     Accent:     #E7E7E7 (#080808)
- >     Accent Color from Active Page: [ ]
- >     Apply Accent Color to Window:  [*]
- >     Transparent Tabs:              [*]
- >     Corner Rounding:               2px
- >     ```
-
 Extra Dock Support
 ------------------
  To try "Plank" theming, pass this option:
