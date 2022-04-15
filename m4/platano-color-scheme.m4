@@ -1,6 +1,6 @@
-# PLATA_COLOR_SCHEME ()
+# PLATANO_COLOR_SCHEME ()
 # -----------------------------------------------------------
-AC_DEFUN([PLATA_COLOR_SCHEME], [
+AC_DEFUN([PLATANO_COLOR_SCHEME], [
 
     selection_default="`grep 'Indigo500' ./src/gtk/sass/common/_colors.scss | \
                         cut -d' ' -f3`"

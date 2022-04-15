@@ -1,6 +1,6 @@
-# PLATA_GNOME ()
+# PLATANO_GNOME ()
 # -----------------------------------------------------------
-AC_DEFUN([PLATA_GNOME], [
+AC_DEFUN([PLATANO_GNOME], [
 
     # check glib-2.0 version for determining GNOME env version
     GIO_VERSION=`$PKG_CONFIG --modversion glib-2.0`

@@ -1,6 +1,6 @@
-# PLATA_OPTION(VARIABLE, FEATURE, HELP-NAME, DISABLE/ENABLE)
+# PLATANO_OPTION(VARIABLE, FEATURE, HELP-NAME, DISABLE/ENABLE)
 # -----------------------------------------------------------
-AC_DEFUN([PLATA_OPTION], [
+AC_DEFUN([PLATANO_OPTION], [
     AC_ARG_ENABLE(
         [$2],
         [AS_HELP_STRING(

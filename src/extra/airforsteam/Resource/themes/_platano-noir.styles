@@ -1,4 +1,4 @@
-plata-noir.styles {
+platano-noir.styles {
   colors {
     A2Background   "029 029 029 255" //client bg
     A2Ribbon       "017 017 017 255" //bg for section emphasis (ie. left side of settings dialog)

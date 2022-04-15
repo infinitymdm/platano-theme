@@ -1,12 +1,12 @@
 [Desktop Entry]
 Type=X-GNOME-Metatheme
-Name=Plata-Lumine
-Comment=A Gtk theme based on Material Design 2 with light variant
+Name=Platano-Lumine
+Comment=A light Gtk theme based on Material Design 2
 Encoding=UTF-8
 
 [X-GNOME-Metatheme]
 Type=X-GNOME-Metatheme
-GtkTheme=Plata-Lumine
-MetacityTheme=Plata-Lumine
+GtkTheme=Platano-Lumine
+MetacityTheme=Platano-Lumine
 IconTheme=Adwaita
 CursorTheme=Adwaita

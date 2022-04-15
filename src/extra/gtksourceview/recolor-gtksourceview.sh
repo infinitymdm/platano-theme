@@ -10,8 +10,8 @@
 # (at your option) any later version.
 #
 
-SRC_LIGHT_FILE="plata-light.xml"
-SRC_DARK_FILE="plata-dark.xml"
+SRC_LIGHT_FILE="platano-light.xml"
+SRC_DARK_FILE="platano-dark.xml"
 KEY_FILE="../../gtk/sass/common/resources/_key_colors.scss"
 
 # Generate CSS for color source

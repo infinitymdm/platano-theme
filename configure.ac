@@ -1,14 +1,14 @@
-m4_define([plata_maj_ver], [0])
-m4_define([plata_mnr_ver], [9])
-m4_define([plata_mcr_ver], [8])
-m4_define([plata_version], [plata_maj_ver.plata_mnr_ver.plata_mcr_ver])
-m4_define([plata_git_url], [https://gitlab.com/tista500/plata-theme])
+m4_define([platano_maj_ver], [0])
+m4_define([platano_mnr_ver], [9])
+m4_define([platano_mcr_ver], [8])
+m4_define([platano_version], [platano_maj_ver.platano_mnr_ver.platano_mcr_ver])
+m4_define([platano_git_url], [])
 
 AC_INIT(
-	[Plata ],
-	[plata_version],
-	[plata_git_url],
-	[plata-theme]
+	[Platano ],
+	[platano_version],
+	[platano_git_url],
+	[platano-theme]
 )
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([
@@ -23,18 +23,18 @@ AM_INIT_AUTOMAKE([
 AC_PREFIX_DEFAULT(/usr/local)
 AM_SILENT_RULES([yes])
 
-PLATA_OPTION([PARALLEL],    [parallel],    [parallel-build],      [disable])
-PLATA_OPTION([GTK_NEXT],    [gtk_next],    [Gtk-4.0],             [disable])
-PLATA_OPTION([GNOME],       [gnome],       [Gnome-Shell],         [enable])
-PLATA_OPTION([CINNAMON],    [cinnamon],    [Cinnamon],            [enable])
-PLATA_OPTION([FLASHBACK],   [flashback],   [Flashback],           [enable])
-PLATA_OPTION([XFCE],        [xfce],        [XFce],                [enable])
-PLATA_OPTION([MATE],        [mate],        [Mate],                [enable])
-PLATA_OPTION([OPENBOX],     [openbox],     [Openbox],             [enable])
-PLATA_OPTION([PLANK],       [plank],       [Plank],               [disable])
-PLATA_OPTION([TELEGRAM],    [telegram],    [Telegram],            [disable])
-PLATA_OPTION([TWEETDECK],   [tweetdeck],   [Tweetdeck-Colordeck], [disable])
-PLATA_OPTION([AIRFORSTEAM], [airforsteam], [Air-for-Steam],       [disable])
+PLATANO_OPTION([PARALLEL],    [parallel],    [parallel-build],      [disable])
+PLATANO_OPTION([GTK_NEXT],    [gtk_next],    [Gtk-4.0],             [disable])
+PLATANO_OPTION([GNOME],       [gnome],       [Gnome-Shell],         [enable])
+PLATANO_OPTION([CINNAMON],    [cinnamon],    [Cinnamon],            [enable])
+PLATANO_OPTION([FLASHBACK],   [flashback],   [Flashback],           [enable])
+PLATANO_OPTION([XFCE],        [xfce],        [XFce],                [enable])
+PLATANO_OPTION([MATE],        [mate],        [Mate],                [enable])
+PLATANO_OPTION([OPENBOX],     [openbox],     [Openbox],             [enable])
+PLATANO_OPTION([PLANK],       [plank],       [Plank],               [disable])
+PLATANO_OPTION([TELEGRAM],    [telegram],    [Telegram],            [disable])
+PLATANO_OPTION([TWEETDECK],   [tweetdeck],   [Tweetdeck-Colordeck], [disable])
+PLATANO_OPTION([AIRFORSTEAM], [airforsteam], [Air-for-Steam],       [disable])
 
 PKG_PROG_PKG_CONFIG
 AS_IF([test -z "$PKG_CONFIG"], [AC_MSG_ERROR(['pkg-config' not found.])])
@@ -77,7 +77,7 @@ if test x"$ENABLE_TELEGRAM" = xyes; then
 fi
 
 if test x"$ENABLE_GNOME" = xyes; then
-	PLATA_GNOME
+	PLATANO_GNOME
 fi
 AM_CONDITIONAL(GNOME_IS_320_TO_324, [test x"$GNOME_SCSS_VERSION" = x3.24])
 AM_CONDITIONAL(GNOME_IS_332_OR_NEWER, [test x"$GNOME_SCSS_VERSION" = x3.32])
@@ -87,10 +87,10 @@ AM_CONDITIONAL(GNOME_IS_338_OR_NEWER, [test x"$GNOME_SCSS_VERSION" = x3.38])
 if test x"$ENABLE_MATE" = xyes; then
 	PKG_CHECK_MODULES(MACRO, [libmarco-private >= 1.22.2])
 fi
-PLATA_MATE
+PLATANO_MATE
 AM_CONDITIONAL(ENABLE_MATE, [test x"$MATE_IS_SUPPORTED" = xyes])
 
-PLATA_COLOR_SCHEME
+PLATANO_COLOR_SCHEME
 
 AC_CONFIG_FILES([
 	Makefile \
@@ -102,17 +102,17 @@ AC_CONFIG_FILES([
 ])
 AC_OUTPUT
 AC_MSG_RESULT([
-        Plata Theme $VERSION
+        Platano Theme $VERSION
         =================================================================
 
          prefix:                 ${prefix}
          datarootdir:            ${datarootdir}
-         target directories:     ${datarootdir}/themes/Plata
-                                 ${datarootdir}/themes/Plata-Compact
-                                 ${datarootdir}/themes/Plata-Lumine
-                                 ${datarootdir}/themes/Plata-Lumine-Compact
-                                 ${datarootdir}/themes/Plata-Noir
-                                 ${datarootdir}/themes/Plata-Noir-Compact
+         target directories:     ${datarootdir}/themes/Platano
+                                 ${datarootdir}/themes/Platano-Compact
+                                 ${datarootdir}/themes/Platano-Lumine
+                                 ${datarootdir}/themes/Platano-Lumine-Compact
+                                 ${datarootdir}/themes/Platano-Noir
+                                 ${datarootdir}/themes/Platano-Noir-Compact
 
          glib-compile-resources: $GLIB_COMPILE_RESOURCES
          xmllint:                $XMLLINT

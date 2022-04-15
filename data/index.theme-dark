@@ -1,12 +1,12 @@
 [Desktop Entry]
 Type=X-GNOME-Metatheme
-Name=Plata-Noir
-Comment=A Gtk theme based on Material Design 2 with dark variant
+Name=Platano-Noir
+Comment=A dark Gtk theme based on Material Design
 Encoding=UTF-8
 
 [X-GNOME-Metatheme]
 Type=X-GNOME-Metatheme
-GtkTheme=Plata-Noir
-MetacityTheme=Plata
+GtkTheme=Platano-Noir
+MetacityTheme=Platano
 IconTheme=Adwaita
 CursorTheme=Adwaita

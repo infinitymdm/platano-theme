@@ -1,6 +1,6 @@
-# PLATA_MATE ()
+# PLATANO_MATE ()
 # -----------------------------------------------------------
-AC_DEFUN([PLATA_MATE], [
+AC_DEFUN([PLATANO_MATE], [
     MATE_IS_SUPPORTED="no"
 
     AS_IF(

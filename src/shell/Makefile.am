@@ -1,10 +1,10 @@
-themedir         = $(datadir)/themes
-platadir         = $(DESTDIR)$(themedir)/Plata
-luminedir        = $(DESTDIR)$(themedir)/Plata-Lumine
-noirdir          = $(DESTDIR)$(themedir)/Plata-Noir
-platacompactdir  = $(DESTDIR)$(themedir)/Plata-Compact
-luminecompactdir = $(DESTDIR)$(themedir)/Plata-Lumine-Compact
-noircompactdir   = $(DESTDIR)$(themedir)/Plata-Noir-Compact
+themedir          = $(datadir)/themes
+platanodir        = $(DESTDIR)$(themedir)/Platano
+luminedir         = $(DESTDIR)$(themedir)/Platano-Lumine
+noirdir           = $(DESTDIR)$(themedir)/Platano-Noir
+platanocompactdir = $(DESTDIR)$(themedir)/Platano-Compact
+luminecompactdir  = $(DESTDIR)$(themedir)/Platano-Lumine-Compact
+noircompactdir    = $(DESTDIR)$(themedir)/Platano-Noir-Compact
 
 shelldir   = $(srcdir)/gnome-shell
 if !GNOME_IS_338_OR_NEWER
@@ -78,7 +78,7 @@ shell_classic_readme_file = \
 shell_wtd_file = \
 	$(shelldir)/extensions/workspaces-to-dock/workspaces-to-dock.css
 if !GNOME_IS_320_TO_324
-shell_gdm3_file = $(shelldir)/gdm3-Plata.css
+shell_gdm3_file = $(shelldir)/gdm3-Platano.css
 endif
 if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
@@ -239,7 +239,7 @@ shell_lumine_classic_file = \
 shell_lumine_wtd_file = \
 	$(shellluminedir)/extensions/workspaces-to-dock/workspaces-to-dock.css
 if !GNOME_IS_320_TO_324
-shell_lumine_gdm3_file  = $(shellluminedir)/gdm3-Plata-Lumine.css
+shell_lumine_gdm3_file  = $(shellluminedir)/gdm3-Platano-Lumine.css
 endif
 if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
@@ -380,7 +380,7 @@ shell_noir_classic_file = \
 shell_noir_wtd_file = \
 	$(shellnoirdir)/extensions/workspaces-to-dock/workspaces-to-dock.css
 if !GNOME_IS_320_TO_324
-shell_noir_gdm3_file = $(shellnoirdir)/gdm3-Plata-Noir.css
+shell_noir_gdm3_file = $(shellnoirdir)/gdm3-Platano-Noir.css
 endif
 if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
@@ -521,7 +521,7 @@ shell_compact_classic_file = \
 shell_compact_wtd_file = \
 	$(shellcompactdir)/extensions/workspaces-to-dock/workspaces-to-dock.css
 if !GNOME_IS_320_TO_324
-shell_compact_gdm3_file = $(shellcompactdir)/gdm3-Plata-Compact.css
+shell_compact_gdm3_file = $(shellcompactdir)/gdm3-Platano-Compact.css
 endif
 if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
@@ -661,7 +661,7 @@ shell_lumine_compact_classic_file = \
 shell_lumine_compact_wtd_file = \
 	$(shellluminecompactdir)/extensions/workspaces-to-dock/workspaces-to-dock.css
 if !GNOME_IS_320_TO_324
-shell_lumine_compact_gdm3_file = $(shellluminecompactdir)/gdm3-Plata-Lumine-Compact.css
+shell_lumine_compact_gdm3_file = $(shellluminecompactdir)/gdm3-Platano-Lumine-Compact.css
 endif
 if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
@@ -798,7 +798,7 @@ shell_noir_compact_classic_file = \
 shell_noir_compact_wtd_file = \
 	$(shellnoircompactdir)/extensions/workspaces-to-dock/workspaces-to-dock.css
 if !GNOME_IS_320_TO_324
-shell_noir_compact_gdm3_file = $(shellnoircompactdir)/gdm3-Plata-Noir-Compact.css
+shell_noir_compact_gdm3_file = $(shellnoircompactdir)/gdm3-Platano-Noir-Compact.css
 endif
 if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
@@ -1001,17 +1001,17 @@ if ENABLE_GNOME
 if !GNOME_IS_320_TO_324
 	cd $(srcdir)/sass && \
 		$(SASSC) $(sassc_option) \
-		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3.scss ../gnome-shell/gdm3-Plata.css && \
+		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3.scss ../gnome-shell/gdm3-Platano.css && \
 		$(SASSC) $(sassc_option) \
-		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-light.scss ../gnome-shell-light/gdm3-Plata-Lumine.css && \
+		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-light.scss ../gnome-shell-light/gdm3-Platano-Lumine.css && \
 		$(SASSC) $(sassc_option) \
-		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-dark.scss ../gnome-shell-dark/gdm3-Plata-Noir.css && \
+		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-dark.scss ../gnome-shell-dark/gdm3-Platano-Noir.css && \
 		$(SASSC) $(sassc_option) \
-		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-compact.scss ../gnome-shell-compact/gdm3-Plata-Compact.css && \
+		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-compact.scss ../gnome-shell-compact/gdm3-Platano-Compact.css && \
 		$(SASSC) $(sassc_option) \
-		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-light-compact.scss ../gnome-shell-light-compact/gdm3-Plata-Lumine-Compact.css && \
+		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-light-compact.scss ../gnome-shell-light-compact/gdm3-Platano-Lumine-Compact.css && \
 		$(SASSC) $(sassc_option) \
-		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-dark-compact.scss ../gnome-shell-dark-compact/gdm3-Plata-Noir-Compact.css
+		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-dark-compact.scss ../gnome-shell-dark-compact/gdm3-Platano-Noir-Compact.css
 endif
 
 	cd $(srcdir)/sass && \
@@ -1122,21 +1122,21 @@ endif
 
 install-data-local:
 if ENABLE_GNOME
-	$(MKDIR_P) $(platadir)/gnome-shell
-	$(MKDIR_P) $(platadir)/gnome-shell/assets
-	$(MKDIR_P) $(platadir)/gnome-shell/extensions
-	$(MKDIR_P) $(platadir)/gnome-shell/extensions/window-list
-	$(MKDIR_P) $(platadir)/gnome-shell/extensions/workspaces-to-dock
-	$(MKDIR_P) $(platadir)/gnome-shell/extensions/workspaces-to-dock/assets
-	cp -Rv $(shell_file) $(platadir)/gnome-shell
-	cp -Rv $(shell_classic_file) $(platadir)/gnome-shell/extensions/window-list
-	cp -Rv $(shell_classic_readme_file) $(platadir)/gnome-shell/extensions/window-list/README
-	cp -Rv $(shell_wtd_file) $(platadir)/gnome-shell/extensions/workspaces-to-dock
-	cp -Rv $(shell_asset_file) $(platadir)/gnome-shell/assets
+	$(MKDIR_P) $(platanodir)/gnome-shell
+	$(MKDIR_P) $(platanodir)/gnome-shell/assets
+	$(MKDIR_P) $(platanodir)/gnome-shell/extensions
+	$(MKDIR_P) $(platanodir)/gnome-shell/extensions/window-list
+	$(MKDIR_P) $(platanodir)/gnome-shell/extensions/workspaces-to-dock
+	$(MKDIR_P) $(platanodir)/gnome-shell/extensions/workspaces-to-dock/assets
+	cp -Rv $(shell_file) $(platanodir)/gnome-shell
+	cp -Rv $(shell_classic_file) $(platanodir)/gnome-shell/extensions/window-list
+	cp -Rv $(shell_classic_readme_file) $(platanodir)/gnome-shell/extensions/window-list/README
+	cp -Rv $(shell_wtd_file) $(platanodir)/gnome-shell/extensions/workspaces-to-dock
+	cp -Rv $(shell_asset_file) $(platanodir)/gnome-shell/assets
 	cp -Rv $(shell_extension_workspace_asset_file) \
-		$(platadir)/gnome-shell/extensions/workspaces-to-dock/assets
+		$(platanodir)/gnome-shell/extensions/workspaces-to-dock/assets
 if !GNOME_IS_320_TO_324
-	cp -Rv $(shell_gdm3_file) $(platadir)/gnome-shell
+	cp -Rv $(shell_gdm3_file) $(platanodir)/gnome-shell
 endif
 
 	$(MKDIR_P) $(luminedir)/gnome-shell
@@ -1171,20 +1171,20 @@ if !GNOME_IS_320_TO_324
 	cp -Rv $(shell_noir_gdm3_file) $(noirdir)/gnome-shell
 endif
 
-	$(MKDIR_P) $(platacompactdir)/gnome-shell
-	$(MKDIR_P) $(platacompactdir)/gnome-shell/assets
-	$(MKDIR_P) $(platacompactdir)/gnome-shell/extensions
-	$(MKDIR_P) $(platacompactdir)/gnome-shell/extensions/window-list
-	$(MKDIR_P) $(platacompactdir)/gnome-shell/extensions/workspaces-to-dock
-	$(MKDIR_P) $(platacompactdir)/gnome-shell/extensions/workspaces-to-dock/assets
-	cp -Rv $(shell_compact_file) $(platacompactdir)/gnome-shell
-	cp -Rv $(shell_compact_classic_file) $(platacompactdir)/gnome-shell/extensions/window-list
-	cp -Rv $(shell_compact_wtd_file) $(platacompactdir)/gnome-shell/extensions/workspaces-to-dock
-	cp -Rv $(shell_compact_asset_file) $(platacompactdir)/gnome-shell/assets
+	$(MKDIR_P) $(platanocompactdir)/gnome-shell
+	$(MKDIR_P) $(platanocompactdir)/gnome-shell/assets
+	$(MKDIR_P) $(platanocompactdir)/gnome-shell/extensions
+	$(MKDIR_P) $(platanocompactdir)/gnome-shell/extensions/window-list
+	$(MKDIR_P) $(platanocompactdir)/gnome-shell/extensions/workspaces-to-dock
+	$(MKDIR_P) $(platanocompactdir)/gnome-shell/extensions/workspaces-to-dock/assets
+	cp -Rv $(shell_compact_file) $(platanocompactdir)/gnome-shell
+	cp -Rv $(shell_compact_classic_file) $(platanocompactdir)/gnome-shell/extensions/window-list
+	cp -Rv $(shell_compact_wtd_file) $(platanocompactdir)/gnome-shell/extensions/workspaces-to-dock
+	cp -Rv $(shell_compact_asset_file) $(platanocompactdir)/gnome-shell/assets
 	cp -Rv $(shell_extension_workspace_asset_file) \
-		$(platacompactdir)/gnome-shell/extensions/workspaces-to-dock/assets
+		$(platanocompactdir)/gnome-shell/extensions/workspaces-to-dock/assets
 if !GNOME_IS_320_TO_324
-	cp -Rv $(shell_compact_gdm3_file) $(platacompactdir)/gnome-shell
+	cp -Rv $(shell_compact_gdm3_file) $(platanocompactdir)/gnome-shell
 endif
 
 	$(MKDIR_P) $(luminecompactdir)/gnome-shell
@@ -1221,23 +1221,23 @@ endif
 endif
 
 if ENABLE_CINNAMON
-	$(MKDIR_P) $(platadir)/cinnamon
-	$(MKDIR_P) $(platadir)/cinnamon/assets
-	$(MKDIR_P) $(platadir)/cinnamon/assets/checkbox
-	$(MKDIR_P) $(platadir)/cinnamon/assets/misc
-	$(MKDIR_P) $(platadir)/cinnamon/assets/panel
-	$(MKDIR_P) $(platadir)/cinnamon/assets/switch
-	cp -Rv $(cinnamon_file) $(platadir)/cinnamon
+	$(MKDIR_P) $(platanodir)/cinnamon
+	$(MKDIR_P) $(platanodir)/cinnamon/assets
+	$(MKDIR_P) $(platanodir)/cinnamon/assets/checkbox
+	$(MKDIR_P) $(platanodir)/cinnamon/assets/misc
+	$(MKDIR_P) $(platanodir)/cinnamon/assets/panel
+	$(MKDIR_P) $(platanodir)/cinnamon/assets/switch
+	cp -Rv $(cinnamon_file) $(platanodir)/cinnamon
 	cp -Rv $(cinnamon_asset_checkbox_file) \
-		$(platadir)/cinnamon/assets/checkbox
+		$(platanodir)/cinnamon/assets/checkbox
 	cp -Rv $(cinnamon_asset_misc_file) \
-		$(platadir)/cinnamon/assets/misc
+		$(platanodir)/cinnamon/assets/misc
 	cp -Rv $(cinnamon_asset_panel_file) \
-		$(platadir)/cinnamon/assets/panel
+		$(platanodir)/cinnamon/assets/panel
 	cp -Rv $(cinnamon_asset_switch_file) \
-		$(platadir)/cinnamon/assets/switch
+		$(platanodir)/cinnamon/assets/switch
 	cp -Rv $(cinnamon_asset_thumb_file) \
-		$(platadir)/cinnamon
+		$(platanodir)/cinnamon
 
 	$(MKDIR_P) $(luminedir)/cinnamon
 	$(MKDIR_P) $(luminedir)/cinnamon/assets
@@ -1284,16 +1284,16 @@ uninstall-local:
 if ENABLE_GNOME
 	test -e $(noirdir)/gnome-shell && rm -rfv $(noirdir)/gnome-shell
 	test -e $(luminedir)/gnome-shell && rm -rfv $(luminedir)/gnome-shell
-	test -e $(platadir)/gnome-shell && rm -rfv $(platadir)/gnome-shell
+	test -e $(platanodir)/gnome-shell && rm -rfv $(platanodir)/gnome-shell
 	test -e $(noircompactdir)/gnome-shell && rm -rfv $(noircompactdir)/gnome-shell
 	test -e $(luminecompactdir)/gnome-shell && rm -rfv $(luminecompactdir)/gnome-shell
-	test -e $(platacompactdir)/gnome-shell && rm -rfv $(platacompactdir)/gnome-shell
+	test -e $(platanocompactdir)/gnome-shell && rm -rfv $(platanocompactdir)/gnome-shell
 endif
 
 if ENABLE_CINNAMON
 	test -e $(noirdir)/cinnamon && rm -rfv $(noirdir)/cinnamon
 	test -e $(luminedir)/cinnamon && rm -rfv $(luminedir)/cinnamon
-	test -e $(platadir)/cinnamon && rm -rfv $(platadir)/cinnamon
+	test -e $(platanodir)/cinnamon && rm -rfv $(platanodir)/cinnamon
 endif
 
 # ****************************
@@ -1387,12 +1387,12 @@ CLEANFILES += \
 	$(srcdir)/asset/assets-gnome-shell/workspaces-to-dock/*.svg
 if !GNOME_IS_320_TO_324
 CLEANFILES += \
-	$(srcdir)/gnome-shell/gdm3-Plata.css \
-	$(srcdir)/gnome-shell-light/gdm3-Plata-Lumine.css \
-	$(srcdir)/gnome-shell-dark/gdm3-Plata-Noir.css \
-	$(srcdir)/gnome-shell-compact/gdm3-Plata-Compact.css \
-	$(srcdir)/gnome-shell-light-compact/gdm3-Plata-Lumine-Compact.css \
-	$(srcdir)/gnome-shell-dark-compact/gdm3-Plata-Noir-Compact.css
+	$(srcdir)/gnome-shell/gdm3-Platano.css \
+	$(srcdir)/gnome-shell-light/gdm3-Platano-Lumine.css \
+	$(srcdir)/gnome-shell-dark/gdm3-Platano-Noir.css \
+	$(srcdir)/gnome-shell-compact/gdm3-Platano-Compact.css \
+	$(srcdir)/gnome-shell-light-compact/gdm3-Platano-Lumine-Compact.css \
+	$(srcdir)/gnome-shell-dark-compact/gdm3-Platano-Noir-Compact.css
 endif
 endif
 

@@ -1,10 +1,10 @@
-themedir         = $(datadir)/themes
-platadir         = $(DESTDIR)$(themedir)/Plata
-luminedir        = $(DESTDIR)$(themedir)/Plata-Lumine
-noirdir          = $(DESTDIR)$(themedir)/Plata-Noir
-platacompactdir  = $(DESTDIR)$(themedir)/Plata-Compact
-luminecompactdir = $(DESTDIR)$(themedir)/Plata-Lumine-Compact
-noircompactdir   = $(DESTDIR)$(themedir)/Plata-Noir-Compact
+themedir           = $(datadir)/themes
+platanodir         = $(DESTDIR)$(themedir)/Platano
+luminedir          = $(DESTDIR)$(themedir)/Platano-Lumine
+noirdir            = $(DESTDIR)$(themedir)/Platano-Noir
+platanocompactdir  = $(DESTDIR)$(themedir)/Platano-Compact
+luminecompactdir   = $(DESTDIR)$(themedir)/Platano-Lumine-Compact
+noircompactdir     = $(DESTDIR)$(themedir)/Platano-Noir-Compact
 
 gtk3_assetdir = $(srcdir)/asset/assets-gtk3
 
@@ -749,19 +749,19 @@ endif
 # *****************
 
 install-data-local:
-	$(MKDIR_P) $(platadir)
+	$(MKDIR_P) $(platanodir)
 	$(MKDIR_P) $(luminedir)
 	$(MKDIR_P) $(noirdir)
-	$(MKDIR_P) $(platacompactdir)
+	$(MKDIR_P) $(platanocompactdir)
 	$(MKDIR_P) $(luminecompactdir)
 	$(MKDIR_P) $(noircompactdir)
 
-	$(MKDIR_P) $(platadir)/gtk-3.0
-	cp -Rv $(gtk320_file) $(platadir)/gtk-3.0
-	cp -Rv $(gtk3_thumb_file) $(platadir)/gtk-3.0
-	$(MKDIR_P) $(platacompactdir)/gtk-3.0
-	cp -Rv $(gtk320compact_file) $(platacompactdir)/gtk-3.0
-	cp -Rv $(gtk3_thumb_file) $(platacompactdir)/gtk-3.0
+	$(MKDIR_P) $(platanodir)/gtk-3.0
+	cp -Rv $(gtk320_file) $(platanodir)/gtk-3.0
+	cp -Rv $(gtk3_thumb_file) $(platanodir)/gtk-3.0
+	$(MKDIR_P) $(platanocompactdir)/gtk-3.0
+	cp -Rv $(gtk320compact_file) $(platanocompactdir)/gtk-3.0
+	cp -Rv $(gtk3_thumb_file) $(platanocompactdir)/gtk-3.0
 	$(MKDIR_P) $(luminedir)/gtk-3.0
 	cp -Rv $(gtk320lumine_file) $(luminedir)/gtk-3.0
 	cp -Rv $(gtk3_thumb_file) $(luminedir)/gtk-3.0
@@ -775,10 +775,10 @@ install-data-local:
 	cp -Rv $(gtk320noircompact_file) $(noircompactdir)/gtk-3.0
 	cp -Rv $(gtk3_darkthumb_file) $(noircompactdir)/gtk-3.0/thumbnail.png
 
-	$(MKDIR_P) $(platadir)/gtk-3.22
-	cp -Rv $(gtk322_file) $(platadir)/gtk-3.22
-	$(MKDIR_P) $(platacompactdir)/gtk-3.22
-	cp -Rv $(gtk322compact_file) $(platacompactdir)/gtk-3.22
+	$(MKDIR_P) $(platanodir)/gtk-3.22
+	cp -Rv $(gtk322_file) $(platanodir)/gtk-3.22
+	$(MKDIR_P) $(platanocompactdir)/gtk-3.22
+	cp -Rv $(gtk322compact_file) $(platanocompactdir)/gtk-3.22
 	$(MKDIR_P) $(luminedir)/gtk-3.22
 	cp -Rv $(gtk322lumine_file) $(luminedir)/gtk-3.22
 	$(MKDIR_P) $(luminecompactdir)/gtk-3.22
@@ -788,10 +788,10 @@ install-data-local:
 	$(MKDIR_P) $(noircompactdir)/gtk-3.22
 	cp -Rv $(gtk322noircompact_file) $(noircompactdir)/gtk-3.22
 
-	$(MKDIR_P) $(platadir)/gtk-3.24
-	cp -Rv $(gtk324_file) $(platadir)/gtk-3.24
-	$(MKDIR_P) $(platacompactdir)/gtk-3.24
-	cp -Rv $(gtk324compact_file) $(platacompactdir)/gtk-3.24
+	$(MKDIR_P) $(platanodir)/gtk-3.24
+	cp -Rv $(gtk324_file) $(platanodir)/gtk-3.24
+	$(MKDIR_P) $(platanocompactdir)/gtk-3.24
+	cp -Rv $(gtk324compact_file) $(platanocompactdir)/gtk-3.24
 	$(MKDIR_P) $(luminedir)/gtk-3.24
 	cp -Rv $(gtk324lumine_file) $(luminedir)/gtk-3.24
 	$(MKDIR_P) $(luminecompactdir)/gtk-3.24
@@ -801,69 +801,69 @@ install-data-local:
 	$(MKDIR_P) $(noircompactdir)/gtk-3.24
 	cp -Rv $(gtk324noircompact_file) $(noircompactdir)/gtk-3.24
 
-	$(MKDIR_P) $(platadir)/gtk-2.0
-	$(MKDIR_P) $(platadir)/gtk-2.0/Arrows
-	$(MKDIR_P) $(platadir)/gtk-2.0/Buttons
-	$(MKDIR_P) $(platadir)/gtk-2.0/Check-Radio
-	$(MKDIR_P) $(platadir)/gtk-2.0/Column
-	$(MKDIR_P) $(platadir)/gtk-2.0/Entry
-	$(MKDIR_P) $(platadir)/gtk-2.0/Handles
-	$(MKDIR_P) $(platadir)/gtk-2.0/Lines
-	$(MKDIR_P) $(platadir)/gtk-2.0/Others
-	$(MKDIR_P) $(platadir)/gtk-2.0/ProgressBar
-	$(MKDIR_P) $(platadir)/gtk-2.0/Range
-	$(MKDIR_P) $(platadir)/gtk-2.0/Scrollbars
-	$(MKDIR_P) $(platadir)/gtk-2.0/Shadows
-	$(MKDIR_P) $(platadir)/gtk-2.0/Spin
-	$(MKDIR_P) $(platadir)/gtk-2.0/Toolbar
-	cp -Rv $(gtk2_file) $(platadir)/gtk-2.0
-	cp -Rv $(gtk2_gtkrc_file) $(platadir)/gtk-2.0
-	cp -Rv $(gtk2_arrow_file) $(platadir)/gtk-2.0/Arrows
-	cp -Rv $(gtk2_button_file) $(platadir)/gtk-2.0/Buttons
-	cp -Rv $(gtk2_checkradio_file) $(platadir)/gtk-2.0/Check-Radio
-	cp -Rv $(gtk2_column_file) $(platadir)/gtk-2.0/Column
-	cp -Rv $(gtk2_entry_file) $(platadir)/gtk-2.0/Entry
-	cp -Rv $(gtk2_handle_file) $(platadir)/gtk-2.0/Handles
-	cp -Rv $(gtk2_line_file) $(platadir)/gtk-2.0/Lines
-	cp -Rv $(gtk2_other_file) $(platadir)/gtk-2.0/Others
-	cp -Rv $(gtk2_progress_file) $(platadir)/gtk-2.0/ProgressBar
-	cp -Rv $(gtk2_range_file) $(platadir)/gtk-2.0/Range
-	cp -Rv $(gtk2_scrollbar_file) $(platadir)/gtk-2.0/Scrollbars
-	cp -Rv $(gtk2_shadow_file) $(platadir)/gtk-2.0/Shadows
-	cp -Rv $(gtk2_spin_file) $(platadir)/gtk-2.0/Spin
-	cp -Rv $(gtk2_toolbar_file) $(platadir)/gtk-2.0/Toolbar
+	$(MKDIR_P) $(platanodir)/gtk-2.0
+	$(MKDIR_P) $(platanodir)/gtk-2.0/Arrows
+	$(MKDIR_P) $(platanodir)/gtk-2.0/Buttons
+	$(MKDIR_P) $(platanodir)/gtk-2.0/Check-Radio
+	$(MKDIR_P) $(platanodir)/gtk-2.0/Column
+	$(MKDIR_P) $(platanodir)/gtk-2.0/Entry
+	$(MKDIR_P) $(platanodir)/gtk-2.0/Handles
+	$(MKDIR_P) $(platanodir)/gtk-2.0/Lines
+	$(MKDIR_P) $(platanodir)/gtk-2.0/Others
+	$(MKDIR_P) $(platanodir)/gtk-2.0/ProgressBar
+	$(MKDIR_P) $(platanodir)/gtk-2.0/Range
+	$(MKDIR_P) $(platanodir)/gtk-2.0/Scrollbars
+	$(MKDIR_P) $(platanodir)/gtk-2.0/Shadows
+	$(MKDIR_P) $(platanodir)/gtk-2.0/Spin
+	$(MKDIR_P) $(platanodir)/gtk-2.0/Toolbar
+	cp -Rv $(gtk2_file) $(platanodir)/gtk-2.0
+	cp -Rv $(gtk2_gtkrc_file) $(platanodir)/gtk-2.0
+	cp -Rv $(gtk2_arrow_file) $(platanodir)/gtk-2.0/Arrows
+	cp -Rv $(gtk2_button_file) $(platanodir)/gtk-2.0/Buttons
+	cp -Rv $(gtk2_checkradio_file) $(platanodir)/gtk-2.0/Check-Radio
+	cp -Rv $(gtk2_column_file) $(platanodir)/gtk-2.0/Column
+	cp -Rv $(gtk2_entry_file) $(platanodir)/gtk-2.0/Entry
+	cp -Rv $(gtk2_handle_file) $(platanodir)/gtk-2.0/Handles
+	cp -Rv $(gtk2_line_file) $(platanodir)/gtk-2.0/Lines
+	cp -Rv $(gtk2_other_file) $(platanodir)/gtk-2.0/Others
+	cp -Rv $(gtk2_progress_file) $(platanodir)/gtk-2.0/ProgressBar
+	cp -Rv $(gtk2_range_file) $(platanodir)/gtk-2.0/Range
+	cp -Rv $(gtk2_scrollbar_file) $(platanodir)/gtk-2.0/Scrollbars
+	cp -Rv $(gtk2_shadow_file) $(platanodir)/gtk-2.0/Shadows
+	cp -Rv $(gtk2_spin_file) $(platanodir)/gtk-2.0/Spin
+	cp -Rv $(gtk2_toolbar_file) $(platanodir)/gtk-2.0/Toolbar
 
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/Arrows
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/Buttons
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/Check-Radio
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/Column
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/Entry
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/Handles
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/Lines
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/Others
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/ProgressBar
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/Range
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/Scrollbars
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/Shadows
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/Spin
-	$(MKDIR_P) $(platacompactdir)/gtk-2.0/Toolbar
-	cp -Rv $(gtk2_compact_file) $(platacompactdir)/gtk-2.0
-	cp -Rv $(gtk2_compact_gtkrc_file) $(platacompactdir)/gtk-2.0/gtkrc
-	cp -Rv $(gtk2_arrow_file) $(platacompactdir)/gtk-2.0/Arrows
-	cp -Rv $(gtk2_button_file) $(platacompactdir)/gtk-2.0/Buttons
-	cp -Rv $(gtk2_checkradio_file) $(platacompactdir)/gtk-2.0/Check-Radio
-	cp -Rv $(gtk2_column_file) $(platacompactdir)/gtk-2.0/Column
-	cp -Rv $(gtk2_entry_file) $(platacompactdir)/gtk-2.0/Entry
-	cp -Rv $(gtk2_handle_file) $(platacompactdir)/gtk-2.0/Handles
-	cp -Rv $(gtk2_line_file) $(platacompactdir)/gtk-2.0/Lines
-	cp -Rv $(gtk2_other_file) $(platacompactdir)/gtk-2.0/Others
-	cp -Rv $(gtk2_progress_file) $(platacompactdir)/gtk-2.0/ProgressBar
-	cp -Rv $(gtk2_range_file) $(platacompactdir)/gtk-2.0/Range
-	cp -Rv $(gtk2_scrollbar_file) $(platacompactdir)/gtk-2.0/Scrollbars
-	cp -Rv $(gtk2_shadow_file) $(platacompactdir)/gtk-2.0/Shadows
-	cp -Rv $(gtk2_spin_file) $(platacompactdir)/gtk-2.0/Spin
-	cp -Rv $(gtk2_toolbar_file) $(platacompactdir)/gtk-2.0/Toolbar
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/Arrows
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/Buttons
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/Check-Radio
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/Column
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/Entry
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/Handles
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/Lines
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/Others
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/ProgressBar
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/Range
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/Scrollbars
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/Shadows
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/Spin
+	$(MKDIR_P) $(platanocompactdir)/gtk-2.0/Toolbar
+	cp -Rv $(gtk2_compact_file) $(platanocompactdir)/gtk-2.0
+	cp -Rv $(gtk2_compact_gtkrc_file) $(platanocompactdir)/gtk-2.0/gtkrc
+	cp -Rv $(gtk2_arrow_file) $(platanocompactdir)/gtk-2.0/Arrows
+	cp -Rv $(gtk2_button_file) $(platanocompactdir)/gtk-2.0/Buttons
+	cp -Rv $(gtk2_checkradio_file) $(platanocompactdir)/gtk-2.0/Check-Radio
+	cp -Rv $(gtk2_column_file) $(platanocompactdir)/gtk-2.0/Column
+	cp -Rv $(gtk2_entry_file) $(platanocompactdir)/gtk-2.0/Entry
+	cp -Rv $(gtk2_handle_file) $(platanocompactdir)/gtk-2.0/Handles
+	cp -Rv $(gtk2_line_file) $(platanocompactdir)/gtk-2.0/Lines
+	cp -Rv $(gtk2_other_file) $(platanocompactdir)/gtk-2.0/Others
+	cp -Rv $(gtk2_progress_file) $(platanocompactdir)/gtk-2.0/ProgressBar
+	cp -Rv $(gtk2_range_file) $(platanocompactdir)/gtk-2.0/Range
+	cp -Rv $(gtk2_scrollbar_file) $(platanocompactdir)/gtk-2.0/Scrollbars
+	cp -Rv $(gtk2_shadow_file) $(platanocompactdir)/gtk-2.0/Shadows
+	cp -Rv $(gtk2_spin_file) $(platanocompactdir)/gtk-2.0/Spin
+	cp -Rv $(gtk2_toolbar_file) $(platanocompactdir)/gtk-2.0/Toolbar
 
 	$(MKDIR_P) $(luminedir)/gtk-2.0
 	$(MKDIR_P) $(luminedir)/gtk-2.0/Arrows
@@ -994,12 +994,12 @@ install-data-local:
 	cp -Rv $(gtk2_noir_toolbar_file) $(noircompactdir)/gtk-2.0/Toolbar
 
 if ENABLE_GTK_NEXT
-	$(MKDIR_P) $(platadir)/gtk-4.0
-	cp -Rv $(gtknext_file) $(platadir)/gtk-4.0
-	cp -Rv $(gtk3_thumb_file) $(platadir)/gtk-4.0
-	$(MKDIR_P) $(platacompactdir)/gtk-4.0
-	cp -Rv $(gtknextcompact_file) $(platacompactdir)/gtk-4.0
-	cp -Rv $(gtk3_thumb_file) $(platacompactdir)/gtk-4.0
+	$(MKDIR_P) $(platanodir)/gtk-4.0
+	cp -Rv $(gtknext_file) $(platanodir)/gtk-4.0
+	cp -Rv $(gtk3_thumb_file) $(platanodir)/gtk-4.0
+	$(MKDIR_P) $(platanocompactdir)/gtk-4.0
+	cp -Rv $(gtknextcompact_file) $(platanocompactdir)/gtk-4.0
+	cp -Rv $(gtk3_thumb_file) $(platanocompactdir)/gtk-4.0
 	$(MKDIR_P) $(luminedir)/gtk-4.0
 	cp -Rv $(gtknextlumine_file) $(luminedir)/gtk-4.0
 	cp -Rv $(gtk3_thumb_file) $(luminedir)/gtk-4.0
@@ -1015,8 +1015,8 @@ if ENABLE_GTK_NEXT
 endif
 
 if ENABLE_XFCE
-	$(MKDIR_P) $(platadir)/xfce-notify-4.0
-	cp -Rv $(xfcenotify_file) $(platadir)/xfce-notify-4.0
+	$(MKDIR_P) $(platanodir)/xfce-notify-4.0
+	cp -Rv $(xfcenotify_file) $(platanodir)/xfce-notify-4.0
 	$(MKDIR_P) $(luminedir)/xfce-notify-4.0
 	cp -Rv $(xfcenotifylumine_file) $(luminedir)/xfce-notify-4.0
 	$(MKDIR_P) $(noirdir)/xfce-notify-4.0
@@ -1038,10 +1038,10 @@ uninstall-local:
 	test -e $(luminedir)/gtk-3.24 && rm -rfv $(luminedir)/gtk-3.24
 	test -e $(luminedir)/gtk-2.0 && rm -rfv $(luminedir)/gtk-2.0
 
-	test -e $(platadir)/gtk-3.0 && rm -rfv $(platadir)/gtk-3.0
-	test -e $(platadir)/gtk-3.22 && rm -rfv $(platadir)/gtk-3.22
-	test -e $(platadir)/gtk-3.24 && rm -rfv $(platadir)/gtk-3.24
-	test -e $(platadir)/gtk-2.0 && rm -rfv $(platadir)/gtk-2.0
+	test -e $(platanodir)/gtk-3.0 && rm -rfv $(platanodir)/gtk-3.0
+	test -e $(platanodir)/gtk-3.22 && rm -rfv $(platanodir)/gtk-3.22
+	test -e $(platanodir)/gtk-3.24 && rm -rfv $(platanodir)/gtk-3.24
+	test -e $(platanodir)/gtk-2.0 && rm -rfv $(platanodir)/gtk-2.0
 
 	test -e $(noircompactdir)/gtk-3.0 && rm -rfv $(noircompactdir)/gtk-3.0
 	test -e $(noircompactdir)/gtk-3.22 && rm -rfv $(noircompactdir)/gtk-3.22
@@ -1053,24 +1053,24 @@ uninstall-local:
 	test -e $(luminecompactdir)/gtk-3.24 && rm -rfv $(luminecompactdir)/gtk-3.24
 	test -e $(luminecompactdir)/gtk-2.0 && rm -rfv $(luminecompactdir)/gtk-2.0
 
-	test -e $(platacompactdir)/gtk-3.0 && rm -rfv $(platacompactdir)/gtk-3.0
-	test -e $(platacompactdir)/gtk-3.22 && rm -rfv $(platacompactdir)/gtk-3.22
-	test -e $(platacompactdir)/gtk-3.24 && rm -rfv $(platacompactdir)/gtk-3.24
-	test -e $(platacompactdir)/gtk-2.0 && rm -rfv $(platacompactdir)/gtk-2.0
+	test -e $(platanocompactdir)/gtk-3.0 && rm -rfv $(platanocompactdir)/gtk-3.0
+	test -e $(platanocompactdir)/gtk-3.22 && rm -rfv $(platanocompactdir)/gtk-3.22
+	test -e $(platanocompactdir)/gtk-3.24 && rm -rfv $(platanocompactdir)/gtk-3.24
+	test -e $(platanocompactdir)/gtk-2.0 && rm -rfv $(platanocompactdir)/gtk-2.0
 
 if ENABLE_GTK_NEXT
 	test -e $(noirdir)/gtk-4.0 && rm -rfv $(noirdir)/gtk-4.0
 	test -e $(luminedir)/gtk-4.0 && rm -rfv $(luminedir)/gtk-4.0
-	test -e $(platadir)/gtk-4.0 && rm -rfv $(platadir)/gtk-4.0
+	test -e $(platanodir)/gtk-4.0 && rm -rfv $(platanodir)/gtk-4.0
 
 	test -e $(noircompactdir)/gtk-4.0 && rm -rfv $(noircompactdir)/gtk-4.0
 	test -e $(luminecompactdir)/gtk-4.0 && rm -rfv $(luminecompactdir)/gtk-4.0
-	test -e $(platacompactdir)/gtk-4.0 && rm -rfv $(platacompactdir)/gtk-4.0
+	test -e $(platanocompactdir)/gtk-4.0 && rm -rfv $(platanocompactdir)/gtk-4.0
 endif
 
 if ENABLE_XFCE
-	test -e $(platadir)/xfce-notify-4.0/gtk.css && \
-		rm -rfv $(platadir)/xfce-notify-4.0/gtk.css
+	test -e $(platanodir)/xfce-notify-4.0/gtk.css && \
+		rm -rfv $(platanodir)/xfce-notify-4.0/gtk.css
 	test -e $(luminedir)/xfce-notify-4.0/gtk.css && \
 		rm -rfv $(luminedir)/xfce-notify-4.0/gtk.css
 	test -e $(noirdir)/xfce-notify-4.0/gtk.css && \

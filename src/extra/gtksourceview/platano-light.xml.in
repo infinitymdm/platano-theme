@@ -1,96 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<style-scheme id="plata-dark" name="Plata-Dark" filename="plata-dark.xml" version="1.0">
+<style-scheme id="platano-light" name="Platano-Light" filename="platano-light.xml" version="1.0">
   <author>Tista</author>
-  <_description>GtkSourceView dark color scheme forked from Adapta</_description>
+  <_description>GtkSourceView light color scheme</_description>
 
   <!-- Color Palette -->
-  <color name="plata0"                      value="#111111" />
-  <color name="plata1"                      value="#1D1D1D" />
-  <color name="plata2"                      value="@selection1@" />
-  <color name="plata3"                      value="#8C8C8C" />
-  <color name="plata4"                      value="#F5F5F5" />
-  <color name="plata5"                      value="#1DE9B6" />
-  <color name="plata6"                      value="#F77669" />
-  <color name="plata7"                      value="#81D4FA" />
-  <color name="plata8"                      value="#009587" />
-  <color name="plata9"                      value="#AB7967" />
-  <color name="plata10"                     value="#FFCB6B" />
-  <color name="plata11"                     value="#C3E88D" />
-  <color name="plata12"                     value="#C792EA" />
-  <color name="plata13"                     value="#FFFFFF" />
+  <color name="platano0"                      value="#FFFFFF" />
+  <color name="platano1"                      value="#F8F8F8" />
+  <color name="platano2"                      value="@selection1@" />
+  <color name="platano3"                      value="#7B7B7B" />
+  <color name="platano4"                      value="#111111" />
+  <color name="platano5"                      value="#00796B" />
+  <color name="platano6"                      value="#D32F2F" />
+  <color name="platano7"                      value="#01579B" />
+  <color name="platano8"                      value="#004D40" />
+  <color name="platano9"                      value="#6D4C41" />
+  <color name="platano10"                     value="#FF6F00" />
+  <color name="platano11"                     value="#689F38" />
+  <color name="platano12"                     value="#7B1FA2" />
+  <color name="platano13"                     value="#FFFFFF" />
+  <color name="platano14"                     value="@selection2@" />
 
   <!-- GUI Styling -->
-  <style name="background-pattern"          background="plata1" />
-  <style name="bookmark"                    background="plata4" />
-  <style name="bracket-match"               foreground="plata4" background="plata2" />
-  <style name="bracket-mismatch"            foreground="plata6" underline="true" />
-  <style name="current-line"                foreground="plata4" background="plata1" />
-  <style name="cursor"                      foreground="plata4" />
-  <style name="draw-spaces"                 foreground="plata3" />
-  <style name="line-numbers"                foreground="plata3" background="plata1" />
-  <style name="search-match"                foreground="plata4" background="plata8" />
+  <style name="background-pattern"          background="platano1" />
+  <style name="bookmark"                    background="platano4" />
+  <style name="bracket-match"               foreground="platano13" background="platano2" />
+  <style name="bracket-mismatch"            foreground="platano6" underline="true" />
+  <style name="current-line"                foreground="platano4" background="platano1" />
+  <style name="cursor"                      foreground="platano4" />
+  <style name="draw-spaces"                 foreground="platano3" />
+  <style name="line-numbers"                foreground="platano3" background="platano1" />
+  <style name="search-match"                foreground="platano4" background="platano8" />
   <style name="secondary-cursor"            use-style="cursor" />
-  <style name="selection"                   foreground="plata13" background="plata2" />
+  <style name="selection"                   foreground="platano4" background="platano14" />
   <style name="selection-unfocused"         use-style="selection" />
-  <style name="right-margin"                foreground="plata4" />
-  <style name="text"                        foreground="plata4" background="plata0" />
+  <style name="right-margin"                foreground="platano4" />
+  <style name="text"                        foreground="platano4" background="platano0" />
 
   <!-- Custom definitions -->
-  <style name="def:annotation"              foreground="plata9" />
-  <style name="def:escape"                  foreground="plata9" />
-  <style name="def:regexp"                  foreground="plata10" />
-  <style name="def:symbol"                  foreground="plata4" />
-  <style name="def:other"                   foreground="plata4" />
-  <style name="def:verbatim"                foreground="plata10" />
+  <style name="def:annotation"              foreground="platano9" />
+  <style name="def:escape"                  foreground="platano9" />
+  <style name="def:regexp"                  foreground="platano10" />
+  <style name="def:symbol"                  foreground="platano4" />
+  <style name="def:other"                   foreground="platano4" />
+  <style name="def:verbatim"                foreground="platano10" />
 
   <!-- Variables -->
-  <style name="def:number"                  foreground="plata12" />
-  <style name="def:string"                  foreground="plata11" />
+  <style name="def:number"                  foreground="platano12" />
+  <style name="def:string"                  foreground="platano11" />
   <style name="def:base-n-integer"          use-style="def:number" />
   <style name="def:character"               use-style="def:string" />
   <style name="def:complex"                 use-style="def:number" />
   <style name="def:decimal"                 use-style="def:number" />
   <style name="def:floating-point"          use-style="def:number" />
-  <style name="def:special-char"            foreground="plata9" />
-  <style name="def:variable"                foreground="plata4" />
-  <style name="def:global-variable"         foreground="plata4" />
-  <style name="def:class-variable"          foreground="plata4" />
-  <style name="def:instance-variable"       foreground="plata4" />
+  <style name="def:special-char"            foreground="platano9" />
+  <style name="def:variable"                foreground="platano4" />
+  <style name="def:global-variable"         foreground="platano4" />
+  <style name="def:class-variable"          foreground="platano4" />
+  <style name="def:instance-variable"       foreground="platano4" />
 
   <!-- Constants -->
-  <style name="def:boolean"                 foreground="plata7" />
-  <style name="def:constant"                foreground="plata4" />
-  <style name="def:namespace"               foreground="plata5" />
-  <style name="def:special-constant"        foreground="plata7" />
+  <style name="def:boolean"                 foreground="platano7" />
+  <style name="def:constant"                foreground="platano4" />
+  <style name="def:namespace"               foreground="platano5" />
+  <style name="def:special-constant"        foreground="platano7" />
 
   <!-- Comments -->
-  <style name="def:comment"                 foreground="plata3" italic="true" />
+  <style name="def:comment"                 foreground="platano3" italic="true" />
   <style name="def:doc-comment"             use-style="def:comment" />
-  <style name="def:doc-comment-element"     foreground="plata7" />
-  <style name="def:net-address-in-comment"  foreground="plata3" underline="true" />
+  <style name="def:doc-comment-element"     foreground="platano7" />
+  <style name="def:net-address-in-comment"  foreground="platano3" underline="true" />
   <style name="def:note"                    use-style="def:comment" />
 
   <!-- Keywords -->
-  <style name="def:class"                   foreground="plata5" />
-  <style name="def:keyword"                 foreground="plata7" />
+  <style name="def:class"                   foreground="platano5" />
+  <style name="def:keyword"                 foreground="platano7" />
   <style name="def:attribute"               use-style="def:class" />
   <style name="def:builtin"                 use-style="def:keyword" />
   <style name="def:identifier"              use-style="def:keyword" />
-  <style name="def:preprocessor"            foreground="plata8" />
+  <style name="def:preprocessor"            foreground="platano8" />
   <style name="def:reserved"                use-style="def:keyword" />
-  <style name="def:shebang"                 foreground="plata8" />
+  <style name="def:shebang"                 foreground="platano8" />
   <style name="def:statement"               use-style="def:keyword" />
   <style name="def:tag"                     use-style="def:keyword" />
   <style name="def:type"                    use-style="def:class" />
 
   <!-- Logicals -->
-  <style name="def:error"                   foreground="plata6" />
-  <style name="def:function"                foreground="plata6" />
-  <style name="def:operator"                foreground="plata7" />
+  <style name="def:error"                   foreground="platano6" />
+  <style name="def:function"                foreground="platano6" />
+  <style name="def:operator"                foreground="platano7" />
 
   <!-- Headings -->
-  <style name="def:heading0"                foreground="plata6" />
+  <style name="def:heading0"                foreground="platano6" />
   <style name="def:heading1"                use-style="def:heading0" />
   <style name="def:heading2"                use-style="def:heading0" />
   <style name="def:heading3"                use-style="def:heading0" />
@@ -100,7 +101,7 @@
 
   <!-- Formats -->
   <style name="def:underlined"              underline="true" />
-  <style name="def:warning"                 foreground="plata10" />
+  <style name="def:warning"                 foreground="platano10" />
 
   <!-- CSS Styling -->
   <style name="css:at-rules"                use-style="def:annotation" />
@@ -116,15 +117,15 @@
   <style name="css:others-3"                use-style="def:symbol" />
   <style name="css:property-values"         use-style="def:keyword" />
   <style name="css:selector-class"          use-style="def:class" />
-  <style name="css:selector-id"             foreground="plata5" underline="true" />
+  <style name="css:selector-id"             foreground="platano5" underline="true" />
   <style name="css:selector-tagname"        use-style="def:tag" />
   <style name="css:string"                  use-style="def:string" />
 
   <!-- Desktop Styling -->
   <style name="desktop:boolean"             use-style="def:boolean" />
   <style name="desktop:category-additional" use-style="def:string" />
-  <style name="desktop:category-main"       foreground="plata11" bold="true" />
-  <style name="desktop:category-reserved"   foreground="plata7" underline="true" />
+  <style name="desktop:category-main"       foreground="platano11" bold="true" />
+  <style name="desktop:category-reserved"   foreground="platano7" underline="true" />
   <style name="desktop:encoding"            use-style="def:keyword" />
   <style name="desktop:exec-parameter"      use-style="def:escape" />
   <style name="desktop:group"               use-style="def:keyword" />
@@ -133,11 +134,11 @@
   <style name="desktop:number"              use-style="def:number" />
 
   <!-- DIFF Styling -->
-  <style name="diff:added-line"             foreground="plata11" />
-  <style name="diff:changed-line"           foreground="plata10" />
-  <style name="diff:diff-file"              foreground="plata6" />
-  <style name="diff:location"               foreground="plata7" />
-  <style name="diff:removed-line"           foreground="plata6" />
+  <style name="diff:added-line"             foreground="platano11" />
+  <style name="diff:changed-line"           foreground="platano10" />
+  <style name="diff:diff-file"              foreground="platano6" />
+  <style name="diff:location"               foreground="platano7" />
+  <style name="diff:removed-line"           foreground="platano6" />
   <style name="diff:special-case"           use-style="def:string" />
 
   <!-- HTML Styling -->
@@ -188,7 +189,7 @@
   <style name="js:future-words"             use-style="def:keyword" />
   <style name="js:keyword"                  use-style="def:keyword" />
   <style name="js:null-value"               use-style="def:keyword" />
-  <style name="js:properties"               foreground="plata6" italic="true" />
+  <style name="js:properties"               foreground="platano6" italic="true" />
   <style name="js:regex"                    use-style="def:regexp" />
   <style name="js:string"                   use-style="def:string" />
   <style name="js:type"                     use-style="def:keyword" />
@@ -205,41 +206,41 @@
   <style name="json:string"                 use-style="def:string" />
 
   <!-- MD Styling -->
-  <style name="markdown:abbreviation"       foreground="plata9" />
+  <style name="markdown:abbreviation"       foreground="platano9" />
   <style name="markdown:attribute-value"    use-style="def:attribute" />
   <style name="markdown:backslash-escape"   use-style="def:escape" />
-  <style name="markdown:blockquote-marker"  foreground="plata6" />
-  <style name="markdown:code"               foreground="plata5" />
-  <style name="markdown:emphasis"           foreground="plata4" italic="true" />
-  <style name="markdown:header"             foreground="plata6" />
-  <style name="markdown:horizontal-rule"    foreground="plata7" />
+  <style name="markdown:blockquote-marker"  foreground="platano6" />
+  <style name="markdown:code"               foreground="platano5" />
+  <style name="markdown:emphasis"           foreground="platano4" italic="true" />
+  <style name="markdown:header"             foreground="platano6" />
+  <style name="markdown:horizontal-rule"    foreground="platano7" />
   <style name="markdown:image-marker"       use-style="def:keyword" />
   <style name="markdown:label"              use-style="def:attribute" />
   <style name="markdown:line-break"         use-style="def:comment" />
   <style name="markdown:link-text"          use-style="def:attribute" />
-  <style name="markdown:list-marker"        foreground="plata7" />
-  <style name="markdown:strong-emphasis"    foreground="plata4" bold="true" />
+  <style name="markdown:list-marker"        foreground="platano7" />
+  <style name="markdown:strong-emphasis"    foreground="platano4" bold="true" />
   <style name="markdown:table-separator"    bold="true" />
-  <style name="markdown:url"                foreground="plata4" underline="true" />
+  <style name="markdown:url"                foreground="platano4" underline="true" />
 
   <!-- PERL Styling -->
   <style name="perl:builtin"                use-style="def:builtin" />
   <style name="perl:comment"                use-style="def:comment" />
-  <style name="perl:control"                foreground="plata7" underline="true" />
+  <style name="perl:control"                foreground="platano7" underline="true" />
   <style name="perl:error"                  use-style="def:error" />
   <style name="perl:file-descriptor"        use-style="def:keyword" />
   <style name="perl:here-doc-bound"         use-style="def:keyword" />
   <style name="perl:include-statement"      use-style="def:annotation" />
   <style name="perl:keyword"                use-style="def:keyword" />
-  <style name="perl:line-directive"         foreground="plata3" italic="true" />
+  <style name="perl:line-directive"         foreground="platano3" italic="true" />
   <style name="perl:operator"               use-style="def:operator" />
   <style name="perl:pod"                    use-style="text" />
   <style name="perl:pod-escape"             use-style="def:escape" />
-  <style name="perl:pod-heading"            foreground="plata6" />
+  <style name="perl:pod-heading"            foreground="platano6" />
   <style name="perl:pod-keyword"            use-style="def:keyword" />
   <style name="perl:regex"                  use-style="def:regexp" />
   <style name="perl:string"                 use-style="def:string" />
-  <style name="perl:system-command"         foreground="plata6" />
+  <style name="perl:system-command"         foreground="platano6" />
   <style name="perl:variable"               use-style="def:variable" />
 
   <!-- PHP Styling -->
@@ -256,7 +257,7 @@
   <style name="php:identifier"              use-style="def:function" />
   <style name="php:keyword"                 use-style="def:keyword" />
   <style name="php:null-value"              use-style="def:keyword" />
-  <style name="php:octal"                   foreground="plata12" italic="true" />
+  <style name="php:octal"                   foreground="platano12" italic="true" />
   <style name="php:operator"                use-style="def:operator" />
   <style name="php:preprocessor"            use-style="def:preprocessor" />
   <style name="php:string"                  use-style="def:string" />
@@ -264,13 +265,13 @@
   <style name="php:variable"                use-style="def:variable" />
 
   <!-- PYTHON Styling -->
-  <style name="python:base-n-integer"       foreground="plata12" italic="true" />
+  <style name="python:base-n-integer"       foreground="platano12" italic="true" />
   <style name="python:boolean"              use-style="def:boolean" />
   <style name="python:builtin-constant"     use-style="def:keyword" />
   <style name="python:builtin-function"     use-style="def:function" />
   <style name="python:builtin-object"       use-style="def:class" />
   <style name="python:class-name"           use-style="def:class" />
-  <style name="python:complex"              foreground="plata12" italic="true" />
+  <style name="python:complex"              foreground="platano12" italic="true" />
   <style name="python:decimal"              use-style="def:number" />
   <style name="python:decorator"            use-style="def:annotation" />
   <style name="python:escaped-char"         use-style="def:escape" />
@@ -283,12 +284,12 @@
   <style name="python:special-variable"     use-style="def:keyword" />
   <style name="python:string"               use-style="def:string" />
   <style name="python:string-conversion"    use-style="def:keyword" />
-  <style name="python3:base-n-integer"      foreground="plata12" italic="true" />
+  <style name="python3:base-n-integer"      foreground="platano12" italic="true" />
   <style name="python3:boolean"             use-style="def:boolean" />
   <style name="python3:builtin-constant"    use-style="def:keyword" />
   <style name="python3:builtin-function"    use-style="def:function" />
   <style name="python3:builtin-object"      use-style="def:class" />
-  <style name="python3:complex"             foreground="plata12" italic="true" />
+  <style name="python3:complex"             foreground="platano12" italic="true" />
   <style name="python3:decimal"             use-style="def:number" />
   <style name="python3:escaped-char"        use-style="def:escape" />
   <style name="python3:floating-point"      use-style="def:number" />
@@ -324,7 +325,7 @@
 
   <!-- SH Styling -->
   <style name="sh:comment"                  use-style="def:comment" />
-  <style name="sh:common-command"           foreground="plata7" italic="true" />
+  <style name="sh:common-command"           foreground="platano7" italic="true" />
   <style name="sh:function"                 use-style="def:function" />
   <style name="sh:here-doc-bound"           use-style="def:keyword" />
   <style name="sh:keyword"                  use-style="def:keyword" />
@@ -336,9 +337,9 @@
   <!-- XML Styling -->
   <style name="xml:attribute-name"          use-style="def:attribute" />
   <style name="xml:attribute-value"         use-style="def:string" />
-  <style name="xml:cdata-delim"             foreground="plata3" bold="true" />
+  <style name="xml:cdata-delim"             foreground="platano3" bold="true" />
   <style name="xml:comment"                 use-style="def:comment" />
-  <style name="xml:doctype"                 foreground="plata8" />
+  <style name="xml:doctype"                 foreground="platano8" />
   <style name="xml:element-name"            use-style="def:keyword" />
   <style name="xml:entity"                  use-style="def:escape" />
   <style name="xml:error"                   use-style="def:error" />
@@ -347,16 +348,16 @@
   <style name="xml:tag"                     use-style="def:tag" />
 
   <!-- Meld -->
-  <style name="meld:insert" foreground="plata4" background="#rgba(77, 182, 172, 0.1)" line-background="#rgba(77, 182, 172, 0.1)" />
-  <style name="meld:replace" foreground="plata4" background="#rgba(3, 169, 244, 0.1)" line-background="#rgba(3, 169, 244, 0.1)" />
-  <style name="meld:conflict" foreground="plata4" background="#rgba(244, 67, 54, 0.1)" line-background="#rgba(244, 67, 54, 0.1)" />
-  <style name="meld:current-line-highlight" background="#rgba(245, 245, 245, 0.1)" />
-  <style name="meld:current-chunk-highlight" background="#rgba(245, 245, 245, 0.1)" />
+  <style name="meld:insert" foreground="platano4" background="#rgba(77, 182, 172, 0.1)" line-background="#rgba(77, 182, 172, 0.1)" />
+  <style name="meld:replace" foreground="platano4" background="#rgba(3, 169, 244, 0.1)" line-background="#rgba(3, 169, 244, 0.1)" />
+  <style name="meld:conflict" foreground="platano4" background="#rgba(244, 67, 54, 0.1)" line-background="#rgba(244, 67, 54, 0.1)" />
+  <style name="meld:current-line-highlight" background="#rgba(17, 17, 17, 0.1)" />
+  <style name="meld:current-chunk-highlight" background="#rgba(17, 17, 17, 0.1)" />
   <style name="meld:inline" background="#rgba(3, 169, 244, 0.4)" />
-  <style name="meld:unknown-text" foreground="plata4" />
-  <style name="meld:dimmed" foreground="plata3" />
+  <style name="meld:unknown-text" foreground="platano4" />
+  <style name="meld:dimmed" foreground="platano3" />
 
   <!-- Gedit/Builder -->
-  <style name="map-overlay" background="#rgba(245, 245, 245, 0.1)" />
+  <style name="map-overlay" background="#rgba(17, 17, 17, 0.1)" />
 
 </style-scheme>
