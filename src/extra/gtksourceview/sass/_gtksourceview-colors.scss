@@ -9,7 +9,7 @@
 @import '../../../gtk/sass/common/colors';
 
 colors {
-  selection1: to-upper-case(#{$sel_bg});
+  selection1: to-upper-case(#{$background_selection});
 
-  selection2: to-upper-case(#{mix($sel_bg, $base, percentage($alpha_foreground_bdp))});
+  selection2: to-upper-case(#{mix($background_selection, $base, percentage($alpha_foreground_bdp))});
 }

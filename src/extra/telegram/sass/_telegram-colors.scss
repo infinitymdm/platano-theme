@@ -9,18 +9,18 @@
 @import '../../../gtk/sass/common/colors';
 
 colors {
-  sel_bg: to-upper-case(#{$sel_bg});
+  sel_bg: to-upper-case(#{$background_selection});
 
-  acc_fg: to-upper-case(#{$acc_fg});
-  acc_bg: to-upper-case(#{$acc_bg});
-  acc_f1: to-upper-case(#{mix($acc_fg, $bg, percentage($alpha_track_1))});
-  acc_f2: to-upper-case(#{mix($acc_fg, $bg, percentage($alpha_track_2))});
+  acc_fg: to-upper-case(#{$foreground_accent});
+  acc_bg: to-upper-case(#{$background_accent});
+  acc_f1: to-upper-case(#{mix($foreground_accent, $background, percentage($alpha_track_1))});
+  acc_f2: to-upper-case(#{mix($foreground_accent, $background, percentage($alpha_track_2))});
 
-  sgt_bg: to-upper-case(#{$sggt_bg});
-  sgt_f1: to-upper-case(#{mix($sel_fg, $sggt_bg, percentage($alpha_track_1))});
-  sgt_f2: to-upper-case(#{mix($sel_fg, $sggt_bg, percentage($alpha_track_2))});
+  sgt_bg: to-upper-case(#{$background_suggestion});
+  sgt_f1: to-upper-case(#{mix($foreground_selection, $background_suggestion, percentage($alpha_track_1))});
+  sgt_f2: to-upper-case(#{mix($foreground_selection, $background_suggestion, percentage($alpha_track_2))});
 
-  dst_bg: to-upper-case(#{$dest_bg});
-  dst_f1: to-upper-case(#{mix($dest_bg, $bg, percentage($alpha_track_1))});
-  dst_f2: to-upper-case(#{mix($dest_bg, $bg, percentage($alpha_track_2))});
+  dst_bg: to-upper-case(#{$background_destruction});
+  dst_f1: to-upper-case(#{mix($background_destruction, $background, percentage($alpha_track_1))});
+  dst_f2: to-upper-case(#{mix($background_destruction, $background, percentage($alpha_track_2))});
 }

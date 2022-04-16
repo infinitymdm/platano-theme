@@ -85,13 +85,13 @@
 // shortcuts panel button styling
 #workspacestodockDock {
   .app-well-app { // set circle dock buttons on shortcuts panel
-    .overview-icon { border-radius: $r; }
+    .overview-icon { border-radius: $radius; }
     &:hover .overview-icon {
       background-color: $osd_semi_fill_bg;
     }
     &:active .overview-icon,
     &:focus .overview-icon,
-    &:checked .overview-icon { background-color: $sel_bg; }
+    &:checked .overview-icon { background-color: $background_selection; }
   }
 
   .workspacestodock-shortcuts-panel > StButton { background-size: contain; }
@@ -155,13 +155,13 @@
 
   &-container {
     padding: 0;
-    border-radius: $r_2;
-    border: 1px solid $div_fg;
+    border-radius: $radius_2;
+    border: 1px solid $foreground_div;
   }
 
   &-background {
-    border-top: 1px solid $div_fg;
-    border-radius: 0 0 $r_2 $r_2;
+    border-top: 1px solid $foreground_div;
+    border-radius: 0 0 $radius_2 $radius_2;
     background-color: $osd_bg;
 
     &-current { color: $osd_fg; }
@@ -214,7 +214,7 @@
     &-active > &-icon,
     &-active:hover > &-icon {
       background-color: $osd_semi_fill_bg;
-      box-shadow: inset 0 -2px $sel_bg;
+      box-shadow: inset 0 -2px $background_selection;
     }
   }
 }
@@ -224,7 +224,7 @@
     height: 20px;
     min-width: 7px;
     padding: 0 7px;
-    border-radius: $r;
+    border-radius: $radius;
     color: $osd_ter_fg;
     background-color: $osd_bg;
     font-weight: 700;
@@ -233,7 +233,7 @@
     box-shadow: $z-depth-1;
 
     &-current {
-      color: $acc_bg;
+      color: $background_accent;
       box-shadow: $z-depth-2;
     }
   }
@@ -251,7 +251,7 @@
     box-shadow: $z-depth-1;
 
     &-current {
-      color: $acc_bg;
+      color: $background_accent;
       box-shadow: $z-depth-2;
     }
   }

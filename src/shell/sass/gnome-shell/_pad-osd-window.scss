@@ -4,19 +4,19 @@
 
 .Leader {
   stroke-width: 0.5 !important;
-  stroke: $acc_fg !important;
+  stroke: $foreground_accent !important;
   fill: none !important;
 }
 
 .Button {
   stroke-width: 0.25;
-  stroke: $acc_fg;
+  stroke: $foreground_accent;
   fill: $acc_semi_fill_bg;
 }
 
 .Ring {
   stroke-width: 0.5 !important;
-  stroke: $acc_fg !important;
+  stroke: $foreground_accent !important;
   fill: none !important;
 }
 
@@ -30,6 +30,6 @@
 .TouchStrip,
 .TouchRing {
   stroke-width: 0.1 !important;
-  stroke: $acc_fg !important;
+  stroke: $foreground_accent !important;
   fill: $acc_fill_bg !important;
 }

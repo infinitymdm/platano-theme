@@ -10,11 +10,11 @@
     height: 2.2em;
     border-top-width: 1px;
     border-bottom-width: 0;
-    border-color: $panel_bg;
-    background-color: $panel_bg;
+    border-color: $background_panel;
+    background-color: $background_panel;
     background-gradient-drection: vertical;
-    background-gradient-start: $panel_bg;
-    background-gradient-end: $panel_bg;
+    background-gradient-start: $background_panel;
+    background-gradient-end: $background_panel;
     color: $osd_fg;
 
     StLabel { text-shadow: none; }
@@ -29,11 +29,11 @@
     height: 1.8em;
     border-top-width: 0;
     border-bottom-width: 1px;
-    border-color: $panel_bg;
-    background-color: $panel_bg;
+    border-color: $background_panel;
+    background-color: $background_panel;
     background-gradient-drection: vertical;
-    background-gradient-start: $panel_bg;
-    background-gradient-end: $panel_bg;
+    background-gradient-start: $background_panel;
+    background-gradient-end: $background_panel;
 
     StLabel { text-shadow: none; }
 
@@ -44,7 +44,7 @@
       &:hover,
       &:active,
       &:focus,
-      &:checked { color: if($variant != light, $sel_fg, black); }
+      &:checked { color: if($variant != light, $foreground_selection, black); }
 
       &:active,
       &:focus {

@@ -18,7 +18,7 @@
   StScrollView.apps-menu {
     margin: 0 4px;
     border-style: solid;
-    border-color: $div_fg;
+    border-color: $foreground_div;
 
     &:ltr {
       padding: if($ref_weight >= 1.0, 0 0 0 12px, 0 0 0 8px);
@@ -61,17 +61,17 @@
     &-summary,
     &-summarybox {
       background: none;
-      color: $fg;
+      color: ;
     }
 
     &-databox-values {
       background: none;
-      color: $ter_fg;
+      color: $foreground_tertiary;
     }
 
     &-databox-captions {
       background: none;
-      color: $ter_fg;
+      color: $foreground_tertiary;
     }
   }
 
@@ -79,19 +79,19 @@
     &-icon,
     &-summary {
       background: none;
-      color: $sec_fg;
+      color: $foreground_secondary;
     }
 
     &-day,
     &-temperature {
       background: none;
-      color: $ter_fg;
+      color: $foreground_tertiary;
     }
   }
 
   &-sunrise-icon,
   &-sunset-icon,
-  &-build-icon { color: $sec_fg; }
+  &-build-icon { color: $foreground_secondary; }
 }
 
 // /**************************
@@ -114,10 +114,10 @@ $icon_padding: 9px;
     transition-duration: $transition_d_long;
   }
 
-  @each $_dock, $_radius in (top, 0 0 $r_2 $r_2),
-                            (bottom, $r_2 $r_2 0 0),
-                            (left, 0 $r_2 $r_2 0),
-                            (right, $r_2 0 0 $r_2) {
+  @each $_dock, $_radius in (top, 0 0 $radius_2 $radius_2),
+                            (bottom, $radius_2 $radius_2 0 0),
+                            (left, 0 $radius_2 $radius_2 0),
+                            (right, $radius_2 0 0 $radius_2) {
     &.#{$_dock} #dash,
     &.#{$_dock}:overview #dash { border-radius: #{$_radius}; }
 
@@ -126,25 +126,25 @@ $icon_padding: 9px;
   }
 
   #dash { // default-mode
-    background-color: $panel_bg;
+    background-color: $background_panel;
     box-shadow: $empty_shadow;
   }
 
   &.opaque #dash { // solid-mode
-    background-color: $panel_bg;
+    background-color: $background_panel;
     // FIXME: enforce opaque background
-    box-shadow: inset 0 0 0 9999px $panel_bg;
+    box-shadow: inset 0 0 0 9999px $background_panel;
   }
 
   &.transparent #dash { // translucent-mode
     background-color: $panel_hidden_bg; // does not work
     // FIXME: add lacked alpha via box-shadow property
-    box-shadow: inset 0 0 0 9999px opacity($panel_bg,
+    box-shadow: inset 0 0 0 9999px opacity($background_panel,
                                            $alpha_override);
   }
 
   &:overview #dash { // overview-mode #1
-    background-color: if($variant == light, opacity($panel_bg, $alpha_foreground_3rd),
+    background-color: if($variant == light, opacity($background_panel, $alpha_foreground_3rd),
                                             $panel_hidden_bg);
     box-shadow: $empty_shadow;
   }
@@ -152,7 +152,7 @@ $icon_padding: 9px;
   &.opaque:overview,
   &.transparent:overview { // overview-mode #2
     #dash {
-      background-color: if($variant == light, opacity($panel_bg, $alpha_foreground_3rd),
+      background-color: if($variant == light, opacity($background_panel, $alpha_foreground_3rd),
                                               transparent !important);
       box-shadow: none !important;
     }
@@ -162,7 +162,7 @@ $icon_padding: 9px;
   &.opaque.extended:overview,
   &.transparent.extended:overview {
     #dash {
-      background-color: if($variant == light, opacity($panel_bg, $alpha_foreground_3rd),
+      background-color: if($variant == light, opacity($background_panel, $alpha_foreground_3rd),
                                               $panel_hidden_bg);
       box-shadow: $empty_shadow;
     }
@@ -185,7 +185,7 @@ $icon_padding: 9px;
     &:active .overview-icon { background-color: $osd_fill_bg; }
 
     &:checked:hover .overview-icon {
-      background-color: mix($sel_fg, $sel_bg, percentage($alpha_track_1));
+      background-color: mix($foreground_selection, $background_selection, percentage($alpha_track_1));
     }
   }
 
@@ -204,7 +204,7 @@ $icon_padding: 9px;
 
     > StWidget.focused .app-well-app-running-dot {
       width: $icon_size + $icon_padding * 2;
-      background-color: $sel_bg;
+      background-color: $background_selection;
     }
   }
 
@@ -214,7 +214,7 @@ $icon_padding: 9px;
     min-height: if($ref_weight >= 1.0, 1.6em, 1.4em);
     margin: 0; // unset margin/padding
     padding: 0;
-    border-radius: $r;
+    border-radius: $radius;
     font-weight: 700;
     text-align: center;
     box-shadow: $z-depth-2;
@@ -226,8 +226,8 @@ $icon_padding: 9px;
   }
 
   .notification-badge {
-    background-color: $sggt_bg;
-    color: $sel_fg;
+    background-color: $background_suggestion;
+    color: $foreground_selection;
   }
 }
 
@@ -273,7 +273,7 @@ $a_dtp_trk_2: if($variant == light, $alpha_track_2,
       &:active,
       &:focus,
       &:checked,
-      &:overview { box-shadow: inset #{$_line} $sel_bg; }
+      &:overview { box-shadow: inset #{$_line} $background_selection; }
 
       StLabel { padding-bottom: 0; } // reset baseline
     }
@@ -292,7 +292,7 @@ $a_dtp_trk_2: if($variant == light, $alpha_track_2,
         &:focus,
         &:checked,
         &:overview {
-          .clock { box-shadow: inset #{$_line} $sel_bg; }
+          .clock { box-shadow: inset #{$_line} $background_selection; }
         }
       }
     }
@@ -328,7 +328,7 @@ $a_dtp_trk_2: if($variant == light, $alpha_track_2,
         // unfocused dot(s)
         .app-well-app-running-dot { background-color: $osd_sel_label; }
         // focused dot(s)
-        &.focused .app-well-app-running-dot { background-color: $sel_bg; }
+        &.focused .app-well-app-running-dot { background-color: $background_selection; }
       }
     }
 
@@ -340,11 +340,11 @@ $a_dtp_trk_2: if($variant == light, $alpha_track_2,
       }
       &:active {
         background-color: $osd_fill_bg;
-        box-shadow: inset #{$_line} $sel_bg;
+        box-shadow: inset #{$_line} $background_selection;
       }
       &:checked {
         background-color: $panel_hidden_bg;
-        box-shadow: inset #{$_line} $sel_bg;
+        box-shadow: inset #{$_line} $background_selection;
         &:hover { background-color: $osd_semi_fill_bg; }
       }
     }
@@ -366,37 +366,37 @@ $rename_box_spacing: 6px;
   StEntry { // OSD-style-ed entry
     margin: 0 ($rename_box_spacing - 2px);
     @if $variant != light {
-      @include entry(normal, $tc: $osd_fg);
-      &:hover { @include entry(hover, $tc: $osd_fg); }
-      &:focus { @include entry(focus, $tc: $osd_fg); }
-      &:insensitive { @include entry(disabled, $tc: $osd_fg); }
+      @include entry(normal, $text-color: $osd_fg);
+      &:hover { @include entry(hover, $text-color: $osd_fg); }
+      &:focus { @include entry(focus, $text-color: $osd_fg); }
+      &:insensitive { @include entry(disabled, $text-color: $osd_fg); }
     }
     @else {
-      @include entry(normal, $tc: $fg);
-      &:hover { @include entry(hover, $tc: $fg); }
-      &:focus { @include entry(focus, $tc: $fg); }
-      &:insensitive { @include entry(disabled, $tc: $fg); }
+      @include entry(normal, $text-color: );
+      &:hover { @include entry(hover, $text-color: ); }
+      &:focus { @include entry(focus, $text-color: ); }
+      &:insensitive { @include entry(disabled, $text-color: ); }
     }
   }
 
   .button { // standard text buttons
     padding: if($ref_weight >= 1.0, 7px 16px 8px, 5px 12px 6px);
-    border-radius: $r_2;
+    border-radius: $radius_2;
     border: none;
     font-weight: 500;
     @if $variant != light {
-      @include button(flat-normal, $tc: $inv_acc_fg);
-      &:hover { @include button(flat-hover, $tc: $inv_acc_fg); }
-      &:focus { @include button(flat-focus, $tc: $inv_acc_fg); }
-      &:active { @include button(flat-active, $tc: $inv_acc_fg); }
-      &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
+      @include button(flat-normal, $text-color: $foreground_accent_inv);
+      &:hover { @include button(flat-hover, $text-color: $foreground_accent_inv); }
+      &:focus { @include button(flat-focus, $text-color: $foreground_accent_inv); }
+      &:active { @include button(flat-active, $text-color: $foreground_accent_inv); }
+      &:insensitive { @include button(flat-disabled, $text-color: $osd_fg); }
     }
     @else {
-      @include button(flat-normal, $tc: $acc_fg);
-      &:hover { @include button(flat-hover, $tc: $acc_fg); }
-      &:focus { @include button(flat-focus, $tc: $acc_fg); }
-      &:active { @include button(flat-active, $tc: $acc_fg); }
-      &:insensitive { @include button(flat-disabled, $tc: $fg); }
+      @include button(flat-normal, $text-color: $foreground_accent);
+      &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
+      &:focus { @include button(flat-focus, $text-color: $foreground_accent); }
+      &:active { @include button(flat-active, $text-color: $foreground_accent); }
+      &:insensitive { @include button(flat-disabled, $text-color: ); }
     }
   }
 }

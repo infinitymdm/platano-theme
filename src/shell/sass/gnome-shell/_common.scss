@@ -25,7 +25,7 @@ $font-family: Roboto, Sans-Serif;
 $font-family-for-ornament: Sans-Serif;
 
 stage {
-  color: $fg;
+  color: ;
   @if $ver < 3.35 {
     font-family: $font-family;
     font-size: 10pt;
@@ -39,7 +39,7 @@ stage {
 
 .button {
   padding: if($ref_weight >= 1.0, 7px 16px 8px, 5px 12px 6px);
-  border-radius: $r_2;
+  border-radius: $radius_2;
   border: none;
   font-weight: 500;
   @include button(flat-normal);
@@ -60,18 +60,18 @@ stage {
   text-shadow: none;
   icon-shadow: none;
   @if $variant != light {
-    @include button(flat-normal, $tc: $inv_acc_fg);
-    &:hover { @include button(flat-hover, $tc: $inv_acc_fg); }
-    &:focus { @include button(flat-focus, $tc: $inv_acc_fg); }
-    &:active { @include button(flat-active, $tc: $inv_acc_fg); }
-    &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
+    @include button(flat-normal, $text-color: $foreground_accent_inv);
+    &:hover { @include button(flat-hover, $text-color: $foreground_accent_inv); }
+    &:focus { @include button(flat-focus, $text-color: $foreground_accent_inv); }
+    &:active { @include button(flat-active, $text-color: $foreground_accent_inv); }
+    &:insensitive { @include button(flat-disabled, $text-color: $osd_fg); }
   }
   @else {
-    @include button(flat-normal, $tc: $acc_fg);
-    &:hover { @include button(flat-hover, $tc: $acc_fg); }
-    &:focus { @include button(flat-focus, $tc: $acc_fg); }
-    &:active { @include button(flat-active, $tc: $acc_fg); }
-    &:insensitive { @include button(flat-disabled, $tc: $fg); }
+    @include button(flat-normal, $text-color: $foreground_accent);
+    &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
+    &:focus { @include button(flat-focus, $text-color: $foreground_accent); }
+    &:active { @include button(flat-active, $text-color: $foreground_accent); }
+    &:insensitive { @include button(flat-disabled, $text-color: ); }
   }
   &:first-child { border-radius: 0 0 0 $r_8; }
   &:last-child { border-radius: 0 0 $r_8 0; }
@@ -91,22 +91,22 @@ StEntry {
   min-height: if($ref_weight >= 1.0, 1em + 0.7em + 0.8em,
                                      1em + 0.5em + 0.6em);
   padding: if($ref_weight >= 1.0, 0 0.8em, 0 0.6em);
-  border-radius: $r_4 $r_4 0 0;
+  border-radius: $radius_4 $radius_4 0 0;
   border-width: 0;
-  selection-background-color: $sel_bg;
-  selected-color: $sel_fg;
+  selection-background-color: $background_selection;
+  selected-color: $foreground_selection;
   transition-duration: $transition_d_none;
   @if $variant != light {
-    @include entry(normal, $tc: $osd_fg);
-    &:hover { @include entry(hover, $tc: $osd_fg); }
-    &:focus { @include entry(focus, $tc: $osd_fg); }
-    &:insensitive { @include entry(disabled, $tc: $osd_fg); }
+    @include entry(normal, $text-color: $osd_fg);
+    &:hover { @include entry(hover, $text-color: $osd_fg); }
+    &:focus { @include entry(focus, $text-color: $osd_fg); }
+    &:insensitive { @include entry(disabled, $text-color: $osd_fg); }
   }
   @else {
-    @include entry(normal, $tc: $fg);
-    &:hover { @include entry(hover, $tc: $fg); }
-    &:focus { @include entry(focus, $tc: $fg); }
-    &:insensitive { @include entry(disabled, $tc: $fg); }
+    @include entry(normal, $text-color: );
+    &:hover { @include entry(hover, $text-color: ); }
+    &:focus { @include entry(focus, $text-color: ); }
+    &:insensitive { @include entry(disabled, $text-color: ); }
   }
 
   StIcon {
@@ -122,7 +122,7 @@ StEntry {
 
   @if $ver > 3.35 {
     .hint-text { // placeholder labels
-      color: if($variant != light, $osd_ter_fg, $ter_fg);
+      color: if($variant != light, $osd_ter_fg, $foreground_tertiary);
       &:ltr { margin-left: 2px; }
       &:rtl { margin-right: 2px; }
     }
@@ -185,11 +185,11 @@ StScrollBar {
 
 .slider {
   height: $icon_size;
-  color: $acc_bg;
+  color: $background_accent;
   -slider-height: 2px;
   -slider-background-color: $out_fg;        // background of the trough
   -slider-border-color: transparent;        // trough border color
-  -slider-active-background-color: $acc_bg; // active trough fill
+  -slider-active-background-color: $background_accent; // active trough fill
   -slider-active-border-color: transparent; // active trough border
   -slider-handle-border-width: 0;
   -slider-handle-radius: $icon_size / 2;
@@ -198,9 +198,9 @@ StScrollBar {
     -barlevel-height: 2px;
     -barlevel-background-color: $out_fg;
     -barlevel-border-color: transparent;
-    -barlevel-active-background-color: $acc_bg;
+    -barlevel-active-background-color: $background_accent;
     -barlevel-active-border-color: transparent;
-    -barlevel-overdrive-color: $dest_bg;
+    -barlevel-overdrive-color: $background_destruction;
     -barlevel-overdrive-border-color: transparent;
     -barlevel-overdrive-separator-width: 2px;
     -barlevel-border-width: 0;
@@ -265,13 +265,13 @@ StScrollBar {
 //  *********/
 
 .shell-link {
-  border-radius: $r_2;
+  border-radius: $radius_2;
   color: $osd_link_fg;
   &:hover {
-    @include button(flat-hover, $tc: $osd_link_fg);
+    @include button(flat-hover, $text-color: $osd_link_fg);
   }
   &:active {
-    @include button(flat-active, $tc: $osd_link_fg);
+    @include button(flat-active, $text-color: $osd_link_fg);
   }
 }
 
@@ -504,8 +504,8 @@ StScrollBar {
     height: $icon_size * 3;
     background-size: contain;
     color: $osd_fg;
-    @if $ver < 3.31 { border-radius: $r_2; }
-    @else { border-radius: $r; } // circular shape
+    @if $ver < 3.31 { border-radius: $radius_2; }
+    @else { border-radius: $radius; } // circular shape
   }
 
   &-shutdown-icon {
@@ -791,8 +791,8 @@ StScrollBar {
       height: $icon_size * 3;
     }
     background-size: contain;
-    @if $ver < 3.31 { border-radius: $r_2; }
-    @else { border-radius: $r; } // circular shape
+    @if $ver < 3.31 { border-radius: $radius_2; }
+    @else { border-radius: $radius; } // circular shape
   }
 }
 
@@ -827,13 +827,13 @@ StScrollBar {
   &-box { spacing: if($ref_weight >= 1.0, 20px, 16px); }
 
   &-device {
-    border: 1px solid $div_fg;
-    border-radius: $r_2;
+    border: 1px solid $foreground_div;
+    border-radius: $radius_2;
     &:hover,
     &:focus { background-color: $osd_semi_fill_bg; }
     &:active {
-      background-color: $sel_bg;
-      color: $sel_fg;
+      background-color: $background_selection;
+      color: $foreground_selection;
     }
   }
 
@@ -964,14 +964,14 @@ $avatar_width: $icon_size * 1.5;
   .popup-sub-menu {
     @if $ver < 3.35 {
       padding-bottom: 1px; // reserve bottom-border height
-      border-bottom: 1px solid $div_fg;
+      border-bottom: 1px solid $foreground_div;
     }
     @else {
       border-width: 0 0 1px;
       border-style: solid;
-      border-color: $div_fg;
+      border-color: $foreground_div;
     }
-    background-color: $bg;
+    background-color: $background;
     box-shadow: inset 0 2px 2px opacity(black, $alpha_track_1);
     @if $ver > 3.35 {
       .popup-menu-item {
@@ -991,7 +991,7 @@ $avatar_width: $icon_size * 1.5;
                                       $avatar_width / 2);
     }
     @else { spacing: if($ref_weight >= 1.0, 8px, 6px); }
-    color: $sec_fg;
+    color: $foreground_secondary;
     font-weight: 400;
     transition-duration: $transition_d_none;
     &:ltr {
@@ -1018,36 +1018,36 @@ $avatar_width: $icon_size * 1.5;
     &:checked {
       &, &.selected {
         background-color: transparent;
-        color: $sel_label;
+        color: $label_selection;
         box-shadow: $empty_shadow;
       }
       &:hover {
-        background-color: opacity($sel_bg, $alpha_track_1);
-        color: $sel_label;
+        background-color: opacity($background_selection, $alpha_track_1);
+        color: $label_selection;
       }
       &:active {
-        background-color: opacity($sel_bg, $alpha_track_2);
-        color: $sel_label;
+        background-color: opacity($background_selection, $alpha_track_2);
+        color: $label_selection;
       }
-      &:insensitive { color: opacity($sel_label, $alpha_foreground_bdp); }
+      &:insensitive { color: opacity($label_selection, $alpha_foreground_bdp); }
     }
     &.selected {
       background-color: $semi_fill_bg;
-      color: $fg;
+      color: ;
       transition-duration: $transition_d_none;
     }
     &:active {
       background-color: $fill_bg;
-      color: $fg;
+      color: ;
       transition-duration: $transition_d_standard;
     }
-    &.selected:active { color: $fg; }
-    &:insensitive { color: $dis_fg; }
+    &.selected:active { color: ; }
+    &:insensitive { color: $foreground_dis; }
   }
 
   .popup-inactive-menu-item { // all icons and other graphical elements
-    color: $sec_fg;
-    &:insensitive { color: $dis_fg; }
+    color: $foreground_secondary;
+    &:insensitive { color: $foreground_dis; }
   }
 
   &.panel-menu {
@@ -1069,7 +1069,7 @@ $avatar_width: $icon_size * 1.5;
     &:insensitive { @include entry(disabled); }
 
     @if $ver > 3.35 {
-      .hint-text { color: $ter_fg; }
+      .hint-text { color: $foreground_tertiary; }
     }
   }
 
@@ -1078,9 +1078,9 @@ $avatar_width: $icon_size * 1.5;
 
     StButton#vhandle,
     StButton#hhandle { // use variant-sensitive slider-bit
-      background-color: opacity($fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
-      &:hover { background-color: opacity($fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
-      &:active { background-color: $fg; }
+      background-color: opacity(, $alpha_foreground_3rd * $alpha_foreground_3rd);
+      &:hover { background-color: opacity(, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+      &:active { background-color: ; }
     }
   }
 }
@@ -1104,7 +1104,7 @@ $avatar_width: $icon_size * 1.5;
     height: 0; // trick for minimum separator-menu-item height
     text-align: right;
     font-size: $icon_size; // fixed size
-    color: $sel_label;
+    color: $label_selection;
     font-family: $font-family-for-ornament;
     font-weight: 700;
   }
@@ -1122,7 +1122,7 @@ $avatar_width: $icon_size * 1.5;
   -arrow-rise: 0;
   -arrow-box-shadow: $empty_shadow; // dreaming. bug #689995
   @if $ver < 3.25 {
-    border-radius: $r_4;
+    border-radius: $radius_4;
     box-shadow: $z-depth-3;
   }
   @else { // shut up 3rd-party gresources
@@ -1133,9 +1133,9 @@ $avatar_width: $icon_size * 1.5;
 
 .popup-menu-boxpointer {
   @if $ver < 3.25 {
-    -arrow-background-color: $dark_bg; // fake arrows
-    border: 1px solid $div_sld_fg;
-    background-color: $dark_bg;
+    -arrow-background-color: $background_dark; // fake arrows
+    border: 1px solid $foreground_div_sld;
+    background-color: $background_dark;
   }
   @else {
     -arrow-background-color: transparent;
@@ -1143,15 +1143,15 @@ $avatar_width: $icon_size * 1.5;
     .popup-menu-content {
       @extend %popover_content;
       padding: if($ref_weight >= 1.0, 0.3em 0, 0.21em 0);
-      border: 1px solid $div_sld_fg;
-      background-color: $dark_bg;
+      border: 1px solid $foreground_div_sld;
+      background-color: $background_dark;
     }
   }
 }
 
 %popover_content {
   margin: 3px 5px 12px;
-  border-radius: $r_4;
+  border-radius: $radius_4;
   box-shadow: $z-depth-3;
 }
 
@@ -1179,8 +1179,8 @@ $avatar_width: $icon_size * 1.5;
     margin: 0;
     spacing: 0;
     border-color: if($variant != dark,
-                     $div_fg,
-                     mix(white, $dark_bg, percentage($alpha_div_2)));
+                     $foreground_div,
+                     mix(white, $background_dark, percentage($alpha_div_2)));
     border-bottom-width: 1px;
     border-bottom-style: solid;
     background-color: transparent;
@@ -1192,12 +1192,12 @@ $avatar_width: $icon_size * 1.5;
       height: 1px;
       margin: 0;
       background-color: if($variant != dark,
-                           $div_fg,
-                           mix(white, $dark_bg, percentage($alpha_div_2)));
+                           $foreground_div,
+                           mix(white, $background_dark, percentage($alpha_div_2)));
 
       @if $ver > 3.35 and $variant == dark {
         .popup-sub-menu & {
-          background-color: mix(white, $bg, percentage($alpha_div_2));
+          background-color: mix(white, $background, percentage($alpha_div_2));
         }
       }
     }
@@ -1227,19 +1227,19 @@ $avatar_width: $icon_size * 1.5;
       padding: if($ref_weight >= 1.0, // subtract borders
                   (7px - 2px) (16px - 2px) (8px - 2px),
                   (5px - 2px) (12px - 2px) (6px - 2px));
-      border-radius: $r_2;
+      border-radius: $radius_2;
       font-weight: 500;
-      @include button(suggested-normal, $c: $sggt_bg, $tc: $sel_fg);
+      @include button(suggested-normal, $color: $background_suggestion, $text-color: $foreground_selection);
       &:hover {
-        @include button(suggested-hover, $c: $sggt_bg, $tc: $sel_fg);
+        @include button(suggested-hover, $color: $background_suggestion, $text-color: $foreground_selection);
       }
       &:focus {
-        @include button(suggested-focus, $c: $sggt_bg, $tc: $sel_fg);
+        @include button(suggested-focus, $color: $background_suggestion, $text-color: $foreground_selection);
       }
       &:active { @include button(suggested-active); }
       &:insensitive {
         padding: if($ref_weight >= 1.0, 7px 16px 8px, 5px 12px 6px);
-        @include button(suggested-disabled, $tc: $fg);
+        @include button(suggested-disabled, $text-color: );
       }
     }
   }
@@ -1324,7 +1324,7 @@ $avatar_width: $icon_size * 1.5;
       // color already, so keep -background-color style-property transparent
       -barlevel-background-color: transparent;
       -barlevel-active-background-color: $sccs;
-      -barlevel-overdrive-color: $dest_bg;
+      -barlevel-overdrive-color: $background_destruction;
       -barlevel-overdrive-separator-width: 3px;
       -barlevel-border-width: 0;
     }
@@ -1374,12 +1374,12 @@ $avatar_width: $icon_size * 1.5;
   .item-box {
     padding: if($ref_weight >= 1.0, 6px, 4px);
     border: 2px solid transparent;
-    border-radius: $r_2;
+    border-radius: $radius_2;
 
     &:outlined { border: 2px solid $osd_out_fg; }
     &:selected {
       background-color: $inv_acc_fill_bg;
-      color: $inv_acc_fg;
+      color: $foreground_accent_inv;
     }
   }
 
@@ -1393,8 +1393,8 @@ $avatar_width: $icon_size * 1.5;
   .separator {
     width: 1px;
     background: if($variant != dark,
-                   $div_fg,
-                   mix(white, $dark_bg, percentage($alpha_div_2)));
+                   $foreground_div,
+                   mix(white, $background_dark, percentage($alpha_div_2)));
   }
 }
 
@@ -1415,7 +1415,7 @@ $avatar_width: $icon_size * 1.5;
 //  *****************/
 
 .cycler-highlight {
-  border-radius: $r_2 $r_2 0 0;
+  border-radius: $radius_2 $radius_2 0 0;
   @extend %rubberband;
 }
 
@@ -1440,7 +1440,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 %switcher_arrow_active {
   height: $ws_container_size + (2px * 2); // concern the box's border width
   border: 0 none transparent;
-  border-radius: $r_2;
+  border-radius: $radius_2;
   background-size: 24px;
   background-color: $inv_acc_fill_bg;
 }
@@ -1466,7 +1466,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   &-box {
     height: $ws_container_size;
     border: 2px solid $osd_out_fg;
-    border-radius: $r_2;
+    border-radius: $radius_2;
     background: transparent;
   }
 }
@@ -1487,9 +1487,9 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 //  *************************/
 
 .tile-preview { // no radius
-  border: 1px solid $sel_bg;
+  border: 1px solid $background_selection;
   border-radius: 0;
-  background-color: opacity($sel_bg, $alpha_track_out);
+  background-color: opacity($background_selection, $alpha_track_out);
 
   &-left.on-primary,
   &-left.on-primary.tile-preview-right,
@@ -1508,11 +1508,11 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   // this should be always smaller than min-height if f-s-f < 1.0
   height: if($ref_weight >= 1.0, 2.1em, 1.8em);
   @if ($ver > 3.25) and ($ver < 3.31) {
-    background-color: opacity($panel_bg, $alpha_foreground_3rd);
+    background-color: opacity($background_panel, $alpha_foreground_3rd);
     box-shadow: $empty_shadow;
   }
   @else {
-    background-color: $panel_bg;
+    background-color: $background_panel;
   }
   font-weight: 700;
   transition-timing-function: $transition_t_standard;
@@ -1548,7 +1548,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     &:active,
     &:overview {
       background-color: $panel_hidden_bg;
-      box-shadow: inset 0 2px $sel_bg;
+      box-shadow: inset 0 2px $background_selection;
     }
 
     @if $ver > 3.35 {
@@ -1587,7 +1587,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
     &:hover {
       background-color: $panel_hidden_bg;
-      color: if($variant != light, $sel_fg, black);
+      color: if($variant != light, $foreground_selection, black);
       box-shadow: inset 0 2px $osd_out_fg;
     }
     &:active,
@@ -1597,8 +1597,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       // Trick due to St limitations. It needs a background to draw
       // a box-shadow
       background-color: $panel_hidden_bg;
-      color: if($variant != light, $sel_fg, black);
-      box-shadow: inset 0 2px $sel_bg;
+      color: if($variant != light, $foreground_selection, black);
+      box-shadow: inset 0 2px $background_selection;
 
      @if $ver < 3.25 {
         > .system-status-icon { icon-shadow: none; }
@@ -1663,7 +1663,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
           &:focus,
           &:checked,
           &:overview {
-            .clock { box-shadow: inset 0 2px $sel_bg; }
+            .clock { box-shadow: inset 0 2px $background_selection; }
           }
         }
 
@@ -1671,7 +1671,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         > StBoxLayout > StIcon {
           padding-bottom: 1px; // keep the StLabel baseline
           icon-size: $icon_size;
-          color: $sggt_bg;
+          color: $background_suggestion;
         }
       }
     }
@@ -1693,28 +1693,28 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     }
   }
 
-  .screencast-indicator { color: $dest_bg; }
+  .screencast-indicator { color: $background_destruction; }
 
   @if $ver > 3.25 {
     .remote-access-indicator { color: $warn; } // > 3.29.4
 
     @if $ver < 3.31 {
       &.solid { // solid-mode of TopBar
-        background-color: $panel_bg; // fill whole area
+        background-color: $background_panel; // fill whole area
         // FIXME: override ugly ubuntu.css
-        background-gradient-start: $panel_bg;
-        background-gradient-end: $panel_bg;
+        background-gradient-start: $background_panel;
+        background-gradient-end: $background_panel;
         transition-timing-function: $transition_t_dec;
         transition-duration: $transition_d_long; // transparent -> solid
 
-        .panel-corner { -panel-corner-background-color: $panel_bg; }
+        .panel-corner { -panel-corner-background-color: $background_panel; }
 
         .panel-button {
           color: $osd_fg;
           &:hover,
           &:active,
           &:focus,
-          &:checked { color: if($variant != light, $sel_fg, black); }
+          &:checked { color: if($variant != light, $foreground_selection, black); }
 
           @if $ver > 3.35 {
             &,
@@ -1748,10 +1748,10 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 }
 
 %translucent_panel {
-  background-color: if($variant == light, opacity($panel_bg, $alpha_foreground_3rd),
+  background-color: if($variant == light, opacity($background_panel, $alpha_foreground_3rd),
                                           $panel_hidden_bg);
   @if $ver > 3.25 { box-shadow: $empty_shadow; }
-  @else { box-shadow: inset 0 2px $panel_bg; }
+  @else { box-shadow: inset 0 2px $background_panel; }
   transition-timing-function: $transition_t_dec;
   transition-duration: $transition_d_long;
 }
@@ -1795,12 +1795,12 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
 .calendar {
   margin-bottom: if($ref_weight >= 1.0, 1em, 0.7em);
-  border-radius: $r_2;
+  border-radius: $radius_2;
   @if $ver > 3.35 {
     @extend %reset_cal;
     padding-left: 0;
     padding-right: 0;
-    color: $fg;
+    color: ;
   }
 }
 
@@ -1828,8 +1828,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 .datemenu-calendar-column {
   border-style: solid;
   border-color: if($variant != dark,
-                   $div_fg,
-                   mix(white, $dark_bg, percentage($alpha_div_2)));
+                   $foreground_div,
+                   mix(white, $background_dark, percentage($alpha_div_2)));
 
   &:ltr { border-left-width: 1px; }
   &:rtl { border-right-width: 1px; }
@@ -1843,7 +1843,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     .events-section-title {
       @if $ver > 3.35 { @extend %reset_cal; }
       padding: 0.4em;
-      border-radius: $r_2;
+      border-radius: $radius_2;
     }
   }
   @else {
@@ -1854,7 +1854,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     .events-section-title {
       @extend %reset_cal;
       padding: 0.4em;
-      border-radius: $r_2;
+      border-radius: $radius_2;
     }
   }
 }
@@ -1865,7 +1865,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .message-list-section-title, // in 3.24 cycle, use .event-section-title
   .events-section-title {
     padding: 0.4em;
-    border-radius: $r_2;
+    border-radius: $radius_2;
   }
 }
 
@@ -1874,14 +1874,14 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .world-clocks-button,
   .weather-button,
   .events-section-title {
-    color: $sec_fg;
+    color: $foreground_secondary;
     &:hover,
     &:focus {
-      color: $fg;
+      color: ;
       background-color: $semi_fill_bg;
     }
     &:active {
-      color: $fg;
+      color: ;
       background-color: $fill_bg;
     }
   }
@@ -1892,14 +1892,14 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .weather-button,
   .message-list-section-title, // in 3.24 cycle, use .event-section-title
   .events-section-title {
-    color: $sec_fg;
+    color: $foreground_secondary;
     &:hover,
     &:focus {
-      color: $fg;
+      color: ;
       background-color: $semi_fill_bg;
     }
     &:active {
-      color: $fg;
+      color: ;
       background-color: $fill_bg;
     }
   }
@@ -1907,7 +1907,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
 @if $ver > 3.37 {
   .events-button {
-    color: $fg;
+    color: ;
 
     .events {
       &-box { spacing: 0; }
@@ -1915,13 +1915,13 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       &-list { spacing: 0.4em; }
 
       &-title {
-        color: $ter_fg;
+        color: $foreground_tertiary;
         font-weight: 700;
       }
     }
 
     .event-time {
-      color: $ter_fg;
+      color: $foreground_tertiary;
       font-weight: 400;
       font-size: 90%;
     }
@@ -1930,12 +1930,12 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
 .datemenu-today-button { // re-define foregrounds
   .day-label {
-    color: $ter_fg;
+    color: $foreground_tertiary;
     font-weight: 700;
   }
 
   .date-label {
-    color: $sec_fg;
+    color: $foreground_secondary;
     font-size: 150%;
     font-weight: 500;
   }
@@ -1943,9 +1943,9 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   &:hover,
   &:focus,
   &:active {
-    .day-label { color: $sec_fg; }
+    .day-label { color: $foreground_secondary; }
 
-    .date-label { color: $fg; }
+    .date-label { color: ; }
   }
 }
 
@@ -1953,7 +1953,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .world-clocks-header,
   .weather-header,
   .events-section-title {
-    color: $ter_fg;
+    color: $foreground_tertiary;
     font-weight: 700;
   }
 }
@@ -1962,7 +1962,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .weather-header,
   .message-list-section-title, // in 3.24 cycle, use .event-section-title
   .events-section-title {
-    color: $ter_fg;
+    color: $foreground_tertiary;
     font-weight: 700;
   }
 }
@@ -1980,7 +1980,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .world-clocks {
     &-city,
     &-time {
-      color: $fg;
+      color: ;
       font-weight: 400;
       font-size: 100%;
     }
@@ -1993,7 +1993,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     }
 
     &-timezone {
-      color: $ter_fg;
+      color: $foreground_tertiary;
       font-size: 90%;
     }
   }
@@ -2008,7 +2008,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     }
 
     &-header.location {
-      color: $sec_fg;
+      color: $foreground_secondary;
       font-weight: 400;
       font-size: 90%;
     }
@@ -2017,16 +2017,16 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       &-icon {
         width: 2.4em; // = .calendar-day-base
         height: 2.4em;
-        border-radius: $r;
-        background-color: opacity($sec_fg, $alpha_track_1);
-        color: $sec_fg;
+        border-radius: $radius;
+        background-color: opacity($foreground_secondary, $alpha_track_1);
+        color: $foreground_secondary;
         icon-size: if($ref_weight >= 1.0, $icon_size * 1.5,
                                           $icon_size);
       }
 
       &-time {
         @if $ver > 3.35 { padding: 0.2em 0 0.4em; }
-        color: $ter_fg;
+        color: $foreground_tertiary;
         font-size: 80%;
       }
 
@@ -2039,19 +2039,19 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
 .calendar-month-label {
   padding: 4px 0;
-  color: $fg;
+  color: ;
   font-weight: 700;
 }
 
 .pager-button {
   width: 2.1em;
   height: 2.1em;
-  border-radius: $r;
-  color: $fg;
+  border-radius: $radius;
+  color: ;
   background-color: transparent;
   &:hover { background-color: $semi_fill_bg; }
   &:focus {
-    background-color: opacity($dark_bg, 0.01);
+    background-color: opacity($background_dark, 0.01);
     box-shadow: inset 0 0 0 2px $out_fg;
     &:hover { background-color: $semi_fill_bg; }
   }
@@ -2064,7 +2064,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       @include image-loader($url: 'assets/calendar-arrow-left.svg');
     }
     @else {
-      color: $sec_fg;
+      color: $foreground_secondary;
 
       StIcon { icon-size: $icon_size; }
     }
@@ -2073,7 +2073,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       @if $ver < 3.31 {
         @include image-loader($url: 'assets/calendar-arrow-left-hover.svg');
       }
-      @else { color: $fg; }
+      @else { color: ; }
     }
 
     @if $ver < 3.31 {
@@ -2092,7 +2092,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       @include image-loader($url: 'assets/calendar-arrow-right.svg');
     }
     @else {
-      color: $sec_fg;
+      color: $foreground_secondary;
 
       StIcon { icon-size: $icon_size; }
     }
@@ -2101,7 +2101,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       @if $ver < 3.31 {
         @include image-loader($url: 'assets/calendar-arrow-right-hover.svg');
       }
-      @else { color: $fg; }
+      @else { color: ; }
     }
 
     @if $ver < 3.31 {
@@ -2121,7 +2121,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   height: 2.4em;
   padding: 0;
   margin: 0.2em;
-  border-radius: $r;
+  border-radius: $radius;
   @if $ver > 3.35 { border: 0 none transparent; }
   font-size: 90%;
   text-align: center;
@@ -2131,8 +2131,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   &:active,
   &:selected {
     &, &:hover {
-      color: $sel_fg;
-      background-color: $sel_bg;
+      color: $foreground_selection;
+      background-color: $background_selection;
       transition-duration: $transition_d_standard;
     }
   }
@@ -2143,7 +2143,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     margin-top: 0.2em;
     padding: 0.5em 0 0;
     background-color: transparent;
-    color: $ter_fg;
+    color: $foreground_tertiary;
     font-weight: 500;
     font-size: 90%;
     text-align: center;
@@ -2156,14 +2156,14 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   margin: 0.2em;
   @if $ver < 3.37 { padding: 0.5em 0 0; }
   background-color: transparent;
-  color: $ter_fg;
+  color: $foreground_tertiary;
   font-weight: 500;
   text-align: center;
 }
 
 .calendar-day { // border collapse hack - see calendar.js
   border-width: 0;
-  color: $fg;
+  color: ;
 
   &-top { border-top-width: 0; }
 
@@ -2171,7 +2171,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
   &-with-events {
     background-image: none;
-    color: $link_fg;
+    color: $foreground_link;
     font-weight: 500;
     @if $ver < 3.35 { text-decoration: underline; }
     @else {
@@ -2179,14 +2179,14 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       background-size: contain;
     }
     &:hover,
-    &:focus { background-color: opacity($link_fg, $alpha_track_1); }
+    &:focus { background-color: opacity($foreground_link, $alpha_track_1); }
     &:active,
     &:selected {
       &,
       &:hover,
       &:focus {
-        color: $sel_fg;
-        background-color: $sel_bg;
+        color: $foreground_selection;
+        background-color: $background_selection;
         @if $ver > 3.35 { background-image: none; }
         border-color: transparent;
       }
@@ -2204,17 +2204,17 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
   &,
   &.calendar-day-with-events {
-    background-color: if($variant == dark, $sec_sel_fg, $sec_fg);
-    color: if($variant == dark, $dark_bg, $sec_sel_fg);
+    background-color: if($variant == dark, $foreground_selection_secondary, $foreground_secondary);
+    color: if($variant == dark, $background_dark, $foreground_selection_secondary);
     &:hover,
     &:focus {
-      background-color: if($variant == dark, $sel_fg, $fg);
-      color: if($variant == dark, black, $sel_fg);
+      background-color: if($variant == dark, $foreground_selection, );
+      color: if($variant == dark, black, $foreground_selection);
     }
     &:selected {
       &, &:hover {
-        color: $sel_fg;
-        background-color: $sel_bg;
+        color: $foreground_selection;
+        background-color: $background_selection;
         border-color: transparent;
       }
     }
@@ -2222,22 +2222,22 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 }
 
 .calendar-other-month-day {
-  color: opacity($ter_fg, $alpha_foreground_3rd);
+  color: opacity($foreground_tertiary, $alpha_foreground_3rd);
   &:hover,
   &:focus {
-    color: $ter_fg;
-    background-color: opacity($ter_fg, $alpha_track_1);
+    color: $foreground_tertiary;
+    background-color: opacity($foreground_tertiary, $alpha_track_1);
   }
 
   &.calendar-day-with-events {
-    color: opacity($link_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+    color: opacity($foreground_link, $alpha_foreground_3rd * $alpha_foreground_3rd);
     @if $ver > 3.35 {
       @include image-loader($url: 'calendar-today-other.svg');
     }
     &:hover,
     &:focus {
-      color: opacity($link_fg, $alpha_foreground_3rd);
-      background-color: opacity($link_fg, $alpha_foreground_3rd * $alpha_track_1);
+      color: opacity($foreground_link, $alpha_foreground_3rd);
+      background-color: opacity($foreground_link, $alpha_foreground_3rd * $alpha_track_1);
     }
   }
 }
@@ -2254,10 +2254,10 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       margin:  if($ref_weight >= 1.0, 1.5em 1.5em 0, 1.2em 1.2em 0);
     }
     font-weight: 500;
-    @include button(flat-normal, $tc: $acc_fg);
+    @include button(flat-normal, $text-color: $foreground_accent);
     &:hover,
-    &:focus { @include button(flat-hover, $tc: $acc_fg); }
-    &:active { @include button(flat-active, $tc: $acc_fg); }
+    &:focus { @include button(flat-hover, $text-color: $foreground_accent); }
+    &:active { @include button(flat-active, $text-color: $foreground_accent); }
     &:insensitive { @include button(flat-disabled); }
   }
 
@@ -2265,7 +2265,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     &-controls {
       margin:  if($ref_weight >= 1.0, 1.5em 1.5em 0, 1.2em 1.2em 0);
 
-      > StLabel { color: $fg; } // 'Do Not Disturb' label
+      > StLabel { color: ; } // 'Do Not Disturb' label
     }
   }
 
@@ -2280,20 +2280,20 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     &-section-close {
       > StIcon {
         padding: 0.45em;
-        border-radius: $r;
+        border-radius: $radius;
         icon-size: $icon_size;
-        color: $sec_fg;
+        color: $foreground_secondary;
         background-color: transparent;
       }
 
       // FIXME: how do you do this in sass?
       &:hover > StIcon,
       &:focus > StIcon {
-        color: $fg;
+        color: ;
         background-color: $semi_fill_bg;
       }
       &:active > StIcon {
-        color: $fg;
+        color: ;
         background-color: $fill_bg;
       }
     }
@@ -2322,7 +2322,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   // labels for empty messages/events
   &-placeholder {
     @if $ver > 3.35 { spacing: if($ref_weight >= 1.0, 12px, 8px); }
-    color: $ter_fg;
+    color: $foreground_tertiary;
   }
 }
 
@@ -2353,105 +2353,105 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       &:ltr { box-shadow: inset 4px 0 $out_fg; }
       &:rtl { box-shadow: inset -4px 0 $out_fg; }
     }
-    color: $sec_fg;
+    color: $foreground_secondary;
 
     @if $ver < 3.31 {
       .message-icon-bin > StIcon,
       .message-title,
-      .message-content { color: $sec_fg; }
+      .message-content { color: $foreground_secondary; }
     }
     @else {
       @if $ver > 3.35 {
         .message-icon-bin > StIcon,
         .message-icon-bin > .fallback-app-icon,
         .message-title,
-        .message-body { color: $sec_fg; }
+        .message-body { color: $foreground_secondary; }
       }
       @else {
         .message-icon-bin > StIcon,
         .message-icon-bin > .fallback-app-icon,
         .message-title,
-        .message-content { color: $sec_fg; }
+        .message-content { color: $foreground_secondary; }
       }
     }
 
     &:hover,
     &:focus {
       @if $ver > 3.25 {
-        background-color: mix($fg, $base, percentage($alpha_track_1)); // use opaque
+        background-color: mix(, $base, percentage($alpha_track_1)); // use opaque
         @if $ver > 3.33 {
-          border: 1px solid mix($fg, $base, percentage($alpha_track_1));
+          border: 1px solid mix(, $base, percentage($alpha_track_1));
         }
       }
       @else {
         background-color: $acc_semi_fill_bg;
-        &:ltr { box-shadow: inset 4px 0 opacity($acc_bg, $alpha_foreground_2nd); }
-        &:rtl { box-shadow: inset -4px 0 opacity($acc_bg, $alpha_foreground_2nd); }
+        &:ltr { box-shadow: inset 4px 0 opacity($background_accent, $alpha_foreground_2nd); }
+        &:rtl { box-shadow: inset -4px 0 opacity($background_accent, $alpha_foreground_2nd); }
       }
-      color: $fg;
+      color: ;
 
       @if $ver < 3.31 {
         .message-icon-bin > StIcon,
         .message-title,
-        .message-content { color: $fg; }
+        .message-content { color: ; }
       }
       @else {
         @if $ver > 3.35 {
           .message-icon-bin > StIcon,
           .message-icon-bin > .fallback-app-icon,
           .message-title,
-          .message-body { color: $fg; }
+          .message-body { color: ; }
         }
         @else {
           .message-icon-bin > StIcon,
           .message-icon-bin > .fallback-app-icon,
           .message-title,
-          .message-content { color: $fg; }
+          .message-content { color: ; }
         }
       }
 
       .message-secondary-bin {
         &,
-        > .event-time { color: $sec_fg; }
+        > .event-time { color: $foreground_secondary; }
       }
     }
     &:active {
       @if $ver > 3.25 {
-        background-color: mix($fg, $base, percentage($alpha_track_2));
+        background-color: mix(, $base, percentage($alpha_track_2));
         @if $ver > 3.33 {
-          border: 1px solid mix($fg, $base, percentage($alpha_track_2));
+          border: 1px solid mix(, $base, percentage($alpha_track_2));
         }
       }
       @else {
         background-color: $acc_fill_bg;
-        &:ltr { box-shadow: inset 4px 0 $acc_bg; }
-        &:rtl { box-shadow: inset -4px 0 $acc_bg; }
+        &:ltr { box-shadow: inset 4px 0 $background_accent; }
+        &:rtl { box-shadow: inset -4px 0 $background_accent; }
       }
-      color: $fg;
+      color: ;
 
       @if $ver < 3.31 {
         .message-icon-bin > StIcon,
         .message-title,
-        .message-content { color: $fg; }
+        .message-content { color: ; }
       }
       @else {
         @if $ver > 3.35 {
           .message-icon-bin > StIcon,
           .message-icon-bin > .fallback-app-icon,
           .message-title,
-          .message-body { color: $fg; }
+          .message-body { color: ; }
         }
         @else {
           .message-icon-bin > StIcon,
           .message-icon-bin > .fallback-app-icon,
           .message-title,
-          .message-content { color: $fg; }
+          .message-content { color: ; }
         }
       }
 
       .message-secondary-bin {
         &,
-        > .event-time { color: $sec_fg; }
+        > .event-time { color: $foreground_secondary; }
       }
     }
   }
@@ -2522,7 +2522,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
     .popup-menu & {
       &,
-      > .event-time { color: $ter_fg; }
+      > .event-time { color: $foreground_tertiary; }
     }
   }
 
@@ -2559,32 +2559,32 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         padding: 2px;
         icon-size: 1.09em;
       }
-      border-radius: $r;
+      border-radius: $radius;
     }
 
     StButton > StIcon { // close button
       // FIXME: alpha blended secondary color can't be rendered in OSD?
-      color: $inv_acc_fg;
+      color: $foreground_accent_inv;
 
-      .popup-menu & { color: $sec_acc_fg; }
+      .popup-menu & { color: $foreground_accent_sec; }
     }
 
     StButton:hover > StIcon,
     StButton:focus > StIcon {
-      color: $inv_acc_fg;
+      color: $foreground_accent_inv;
       background-color: $inv_acc_semi_fill_bg;
 
       .popup-menu & {
-        color: $acc_fg;
+        color: $foreground_accent;
         background-color: $acc_semi_fill_bg;
       }
     }
     StButton:active > StIcon {
-      color: $inv_acc_fg;
+      color: $foreground_accent_inv;
       background-color: $inv_acc_fill_bg;
 
       .popup-menu & {
-        color: $acc_fg;
+        color: $foreground_accent;
         background-color: $acc_fill_bg;
       }
     }
@@ -2604,17 +2604,17 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 .message-media-control {
   padding: 0 8px;
   margin: 0 6px;
-  border-radius: $r;
-  color: $sec_acc_fg;
+  border-radius: $radius;
+  color: $foreground_accent_sec;
   background: transparent;
   background-size: 32px 32px;
   &:hover {
-    color: $acc_fg;
+    color: $foreground_accent;
     @include image-loader($url: 'assets/media-control-hover.svg');
     background-size: 32px 32px;
   }
   &:active {
-    color: $acc_fg;
+    color: $foreground_accent;
     @include image-loader($url: 'assets/media-control-active.svg');
     background-size: 32px 32px;
   }
@@ -2633,20 +2633,20 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     icon-size: if($ref_weight >= 1.0, 24px, 16px) !important;
     padding: if($ref_weight >= 1.0, 12px, 10px);
     border: none;
-    border-radius: $r_2;
+    border-radius: $radius_2;
     color: $osd_ter_fg;
     background-color: $osd_semi_fill_bg;
     box-shadow: $empty_shadow;
 
     .popup-menu .message & {
-      color: $ter_fg;
+      color: $foreground_tertiary;
       background-color: $semi_fill_bg;
     }
 
     .popup-menu .message:hover &,
     .popup-menu .message:focus &,
     .popup-menu .message:active & {
-      color: $sec_fg;
+      color: $foreground_secondary;
       background-color: $acc_fill_bg;
     }
   }
@@ -2690,7 +2690,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 @if $ver < 3.35 {
   .system-menu-action {
     padding: if($ref_weight >= 1.0, 10px, 8px);
-    border-radius: $r;
+    border-radius: $radius;
     @include button(normal);
     @if $ver > 3.25 { -st-icon-style: symbolic; } // >= 3.29.90
     &:hover { @include button(hover); }
@@ -2714,7 +2714,7 @@ $ripple_d: 52px;
 
 %ripple_bg {
   border: 0 none transparent; // for safety
-  background-color: opacity($acc_bg, $alpha_foreground_3rd);
+  background-color: opacity($background_accent, $alpha_foreground_3rd);
   box-shadow: $empty_shadow;
 }
 
@@ -2742,8 +2742,8 @@ $ripple_d: 52px;
 //  **************/
 
 %rubberband {
-  border: 1px solid $sel_bg;
-  background-color: opacity($sel_bg, $alpha_track_out);
+  border: 1px solid $background_selection;
+  background-color: opacity($background_selection, $alpha_track_out);
   box-shadow: $empty_shadow; // for safety
 }
 
@@ -2774,10 +2774,10 @@ $close_button_size: if($ver < 3.35, 32px,
     @if $ver > 3.35 {
       margin: 0.1em; // previent unwanted truncated button top
     }
-    border-radius: $r;
+    border-radius: $radius;
     border: 0 none transparent;
-    background-color: $dest_bg;
-    color: $sel_fg;
+    background-color: $background_destruction;
+    color: $foreground_selection;
     box-shadow: $z-depth-1;
 
     StIcon { icon-size: $icon_size; } // for safety
@@ -2791,8 +2791,8 @@ $close_button_size: if($ver < 3.35, 32px,
       -st-background-image-shadow: $z-depth-2;
     }
     @else {
-      background-color: mix($dest_bg, $sel_fg, percentage(1 - $alpha_track_1));
-      color: $sel_fg;
+      background-color: mix($background_destruction, $foreground_selection, percentage(1 - $alpha_track_1));
+      color: $foreground_selection;
       box-shadow: $z-depth-2;
     }
   }
@@ -2802,8 +2802,8 @@ $close_button_size: if($ver < 3.35, 32px,
       -st-background-image-shadow: $z-depth-2;
     }
     @else {
-      background-color: $sel_bg;
-      color: $sel_fg;
+      background-color: $background_selection;
+      color: $foreground_selection;
       box-shadow: $z-depth-2;
     }
   }
@@ -2820,8 +2820,8 @@ $close_button_size: if($ver < 3.35, 32px,
     width: $ripple_d + ($progress_width * 2);
     height: $ripple_d + ($progress_width * 2);
     -pie-border-width: $progress_width;
-    -pie-border-color: $acc_bg; // progress bit
-    -pie-background-color: opacity($acc_bg, $alpha_track_out); // trough
+    -pie-border-color: $background_accent; // progress bit
+    -pie-background-color: opacity($background_accent, $alpha_track_out); // trough
   }
 }
 
@@ -2863,22 +2863,22 @@ $close_button_size: if($ver < 3.35, 32px,
       .button {
         font-weight: 500;
         @if $variant != light {
-          @include button(flat-normal, $tc: $inv_acc_fg);
-          &:hover { @include button(flat-hover, $tc: $inv_acc_fg); }
+          @include button(flat-normal, $text-color: $foreground_accent_inv);
+          &:hover { @include button(flat-hover, $text-color: $foreground_accent_inv); }
           &:active {
-            @include button(flat-active, $tc: $inv_acc_fg);
+            @include button(flat-active, $text-color: $foreground_accent_inv);
             box-shadow: $empty_shadow;
           }
-          &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
+          &:insensitive { @include button(flat-disabled, $text-color: $osd_fg); }
         }
         @else {
-          @include button(flat-normal, $tc: $acc_fg);
-          &:hover { @include button(flat-hover, $tc: $acc_fg); }
+          @include button(flat-normal, $text-color: $foreground_accent);
+          &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
           &:active {
-            @include button(flat-active, $tc: $acc_fg);
+            @include button(flat-active, $text-color: $foreground_accent);
             box-shadow: $empty_shadow;
           }
-          &:insensitive { @include button(flat-disabled, $tc: $fg); }
+          &:insensitive { @include button(flat-disabled, $text-color: ); }
         }
       }
     }
@@ -2893,7 +2893,7 @@ $close_button_size: if($ver < 3.35, 32px,
 
   &-scroll-view {
     padding: 0;
-    border: 1px solid $div_fg;
+    border: 1px solid $foreground_div;
     background-color: transparent;
   }
 
@@ -2904,8 +2904,8 @@ $close_button_size: if($ver < 3.35, 32px,
     color: $osd_fg;
     font-size: 100%;
     &:selected {
-      background-color: $sel_bg;
-      color: $sel_fg;
+      background-color: $background_selection;
+      color: $foreground_selection;
     }
   }
 
@@ -2946,9 +2946,9 @@ $close_button_size: if($ver < 3.35, 32px,
 
       StButton#vhandle,
       StButton#hhandle {
-        background-color: opacity($fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
-        &:hover { background-color: opacity($fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
-        &:active { background-color: $fg; }
+        background-color: opacity(, $alpha_foreground_3rd * $alpha_foreground_3rd);
+        &:hover { background-color: opacity(, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+        &:active { background-color: ; }
       }
     }
   }
@@ -2979,7 +2979,7 @@ $close_button_size: if($ver < 3.35, 32px,
 
 .window-clone-border {
   border: 4px solid $ovv_semi_fill_bg;
-  border-radius: $r_2 $r_2 0 0;
+  border-radius: $radius_2 $radius_2 0 0;
   // For window decorations with round corners we can't match
   // the exact shape when the window is scaled. So apply a shadow
   // to fix that case
@@ -2991,7 +2991,7 @@ $close_button_size: if($ver < 3.35, 32px,
     @extend %tooltip_template;
     max-width: 75em; // set horizontal limit for damned looong web page titles
     padding: if($ref_weight >= 1.0, 0.6em 1.2em 0.7em, 0.4em 0.9em 0.5em);
-    border-radius: $r;
+    border-radius: $radius;
     @if $ver > 3.35 {
       border: 0 none transparent;
       font-size: 100%;
@@ -3006,7 +3006,7 @@ $close_button_size: if($ver < 3.35, 32px,
   @else {
     spacing: if($ref_weight >= 1.0, 25px, 19px);
     padding: if($ref_weight >= 1.0, 0.3em 0.9em 0.4em, 0.2em 0.6em 0.3em);
-    border-radius: $r_2;
+    border-radius: $radius_2;
     background-color: opacity($osd_bg, $alpha_osd);
     -shell-caption-spacing: if($ref_weight >= 1.0, 12px, 8px);
     &:hover {
@@ -3020,44 +3020,44 @@ $close_button_size: if($ver < 3.35, 32px,
 .search-entry { // use raised entry-box styling
   width: if($ref_weight >= 1.0, 400px, 340px);
   padding: if($ref_weight >= 1.0, 0.4em 0.8em, 0.3em 0.6em);
-  border-radius: $r;
+  border-radius: $radius;
   border: 2px solid transparent;
   background-color: opacity($base, $alpha_foreground_3rd);
   box-shadow: $empty_shadow;
   font-weight: 400;
   transition-duration: $transition_d_standard;
 
-  selection-background-color: $sel_bg;
-  selected-color: $sel_fg;
+  selection-background-color: $background_selection;
+  selected-color: $foreground_selection;
 
   &,
   StLabel {
     margin-bottom: 0.1em;
-    color: $ter_fg; // shut up 3rd-party gresources
+    color: $foreground_tertiary; // shut up 3rd-party gresources
   }
 
   &:hover,
   &:focus {
-    caret-color: $fg;
+    caret-color: ;
     background-color: $base;
     box-shadow: $z-depth-2;
 
     &,
     StLabel {
-      color: $fg; // shut up 3rd-party gresources
+      color: ; // shut up 3rd-party gresources
     }
   }
 
-  &:focus { border-color: $sel_bg; }
+  &:focus { border-color: $background_selection; }
 
   .search-entry-icon {
     icon-size: $icon_size;
-    color: $ter_fg;
+    color: $foreground_tertiary;
   }
 
   &:hover,
   &:focus {
-    .search-entry-icon { color: $fg; }
+    .search-entry-icon { color: ; }
   }
 }
 
@@ -3182,7 +3182,7 @@ $provider_icon_size: 32px; // for < 3.25
       &:rtl { margin-left: $provider_icon_size / 2; }
     }
     padding: 0;
-    border-radius: $r_2;
+    border-radius: $radius_2;
     transition-duration: $transition_d_none;
     &:focus,
     &:selected,
@@ -3229,13 +3229,13 @@ $provider_icon_size: 32px; // for < 3.25
       }
     }
     &:checked {
-      background-color: $sel_bg;
+      background-color: $background_selection;
       transition-duration: $transition_d_standard;
 
       .list-search-result {
-        &-title { color: $sel_fg; }
+        &-title { color: $foreground_selection; }
 
-        &-description { color: $sec_sel_fg; }
+        &-description { color: $foreground_selection_secondary; }
       }
     }
 
@@ -3345,13 +3345,13 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
     padding: if($ref_weight >= 1.0, 0 $results_icon_size / 4,
                                     0 $results_icon_size / 8);
     color: $osd_ter_fg;
-    &:ltr { border-radius: $r_2 $r $r $r_2; }
-    &:rtl { border-radius: $r $r_2 $r_2 $r; }
+    &:ltr { border-radius: $radius_2 $radius $radius $radius_2; }
+    &:rtl { border-radius: $radius $radius_2 $radius_2 $radius; }
   }
   @else {
     margin: if($ref_weight >= 1.0, $provider_icon_size / 4 0, 0);
     padding: $provider_icon_size / 2;
-    border-radius: $r;
+    border-radius: $radius;
     color: $ovv_sec_fg;
   }
   border: none;
@@ -3369,8 +3369,8 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
     transition-duration: $transition_d_standard;
   }
   &:checked {
-    background-color: $sel_bg;
-    color: $sel_fg;
+    background-color: $background_selection;
+    color: $foreground_selection;
     transition-duration: $transition_d_standard;
   }
 
@@ -3421,7 +3421,7 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
   // non-scalable unit instead
   padding: if($ref_weight >= 1.0, 7px 8px 8px,
                                   6px 7px 7px);
-  border-radius: $r_2;
+  border-radius: $radius_2;
   @if $ver > 3.33 { border: 0 none transparent; }
   text-align: center;
   -x-offset: 8px;
@@ -3429,8 +3429,8 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
 
 %tooltip_template {
   color: $osd_fg;
-  background-color: if($variant == mixed, opacity($inv_tooltip_bg, $alpha_osd),
-                                          opacity($tooltip_bg, $alpha_osd));
+  background-color: if($variant == mixed, opacity($background_tooltip_inv, $alpha_osd),
+                                          opacity($background_tooltip, $alpha_osd));
   box-shadow: $empty_shadow;
 }
 
@@ -3459,7 +3459,7 @@ $grid_size: 136px;
 @if $ver > 3.25 {
   .system-action-icon { // system-action icons in search results
     icon-size: $icon_size * 3;
-    border-radius: $r;
+    border-radius: $radius;
     background-color: opacity($osd_bg, $alpha_osd);
     color: $osd_fg;
     box-shadow: $z-depth-2;
@@ -3470,14 +3470,14 @@ $grid_size: 136px;
   .app-view-controls { // favorites | all toggle container
     width: if($ref_weight >= 1.0, 400px, 340px);
     margin-bottom: if($ref_weight >= 1.0, 12px, 9px);
-    border-radius: $r;
+    border-radius: $radius;
     background-color: $hidden_fill_bg !important;
     box-shadow: $empty_shadow;
   }
 
   .app-view-control { // favorites | all toggle button
     padding: if($ref_weight >= 1.0, 7px 32px 8px, 5px 32px 6px);
-    border-radius: $r;
+    border-radius: $radius;
     color: $ovv_sec_fg;
     background-color: $hidden_fill_bg !important;
     box-shadow: inset 0 0 0 1px $ovv_out_fg;
@@ -3502,13 +3502,13 @@ $grid_size: 136px;
       box-shadow: $empty_shadow;
     }
     &:checked {
-      color: $sel_fg;
-      background-color: $sel_bg !important;
+      color: $foreground_selection;
+      background-color: $background_selection !important;
       box-shadow: $empty_shadow;
     }
     &:hover:checked {
-      color: $sel_fg;
-      background-color: mix($sel_bg, $sel_fg, percentage($alpha_foreground_2nd)) !important;
+      color: $foreground_selection;
+      background-color: mix($background_selection, $foreground_selection, percentage($alpha_foreground_2nd)) !important;
       box-shadow: $empty_shadow;
     }
   }
@@ -3522,7 +3522,7 @@ $grid_size: 136px;
   .overview-icon {
     padding: 9px;
     border: none;
-    border-radius: $r_2;
+    border-radius: $radius_2;
     color: $ovv_sec_fg;
     box-shadow: $empty_shadow;
     font-weight: 700;
@@ -3553,8 +3553,8 @@ $grid_size: 136px;
   @if $ver > 3.33 {
     &:drop .overview-icon {
       border: none; // for safety
-      background-color: opacity($sel_bg, $alpha_track_out);
-      box-shadow: inset 0 0 0 1px $sel_bg;
+      background-color: opacity($background_selection, $alpha_track_out);
+      box-shadow: inset 0 0 0 1px $background_selection;
     }
   }
 
@@ -3568,14 +3568,14 @@ $grid_size: 136px;
   }
 
   &:checked .overview-icon {
-    background-color: $sel_bg;
-    color: $sel_fg;
+    background-color: $background_selection;
+    color: $foreground_selection;
     box-shadow: $empty_shadow;
     transition-duration: $transition_d_none;
   }
 
   &:checked:hover .overview-icon {
-    background-color: mix($sel_fg, $sel_bg, percentage($alpha_track_1));
+    background-color: mix($foreground_selection, $background_selection, percentage($alpha_track_1));
     transition-duration: $transition_d_short;
   }
 }
@@ -3584,7 +3584,7 @@ $grid_size: 136px;
 .show-apps {
   .overview-icon {
     // set circle dock buttons on dash
-    #dash & { border-radius: $r; }
+    #dash & { border-radius: $radius; }
 
     #panel & { border-radius: 0; }
   }
@@ -3594,13 +3594,13 @@ $grid_size: 136px;
   width: $icon_size * 6;
   height: 4px;
   border-radius: 0;
-  background-color: $sel_bg;
+  background-color: $background_selection;
 
   .dash-item-container & {
     width: $icon_size / 2;
     height:  $icon_size / 2;
     margin-bottom: 2px;
-    border-radius: $r;
+    border-radius: $radius;
   }
 }
 
@@ -3627,7 +3627,7 @@ $grid_size: 136px;
   &:active {
     &, &:hover {
       > .overview-icon {
-        border-radius: $r_2;
+        border-radius: $radius_2;
         background-color: $ovv_fill_bg;
         box-shadow: $empty_shadow;
       }
@@ -3636,9 +3636,9 @@ $grid_size: 136px;
   &:checked {
     &, &:hover {
       > .overview-icon {
-        border-radius: $r_2;
-        background-color: $sel_bg;
-        color: $sel_fg;
+        border-radius: $radius_2;
+        background-color: $background_selection;
+        color: $foreground_selection;
         box-shadow: $empty_shadow;
       }
     }
@@ -3750,20 +3750,20 @@ $grid_size: 136px;
       height: if($ref_weight >= 1.0, $icon_size + (10px * 2),
                                      $icon_size + (7px * 2));
       padding: 0;
-      border-radius: $r;
+      border-radius: $radius;
       @if $variant != light {
-        @include button(flat-normal, $tc: $inv_acc_fg);
-        &:hover { @include button(flat-hover, $tc: $inv_acc_fg); }
-        &:focus { @include button(flat-focus, $tc: $inv_acc_fg); }
-        &:active { @include button(flat-active, $tc: $inv_acc_fg); }
-        &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
+        @include button(flat-normal, $text-color: $foreground_accent_inv);
+        &:hover { @include button(flat-hover, $text-color: $foreground_accent_inv); }
+        &:focus { @include button(flat-focus, $text-color: $foreground_accent_inv); }
+        &:active { @include button(flat-active, $text-color: $foreground_accent_inv); }
+        &:insensitive { @include button(flat-disabled, $text-color: $osd_fg); }
       }
       @else {
-        @include button(flat-normal, $tc: $acc_fg);
-        &:hover { @include button(flat-hover, $tc: $acc_fg); }
-        &:focus { @include button(flat-focus, $tc: $acc_fg); }
-        &:active { @include button(flat-active, $tc: $acc_fg); }
-        &:insensitive { @include button(flat-disabled, $tc: $fg); }
+        @include button(flat-normal, $text-color: $foreground_accent);
+        &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
+        &:focus { @include button(flat-focus, $text-color: $foreground_accent); }
+        &:active { @include button(flat-active, $text-color: $foreground_accent); }
+        &:insensitive { @include button(flat-disabled, $text-color: ); }
       }
 
       > StIcon { icon-size: $icon_size; }
@@ -3792,7 +3792,7 @@ $grid_size: 136px;
     .page-indicator-icon { // there's no :checked state
       width: $icon_size - 2px;
       height: $icon_size - 2px;
-      border-radius: $r;
+      border-radius: $radius;
       background-color: $ovv_fg;
     }
 
@@ -3806,7 +3806,7 @@ $grid_size: 136px;
       height: $icon_size - 2px;
       margin: 2px;
       padding: 0;
-      border-radius: $r;
+      border-radius: $radius;
       border: 0 none transparent; // avoid stock CSS's borders
       background-image: none;
       background-color: $hidden_fill_bg;
@@ -3825,7 +3825,7 @@ $grid_size: 136px;
       margin: 2px;
       padding: 0;
       background-image: none;
-      background-color: opacity($sel_bg, $alpha_foreground_2nd);
+      background-color: opacity($background_selection, $alpha_foreground_2nd);
       box-shadow: $empty_shadow;
     }
 
@@ -3833,7 +3833,7 @@ $grid_size: 136px;
       margin: 0;
       padding: 2px;
       background-image: none;
-      background-color: $sel_bg;
+      background-color: $background_selection;
       box-shadow: $empty_shadow;
     }
 
@@ -3841,10 +3841,10 @@ $grid_size: 136px;
       margin: 0;
       padding: 2px;
       background-image: none;
-      background-color: mix($sel_bg, $sel_fg, percentage($alpha_foreground_2nd));
+      background-color: mix($background_selection, $foreground_selection, percentage($alpha_foreground_2nd));
       @if $ver < 3.31 {
         box-shadow: 0 0 0 ($icon_size / 2)
-                    opacity(mix($sel_bg, $sel_fg, percentage($alpha_foreground_2nd)),
+                    opacity(mix($background_selection, $foreground_selection, percentage($alpha_foreground_2nd)),
                             $alpha_track_out);
       }
       @else { box-shadow: $empty_shadow; }
@@ -3869,13 +3869,13 @@ $grid_size: 136px;
     margin-bottom: 32px;
     padding: 12px;
     border: none;
-    background-color: $bg;
-    color: $fg;
+    background-color: $background;
+    color: ;
     box-shadow: $z-depth-4;
 
     StBin.placeholder { // solid-line indicator for drop-target
       height: 4px;
-      background-color: $acc_bg;
+      background-color: $background_accent;
     }
   }
 
@@ -3885,11 +3885,11 @@ $grid_size: 136px;
     background-color: $hidden_fill_bg;
     &:ltr {
       padding: 0 0 0 12px;
-      box-shadow: inset 4px 0 $sel_bg;
+      box-shadow: inset 4px 0 $background_selection;
     }
     &:rtl {
       padding: 0 12px 0 0;
-      box-shadow: inset -4px 0 $sel_bg;
+      box-shadow: inset -4px 0 $background_selection;
     }
   }
 
@@ -3906,7 +3906,7 @@ $grid_size: 136px;
 
     .workspace-thumbnail-indicator {
       padding: 0 12px 0 0;
-      box-shadow: inset -4px 0 $sel_bg;
+      box-shadow: inset -4px 0 $background_selection;
     }
   }
 }
@@ -3942,7 +3942,7 @@ $grid_size: 136px;
 //  ********************************/
 
 .url-highlighter {
-  link-color: $link_fg;
+  link-color: $foreground_link;
 
   .notification-banner & { link-color: $osd_link_fg; }
 }
@@ -3963,8 +3963,8 @@ $grid_size: 136px;
   &,
   &:hover,
   &:focus {
-    background-color: if($variant == mixed, opacity($inv_tooltip_bg, $alpha_osd),
-                                            opacity($tooltip_bg, $alpha_osd));
+    background-color: if($variant == mixed, opacity($background_tooltip_inv, $alpha_osd),
+                                            opacity($background_tooltip, $alpha_osd));
     color: $osd_fg;
     box-shadow: $z-depth-2;
   }
@@ -3999,13 +3999,13 @@ $grid_size: 136px;
   width: 1.6em;
   height: 1.6em;
   border-radius: 0.9em; // should be 0.8 but whatever; wish I could do 50%;
-  border: 2px solid $sel_fg;
+  border: 2px solid $foreground_selection;
   font-weight: 700;
   font-size: 100%;
   -shell-counter-overlap-x: 3px;
   -shell-counter-overlap-y: 3px;
-  background-color: $sggt_bg;
-  color: $sel_fg;
+  background-color: $background_suggestion;
+  color: $foreground_selection;
   box-shadow: $z-depth-2;
 }
 
@@ -4062,7 +4062,7 @@ $grid_size: 136px;
 
   &-resident-mount {
     spacing: 8px;
-    border-radius: $r_2;
+    border-radius: $radius_2;
     &:hover { background-color: $osd_semi_fill_bg; }
     &:active { background-color: $osd_fill_bg; }
 
@@ -4081,7 +4081,7 @@ $grid_size: 136px;
 
   &-resident-eject-button {
     padding: 7px;
-    border-radius: $r_2;
+    border-radius: $radius_2;
     color: $osd_fg;
   }
 }
@@ -4096,17 +4096,17 @@ $grid_size: 136px;
   .legacy-tray {
     padding: 0;
     border: 0 none transparent;
-    background-color: $panel_bg;
-    &:ltr { border-radius: 0 $r_2 0 0; }
-    &:rtl { border-radius: $r_2 0 0 0; }
+    background-color: $background_panel;
+    &:ltr { border-radius: 0 $radius_2 0 0; }
+    &:rtl { border-radius: $radius_2 0 0 0; }
 
     &-handle,
     &-icon {
       width: $legacy_icon_size;
       height: $legacy_icon_size;
       padding: 4px 4px 2px;
-      border-radius: $r_2;
-      border: 2px solid $panel_bg;
+      border-radius: $radius_2;
+      border: 2px solid $background_panel;
       color: $osd_sec_fg;
       &:hover,
       &:focus {
@@ -4139,7 +4139,7 @@ $grid_size: 136px;
 //  *************/
 
 .magnifier-zoom-region {
-  border: 2px solid $sel_bg;
+  border: 2px solid $background_selection;
 
   &.full-screen { border-width: 0; }
 }
@@ -4188,7 +4188,7 @@ $grid_size: 136px;
     min-height: $ref_size * 2;
     min-width: $ref_size * 2;
     padding: 0;
-    border-radius: $r_2;
+    border-radius: $radius_2;
     border: 1px solid mix($osd_sec_fg, $osd_bg, percentage($alpha_div_1));
     background-color: $osd_bg;
     color: $osd_sec_fg;
@@ -4215,34 +4215,34 @@ $grid_size: 136px;
     &:grayed { // FIXME
       border-color: mix($osd_sec_fg, $osd_bg,
                         percentage($alpha_div_1 * $alpha_foreground_dis));
-      background-color: $panel_bg;
+      background-color: $background_panel;
       color: $osd_ter_fg;
       transition-timing-function: $transition_t_standard;
     }
 
     @if $ver > 3.25 {
       &.default-key {
-        background-color: mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2));
+        background-color: mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2));
         @if $ver < 3.35 { background-size: ($ref_size - 0.33) * 2; }
         color: $osd_sec_fg;
         &:focus,
         &:hover,
         &:checked {
           border-color:
-            mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+            mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
                 $osd_fg, percentage($alpha_foreground_2nd));
           background-color:
-            mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+            mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
                 $osd_fg, percentage($alpha_foreground_2nd));
           color: $osd_fg;
           transition-timing-function: $transition_t_standard;
         }
         &:active {
           border-color:
-            mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+            mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
                 $osd_fg, percentage(1 - $alpha_track_2));
           background-color:
-            mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
+            mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
                 $osd_fg, percentage(1 - $alpha_track_2));
           color: $osd_fg;
           transition-timing-function: $transition_t_dec;
@@ -4250,27 +4250,27 @@ $grid_size: 136px;
       }
 
       &.enter-key {
-        border-color: $sggt_bg;
-        background-color: $sggt_bg;
+        border-color: $background_suggestion;
+        background-color: $background_suggestion;
         @if $ver < 3.35 { @include image-loader($url: 'key-enter.svg'); }
-        @else { color: $sec_sel_fg; }
+        @else { color: $foreground_selection_secondary; }
         &:focus,
         &:hover,
         &:checked {
-          border-color: mix($sggt_bg, $sel_fg, percentage($alpha_foreground_2nd));
-          background-color: mix($sggt_bg, $sel_fg, percentage($alpha_foreground_2nd));
+          border-color: mix($background_suggestion, $foreground_selection, percentage($alpha_foreground_2nd));
+          background-color: mix($background_suggestion, $foreground_selection, percentage($alpha_foreground_2nd));
           @if $ver < 3.35 {
             @include image-loader($url: 'key-enter-active.svg');
           }
-          @else { color: $sel_fg; }
+          @else { color: $foreground_selection; }
         }
         &:active {
-          border-color: $sel_bg;
-          background-color: $sel_bg;
+          border-color: $background_selection;
+          background-color: $background_selection;
           @if $ver < 3.35 {
             @include image-loader($url: 'key-enter-active.svg');
           }
-          @else { color: $sel_fg; }
+          @else { color: $foreground_selection; }
         }
       }
 
@@ -4286,45 +4286,45 @@ $grid_size: 136px;
           @if $ver < 3.35 {
             @include image-loader($url: 'key-shift-uppercase.svg');
           }
-          @else { color: $sel_bg; }
+          @else { color: $background_selection; }
           &:focus,
           &:hover,
           &:checked {
             border-color:
-              mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
-                  $sel_bg, percentage($alpha_foreground_2nd));
+              mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
+                  $background_selection, percentage($alpha_foreground_2nd));
             background-color:
-              mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
-                  $sel_bg, percentage($alpha_foreground_2nd));
+              mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
+                  $background_selection, percentage($alpha_foreground_2nd));
           }
           &:active {
             border-color:
-              mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
-                  $sel_bg, percentage(1 - $alpha_track_2));
+              mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
+                  $background_selection, percentage(1 - $alpha_track_2));
             background-color:
-              mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
-                  $sel_bg, percentage(1 - $alpha_track_2));
+              mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
+                  $background_selection, percentage(1 - $alpha_track_2));
           }
           &:latched {
             @if $ver < 3.35 {
               @include image-loader($url: 'key-shift-latched-uppercase.svg');
             }
-            @else { color: $sel_bg; }
+            @else { color: $background_selection; }
             border-color:
-              mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
-                  $sel_bg, percentage($alpha_foreground_2nd));
+              mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
+                  $background_selection, percentage($alpha_foreground_2nd));
             background-color:
-              mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
-                  $sel_bg, percentage($alpha_foreground_2nd));
+              mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
+                  $background_selection, percentage($alpha_foreground_2nd));
             transition-timing-function: $transition_t_standard;
             &:focus,
             &:hover {
               border-color:
-                mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
-                    $sel_bg, percentage(1 - $alpha_track_2));
+                mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
+                    $background_selection, percentage(1 - $alpha_track_2));
               background-color:
-                mix(mix($osd_bg, $panel_bg, percentage(1 - $alpha_track_2)),
-                    $sel_bg, percentage(1 - $alpha_track_2));
+                mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
+                    $background_selection, percentage(1 - $alpha_track_2));
             }
           }
         }
@@ -4344,7 +4344,7 @@ $grid_size: 136px;
 
   &-subkeys { //long press on a key popup
     padding: 0;
-    border-radius: $r_2;
+    border-radius: $radius_2;
     -arrow-border-radius: 0;
     -arrow-background-color: transparent;
     -arrow-border-width: 0;
@@ -4352,27 +4352,27 @@ $grid_size: 136px;
     -arrow-base: 0;
     -arrow-rise: 0;
     -boxpointer-gap: $ref_size * 0.3;
-    background-color: $sggt_bg;
-    color: $sel_fg;
+    background-color: $background_suggestion;
+    color: $foreground_selection;
     box-shadow: $z-depth-2;
 
     .keyboard-key {
       border: 0 none transparent;
       background-color: $hidden_fill_bg;
-      color: $sec_sel_fg;
+      color: $foreground_selection_secondary;
       box-shadow: inset 0 0 0 2px $ovv_out_fg;
       &:focus,
       &:hover,
       &:checked {
         border: 0 none transparent;
-        background-color: opacity($sel_fg, $alpha_track_1);
-        color: $sel_fg;
+        background-color: opacity($foreground_selection, $alpha_track_1);
+        color: $foreground_selection;
         box-shadow: $empty_shadow;
       }
       &:active {
         border: 0 none transparent;
-        background-color: opacity($sel_fg, $alpha_track_2);
-        color: $sel_fg;
+        background-color: opacity($foreground_selection, $alpha_track_2);
+        color: $foreground_selection;
         box-shadow: $empty_shadow;
       }
     }
@@ -4390,17 +4390,17 @@ $grid_size: 136px;
 
     StButton {
       padding: 0 $ref_size * 1.3;
-      border-radius: $r;
-      background-color: $sggt_bg;
-      color: $sec_sel_fg;
+      border-radius: $radius;
+      background-color: $background_suggestion;
+      color: $foreground_selection_secondary;
       &:hover,
       &:focus {
-        background-color: mix($sel_fg, $sggt_bg, percentage($alpha_track_1));
-        color: $sel_fg;
+        background-color: mix($foreground_selection, $background_suggestion, percentage($alpha_track_1));
+        color: $foreground_selection;
       }
       &:active {
-        background-color: $sel_bg;
-        color: $sel_fg;
+        background-color: $background_selection;
+        color: $foreground_selection;
       }
     }
   }
@@ -4425,15 +4425,15 @@ $grid_size: 136px;
         }
 
         &:latched {
-          border-color: $sel_bg;
-          background-color: $sel_bg;
+          border-color: $background_selection;
+          background-color: $background_selection;
           &:hover {
-            border-color: mix($sel_fg, $sel_bg, percentage($alpha_track_1));
-            background-color: mix($sel_fg, $sel_bg, percentage($alpha_track_1));
+            border-color: mix($foreground_selection, $background_selection, percentage($alpha_track_1));
+            background-color: mix($foreground_selection, $background_selection, percentage($alpha_track_1));
           }
           &:active {
-            border-color: mix($sel_fg, $sel_bg, percentage($alpha_track_2));
-            background-color: mix($sel_fg, $sel_bg, percentage($alpha_track_2));
+            border-color: mix($foreground_selection, $background_selection, percentage($alpha_track_2));
+            background-color: mix($foreground_selection, $background_selection, percentage($alpha_track_2));
           }
         }
       }
@@ -4479,7 +4479,7 @@ $grid_size: 136px;
 
   &-box {
     padding: 0.3em 0.5em;
-    border-radius: $r_2;
+    border-radius: $radius_2;
     color: $osd_sec_fg;
     font-size: 110%;
     transition-duration: $transition_d_none;
@@ -4496,10 +4496,10 @@ $grid_size: 136px;
       .candidate-index { color: $osd_fg; }
     }
     &:selected {
-      background-color: $sggt_bg;
-      color: $sel_fg;
+      background-color: $background_suggestion;
+      color: $foreground_selection;
 
-      .candidate-index { color: $sec_sel_fg; }
+      .candidate-index { color: $foreground_selection_secondary; }
     }
   }
 
@@ -4514,24 +4514,24 @@ $grid_size: 136px;
   &-page-button {
     padding: 4px;
     @if $variant != light {
-      @include button(flat-normal, $tc: $inv_acc_fg);
-      &:hover { @include button(flat-hover, $tc: $inv_acc_fg); }
-      &:active { @include button(flat-active, $tc: $inv_acc_fg); }
-      &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
+      @include button(flat-normal, $text-color: $foreground_accent_inv);
+      &:hover { @include button(flat-hover, $text-color: $foreground_accent_inv); }
+      &:active { @include button(flat-active, $text-color: $foreground_accent_inv); }
+      &:insensitive { @include button(flat-disabled, $text-color: $osd_fg); }
     }
     @else {
-      @include button(flat-normal, $tc: $acc_fg);
-      &:hover { @include button(flat-hover, $tc: $acc_fg); }
-      &:active { @include button(flat-active, $tc: $acc_fg); }
-      &:insensitive { @include button(flat-disabled, $tc: $fg); }
+      @include button(flat-normal, $text-color: $foreground_accent);
+      &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
+      &:active { @include button(flat-active, $text-color: $foreground_accent); }
+      &:insensitive { @include button(flat-disabled, $text-color: ); }
     }
 
     &-previous {
-      border-radius: $r_2;
+      border-radius: $radius_2;
       border-right-width: 0;
     }
 
-    &-next { border-radius: $r_2; }
+    &-next { border-radius: $radius_2; }
 
     &-icon { icon-size: $icon_size; }
   }
@@ -4554,13 +4554,13 @@ $grid_size: 136px;
 @if $ver < 3.31 {
   .framed-user-icon {
     @extend %framed_user_icon;
-    border-radius: $r_2;
+    border-radius: $radius_2;
   }
 }
 @else {
   .user-icon {
     @extend %framed_user_icon;
-    border-radius: $r; // circular shape
+    border-radius: $radius; // circular shape
   }
 }
 
@@ -4581,13 +4581,13 @@ $login_dialog_width: 23em;
   background-color: transparent;
 
   StEntry {
-    @include entry(normal, $tc: $ovv_fg);
-    selection-background-color: $sel_bg;
-    selected-color: $sel_fg;
+    @include entry(normal, $text-color: $ovv_fg);
+    selection-background-color: $background_selection;
+    selected-color: $foreground_selection;
     transition-duration: $transition_d_none;
-    &:hover { @include entry(hover, $tc: $ovv_fg); }
-    &:focus { @include entry(focus, $tc: $ovv_fg); }
-    &:insensitive { @include entry(disabled, $tc: $ovv_fg); }
+    &:hover { @include entry(hover, $text-color: $ovv_fg); }
+    &:focus { @include entry(focus, $text-color: $ovv_fg); }
+    &:insensitive { @include entry(disabled, $text-color: $ovv_fg); }
 
     StIcon.capslock-warning { color: $warn; } // CapsLock warning
 
@@ -4602,25 +4602,25 @@ $login_dialog_width: 23em;
     padding: 7px 16px 8px;
     font-weight: 500;
     font-size: 110%;
-    @include button(flat-normal, $tc: $ovv_fg);
-    &:hover { @include button(flat-hover, $tc: $ovv_fg); }
-    &:focus { @include button(flat-focus, $tc: $ovv_fg); }
-    &:active { @include button(flat-active, $tc: $ovv_fg); }
-    &:insensitive { @include button(flat-disabled, $tc: $ovv_fg); }
+    @include button(flat-normal, $text-color: $ovv_fg);
+    &:hover { @include button(flat-hover, $text-color: $ovv_fg); }
+    &:focus { @include button(flat-focus, $text-color: $ovv_fg); }
+    &:active { @include button(flat-active, $text-color: $ovv_fg); }
+    &:insensitive { @include button(flat-disabled, $text-color: $ovv_fg); }
     &:default { // suggested-action button
       padding: (7px - 2px) (16px - 2px) (8px - 2px); // subtract borders
-      @include button(suggested-normal, $c: $sggt_bg, $tc: $sel_fg);
+      @include button(suggested-normal, $color: $background_suggestion, $text-color: $foreground_selection);
       &:hover {
-        @include button(suggested-hover, $c: $sggt_bg, $tc: $sel_fg);
+        @include button(suggested-hover, $color: $background_suggestion, $text-color: $foreground_selection);
       }
       &:focus {
-        @include button(suggested-focus, $c: $sggt_bg, $tc: $sel_fg);
+        @include button(suggested-focus, $color: $background_suggestion, $text-color: $foreground_selection);
       }
       &:active { @include button(suggested-active); }
       &:insensitive {
         // revert to standard padding since mixin has no borders
         padding: 7px 16px 8px;
-        @include button(suggested-disabled, $tc: $sel_fg);
+        @include button(suggested-disabled, $text-color: $foreground_selection);
       }
     }
   }
@@ -4632,7 +4632,7 @@ $login_dialog_width: 23em;
       width: $icon_size * 2;
       height: $icon_size * 2;
       padding: 0;
-      border-radius: $r;
+      border-radius: $radius;
 
       StIcon { icon-size: $icon_size; }
     }
@@ -4640,8 +4640,8 @@ $login_dialog_width: 23em;
     .login-dialog-session-list-button {
       &:active,
       &:checked {
-        background-color: $sel_bg;
-        color: $sel_fg;
+        background-color: $background_selection;
+        color: $foreground_selection;
       }
     }
   }
@@ -4761,7 +4761,7 @@ $login_dialog_width: 23em;
 
   &-not-listed-label {
     padding: 4px 8px 5px;
-    border-radius: $r_2;
+    border-radius: $radius_2;
     color: $ovv_acc_fg;
     font-weight: 500;
     font-size: 90%;
@@ -4808,33 +4808,33 @@ $login_dialog_width: 23em;
       &:selected {
         &, &:focus {
           background-color: $hidden_fill_bg;
-          box-shadow: inset 0 0 0 2px opacity($sel_bg, $alpha_track_out);
+          box-shadow: inset 0 0 0 2px opacity($background_selection, $alpha_track_out);
         }
         &:hover,
         &:hover:focus {
-          background-color: opacity($sel_bg, $alpha_track_1);
+          background-color: opacity($background_selection, $alpha_track_1);
         }
         &:active,
         &:active:focus {
-          background-color: opacity($sel_bg, $alpha_track_2);
+          background-color: opacity($background_selection, $alpha_track_2);
         }
       }
 
       &:logged-in {
         border-radius: 0;
-        background-color: opacity($sel_bg, $alpha_track_2);
+        background-color: opacity($background_selection, $alpha_track_2);
         &:focus,
         &:hover {
-          background-color: mix(opacity($sel_bg, $alpha_track_2),
+          background-color: mix(opacity($background_selection, $alpha_track_2),
                                 opacity($ovv_semi_fill_bg, $alpha_foreground_3rd));
         }
         &:active {
-          background-color: mix(opacity($sel_bg, $alpha_track_2),
+          background-color: mix(opacity($background_selection, $alpha_track_2),
                                 opacity($ovv_fill_bg, $alpha_foreground_3rd));
         }
 
-        &:ltr { box-shadow: inset 4px 0 $sel_bg; }
-        &:rtl { box-shadow: inset -4px 0 $sel_bg; }
+        &:ltr { box-shadow: inset 4px 0 $background_selection; }
+        &:rtl { box-shadow: inset -4px 0 $background_selection; }
       }
     }
 
@@ -4843,7 +4843,7 @@ $login_dialog_width: 23em;
 
   &-user-list-item {
     padding: 4px 4px 0;
-    border-radius: $r_2;
+    border-radius: $radius_2;
     transition-duration: $transition_d_short;
 
     // exclude timed-login-indicator
@@ -4864,15 +4864,15 @@ $login_dialog_width: 23em;
     &:selected {
       &, &:focus {
         background-color: $hidden_fill_bg;
-        box-shadow: inset 0 0 0 2px opacity($sel_bg, $alpha_track_out);
+        box-shadow: inset 0 0 0 2px opacity($background_selection, $alpha_track_out);
       }
       &:hover,
       &:hover:focus {
-        background-color: opacity($sel_bg, $alpha_track_1);
+        background-color: opacity($background_selection, $alpha_track_1);
       }
       &:active,
       &:active:focus {
-        background-color: opacity($sel_bg, $alpha_track_2);
+        background-color: opacity($background_selection, $alpha_track_2);
       }
     }
 
@@ -4892,11 +4892,11 @@ $login_dialog_width: 23em;
     .login-dialog-timed-login-indicator {
       height: 4px;
       margin: 4px 0 0 0;
-      background-color: opacity($acc_bg, $alpha_foreground_2nd);
+      background-color: opacity($background_accent, $alpha_foreground_2nd);
     }
 
     &:focus .login-dialog-timed-login-indicator {
-      background-color: $acc_bg;
+      background-color: $background_accent;
     }
   }
 }
@@ -4924,13 +4924,13 @@ $login_dialog_width: 23em;
   .login-dialog-session {
     &-list-button {
       padding: 4px;
-      border-radius: $r;
-      @include button(flat-normal, $tc: $ovv_fg);
-      &:focus { @include button(flat-focus, $tc: $ovv_fg); }
-      &:hover { @include button(flat-hover, $tc: $ovv_fg); }
+      border-radius: $radius;
+      @include button(flat-normal, $text-color: $ovv_fg);
+      &:focus { @include button(flat-focus, $text-color: $ovv_fg); }
+      &:hover { @include button(flat-hover, $text-color: $ovv_fg); }
       &:active {
-        background-color: $sel_bg;
-        color: $sel_fg;
+        background-color: $background_selection;
+        color: $foreground_selection;
       }
 
       StIcon { icon-size: $icon_size; }
@@ -4972,8 +4972,8 @@ $login_dialog_width: 23em;
   padding: 12px 6px;
   border: none;
   border-radius: $r_8;
-  background-color: if($variant == mixed, opacity($inv_tooltip_bg, $alpha_osd),
-                                          opacity($tooltip_bg, $alpha_osd));
+  background-color: if($variant == mixed, opacity($background_tooltip_inv, $alpha_osd),
+                                          opacity($background_tooltip, $alpha_osd));
   color: $osd_fg;
 }
 
@@ -5016,12 +5016,12 @@ $login_dialog_width: 23em;
           @extend %onlock_notification;
 
           &.critical {
-            background-color: $dest_bg;
-            color: $sel_fg;
+            background-color: $background_destruction;
+            color: $foreground_selection;
 
             .unlock-dialog-notification-count-text {
-              background-color: $sel_fg;
-              color: $dest_bg;
+              background-color: $foreground_selection;
+              color: $background_destruction;
             }
           }
         }
@@ -5034,9 +5034,9 @@ $login_dialog_width: 23em;
 
       &-count-text {
         padding: 0 6px;
-        border-radius: $r_2;
-        background-color: $sggt_bg;
-        color: $sel_fg;
+        border-radius: $radius_2;
+        background-color: $background_suggestion;
+        color: $foreground_selection;
         font-weight: 700;
       }
     }
@@ -5143,7 +5143,7 @@ $tool_icon_size: 24px;
     box-shadow:
       inset 0 -1px if($variant != light,
                       mix(white, $osd_bg, percentage($alpha_div_2)),
-                      mix(black, $dark_bg, percentage($alpha_div_1)));
+                      mix(black, $background_dark, percentage($alpha_div_1)));
 
     > StIcon { // 'color-picker' and 'trash'
       // base-line shift
@@ -5180,10 +5180,10 @@ $tool_icon_size: 24px;
       background-color: $hidden_fill_bg;
       color:
         if($variant != light,
-           saturate(lighten($sel_bg, percentage($alpha_track_2)),
+           saturate(lighten($background_selection, percentage($alpha_track_2)),
              percentage($alpha_track_2)),
-           $sel_bg);
-      box-shadow: inset 0 -2px $sel_bg;
+           $background_selection);
+      box-shadow: inset 0 -2px $background_selection;
       text-shadow: none;
       transition-duration: $transition_d_standard;
     }
@@ -5200,12 +5200,12 @@ $tool_icon_size: 24px;
 
 .lg-dialog {
   StEntry {
-    selection-background-color: $sel_bg;
-    selected-color: $sel_fg;
-    @include entry(normal, $tc: $osd_fg);
-    &:hover { @include entry(hover, $tc: $osd_fg); }
-    &:focus { @include entry(focus, $tc: $osd_fg); }
-    &:insensitive { @include entry(disabled, $tc: $osd_fg); }
+    selection-background-color: $background_selection;
+    selected-color: $foreground_selection;
+    @include entry(normal, $text-color: $osd_fg);
+    &:hover { @include entry(hover, $text-color: $osd_fg); }
+    &:focus { @include entry(focus, $text-color: $osd_fg); }
+    &:insensitive { @include entry(disabled, $text-color: $osd_fg); }
   }
 
   .shell-link {
@@ -5241,14 +5241,14 @@ $tool_icon_size: 24px;
       height: calc(#{$close_button_size} - 1px - (1px * 2));
     }
     padding: if($ref_weight >= 1.0, 0 16px 1px, 0 12px 1px);
-    border-radius: $r_2;
+    border-radius: $radius_2;
     font-weight: 500;
     @if $variant == mixed {
-      @include button(normal, $c: $osd_base, $tc: $osd_fg);
-      &:hover { @include button(hover, $c: $osd_base, $tc: $osd_fg); }
-      &:focus { @include button(focus, $c: $osd_base, $tc: $osd_fg); }
-      &:active { @include button(active, $c: $osd_base, $tc: $osd_fg); }
-      &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
+      @include button(normal, $color: $osd_base, $text-color: $osd_fg);
+      &:hover { @include button(hover, $color: $osd_base, $text-color: $osd_fg); }
+      &:focus { @include button(focus, $color: $osd_base, $text-color: $osd_fg); }
+      &:active { @include button(active, $color: $osd_base, $text-color: $osd_fg); }
+      &:insensitive { @include button(flat-disabled, $text-color: $osd_fg); }
     }
     @else {
       @include button(normal);
@@ -5270,7 +5270,7 @@ $tool_icon_size: 24px;
 .lg-extension {
   padding: 4px;
   border: none;
-  border-radius: $r_2;
+  border-radius: $radius_2;
   @if $ver > 3.35 { background-color: transparent; }
 
   &-name {
@@ -5305,7 +5305,7 @@ StBoxLayout#Windows {
   padding: 6px;
   border: 1px solid if($variant != light,
                        mix(white, $osd_bg, percentage($alpha_div_2)),
-                       $div_sld_fg);
+                       $foreground_div_sld);
   border-radius: 0;
   background-color: $osd_bg;
   color: $osd_fg;

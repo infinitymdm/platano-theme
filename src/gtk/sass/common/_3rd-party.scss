@@ -7,23 +7,23 @@
 
 .budgie-panel {
   // solid-mode
-  background-color: $panel_bg;
-  color: if($variant == mixed, $inv_fg, $fg);
+  background-color: $background_panel;
+  color: if($variant == mixed, $foreground_inv, );
   font-weight: 700;
   @include transition(dec);
 
   // used to indicate unread notifications
-  .alert { color: $sggt_bg; }
+  .alert { color: $background_suggestion; }
 
   // dock-mode
   &.dock-mode {
-    @each $_pos, $_rad, $_pad in (top, 0 0 $r_2 $r_2, 0 3px),
-                                 (bottom, $r_2 $r_2 0 0, 0 3px),
-                                 (left, 0 $r_2 $r_2 0, 3px 0),
-                                 (right, $r_2 0 0 $r-2, 3px 0) {
+    @each $_pos, $_radius, $_padding in (top, 0 0 $radius_2 $radius_2, 0 3px),
+                                        (bottom, $radius_2 $radius_2 0 0, 0 3px),
+                                        (left, 0 $radius_2 $radius_2 0, 3px 0),
+                                        (right, $radius_2 0 0 $radius-2, 3px 0) {
       .#{$_pos} & {
-        padding: #{$_pad}; // prepare for rounded corners
-        border-radius: #{$_rad};
+        padding: #{$_padding}; // prepare for rounded corners
+        border-radius: #{$_radius};
       }
     }
   }
@@ -31,9 +31,9 @@
   // transparent-mode
   &.transparent {
     // keep translucent background in light variant
-    background-color: if($variant == light, track($panel_bg, $alpha_foreground_3rd),
+    background-color: if($variant == light, track($background_panel, $alpha_foreground_3rd),
                                             transparent);
-    color: if($variant == mixed, $inv_fg, $fg);
+    color: if($variant == mixed, $foreground_inv, );
     @include transition(dec);
 
     @if $variant != light {
@@ -102,8 +102,8 @@ box.pinned { // drop-target
   &:drop(active) {
     border: none;
     border-radius: 0;
-    background-color: $drp_bg;
-    box-shadow: inset 0 0 0 1px $drp_fg;
+    background-color: $background_drop;
+    box-shadow: inset 0 0 0 1px $foreground_drop;
   }
 }
 
@@ -115,14 +115,14 @@ box.pinned { // drop-target
     padding: 0;
     border-radius: 0;
     @if $variant == mixed {
-      @include button(flat-normal, $tc: $inv_fg);
+      @include button(flat-normal, $text-color: $foreground_inv);
       @include ink-reaction(
-                 normal, $fc: $inv_fg, $tr: ink-normal-dec, $bs: 10, $i: 2);
+                 normal, $fc: $foreground_inv, $tr: ink-normal-dec, $bs: 10, $i: 2);
     }
     @else {
-      @include button(flat-normal, $tc: $fg);
+      @include button(flat-normal, $text-color: $foreground);
       @include ink-reaction(
-                 normal, $fc: $fg, $tr: ink-normal-dec, $bs: 10, $i: 2);
+                 normal, $fc: $foreground, $tr: ink-normal-dec, $bs: 10, $i: 2);
     }
 
     > image {
@@ -132,8 +132,8 @@ box.pinned { // drop-target
     }
 
     &:hover {
-      @if $variant == mixed { @include button(flat-hover, $tc: $inv_fg); }
-      @else { @include button(flat-hover, $tc: $fg); }
+      @if $variant == mixed { @include button(flat-hover, $text-color: $foreground_inv); }
+      @else { @include button(flat-hover, $text-color: $foreground); }
       @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
       @else { -gtk-icon-filter: brightness(1.2); }
 
@@ -141,23 +141,23 @@ box.pinned { // drop-target
     }
     &:active {
       @if $variant == mixed {
-        @include button(flat-active, $tc: $inv_fg);
+        @include button(flat-active, $text-color: $foreground_inv);
         @include
           ink-reaction(
-            active-dec, $fc: $inv_fg, $tr: ink-active-dec, $bs: 10, $i: 2);
+            active-dec, $fc: $foreground_inv, $tr: ink-active-dec, $bs: 10, $i: 2);
       }
       @else {
-        @include button(flat-active, $tc: $fg);
+        @include button(flat-active, $text-color: $foreground);
         @include
           ink-reaction(
-            active-dec, $fc: $fg, $tr: ink-active-dec, $bs: 10, $i: 2);
+            active-dec, $fc: $foreground, $tr: ink-active-dec, $bs: 10, $i: 2);
       }
 
       > image { opacity: 1.0; }
     }
     &:checked {
-      @if $variant == mixed { @include button(flat-hover, $tc: $inv_fg); }
-      @else { @include button(flat-hover, $tc: $fg); }
+      @if $variant == mixed { @include button(flat-hover, $text-color: $foreground_inv); }
+      @else { @include button(flat-hover, $text-color: $foreground); }
       &:hover {
         @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
         @else { -gtk-icon-filter: brightness(1.2); }
@@ -200,15 +200,15 @@ box.pinned { // drop-target
     button.flat.launcher {
       &:hover {
         @if $variant == mixed {
-          box-shadow: inset #{$_line} track($inv_fg, $alpha_foreground_bdp);
+          box-shadow: inset #{$_line} track($foreground_inv, $alpha_foreground_bdp);
         }
         @else {
-          box-shadow: inset #{$_line} track($fg, $alpha_foreground_bdp);
+          box-shadow: inset #{$_line} track($foreground, $alpha_foreground_bdp);
         }
       }
       &:active,
       &:checked {
-        box-shadow: inset #{$_line} $sel_bg;
+        box-shadow: inset #{$_line} $background_selection;
       }
     }
 
@@ -217,8 +217,8 @@ box.pinned { // drop-target
       > image {
         background-image:
           if($variant == light,
-             image($sel_bg),
-             image(saturate(lighten($sel_bg, percentage($alpha_track_2)),
+             image($background_selection),
+             image(saturate(lighten($background_selection, percentage($alpha_track_2)),
                    percentage($alpha_track_2))));
         background-size: #{$_dot};
         background-position: #{$position} center;
@@ -227,7 +227,7 @@ box.pinned { // drop-target
       &:hover,
       &:active,
       &:checked {
-        box-shadow: inset #{$_line} $sel_bg;
+        box-shadow: inset #{$_line} $background_selection;
       }
     }
   }
@@ -268,13 +268,13 @@ box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
     box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
       &:not(:checked):hover {
         @if $variant == mixed {
-          box-shadow: inset #{$_line} track($inv_fg, $alpha_foreground_bdp);
+          box-shadow: inset #{$_line} track($foreground_inv, $alpha_foreground_bdp);
         }
         @else {
-          box-shadow: inset #{$_line} track($fg, $alpha_foreground_bdp);
+          box-shadow: inset #{$_line} track($foreground, $alpha_foreground_bdp);
         }
 
-        &.running { box-shadow: inset #{$_line} $sel_bg; }
+        &.running { box-shadow: inset #{$_line} $background_selection; }
       }
       &:checked {
         // unset default backgrounds before starting -image property
@@ -287,10 +287,10 @@ box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
           background-size: #{$_bg_s};
           background-repeat: no-repeat;
           @if $variant == mixed {
-            background-image: image(track($inv_fg, $alpha_track_1));
+            background-image: image(track($foreground_inv, $alpha_track_1));
           }
           @else {
-            background-image: image(track($fg, $alpha_track_1));
+            background-image: image(track($foreground, $alpha_track_1));
           }
         }
       }
@@ -339,10 +339,10 @@ box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
 window.budgie-popover:not(.csd) {
   &.background {
     @extend %popover;
-    @include radius($r_4, none);
-    border: 1px solid $div_sld_fg;
+    @include radius($radius_4, none);
+    border: 1px solid $foreground_div_sld;
     background-clip: border-box;
-    background-color: $dark_bg;
+    background-color: $background_dark;
     box-shadow: $z-depth-2; // FIXME: we can't expose depth-3
 
     separator.horizontal {
@@ -396,15 +396,15 @@ stack.icon-popover-stack {
     }
     &:not(:first-child):not(:only-child) {
       &:not(:last-child) { // 'close' buttons
-        @include button(flat-normal, $tc: $dest_bg);
-        @include ink-reaction(normal, $fc: $dest_bg);
-        &:hover { @include button(flat-hover, $tc: $dest_bg); }
+        @include button(flat-normal, $text-color: $background_destruction);
+        @include ink-reaction(normal, $fc: $background_destruction);
+        &:hover { @include button(flat-hover, $text-color: $background_destruction); }
         &:active {
-          @include button(flat-active, $tc: $dest_bg);
-          @include ink-reaction(active-dec, $fc: $dest_bg);
+          @include button(flat-active, $text-color: $background_destruction);
+          @include ink-reaction(active-dec, $fc: $background_destruction);
         }
-        &:disabled { @include button(flat-disabled, $tc: $dest_bg); }
-        &:checked { @include button(flat-checked, $tc: $dest_bg); }
+        &:disabled { @include button(flat-disabled, $text-color: $background_destruction); }
+        &:checked { @include button(flat-checked, $text-color: $background_destruction); }
       }
     }
   }
@@ -424,7 +424,7 @@ stack.icon-popover-stack {
   padding: 0;
   @include radius(0, none);
   background-color: transparent;
-  color: if($variant == mixed, $inv_fg, $fg);
+  color: if($variant == mixed, $foreground_inv, );
   font-weight: 700; // enforce bold weight
   &:not(:disabled) {
     background-color: transparent;
@@ -459,8 +459,8 @@ button.flat.budgie-menu-launcher {
   row.activatable { // reset background
     padding: 0;
     background-image: none;
-    background-color: $dark_bg;
-    color: $sec_fg;
+    background-color: $background_dark;
+    color: $foreground_secondary;
     transition-duration: $transition_d_none;
 
     // FIXME: enlarge vertical spacing with padding of icons
@@ -469,9 +469,9 @@ button.flat.budgie-menu-launcher {
     &:hover,
     &:selected {
       background-image: none;
-      background-color: $dark_bg;
+      background-color: $background_dark;
       // child button node has hover state already
-      color: $sec_fg;
+      color: $foreground_secondary;
       transition-duration: $transition_d_none;
     }
   }
@@ -481,12 +481,12 @@ button.flat.budgie-menu-launcher {
     &:dir(ltr) {
       margin-right: $popover_padding;
       border-right: 1px solid if($variant == dark, track(white, $alpha_div_2),
-                                                   $div_fg);
+                                                   $foreground_div);
     }
     &:dir(rtl) {
       margin-left: $popover_padding;
       border-left: 1px solid if($variant == dark, track(white, $alpha_div_2),
-                                                  $div_fg);
+                                                  $foreground_div);
     }
 
     button.flat.radio.category-button {
@@ -495,17 +495,17 @@ button.flat.budgie-menu-launcher {
       &:checked {
         &, &:hover {
           background-image: none;
-          background-color: $trk_bg;
-          color: $sel_label;
+          background-color: $background_tracker;
+          color: $label_selection;
         }
         &:disabled {
-          color: track($sel_fg, $alpha_foreground_bdp);
+          color: track($foreground_selection, $alpha_foreground_bdp);
 
           label { color: inherit; }
         }
 
-        &:dir(ltr) { @include radius(0 $r $r 0); }
-        &:dir(rtl) { @include radius($r 0 0 $r); }
+        &:dir(ltr) { @include radius(0 $radius $radius 0); }
+        &:dir(rtl) { @include radius($radius 0 0 $radius); }
       }
 
       > box > label { // tweak vertical spacing and font weight
@@ -540,13 +540,13 @@ button.flat.budgie-menu-launcher {
 
     &.activatable {
       background-image: none;
-      background-color: $dark_bg;
-      color: $sec_fg;
+      background-color: $background_dark;
+      color: $foreground_secondary;
       transition-duration: $transition_d_none;
 
       .indicator-item {
         label,
-        image { color: $sec_fg; }
+        image { color: $foreground_secondary; }
       }
 
       // FIXME: enlarge vertical spacing with padding of icons
@@ -555,19 +555,19 @@ button.flat.budgie-menu-launcher {
       &:hover,
       &:selected {
         background-image: none;
-        background-color: $dark_bg;
-        color: $sec_fg;
+        background-color: $background_dark;
+        color: $foreground_secondary;
         transition-duration: $transition_d_none;
 
         .indicator-item {
           label,
-          image { color: $sec_fg; }
+          image { color: $foreground_secondary; }
 
           &:hover,
           &:active,
           &:checked {
             label,
-            image { color: $fg; }
+            image { color: $foreground; }
           }
         }
       }
@@ -594,7 +594,7 @@ button.flat.budgie-menu-launcher {
       }
 
       image {
-        color: $sec_fg;
+        color: $foreground_secondary;
         &:first-child { // avatar image
           min-width: $icon_size * 1.5;
           opacity: $alpha_foreground_2nd;
@@ -627,11 +627,11 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 .raven {
   padding: 0;
   border: none;
-  color: $sec_fg;
-  background-color: $bg;
+  color: $foreground_secondary;
+  background-color: $background;
 
   .raven-header {
-    color: $ter_fg;
+    color: $foreground_tertiary;
     font-weight: 500;
 
     &.top {
@@ -654,22 +654,22 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
     > box.vertical > box.vertical {
       margin: $raven_box_spacing 0; // do not set L/R margins
-      border-radius: $r_2;
+      border-radius: $radius_2;
       background-color: $base;
       // draw side edges via opaque box-shadows
-      box-shadow: inset 1px 0 $div_sld_fg,
-                  inset -1px 0 $div_sld_fg,
+      box-shadow: inset 1px 0 $foreground_div_sld,
+                  inset -1px 0 $foreground_div_sld,
                   $z-depth-1;
     }
 
     .raven-header {
       margin-top: -$raven_box_spacing * 2; // unset parent margin
-      border-radius: $r_2 $r_2 0 0;
+      border-radius: $radius_2 $radius_2 0 0;
     }
 
     .raven-background {
       margin-bottom: -$raven_box_spacing * 2; // unset parent margin
-      border-radius: 0 0 $r_2 $r_2;
+      border-radius: 0 0 $radius_2 $radius_2;
     }
 
     // audio app/device switcher
@@ -688,11 +688,11 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
         &.sound-devices row.activatable { // devices list rows
           &:selected {
-            background-color: track($sel_bg, $alpha_track_2);
-            &:dir(ltr) { box-shadow: inset 4px 0 $sel_bg; }
-            &:dir(rtl) { box-shadow: inset -4px 0 $sel_bg; }
+            background-color: track($background_selection, $alpha_track_2);
+            &:dir(ltr) { box-shadow: inset 4px 0 $background_selection; }
+            &:dir(rtl) { box-shadow: inset -4px 0 $background_selection; }
 
-            &, label { color: $fg; }
+            &, label { color: $foreground; }
           }
 
           > box > label {
@@ -721,7 +721,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
           &:disabled { @include button(flat-disabled); }
 
           &:dir(ltr),
-          &:dir(rtl) { @include radius($r, none); }
+          &:dir(rtl) { @include radius($radius, none); }
 
           &:first-child {
             &:dir(ltr) { margin-right: if($ref_weight < 1.0, 3px, 4px); }
@@ -737,7 +737,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
   }
 
   .powerstrip {
-    background-color: $dark_bg;
+    background-color: $background_dark;
     box-shadow: none;
 
     button.flat.image-button {
@@ -752,21 +752,21 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
     min-width: rem($widget_size);
     min-height: rem($widget_size);
     padding: 0;
-    @include radius($r);
-    color: $ter_fg;
+    @include radius($radius);
+    color: $foreground_tertiary;
     &:hover,
-    &:active { color: $fg; }
+    &:active { color: $foreground; }
 
     &:dir(ltr) { margin-right: rem($baseline * 2); }
     &:dir(rtl) { margin-left: rem($baseline * 2); }
   }
 
   button.flat.image-button.primary-control { // 'close' button in MPRIS
-    color: $ter_fg;
-    &:hover { @include button(flat-hover, $tc: $dest_bg); }
+    color: $foreground_tertiary;
+    &:hover { @include button(flat-hover, $text-color: $background_destruction); }
     &:active {
-      @include button(flat-active, $tc: $dest_bg);
-      @include ink-reaction(active-dec, $fc: $dest_bg, $tr: ink-active-dec);
+      @include button(flat-active, $text-color: $background_destruction);
+      @include ink-reaction(active-dec, $fc: $background_destruction, $tr: ink-active-dec);
     }
   }
 
@@ -779,7 +779,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
   box.vertical > stack > box.vertical {
     > .raven-header {
       margin-top: -$raven_box_spacing; // reduce top margin
-      border-bottom: 1px solid $div_fg;
+      border-bottom: 1px solid $foreground_div;
     }
 
     > .raven-background > viewport.frame {
@@ -789,16 +789,16 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
       > list > row.activatable {
         padding-bottom: 4px;
-        border-bottom: 1px solid $div_fg;
+        border-bottom: 1px solid $foreground_div;
         background-color: transparent;
         &:selected {
-          background-color: track($sel_bg, $alpha_track_2);
-          &:dir(ltr) { box-shadow: inset 4px 0 $sel_bg; }
-          &:dir(rtl) { box-shadow: inset -4px 0 $sel_bg; }
+          background-color: track($background_selection, $alpha_track_2);
+          &:dir(ltr) { box-shadow: inset 4px 0 $background_selection; }
+          &:dir(rtl) { box-shadow: inset -4px 0 $background_selection; }
 
           > grid > *, // legacy
           > box.vertical * {
-            color: $fg;
+            color: $foreground;
             opacity: 1.0;
           }
         }
@@ -812,17 +812,17 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
         // sub-list rows grouping
         list {
-          @include radius($r_2, none);
-          border: 1px solid $div_fg;
+          @include radius($radius_2, none);
+          border: 1px solid $foreground_div;
 
           > row.activatable {
-            border-bottom: 1px solid $div_fg;
+            border-bottom: 1px solid $foreground_div;
             &:last-child { border-bottom: none; }
             &:dir(ltr) { padding: 2px rem($baseline * 2) 2px 8px; }
             &:dir(rtl) { padding: 2px 8px 2px rem($baseline * 2); }
 
             &:selected {
-              background-color: track($sel_bg, $alpha_track_2);
+              background-color: track($background_selection, $alpha_track_2);
             }
 
             // title labels
@@ -841,10 +841,10 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
   .raven-mpris { // MPRIS overlaid widget
     margin-bottom: $raven_box_spacing * 2; // bottom-most 8px is dead
     background-color: track($base, (1 - $alpha_track_1));
-    color: $fg;
-    box-shadow: inset 1px 0 $div_sld_fg,
-                inset -1px 0 $div_sld_fg,
-                inset 0 -1px $div_sld_fg;
+    color: $foreground;
+    box-shadow: inset 1px 0 $foreground_div_sld,
+                inset -1px 0 $foreground_div_sld,
+                inset 0 -1px $foreground_div_sld;
 
     button.image-button {
       margin: 0 rem(5.3px) if($ref_weight < 1.0, $raven_box_spacing * 1.5,
@@ -854,7 +854,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
     > box.vertical > box.horizontal > image { // header icons
       padding: rem(5.3px / 2) 0;
-      color: $ter_fg; // tone down
+      color: $foreground_tertiary; // tone down
       &:dir(ltr) { margin: 0 (4px + 1px) 0 -4px; }
       &:dir(rtl) { margin: 0 -4px 0 (4px + 1px); }
     }
@@ -875,9 +875,9 @@ window.sound-popover.background {
         &:dir(#{$_dir}) {
           background-image:
             linear-gradient(to $_opp_end,
-                            $trk_out_fg calc(66% - 1px),
-                            track($dest_bg, $alpha_track_out) calc(66% - 1px),
-                            track($dest_bg, $alpha_track_out) 100%);
+                            $background_tracker_out calc(66% - 1px),
+                            track($background_destruction, $alpha_track_out) calc(66% - 1px),
+                            track($background_destruction, $alpha_track_out) 100%);
         }
       }
     }
@@ -935,22 +935,22 @@ widget.budgie-clock-applet > widget > box > label {
 window.sound-popover.background box.horizontal {
   > button.flat.image-button { // horizontal layout
     &:first-child { // '-' button
-      @include button(flat-normal, $tc: $fg);
+      @include button(flat-normal, $text-color: $foreground);
       @include ink-reaction(normal, $fc: $err, $tr: ink-normal-dec);
-      &:hover { @include button(flat-hover, $tc: $err); }
+      &:hover { @include button(flat-hover, $text-color: $err); }
       &:active {
-        @include button(flat-active, $tc: $err);
+        @include button(flat-active, $text-color: $err);
         @include ink-reaction(active-dec, $fc: $err, $tr: ink-active-dec);
       }
     }
 
     &:last-child { // '+' button
-      @include button(flat-normal, $tc: $fg);
-      @include ink-reaction(normal, $fc: $sccs_bg, $tr: ink-normal-dec);
-      &:hover { @include button(flat-hover, $tc: $sccs_bg); }
+      @include button(flat-normal, $text-color: $foreground);
+      @include ink-reaction(normal, $fc: $background_success, $tr: ink-normal-dec);
+      &:hover { @include button(flat-hover, $text-color: $background_success); }
       &:active {
-        @include button(flat-active, $tc: $sccs_bg);
-        @include ink-reaction(active-dec, $fc: $sccs_bg, $tr: ink-active-dec);
+        @include button(flat-active, $text-color: $background_success);
+        @include ink-reaction(active-dec, $fc: $background_success, $tr: ink-active-dec);
       }
     }
   }
@@ -985,7 +985,7 @@ window.sound-popover.background box.horizontal {
 
         > image {
           &:first-child {
-            color: $acc_bg;
+            color: $background_accent;
             &:dir(ltr) { margin-left: 4px; }
             &:dir(rtl) { margin-right: 4px; }
           }
@@ -1010,8 +1010,8 @@ window.sound-popover.background box.horizontal {
 
   box.vertical > revealer {
     > list { // drop-down list
-      border: 1px solid $div_fg;
-      background-color: $dark_bg;
+      border: 1px solid $foreground_div;
+      background-color: $background_dark;
 
       &.always-expand { // 'always expanded' option
         // unset revealer elevations
@@ -1028,7 +1028,7 @@ window.sound-popover.background box.horizontal {
       transition: none;
       &:hover,
       &:active {
-        color: $fg;
+        color: $foreground;
         background: none;
       }
     }
@@ -1042,8 +1042,8 @@ window.sound-popover.background box.horizontal {
   box.unlock-area {
     border-width: 1px 0 1px;
     border-style: solid none solid;
-    border-color: $div_fg;
-    background-color: $bg;
+    border-color: $foreground_div;
+    background-color: $background;
   }
 }
 
@@ -1067,7 +1067,7 @@ window.sound-popover.background box.horizontal {
 
 // separator applet
 .budgie-panel > box > widget > separator {
-  background-color: $panel_div_fg;
+  background-color: $foreground_panel_div;
 }
 
 // workspace-switcher applet
@@ -1076,15 +1076,15 @@ widget > box.workspace-switcher {
   > box.workspace-layout {
     widget.workspace-item {
       @if $variant == mixed {
-        background-image: image(track($inv_fg, $alpha_foreground_bdp));
+        background-image: image(track($foreground_inv, $alpha_foreground_bdp));
       }
       @else {
-        background-image: image(track($fg, $alpha_foreground_bdp));
+        background-image: image(track($foreground, $alpha_foreground_bdp));
       }
       background-repeat: no-repeat;
       transition-duration: $transition_d_none; // for underline-indicators
 
-      &.current-workspace { background-image: image($sel_bg); }
+      &.current-workspace { background-image: image($background_selection); }
 
       @each $position, $_size in (top, calc(100% - 4px) 3px),
                                  (bottom, calc(100% - 4px) 3px),
@@ -1100,7 +1100,7 @@ widget > box.workspace-switcher {
         min-width: $icon_size;
         min-height: $icon_size;
         padding: 4px;
-        @include radius($r_2, none);
+        @include radius($radius_2, none);
 
         > image { opacity: $alpha_foreground_3rd; }
 
@@ -1191,18 +1191,18 @@ window.budgie-popover.workspace-popover {
   > box > widget > button.flat:not(.raven-trigger):not(.budgie-menu-launcher) {
     @extend %budgie_trigger_button;
     @if $variant == mixed {
-      @include ink-reaction(normal, $fc: $sel_bg, $tr: ink-normal-dec);
+      @include ink-reaction(normal, $fc: $background_selection, $tr: ink-normal-dec);
       &:active {
-        @include button(flat-active, $tc: $inv_fg);
-        @include ink-reaction(active-dec, $fc: $inv_fg, $tr: ink-active-dec);
+        @include button(flat-active, $text-color: $foreground_inv);
+        @include ink-reaction(active-dec, $fc: $foreground_inv, $tr: ink-active-dec);
       }
     }
     &:checked {
       @if $variant == mixed {
-        @include button(flat-checked, $tc: $inv_sel_label);
+        @include button(flat-checked, $text-color: $label_selection_inv);
       }
       @else {
-        @include button(flat-checked, $tc: $sel_label);
+        @include button(flat-checked, $text-color: $label_selection);
       }
     }
 
@@ -1227,13 +1227,13 @@ window.budgie-popover.workspace-popover {
 %budgie_notification_window_styling,
 .budgie-notification-window .drop-shadow {
   // draw actual backgrounds
-  @if $variant == mixed { background-color: track($inv_tooltip_bg, $alpha_osd); }
-  @else { background-color: track($tooltip_bg, $alpha_osd); }
+  @if $variant == mixed { background-color: track($background_tooltip_inv, $alpha_osd); }
+  @else { background-color: track($background_tooltip, $alpha_osd); }
 }
 
 .budgie-osd-window .drop-shadow {
-  @if $variant == mixed { background-color: track($inv_dark_bg, $alpha_osd); }
-  @else { background-color: track($dark_bg, $alpha_osd); }
+  @if $variant == mixed { background-color: track($background_dark_inv, $alpha_osd); }
+  @else { background-color: track($background_dark, $alpha_osd); }
   margin: $shadow_margin_3;
 }
 
@@ -1241,26 +1241,26 @@ window.budgie-popover.workspace-popover {
 .budgie-notification,
 .budgie-osd {
   background-color: transparent;
-  @if $variant == mixed { color: $inv_fg; }
-  @else { color: $fg; }
+  @if $variant == mixed { color: $foreground_inv; }
+  @else { color: $foreground; }
   
   .notification-title {
-    @if $variant == mixed { color: $inv_sec_fg; }
-    @else { color: $sec_fg; }
+    @if $variant == mixed { color: $foreground_inv_secondary; }
+    @else { color: $foreground_secondary; }
     font-size: 110%;
     font-weight: 500;
   }
 
   .notification-body {
-    @if $variant == mixed { color: $inv_fg; }
-    @else { color: $fg; }
+    @if $variant == mixed { color: $foreground_inv; }
+    @else { color: $foreground; }
     font-size: 90%;
     font-weight: 400;
   }
 
   .budgie-osd-text {
-    @if $variant == mixed { color: $inv_fg; }
-    @else { color: $fg; }
+    @if $variant == mixed { color: $foreground_inv; }
+    @else { color: $foreground; }
     font-size: 110%;
   }
 
@@ -1269,12 +1269,12 @@ window.budgie-popover.workspace-popover {
     padding: 2px;
 
     trough {
-      background-color: $trk_out_fg;
-      @if $variant == mixed { color: $inv_fg; }
-      @else { color: $fg; }
+      background-color: $background_tracker_out;
+      @if $variant == mixed { color: $foreground_inv; }
+      @else { color: $foreground; }
     }
 
-    progress { background-color: $sccs_bg; }
+    progress { background-color: $background_success; }
   }
 }
 
@@ -1307,44 +1307,44 @@ window.budgie-switcher-window {
     margin: $shadow_margin_4; // reserve area for shadows
     padding: $budgie_osd_margin $budgie_osd_margin ($budgie_osd_margin / 4);
     border-radius: $r_8;
-    @if $variant == mixed { background-color: track($inv_dark_bg, $alpha_osd); }
-    @else { background-color: track($dark_bg, $alpha_osd); }
+    @if $variant == mixed { background-color: track($background_dark_inv, $alpha_osd); }
+    @else { background-color: track($background_dark, $alpha_osd); }
     box-shadow: $z-depth-4; // raise to level-4
 
     label.budgie-switcher-title { // bottom label for app titles
       // prepare for tall and dense fonts
       min-height: 13.3px * 2; // use non-scaling unit
-      color: if($variant == mixed, $inv_fg, $fg);
+      color: if($variant == mixed, $foreground_inv, );
       font-weight: 500;
     }
   }
 
   flowboxchild { // icon-tiles
     margin: $child_margin;
-    @include radius($r_2);
-    color: if($variant == mixed, $inv_sec_acc_fg, $sec_acc_fg);
+    @include radius($radius_2);
+    color: if($variant == mixed, $foreground_accent_sec_inv, $foreground_accent_sec);
     background-color: transparent;
     &:hover,
     &:active {
-      background-color: track($acc_bg, $alpha_track_1);
-      color: if($variant == mixed, $inv_acc_fg, $acc_fg);
+      background-color: track($background_accent, $alpha_track_1);
+      color: if($variant == mixed, $foreground_accent_inv, $foreground_accent);
     }
     &:selected { // use the same values with Gnome-Shell
-      background-color: track($acc_bg, $alpha_track_2);
-      color: if($variant == mixed, $inv_acc_fg, $acc_fg);
+      background-color: track($background_accent, $alpha_track_2);
+      color: if($variant == mixed, $foreground_accent_inv, $foreground_accent);
       @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
       @else { -gtk-icon-filter: brightness(1.2); }
       &:disabled {
         @if $variant == mixed {
-          background-color: track($inv_fg, $alpha_track_1);
+          background-color: track($foreground_inv, $alpha_track_1);
         }
         @else {
-          background-color: track($fg, $alpha_track_1);
+          background-color: track($foreground, $alpha_track_1);
         }
         @if $maj_ver == 3 { -gtk-icon-effect: dim; }
         @else { -gtk-icon-filter: opacity(0.5); }
 
-        &, label { color: if($variant == mixed, $dis_inv_fg, $dis_fg); }
+        &, label { color: if($variant == mixed, $foreground_dis_inv, $foreground_dis); }
       }
     }
   }
@@ -1354,10 +1354,10 @@ window.budgie-switcher-window {
 .background.csd.budgie-run-dialog {
   border: none;
   @if $variant == mixed {
-    background-color: track($inv_dark_bg, $alpha_osd);
+    background-color: track($background_dark_inv, $alpha_osd);
   }
   @else {
-    background-color: track($dark_bg, $alpha_osd);
+    background-color: track($background_dark, $alpha_osd);
   }
 
   // specific 8px rounded corners need decoration
@@ -1367,7 +1367,7 @@ window.budgie-switcher-window {
 
   scrolledwindow {
     margin: 0 $budgie_osd_margin $budgie_osd_margin;
-    border: 1px solid if($variant == light, $div_fg,
+    border: 1px solid if($variant == light, $foreground_div,
                                             track(white, $alpha_div_2));
     background-color: transparent;
 
@@ -1376,20 +1376,20 @@ window.budgie-switcher-window {
 
       row.activatable {
         background-color: transparent;
-        color: if($variant == mixed, $inv_sec_fg, $sec_fg);
+        color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
 
         .dim-label {
-          color: if($variant == mixed, $inv_sec_fg, $sec_fg);
+          color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
           opacity: 1.0;
         }
 
         &:hover,
         &:active {
-          background-color: $trk_bg;
-          color: if($variant == mixed, $inv_fg, $fg);
+          background-color: $background_tracker;
+          color: if($variant == mixed, $foreground_inv, );
 
           .dim-label {
-            color: if($variant == mixed, $inv_fg, $fg);
+            color: if($variant == mixed, $foreground_inv, );
             opacity: 1.0;
           }
         }
@@ -1401,33 +1401,33 @@ window.budgie-switcher-window {
     min-width: $icon_size * 25;
     min-height: rem($widget_size * 1.2);
     margin: $budgie_osd_margin;
-    @include radius($r_4 $r_4 0 0, none);
+    @include radius($radius_4 $radius_4 0 0, none);
     @if $variant == mixed {
-      @include entry(flat-normal, $tc: $inv_fg);
-      caret-color: $inv_fg;
-      &:focus { @include entry(flat-focus, $tc: $inv_fg); }
-      &:disabled { @include entry(flat-disabled, $tc: $inv_fg); }
+      @include entry(flat-normal, $text-color: $foreground_inv);
+      caret-color: $foreground_inv;
+      &:focus { @include entry(flat-focus, $text-color: $foreground_inv); }
+      &:disabled { @include entry(flat-disabled, $text-color: $foreground_inv); }
 
       selection { @extend %selected_items; }
     }
     @else {
-      @include entry(flat-normal, $tc: $fg);
-      caret-color: $fg;
-      &:focus { @include entry(flat-focus, $tc: $fg); }
-      &:disabled { @include entry(flat-disabled, $tc: $fg); }
+      @include entry(flat-normal, $text-color: $foreground);
+      caret-color: $foreground;
+      &:focus { @include entry(flat-focus, $text-color: $foreground); }
+      &:disabled { @include entry(flat-disabled, $text-color: $foreground); }
     }
     font-size: 110%;
 
     image {
       @if $variant == mixed {
-        &:not(:hover):not(:active) { color: $inv_sec_fg; }
-        &:active { color: $inv_bg; }
-        &:disabled { color: $dis_inv_fg; }
+        &:not(:hover):not(:active) { color: $foreground_inv_secondary; }
+        &:active { color: $background_inv; }
+        &:disabled { color: $foreground_dis_inv; }
       }
       @else {
-        &:not(:hover):not(:active) { color: $sec_fg; }
-        &:active { color: $fg; }
-        &:disabled { color: $dis_fg; }
+        &:not(:hover):not(:active) { color: $foreground_secondary; }
+        &:active { color: $foreground; }
+        &:disabled { color: $foreground_dis; }
       }
     }
   }
@@ -1438,11 +1438,11 @@ window.budgie-switcher-window {
 
     slider {
       @if $variant == mixed {
-        background-color: track($inv_ter_fg, $alpha_foreground_3rd);
+        background-color: track($foreground_inv_tertiary, $alpha_foreground_3rd);
         &:hover {
-          background-color: track($inv_sec_fg, $alpha_foreground_3rd);
+          background-color: track($foreground_inv_secondary, $alpha_foreground_3rd);
         }
-        &:active { background-color: $inv_fg; }
+        &:active { background-color: $foreground_inv; }
       }
       &:disabled { opacity: $alpha_foreground_bdp; }
     }
@@ -1455,12 +1455,12 @@ window.budgie-switcher-window {
   border-radius: $r_8;
   border-width: 0;
   @if $variant == mixed {
-    background-color: track($inv_dark_bg, $alpha_osd);
-    color: $inv_fg;
+    background-color: track($background_dark_inv, $alpha_osd);
+    color: $foreground_inv;
   }
   @else {
-    background-color: track($dark_bg, $alpha_osd);
-    color: $fg;
+    background-color: track($background_dark, $alpha_osd);
+    color: $foreground;
   }
   font-weight: 700;
 
@@ -1490,33 +1490,33 @@ window.budgie-switcher-window {
 // polkit-dialog specific styling
 .budgie-polkit-dialog {
   entry {
-    @include radius($r_4 $r_4 0 0, none);
+    @include radius($radius_4 $radius_4 0 0, none);
     @if $variant == mixed {
-      @include entry(flat-normal, $tc: $inv_fg);
-      caret-color: $inv_fg;
+      @include entry(flat-normal, $text-color: $foreground_inv);
+      caret-color: $foreground_inv;
       &:focus {
-        @include entry(flat-focus, $tc: $inv_fg);
+        @include entry(flat-focus, $text-color: $foreground_inv);
       }
       &:disabled {
-        @include entry(flat-disabled, $tc: $inv_fg);
+        @include entry(flat-disabled, $text-color: $foreground_inv);
       }
 
       selection { @extend %selected_items; }
     }
     @else {
-      @include entry(flat-normal, $tc: $fg);
-      caret-color: $fg;
+      @include entry(flat-normal, $text-color: $foreground);
+      caret-color: $foreground;
       &:focus {
-        @include entry(flat-focus, $tc: $fg);
+        @include entry(flat-focus, $text-color: $foreground);
       }
       &:disabled {
-        @include entry(flat-disabled, $tc: $fg);
+        @include entry(flat-disabled, $text-color: $foreground);
       }
     }
   }
 
   .message {
-    color: if($variant == mixed, $inv_sec_fg, $sec_fg);
+    color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
   }
 
   .failure {
@@ -1548,8 +1548,8 @@ button.flat.raven-trigger {
 // settings-window
 window.background.budgie-settings-window.csd {
   > box.horizontal > scrolledwindow > viewport.frame { // left-pane
-    &:dir(ltr) { border-right: 1px solid $div_fg; }
-    &:dir(rtl) { border-left: 1px solid $div_fg; }
+    &:dir(ltr) { border-right: 1px solid $foreground_div; }
+    &:dir(rtl) { border-left: 1px solid $foreground_div; }
   }
 
   box.settings-page.vertical { // right-pane
@@ -1589,11 +1589,11 @@ window.background.budgie-settings-window.csd {
   padding: 0;
   border: none;
   background: none;
-  color: if($variant == mixed, $inv_fg, $fg);
+  color: if($variant == mixed, $foreground_inv, );
   @include transition(reset);
 
   image {
-    border-radius: $r;
+    border-radius: $radius;
     background-size: $icon_size $icon_size;
     background-position: center center;
     background-repeat: no-repeat;
@@ -1602,7 +1602,7 @@ window.background.budgie-settings-window.csd {
   &:hover,
   &:active {
     background: none;
-    color: if($variant != light, $sel_fg, black);
+    color: if($variant != light, $foreground_selection, black);
     @include transition(reset);
 
     image { -gtk-icon-shadow: none; }
@@ -1615,7 +1615,7 @@ window.background.budgie-settings-window.csd {
 %pixel_saver_button_ink_reaction {
   &:hover image {
     @if $variant != light {
-      background-image: image(track($sel_fg, $alpha_track_1));
+      background-image: image(track($foreground_selection, $alpha_track_1));
     }
     @else {
       background-image: image(track(black, $alpha_track_1));
@@ -1624,7 +1624,7 @@ window.background.budgie-settings-window.csd {
 
   &:active image {
     @if $variant != light {
-      background-image: image(track($sel_fg, $alpha_track_2));
+      background-image: image(track($foreground_selection, $alpha_track_2));
     }
     @else {
       background-image: image(track(black, $alpha_track_2));
@@ -1659,7 +1659,7 @@ window.background.budgie-settings-window.csd {
   background: unset;
 
   > widget > label { // titles
-    color: if($variant == mixed, $inv_fg, $fg);
+    color: if($variant == mixed, $foreground_inv, );
   }
 
   > button.image-button.titlebutton {
@@ -1667,13 +1667,13 @@ window.background.budgie-settings-window.csd {
 
     &.close {
       &:hover image {
-        background-image: image($dest_bg);
-        color: $sel_fg;
+        background-image: image($background_destruction);
+        color: $foreground_selection;
       }
 
       &:active image {
-        background-image: image($sel_bg);
-        color: $sel_fg;
+        background-image: image($background_selection);
+        color: $foreground_selection;
       }
     }
 
@@ -1701,9 +1701,9 @@ menuitem.budgie-menubar { // appindicator-applet?
 //  *******************/
 
 %greeter_panel_window {
-  background-image: image($panel_bg);
+  background-image: image($background_panel);
   background-color: transparent;
-  color: if($variant == mixed, $inv_fg, $fg);
+  color: if($variant == mixed, $foreground_inv, );
   box-shadow: none;
   font-weight: 700;
   text-shadow: none;
@@ -1719,14 +1719,14 @@ menuitem.budgie-menubar { // appindicator-applet?
 %greeter_panel_menubar {
   border: none;
   background-color: transparent;
-  color: if($variant == mixed, $inv_fg, $fg);
+  color: if($variant == mixed, $foreground_inv, );
 
   &:hover {
-    color: if($variant != light, $sel_fg, black);
-    box-shadow: inset 0 2px $sel_bg;
+    color: if($variant != light, $foreground_selection, black);
+    box-shadow: inset 0 2px $background_selection;
 
     label,
-    image { color: if($variant != light, $sel_fg, black); }
+    image { color: if($variant != light, $foreground_selection, black); }
   }
 }
 
@@ -1735,46 +1735,46 @@ menuitem.budgie-menubar { // appindicator-applet?
   padding: rem(5.3px, $sw: 1.0) 0;
   @include radius(0, none);
   background-color: transparent;
-  &:hover { box-shadow: inset 0 2px $sel_bg; }
+  &:hover { box-shadow: inset 0 2px $background_selection; }
 }
 
 %greeter_panel_menu_menuitem {
   padding: $toolbar_padding rem($entry_lr_space);
-  color: $sec_fg;
+  color: $foreground_secondary;
   font-weight: 400;
   text-shadow: none;
 
-  label { color: $sec_fg; }
+  label { color: $foreground_secondary; }
 
   &:hover {
-    color: $fg;
+    color: $foreground;
 
-    label { color: $fg; }
+    label { color: $foreground; }
   }
   &:disabled {
-    color: $dis_fg;
+    color: $foreground_dis;
 
-    label { color: $dis_fg; }
+    label { color: $foreground_dis; }
   }
 }
 
 %greeter_entry {
   min-height: rem($widget_size);
-  @include radius($r_4 $r_4 0 0, none);
+  @include radius($radius_4 $radius_4 0 0, none);
   font-family: monospace;
   @if $variant == mixed {
-    @include entry(flat-normal, $tc: $inv_fg);
-    caret-color: $inv_fg;
-    &:focus { @include entry(flat-focus, $tc: $inv_fg); }
-    &:disabled { @include entry(flat-disabled, $tc: $inv_fg); }
+    @include entry(flat-normal, $text-color: $foreground_inv);
+    caret-color: $foreground_inv;
+    &:focus { @include entry(flat-focus, $text-color: $foreground_inv); }
+    &:disabled { @include entry(flat-disabled, $text-color: $foreground_inv); }
 
     selection { @extend %selected_items; }
   }
   @else {
-    @include entry(flat-normal, $tc: $fg);
-    caret-color: $fg;
-    &:focus { @include entry(flat-focus, $tc: $fg); }
-    &:disabled { @include entry(flat-disabled, $tc: $fg); }
+    @include entry(flat-normal, $text-color: $foreground);
+    caret-color: $foreground;
+    &:focus { @include entry(flat-focus, $text-color: $foreground); }
+    &:disabled { @include entry(flat-disabled, $text-color: $foreground); }
   }
 }
 
@@ -1782,7 +1782,7 @@ menuitem.budgie-menubar { // appindicator-applet?
   margin: unset;
   padding: 1px;
   border-radius: 0;
-  border: 1px solid $div_sld_fg;
+  border: 1px solid $foreground_div_sld;
   background-clip: border-box;
 }
 
@@ -1798,7 +1798,7 @@ menuitem.budgie-menubar { // appindicator-applet?
       label,
       image {
         padding: 0 rem($menuitem_padding, $sw: 1.0);
-        color: if($variant == mixed, $inv_fg, $fg);
+        color: if($variant == mixed, $foreground_inv, );
       }
 
       @if $maj_ver == 3 {
@@ -1826,12 +1826,12 @@ menuitem.budgie-menubar { // appindicator-applet?
       border-radius: $r_8;
       box-shadow: $z-depth-4;
       @if $variant == mixed {
-        background-color: track($inv_dark_bg, $alpha_osd);
-        color: $inv_fg;
+        background-color: track($background_dark_inv, $alpha_osd);
+        color: $foreground_inv;
       }
       @else {
-        background-color: track($dark_bg, $alpha_osd);
-        color: $fg;
+        background-color: track($background_dark, $alpha_osd);
+        color: $foreground;
       }
     }
 
@@ -1845,23 +1845,23 @@ menuitem.budgie-menubar { // appindicator-applet?
   }
 
   @each $node_id_1, $node_id_2, $_color in
-  ('#login_window', '#login_button', $sggt_bg),
-  ('#restart_dialog', '#restart_button', $dest_bg),
-  ('#shutdown_dialog', '#shutdown_button', $dest_bg) {
+  ('#login_window', '#login_button', $background_suggestion),
+  ('#restart_dialog', '#restart_button', $background_destruction),
+  ('#shutdown_dialog', '#shutdown_button', $background_destruction) {
     #{$node_id_1} button#{$node_id_2} {
-      @include button(raised-normal, $c: $_color, $tc: $sec_sel_fg);
-      @include ink-reaction(normal, $fc: $sel_fg, $tr: ink-normal-dec);
-      &:hover { @include button(raised-hover, $c: $_color, $tc: $sel_fg); }
+      @include button(raised-normal, $color: $_color, $text-color: $foreground_selection_secondary);
+      @include ink-reaction(normal, $fc: $foreground_selection, $tr: ink-normal-dec);
+      &:hover { @include button(raised-hover, $color: $_color, $text-color: $foreground_selection); }
       &:active {
-        @include button(raised-active, $c: $sel_bg, $tc: $sel_fg);
-        @include ink-reaction(active-dec, $fc: $sel_fg, $tr: ink-active-dec);
+        @include button(raised-active, $color: $background_selection, $text-color: $foreground_selection);
+        @include ink-reaction(active-dec, $fc: $foreground_selection, $tr: ink-active-dec);
       }
       &:checked { @include button(raised-checked); }
       &:disabled {
         @if $variant == mixed {
-          @include button(raised-disabled, $tc: $inv_fg);
+          @include button(raised-disabled, $text-color: $foreground_inv);
         }
-        @else { @include button(raised-disabled, $tc: $fg); }
+        @else { @include button(raised-disabled, $text-color: $foreground); }
       }
     }
   }
@@ -1919,13 +1919,13 @@ $greeter_panel_shadow: 11px; // pixmap shadow region
 
 %greeter_panel_menubar_menuitem_misc {
   padding: 0 rem($entry_lr_space);
-  color: if($variant != dark, $inv_fg, $fg);
+  color: if($variant != dark, $foreground_inv, );
 
-  label { color: if($variant != dark, $inv_fg, $fg); }
+  label { color: if($variant != dark, $foreground_inv, ); }
 
-  image { color: if($variant != dark, $inv_fg, $fg); }
+  image { color: if($variant != dark, $foreground_inv, ); }
 
-  &:hover { box-shadow: inset 0 2px $sel_bg; }
+  &:hover { box-shadow: inset 0 2px $background_selection; }
 
   label { margin: 0 2px rem($baseline, $sw: 1.0); }
 }
@@ -1964,14 +1964,14 @@ window.background.lightdm {
       min-width: $icon_size;
       min-height: $icon_size;
       padding: rem(6.7px, $sw: 1.0);
-      @include radius($r);
+      @include radius($radius);
     }
 
     &.flat.option-button { // session logo button
       min-width: $icon_size;
       min-height: $icon_size;
       padding: rem(6.7px, $sw: 1.0);
-      @include radius($r);
+      @include radius($radius);
       @if $variant != dark { @extend %inv_flat_button; }
       @else { @extend %flat_button; }
 
@@ -2004,8 +2004,8 @@ window.background.lightdm {
 
       &.selected { // selected row
         &, &:hover {
-          @include button(flat-normal, $tc: $sel_fg);
-          background-image: image($sel_bg);
+          @include button(flat-normal, $text-color: $foreground_selection);
+          background-image: image($background_selection);
 
           image { opacity: 1.0; }
         }
@@ -2017,10 +2017,10 @@ window.background.lightdm {
   .lightdm-combo entry {
     @extend %greeter_entry;
     @if $variant != dark {
-      @include entry(flat-normal, $tc: $inv_fg);
-      caret-color: $inv_fg;
-      &:focus { @include entry(flat-focus, $tc: $inv_fg); }
-      &:disabled { @include entry(flat-disabled, $tc: $inv_fg); }
+      @include entry(flat-normal, $text-color: $foreground_inv);
+      caret-color: $foreground_inv;
+      &:focus { @include entry(flat-focus, $text-color: $foreground_inv); }
+      &:disabled { @include entry(flat-disabled, $text-color: $foreground_inv); }
     }
 
     selection { @extend %selected_items; }
@@ -2059,8 +2059,8 @@ window.background.lightdm {
 
   treeview.places-treeview { // use opaque colors
     -NemoPlacesTreeView-disk-full-bg-color:
-      mix($fg, $bg, percentage($alpha_track_out));
-    -NemoPlacesTreeView-disk-full-fg-color: $acc_bg;
+      mix($foreground, $background, percentage($alpha_track_out));
+    -NemoPlacesTreeView-disk-full-fg-color: $background_accent;
   }
 
   // workaround for invisible text in rename entry (Eeleditable.entry)
@@ -2083,7 +2083,7 @@ window.background.lightdm {
 
   // main tool-bar styling
   grid > box > box > toolbar.primary-toolbar {
-    border-bottom: 1px solid $div_fg; // draw bottom border
+    border-bottom: 1px solid $foreground_div; // draw bottom border
   }
 
   // tweak notebook color
@@ -2101,12 +2101,12 @@ window.background.lightdm {
 
   // force using flat-style on bottom bar
   grid.vertical > widget {
-    background-color: $dark_bg;
+    background-color: $background_dark;
 
     > box {
       padding: $toolbar_padding;
 
-      > button.image-button { @include radius($r_2); }
+      > button.image-button { @include radius($radius_2); }
 
       separator.vertical { // remove separator
         min-width: 0;
@@ -2123,7 +2123,7 @@ window.background.lightdm {
 // header grid?
 paned.horizontal > paned.horizontal stack grid.vertical > grid.horizontal {
   button.image-button {
-    &, &.toggle { @include radius($r_2); }
+    &, &.toggle { @include radius($radius_2); }
   }
 }
 
@@ -2135,7 +2135,7 @@ row.trackrow {
     .track-menu-button { // back to square button
       &, &.toggle { // back to square button
         margin: 0;
-        @include radius($r_2);
+        @include radius($radius_2);
       }
     }
   }
@@ -2151,29 +2151,29 @@ grid.popover-rating-loved-grid {
 
 // Cover-art in headerbar
 image.toolbar-cover-frame { // mask L/R edge borders
-  border-image: if($variant == mixed, image($inv_dark_bg) 0 1 / 0 1px stretch,
-                                      image($dark_bg) 0 1 / 0 1px stretch);
+  border-image: if($variant == mixed, image($background_dark_inv) 0 1 / 0 1px stretch,
+                                      image($background_dark) 0 1 / 0 1px stretch);
 
   &:backdrop {
-    border-image: if($variant == mixed, image($inv_bg) 0 1 / 0 1px stretch,
-                                        image($bg) 0 1 / 0 1px stretch);
+    border-image: if($variant == mixed, image($background_inv) 0 1 / 0 1px stretch,
+                                        image($background) 0 1 / 0 1px stretch);
   }
 }
 
 headerbar > widget > box.horizontal button.image-button.popup.toggle {
   &:checked > image.selected { // Shuffle tracks?
-    @include radius($r, none);
+    @include radius($radius, none);
     box-shadow: inset 0 0 0 999px $base;
   }
 }
 
 overlay grid.sidebar {
   &:not(.view) {
-    &:dir(ltr) { border-right: 1px solid $div_fg; }
-    &:dir(rtl) { border-left: 1px solid $div_fg; }
+    &:dir(ltr) { border-right: 1px solid $foreground_div; }
+    &:dir(rtl) { border-left: 1px solid $foreground_div; }
   }
 
-  viewport.frame > list { background-color: $bg; }
+  viewport.frame > list { background-color: $background; }
 
   // side-pane row height
   row.activatable.row-big {
@@ -2199,19 +2199,19 @@ window.background:not(.csd) > box.vertical {
         &:selected {
           @extend %selected_items;
 
-          label { color: $sel_fg; }
+          label { color: $foreground_selection; }
         }
       }
     }
 
     box.vertical > toolbar {
       border: none;
-      background-color: $bg;
+      background-color: $background;
       box-shadow: none;
 
       *:not(button) > label {
         padding: rem(5.3px, $sw: 1.0);
-        color: $ter_fg;
+        color: $foreground_tertiary;
       }
     }
 
@@ -2230,18 +2230,18 @@ window.background:not(.csd) > box.vertical {
           @include transition(reset);
         }
         &:selected { // use -image instead for >= 3.6.x
-          background-image: image($sel_bg);
-          color: $sel_fg;
+          background-image: image($background_selection);
+          color: $foreground_selection;
         }
 
         &:hover combobox button.combo { // revert to standard highlighting
-          background-color: mix($fg, $base, percentage($alpha_track_1));
-          &:hover { background-color: track($fg, $alpha_track_1 * 1.5); }
+          background-color: mix($foreground, $base, percentage($alpha_track_1));
+          &:hover { background-color: track($foreground, $alpha_track_1 * 1.5); }
           &:active,
-          &:checked { background-color: track($fg, $alpha_track_2); }
+          &:checked { background-color: track($foreground, $alpha_track_2); }
           &:disabled {
             background-color:
-              mix($fg, $base, percentage(($alpha_track_1 * 2 / 3) * $alpha_foreground_dis));
+              mix($foreground, $base, percentage(($alpha_track_1 * 2 / 3) * $alpha_foreground_dis));
           }
         }
       }
@@ -2255,25 +2255,25 @@ window.background:not(.csd) > box.vertical {
 
 .csstage {
   .unlockbox {
-    color: $inv_fg;
+    color: $foreground_inv;
     font-size: 110%;
     font-weight: 400;
   }
 
-  .clock { color: $inv_fg; }
+  .clock { color: $foreground_inv; }
 
   .toppanel {
     border: none;
-    color: $inv_fg;
+    color: $foreground_inv;
     background-color: transparent;
   }
 
-  @each $_class, $_radius in (audio, 0 0 $r_2 0),
-                             (info, 0 0 0 $r_2) {
+  @each $_class, $_radius in (audio, 0 0 $radius_2 0),
+                             (info, 0 0 0 $radius_2) {
     .#{$_class}panel { // OSDs placed at top-left/right corners
       border: none;
       border-radius: #{$_radius};
-      background-color: track($inv_dark_bg, $alpha_osd);
+      background-color: track($background_dark_inv, $alpha_osd);
       box-shadow: $z-depth-1;
     }
   }
@@ -2281,7 +2281,7 @@ window.background:not(.csd) > box.vertical {
   .notificationwidget,
   .powerwidget {
     padding: $menuitem_padding;
-    color: $inv_fg;
+    color: $foreground_inv;
     background-color: transparent;
     font-size: 100%;
     font-weight: 500;
@@ -2300,20 +2300,20 @@ window.background:not(.csd) > box.vertical {
   }
 
   .framedimage { // avatar?
-    border-radius: $r_2;
+    border-radius: $radius_2;
     border: none;
-    background-color: track($inv_fg, $alpha_track_1);
+    background-color: track($foreground_inv, $alpha_track_1);
   }
 
   .passwordentry {
     @extend %flat_entry_sizing;
-    @include entry(flat-normal, $tc: $inv_fg);
-    caret-color: $inv_fg;
+    @include entry(flat-normal, $text-color: $foreground_inv);
+    caret-color: $foreground_inv;
     font-family: monospace;
-    &:focus { @include entry(flat-focus, $tc: $inv_fg); }
-    &:disabled { @include entry(flat-disabled, $tc: $inv_fg); }
+    &:focus { @include entry(flat-focus, $text-color: $foreground_inv); }
+    &:disabled { @include entry(flat-disabled, $text-color: $foreground_inv); }
     &:backdrop { // for alt-text keyboard layout?
-      color: $sel_bg;
+      color: $background_selection;
     }
 
     selection { @extend %selected_items; }
@@ -2349,21 +2349,21 @@ window.background:not(.csd) > box.vertical {
     min-height: 24px;
     min-width: 100px;
     padding: 3px 0px;
-    background-color: track($inv_fg, $alpha_track_out);
-    color: $sccs_bg;
-    &:disabled { background-color: track($sccs_bg, $alpha_track_out); }
+    background-color: track($foreground_inv, $alpha_track_out);
+    color: $background_success;
+    &:disabled { background-color: track($background_success, $alpha_track_out); }
   }
 
   .trackname {
     font-size: 90%;
-    color: $inv_sec_fg;
+    color: $foreground_inv_secondary;
     background-image: none;
     background-color: transparent;
   }
 
   .albumartist {
     font-size: 80%;
-    color: $inv_ter_fg;
+    color: $foreground_inv_tertiary;
     background-image: none;
     background-color: transparent;
   }
@@ -2384,12 +2384,12 @@ window.background:not(.csd) > box.vertical {
 
 .XfceHeading {
   border: 0 none transparent;
-  background-color: if($variant == mixed, $inv_dark_bg, $dark_bg);
-  color: if($variant == mixed, $inv_fg, $fg);
+  background-color: if($variant == mixed, $background_dark_inv, $background_dark);
+  color: if($variant == mixed, $foreground_inv, );
   &:backdrop {
-    background-color: if($variant == mixed, $inv_bg, $bg);
-    color: if($variant == mixed, track($inv_fg, $alpha_foreground_bdp),
-                                 track($fg, $alpha_foreground_bdp));
+    background-color: if($variant == mixed, $background_inv, $background);
+    color: if($variant == mixed, track($foreground_inv, $alpha_foreground_bdp),
+                                 track($foreground, $alpha_foreground_bdp));
   }
 
   entry:not(.flat) {
@@ -2400,8 +2400,8 @@ window.background:not(.csd) > box.vertical {
 $panel_child_spacing: if($ref_weight < 1.0, 2px, 3px);
 
 .xfce4-panel {
-  background-color: $panel_bg;
-  color: if($variant == mixed, $inv_fg, $fg);
+  background-color: $background_panel;
+  color: if($variant == mixed, $foreground_inv, );
   font-weight: 700;
   text-shadow: none;
   -gtk-icon-shadow: none;
@@ -2411,7 +2411,7 @@ $panel_child_spacing: if($ref_weight < 1.0, 2px, 3px);
 
   &#XfcePanelWindow { // main panel container >= 4.13.3?
     // FIXME: unneeded 1px borders are reserved by its code itself (< 4.14?)
-    border-color: $panel_bg; // keep this for safety
+    border-color: $background_panel; // keep this for safety
 
     &, &.marching-ants { transition: none; } // unset transitions
   }
@@ -2420,24 +2420,24 @@ $panel_child_spacing: if($ref_weight < 1.0, 2px, 3px);
 
   button {
     background-color: transparent;
-    color: if($variant == mixed, $inv_fg, $fg);
+    color: if($variant == mixed, $foreground_inv, );
     font-weight: 700;
     &:hover:not(:active):not(:checked) {
-      color: if($variant != light, $sel_fg, black);
-      box-shadow: inset 0 -2px $trk_out_fg;
+      color: if($variant != light, $foreground_selection, black);
+      box-shadow: inset 0 -2px $background_tracker_out;
     }
     &:checked {
       @if $variant != light {
-        @include button(flat-lined-checked, $tc: $sel_fg);
+        @include button(flat-lined-checked, $text-color: $foreground_selection);
       }
       @else {
-        @include button(flat-lined-checked, $tc: black);
+        @include button(flat-lined-checked, $text-color: black);
       }
     }
     &:active {
-      @if $variant != light { @include button(flat-hover, $tc: $sel_fg); }
-      @else { @include button(flat-hover, $tc: black); }
-      box-shadow: inset 0 -2px $sel_bg;
+      @if $variant != light { @include button(flat-hover, $text-color: $foreground_selection); }
+      @else { @include button(flat-hover, $text-color: black); }
+      box-shadow: inset 0 -2px $background_selection;
     }
 
     label { margin-bottom: 0; } // unset baseline
@@ -2455,7 +2455,7 @@ $panel_child_spacing: if($ref_weight < 1.0, 2px, 3px);
       }
 
       + button.toggle:checked { // 'arrow' toggle button
-        color: $sel_bg;
+        color: $background_selection;
         box-shadow: none;
       }
     }
@@ -2473,11 +2473,11 @@ $panel_child_spacing: if($ref_weight < 1.0, 2px, 3px);
   widget.tasklist > button.toggle {
     font-weight: 400;
     &:hover {
-      @if $variant != light { @include button(flat-hover, $tc: $sel_fg); }
-      @else { @include button(flat-hover, $tc: black); }
+      @if $variant != light { @include button(flat-hover, $text-color: $foreground_selection); }
+      @else { @include button(flat-hover, $text-color: black); }
     }
     &:checked {
-      @if $variant != light { background-color: track($sel_fg, $alpha_track_1); }
+      @if $variant != light { background-color: track($foreground_selection, $alpha_track_1); }
       @else { background-color: track(black, $alpha_track_1); }
     }
 
@@ -2511,10 +2511,10 @@ $panel_child_spacing: if($ref_weight < 1.0, 2px, 3px);
 XfdesktopIconView.view {
   border-radius: 2px;
   background: transparent;
-  color: $sel_fg;
+  color: $foreground_selection;
   text-shadow: $z-depth-1-label; // non-sense for me
   &:active {
-    background-color: $sel_bg;
+    background-color: $background_selection;
     text-shadow: none;
   }
 
@@ -2522,12 +2522,12 @@ XfdesktopIconView.view {
 }
 
 window#whiskermenu-window {
-  background-color: $dark_bg;
+  background-color: $background_dark;
 
   // no CSD class even if the sw compositor was enabled.
   > frame > border {
     border-radius: 0;
-    border: 1px solid $div_sld_fg;
+    border: 1px solid $foreground_div_sld;
   }
 
   // why wasn't .popup class implemented in this window node? :/
@@ -2535,7 +2535,7 @@ window#whiskermenu-window {
 
   stack > box > box.horizontal { // ugly resize-grip
     &:first-child widget,
-    &:last-child > widget:last-child { color: $trk_out_fg; }
+    &:last-child > widget:last-child { color: $background_tracker_out; }
   }
 
   entry { // enforce flat-style
@@ -2553,16 +2553,16 @@ window#whiskermenu-window {
         animation: none;
         transition: none;
       }
-      &:hover { background-color: $trk_bg; }
+      &:hover { background-color: $background_tracker; }
       &:checked {
-        background-color: track($sel_bg, $alpha_track_1);
-        color: $sel_label;
+        background-color: track($background_selection, $alpha_track_1);
+        color: $label_selection;
       }
     }
 
     treeview.view:selected:hover {
-      background-color: mix($fg, $base, percentage($alpha_track_1));
-      color: $fg;
+      background-color: mix($foreground, $base, percentage($alpha_track_1));
+      color: $foreground;
     }
   }
 }
@@ -2580,12 +2580,12 @@ $tabwin_padding: if($ref_weight < 1.0, 8px, 12px);
     border: 0 none transparent;
     border-radius: $r_8;
     @if $variant == mixed {
-      background-color: track($inv_dark_bg, $alpha_osd);
-      color: $inv_fg;
+      background-color: track($background_dark_inv, $alpha_osd);
+      color: $foreground_inv;
     }
     @else {
-      background-color: track($dark_bg, $alpha_osd);
-      color: $fg;
+      background-color: track($background_dark, $alpha_osd);
+      color: $foreground;
     }
   }
 
@@ -2605,7 +2605,7 @@ $tabwin_padding: if($ref_weight < 1.0, 8px, 12px);
     font-weight: 500;
     &:not(:disabled) { background-image: none; } // unset ink-reactions
     &:not(:hover):not(:active):not(:checked):not(:disabled) {
-      color: if($variant == mixed, $inv_sec_fg, $sec_fg);
+      color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
     }
 
     box.vertical {
@@ -2628,13 +2628,13 @@ $tabwin_padding: if($ref_weight < 1.0, 8px, 12px);
 
 dialog.xfsm-logout-dialog.keycap { // keycap class!? crazy...
   @include radius(0, none);
-  border: 1px solid $div_sld_fg;
-  background-color: $bg;
-  color: $fg;
+  border: 1px solid $foreground_div_sld;
+  background-color: $background;
+  color: $foreground;
   box-shadow: none;
 
   label.xfsm-logout-label {
-    color: $ter_fg;
+    color: $foreground_tertiary;
     font-weight: 700;
   }
 
@@ -2657,7 +2657,7 @@ window.thunar {
     }
   }
 
-  > grid.horizontal > paned.horizontal { border-top: 1px solid $div_fg; }
+  > grid.horizontal > paned.horizontal { border-top: 1px solid $foreground_div; }
 
   notebook {
     // hide unneeded border
@@ -2677,13 +2677,13 @@ paned.headerbar_pane.titlebar > headerbar.header_right.titlebar {
   > box.linked.raised > button.toggle { // should be .text-button
     &:dir(ltr) {
       @include radius(0);
-      &:first-child { @include radius($r_2 0 0 $r_2); }
-      &:last-child { @include radius(0 $r_2 $r_2 0); }
+      &:first-child { @include radius($radius_2 0 0 $radius_2); }
+      &:last-child { @include radius(0 $radius_2 $radius_2 0); }
     }
     &:dir(rtl) {
       @include radius(0);
-      &:first-child { @include radius(0 $r_2 $r_2 0); }
-      &:last-child { @include radius($r_2 0 0 $r_2); }
+      &:first-child { @include radius(0 $radius_2 $radius_2 0); }
+      &:last-child { @include radius($radius_2 0 0 $radius_2); }
     }
   }
 }
@@ -2691,21 +2691,21 @@ paned.headerbar_pane.titlebar > headerbar.header_right.titlebar {
 // article-list
 overlay.article-list > stack {
   > scrolledwindow > viewport.frame > list {
-    background-color: $bg;
+    background-color: $background;
 
     > row.activatable {
-      &:hover { background-color: $trk_bg; }
+      &:hover { background-color: $background_tracker; }
       &:selected {
         &,
         &:focus {
-          background-color: track($sel_bg, $alpha_track_1);
-          &:dir(ltr) { box-shadow: inset 4px 0 $sel_bg; }
-          &:dir(rtl) { box-shadow: inset -4px 0 $sel_bg; }
+          background-color: track($background_selection, $alpha_track_1);
+          &:dir(ltr) { box-shadow: inset 4px 0 $background_selection; }
+          &:dir(rtl) { box-shadow: inset -4px 0 $background_selection; }
 
           label {
             &,
             &.headline-read,
-            &.preview { color: $fg; }
+            &.preview { color: $foreground; }
           }
         }
       }
@@ -2739,7 +2739,7 @@ window > box.vertical > box.horizontal {
         font-size: 90%;
       }
 
-      > label { color: $dis_fg; }
+      > label { color: $foreground_dis; }
     }
   }
 
@@ -2759,7 +2759,7 @@ window.background:not(.solid-csd) > box.vertical {
         min-height: if($ref_weight < 1.0, $icon_size * 1.5, $icon_size * 1.75);
         min-width: if($ref_weight < 1.0, $icon_size * 1.5, $icon_size * 1.75);
         margin: 2px 0;
-        @include radius($r_2);
+        @include radius($radius_2);
       }
     }
 
@@ -2769,7 +2769,7 @@ window.background:not(.solid-csd) > box.vertical {
   > scrolledwindow > widget > widget {
     border-width: 0 0 1px;
     border-style: none none solid;
-    border-color: transparent transparent $div_sld_fg;
+    border-color: transparent transparent $foreground_div_sld;
   }
 
   widget > frame > widget > widget > scrolledwindow > textview {
@@ -2807,35 +2807,35 @@ window.background:not(.solid-csd) > box.vertical {
 %browser_csd_titlebutton {
   // define global titlebutton class sizing
   @include button(flat-normal);
-  @include radius($r, none);
+  @include radius($radius, none);
   margin: 0; // unset margins
   padding: 0;
 
   &.close {
-    color: if($variant == mixed, $inv_sec_fg, $sec_fg);
+    color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
     &:hover {
-      background-color: $dest_bg;
-      color: $sel_fg;
+      background-color: $background_destruction;
+      color: $foreground_selection;
     }
     &:active,
     &:backdrop:active {
-      background-color: $sel_bg;
-      color: $sel_fg;
+      background-color: $background_selection;
+      color: $foreground_selection;
     }
     &:backdrop {
       @if $variant == mixed {
-        color: track($inv_fg, $alpha_foreground_bdp);
+        color: track($foreground_inv, $alpha_foreground_bdp);
       }
       @else {
-        color: track($fg, $alpha_foreground_bdp);
+        color: track($foreground, $alpha_foreground_bdp);
       }
       &:hover {
-        background-color: track($dest_bg, $alpha_foreground_bdp);
+        background-color: track($background_destruction, $alpha_foreground_bdp);
         @if $variant == mixed {
-          color: mix($sel_fg, $inv_dark_bg, percentage($alpha_foreground_bdp));
+          color: mix($foreground_selection, $background_dark_inv, percentage($alpha_foreground_bdp));
         }
         @else {
-          color: mix($sel_fg, $dark_bg, percentage($alpha_foreground_bdp));
+          color: mix($foreground_selection, $background_dark, percentage($alpha_foreground_bdp));
         }
       }
     }
@@ -2843,43 +2843,43 @@ window.background:not(.solid-csd) > box.vertical {
 
   &.minimize,
   &.maximize {
-    color: if($variant == mixed, $inv_sec_fg, $sec_fg);
+    color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
     &:hover {
       @if $variant ==mixed {
-        background-color: track($inv_fg, $alpha_track_1);
-        color: $inv_fg;
+        background-color: track($foreground_inv, $alpha_track_1);
+        color: $foreground_inv;
       }
       @else {
-        background-color: track($fg, $alpha_track_1);
-        color: $fg;
+        background-color: track($foreground, $alpha_track_1);
+        color: $foreground;
       }
     }
     &:active,
     &:active:backdrop {
       @if $variant ==mixed {
-        background-color: track($inv_fg, $alpha_track_2);
-        color: $inv_fg;
+        background-color: track($foreground_inv, $alpha_track_2);
+        color: $foreground_inv;
       }
       @else {
-        background-color: track($fg, $alpha_track_2);
-        color: $fg;
+        background-color: track($foreground, $alpha_track_2);
+        color: $foreground;
       }
     }
     &:backdrop {
       @if $variant == mixed {
-        color: track($inv_sec_fg, $alpha_foreground_bdp);
+        color: track($foreground_inv_secondary, $alpha_foreground_bdp);
       }
       @else {
-        color: track($sec_fg, $alpha_foreground_bdp);
+        color: track($foreground_secondary, $alpha_foreground_bdp);
       }
       &:hover {
         @if $variant ==mixed {
-          background-color: track($inv_fg, $alpha_track_1);
-          color: track($inv_fg, $alpha_foreground_bdp);
+          background-color: track($foreground_inv, $alpha_track_1);
+          color: track($foreground_inv, $alpha_foreground_bdp);
         }
         @else {
-          background-color: track($fg, $alpha_track_1);
-          color: track($fg, $alpha_foreground_bdp);
+          background-color: track($foreground, $alpha_track_1);
+          color: track($foreground, $alpha_foreground_bdp);
         }
       }
     }
@@ -2916,9 +2916,9 @@ window.background:not(.solid-csd) > box.vertical {
       &:focus { outline-width: 0; } // hide outlines
     }
 
-    border { border-color: $div_sld_fg; }
+    border { border-color: $foreground_div_sld; }
 
-    separator { background-color: $div_sld_fg; }
+    separator { background-color: $foreground_div_sld; }
 
     > scrolledwindow > textview text {
       &:selected { @extend %selected_items; }
@@ -2935,7 +2935,7 @@ window.background:not(.solid-csd) > box.vertical {
     > entry {
       @extend %_html_entry_spacing;
       // enforce fallback radius
-      @include radius($r_4, none);
+      @include radius($radius_4, none);
     }
   }
 }
@@ -2954,14 +2954,14 @@ window.background:not(.solid-csd) > box.vertical {
   #PanelPlug,
   #PanelApplet {
     @extend %gnome_panel_applet;
-    background-color: $panel_bg; // >= 1.18.6
+    background-color: $background_panel; // >= 1.18.6
   }
 
   PanelSeparator {
     border-width: 0;
     background: none;
     background-image: none;
-    color: $panel_div_fg;
+    color: $foreground_panel_div;
   }
 
   @each $layout, $size, $dir in (horizontal, 7px 14px, right),
@@ -3007,7 +3007,7 @@ window.background:not(.solid-csd) > box.vertical {
     padding: 0;
     @include radius(0);
     border-style: solid;
-    border-color: $panel_div_fg;
+    border-color: $foreground_panel_div;
     @if $variant == mixed { @extend %inv_flat_button; }
     @else { @extend %flat_button; }
 
@@ -3042,16 +3042,16 @@ window.background:not(.solid-csd) > box.vertical {
     #PanelApplet-window-menu-applet-button {
       > menuitem {
         padding: rem(4px, $sw: 1.0) 0;
-        &:hover { box-shadow: inset 2px 0 $sel_bg; }
+        &:hover { box-shadow: inset 2px 0 $background_selection; }
       }
     }
 
     #tasklist-button,
     #clock-applet-button,
     #showdesktop-button {
-      &:hover { box-shadow: inset 2px 0 $trk_out_fg; }
+      &:hover { box-shadow: inset 2px 0 $background_tracker_out; }
       &:checked,
-      &:hover:checked { box-shadow: inset 2px 0 $sel_bg; }
+      &:hover:checked { box-shadow: inset 2px 0 $background_selection; }
 
       label { margin-bottom: 0; } // unset baseline
     }
@@ -3069,20 +3069,20 @@ window.background:not(.solid-csd) > box.vertical {
       font-weight: 700;
       &:hover {
         @if $variant != light {
-          @include button(flat-normal, $tc: $sel_fg);
+          @include button(flat-normal, $text-color: $foreground_selection);
         }
         @else {
-          @include button(flat-normal, $tc: black);
+          @include button(flat-normal, $text-color: black);
         }
-        box-shadow: inset 0 -2px $trk_out_fg;
+        box-shadow: inset 0 -2px $background_tracker_out;
       }
       &:active { animation: none; }
       &:checked {
         @if $variant != light {
-          @include button(flat-lined-checked, $tc: $sel_fg);
+          @include button(flat-lined-checked, $text-color: $foreground_selection);
         }
         @else {
-          @include button(flat-lined-checked, $tc: black);
+          @include button(flat-lined-checked, $text-color: black);
         }
       }
 
@@ -3092,19 +3092,19 @@ window.background:not(.solid-csd) > box.vertical {
     // vertical panel mode?
     &.brisk-button-vertical {
       padding: 0;
-      &:hover { box-shadow: inset 2px 0 $trk_out_fg; }
-      &:checked { box-shadow: inset 2px 0 $sel_bg; }
+      &:hover { box-shadow: inset 2px 0 $background_tracker_out; }
+      &:checked { box-shadow: inset 2px 0 $background_selection; }
     }
   }
 
   .brisk-menu {
-    border: 1px solid $div_sld_fg;
-    background-color: $dark_bg;
+    border: 1px solid $foreground_div_sld;
+    background-color: $background_dark;
 
     entry { // search-entry
       margin: rem(4px);
       @extend %flat_entry_sizing;
-      @include radius($r_4 $r_4 0 0, none);
+      @include radius($radius_4 $radius_4 0 0, none);
       @include entry(flat-normal);
       &:focus { @include entry(flat-focus); }
       &:disabled { @include entry(flat-disabled); }
@@ -3118,11 +3118,11 @@ window.background:not(.solid-csd) > box.vertical {
         border: unset;
         &:dir(ltr) {
           border-left: 1px solid if($variant == dark, track(white, $alpha_div_2),
-                                                      $div_fg);
+                                                      $foreground_div);
         }
         &:dir(rtl) {
           border-right: 1px solid if($variant == dark, track(white, $alpha_div_2),
-                                                       $div_fg);
+                                                       $foreground_div);
         }
       }
     }
@@ -3136,10 +3136,10 @@ window.background:not(.solid-csd) > box.vertical {
         transition-duration: $transition_d_short; // shorter duration
         // almost covers :hover pseudo-class
         &:checked {
-          background-color: $trk_bg;
-          color: $sel_label;
-          &:dir(ltr) { @include radius($r_2 $r $r $r_2); }
-          &:dir(rtl) { @include radius($r $r_2 $r_2 $r); }
+          background-color: $background_tracker;
+          color: $label_selection;
+          &:dir(ltr) { @include radius($radius_2 $radius $radius $radius_2); }
+          &:dir(rtl) { @include radius($radius $radius_2 $radius_2 $radius); }
         }
 
         image { padding: rem(8px) 0; }
@@ -3147,7 +3147,7 @@ window.background:not(.solid-csd) > box.vertical {
 
       separator.horizontal {
         background-color: if($variant == dark, track(white, $alpha_div_2),
-                                               $div_fg);
+                                               $foreground_div);
       }
     }
 
@@ -3163,7 +3163,7 @@ window.background:not(.solid-csd) > box.vertical {
 
     @at-root %brisk_right_pane,
     list.content-view.view { // right-pane
-      background-color: $dark_bg;
+      background-color: $background_dark;
 
       row.activatable {
         padding: 0;
@@ -3191,9 +3191,9 @@ window.background:not(.solid-csd) > box.vertical {
     background-color: transparent;
 
     frame { // draw actual widget
-      border: 1px solid $div_sld_fg;
-      border-radius: $r_4;
-      background-color: $dark_bg;
+      border: 1px solid $foreground_div_sld;
+      border-radius: $radius_4;
+      background-color: $background_dark;
 
       // unset borders
       *,
@@ -3211,12 +3211,12 @@ window.background:not(.solid-csd) > box.vertical {
       border: none;
       // draw pane-separator with borders
       // FIXME: rendering quality is quite poor
-      &:dir(ltr) { border-left: 1px solid $div_sld_fg; }
-      &:dir(rtl) { border-right: 1px solid $div_sld_fg; }
+      &:dir(ltr) { border-left: 1px solid $foreground_div_sld; }
+      &:dir(rtl) { border-right: 1px solid $foreground_div_sld; }
 
       > widget.view { // content-view
         all: unset;
-        background-color: $bg; // does not work
+        background-color: $background; // does not work
       }
     }
   }
@@ -3234,10 +3234,10 @@ window.background:not(.solid-csd) > box.vertical {
         > stack {
           border-width: 1px;
           border-style: solid;
-          border-color: $bg;
+          border-color: $background;
           box-shadow: none;
-          &:dir(ltr) { border-left-color: $div_pane_fg; }
-          &:dir(rtl) { border-right-color: $div_pane_fg; }
+          &:dir(ltr) { border-left-color: $foreground_div_pane; }
+          &:dir(rtl) { border-right-color: $foreground_div_pane; }
         }
       }
     }
@@ -3251,8 +3251,8 @@ window.background:not(.solid-csd) > box.vertical {
     statusbar { // always use dark-variant
       margin: 0 -10px; // hide weird lateral gaps
       padding: 0 $toolbar_padding;
-      background-color: $inv_dark_bg;
-      color: $inv_fg;
+      background-color: $background_dark_inv;
+      color: $foreground_inv;
     }
   }
 
@@ -3263,15 +3263,15 @@ window.background:not(.solid-csd) > box.vertical {
   .pluma-window {
     paned.horizontal notebook {
       > header.top { // revive top-border when tabs are shown
-        border-top: 1px solid $div_fg;
-        background-color: $bg;
+        border-top: 1px solid $foreground_div;
+        background-color: $background;
       }
     }
 
     statusbar {
       margin: 0 -10px; // hide weird lateral gaps
       padding: 0 $toolbar_padding;
-      background-color: $dark_bg;
+      background-color: $background_dark;
 
       frame,
       .frame { border-style: none; }
@@ -3286,8 +3286,8 @@ window.background:not(.solid-csd) > box.vertical {
     .pluma-print-preview toolbar.horizontal {
       border-width: 1px 0;
       border-style: solid none;
-      border-color: $div_fg transparent;
-      background-color: $dark_bg;
+      border-color: $foreground_div transparent;
+      background-color: $background_dark;
     }
   }
 }
@@ -3327,7 +3327,7 @@ window.background:not(.solid-csd) > box.vertical {
     }
 
     notebook {
-      border-top: 1px solid $div_fg;
+      border-top: 1px solid $foreground_div;
 
       .frame { border: none; }
     }
@@ -3338,18 +3338,18 @@ window.background:not(.solid-csd) > box.vertical {
   }
 
   // main toolbar styling
-  toolbar.primary-toolbar { border-bottom: 1px solid $div_fg; }
+  toolbar.primary-toolbar { border-bottom: 1px solid $foreground_div; }
 
   .caja-pathbar { // path-bar styling
     button {
       &:first-child { // remove meaningless gaps
         &:dir(ltr) {
           margin-right: -2px;
-          @include radius($r_2 0 0 $r_2);
+          @include radius($radius_2 0 0 $radius_2);
         }
         &:dir(rtl) {
           margin-left: -2px;
-          @include radius(0 $r_2 $r_2 0);
+          @include radius(0 $radius_2 $radius_2 0);
         }
       }
       &:not(:first-child):not(:last-child) {
@@ -3359,11 +3359,11 @@ window.background:not(.solid-csd) > box.vertical {
       &:last-child {
         &:dir(ltr) {
           margin-left: -2px;
-          @include radius(0 $r_2 $r_2 0);
+          @include radius(0 $radius_2 $radius_2 0);
         }
         &:dir(rtl) {
           margin-right: -2px;
-          @include radius($r_2 0 0 $r_2);
+          @include radius($radius_2 0 0 $radius_2);
         }
       }
 
@@ -3373,24 +3373,24 @@ window.background:not(.solid-csd) > box.vertical {
 
   button.image-button.toggle { // most-left toggle button in path-bar pane
     @extend %toolitem_size;
-    @include radius($r_2);
+    @include radius($radius_2);
   }
 
   .caja-notebook {
-    border-top: 1px solid $div_fg; // top only
+    border-top: 1px solid $foreground_div; // top only
 
     .frame { border-width: 0 0 1px; } // bottom only
 
     treeview.view:not(:focus):selected {
       // protect selection backgrounds in 'extra pane' mode
-      background-image: image($sel_bg);
+      background-image: image($background_selection);
     }
   }
 
   statusbar {
     margin: 0 -10px; // hide weird lateral gaps
     padding: 0 $toolbar_padding;
-    background-color: $dark_bg;
+    background-color: $background_dark;
   }
 
   // workaround for invisible text in rename entry
@@ -3403,8 +3403,8 @@ window.background:not(.solid-csd) > box.vertical {
 }
 
 #caja-extra-view-widget {
-  border-bottom: 1px solid $div_fg;
-  background-color: $bg; // needs overriding
+  border-bottom: 1px solid $foreground_div;
+  background-color: $background; // needs overriding
 
   > box > box > label { font-weight: 700; }
 }
@@ -3426,7 +3426,7 @@ window.background:not(.solid-csd) > box.vertical {
   }
 
   toolbar > toolbutton button.flat.image-button { // back to square buttons
-    @include radius($r_2);
+    @include radius($radius_2);
   }
 
   // 'presentation' mode fullscreen?
@@ -3436,11 +3436,11 @@ window.background:not(.solid-csd) > box.vertical {
 
     // use opaque borders
     > toolbar:not(.primary-toolbar).horizontal {
-      border-bottom-color: $div_sld_fg;
+      border-bottom-color: $foreground_div_sld;
     }
 
     // revert to standard backgrounds
-    > paned.horizontal { background-color: $bg; }
+    > paned.horizontal { background-color: $background; }
   }
 }
 
@@ -3454,33 +3454,33 @@ window.background:not(.solid-csd) > box.vertical {
     &.background.osd {
       border-radius: $r_8;
       @if $variant == mixed {
-        border: 1px solid track($inv_dark_bg, $alpha_osd);
-        background-color: track($inv_dark_bg, $alpha_osd);
+        border: 1px solid track($background_dark_inv, $alpha_osd);
+        background-color: track($background_dark_inv, $alpha_osd);
       }
       @else {
-        border: 1px solid track($dark_bg, $alpha_osd);
-        background-color: track($dark_bg, $alpha_osd);
+        border: 1px solid track($background_dark, $alpha_osd);
+        background-color: track($background_dark, $alpha_osd);
       }
       box-shadow: none;
 
       // FIXME: seems images have inverted fore/back colors?
-      image { color: if($variant == mixed, $inv_fg, $fg); }
+      image { color: if($variant == mixed, $foreground_inv, ); }
 
       .trough {
         border-radius: 0;
         border: none;
         @if $variant == mixed {
-          background-color: track($inv_fg, $alpha_track_out);
+          background-color: track($foreground_inv, $alpha_track_out);
         }
         @else {
-          background-color: track($fg, $alpha_track_out);
+          background-color: track($foreground, $alpha_track_out);
         }
       }
 
       .progressbar {
         border-radius: 0;
         border: none;
-        background-color: $sccs_bg;
+        background-color: $background_success;
       }
     }
   }
@@ -3511,7 +3511,7 @@ window.background:not(.solid-csd) > box.vertical {
 //  ****************/
 
 window.background:not(.solid-csd) {
-  > widget > separator { color: $div_sld_fg; } // for toolbars
+  > widget > separator { color: $foreground_div_sld; } // for toolbars
 
   // for 'Notebookbar' toolbar
   > notebook:not(.frame) {
@@ -3531,7 +3531,7 @@ window.background:not(.solid-csd) {
 
 // 2nd-row toolbars
 box#AuxToolbox {
-  border-top: 1px solid $div_fg;
+  border-top: 1px solid $foreground_div;
 
   toolbar {
     @if $ref_weight < 1.0 {
@@ -3553,7 +3553,7 @@ box#AuxToolbox {
     &:disabled {
       image { opacity: $alpha_foreground_dis; }
 
-      &:checked { background-color: track($fg, $alpha_track_1); }
+      &:checked { background-color: track($foreground, $alpha_track_1); }
     }
   }
 }
@@ -3591,7 +3591,7 @@ box#AuxToolbox {
       &.radio {
         @extend %toolitem_size;
         margin: 0;
-        @include radius($r_2);
+        @include radius($radius_2);
       }
     }
   }
@@ -3599,11 +3599,11 @@ box#AuxToolbox {
 
 box#InkSpinScale { // >= 0.92+
   // cover up ugly stock style.css
-  border-image: image($bg) 2 / 2px;
-  box-shadow: inset 0 0 0 999px $bg;
+  border-image: image($background) 2 / 2px;
+  box-shadow: inset 0 0 0 999px $background;
 
   trough {
-    &:not(:disabled) { background-color: track($acc_bg, $alpha_track_out); }
+    &:not(:disabled) { background-color: track($background_accent, $alpha_track_out); }
   }
 }
 
@@ -3632,7 +3632,7 @@ box#DockBox > paned#DockBoxPane {
             trough {
               border-width: 0 1px 0;
               border-style: solid;
-              border-color: $div_sld_fg;
+              border-color: $foreground_div_sld;
             }
 
             slider { min-width: 16px - (1px * 2); }
@@ -3653,21 +3653,21 @@ box#DockBox > paned#DockBoxPane {
   @if $mnr_ver < 23 {
     window.popup:not(.csd) {
       menu {
-        background-color: $dark_bg;
+        background-color: $background_dark;
 
         menuitem {
-          background-color: $dark_bg;
-          color: mix($fg, $dark_bg, percentage($alpha_foreground_2nd));
+          background-color: $background_dark;
+          color: mix($foreground, $background_dark, percentage($alpha_foreground_2nd));
           &:hover {
-            background-color: mix($fg, $dark_bg, percentage($alpha_track_2));
-            color: $fg;
+            background-color: mix($foreground, $background_dark, percentage($alpha_track_2));
+            color: $foreground;
           }
           &:disabled { // popup frame pulls this?
-            background-color: $dark_bg;
-            color: mix($fix_fg, $dark_bg, percentage($alpha_foreground_dis));
+            background-color: $background_dark;
+            color: mix($foreground_fix, $background_dark, percentage($alpha_foreground_dis));
 
             label, // reset for generic non-composited Gtk apps
-            arrow { color: mix($fg, $dark_bg, percentage($alpha_foreground_dis)); }
+            arrow { color: mix($foreground, $background_dark, percentage($alpha_foreground_dis)); }
           }
         }
       }
@@ -3728,8 +3728,8 @@ window.background:not(.solid-csd) > box.vertical {
 
 %chromium_unfocused_tab {
   color: if($variant == mixed,
-            mix($inv_fg, $inv_dark_bg, percentage($alpha_foreground_3rd)),
-            mix($fg, $dark_bg, percentage($alpha_foreground_3rd)));
+            mix($foreground_inv, $background_dark_inv, percentage($alpha_foreground_3rd)),
+            mix($foreground, $background_dark, percentage($alpha_foreground_3rd)));
 }
 
 window.background.chromium {
@@ -3749,28 +3749,28 @@ window.background.chromium {
   }
 
   button { // for active-tab top edge borders
-    border-color: $sel_bg;
+    border-color: $background_selection;
   }
 
   > button:not(.suggested-action):not(.destructive-action),
   > treeview.view button {
     // and then reset above borders for generic buttons
-    border-color: $div_fg;
+    border-color: $foreground_div;
   }
 
-  > treeview.view button { background-color: $bg; } // header buttons
+  > treeview.view button { background-color: $background; } // header buttons
 
   > scrollbar button { // stepper buttons
-    border-color: $bg;
-    background-color: $bg;
+    border-color: $background;
+    background-color: $background;
   }
 
   > button.suggested-action:selected { // for 'focused' prominent button
-    background-color: mix($sel_fg, $sggt_bg, percentage($alpha_track_1));
+    background-color: mix($foreground_selection, $background_suggestion, percentage($alpha_track_1));
   }
 
   @if $variant == mixed { // do not mix with foregrounds
-    > spinner { color: $acc_bg; }
+    > spinner { color: $background_accent; }
   }
 }
 
@@ -3800,7 +3800,7 @@ window.background > overlay > revealer { // parent container
 
 list.tilix-session-sidebar {
   // use -image property instead
-  background-image: image($dark_bg);
+  background-image: image($background_dark);
 
   button.tilix-sidebar-close-button {
     min-height: rem($small_widget);
@@ -3819,7 +3819,7 @@ widget > box.terminal-titlebar {
     &:checked {
       border-image:
         radial-gradient(circle farthest-corner at center,
-                        $sel_bg 100%,
+                        $background_selection 100%,
                         transparent)
                         0 0 2 / 0 0 2px;
       background-color: transparent;
@@ -3830,12 +3830,12 @@ widget > box.terminal-titlebar {
       min-height: $menuitem_height;
       margin: 0;
       padding: 0 rem($txt_button_lr_space);
-      color: $sec_fg;
-      &:disabled { color: $dis_fg; }
+      color: $foreground_secondary;
+      &:disabled { color: $foreground_dis; }
       &:not(:disabled) {
         border-image:
           radial-gradient(circle farthest-corner at center,
-                          $sel_bg 100%,
+                          $background_selection 100%,
                           transparent)
                           0 0 2 / 0 0 2px;
         background-color: transparent;
@@ -3846,7 +3846,7 @@ widget > box.terminal-titlebar {
     &:active,
     &:checked {
       &, label.tilix-terminal-title {
-        &, &:disabled { color: $fg; }
+        &, &:disabled { color: $foreground; }
       }
     }
   }
@@ -3910,7 +3910,7 @@ notebook.psppire-data-editor widget.view {
       min-width: $icon_size;
       padding: 0 3px;
       @include radius(0, none);
-      border: 0 solid $sel_bg;
+      border: 0 solid $background_selection;
       background-color: $base;
       box-shadow: none;
       transition: none;
@@ -3956,13 +3956,13 @@ notebook.psppire-data-editor widget.view {
 // That app does not have any position specific style-classes,
 // so embed indicators at the bottom of tasklist buttons as default.
 window#ValaPanel.background { // solid-mode
-  background-color: $panel_bg;
-  color: if($variant == mixed, $inv_fg, $fg);
+  background-color: $background_panel;
+  color: if($variant == mixed, $foreground_inv, );
 
   > decoration { all: unset; } // unset root decoration
 
   widget.-vala-panel-background > separator { // separator applet
-    background-color: $panel_div_fg;
+    background-color: $foreground_panel_div;
   }
 }
 
@@ -3973,48 +3973,48 @@ button.flat.-panel-button { // generic panel buttons
   @include radius(0);
   font-weight: 700;
   @if $variant == mixed {
-    @include button(flat-normal, $tc: $inv_fg);
-    @include ink-reaction(normal, $fc: $inv_fg, $tr: ink-normal-dec);
+    @include button(flat-normal, $text-color: $foreground_inv);
+    @include ink-reaction(normal, $fc: $foreground_inv, $tr: ink-normal-dec);
   }
   @else {
-    @include button(flat-normal, $tc: $fg);
-    @include ink-reaction(normal, $fc: $fg, $tr: ink-normal-dec);
+    @include button(flat-normal, $text-color: $foreground);
+    @include ink-reaction(normal, $fc: $foreground, $tr: ink-normal-dec);
   }
   @if $variant != light {
-    &:hover { @include button(flat-hover, $tc: $sel_fg); }
+    &:hover { @include button(flat-hover, $text-color: $foreground_selection); }
     &:active {
-      @include button(flat-active, $tc: $sel_fg);
+      @include button(flat-active, $text-color: $foreground_selection);
       @include ink-reaction(
-                 active-dec, $fc: $sel_fg, $tr: ink-active-dec);
+                 active-dec, $fc: $foreground_selection, $tr: ink-active-dec);
     }
     &:disabled {
-      @include button(flat-disabled, $tc: $inv_fg);
+      @include button(flat-disabled, $text-color: $foreground_inv);
     }
   }
   @else {
-    &:hover { @include button(flat-hover, $tc: black); }
+    &:hover { @include button(flat-hover, $text-color: black); }
     &:active {
-      @include button(flat-active, $tc: black);
+      @include button(flat-active, $text-color: black);
       @include ink-reaction(
                  active-dec, $fc: black, $tr: ink-active-dec);
     }
     &:disabled {
-      @include button(flat-disabled, $tc: $fg);
+      @include button(flat-disabled, $text-color: $foreground);
     }
   }
   &:checked {
     @if $variant != light {
-      @include button(flat-lined-checked, $tc: $sel_fg);
+      @include button(flat-lined-checked, $text-color: $foreground_selection);
     }
     @else {
-      @include button(flat-lined-checked, $tc: black);
+      @include button(flat-lined-checked, $text-color: black);
     }
   }
 
   label { margin-bottom: 0; } // unset baseline
 
   box.vertical & {
-    &:checked { box-shadow: inset 2px 0 $sel_bg; }
+    &:checked { box-shadow: inset 2px 0 $background_selection; }
   }
 
   // FIXME: weird asymmetrical spacing exists at the right side of Application-
@@ -4037,29 +4037,29 @@ button.flat.-panel-icon-button {
 
   &:hover {
     @if $variant == mixed {
-      box-shadow: inset 0 -2px track($inv_fg, $alpha_foreground_bdp);
+      box-shadow: inset 0 -2px track($foreground_inv, $alpha_foreground_bdp);
     }
     @else {
-      box-shadow: inset 0 -2px track($fg, $alpha_foreground_bdp);
+      box-shadow: inset 0 -2px track($foreground, $alpha_foreground_bdp);
     }
   }
   &:active,
   &:checked {
-    box-shadow: inset 0 -2px $sel_bg;
+    box-shadow: inset 0 -2px $background_selection;
   }
 
   box.vertical & {
     &:hover {
       @if $variant == mixed {
-        box-shadow: inset 2px 0 track($inv_fg, $alpha_foreground_bdp);
+        box-shadow: inset 2px 0 track($foreground_inv, $alpha_foreground_bdp);
       }
       @else {
-        box-shadow: inset 2px 0 track($fg, $alpha_foreground_bdp);
+        box-shadow: inset 2px 0 track($foreground, $alpha_foreground_bdp);
       }
     }
     &:active,
     &:checked {
-      box-shadow: inset 2px 0 $sel_bg;
+      box-shadow: inset 2px 0 $background_selection;
     }
   }
 }
@@ -4071,8 +4071,8 @@ button.flat.-panel-icon-button {
   > image {
     background-image:
       if($variant == light,
-         image($sel_bg),
-         image(saturate(lighten($sel_bg, percentage($alpha_track_2)),
+         image($background_selection),
+         image(saturate(lighten($background_selection, percentage($alpha_track_2)),
                  percentage($alpha_track_2))));
     background-size: (6px / 1.1) 2px; // 1:1.1 aspect deformation exists
     background-position: bottom center;
@@ -4081,7 +4081,7 @@ button.flat.-panel-icon-button {
   &:hover,
   &:active,
   &:checked {
-    box-shadow: inset 0 -2px $sel_bg;
+    box-shadow: inset 0 -2px $background_selection;
   }
 
   box.vertical & {
@@ -4093,7 +4093,7 @@ button.flat.-panel-icon-button {
     &:hover,
     &:active,
     &:checked {
-      box-shadow: inset 2px 0 $sel_bg;
+      box-shadow: inset 2px 0 $background_selection;
     }
   }
 }
@@ -4106,7 +4106,7 @@ button.flat.-panel-icon-button {
 
   box.vertical & {
     padding: rem(4px, $sw: 1.0) 0;
-    &:hover { box-shadow: inset 2px 0 $sel_bg; }
+    &:hover { box-shadow: inset 2px 0 $background_selection; }
   }
 }
 
@@ -4139,7 +4139,7 @@ menubar.-vala-panel-background {
 // non-CSD preference dialog
 dialog.background:not(.csd) {
   .dialog-vbox stacksidebar.sidebar scrolledwindow {
-    .frame { border: 1px solid $div_fg; }
+    .frame { border: 1px solid $foreground_div; }
 
     list {
       &:dir(ltr),
@@ -4176,10 +4176,10 @@ widget.-vala-panel-appmenu-core { // appmenu applets
   &:backdrop { opacity: 1.0; } // do not dimm in backdrop state
   &:hover {
     background-color: transparent;
-    box-shadow: inset 0 -2px $sel_bg;
+    box-shadow: inset 0 -2px $background_selection;
 
     box.vertical & { // for vertical vala-panel
-      box-shadow: inset 2px 0 $sel_bg;
+      box-shadow: inset 2px 0 $background_selection;
     }
 
     @each $along_side, $_line in (top, 0 3px),
@@ -4187,7 +4187,7 @@ widget.-vala-panel-appmenu-core { // appmenu applets
                                  (left, 3px 0),
                                  (right, -3px 0) {
       .budgie-container.#{$along_side} & { // for budgie-panel
-        box-shadow: inset #{$_line} $sel_bg;
+        box-shadow: inset #{$_line} $background_selection;
       }
     }
   }
@@ -4209,20 +4209,20 @@ widget.-vala-panel-appmenu-core { // appmenu applets
 
 window#live_installer {
   widget#title_eventbox.menubar { // title header container
-    background-color: if($variant == mixed, $inv_dark_bg, $dark_bg);
-    color: if($variant == mixed, $inv_fg, $fg);
+    background-color: if($variant == mixed, $background_dark_inv, $background_dark);
+    color: if($variant == mixed, $foreground_inv, );
     font-weight: 700;
 
     label#page_title,
     image#page_logo {
-      color: if($variant == mixed, $inv_fg, $fg);
+      color: if($variant == mixed, $foreground_inv, );
     }
   }
 
   widget#progress_eventbox.menubar { // bottom container
-    border-top: 1px solid $div_fg;
+    border-top: 1px solid $foreground_div;
     background-color: $base;
-    color: $fg;
+    color: $foreground;
 
     // 4px from <data>
     progressbar trough { border-radius: 4px; }
@@ -4237,20 +4237,20 @@ window#live_installer {
 box.vertical > stack > box > revealer > stack > scrolledwindow {
   > viewport.frame > list {
     @extend %sidebar_template;
-    &:dir(ltr) { border-right: 1px solid $div_fg; }
-    &:dir(rtl) { border-left: 1px solid $div_fg; }
+    &:dir(ltr) { border-right: 1px solid $foreground_div; }
+    &:dir(rtl) { border-left: 1px solid $foreground_div; }
 
     > row.activatable {
       &:selected {
-        &:dir(ltr) { @include radius(0 $r $r 0); }
-        &:dir(rtl) { @include radius($r 0 0 $r); }
+        &:dir(ltr) { @include radius(0 $radius $radius 0); }
+        &:dir(rtl) { @include radius($radius 0 0 $radius); }
 
         &, &:focus { outline-width: 0; } // unset focus outlines
 
         &, &:hover {
-          background-color: $trk_bg;
+          background-color: $background_tracker;
 
-          &, label { color: $sel_label; }
+          &, label { color: $label_selection; }
         }
       }
 
@@ -4264,7 +4264,7 @@ box.vertical > stack > box > revealer > stack > scrolledwindow {
 //  *********/
 
 window#GeanyMainWindow {
-  toolbar#GeanyToolbar { border-bottom: 1px solid $div_fg; }
+  toolbar#GeanyToolbar { border-bottom: 1px solid $foreground_div; }
 
   paned.vertical {
     > notebook.frame { // bottom-frame
@@ -4272,8 +4272,8 @@ window#GeanyMainWindow {
       &:dir(rtl) { border-width: 0 1px 1px 0; }
 
       treeview.view:selected {
-        background-color: $trk_bg;
-        color: $sel_label;
+        background-color: $background_tracker;
+        color: $label_selection;
       }
     }
 
@@ -4290,7 +4290,7 @@ window#GeanyMainWindow {
   }
 
   // stock CSS gets in our way
-  button#geany-close-tab-button { @include radius($r_2, none); }
+  button#geany-close-tab-button { @include radius($radius_2, none); }
 }
 
 // /**********
@@ -4302,41 +4302,41 @@ window#GeanyMainWindow {
 window.background > stack > box.horizontal > revealer { // left/right stack
   &:first-child {
     > scrolledwindow > viewport.frame > list.sidebar {
-      &:dir(ltr) { border-right: 1px solid $div_fg; }
-      &:dir(rtl) { border-left: 1px solid $div_fg; }
+      &:dir(ltr) { border-right: 1px solid $foreground_div; }
+      &:dir(rtl) { border-left: 1px solid $foreground_div; }
 
       > row.activatable {
         min-height: calc(#{rem($small_widget)} + 4px);
         &:hover:not(:selected) { // damned lutris.css gets in our way
-          box-shadow: inset 0 0 0 999px mix($fg, $bg, percentage($alpha_track_1));
+          box-shadow: inset 0 0 0 999px mix($foreground, $background, percentage($alpha_track_1));
         }
         &:selected {
           @include radius(0);
-          color: $fg;
+          color: $foreground;
           &:dir(ltr) {
             box-shadow: inset 0 0 0 999px
-                        mix($sel_label, $bg, percentage($alpha_track_1)),
-                        inset 4px 0 $sel_bg;
+                        mix($label_selection, $background, percentage($alpha_track_1)),
+                        inset 4px 0 $background_selection;
           }
           &:dir(rtl) {
             box-shadow: inset 0 0 0 999px
-                        mix($sel_label, $bg, percentage($alpha_track_1)),
-                        inset -4px 0 $sel_bg;
+                        mix($label_selection, $background, percentage($alpha_track_1)),
+                        inset -4px 0 $background_selection;
           }
         }
 
         button.flat { // should use .image-button.small-button class!
           min-width: rem($small_widget);
           min-height: rem($small_widget);
-          @include radius($r);
+          @include radius($radius);
         }
       }
     }
   }
 
   > scrolledwindow.game-scrolled {
-    &:dir(ltr) { border-left: 1px solid $div_fg; }
-    &:dir(rtl) { border-right: 1px solid $div_fg; }
+    &:dir(ltr) { border-left: 1px solid $foreground_div; }
+    &:dir(rtl) { border-right: 1px solid $foreground_div; }
 
     // alignment is locked by "Play" button 146px width placed above,
     // means we can't use font-sensitive scaling at all
@@ -4356,7 +4356,7 @@ window.background {
   > widget:not(combobox):not(spinbutton):not(toolbar) {
     entry {
       border-radius: 0;
-      border: 1px solid $div_sld_fg;
+      border: 1px solid $foreground_div_sld;
     }
   }
 }
@@ -4368,13 +4368,13 @@ window.background {
 grid.horizontal {
   &.library-titlebar {
     // override stylesheet.css
-    border-image: image($bg) 0 0 1 / 0 0 1px;
+    border-image: image($background) 0 0 1 / 0 0 1px;
 
-    label { color: $ter_fg; }
+    label { color: $foreground_tertiary; }
   }
 
   &.library-toolbar {
-    border-image: image($div_sld_fg) 1 0 0 / 1px 0 0;
+    border-image: image($foreground_div_sld) 1 0 0 / 1px 0 0;
 
     separator.vertical { // hide unneeded separators
       min-width: 0;
@@ -4390,18 +4390,18 @@ flowbox flowboxchild.library-box { // GtkFlowBox in sidebar
   &, &:hover {
     grid.library-inner-box { // override stylecsheet.css
       grid,
-      label { color: $fg; }
+      label { color: $foreground; }
     }
   }
 
   &:selected {
     @extend %selected_sidebar_row;
     &, &:hover {
-      background-image: image(track($sel_label, $alpha_track_1));
+      background-image: image(track($label_selection, $alpha_track_1));
 
       grid.library-inner-box {
         grid,
-        label { color: $sel_label; }
+        label { color: $label_selection; }
       }
     }
   }
