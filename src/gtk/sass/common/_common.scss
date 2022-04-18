@@ -2386,7 +2386,7 @@ headerbar {
     }
 
     .title { // fade_effect doesn't work
-      color: if($variant == mixed, $foreground_inv, );
+      color: if($variant == mixed, $foreground_inv, $foreground);
       &:backdrop { color: $foreground_unf_title; }
 
       margin: 0 rem($menuitem-padding, $sw: 1.0) rem($baseline, $sw: 1.0);
@@ -2937,7 +2937,7 @@ dialog.background.csd > headerbar.titlebar {
       background-color: transparent;
       &:hover,
       &:active {
-        background-color: track(if($variant == mixed, $foreground_inv, ),
+        background-color: track(if($variant == mixed, $foreground_inv, $foreground),
                                 $alpha_track_1);
       }
     }
@@ -4980,7 +4980,7 @@ row:selected { @extend %selected_items; }
   box.vertical {
     > label {
       &#summary {
-        color: if($variant == mixed, $foreground_inv, );
+        color: if($variant == mixed, $foreground_inv, $foreground);
         font-weight: 700;
       }
 
@@ -5699,7 +5699,7 @@ tooltip {
 
   label, // default foregrounds
   image {
-    color: if($variant == mixed, $foreground_inv, );
+    color: if($variant == mixed, $foreground_inv, $foreground);
   }
 
   &.csd {
@@ -5856,7 +5856,7 @@ button.flat.scale { // standalone Speaker/Mic buttons
 
 %floating_bar {
   border: 1px solid transparent;
-  color: if($variant == mixed, $foreground_inv, );
+  color: if($variant == mixed, $foreground_inv, $foreground);
   background-color: if($variant == mixed, $background_tooltip_inv,
                                           $background_tooltip);
   font-size: 90%;
@@ -6096,7 +6096,7 @@ headerbar.titlebar.default-decoration {
           color: if($variant == mixed, track($foreground_inv, $alpha_foreground_bdp),
                                        track($foreground, $alpha_foreground_bdp));
         }
-        &:active { color: if($variant == mixed, $foreground_inv, ); }
+        &:active { color: if($variant == mixed, $foreground_inv, $foreground); }
       }
     }
 
