@@ -77,7 +77,7 @@
 // Text color for entries, views and content in general on backdrop windows
 //
 
-@define-color theme_unfocused_text_color #{"" + track(, $alpha_foreground_bdp)};
+@define-color theme_unfocused_text_color #{"" + track($foreground, $alpha_foreground_bdp)};
 
 //
 // Widget base background color on backdrop windows

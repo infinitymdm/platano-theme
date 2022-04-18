@@ -69,7 +69,7 @@
 
 .background {
   background-color: $background;
-  color: ;
+  color: $foreground;
 }
 
 @if $maj_ver == 4 {
@@ -99,12 +99,12 @@
   background-color: $background;
   color: $foreground_secondary;
   &:hover {
-    background-color: mix(, $background, percentage($alpha_track_1));
-    color: ;
+    background-color: mix($foreground, $background, percentage($alpha_track_1));
+    color: $foreground;
   }
   &:active {
-    background-color: mix(, $background, percentage($alpha_track_2));
-    color: ;
+    background-color: mix($foreground, $background, percentage($alpha_track_2));
+    color: $foreground;
   }
   &:disabled {
     background-color: $background;
@@ -119,7 +119,7 @@
 %view,
 .view {
   background-color: $base;
-  color: ;
+  color: $foreground;
   &:hover,
   &:active,
   &:selected { @include radius($radius_2); }
@@ -149,7 +149,7 @@
 
 %text {
   background-color: $base;
-  color: ;
+  color: $foreground;
   &:disabled { color: $foreground_dis; }
 
   selection { @extend %selected_texts; }
@@ -242,7 +242,7 @@ frame.content-view flowbox > flowboxchild.tile {
   @include transition(dec);
   &:selected {
     background-color: track($background_selection, $alpha_track_out);
-    color: ;
+    color: $foreground;
     box-shadow: $z-depth-2;
     @include transition(dec);
   }
@@ -752,7 +752,7 @@ entry {
     treeview.view {
       &:selected { // fallback to standard hovering
         background-color: $background_tracker;
-        color: ;
+        color: $foreground;
       }
     }
   }
@@ -824,7 +824,7 @@ button {
 
   // active state for non-native apps
   &:active {
-    background-color: mix(, $base, percentage($alpha_track_2));
+    background-color: mix($foreground, $base, percentage($alpha_track_2));
   }
 
   // active state for native apps
@@ -991,16 +991,16 @@ button {
           }
         }
         @else {
-          @include button(flat-normal, $text-color: );
-          &:hover { @include button(flat-hover, $text-color: ); }
-          &:active { @include button(flat-active, $text-color: ); }
-          &:disabled { @include button(flat-disabled, $text-color: ); }
+          @include button(flat-normal, $text-color: $foreground);
+          &:hover { @include button(flat-hover, $text-color: $foreground); }
+          &:active { @include button(flat-active, $text-color: $foreground); }
+          &:disabled { @include button(flat-disabled, $text-color: $foreground); }
           &:checked {
             background-color: $background_selection;
             color: $foreground_selection;
           }
           &:checked:disabled {
-            @include button(flat-checked-disabled, $text-color: );
+            @include button(flat-checked-disabled, $text-color: $foreground);
           }
         }
       }
@@ -1051,7 +1051,7 @@ button {
         @include button(flat-normal, $text-color: $foreground_accent);
         &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
         &:active { @include button(flat-active, $text-color: $foreground_accent); }
-        &:disabled { @include button(flat-disabled, $text-color: ); }
+        &:disabled { @include button(flat-disabled, $text-color: $foreground); }
         &:checked { @include button(flat-checked, $text-color: $foreground_accent); }
         &:checked:disabled {
           @include button(flat-checked-disabled, $text-color: $foreground_accent);
@@ -1141,7 +1141,7 @@ button {
           }
         }
         &:disabled {
-          @include button(raised-disabled, $text-color: );
+          @include button(raised-disabled, $text-color: $foreground);
         }
       }
     }
@@ -1624,7 +1624,7 @@ buttonbox {
     @include ink-reaction(active-dec, $fc: $foreground_accent, $tr: ink-active-dec);
   }
   &:disabled {
-    @include button(flat-disabled, $text-color: );
+    @include button(flat-disabled, $text-color: $foreground);
   }
   &:checked {
     @include button(flat-checked, $text-color: $foreground_accent);
@@ -1958,10 +1958,10 @@ combobox {
       background-color: $base; // tone down
       &:hover,
       &:active,
-      &:checked { background-color: track(, $alpha_track_1); }
+      &:checked { background-color: track($foreground, $alpha_track_1); }
       &:disabled {
         background-color:
-          mix(, $base, percentage(($alpha_track_1 * 2 / 3) * $alpha_foreground_dis));
+          mix($foreground, $base, percentage(($alpha_track_1 * 2 / 3) * $alpha_foreground_dis));
       }
     }
   }
@@ -2213,7 +2213,7 @@ toolbar {
     padding: $toolbar_padding rem($menuitem_padding);
     @include radius($r_8);
     background-color: if($variant == light, $background_dark, $background_dark_inv);
-    color: if($variant == light, , $foreground_inv);
+    color: if($variant == light, $foreground, $foreground_inv);
     box-shadow: $z-depth-3;
 
     &.toolbar { // unset drop-shadows for Gnome-documents since that app can't
@@ -2346,7 +2346,7 @@ headerbar {
   // menu
   menu menuitem { // reset text color
     color: $foreground_secondary;
-    &:hover { color: ; }
+    &:hover { color: $foreground; }
     &:disabled {
       &, label { color: $foreground_dis; }
     }
@@ -3008,7 +3008,7 @@ treeview.view {
     color: $foreground_secondary;
     &:hover,
     &:active,
-    &:focus { color: ; }
+    &:focus { color: $foreground; }
     &:selected {
       &, &:focus { @extend %selected_items; }
     }
@@ -3076,7 +3076,7 @@ treeview.view {
     background-color: $base;
 
     &:hover,
-    row:hover { color: ; }
+    row:hover { color: $foreground; }
 
     &:selected,
     row:selected { @extend %selected_items; }
@@ -3094,7 +3094,7 @@ treeview.view {
       }
       &:active {
         background-color: $background_tracker;
-        color: ;
+        color: $foreground;
       }
       &:disabled {
         @extend %column_header_button;
@@ -3176,7 +3176,7 @@ menubar {
 
     > item:selected { // = menuitem:hover pseudo-class styling
       background-color: $background_tracker;
-      color: if($variant == light, , $foreground_inv);
+      color: if($variant == light, $foreground, $foreground_inv);
     }
 
     // remove padding and rounding from menubar submenu decoration
@@ -3192,7 +3192,7 @@ menubar {
   @include transition(std);
   &:hover { // Seems like it :hover even with keyboard focus
     background-color: $background_tracker;
-    color: if($variant == light, , $foreground_inv);
+    color: if($variant == light, $foreground, $foreground_inv);
   }
   &:disabled { color: if($variant == light, $foreground_dis, $foreground_dis_inv); }
 
@@ -3235,7 +3235,7 @@ menu {
     font: initial;
     &:hover {
       background-color: $background_tracker;
-      color: ;
+      color: $foreground;
     }
     &:disabled { color: $foreground_dis; }
 
@@ -3452,7 +3452,7 @@ combobox > window.popup { // combobox specific context-menu popup
       font-weight: 400;
       font-size: 100%;
       // transition-duration: 0s; // better than 'none'
-      &:hover { color: ; }
+      &:hover { color: $foreground; }
       // enforce insensitive foregrounds
       &:disabled { color: $foreground_dis_secondary; }
     }
@@ -3690,7 +3690,7 @@ combobox > window.popup { // combobox specific context-menu popup
     color: $foreground_tertiary;
     @include transition(reset);
     &:hover,
-    &:active { color: ; }
+    &:active { color: $foreground; }
     &:disabled { color: transparent; }
   }
 }
@@ -3726,7 +3726,7 @@ notebook {
       @include ink-reaction(tab-normal, $fc: $background_selection, $bs: 10, $i: 2); }
     &:hover {
       // do not use alpha-blended borders
-      border-color: mix(, $background, percentage($alpha_track_out));
+      border-color: mix($foreground, $background, percentage($alpha_track_out));
       color: $foreground_secondary;
       transition-duration: $transition_d_standard;
     }
@@ -3746,9 +3746,9 @@ notebook {
       // use shallower ink
       @include ink-reaction(tab-normal, $fc: $foreground_tertiary, $bs: 10, $i: 2);
       &:checked {
-        color: ;
+        color: $foreground;
         @include ink-reaction(tab-active, $fc: $foreground_tertiary, $bs: 10);
-        &:hover { color: ; }
+        &:hover { color: $foreground; }
       }
     }
 
@@ -3758,7 +3758,7 @@ notebook {
     &:checked button.flat {
       color: $foreground_secondary;
       &:hover,
-      &:active { color: ; }
+      &:active { color: $foreground; }
     }
     &:disabled button.flat { color: $foreground_dis; }
   }
@@ -3846,10 +3846,10 @@ scrollbar {
 
   // slider coloring
   slider {
-    background-color: track(, $alpha_foreground_3rd * $alpha_foreground_3rd);
+    background-color: track($foreground, $alpha_foreground_3rd * $alpha_foreground_3rd);
     @include transition(std);
-    &:hover { background-color: track(, $alpha_foreground_2nd * $alpha_foreground_3rd); }
-    &:active { background-color: ; }
+    &:hover { background-color: track($foreground, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+    &:active { background-color: $foreground; }
     &:disabled { opacity: $alpha_foreground_bdp; }
   }
 
@@ -3898,7 +3898,7 @@ scrollbar {
         background-color: track(mix($foreground_fix, $base_fix), $alpha_foreground_3rd);
 
         .background & { // standard color
-          background-color: track(, $alpha_foreground_3rd * $alpha_foreground_3rd);
+          background-color: track($foreground, $alpha_foreground_3rd * $alpha_foreground_3rd);
         }
       }
 
@@ -3907,7 +3907,7 @@ scrollbar {
         min-height: $slider_min_width;
         border-radius: 0;
         border: none;
-        background-color: track(, $alpha_foreground_3rd * $alpha_foreground_3rd);
+        background-color: track($foreground, $alpha_foreground_3rd * $alpha_foreground_3rd);
         -gtk-icon-source: none;
       }
 
@@ -4206,7 +4206,7 @@ radiobutton.text-button {
   color: $foreground_secondary;
   &:hover,
   &:active,
-  &:checked { color: ; }
+  &:checked { color: $foreground; }
   &:disabled,
   &:disabled:active,
   &:disabled:indeterminate {
@@ -4433,7 +4433,7 @@ scale {
       }
     }
     @else {
-      value { color: track(, $alpha_foreground_3rd); }
+      value { color: track($foreground, $alpha_foreground_3rd); }
     }
   }
 
@@ -4789,7 +4789,7 @@ printdialog {
   @if $maj_ver == 3 {
     paper {
       padding: 0;
-      color: ;
+      color: $foreground;
       border: 1px solid $foreground_div;
       background-color: $base;
     }
@@ -4798,7 +4798,7 @@ printdialog {
     drawing {
       padding: 0;
       border: none;
-      color: ;
+      color: $foreground;
       background-color: $base;
     }
   }
@@ -4969,7 +4969,7 @@ row:selected { @extend %selected_items; }
   }
   @else {
     background-color: track($background_tooltip, $alpha_osd);
-    color: ;
+    color: $foreground;
   }
 
   &,
@@ -5009,7 +5009,7 @@ row:selected { @extend %selected_items; }
 %expander_label {
   color: $foreground_secondary;
   &:hover,
-  &:active { color: ; }
+  &:active { color: $foreground; }
   &:selected { color: $foreground_selection; }
   &:disabled { color: $foreground_dis; }
 }
@@ -5067,7 +5067,7 @@ calendar {
   margin: rem($menuitem_padding) 0;
   padding: if($ref_weight < 1.0, 2px 2px, 4px 3px);
   border: 1px solid $foreground_div;
-  color: ;
+  color: $foreground;
   font-weight: 500;
   &:selected {
     background-image: image($background_selection);
@@ -5098,7 +5098,7 @@ calendar {
     }
   }
 
-  &:indeterminate { color: track(, $alpha_foreground_3rd * $alpha_foreground_3rd); }
+  &:indeterminate { color: track($foreground, $alpha_foreground_3rd * $alpha_foreground_3rd); }
 
   &.highlight { // padding for week-number column
     padding-top: 0;
@@ -5113,7 +5113,7 @@ calendar {
 
 messagedialog {
   &.background {
-    color: if($variant == light, , $foreground_inv);
+    color: if($variant == light, $foreground, $foreground_inv);
     background-color:
       if($variant == light, track($background_dark, $alpha_osd),
                             track($background_dark_inv, $alpha_osd));
@@ -5170,7 +5170,7 @@ messagedialog {
     border-style: none;
     border-top-left-radius: $radius_2;
     border-top-right-radius: $radius_2;
-    color: if($variant == light, , $foreground_inv);
+    color: if($variant == light, $foreground, $foreground_inv);
     background-color:
       if($variant == light, $background_dark, $background_dark_inv);
   }
@@ -5218,8 +5218,8 @@ messagedialog {
     textview.view { // scrolled text-views
       &, > text {
         background-color: $base;
-        color: ;
-        caret-color: ;
+        color: $foreground;
+        caret-color: $foreground;
       }
     }
   }
@@ -5287,7 +5287,7 @@ filechooserbutton:drop(active) {
   font-weight: 500;
   &:hover {
     background-color: $background_tracker;
-    color: ;
+    color: $foreground;
   }
   &:selected { @extend %selected_sidebar_row; }
 
@@ -5302,7 +5302,7 @@ filechooserbutton:drop(active) {
   font-weight: 500;
   &:hover {
     background-color: $background_tracker;
-    color: ;
+    color: $foreground;
   }
   &:selected {
     &, &:focus {
@@ -5464,7 +5464,7 @@ placessidebar {
 
         &,
         .sidebar-label,
-        .sidebar-icon { color: ; }
+        .sidebar-icon { color: $foreground; }
       }
     }
   }
@@ -5668,7 +5668,7 @@ infobar {
                              mix($_color, $background_dark, percentage($alpha_track_2)));
       }
     }
-    color: mix(, $_color, percentage($alpha_foreground_3rd));
+    color: mix($foreground, $_color, percentage($alpha_foreground_3rd));
 
     progressbar { // use 'white' bit and trough
       trough { background-color: track($_color, $alpha_track_out); }
@@ -5721,7 +5721,7 @@ tooltip {
 
 .tooltip:not(tooltip) {
   // protect the child widget foregrounds for damned Eclipse's debug tooltips
-  > * > label { color: ; }
+  > * > label { color: $foreground; }
 }
 
 // /*****************
@@ -5790,7 +5790,7 @@ colorchooser .popover.osd {
   border: none;
   @include radius($r_8, none);
   box-shadow: none;
-  color: if($variant == light, , $foreground_inv);
+  color: if($variant == light, $foreground, $foreground_inv);
   background-color: if($variant == light, $background_dark,
                                           $background_dark_inv);
 
@@ -6087,14 +6087,14 @@ headerbar.titlebar.default-decoration {
       &:active { // draw solid bg instead
         background-color: if($variant == mixed,
                              track($foreground_inv,  $alpha_track_2),
-                             track(, $alpha_track_2));
+                             track($foreground, $alpha_track_2));
       }
       &:backdrop {
         color: if($variant == mixed, track($foreground_inv_secondary, $alpha_foreground_bdp),
                                      track($foreground_secondary, $alpha_foreground_bdp));
         &:hover {
           color: if($variant == mixed, track($foreground_inv, $alpha_foreground_bdp),
-                                       track(, $alpha_foreground_bdp));
+                                       track($foreground, $alpha_foreground_bdp));
         }
         &:active { color: if($variant == mixed, $foreground_inv, ); }
       }
@@ -6162,7 +6162,7 @@ headerbar.titlebar.default-decoration {
   }
   @else {
     background-color: track($background_selection, $alpha_foreground_bdp);
-    color: ;
+    color: $foreground;
     &:disabled {
       background-color: track($background_selection, $alpha_track_out);
       color: $foreground_dis;
@@ -6179,7 +6179,7 @@ headerbar.titlebar.default-decoration {
     }
     @else {
       background-color: track($background_selection, $alpha_foreground_bdp);
-      color: ;
+      color: $foreground;
       &:disabled {
         background-color: track($background_selection, $alpha_track_out);
         color: $foreground_dis;
@@ -6285,7 +6285,7 @@ cursor-handle {
   }
   @else {
     background-color: $background_dark;
-    color: ;
+    color: $foreground;
   }
   box-shadow: $z-depth-1;
   font-weight: 700;
@@ -6378,7 +6378,7 @@ flowboxchild.emoji { // emoji tiled view
 
   widget:hover label { // no active/checked states
     background-color: $background_tracker;
-    color: ;
+    color: $foreground;
   }
 }
 

@@ -58,7 +58,7 @@
         @include ink-reaction(active-dec, $fc: $foreground_accent, $tr: ink-active-dec);
       }
       &:disabled {
-        @include button(flat-disabled, $text-color: );
+        @include button(flat-disabled, $text-color: $foreground);
       }
       &:checked {
         @include button(flat-checked, $text-color: $foreground_accent);
