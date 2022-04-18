@@ -16,13 +16,13 @@
 %gnome_panel_applet {
   // do not set transparent background in this template
   // mate-panel >= 1.18.6 will be broken
-  color: if($variant == mixed, $foreground_inv, );
+  color: if($variant == mixed, $foreground_inv, $foreground);
   box-shadow: none;
 }
 
 %gnome_panel_menubar {
   border: unset;
-  color: if($variant == mixed, $foreground_inv, );
+  color: if($variant == mixed, $foreground_inv, $foreground);
   background-color: transparent;
   font-weight: 700;
 }
@@ -30,7 +30,7 @@
 %gnome_panel_menuitem {
   padding: 0 rem($menu_padding, $sw: 1.0);
   @include radius(0, none);
-  color: if($variant == mixed, $foreground_inv, );
+  color: if($variant == mixed, $foreground_inv, $foreground);
   background-color: transparent;
   &:hover {
     @if $variant != light {
@@ -192,7 +192,7 @@ gp-arrow-button {
   margin: 0 rem($menu_padding);
   border: 1px solid transparent;
   background-image: none;
-  color: if($variant == mixed, $foreground_inv, );
+  color: if($variant == mixed, $foreground_inv, $foreground);
   &:hover,
   &:active { color: if($variant != light, $foreground_selection, black); }
 }
@@ -473,7 +473,7 @@ $gf_margin: 12px;
 #gf-input-source {
   min-width: rem($ref_size * 9, $sw: 1.0);
   min-height: rem($ref_size * 9, $sw: 1.0);
-  color: if($variant != light, $foreground_inv, );
+  color: if($variant != light, $foreground_inv, $foreground);
   font-size: rem(40px, $sw: 1.0);
   font-weight: 400;
   &:selected {
@@ -502,7 +502,7 @@ $gf_margin: 12px;
 
     &:hover {
       background-color: $background_tracker;
-      color: if($variant == mixed, $foreground_inv, );
+      color: if($variant == mixed, $foreground_inv, $foreground);
     }
     &:selected {
       background-color: $background_suggestion;
@@ -543,7 +543,7 @@ $gf_margin: 12px;
   padding: 4px 10px; // NEEDS_REVIEW
 
   label,
-  image { color: if($variant == mixed, $foreground_inv, ); }
+  image { color: if($variant == mixed, $foreground_inv, $foreground); }
 }
 
 %gf_icon {
@@ -1075,8 +1075,8 @@ notebook > stack > box.vertical > paned.vertical > overlay {
     color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
     caret-color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
     &:focus {
-      color: if($variant == mixed, $foreground_inv, );
-      caret-color: if($variant == mixed, $foreground_inv, );
+      color: if($variant == mixed, $foreground_inv, $foreground);
+      caret-color: if($variant == mixed, $foreground_inv, $foreground);
     }
     &:disabled {
       color: if($variant == mixed, $foreground_dis_inv_secondary, $foreground_dis_secondary);
@@ -2235,7 +2235,7 @@ terminal-window {
       vte-terminal {
         background-color: if($variant == mixed, $base_inv,
                                                 $base);
-        color: if($variant == mixed, $foreground_inv, );
+        color: if($variant == mixed, $foreground_inv, $foreground);
       }
 
       @if $variant == mixed {
@@ -2554,7 +2554,7 @@ scrolledwindow.view > viewport.frame > stack { // left-pane
 dialog.background.csd {
   > headerbar.titlebar {
     > label:not(.title):not(.subtitle) {
-      color: if($variant == mixed, $foreground_inv, );
+      color: if($variant == mixed, $foreground_inv, $foreground);
       font-weight: 700;
     }
   }
@@ -2607,9 +2607,9 @@ dialog.background.csd {
       &:active,
       &:checked,
       &.active { // '.active' class = :checked class
-        color: if($variant == mixed, $foreground_inv, );
+        color: if($variant == mixed, $foreground_inv, $foreground);
 
-        > .item { color: if($variant == mixed, $foreground_inv, ); }
+        > .item { color: if($variant == mixed, $foreground_inv, $foreground); }
       }
       &:disabled {
         color: if($variant == mixed, $foreground_dis_inv, $foreground_dis);
@@ -2707,14 +2707,14 @@ dialog.background.csd {
     }
 
     &:hover:not(.active) label.item {
-      color: if($variant == mixed, $foreground_inv, );
+      color: if($variant == mixed, $foreground_inv, $foreground);
       box-shadow: inset 0 -2px if($variant == mixed,
                                  track($foreground_inv, $alpha_track_out),
                                  track($foreground, $alpha_track_out));
     }
 
     &.active label.item { // redraw underline indicators
-      color: if($variant == mixed, $foreground_inv, );
+      color: if($variant == mixed, $foreground_inv, $foreground);
       box-shadow: inset 0 -2px $background_selection;
     }
   }
@@ -2737,7 +2737,7 @@ dialog.background.csd {
   image { color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary); }
 
   button:hover label.item,
-  button.active label.item { color: if($variant == mixed, $foreground_inv, ); }
+  button.active label.item { color: if($variant == mixed, $foreground_inv, $foreground); }
 
   > label { color: if($variant == mixed, $foreground_inv_tertiary, $foreground_tertiary); }
 }
@@ -2870,10 +2870,10 @@ buttonbox.linked > button.toggle.toolbar-primary-buttons-software {
 
   &:hover,
   &:active {
-    color: if($variant == mixed, $foreground_inv, );
+    color: if($variant == mixed, $foreground_inv, $foreground);
 
     > box.horizontal > label.text-button {
-      color: if($variant == mixed, $foreground_inv, );
+      color: if($variant == mixed, $foreground_inv, $foreground);
     }
   }
 

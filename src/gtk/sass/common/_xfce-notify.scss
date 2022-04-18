@@ -7,7 +7,7 @@
   &, &:hover {
     border-radius: 2px;
     border: 1px solid $foreground_div;
-    color: if($variant == mixed, $foreground_inv, );
+    color: if($variant == mixed, $foreground_inv, $foreground);
     @if $variant == mixed { background-color: track($background_tooltip_inv, $alpha_osd); }
     @else { background-color: track($background_tooltip, $alpha_osd); }
     box-shadow: none;
@@ -15,7 +15,7 @@
 
   box.vertical {
     > label#summary {
-      color: if($variant == mixed, $foreground_inv, );
+      color: if($variant == mixed, $foreground_inv, $foreground);
       font-weight: 700;
     }
 

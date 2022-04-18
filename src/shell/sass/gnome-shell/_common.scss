@@ -2208,7 +2208,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     color: if($variant == dark, $background_dark, $foreground_selection_secondary);
     &:hover,
     &:focus {
-      background-color: if($variant == dark, $foreground_selection, );
+      background-color: if($variant == dark, $foreground_selection, $foreground);
       color: if($variant == dark, black, $foreground_selection);
     }
     &:selected {

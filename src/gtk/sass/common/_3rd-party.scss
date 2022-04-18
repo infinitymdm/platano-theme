@@ -8,7 +8,7 @@
 .budgie-panel {
   // solid-mode
   background-color: $background_panel;
-  color: if($variant == mixed, $foreground_inv, );
+  color: if($variant == mixed, $foreground_inv, $foreground);
   font-weight: 700;
   @include transition(dec);
 
@@ -33,7 +33,7 @@
     // keep translucent background in light variant
     background-color: if($variant == light, track($background_panel, $alpha_foreground_3rd),
                                             transparent);
-    color: if($variant == mixed, $foreground_inv, );
+    color: if($variant == mixed, $foreground_inv, $foreground);
     @include transition(dec);
 
     @if $variant != light {
@@ -424,7 +424,7 @@ stack.icon-popover-stack {
   padding: 0;
   @include radius(0, none);
   background-color: transparent;
-  color: if($variant == mixed, $foreground_inv, );
+  color: if($variant == mixed, $foreground_inv, $foreground);
   font-weight: 700; // enforce bold weight
   &:not(:disabled) {
     background-color: transparent;
@@ -1314,7 +1314,7 @@ window.budgie-switcher-window {
     label.budgie-switcher-title { // bottom label for app titles
       // prepare for tall and dense fonts
       min-height: 13.3px * 2; // use non-scaling unit
-      color: if($variant == mixed, $foreground_inv, );
+      color: if($variant == mixed, $foreground_inv, $foreground);
       font-weight: 500;
     }
   }
@@ -1386,10 +1386,10 @@ window.budgie-switcher-window {
         &:hover,
         &:active {
           background-color: $background_tracker;
-          color: if($variant == mixed, $foreground_inv, );
+          color: if($variant == mixed, $foreground_inv, $foreground);
 
           .dim-label {
-            color: if($variant == mixed, $foreground_inv, );
+            color: if($variant == mixed, $foreground_inv, $foreground);
             opacity: 1.0;
           }
         }
@@ -1589,7 +1589,7 @@ window.background.budgie-settings-window.csd {
   padding: 0;
   border: none;
   background: none;
-  color: if($variant == mixed, $foreground_inv, );
+  color: if($variant == mixed, $foreground_inv, $foreground);
   @include transition(reset);
 
   image {
@@ -1659,7 +1659,7 @@ window.background.budgie-settings-window.csd {
   background: unset;
 
   > widget > label { // titles
-    color: if($variant == mixed, $foreground_inv, );
+    color: if($variant == mixed, $foreground_inv, $foreground);
   }
 
   > button.image-button.titlebutton {
@@ -1703,7 +1703,7 @@ menuitem.budgie-menubar { // appindicator-applet?
 %greeter_panel_window {
   background-image: image($background_panel);
   background-color: transparent;
-  color: if($variant == mixed, $foreground_inv, );
+  color: if($variant == mixed, $foreground_inv, $foreground);
   box-shadow: none;
   font-weight: 700;
   text-shadow: none;
@@ -1719,7 +1719,7 @@ menuitem.budgie-menubar { // appindicator-applet?
 %greeter_panel_menubar {
   border: none;
   background-color: transparent;
-  color: if($variant == mixed, $foreground_inv, );
+  color: if($variant == mixed, $foreground_inv, $foreground);
 
   &:hover {
     color: if($variant != light, $foreground_selection, black);
@@ -1798,7 +1798,7 @@ menuitem.budgie-menubar { // appindicator-applet?
       label,
       image {
         padding: 0 rem($menuitem_padding, $sw: 1.0);
-        color: if($variant == mixed, $foreground_inv, );
+        color: if($variant == mixed, $foreground_inv, $foreground);
       }
 
       @if $maj_ver == 3 {
@@ -1919,11 +1919,11 @@ $greeter_panel_shadow: 11px; // pixmap shadow region
 
 %greeter_panel_menubar_menuitem_misc {
   padding: 0 rem($entry_lr_space);
-  color: if($variant != dark, $foreground_inv, );
+  color: if($variant != dark, $foreground_inv, $foreground);
 
-  label { color: if($variant != dark, $foreground_inv, ); }
+  label { color: if($variant != dark, $foreground_inv, $foreground); }
 
-  image { color: if($variant != dark, $foreground_inv, ); }
+  image { color: if($variant != dark, $foreground_inv, $foreground); }
 
   &:hover { box-shadow: inset 0 2px $background_selection; }
 
@@ -2385,7 +2385,7 @@ window.background:not(.csd) > box.vertical {
 .XfceHeading {
   border: 0 none transparent;
   background-color: if($variant == mixed, $background_dark_inv, $background_dark);
-  color: if($variant == mixed, $foreground_inv, );
+  color: if($variant == mixed, $foreground_inv, $foreground);
   &:backdrop {
     background-color: if($variant == mixed, $background_inv, $background);
     color: if($variant == mixed, track($foreground_inv, $alpha_foreground_bdp),
@@ -2401,7 +2401,7 @@ $panel_child_spacing: if($ref_weight < 1.0, 2px, 3px);
 
 .xfce4-panel {
   background-color: $background_panel;
-  color: if($variant == mixed, $foreground_inv, );
+  color: if($variant == mixed, $foreground_inv, $foreground);
   font-weight: 700;
   text-shadow: none;
   -gtk-icon-shadow: none;
@@ -2420,7 +2420,7 @@ $panel_child_spacing: if($ref_weight < 1.0, 2px, 3px);
 
   button {
     background-color: transparent;
-    color: if($variant == mixed, $foreground_inv, );
+    color: if($variant == mixed, $foreground_inv, $foreground);
     font-weight: 700;
     &:hover:not(:active):not(:checked) {
       color: if($variant != light, $foreground_selection, black);
@@ -3464,7 +3464,7 @@ window.background:not(.solid-csd) > box.vertical {
       box-shadow: none;
 
       // FIXME: seems images have inverted fore/back colors?
-      image { color: if($variant == mixed, $foreground_inv, ); }
+      image { color: if($variant == mixed, $foreground_inv, $foreground); }
 
       .trough {
         border-radius: 0;
@@ -3957,7 +3957,7 @@ notebook.psppire-data-editor widget.view {
 // so embed indicators at the bottom of tasklist buttons as default.
 window#ValaPanel.background { // solid-mode
   background-color: $background_panel;
-  color: if($variant == mixed, $foreground_inv, );
+  color: if($variant == mixed, $foreground_inv, $foreground);
 
   > decoration { all: unset; } // unset root decoration
 
@@ -4210,12 +4210,12 @@ widget.-vala-panel-appmenu-core { // appmenu applets
 window#live_installer {
   widget#title_eventbox.menubar { // title header container
     background-color: if($variant == mixed, $background_dark_inv, $background_dark);
-    color: if($variant == mixed, $foreground_inv, );
+    color: if($variant == mixed, $foreground_inv, $foreground);
     font-weight: 700;
 
     label#page_title,
     image#page_logo {
-      color: if($variant == mixed, $foreground_inv, );
+      color: if($variant == mixed, $foreground_inv, $foreground);
     }
   }
 
