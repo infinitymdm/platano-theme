@@ -112,11 +112,11 @@ gp-applet > menubar,
     }
   }
   @else {
-    @include button(flat-normal, $text-color: );
+    @include button(flat-normal, $text-color: $foreground);
     &:hover {
       @include button(flat-lined-hover, $text-color: black);
     }
-    &:disabled { @include button(flat-disabled, $text-color: ); }
+    &:disabled { @include button(flat-disabled, $text-color: $foreground); }
     &:checked {
       &, &:hover {
         @include button(flat-lined-checked, $text-color: black);
@@ -168,17 +168,17 @@ wnck-pager {
   }
   @else {
     background-color: transparent;
-    color: mix(, $background_panel, percentage($alpha_foreground_3rd)); // use opaque
+    color: mix($foreground, $background_panel, percentage($alpha_foreground_3rd)); // use opaque
     box-shadow:
-      inset 0 0 0 1px mix(, $background_panel, percentage($alpha_foreground_bdp));
+      inset 0 0 0 1px mix($foreground, $background_panel, percentage($alpha_foreground_bdp));
     &:hover {
       background-color: $background_tracker;
-      color: ;
+      color: $foreground;
       box-shadow: inset 0 0 0 1px $background_tracker_out;
     }
     &:selected {
       background-color: track($background_selection, $alpha_track_out);
-      color: ;
+      color: $foreground;
       box-shadow: inset 0 0 0 1px $background_selection;
     }
   }
@@ -240,7 +240,7 @@ headerbar.titlebar.tweak-titlebar {
   color: $foreground_secondary;
   background-color: transparent;
   font-weight: 500;
-  &:hover { color: ; }
+  &:hover { color: $foreground; }
 
   &.activatable { // specificity bump
     &:selected { @extend %selected_sidebar_row; }
@@ -282,9 +282,9 @@ row.tweak {
       color: $foreground_secondary;
       &:hover {
         background-color: $background_tracker;
-        color: ;
+        color: $foreground;
       }
-      &:active { color: ; }
+      &:active { color: $foreground; }
 
       > box.horizontal {
         > label,
@@ -336,7 +336,7 @@ list.tweak-group-startup { background-color: $background; }
           color: $foreground_dis_selection;
         }
       }
-      &:disabled { @include button(raised-disabled, $color: $base, $text-color: ); }
+      &:disabled { @include button(raised-disabled, $color: $base, $text-color: $foreground); }
     }
   }
 }
@@ -383,13 +383,13 @@ $gf_margin: 12px;
 
 %gf_window {
   @if $variant == mixed { color: $foreground_inv; }
-  @else { color: ; }
+  @else { color: $foreground; }
 
   levelbar block:not(.empty) { background-color: $background_success; }
 
   &.solid {
     @if $variant == mixed { color: $foreground_inv; }
-    @else { color: ; }
+    @else { color: $foreground; }
 
     levelbar block:not(.empty) { background-color: $background_success; }
   }
@@ -594,7 +594,7 @@ $gf_margin: 12px;
     }
     @else {
       background-color: track($background_dark, $alpha_osd);
-      color: ;
+      color: $foreground;
     }
 
     &, > border { border: none; }
@@ -619,10 +619,10 @@ $gf_margin: 12px;
         selection { @extend %selected_items; }
       }
       @else {
-        @include entry(flat-normal, $text-color: );
-        caret-color: ;
-        &:focus { @include entry(flat-focus, $text-color: ); }
-        &:disabled { @include entry(flat-disabled, $text-color: ); }
+        @include entry(flat-normal, $text-color: $foreground);
+        caret-color: $foreground;
+        &:focus { @include entry(flat-focus, $text-color: $foreground); }
+        &:disabled { @include entry(flat-disabled, $text-color: $foreground); }
       }
     }
   }
@@ -715,7 +715,7 @@ $gf_margin: 12px;
   flowboxchild { // experimental 'new view' mode
     margin: unset; // unset spacing first
     padding: unset;
-    color: ;
+    color: $foreground;
     @if $maj_ver == 3 {
       outline-width: 0; // unset outlines
     }
@@ -772,8 +772,8 @@ $gf_margin: 12px;
 
   &.free {
     @include radius($radius, none);
-    background-color: mix(, $base, percentage($alpha_track_1)); // legacy
-    color: mix(, $base, percentage($alpha_track_1)); // >= 3.29.90
+    background-color: mix($foreground, $base, percentage($alpha_track_1)); // legacy
+    color: mix($foreground, $base, percentage($alpha_track_1)); // >= 3.29.90
   }
 
   &.used {
@@ -862,13 +862,13 @@ dialog.background.csd > box.dialog-vbox > grid.horizontal {
     font-weight: 400; // reset weight
     &:selected {
       background-color: track($background_selection, $alpha_track_2);
-      color: ;
+      color: $foreground;
       &:hover { background-color: track($background_selection, $alpha_track_2); }
       &:dir(ltr) { box-shadow: inset 4px 0 $background_selection; }
       &:dir(rtl) { box-shadow: inset -4px 0 $background_selection; }
       &:focus {
         background-color: track($background_selection, $alpha_track_2);
-        color: ;
+        color: $foreground;
         &:hover { background-color: track($background_selection, $alpha_track_2); }
         &:dir(ltr) { box-shadow: inset 4px 0 $background_selection; }
         &:dir(rtl) { box-shadow: inset -4px 0 $background_selection; }
@@ -1120,7 +1120,7 @@ notebook > stack > box.vertical > paned.vertical > overlay {
         color: $foreground_secondary;
         &:hover,
         &:active,
-        &:checked { color: ; }
+        &:checked { color: $foreground; }
 
         button.flat {
           min-width: $icon_size;
@@ -1141,7 +1141,7 @@ notebook > stack > box.vertical > paned.vertical > overlay {
         color: $foreground_secondary;
         &:hover,
         &:active,
-        &:checked { color: ; }
+        &:checked { color: $foreground; }
 
         button.flat {
           min-width: $icon_size;
@@ -1412,7 +1412,7 @@ scrolledwindow {
   .gedit-search-slider {
     @extend %app_slider;
     background-color: track($background_tooltip, $alpha_osd);
-    color: ;
+    color: $foreground;
   }
 }
 
@@ -1635,10 +1635,10 @@ eggsearchbar box.search-bar { background-color: $background_dark; }
       label { color: $foreground_inv; }
     }
     @else {
-      color: ;
-      caret-color: ;
+      color: $foreground;
+      caret-color: $foreground;
 
-      label { color: ; }
+      label { color: $foreground; }
     }
   }
 
@@ -1700,11 +1700,11 @@ omnibar.linked {
   font-weight: 500;
   box-shadow: inset 0 -1px $background_tracker_out;
   &:hover {
-    color: ;
+    color: $foreground;
     box-shadow: inset 0 -2px $background_tracker_out;
   }
   &:checked {
-    color: ;
+    color: $foreground;
     box-shadow: inset 0 -2px $background_selection;
   }
 }
@@ -2129,7 +2129,7 @@ window.background > box.vertical box.horizontal {
     row.event.activatable {
       color: $foreground_secondary;
       &:hover,
-      &:active { color: ; }
+      &:active { color: $foreground; }
       &:not(:disabled) { // for quicker response
         background-image: none;
         transition-duration: $transition_d_short;
@@ -2145,15 +2145,15 @@ window.background > box.vertical box.horizontal {
 
       &.compressed-row {
         background-image: image($background);
-        color: ;
+        color: $foreground;
         &:hover {
-          background-image: image(mix(, $background, percentage($alpha_track_1 / 2)));
-          color: ;
+          background-image: image(mix($foreground, $background, percentage($alpha_track_1 / 2)));
+          color: $foreground;
         }
         &:active {
           &, &:focus {
-            background-image: image(mix(, $background, percentage($alpha_track_1)));
-            color: ;
+            background-image: image(mix($foreground, $background, percentage($alpha_track_1)));
+            color: $foreground;
           }
         }
 
@@ -2527,10 +2527,10 @@ scrolledwindow.view > viewport.frame > stack { // left-pane
 
       &:hover,
       &:active {
-        color: ;
+        color: $foreground;
 
         label,
-        image { color: ; }
+        image { color: $foreground; }
       }
 
       &:selected {
@@ -2710,7 +2710,7 @@ dialog.background.csd {
       color: if($variant == mixed, $foreground_inv, );
       box-shadow: inset 0 -2px if($variant == mixed,
                                  track($foreground_inv, $alpha_track_out),
-                                 track(, $alpha_track_out));
+                                 track($foreground, $alpha_track_out));
     }
 
     &.active label.item { // redraw underline indicators
@@ -2845,15 +2845,15 @@ buttonbox.linked > button.toggle.toolbar-primary-buttons-software {
     }
   }
   @else {
-    @include button(flat-normal, $text-color: );
-    @include ink-reaction(normal, $fc: , $tr: ink-normal-dec);
-    &:hover { @include button(flat-lined-hover, $text-color: ); }
+    @include button(flat-normal, $text-color: $foreground);
+    @include ink-reaction(normal, $fc: $foreground, $tr: ink-normal-dec);
+    &:hover { @include button(flat-lined-hover, $text-color: $foreground); }
     &:active {
-      @include button(flat-active, $text-color: );
-      @include ink-reaction(active-dec, $fc: , $tr: ink-active-dec);
+      @include button(flat-active, $text-color: $foreground);
+      @include ink-reaction(active-dec, $fc: $foreground, $tr: ink-active-dec);
     }
     &:disabled {
-      @include button(flat-disabled, $text-color: );
+      @include button(flat-disabled, $text-color: $foreground);
     }
     &:checked {
       @include button(flat-lined-checked, $text-color: $label_selection);
@@ -2930,7 +2930,7 @@ scrolledwindow.category-sidebar.frame > viewport.frame > list {
     font-weight: 500;
     &:hover {
       background-color: $background_tracker;
-      color: ;
+      color: $foreground;
     }
     &:selected { @extend %selected_sidebar_row; }
   }
@@ -3109,7 +3109,7 @@ window.background > box.vertical > overlay > stack > box.horizontal {
         }
 
         &:hover {
-          &, > label.sidebar { color: ; }
+          &, > label.sidebar { color: $foreground; }
         }
         &:active,
         &:selected {
@@ -3127,20 +3127,20 @@ window.background > box.vertical > overlay > stack > box.horizontal {
 // tiles view buttons
 button.tile.view { // damned stock CSS
   flowbox > flowboxchild > & {
-    &:hover { box-shadow: inset 0 0 0 9999px track(, $alpha_track_1); }
-    &:active { box-shadow: inset 0 0 0 9999px track(, $alpha_track_2); }
+    &:hover { box-shadow: inset 0 0 0 9999px track($foreground, $alpha_track_1); }
+    &:active { box-shadow: inset 0 0 0 9999px track($foreground, $alpha_track_2); }
   }
 
   box > grid > & {
     &:hover {
       box-shadow: inset 0 0 0 9999px if($variant != dark,
                                         track($foreground_inv, $alpha_track_1),
-                                        track(, $alpha_track_1));
+                                        track($foreground, $alpha_track_1));
     }
     &:active {
       box-shadow: inset 0 0 0 9999px if($variant != dark,
                                         track($foreground_inv, $alpha_track_2),
-                                        track(, $alpha_track_2));
+                                        track($foreground, $alpha_track_2));
     }
   }
 
@@ -3230,7 +3230,7 @@ widget {
       row.activatable {
         color: $foreground_secondary;
         &:hover,
-        &:active { color: ; }
+        &:active { color: $foreground; }
       }
 
       row:not(.activatable) { // top-most header row
@@ -3249,8 +3249,8 @@ widget {
   color: $foreground_secondary;
   font-weight: 500;
   &:hover { // use opaque
-    background-image: image(mix($background, , percentage($alpha_foreground_2nd)));
-    color: ;
+    background-image: image(mix($background, $foreground, percentage($alpha_foreground_2nd)));
+    color: $foreground;
   }
   &:active,
   &:checked { // use opaque
