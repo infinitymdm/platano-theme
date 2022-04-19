@@ -37,7 +37,7 @@ $empty_shadow: 0 0 transparent; // replacement of the 'none'
 // possible $t values: normal, focus, hover, disabled;
 //
 
-@mixin entry($t, $text-color: , $fc: $background_selection) {
+@mixin entry($t, $text-color: $foreground, $fc: $background_selection) {
   @if $t == normal {
     background-color: opacity($text-color, $alpha_track_1 / 2);
     color: opacity($text-color, $alpha_foreground_2nd);
@@ -76,7 +76,7 @@ $empty_shadow: 0 0 transparent; // replacement of the 'none'
 // suggested-active, suggested-disabled;
 //
 
-@mixin button($t, $color: $base, $text-color: ) {
+@mixin button($t, $color: $base, $text-color: $foreground) {
   @if $t == normal {
     border: 1px solid mix($text-color, $color, percentage($alpha_div_1));
     background-color: $color;

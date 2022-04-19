@@ -25,7 +25,7 @@ $font-family: Roboto, Sans-Serif;
 $font-family-for-ornament: Sans-Serif;
 
 stage {
-  color: ;
+  color: $foreground;
   @if $ver < 3.35 {
     font-family: $font-family;
     font-size: 10pt;
@@ -71,7 +71,7 @@ stage {
     &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
     &:focus { @include button(flat-focus, $text-color: $foreground_accent); }
     &:active { @include button(flat-active, $text-color: $foreground_accent); }
-    &:insensitive { @include button(flat-disabled, $text-color: ); }
+    &:insensitive { @include button(flat-disabled, $text-color: $foreground); }
   }
   &:first-child { border-radius: 0 0 0 $r_8; }
   &:last-child { border-radius: 0 0 $r_8 0; }
@@ -103,10 +103,10 @@ StEntry {
     &:insensitive { @include entry(disabled, $text-color: $osd_fg); }
   }
   @else {
-    @include entry(normal, $text-color: );
-    &:hover { @include entry(hover, $text-color: ); }
-    &:focus { @include entry(focus, $text-color: ); }
-    &:insensitive { @include entry(disabled, $text-color: ); }
+    @include entry(normal, $text-color: $foreground);
+    &:hover { @include entry(hover, $text-color: $foreground); }
+    &:focus { @include entry(focus, $text-color: $foreground); }
+    &:insensitive { @include entry(disabled, $text-color: $foreground); }
   }
 
   StIcon {
@@ -1033,15 +1033,15 @@ $avatar_width: $icon_size * 1.5;
     }
     &.selected {
       background-color: $semi_fill_bg;
-      color: ;
+      color: $foreground;
       transition-duration: $transition_d_none;
     }
     &:active {
       background-color: $fill_bg;
-      color: ;
+      color: $foreground;
       transition-duration: $transition_d_standard;
     }
-    &.selected:active { color: ; }
+    &.selected:active { color: $foreground; }
     &:insensitive { color: $foreground_dis; }
   }
 
@@ -1078,9 +1078,9 @@ $avatar_width: $icon_size * 1.5;
 
     StButton#vhandle,
     StButton#hhandle { // use variant-sensitive slider-bit
-      background-color: opacity(, $alpha_foreground_3rd * $alpha_foreground_3rd);
-      &:hover { background-color: opacity(, $alpha_foreground_2nd * $alpha_foreground_3rd); }
-      &:active { background-color: ; }
+      background-color: opacity($foreground, $alpha_foreground_3rd * $alpha_foreground_3rd);
+      &:hover { background-color: opacity($foreground, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+      &:active { background-color: $foreground; }
     }
   }
 }
@@ -1239,7 +1239,7 @@ $avatar_width: $icon_size * 1.5;
       &:active { @include button(suggested-active); }
       &:insensitive {
         padding: if($ref_weight >= 1.0, 7px 16px 8px, 5px 12px 6px);
-        @include button(suggested-disabled, $text-color: );
+        @include button(suggested-disabled, $text-color: $foreground);
       }
     }
   }
@@ -1800,7 +1800,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     @extend %reset_cal;
     padding-left: 0;
     padding-right: 0;
-    color: ;
+    color: $foreground;
   }
 }
 
@@ -1877,11 +1877,11 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     color: $foreground_secondary;
     &:hover,
     &:focus {
-      color: ;
+      color: $foreground;
       background-color: $semi_fill_bg;
     }
     &:active {
-      color: ;
+      color: $foreground;
       background-color: $fill_bg;
     }
   }
@@ -1895,11 +1895,11 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     color: $foreground_secondary;
     &:hover,
     &:focus {
-      color: ;
+      color: $foreground;
       background-color: $semi_fill_bg;
     }
     &:active {
-      color: ;
+      color: $foreground;
       background-color: $fill_bg;
     }
   }
@@ -1907,7 +1907,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
 @if $ver > 3.37 {
   .events-button {
-    color: ;
+    color: $foreground;
 
     .events {
       &-box { spacing: 0; }
@@ -1945,7 +1945,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   &:active {
     .day-label { color: $foreground_secondary; }
 
-    .date-label { color: ; }
+    .date-label { color: $foreground; }
   }
 }
 
@@ -1980,7 +1980,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .world-clocks {
     &-city,
     &-time {
-      color: ;
+      color: $foreground;
       font-weight: 400;
       font-size: 100%;
     }
@@ -2039,7 +2039,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
 .calendar-month-label {
   padding: 4px 0;
-  color: ;
+  color: $foreground;
   font-weight: 700;
 }
 
@@ -2047,7 +2047,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   width: 2.1em;
   height: 2.1em;
   border-radius: $radius;
-  color: ;
+  color: $foreground;
   background-color: transparent;
   &:hover { background-color: $semi_fill_bg; }
   &:focus {
@@ -2073,7 +2073,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       @if $ver < 3.31 {
         @include image-loader($url: 'assets/calendar-arrow-left-hover.svg');
       }
-      @else { color: ; }
+      @else { color: $foreground; }
     }
 
     @if $ver < 3.31 {
@@ -2101,7 +2101,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       @if $ver < 3.31 {
         @include image-loader($url: 'assets/calendar-arrow-right-hover.svg');
       }
-      @else { color: ; }
+      @else { color: $foreground; }
     }
 
     @if $ver < 3.31 {
@@ -2163,7 +2163,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
 .calendar-day { // border collapse hack - see calendar.js
   border-width: 0;
-  color: ;
+  color: $foreground;
 
   &-top { border-top-width: 0; }
 
@@ -2265,7 +2265,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     &-controls {
       margin:  if($ref_weight >= 1.0, 1.5em 1.5em 0, 1.2em 1.2em 0);
 
-      > StLabel { color: ; } // 'Do Not Disturb' label
+      > StLabel { color: $foreground; } // 'Do Not Disturb' label
     }
   }
 
@@ -2289,11 +2289,11 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       // FIXME: how do you do this in sass?
       &:hover > StIcon,
       &:focus > StIcon {
-        color: ;
+        color: $foreground;
         background-color: $semi_fill_bg;
       }
       &:active > StIcon {
-        color: ;
+        color: $foreground;
         background-color: $fill_bg;
       }
     }
@@ -2378,9 +2378,9 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     &:hover,
     &:focus {
       @if $ver > 3.25 {
-        background-color: mix(, $base, percentage($alpha_track_1)); // use opaque
+        background-color: mix($foreground, $base, percentage($alpha_track_1)); // use opaque
         @if $ver > 3.33 {
-          border: 1px solid mix(, $base, percentage($alpha_track_1));
+          border: 1px solid mix($foreground, $base, percentage($alpha_track_1));
         }
       }
       @else {
@@ -2388,25 +2388,25 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         &:ltr { box-shadow: inset 4px 0 opacity($background_accent, $alpha_foreground_2nd); }
         &:rtl { box-shadow: inset -4px 0 opacity($background_accent, $alpha_foreground_2nd); }
       }
-      color: ;
+      color: $foreground;
 
       @if $ver < 3.31 {
         .message-icon-bin > StIcon,
         .message-title,
-        .message-content { color: ; }
+        .message-content { color: $foreground; }
       }
       @else {
         @if $ver > 3.35 {
           .message-icon-bin > StIcon,
           .message-icon-bin > .fallback-app-icon,
           .message-title,
-          .message-body { color: ; }
+          .message-body { color: $foreground; }
         }
         @else {
           .message-icon-bin > StIcon,
           .message-icon-bin > .fallback-app-icon,
           .message-title,
-          .message-content { color: ; }
+          .message-content { color: $foreground; }
         }
       }
 
@@ -2417,9 +2417,9 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     }
     &:active {
       @if $ver > 3.25 {
-        background-color: mix(, $base, percentage($alpha_track_2));
+        background-color: mix($foreground, $base, percentage($alpha_track_2));
         @if $ver > 3.33 {
-          border: 1px solid mix(, $base, percentage($alpha_track_2));
+          border: 1px solid mix($foreground, $base, percentage($alpha_track_2));
         }
       }
       @else {
@@ -2427,25 +2427,25 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         &:ltr { box-shadow: inset 4px 0 $background_accent; }
         &:rtl { box-shadow: inset -4px 0 $background_accent; }
       }
-      color: ;
+      color: $foreground;
 
       @if $ver < 3.31 {
         .message-icon-bin > StIcon,
         .message-title,
-        .message-content { color: ; }
+        .message-content { color: $foreground; }
       }
       @else {
         @if $ver > 3.35 {
           .message-icon-bin > StIcon,
           .message-icon-bin > .fallback-app-icon,
           .message-title,
-          .message-body { color: ; }
+          .message-body { color: $foreground; }
         }
         @else {
           .message-icon-bin > StIcon,
           .message-icon-bin > .fallback-app-icon,
           .message-title,
-          .message-content { color: ; }
+          .message-content { color: $foreground; }
         }
       }
 
@@ -2878,7 +2878,7 @@ $close_button_size: if($ver < 3.35, 32px,
             @include button(flat-active, $text-color: $foreground_accent);
             box-shadow: $empty_shadow;
           }
-          &:insensitive { @include button(flat-disabled, $text-color: ); }
+          &:insensitive { @include button(flat-disabled, $text-color: $foreground); }
         }
       }
     }
@@ -2946,9 +2946,9 @@ $close_button_size: if($ver < 3.35, 32px,
 
       StButton#vhandle,
       StButton#hhandle {
-        background-color: opacity(, $alpha_foreground_3rd * $alpha_foreground_3rd);
-        &:hover { background-color: opacity(, $alpha_foreground_2nd * $alpha_foreground_3rd); }
-        &:active { background-color: ; }
+        background-color: opacity($foreground, $alpha_foreground_3rd * $alpha_foreground_3rd);
+        &:hover { background-color: opacity($foreground, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+        &:active { background-color: $foreground; }
       }
     }
   }
@@ -3038,13 +3038,13 @@ $close_button_size: if($ver < 3.35, 32px,
 
   &:hover,
   &:focus {
-    caret-color: ;
+    caret-color: $foreground;
     background-color: $base;
     box-shadow: $z-depth-2;
 
     &,
     StLabel {
-      color: ; // shut up 3rd-party gresources
+      color: $foreground; // shut up 3rd-party gresources
     }
   }
 
@@ -3057,7 +3057,7 @@ $close_button_size: if($ver < 3.35, 32px,
 
   &:hover,
   &:focus {
-    .search-entry-icon { color: ; }
+    .search-entry-icon { color: $foreground; }
   }
 }
 
@@ -3763,7 +3763,7 @@ $grid_size: 136px;
         &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
         &:focus { @include button(flat-focus, $text-color: $foreground_accent); }
         &:active { @include button(flat-active, $text-color: $foreground_accent); }
-        &:insensitive { @include button(flat-disabled, $text-color: ); }
+        &:insensitive { @include button(flat-disabled, $text-color: $foreground); }
       }
 
       > StIcon { icon-size: $icon_size; }
@@ -3870,7 +3870,7 @@ $grid_size: 136px;
     padding: 12px;
     border: none;
     background-color: $background;
-    color: ;
+    color: $foreground;
     box-shadow: $z-depth-4;
 
     StBin.placeholder { // solid-line indicator for drop-target
@@ -4523,7 +4523,7 @@ $grid_size: 136px;
       @include button(flat-normal, $text-color: $foreground_accent);
       &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
       &:active { @include button(flat-active, $text-color: $foreground_accent); }
-      &:insensitive { @include button(flat-disabled, $text-color: ); }
+      &:insensitive { @include button(flat-disabled, $text-color: $foreground); }
     }
 
     &-previous {

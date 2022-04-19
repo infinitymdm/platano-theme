@@ -14,11 +14,11 @@
 // Foreground colors
 //
 
-: if($variant == dark, color($grey, 100),
+$foreground: if($variant == dark, color($grey, 100),
                           mix(color($grey, 900), black));
-$foreground_secondary: opacity(, $alpha_foreground_2nd);
-$foreground_tertiary: opacity(, $alpha_foreground_3rd);
-$foreground_dis: opacity(, $alpha_foreground_dis);
+$foreground_secondary: opacity($foreground, $alpha_foreground_2nd);
+$foreground_tertiary: opacity($foreground, $alpha_foreground_3rd);
+$foreground_dis: opacity($foreground, $alpha_foreground_dis);
 $foreground_dis_secondary: opacity($foreground_secondary, $alpha_foreground_dis);
 
 $foreground_selection: white;
@@ -54,8 +54,8 @@ $background_dark: if($variant == dark,
              mix(color($grey, 900), black, 25%),
              mix(color($grey, 200), color($grey, 300)));
 
-$semi_fill_bg: opacity(, $alpha_track_1);
-$fill_bg: opacity(, $alpha_track_2);
+$semi_fill_bg: opacity($foreground, $alpha_track_1);
+$fill_bg: opacity($foreground, $alpha_track_2);
 $hidden_fill_bg: rgba(0, 0, 0, 0.01);
 
 $background_selection: $key_selection_color;
@@ -73,7 +73,7 @@ $ovv_sel_label: saturate(
                   lighten($background_selection, percentage($alpha_track_2)),
                   percentage($alpha_track_2));
 
-$out_fg: opacity(, $alpha_track_out);
+$out_fg: opacity($foreground, $alpha_track_out);
 $dis_out_fg: opacity($out_fg, $alpha_foreground_dis);
 
 //

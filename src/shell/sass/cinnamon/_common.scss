@@ -20,7 +20,7 @@ $font-family: Roboto, Sans-Serif;
 // we may need to specify the stage node for upcoming version somehow...
 
 stage {
-  color: ;
+  color: $foreground;
   font-family: $font-family;
   font-weight: 400;
   font-size: 10pt;
@@ -123,9 +123,9 @@ StScrollBar {
   StButton#vhandle, StButton#hhandle {
     margin: 0;
     border-radius: 0;
-    background-color: opacity(, $alpha_foreground_3rd * $alpha_foreground_3rd);
-    &:hover { background-color: opacity(, $alpha_foreground_2nd * $alpha_foreground_3rd); }
-    &:active { background-color: ; }
+    background-color: opacity($foreground, $alpha_foreground_3rd * $alpha_foreground_3rd);
+    &:hover { background-color: opacity($foreground, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+    &:active { background-color: $foreground; }
   }
 }
 
@@ -325,7 +325,7 @@ StScrollBar {
     color: $foreground_secondary;
     &:active {
       background-color: $semi_fill_bg;
-      color: ;
+      color: $foreground;
     }
     &:insensitive {
       color: $foreground_dis;
@@ -721,7 +721,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
   &-month-label {
     margin: 0 0.2em;
     padding-top: (0.45em - 0.1em); // label centering
-    color: ;
+    color: $foreground;
     font-weight: 400;
     font-size: 90%;
   }
@@ -758,14 +758,14 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
 .datemenu-date-label {
   padding: 0.4em 0;
   border-radius: $radius_2;
-  color: ;
+  color: $foreground;
   font-weight: 700;
   text-align: center;
 }
 
 .calendar-day {
   border-width: 0;
-  color: ;
+  color: $foreground;
 
   &-base {
     width: 2.4em;
@@ -853,7 +853,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
       border: 1px solid if($variant == dark, opacity(white, $alpha_div_1),
                                              opacity(black, $alpha_div_1));
       background-color: $base;
-      color: ;
+      color: $foreground;
       box-shadow: $empty_shadow;
     }
 
@@ -1042,7 +1042,7 @@ $ripple_r: 52px;
         &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
         &:focus { @include button(flat-focus, $text-color: $foreground_accent); }
         &:active { @include button(flat-active, $text-color: $foreground_accent); }
-        &:insensitive { @include button(flat-disabled, $text-color: ); }
+        &:insensitive { @include button(flat-disabled, $text-color: $foreground); }
       }
     }
   }
@@ -1450,7 +1450,7 @@ $large_item: 10px;
 
   &-search-entry-icon {
     icon-size: $icon_size;
-    color: ;
+    color: $foreground;
   }
 
   // Context menu (at the moment only for favorites)
@@ -1461,7 +1461,7 @@ $large_item: 10px;
 #menu-search-entry {
   @extend %entry;
   width: 24em;
-  caret-color: ;
+  caret-color: $foreground;
   font-weight: 400;
 }
 
@@ -2098,7 +2098,7 @@ $large_item: 10px;
 
   &-label {
     margin: 0;
-    color: ;
+    color: $foreground;
     font-weight: 700;
     font-size: 100%;
   }
@@ -2343,7 +2343,7 @@ $bottom_gap: 0.25em;
     background-color: $base;
     &:hover {
       background-color: $semi_fill_bg;
-      color: ;
+      color: $foreground;
     }
     &:checked,
     &:active:checked {
@@ -2363,7 +2363,7 @@ $bottom_gap: 0.25em;
     background-color: $hidden_fill_bg;
     &:hover {
       background-color: $semi_fill_bg;
-      color: ;
+      color: $foreground;
     }
     &:checked,
     &:active:checked {
@@ -2391,8 +2391,8 @@ $bottom_gap: 0.25em;
     &:focus:hover {
       border-color: transparent;
       background-color: $base;
-      color: ;
-      caret-color: ;
+      color: $foreground;
+      caret-color: $foreground;
       box-shadow: inset 0 0 0 1px $background_selection;
     }
     &:insensitive {

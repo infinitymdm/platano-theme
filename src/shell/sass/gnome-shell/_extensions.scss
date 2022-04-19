@@ -61,7 +61,7 @@
     &-summary,
     &-summarybox {
       background: none;
-      color: ;
+      color: $foreground;
     }
 
     &-databox-values {
@@ -372,10 +372,10 @@ $rename_box_spacing: 6px;
       &:insensitive { @include entry(disabled, $text-color: $osd_fg); }
     }
     @else {
-      @include entry(normal, $text-color: );
-      &:hover { @include entry(hover, $text-color: ); }
-      &:focus { @include entry(focus, $text-color: ); }
-      &:insensitive { @include entry(disabled, $text-color: ); }
+      @include entry(normal, $text-color: $foreground);
+      &:hover { @include entry(hover, $text-color: $foreground); }
+      &:focus { @include entry(focus, $text-color: $foreground); }
+      &:insensitive { @include entry(disabled, $text-color: $foreground); }
     }
   }
 
@@ -396,7 +396,7 @@ $rename_box_spacing: 6px;
       &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
       &:focus { @include button(flat-focus, $text-color: $foreground_accent); }
       &:active { @include button(flat-active, $text-color: $foreground_accent); }
-      &:insensitive { @include button(flat-disabled, $text-color: ); }
+      &:insensitive { @include button(flat-disabled, $text-color: $foreground); }
     }
   }
 }
