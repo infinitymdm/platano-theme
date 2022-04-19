@@ -1218,10 +1218,10 @@ window.budgie-popover.workspace-popover {
 %budgie_notification_window_base,
 .budgie-notification-window,
 .budgie-osd-window {
-  border-radius: $r_8;
+  border-radius: $r_4;
   background-color: transparent;
 
-  .drop-shadow { border-radius: $r_8; }
+  .drop-shadow { border-radius: $r_4; }
 }
 
 %budgie_notification_window_styling,
