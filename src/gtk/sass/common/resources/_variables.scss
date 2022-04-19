@@ -3,16 +3,16 @@
 //
 
 // foreground colors
-$alpha_foreground_2nd: 0.87;
-$alpha_foreground_3rd: 0.54;
-$alpha_foreground_bdp: 0.40;
-$alpha_foreground_dis: 0.28;
+$alpha_foreground_2nd:  0.87;
+$alpha_foreground_3rd:  0.54;
+$alpha_foreground_bdp:  0.40;
+$alpha_foreground_dis:  0.28;
 $alpha_foreground_selection_secondary: 0.90;
-$alpha_foreground_selection_tertiary: 0.70;
+$alpha_foreground_sel_3rd: 0.70;
 
 // track colors
-$alpha_track_1: 0.12;
-$alpha_track_2: 0.25;
+$alpha_track_1:   0.12;
+$alpha_track_2:   0.25;
 $alpha_track_out: 0.20;
 
 // divider colors
@@ -33,10 +33,10 @@ $asset_suffix: if($variant == dark, '-dark', '');
 // Radius
 //
 
-$radius:   999px;
-$radius_1: 1px + 0.5px;
-$radius_2: 2px + 0.5px;
-$radius_4: 4px + 0.5px;
+$r: 999px;
+$r_1: 1px + 0.5px;
+$r_2: 2px + 0.5px;
+$r_4: 4px + 0.5px;
 $r_8: 8px + 0.5px;
 
 //
@@ -77,18 +77,18 @@ $transition_p_ink_combo: border-color,
   box-shadow;
 $transition_p_deco: box-shadow;
 
-$transition_t_lin:      linear;
-$transition_t_dec:      cubic-bezier(0.0, 0.0, 0.2, 1.0);
+$transition_t_lin: linear;
+$transition_t_dec: cubic-bezier(0.0, 0.0, 0.2, 1.0);
 $transition_t_standard: cubic-bezier(0.4, 0.0, 0.2, 1.0);
-$transition_t_acc:      cubic-bezier(0.4, 0.0, 1.0, 1.0);
+$transition_t_acc: cubic-bezier(0.4, 0.0, 1.0, 1.0);
 
-$transition_d_none:     0s;
-$transition_d_delay:    0.03s;
-$transition_d_short:    0.1s - $transition_d_delay;
-$transition_d_standard: 0.2s - $transition_d_delay;
-$transition_d_long:     0.3s - $transition_d_delay;
-$transition_d_longer:   0.45s - $transition_d_delay;
-$transition_d_spin:     1.0s;
+$transition_d_none:  0s;
+$transition_d_delay:  0.03s;
+$transition_d_short:  0.1s - $transition_d_delay;
+$transition_d_standard:  0.2s - $transition_d_delay;
+$transition_d_long:  0.3s - $transition_d_delay;
+$transition_d_longer: 0.45s - $transition_d_delay;
+$transition_d_spin: 1.0s;
 
 //
 // Background sizing
@@ -148,4 +148,4 @@ $deco_margin: 10px;
 $shadow_margin_2: 0  8px 14px;
 $shadow_margin_3: 6px 10px 16px;
 $shadow_margin_4: 16px 24px 32px;
-$budgie_osd_margin: 12px;//if($ref_weight < 1.0, 12px, 16px);
+$budgie_osd_margin: if($ref_weight < 1.0, 12px, 16px);

@@ -39,7 +39,7 @@ stage {
 
 .button {
   padding: if($ref_weight >= 1.0, 7px 16px 8px, 5px 12px 6px);
-  border-radius: $radius_2;
+  border-radius: $r_2;
   border: none;
   font-weight: 500;
   @include button(flat-normal);
@@ -60,18 +60,18 @@ stage {
   text-shadow: none;
   icon-shadow: none;
   @if $variant != light {
-    @include button(flat-normal, $text-color: $foreground_accent_inv);
-    &:hover { @include button(flat-hover, $text-color: $foreground_accent_inv); }
-    &:focus { @include button(flat-focus, $text-color: $foreground_accent_inv); }
-    &:active { @include button(flat-active, $text-color: $foreground_accent_inv); }
-    &:insensitive { @include button(flat-disabled, $text-color: $osd_fg); }
+    @include button(flat-normal, $tc: $foreground_accent_inv);
+    &:hover { @include button(flat-hover, $tc: $foreground_accent_inv); }
+    &:focus { @include button(flat-focus, $tc: $foreground_accent_inv); }
+    &:active { @include button(flat-active, $tc: $foreground_accent_inv); }
+    &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
   }
   @else {
-    @include button(flat-normal, $text-color: $foreground_accent);
-    &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
-    &:focus { @include button(flat-focus, $text-color: $foreground_accent); }
-    &:active { @include button(flat-active, $text-color: $foreground_accent); }
-    &:insensitive { @include button(flat-disabled, $text-color: $foreground); }
+    @include button(flat-normal, $tc: $foreground_accent);
+    &:hover { @include button(flat-hover, $tc: $foreground_accent); }
+    &:focus { @include button(flat-focus, $tc: $foreground_accent); }
+    &:active { @include button(flat-active, $tc: $foreground_accent); }
+    &:insensitive { @include button(flat-disabled, $tc: $foreground); }
   }
   &:first-child { border-radius: 0 0 0 $r_8; }
   &:last-child { border-radius: 0 0 $r_8 0; }
@@ -91,22 +91,22 @@ StEntry {
   min-height: if($ref_weight >= 1.0, 1em + 0.7em + 0.8em,
                                      1em + 0.5em + 0.6em);
   padding: if($ref_weight >= 1.0, 0 0.8em, 0 0.6em);
-  border-radius: $radius_4 $radius_4 0 0;
+  border-radius: $r_4 $r_4 0 0;
   border-width: 0;
   selection-background-color: $background_selection;
   selected-color: $foreground_selection;
   transition-duration: $transition_d_none;
   @if $variant != light {
-    @include entry(normal, $text-color: $osd_fg);
-    &:hover { @include entry(hover, $text-color: $osd_fg); }
-    &:focus { @include entry(focus, $text-color: $osd_fg); }
-    &:insensitive { @include entry(disabled, $text-color: $osd_fg); }
+    @include entry(normal, $tc: $osd_fg);
+    &:hover { @include entry(hover, $tc: $osd_fg); }
+    &:focus { @include entry(focus, $tc: $osd_fg); }
+    &:insensitive { @include entry(disabled, $tc: $osd_fg); }
   }
   @else {
-    @include entry(normal, $text-color: $foreground);
-    &:hover { @include entry(hover, $text-color: $foreground); }
-    &:focus { @include entry(focus, $text-color: $foreground); }
-    &:insensitive { @include entry(disabled, $text-color: $foreground); }
+    @include entry(normal, $tc: $foreground);
+    &:hover { @include entry(hover, $tc: $foreground); }
+    &:focus { @include entry(focus, $tc: $foreground); }
+    &:insensitive { @include entry(disabled, $tc: $foreground); }
   }
 
   StIcon {
@@ -265,13 +265,13 @@ StScrollBar {
 //  *********/
 
 .shell-link {
-  border-radius: $radius_2;
+  border-radius: $r_2;
   color: $osd_link_fg;
   &:hover {
-    @include button(flat-hover, $text-color: $osd_link_fg);
+    @include button(flat-hover, $tc: $osd_link_fg);
   }
   &:active {
-    @include button(flat-active, $text-color: $osd_link_fg);
+    @include button(flat-active, $tc: $osd_link_fg);
   }
 }
 
@@ -504,8 +504,8 @@ StScrollBar {
     height: $icon_size * 3;
     background-size: contain;
     color: $osd_fg;
-    @if $ver < 3.31 { border-radius: $radius_2; }
-    @else { border-radius: $radius; } // circular shape
+    @if $ver < 3.31 { border-radius: $r_2; }
+    @else { border-radius: $r; } // circular shape
   }
 
   &-shutdown-icon {
@@ -791,8 +791,8 @@ StScrollBar {
       height: $icon_size * 3;
     }
     background-size: contain;
-    @if $ver < 3.31 { border-radius: $radius_2; }
-    @else { border-radius: $radius; } // circular shape
+    @if $ver < 3.31 { border-radius: $r_2; }
+    @else { border-radius: $r; } // circular shape
   }
 }
 
@@ -828,7 +828,7 @@ StScrollBar {
 
   &-device {
     border: 1px solid $foreground_div;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     &:hover,
     &:focus { background-color: $osd_semi_fill_bg; }
     &:active {
@@ -1122,7 +1122,7 @@ $avatar_width: $icon_size * 1.5;
   -arrow-rise: 0;
   -arrow-box-shadow: $empty_shadow; // dreaming. bug #689995
   @if $ver < 3.25 {
-    border-radius: $radius_4;
+    border-radius: $r_4;
     box-shadow: $z-depth-3;
   }
   @else { // shut up 3rd-party gresources
@@ -1151,7 +1151,7 @@ $avatar_width: $icon_size * 1.5;
 
 %popover_content {
   margin: 3px 5px 12px;
-  border-radius: $radius_4;
+  border-radius: $r_4;
   box-shadow: $z-depth-3;
 }
 
@@ -1227,19 +1227,19 @@ $avatar_width: $icon_size * 1.5;
       padding: if($ref_weight >= 1.0, // subtract borders
                   (7px - 2px) (16px - 2px) (8px - 2px),
                   (5px - 2px) (12px - 2px) (6px - 2px));
-      border-radius: $radius_2;
+      border-radius: $r_2;
       font-weight: 500;
-      @include button(suggested-normal, $color: $background_suggestion, $text-color: $foreground_selection);
+      @include button(suggested-normal, $c: $background_suggestion, $tc: $foreground_selection);
       &:hover {
-        @include button(suggested-hover, $color: $background_suggestion, $text-color: $foreground_selection);
+        @include button(suggested-hover, $c: $background_suggestion, $tc: $foreground_selection);
       }
       &:focus {
-        @include button(suggested-focus, $color: $background_suggestion, $text-color: $foreground_selection);
+        @include button(suggested-focus, $c: $background_suggestion, $tc: $foreground_selection);
       }
       &:active { @include button(suggested-active); }
       &:insensitive {
         padding: if($ref_weight >= 1.0, 7px 16px 8px, 5px 12px 6px);
-        @include button(suggested-disabled, $text-color: $foreground);
+        @include button(suggested-disabled, $tc: $foreground);
       }
     }
   }
@@ -1374,7 +1374,7 @@ $avatar_width: $icon_size * 1.5;
   .item-box {
     padding: if($ref_weight >= 1.0, 6px, 4px);
     border: 2px solid transparent;
-    border-radius: $radius_2;
+    border-radius: $r_2;
 
     &:outlined { border: 2px solid $osd_out_fg; }
     &:selected {
@@ -1415,7 +1415,7 @@ $avatar_width: $icon_size * 1.5;
 //  *****************/
 
 .cycler-highlight {
-  border-radius: $radius_2 $radius_2 0 0;
+  border-radius: $r_2 $r_2 0 0;
   @extend %rubberband;
 }
 
@@ -1440,7 +1440,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 %switcher_arrow_active {
   height: $ws_container_size + (2px * 2); // concern the box's border width
   border: 0 none transparent;
-  border-radius: $radius_2;
+  border-radius: $r_2;
   background-size: 24px;
   background-color: $inv_acc_fill_bg;
 }
@@ -1466,7 +1466,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   &-box {
     height: $ws_container_size;
     border: 2px solid $osd_out_fg;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     background: transparent;
   }
 }
@@ -1795,7 +1795,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
 .calendar {
   margin-bottom: if($ref_weight >= 1.0, 1em, 0.7em);
-  border-radius: $radius_2;
+  border-radius: $r_2;
   @if $ver > 3.35 {
     @extend %reset_cal;
     padding-left: 0;
@@ -1843,7 +1843,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     .events-section-title {
       @if $ver > 3.35 { @extend %reset_cal; }
       padding: 0.4em;
-      border-radius: $radius_2;
+      border-radius: $r_2;
     }
   }
   @else {
@@ -1854,7 +1854,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     .events-section-title {
       @extend %reset_cal;
       padding: 0.4em;
-      border-radius: $radius_2;
+      border-radius: $r_2;
     }
   }
 }
@@ -1865,7 +1865,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .message-list-section-title, // in 3.24 cycle, use .event-section-title
   .events-section-title {
     padding: 0.4em;
-    border-radius: $radius_2;
+    border-radius: $r_2;
   }
 }
 
@@ -2017,7 +2017,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       &-icon {
         width: 2.4em; // = .calendar-day-base
         height: 2.4em;
-        border-radius: $radius;
+        border-radius: $r;
         background-color: opacity($foreground_secondary, $alpha_track_1);
         color: $foreground_secondary;
         icon-size: if($ref_weight >= 1.0, $icon_size * 1.5,
@@ -2046,7 +2046,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 .pager-button {
   width: 2.1em;
   height: 2.1em;
-  border-radius: $radius;
+  border-radius: $r;
   color: $foreground;
   background-color: transparent;
   &:hover { background-color: $semi_fill_bg; }
@@ -2121,7 +2121,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   height: 2.4em;
   padding: 0;
   margin: 0.2em;
-  border-radius: $radius;
+  border-radius: $r;
   @if $ver > 3.35 { border: 0 none transparent; }
   font-size: 90%;
   text-align: center;
@@ -2254,10 +2254,10 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       margin:  if($ref_weight >= 1.0, 1.5em 1.5em 0, 1.2em 1.2em 0);
     }
     font-weight: 500;
-    @include button(flat-normal, $text-color: $foreground_accent);
+    @include button(flat-normal, $tc: $foreground_accent);
     &:hover,
-    &:focus { @include button(flat-hover, $text-color: $foreground_accent); }
-    &:active { @include button(flat-active, $text-color: $foreground_accent); }
+    &:focus { @include button(flat-hover, $tc: $foreground_accent); }
+    &:active { @include button(flat-active, $tc: $foreground_accent); }
     &:insensitive { @include button(flat-disabled); }
   }
 
@@ -2280,7 +2280,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     &-section-close {
       > StIcon {
         padding: 0.45em;
-        border-radius: $radius;
+        border-radius: $r;
         icon-size: $icon_size;
         color: $foreground_secondary;
         background-color: transparent;
@@ -2559,14 +2559,14 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         padding: 2px;
         icon-size: 1.09em;
       }
-      border-radius: $radius;
+      border-radius: $r;
     }
 
     StButton > StIcon { // close button
       // FIXME: alpha blended secondary color can't be rendered in OSD?
       color: $foreground_accent_inv;
 
-      .popup-menu & { color: $foreground_accent_sec; }
+      .popup-menu & { color: $foreground_secondary_accent; }
     }
 
     StButton:hover > StIcon,
@@ -2604,8 +2604,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 .message-media-control {
   padding: 0 8px;
   margin: 0 6px;
-  border-radius: $radius;
-  color: $foreground_accent_sec;
+  border-radius: $r;
+  color: $foreground_secondary_accent;
   background: transparent;
   background-size: 32px 32px;
   &:hover {
@@ -2633,7 +2633,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     icon-size: if($ref_weight >= 1.0, 24px, 16px) !important;
     padding: if($ref_weight >= 1.0, 12px, 10px);
     border: none;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     color: $osd_ter_fg;
     background-color: $osd_semi_fill_bg;
     box-shadow: $empty_shadow;
@@ -2690,7 +2690,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 @if $ver < 3.35 {
   .system-menu-action {
     padding: if($ref_weight >= 1.0, 10px, 8px);
-    border-radius: $radius;
+    border-radius: $r;
     @include button(normal);
     @if $ver > 3.25 { -st-icon-style: symbolic; } // >= 3.29.90
     &:hover { @include button(hover); }
@@ -2774,7 +2774,7 @@ $close_button_size: if($ver < 3.35, 32px,
     @if $ver > 3.35 {
       margin: 0.1em; // previent unwanted truncated button top
     }
-    border-radius: $radius;
+    border-radius: $r;
     border: 0 none transparent;
     background-color: $background_destruction;
     color: $foreground_selection;
@@ -2863,22 +2863,22 @@ $close_button_size: if($ver < 3.35, 32px,
       .button {
         font-weight: 500;
         @if $variant != light {
-          @include button(flat-normal, $text-color: $foreground_accent_inv);
-          &:hover { @include button(flat-hover, $text-color: $foreground_accent_inv); }
+          @include button(flat-normal, $tc: $foreground_accent_inv);
+          &:hover { @include button(flat-hover, $tc: $foreground_accent_inv); }
           &:active {
-            @include button(flat-active, $text-color: $foreground_accent_inv);
+            @include button(flat-active, $tc: $foreground_accent_inv);
             box-shadow: $empty_shadow;
           }
-          &:insensitive { @include button(flat-disabled, $text-color: $osd_fg); }
+          &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
         }
         @else {
-          @include button(flat-normal, $text-color: $foreground_accent);
-          &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
+          @include button(flat-normal, $tc: $foreground_accent);
+          &:hover { @include button(flat-hover, $tc: $foreground_accent); }
           &:active {
-            @include button(flat-active, $text-color: $foreground_accent);
+            @include button(flat-active, $tc: $foreground_accent);
             box-shadow: $empty_shadow;
           }
-          &:insensitive { @include button(flat-disabled, $text-color: $foreground); }
+          &:insensitive { @include button(flat-disabled, $tc: $foreground); }
         }
       }
     }
@@ -2979,7 +2979,7 @@ $close_button_size: if($ver < 3.35, 32px,
 
 .window-clone-border {
   border: 4px solid $ovv_semi_fill_bg;
-  border-radius: $radius_2 $radius_2 0 0;
+  border-radius: $r_2 $r_2 0 0;
   // For window decorations with round corners we can't match
   // the exact shape when the window is scaled. So apply a shadow
   // to fix that case
@@ -2991,7 +2991,7 @@ $close_button_size: if($ver < 3.35, 32px,
     @extend %tooltip_template;
     max-width: 75em; // set horizontal limit for damned looong web page titles
     padding: if($ref_weight >= 1.0, 0.6em 1.2em 0.7em, 0.4em 0.9em 0.5em);
-    border-radius: $radius;
+    border-radius: $r;
     @if $ver > 3.35 {
       border: 0 none transparent;
       font-size: 100%;
@@ -3006,7 +3006,7 @@ $close_button_size: if($ver < 3.35, 32px,
   @else {
     spacing: if($ref_weight >= 1.0, 25px, 19px);
     padding: if($ref_weight >= 1.0, 0.3em 0.9em 0.4em, 0.2em 0.6em 0.3em);
-    border-radius: $radius_2;
+    border-radius: $r_2;
     background-color: opacity($osd_bg, $alpha_osd);
     -shell-caption-spacing: if($ref_weight >= 1.0, 12px, 8px);
     &:hover {
@@ -3020,7 +3020,7 @@ $close_button_size: if($ver < 3.35, 32px,
 .search-entry { // use raised entry-box styling
   width: if($ref_weight >= 1.0, 400px, 340px);
   padding: if($ref_weight >= 1.0, 0.4em 0.8em, 0.3em 0.6em);
-  border-radius: $radius;
+  border-radius: $r;
   border: 2px solid transparent;
   background-color: opacity($base, $alpha_foreground_3rd);
   box-shadow: $empty_shadow;
@@ -3182,7 +3182,7 @@ $provider_icon_size: 32px; // for < 3.25
       &:rtl { margin-left: $provider_icon_size / 2; }
     }
     padding: 0;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     transition-duration: $transition_d_none;
     &:focus,
     &:selected,
@@ -3345,13 +3345,13 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
     padding: if($ref_weight >= 1.0, 0 $results_icon_size / 4,
                                     0 $results_icon_size / 8);
     color: $osd_ter_fg;
-    &:ltr { border-radius: $radius_2 $radius $radius $radius_2; }
-    &:rtl { border-radius: $radius $radius_2 $radius_2 $radius; }
+    &:ltr { border-radius: $r_2 $r $r $r_2; }
+    &:rtl { border-radius: $r $r_2 $r_2 $r; }
   }
   @else {
     margin: if($ref_weight >= 1.0, $provider_icon_size / 4 0, 0);
     padding: $provider_icon_size / 2;
-    border-radius: $radius;
+    border-radius: $r;
     color: $ovv_sec_fg;
   }
   border: none;
@@ -3421,7 +3421,7 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
   // non-scalable unit instead
   padding: if($ref_weight >= 1.0, 7px 8px 8px,
                                   6px 7px 7px);
-  border-radius: $radius_2;
+  border-radius: $r_2;
   @if $ver > 3.33 { border: 0 none transparent; }
   text-align: center;
   -x-offset: 8px;
@@ -3459,7 +3459,7 @@ $grid_size: 136px;
 @if $ver > 3.25 {
   .system-action-icon { // system-action icons in search results
     icon-size: $icon_size * 3;
-    border-radius: $radius;
+    border-radius: $r;
     background-color: opacity($osd_bg, $alpha_osd);
     color: $osd_fg;
     box-shadow: $z-depth-2;
@@ -3470,14 +3470,14 @@ $grid_size: 136px;
   .app-view-controls { // favorites | all toggle container
     width: if($ref_weight >= 1.0, 400px, 340px);
     margin-bottom: if($ref_weight >= 1.0, 12px, 9px);
-    border-radius: $radius;
+    border-radius: $r;
     background-color: $hidden_fill_bg !important;
     box-shadow: $empty_shadow;
   }
 
   .app-view-control { // favorites | all toggle button
     padding: if($ref_weight >= 1.0, 7px 32px 8px, 5px 32px 6px);
-    border-radius: $radius;
+    border-radius: $r;
     color: $ovv_sec_fg;
     background-color: $hidden_fill_bg !important;
     box-shadow: inset 0 0 0 1px $ovv_out_fg;
@@ -3522,7 +3522,7 @@ $grid_size: 136px;
   .overview-icon {
     padding: 9px;
     border: none;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     color: $ovv_sec_fg;
     box-shadow: $empty_shadow;
     font-weight: 700;
@@ -3584,7 +3584,7 @@ $grid_size: 136px;
 .show-apps {
   .overview-icon {
     // set circle dock buttons on dash
-    #dash & { border-radius: $radius; }
+    #dash & { border-radius: $r; }
 
     #panel & { border-radius: 0; }
   }
@@ -3600,7 +3600,7 @@ $grid_size: 136px;
     width: $icon_size / 2;
     height:  $icon_size / 2;
     margin-bottom: 2px;
-    border-radius: $radius;
+    border-radius: $r;
   }
 }
 
@@ -3627,7 +3627,7 @@ $grid_size: 136px;
   &:active {
     &, &:hover {
       > .overview-icon {
-        border-radius: $radius_2;
+        border-radius: $r_2;
         background-color: $ovv_fill_bg;
         box-shadow: $empty_shadow;
       }
@@ -3636,7 +3636,7 @@ $grid_size: 136px;
   &:checked {
     &, &:hover {
       > .overview-icon {
-        border-radius: $radius_2;
+        border-radius: $r_2;
         background-color: $background_selection;
         color: $foreground_selection;
         box-shadow: $empty_shadow;
@@ -3750,20 +3750,20 @@ $grid_size: 136px;
       height: if($ref_weight >= 1.0, $icon_size + (10px * 2),
                                      $icon_size + (7px * 2));
       padding: 0;
-      border-radius: $radius;
+      border-radius: $r;
       @if $variant != light {
-        @include button(flat-normal, $text-color: $foreground_accent_inv);
-        &:hover { @include button(flat-hover, $text-color: $foreground_accent_inv); }
-        &:focus { @include button(flat-focus, $text-color: $foreground_accent_inv); }
-        &:active { @include button(flat-active, $text-color: $foreground_accent_inv); }
-        &:insensitive { @include button(flat-disabled, $text-color: $osd_fg); }
+        @include button(flat-normal, $tc: $foreground_accent_inv);
+        &:hover { @include button(flat-hover, $tc: $foreground_accent_inv); }
+        &:focus { @include button(flat-focus, $tc: $foreground_accent_inv); }
+        &:active { @include button(flat-active, $tc: $foreground_accent_inv); }
+        &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
       }
       @else {
-        @include button(flat-normal, $text-color: $foreground_accent);
-        &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
-        &:focus { @include button(flat-focus, $text-color: $foreground_accent); }
-        &:active { @include button(flat-active, $text-color: $foreground_accent); }
-        &:insensitive { @include button(flat-disabled, $text-color: $foreground); }
+        @include button(flat-normal, $tc: $foreground_accent);
+        &:hover { @include button(flat-hover, $tc: $foreground_accent); }
+        &:focus { @include button(flat-focus, $tc: $foreground_accent); }
+        &:active { @include button(flat-active, $tc: $foreground_accent); }
+        &:insensitive { @include button(flat-disabled, $tc: $foreground); }
       }
 
       > StIcon { icon-size: $icon_size; }
@@ -3792,7 +3792,7 @@ $grid_size: 136px;
     .page-indicator-icon { // there's no :checked state
       width: $icon_size - 2px;
       height: $icon_size - 2px;
-      border-radius: $radius;
+      border-radius: $r;
       background-color: $ovv_fg;
     }
 
@@ -3806,7 +3806,7 @@ $grid_size: 136px;
       height: $icon_size - 2px;
       margin: 2px;
       padding: 0;
-      border-radius: $radius;
+      border-radius: $r;
       border: 0 none transparent; // avoid stock CSS's borders
       background-image: none;
       background-color: $hidden_fill_bg;
@@ -4062,7 +4062,7 @@ $grid_size: 136px;
 
   &-resident-mount {
     spacing: 8px;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     &:hover { background-color: $osd_semi_fill_bg; }
     &:active { background-color: $osd_fill_bg; }
 
@@ -4081,7 +4081,7 @@ $grid_size: 136px;
 
   &-resident-eject-button {
     padding: 7px;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     color: $osd_fg;
   }
 }
@@ -4097,15 +4097,15 @@ $grid_size: 136px;
     padding: 0;
     border: 0 none transparent;
     background-color: $background_panel;
-    &:ltr { border-radius: 0 $radius_2 0 0; }
-    &:rtl { border-radius: $radius_2 0 0 0; }
+    &:ltr { border-radius: 0 $r_2 0 0; }
+    &:rtl { border-radius: $r_2 0 0 0; }
 
     &-handle,
     &-icon {
       width: $legacy_icon_size;
       height: $legacy_icon_size;
       padding: 4px 4px 2px;
-      border-radius: $radius_2;
+      border-radius: $r_2;
       border: 2px solid $background_panel;
       color: $osd_sec_fg;
       &:hover,
@@ -4188,7 +4188,7 @@ $grid_size: 136px;
     min-height: $ref_size * 2;
     min-width: $ref_size * 2;
     padding: 0;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     border: 1px solid mix($osd_sec_fg, $osd_bg, percentage($alpha_div_1));
     background-color: $osd_bg;
     color: $osd_sec_fg;
@@ -4344,7 +4344,7 @@ $grid_size: 136px;
 
   &-subkeys { //long press on a key popup
     padding: 0;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     -arrow-border-radius: 0;
     -arrow-background-color: transparent;
     -arrow-border-width: 0;
@@ -4390,7 +4390,7 @@ $grid_size: 136px;
 
     StButton {
       padding: 0 $ref_size * 1.3;
-      border-radius: $radius;
+      border-radius: $r;
       background-color: $background_suggestion;
       color: $foreground_selection_secondary;
       &:hover,
@@ -4479,7 +4479,7 @@ $grid_size: 136px;
 
   &-box {
     padding: 0.3em 0.5em;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     color: $osd_sec_fg;
     font-size: 110%;
     transition-duration: $transition_d_none;
@@ -4514,24 +4514,24 @@ $grid_size: 136px;
   &-page-button {
     padding: 4px;
     @if $variant != light {
-      @include button(flat-normal, $text-color: $foreground_accent_inv);
-      &:hover { @include button(flat-hover, $text-color: $foreground_accent_inv); }
-      &:active { @include button(flat-active, $text-color: $foreground_accent_inv); }
-      &:insensitive { @include button(flat-disabled, $text-color: $osd_fg); }
+      @include button(flat-normal, $tc: $foreground_accent_inv);
+      &:hover { @include button(flat-hover, $tc: $foreground_accent_inv); }
+      &:active { @include button(flat-active, $tc: $foreground_accent_inv); }
+      &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
     }
     @else {
-      @include button(flat-normal, $text-color: $foreground_accent);
-      &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
-      &:active { @include button(flat-active, $text-color: $foreground_accent); }
-      &:insensitive { @include button(flat-disabled, $text-color: $foreground); }
+      @include button(flat-normal, $tc: $foreground_accent);
+      &:hover { @include button(flat-hover, $tc: $foreground_accent); }
+      &:active { @include button(flat-active, $tc: $foreground_accent); }
+      &:insensitive { @include button(flat-disabled, $tc: $foreground); }
     }
 
     &-previous {
-      border-radius: $radius_2;
+      border-radius: $r_2;
       border-right-width: 0;
     }
 
-    &-next { border-radius: $radius_2; }
+    &-next { border-radius: $r_2; }
 
     &-icon { icon-size: $icon_size; }
   }
@@ -4554,13 +4554,13 @@ $grid_size: 136px;
 @if $ver < 3.31 {
   .framed-user-icon {
     @extend %framed_user_icon;
-    border-radius: $radius_2;
+    border-radius: $r_2;
   }
 }
 @else {
   .user-icon {
     @extend %framed_user_icon;
-    border-radius: $radius; // circular shape
+    border-radius: $r; // circular shape
   }
 }
 
@@ -4581,13 +4581,13 @@ $login_dialog_width: 23em;
   background-color: transparent;
 
   StEntry {
-    @include entry(normal, $text-color: $ovv_fg);
+    @include entry(normal, $tc: $ovv_fg);
     selection-background-color: $background_selection;
     selected-color: $foreground_selection;
     transition-duration: $transition_d_none;
-    &:hover { @include entry(hover, $text-color: $ovv_fg); }
-    &:focus { @include entry(focus, $text-color: $ovv_fg); }
-    &:insensitive { @include entry(disabled, $text-color: $ovv_fg); }
+    &:hover { @include entry(hover, $tc: $ovv_fg); }
+    &:focus { @include entry(focus, $tc: $ovv_fg); }
+    &:insensitive { @include entry(disabled, $tc: $ovv_fg); }
 
     StIcon.capslock-warning { color: $warn; } // CapsLock warning
 
@@ -4602,25 +4602,25 @@ $login_dialog_width: 23em;
     padding: 7px 16px 8px;
     font-weight: 500;
     font-size: 110%;
-    @include button(flat-normal, $text-color: $ovv_fg);
-    &:hover { @include button(flat-hover, $text-color: $ovv_fg); }
-    &:focus { @include button(flat-focus, $text-color: $ovv_fg); }
-    &:active { @include button(flat-active, $text-color: $ovv_fg); }
-    &:insensitive { @include button(flat-disabled, $text-color: $ovv_fg); }
+    @include button(flat-normal, $tc: $ovv_fg);
+    &:hover { @include button(flat-hover, $tc: $ovv_fg); }
+    &:focus { @include button(flat-focus, $tc: $ovv_fg); }
+    &:active { @include button(flat-active, $tc: $ovv_fg); }
+    &:insensitive { @include button(flat-disabled, $tc: $ovv_fg); }
     &:default { // suggested-action button
       padding: (7px - 2px) (16px - 2px) (8px - 2px); // subtract borders
-      @include button(suggested-normal, $color: $background_suggestion, $text-color: $foreground_selection);
+      @include button(suggested-normal, $c: $background_suggestion, $tc: $foreground_selection);
       &:hover {
-        @include button(suggested-hover, $color: $background_suggestion, $text-color: $foreground_selection);
+        @include button(suggested-hover, $c: $background_suggestion, $tc: $foreground_selection);
       }
       &:focus {
-        @include button(suggested-focus, $color: $background_suggestion, $text-color: $foreground_selection);
+        @include button(suggested-focus, $c: $background_suggestion, $tc: $foreground_selection);
       }
       &:active { @include button(suggested-active); }
       &:insensitive {
         // revert to standard padding since mixin has no borders
         padding: 7px 16px 8px;
-        @include button(suggested-disabled, $text-color: $foreground_selection);
+        @include button(suggested-disabled, $tc: $foreground_selection);
       }
     }
   }
@@ -4632,7 +4632,7 @@ $login_dialog_width: 23em;
       width: $icon_size * 2;
       height: $icon_size * 2;
       padding: 0;
-      border-radius: $radius;
+      border-radius: $r;
 
       StIcon { icon-size: $icon_size; }
     }
@@ -4761,7 +4761,7 @@ $login_dialog_width: 23em;
 
   &-not-listed-label {
     padding: 4px 8px 5px;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     color: $ovv_acc_fg;
     font-weight: 500;
     font-size: 90%;
@@ -4843,7 +4843,7 @@ $login_dialog_width: 23em;
 
   &-user-list-item {
     padding: 4px 4px 0;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     transition-duration: $transition_d_short;
 
     // exclude timed-login-indicator
@@ -4924,10 +4924,10 @@ $login_dialog_width: 23em;
   .login-dialog-session {
     &-list-button {
       padding: 4px;
-      border-radius: $radius;
-      @include button(flat-normal, $text-color: $ovv_fg);
-      &:focus { @include button(flat-focus, $text-color: $ovv_fg); }
-      &:hover { @include button(flat-hover, $text-color: $ovv_fg); }
+      border-radius: $r;
+      @include button(flat-normal, $tc: $ovv_fg);
+      &:focus { @include button(flat-focus, $tc: $ovv_fg); }
+      &:hover { @include button(flat-hover, $tc: $ovv_fg); }
       &:active {
         background-color: $background_selection;
         color: $foreground_selection;
@@ -5034,7 +5034,7 @@ $login_dialog_width: 23em;
 
       &-count-text {
         padding: 0 6px;
-        border-radius: $radius_2;
+        border-radius: $r_2;
         background-color: $background_suggestion;
         color: $foreground_selection;
         font-weight: 700;
@@ -5202,10 +5202,10 @@ $tool_icon_size: 24px;
   StEntry {
     selection-background-color: $background_selection;
     selected-color: $foreground_selection;
-    @include entry(normal, $text-color: $osd_fg);
-    &:hover { @include entry(hover, $text-color: $osd_fg); }
-    &:focus { @include entry(focus, $text-color: $osd_fg); }
-    &:insensitive { @include entry(disabled, $text-color: $osd_fg); }
+    @include entry(normal, $tc: $osd_fg);
+    &:hover { @include entry(hover, $tc: $osd_fg); }
+    &:focus { @include entry(focus, $tc: $osd_fg); }
+    &:insensitive { @include entry(disabled, $tc: $osd_fg); }
   }
 
   .shell-link {
@@ -5241,14 +5241,14 @@ $tool_icon_size: 24px;
       height: calc(#{$close_button_size} - 1px - (1px * 2));
     }
     padding: if($ref_weight >= 1.0, 0 16px 1px, 0 12px 1px);
-    border-radius: $radius_2;
+    border-radius: $r_2;
     font-weight: 500;
     @if $variant == mixed {
-      @include button(normal, $color: $osd_base, $text-color: $osd_fg);
-      &:hover { @include button(hover, $color: $osd_base, $text-color: $osd_fg); }
-      &:focus { @include button(focus, $color: $osd_base, $text-color: $osd_fg); }
-      &:active { @include button(active, $color: $osd_base, $text-color: $osd_fg); }
-      &:insensitive { @include button(flat-disabled, $text-color: $osd_fg); }
+      @include button(normal, $c: $osd_base, $tc: $osd_fg);
+      &:hover { @include button(hover, $c: $osd_base, $tc: $osd_fg); }
+      &:focus { @include button(focus, $c: $osd_base, $tc: $osd_fg); }
+      &:active { @include button(active, $c: $osd_base, $tc: $osd_fg); }
+      &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
     }
     @else {
       @include button(normal);
@@ -5270,7 +5270,7 @@ $tool_icon_size: 24px;
 .lg-extension {
   padding: 4px;
   border: none;
-  border-radius: $radius_2;
+  border-radius: $r_2;
   @if $ver > 3.35 { background-color: transparent; }
 
   &-name {

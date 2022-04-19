@@ -85,7 +85,7 @@
 // shortcuts panel button styling
 #workspacestodockDock {
   .app-well-app { // set circle dock buttons on shortcuts panel
-    .overview-icon { border-radius: $radius; }
+    .overview-icon { border-radius: $r; }
     &:hover .overview-icon {
       background-color: $osd_semi_fill_bg;
     }
@@ -155,13 +155,13 @@
 
   &-container {
     padding: 0;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     border: 1px solid $foreground_div;
   }
 
   &-background {
     border-top: 1px solid $foreground_div;
-    border-radius: 0 0 $radius_2 $radius_2;
+    border-radius: 0 0 $r_2 $r_2;
     background-color: $osd_bg;
 
     &-current { color: $osd_fg; }
@@ -224,7 +224,7 @@
     height: 20px;
     min-width: 7px;
     padding: 0 7px;
-    border-radius: $radius;
+    border-radius: $r;
     color: $osd_ter_fg;
     background-color: $osd_bg;
     font-weight: 700;

@@ -1,6 +1,6 @@
 // alpha blending
-@function opacity($color, $a) {
-  @return scale-color($color, $alpha: percentage(-1 + $a));
+@function opacity($c, $a) {
+  @return scale-color($c, $alpha: percentage(-1 + $a));
 }
 
 // image loader

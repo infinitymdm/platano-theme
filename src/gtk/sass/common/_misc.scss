@@ -34,10 +34,10 @@
   background-color: transparent;
   &:hover {
     @if $variant != light {
-      @include button(flat-lined-checked, $text-color: $foreground_selection);
+      @include button(flat-lined-checked, $tc: $foreground_selection);
     }
     @else {
-      @include button(flat-lined-checked, $text-color: black);
+      @include button(flat-lined-checked, $tc: black);
     }
   }
 }
@@ -95,14 +95,14 @@ gp-applet > menubar,
   @include radius(0, none);
   @include transition(reset);
   @if $variant != light {
-    @include button(flat-normal, $text-color: $foreground_inv);
+    @include button(flat-normal, $tc: $foreground_inv);
     &:hover {
-      @include button(flat-lined-hover, $text-color: $foreground_selection);
+      @include button(flat-lined-hover, $tc: $foreground_selection);
     }
-    &:disabled { @include button(flat-disabled, $text-color: $foreground_inv); }
+    &:disabled { @include button(flat-disabled, $tc: $foreground_inv); }
     &:checked {
       &, &:hover {
-        @include button(flat-lined-checked, $text-color: $foreground_selection);
+        @include button(flat-lined-checked, $tc: $foreground_selection);
         background-color: track($foreground_selection, $alpha_track_1);
       }
     }
@@ -112,14 +112,14 @@ gp-applet > menubar,
     }
   }
   @else {
-    @include button(flat-normal, $text-color: $foreground);
+    @include button(flat-normal, $tc: $foreground);
     &:hover {
-      @include button(flat-lined-hover, $text-color: black);
+      @include button(flat-lined-hover, $tc: black);
     }
-    &:disabled { @include button(flat-disabled, $text-color: $foreground); }
+    &:disabled { @include button(flat-disabled, $tc: $foreground); }
     &:checked {
       &, &:hover {
-        @include button(flat-lined-checked, $text-color: black);
+        @include button(flat-lined-checked, $tc: black);
         background-color: track(black, $alpha_track_1);
       }
     }
@@ -135,7 +135,7 @@ gp-applet > menubar,
                             (left, 2px 0),
                             (right, -2px 0) {
     .#{$_layout} & {
-      &:hover { box-shadow: inset #{$_line} $background_tracker_out; }
+      &:hover { box-shadow: inset #{$_line} $foreground_tracker_out; }
       &:checked,
       &:hover:checked { box-shadow: inset #{$_line} $background_selection; }
     }
@@ -158,7 +158,7 @@ wnck-pager {
     &:hover {
       background-color: $background_tracker;
       color: $foreground_inv;
-      box-shadow: inset 0 0 0 1px $background_tracker_out;
+      box-shadow: inset 0 0 0 1px $foreground_tracker_out;
     }
     &:selected {
       background-color: track($background_selection, $alpha_track_out);
@@ -174,7 +174,7 @@ wnck-pager {
     &:hover {
       background-color: $background_tracker;
       color: $foreground;
-      box-shadow: inset 0 0 0 1px $background_tracker_out;
+      box-shadow: inset 0 0 0 1px $foreground_tracker_out;
     }
     &:selected {
       background-color: track($background_selection, $alpha_track_out);
@@ -218,7 +218,7 @@ headerbar.titlebar.tweak-titlebar {
     > label.title { margin-bottom: 0; }
 
     // for hdyleaflet
-    + separator.vertical { background-color: $foreground_div_sld_dark; }
+    + separator.vertical { background-color: $div_sld_dark_fg; }
   }
 }
 
@@ -316,16 +316,16 @@ list.tweak-group-startup { background-color: $background; }
   &:active { @include transition(reset); } // disable ripples
 
   > grid { // actual container
-    @include radius($radius_2);
+    @include radius($r_2);
     padding: rem($entry_lr_space);
     transition: background-image $transition_d_standard $transition_t_dec;
 
     > button { // 'remove' buttons
-      @include button(raised-normal, $color: $background_destruction, $text-color: $foreground_selection_secondary);
+      @include button(raised-normal, $c: $background_destruction, $tc: $foreground_selection_secondary);
       @include ink-reaction(normal, $fc: $foreground_selection, $tr: ink-normal-dec);
-      &:hover { @include button(raised-hover, $color: $background_destruction, $text-color: $foreground_selection); }
+      &:hover { @include button(raised-hover, $c: $background_destruction, $tc: $foreground_selection); }
       &:active {
-        @include button(raised-active, $color: $background_selection, $text-color: $foreground_selection);
+        @include button(raised-active, $c: $background_selection, $tc: $foreground_selection);
         @include ink-reaction(active-dec, $fc: $foreground_selection, $tr: ink-active-dec);
       }
       &:checked {
@@ -333,10 +333,10 @@ list.tweak-group-startup { background-color: $background; }
         &:disabled {
           border-color: mix($background_destruction, $background, percentage($alpha_track_1));
           background-color: mix($background_destruction, $background, percentage($alpha_track_1));
-          color: $foreground_dis_selection;
+          color: $dis_sel_fg;
         }
       }
-      &:disabled { @include button(raised-disabled, $color: $base, $text-color: $foreground); }
+      &:disabled { @include button(raised-disabled, $c: $base, $tc: $foreground); }
     }
   }
 }
@@ -416,7 +416,7 @@ $gf_margin: 12px;
 %gf_window_decoration_3 {
   &:not(.solid) > box {
     margin: 0 0 (16px - $gf_margin);
-    @include radius($radius_4, none);
+    @include radius($r_4, none);
     box-shadow: $z-depth-3;
   }
 }
@@ -453,7 +453,7 @@ $gf_margin: 12px;
   min-width: $icon_size;
   min-height: $icon_size;
   padding: rem($menuitem_padding, $sw: 1.0);
-  @include radius($radius);
+  @include radius($r);
 }
 
 #notification-popup-window {
@@ -465,7 +465,7 @@ $gf_margin: 12px;
     min-width: $icon_size;
     min-height: $icon_size;
     padding: rem($menuitem_padding, $sw: 1.0);
-    @include radius($radius);
+    @include radius($r);
   }
 }
 
@@ -489,8 +489,8 @@ $gf_margin: 12px;
   @extend %gf_window_decoration_3;
 
   gf-candidate-box {
-    @include radius($radius_2, none);
-    color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
+    @include radius($r_2, none);
+    color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
     @include transition(reset);
 
     label {
@@ -565,8 +565,8 @@ $gf_margin: 12px;
   }
 
   label {
-    padding: $radius_2;
-    border-radius: $radius_2;
+    padding: $r_2;
+    border-radius: $r_2;
   }
 }
 
@@ -608,21 +608,21 @@ $gf_margin: 12px;
 
     entry:not(.flat) {
       min-height: rem($widget_size);
-      @include radius($radius_4 $radius_4 0 0, none);
+      @include radius($r_4 $r_4 0 0, none);
       border: none;
       @if $variant == mixed {
-        @include entry(flat-normal, $text-color: $foreground_inv);
+        @include entry(flat-normal, $tc: $foreground_inv);
         caret-color: $foreground_inv;
-        &:focus { @include entry(flat-focus, $text-color: $foreground_inv); }
-        &:disabled { @include entry(flat-disabled, $text-color: $foreground_inv); }
+        &:focus { @include entry(flat-focus, $tc: $foreground_inv); }
+        &:disabled { @include entry(flat-disabled, $tc: $foreground_inv); }
 
         selection { @extend %selected_items; }
       }
       @else {
-        @include entry(flat-normal, $text-color: $foreground);
+        @include entry(flat-normal, $tc: $foreground);
         caret-color: $foreground;
-        &:focus { @include entry(flat-focus, $text-color: $foreground); }
-        &:disabled { @include entry(flat-disabled, $text-color: $foreground); }
+        &:focus { @include entry(flat-focus, $tc: $foreground); }
+        &:disabled { @include entry(flat-disabled, $tc: $foreground); }
       }
     }
   }
@@ -662,7 +662,7 @@ $gf_margin: 12px;
 
 .nautilus { // hide outlines
   &-canvas-item {
-    @include radius($radius_2, none);
+    @include radius($r_2, none);
     &:active:not(:focus) {
       // FIXME: prevent unneeded icon dimming when unfocused
       background-color: $background_selection;
@@ -686,7 +686,7 @@ $gf_margin: 12px;
   }
 }
 
-.nautilus-circular-button { @include radius($radius); }
+.nautilus-circular-button { @include radius($r); }
 
 .nautilus-window {
   > grid.horizontal paned > separator {
@@ -733,14 +733,14 @@ $gf_margin: 12px;
         label {
           margin: $label_margin;
           padding: $label_padding;
-          @include radius($radius_2, none);
+          @include radius($r_2, none);
           background-color: transparent;
         }
       }
 
       &-background { // use solid black backgrounds
         border: 0 none transparent;
-        @include radius($radius_2, none);
+        @include radius($r_2, none);
         background-color: black;
       }
     }
@@ -771,13 +771,13 @@ $gf_margin: 12px;
   border: 0 none transparent;
 
   &.free {
-    @include radius($radius, none);
+    @include radius($r, none);
     background-color: mix($foreground, $base, percentage($alpha_track_1)); // legacy
     color: mix($foreground, $base, percentage($alpha_track_1)); // >= 3.29.90
   }
 
   &.used {
-    @include radius($radius, none);
+    @include radius($r, none);
     background-color: $background_accent;
     color: $background_accent;
   }
@@ -790,8 +790,8 @@ $gf_margin: 12px;
 
 // 'batch-rename' dialogs
 .conflict-row {
-  background-color: $background_warning;
-  color: $foreground_fix_secondary;
+  background-color: $warn_bg;
+  color: $sec_fix_fg;
   &:hover,
   &:active {
     background-color: $warn;
@@ -809,7 +809,7 @@ dialog.background.csd > box.dialog-vbox > grid.horizontal {
 
 .nautilus {
   &-canvas-item {
-    @include radius($radius_2, none);
+    @include radius($r_2, none);
 
     &.dim-label {
       color: $foreground_tertiary;
@@ -1008,17 +1008,17 @@ stack#conversation_viewer {
     headerbar.titlebar.incognito-mode {
       entry {
         @if $variant != light {
-          @include entry(normal, $color: $base_fix,
-                                 $text-color: $foreground_fix);
+          @include entry(normal, $c: $fix_base,
+                                 $tc: $foreground_fix);
           caret-color: $foreground_fix;
           &:focus {
-            @include entry(focus, $color: $base_fix,
-                                  $text-color: $foreground_fix);
+            @include entry(focus, $c: $fix_base,
+                                  $tc: $foreground_fix);
             caret-color: $foreground_fix;
           }
           &:disabled {
-            @include entry(disabled, $color: $base_fix,
-                                     $text-color: $foreground_fix);
+            @include entry(disabled, $c: $fix_base,
+                                     $tc: $foreground_fix);
           }
         }
       }
@@ -1027,28 +1027,28 @@ stack#conversation_viewer {
         // these classes are specificity bump to override titlebuttons
         &:not(.appmenu):not(.icon):not(:indeterminate) {
           @if $variant != light {
-            @include button(normal, $color: $base_fix,
-                                    $text-color: $foreground_fix);
+            @include button(normal, $c: $fix_base,
+                                    $tc: $foreground_fix);
             @include ink-reaction(
                        normal, $fc: $foreground_fix, $tr: ink-normal-dec);
             &:hover {
-              @include button(hover, $color: $base_fix,
-                                     $text-color: $foreground_fix);
+              @include button(hover, $c: $fix_base,
+                                     $tc: $foreground_fix);
             }
             &:active {
-              @include button(active, $color: $base_fix,
-                                      $text-color: $foreground_fix);
+              @include button(active, $c: $fix_base,
+                                      $tc: $foreground_fix);
               @include ink-reaction(
                          active-dec, $fc: $foreground_fix, $tr: ink-active-dec);
             }
             &:disabled {
-              @include button(disabled, $color: $base_fix,
-                                        $text-color: $foreground_fix);
+              @include button(disabled, $c: $fix_base,
+                                        $tc: $foreground_fix);
             }
-            &:checked { @include button(checked, $text-color: $foreground_selection); }
+            &:checked { @include button(checked, $tc: $foreground_selection); }
             &:checked:disabled {
-              @include button(checked-disabled, $color: $base_fix,
-                                                $text-color: $foreground_fix);
+              @include button(checked-disabled, $c: $fix_base,
+                                                $tc: $foreground_fix);
             }
           }
         }
@@ -1059,7 +1059,7 @@ stack#conversation_viewer {
 
 headerbar.titlebar.incognito-mode {
   buttonbox.linked > widget {
-    color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
+    color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
   }
 }
 
@@ -1072,23 +1072,23 @@ notebook > stack > box.vertical > paned.vertical > overlay {
 .background headerbar entry {
   &.starred,
   &.non-starred {
-    color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
-    caret-color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
+    color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
+    caret-color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
     &:focus {
       color: if($variant == mixed, $foreground_inv, $foreground);
       caret-color: if($variant == mixed, $foreground_inv, $foreground);
     }
     &:disabled {
-      color: if($variant == mixed, $foreground_dis_inv_secondary, $foreground_dis_secondary);
+      color: if($variant == mixed, $dis_inv_sec_fg, $foreground_dis_secondary);
     }
   }
 
   // render yellow 'star' icon if bookmarked
   &.starred > image.right {
-    color: track($background_question, $alpha_foreground_2nd);
+    color: track($ques_bg, $alpha_foreground_2nd);
     &:hover,
     &:active,
-    &:checked { color: $background_question; }
+    &:checked { color: $ques_bg; }
   }
 }
 
@@ -1126,7 +1126,7 @@ notebook > stack > box.vertical > paned.vertical > overlay {
           min-width: $icon_size;
           min-height: $icon_size;
           padding: rem(4px); // Same as of image.sidebar-icon
-          @include radius($radius);
+          @include radius($r);
         }
       }
     }
@@ -1147,7 +1147,7 @@ notebook > stack > box.vertical > paned.vertical > overlay {
           min-width: $icon_size;
           min-height: $icon_size;
           padding: rem(4px); // Same as of image.sidebar-icon
-          @include radius($radius);
+          @include radius($r);
         }
       }
     }
@@ -1161,7 +1161,7 @@ flowboxchild.bookmark-tag-widget {
 
   label { margin-bottom: rem($baseline, $sw: 1.0); }
 
-  button { @include radius($radius_2); } // revert to square button
+  button { @include radius($r_2); } // revert to square button
 
  &-selected { color: $foreground_selection; } // checked
 }
@@ -1352,7 +1352,7 @@ dialog.background > box.dialog-vbox.vertical > box.vertical {
         min-width: $widget_size - 10.7px;
         min-height: $widget_size - 10.7px;
         padding: 0;
-        @include radius($radius_2);
+        @include radius($r_2);
       }
     }
   }
@@ -1377,7 +1377,7 @@ window.background {
   grid.math-buttons {
     button {
       min-width: calc(#{rem($widget_size - $txt_button_lr_space)} - 1px * 2);
-      @include radius($radius_2);
+      @include radius($r_2);
 
       &:not(.suggested-action) {
         @include button(flat-normal);
@@ -1389,7 +1389,7 @@ window.background {
       }
 
       &.suggested-action {  // '=' button
-        @include radius($radius);
+        @include radius($r);
       }
     }
   }
@@ -1419,7 +1419,7 @@ scrolledwindow {
 paned.titlebar.horizontal {
   headerbar {
     button.flat.toggle.popup:not(.image-button) { // left-pane header button
-      @include radius($radius_2);
+      @include radius($r_2);
 
       box > .title {
         margin-top: rem($baseline, $sw: 1.0);
@@ -1512,7 +1512,7 @@ frame.gedit-map-frame > border {
 
     // Pillbox is used to render "languages" in the greeter.
     pillbox {
-      border-radius: $radius_2;
+      border-radius: $r_2;
       background-color: $background;
     }
 
@@ -1566,7 +1566,7 @@ frame.gedit-map-frame > border {
           min-width: rem($widget_size);
           min-height: rem($widget_size);
           margin: 4px;
-          @include radius($radius_2);
+          @include radius($r_2);
           @include button(flat-normal);
           &:hover { @include button(flat-hover); }
           &:active { @include button(flat-active); }
@@ -1581,7 +1581,7 @@ frame.gedit-map-frame > border {
 
       // close button styling for layouttab.
       > box > button.close {
-        @include radius($radius_2);
+        @include radius($r_2);
         min-width: rem($widget_size);
         min-height: rem($widget_size);
         @include button(flat-normal);
@@ -1611,11 +1611,11 @@ eggsearchbar box.search-bar { background-color: $background_dark; }
   &:not(:hover):not(:active) > entry {
     @if $variant == mixed {
       background-image:
-        image(mix($foreground_inv, $base_inv, percentage($alpha_track_1 / 2)));
-      color: $foreground_inv_secondary;
-      caret-color: $foreground_inv_secondary;
+        image(mix($foreground_inv, $inv_base, percentage($alpha_track_1 / 2)));
+      color: $foreground_secondary_inv;
+      caret-color: $foreground_secondary_inv;
 
-      label { color: $foreground_inv_secondary; }
+      label { color: $foreground_secondary_inv; }
     }
     @else {
       color: $foreground_secondary;
@@ -1628,7 +1628,7 @@ eggsearchbar box.search-bar { background-color: $background_dark; }
   &:hover > entry {
     @if $variant == mixed {
       background-image:
-        image(mix($foreground_inv, $base_inv, percentage($alpha_track_1 / 2)));
+        image(mix($foreground_inv, $inv_base, percentage($alpha_track_1 / 2)));
       color: $foreground_inv;
       caret-color: $foreground_inv;
 
@@ -1675,8 +1675,8 @@ omnibar.linked {
   progressbar.bottom { // expand progressbar
     trough, progress {
       min-height: calc(#{rem($widget_size)} - 2px * 2);
-      &:dir(ltr) { @include radius($radius 0 0 $radius, none); }
-      &:dir(rtl) { @include radius(0 $radius $radius 0, none); }
+      &:dir(ltr) { @include radius($r 0 0 $r, none); }
+      &:dir(rtl) { @include radius(0 $r $r 0, none); }
     }
 
     trough { background-color: transparent; }
@@ -1698,10 +1698,10 @@ omnibar.linked {
 %tabstrip_tab {
   color: $foreground_tertiary;
   font-weight: 500;
-  box-shadow: inset 0 -1px $background_tracker_out;
+  box-shadow: inset 0 -1px $foreground_tracker_out;
   &:hover {
     color: $foreground;
-    box-shadow: inset 0 -2px $background_tracker_out;
+    box-shadow: inset 0 -2px $foreground_tracker_out;
   }
   &:checked {
     color: $foreground;
@@ -1825,7 +1825,7 @@ ide {
   // editor-pane headers?
   &layoutstackheader { // damned upstream CSS
     border-bottom: 1px solid $foreground_div;
-    box-shadow: inset 0 0 0 26px track($base_fix, 0.05);
+    box-shadow: inset 0 0 0 26px track($fix_base, 0.05);
 
     button {
       min-width: 26px;
@@ -1879,7 +1879,7 @@ headerbar button.dzlmenubutton.popup.toggle {
   &:not(.flat):not(.suggested-action):not(.destructive-action) {
     &:not(.titlebutton):not(.selection-menu):not(.text-button):not(.lock) {
       &:not(.color):not(.image-button) {
-        @include radius($radius_2, none);
+        @include radius($r_2, none);
         padding: 0 rem($txt_button_lr_space / 2);
       }
     }
@@ -2064,7 +2064,7 @@ window.background.csd > box.vertical + headerbar.titlebar {
       &:not(.titlebutton):not(.selection-menu) {
         &:not(.text-button):not(.lock):not(.color):not(.image-button) {
           padding: 0 rem($txt_button_lr_space);
-          @include radius($radius_2, none);
+          @include radius($r_2, none);
         }
       }
     }
@@ -2233,14 +2233,14 @@ terminal-window {
 
       &.background:not(.csd),
       vte-terminal {
-        background-color: if($variant == mixed, $base_inv,
+        background-color: if($variant == mixed, $inv_base,
                                                 $base);
         color: if($variant == mixed, $foreground_inv, $foreground);
       }
 
       @if $variant == mixed {
         scrollbar {
-          background-color: track($base_inv, $alpha_foreground_3rd);
+          background-color: track($inv_base, $alpha_foreground_3rd);
 
           slider {
             background-color: track($foreground_inv, $alpha_foreground_3rd * $alpha_foreground_3rd);
@@ -2302,7 +2302,7 @@ terminal-window {
       min-width: rem($small_widget);
       min-height: rem($small_widget);
       padding: 0;
-      @include radius($radius);
+      @include radius($r);
     }
     &:selected { @extend %selected_sidebar_row; }
   }
@@ -2319,10 +2319,10 @@ terminal-window {
 }
 
 %pref_down_arrow {
-  @include button(flat-normal, $text-color: $label_selection);
-  &:hover { @include button(flat-hover, $text-color: $label_selection); }
-  &:active { @include button(flat-active, $text-color: $label_selection); }
-  &:checked { @include button(flat-checked, $text-color: $label_selection); }
+  @include button(flat-normal, $tc: $label_selection);
+  &:hover { @include button(flat-hover, $tc: $label_selection); }
+  &:active { @include button(flat-active, $tc: $label_selection); }
+  &:checked { @include button(flat-checked, $tc: $label_selection); }
 }
 
 // /*****************
@@ -2354,7 +2354,7 @@ frame#weather-page-content-view {
     min-width: rem($widget_size);
     min-height: rem($widget_size);
     padding: rem($txt_button_lr_space / 2);
-    @include radius($radius);
+    @include radius($r);
   }
 
   frame#weekly-forecast-frame { background: transparent; }
@@ -2393,12 +2393,12 @@ frame#weather-page-content-view { // condition-specific
       button.radio.text-button,
       button.osd {
         @include button(flat-normal,
-                        $text-color: track($_label_1_color, $_label_alpha));
+                        $tc: track($_label_1_color, $_label_alpha));
         background-image: none; // disable ink reactions
         box-shadow: none; // unset lines
         &:hover {
           color: #{$_label_1_color};
-          @include button(flat-hover, $text-color: $_label_1_color);
+          @include button(flat-hover, $tc: $_label_1_color);
         }
         &:active {
           // FIXME: ink reaction can't be rendered smoothly,
@@ -2408,7 +2408,7 @@ frame#weather-page-content-view { // condition-specific
           animation: none;
         }
         &:checked {
-          @include button(flat-normal, $text-color: $_label_1_color);
+          @include button(flat-normal, $tc: $_label_1_color);
         }
       }
 
@@ -2431,7 +2431,7 @@ window.org-gnome-Todo headerbar > box.horizontal {
     &:not(.suggested-action):not(.destructive-action) {
       &:not(.titlebutton):not(.selection-menu) {
         &:not(.text-button):not(.lock):not(.color):not(.image-button) {
-          @include radius($radius_2, none);
+          @include radius($r_2, none);
 
           > label { padding: 0 rem($txt_button_lr_space / 2); }
         }
@@ -2464,8 +2464,8 @@ window.org-gnome-Todo headerbar > box.horizontal {
   treeview.view {
     @extend %sidebar_treeview;
     &:selected:last-child {
-      &:dir(ltr) { @include radius(0 $radius $radius 0); }
-      &:dir(rtl) { @include radius($radius 0 0 $radius); }
+      &:dir(ltr) { @include radius(0 $r $r 0); }
+      &:dir(rtl) { @include radius($r 0 0 $r); }
     }
   }
 }
@@ -2482,8 +2482,8 @@ window.org-gnome-Todo headerbar > box.horizontal {
   treeview.view {
     @extend %sidebar_treeview;
     &:selected:last-child {
-      &:dir(ltr) { @include radius(0 $radius $radius 0); }
-      &:dir(rtl) { @include radius($radius 0 0 $radius); }
+      &:dir(ltr) { @include radius(0 $r $r 0); }
+      &:dir(rtl) { @include radius($r 0 0 $r); }
     }
   }
 }
@@ -2534,8 +2534,8 @@ scrolledwindow.view > viewport.frame > stack { // left-pane
       }
 
       &:selected {
-        &:dir(ltr) { @include radius(0 $radius $radius 0); }
-        &:dir(rtl) { @include radius($radius 0 0 $radius); }
+        &:dir(ltr) { @include radius(0 $r $r 0); }
+        &:dir(rtl) { @include radius($r 0 0 $r); }
 
         &, &:focus { outline-width: 0; } // unset focus outlines
 
@@ -2589,7 +2589,7 @@ dialog.background.csd {
       min-height: $icon_size;
       margin: $toolbar_padding 0;
       padding: 0;
-      @include radius($radius_2);
+      @include radius($r_2);
 
       > .item {
         @if $maj_ver == 3 {
@@ -2599,7 +2599,7 @@ dialog.background.csd {
         @else { margin: 0; }
         padding: 0 rem($menuitem_padding);
         border: 0 none transparent;
-        color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
+        color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
         font-weight: 500;
       }
 
@@ -2622,17 +2622,17 @@ dialog.background.csd {
     > label {
       @if $maj_ver == 3 {
         @if $mnr_ver < 23 {
-          color: if($variant == mixed, $foreground_inv_tertiary, $foreground_tertiary);
+          color: if($variant == mixed, $foreground_tertiary_inv, $foreground_tertiary);
         }
         @else { // hack for stock dconf-editor.css
           @if $variant == mixed {
-            &:not(:backdrop) { text-shadow: 1px 0 $foreground_inv_tertiary; }
+            &:not(:backdrop) { text-shadow: 1px 0 $foreground_tertiary_inv; }
           }
         }
       }
       @else {
         @if $variant == mixed {
-          &:not(:backdrop) { text-shadow: 1px 0 $foreground_inv_tertiary; }
+          &:not(:backdrop) { text-shadow: 1px 0 $foreground_tertiary_inv; }
         }
       }
     }
@@ -2734,12 +2734,12 @@ dialog.background.csd {
   }
 
   label,
-  image { color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary); }
+  image { color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary); }
 
   button:hover label.item,
   button.active label.item { color: if($variant == mixed, $foreground_inv, $foreground); }
 
-  > label { color: if($variant == mixed, $foreground_inv_tertiary, $foreground_tertiary); }
+  > label { color: if($variant == mixed, $foreground_tertiary_inv, $foreground_tertiary); }
 }
 
 // /*******************
@@ -2769,8 +2769,8 @@ scrolledwindow > viewport.frame list.categories {
   > row.category.activatable {
     font-weight: 500;
     &:selected {
-      &:dir(ltr) { @include radius(0 $radius $radius 0); }
-      &:dir(rtl) { @include radius($radius 0 0 $radius); }
+      &:dir(ltr) { @include radius(0 $r $r 0); }
+      &:dir(rtl) { @include radius($r 0 0 $r); }
 
       &, &:focus { outline-width: 0; } // unset focus outlines
 
@@ -2791,9 +2791,9 @@ scrolledwindow.character-list-scroll {
     background-color: transparent;
 
     slider {
-      background-color: track($foreground_fix_tertiary, $alpha_foreground_3rd);
+      background-color: track($ter_fix_fg, $alpha_foreground_3rd);
       &:hover {
-        background-color: track($foreground_fix_secondary, $alpha_foreground_3rd);
+        background-color: track($sec_fix_fg, $alpha_foreground_3rd);
       }
       &:active { background-color: $foreground_fix; }
       &:disabled { opacity: $alpha_foreground_bdp; }
@@ -2801,7 +2801,7 @@ scrolledwindow.character-list-scroll {
 
     &.overlay-indicator {
       &:not(.dragging):not(.hovering) slider {
-        background-color: track($foreground_fix_tertiary, $alpha_foreground_3rd);
+        background-color: track($ter_fix_fg, $alpha_foreground_3rd);
       }
     }
   }
@@ -2822,49 +2822,49 @@ buttonbox.linked > button.toggle.toolbar-primary-buttons-software {
   }
 
   min-width: rem($widget_size * 3);
-  box-shadow: inset 0 -1px $background_tracker_out;
+  box-shadow: inset 0 -1px $foreground_tracker_out;
   &:not(:hover):not(:active):not(:checked):not(:disabled) {
-    color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
+    color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
   }
   @if $variant == mixed {
-    @include button(flat-normal, $text-color: $foreground_inv);
+    @include button(flat-normal, $tc: $foreground_inv);
     @include ink-reaction(
       normal, $fc: $foreground_inv, $tr: ink-normal-dec);
-    &:hover { @include button(flat-lined-hover, $text-color: $foreground_inv); }
+    &:hover { @include button(flat-lined-hover, $tc: $foreground_inv); }
     &:active {
-      @include button(flat-active, $text-color: $foreground_inv);
+      @include button(flat-active, $tc: $foreground_inv);
       @include ink-reaction(
         active-dec, $fc: $foreground_inv, $tr: ink-active-dec);
     }
     &:disabled {
-      @include button(flat-disabled, $text-color: $foreground_inv);
+      @include button(flat-disabled, $tc: $foreground_inv);
     }
     &:checked {
-      @include button(flat-lined-checked, $text-color: $label_selection_inv);
-      &:hover { @include button(flat-hover, $text-color: $label_selection_inv); }
+      @include button(flat-lined-checked, $tc: $label_selection_inv);
+      &:hover { @include button(flat-hover, $tc: $label_selection_inv); }
     }
   }
   @else {
-    @include button(flat-normal, $text-color: $foreground);
+    @include button(flat-normal, $tc: $foreground);
     @include ink-reaction(normal, $fc: $foreground, $tr: ink-normal-dec);
-    &:hover { @include button(flat-lined-hover, $text-color: $foreground); }
+    &:hover { @include button(flat-lined-hover, $tc: $foreground); }
     &:active {
-      @include button(flat-active, $text-color: $foreground);
+      @include button(flat-active, $tc: $foreground);
       @include ink-reaction(active-dec, $fc: $foreground, $tr: ink-active-dec);
     }
     &:disabled {
-      @include button(flat-disabled, $text-color: $foreground);
+      @include button(flat-disabled, $tc: $foreground);
     }
     &:checked {
-      @include button(flat-lined-checked, $text-color: $label_selection);
-      &:hover { @include button(flat-hover, $text-color: $label_selection); }
+      @include button(flat-lined-checked, $tc: $label_selection);
+      &:hover { @include button(flat-hover, $tc: $label_selection); }
     }
   }
 
   > box.horizontal > label.text-button {
     border: none;
     background: none;
-    color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
+    color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
     font-weight: 500;
   }
 
@@ -2943,7 +2943,7 @@ button.round-button { // categories expander button
   min-width: 32px;
   padding: 0;
   border: 0 none transparent;
-  @include radius($radius);
+  @include radius($r);
 }
 
 @if $maj_ver == 3 {
@@ -2964,7 +2964,7 @@ button.round-button { // categories expander button
 %origin_box_button {
   &:not(.flat):not(.text-button):not(.image-button) {
     &:dir(ltr), &:dir(rtl) { // specificity bump
-      @include radius($radius_2, none);
+      @include radius($r_2, none);
       padding: 0 rem($txt_button_lr_space / 2);
 
       label,
@@ -2984,7 +2984,7 @@ headerbar.titlebar > widget > stack > button:not(.flat) {
     &:not(.titlebutton):not(.selection-menu) {
       &:not(.text-button):not(.lock):not(.color):not(.image-button) {
         // revert to image-text-button
-        @include radius($radius_2, none);
+        @include radius($r_2, none);
 
         image {
           &:dir(ltr) { padding-left: rem($txt_button_lr_space); }
@@ -3177,20 +3177,20 @@ overlay.recipe > image + box {
 
     box,
     label { // labels also have solid background
-      &.name.recipe { border-top-right-radius: $radius_4; }
+      &.name.recipe { border-top-right-radius: $r_4; }
     }
 
-    label.author.recipe { border-bottom-right-radius: $radius_4; }
+    label.author.recipe { border-bottom-right-radius: $r_4; }
   }
   &:dir(rtl) {
     margin-left: 12px;
 
     box,
     label {
-      &.name.recipe { border-top-left-radius: $radius_4; }
+      &.name.recipe { border-top-left-radius: $r_4; }
     }
 
-    label.author.recipe { border-bottom-left-radius: $radius_4; }
+    label.author.recipe { border-bottom-left-radius: $r_4; }
   }
 }
 
@@ -3293,12 +3293,12 @@ GladeWindow {
   headerbar#headerbar.titlebar {
     button#recent-button.popup.toggle { // down-arrow button
       min-width: $icon_size;
-      @include radius($radius_2);
+      @include radius($r_2);
     }
   }
 
   box.horizontal scrolledwindow.frame + button.image-button {
-    @include radius($radius_2);
+    @include radius($r_2);
   }
 }
 
@@ -3322,8 +3322,8 @@ menubar#MainMenu + widget { // 'Add view' window(s)
 %child_styling {
   border-radius: 0;
   &:hover { box-shadow: inset 0 0 0 9999px $background_tracker; }
-  &:first-child { @include radius($radius_2 $radius_2 0 0, none); }
-  &:last-child { @include radius(0 0 $radius_2 $radius_2, none); }
+  &:first-child { @include radius($r_2 $r_2 0 0, none); }
+  &:last-child { @include radius(0 0 $r_2 $r_2, none); }
   &:not(:first-child):not(:only-child) { margin-top: -1px; }
 }
 
@@ -3345,7 +3345,7 @@ button.boxes-menu-row {
 
   box.boxes-menu.vertical > & {
     margin-bottom: -1px;
-    @include radius($radius_2 $radius_2 0 0, none);
+    @include radius($r_2 $r_2 0 0, none);
   }
 }
 
@@ -3404,7 +3404,7 @@ window.background > box.vertical > box.horizontal + paned.horizontal > widget {
 }
 
 infobar > revealer > box.horizontal > box + buttonbox {
-  > button.flat.image-button { @include radius($radius_2); }
+  > button.flat.image-button { @include radius($r_2); }
 
   > button + box.linked > button {
     &:not(.destructive-action):not(.suggested-action) {

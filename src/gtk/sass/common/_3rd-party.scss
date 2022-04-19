@@ -17,13 +17,13 @@
 
   // dock-mode
   &.dock-mode {
-    @each $_pos, $_radius, $_padding in (top, 0 0 $radius_2 $radius_2, 0 3px),
-                                        (bottom, $radius_2 $radius_2 0 0, 0 3px),
-                                        (left, 0 $radius_2 $radius_2 0, 3px 0),
-                                        (right, $radius_2 0 0 $radius-2, 3px 0) {
+    @each $_pos, $_rad, $_pad in (top, 0 0 $r_2 $r_2, 0 3px),
+                                 (bottom, $r_2 $r_2 0 0, 0 3px),
+                                 (left, 0 $r_2 $r_2 0, 3px 0),
+                                 (right, $r_2 0 0 $r-2, 3px 0) {
       .#{$_pos} & {
-        padding: #{$_padding}; // prepare for rounded corners
-        border-radius: #{$_radius};
+        padding: #{$_pad}; // prepare for rounded corners
+        border-radius: #{$_rad};
       }
     }
   }
@@ -115,12 +115,12 @@ box.pinned { // drop-target
     padding: 0;
     border-radius: 0;
     @if $variant == mixed {
-      @include button(flat-normal, $text-color: $foreground_inv);
+      @include button(flat-normal, $tc: $foreground_inv);
       @include ink-reaction(
                  normal, $fc: $foreground_inv, $tr: ink-normal-dec, $bs: 10, $i: 2);
     }
     @else {
-      @include button(flat-normal, $text-color: $foreground);
+      @include button(flat-normal, $tc: $foreground);
       @include ink-reaction(
                  normal, $fc: $foreground, $tr: ink-normal-dec, $bs: 10, $i: 2);
     }
@@ -132,8 +132,8 @@ box.pinned { // drop-target
     }
 
     &:hover {
-      @if $variant == mixed { @include button(flat-hover, $text-color: $foreground_inv); }
-      @else { @include button(flat-hover, $text-color: $foreground); }
+      @if $variant == mixed { @include button(flat-hover, $tc: $foreground_inv); }
+      @else { @include button(flat-hover, $tc: $foreground); }
       @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
       @else { -gtk-icon-filter: brightness(1.2); }
 
@@ -141,13 +141,13 @@ box.pinned { // drop-target
     }
     &:active {
       @if $variant == mixed {
-        @include button(flat-active, $text-color: $foreground_inv);
+        @include button(flat-active, $tc: $foreground_inv);
         @include
           ink-reaction(
             active-dec, $fc: $foreground_inv, $tr: ink-active-dec, $bs: 10, $i: 2);
       }
       @else {
-        @include button(flat-active, $text-color: $foreground);
+        @include button(flat-active, $tc: $foreground);
         @include
           ink-reaction(
             active-dec, $fc: $foreground, $tr: ink-active-dec, $bs: 10, $i: 2);
@@ -156,8 +156,8 @@ box.pinned { // drop-target
       > image { opacity: 1.0; }
     }
     &:checked {
-      @if $variant == mixed { @include button(flat-hover, $text-color: $foreground_inv); }
-      @else { @include button(flat-hover, $text-color: $foreground); }
+      @if $variant == mixed { @include button(flat-hover, $tc: $foreground_inv); }
+      @else { @include button(flat-hover, $tc: $foreground); }
       &:hover {
         @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
         @else { -gtk-icon-filter: brightness(1.2); }
@@ -339,7 +339,7 @@ box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
 window.budgie-popover:not(.csd) {
   &.background {
     @extend %popover;
-    @include radius($radius_4, none);
+    @include radius($r_4, none);
     border: 1px solid $foreground_div_sld;
     background-clip: border-box;
     background-color: $background_dark;
@@ -396,15 +396,15 @@ stack.icon-popover-stack {
     }
     &:not(:first-child):not(:only-child) {
       &:not(:last-child) { // 'close' buttons
-        @include button(flat-normal, $text-color: $background_destruction);
+        @include button(flat-normal, $tc: $background_destruction);
         @include ink-reaction(normal, $fc: $background_destruction);
-        &:hover { @include button(flat-hover, $text-color: $background_destruction); }
+        &:hover { @include button(flat-hover, $tc: $background_destruction); }
         &:active {
-          @include button(flat-active, $text-color: $background_destruction);
+          @include button(flat-active, $tc: $background_destruction);
           @include ink-reaction(active-dec, $fc: $background_destruction);
         }
-        &:disabled { @include button(flat-disabled, $text-color: $background_destruction); }
-        &:checked { @include button(flat-checked, $text-color: $background_destruction); }
+        &:disabled { @include button(flat-disabled, $tc: $background_destruction); }
+        &:checked { @include button(flat-checked, $tc: $background_destruction); }
       }
     }
   }
@@ -504,8 +504,8 @@ button.flat.budgie-menu-launcher {
           label { color: inherit; }
         }
 
-        &:dir(ltr) { @include radius(0 $radius $radius 0); }
-        &:dir(rtl) { @include radius($radius 0 0 $radius); }
+        &:dir(ltr) { @include radius(0 $r $r 0); }
+        &:dir(rtl) { @include radius($r 0 0 $r); }
       }
 
       > box > label { // tweak vertical spacing and font weight
@@ -654,7 +654,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
     > box.vertical > box.vertical {
       margin: $raven_box_spacing 0; // do not set L/R margins
-      border-radius: $radius_2;
+      border-radius: $r_2;
       background-color: $base;
       // draw side edges via opaque box-shadows
       box-shadow: inset 1px 0 $foreground_div_sld,
@@ -664,12 +664,12 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
     .raven-header {
       margin-top: -$raven_box_spacing * 2; // unset parent margin
-      border-radius: $radius_2 $radius_2 0 0;
+      border-radius: $r_2 $r_2 0 0;
     }
 
     .raven-background {
       margin-bottom: -$raven_box_spacing * 2; // unset parent margin
-      border-radius: 0 0 $radius_2 $radius_2;
+      border-radius: 0 0 $r_2 $r_2;
     }
 
     // audio app/device switcher
@@ -721,7 +721,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
           &:disabled { @include button(flat-disabled); }
 
           &:dir(ltr),
-          &:dir(rtl) { @include radius($radius, none); }
+          &:dir(rtl) { @include radius($r, none); }
 
           &:first-child {
             &:dir(ltr) { margin-right: if($ref_weight < 1.0, 3px, 4px); }
@@ -752,7 +752,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
     min-width: rem($widget_size);
     min-height: rem($widget_size);
     padding: 0;
-    @include radius($radius);
+    @include radius($r);
     color: $foreground_tertiary;
     &:hover,
     &:active { color: $foreground; }
@@ -763,9 +763,9 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
   button.flat.image-button.primary-control { // 'close' button in MPRIS
     color: $foreground_tertiary;
-    &:hover { @include button(flat-hover, $text-color: $background_destruction); }
+    &:hover { @include button(flat-hover, $tc: $background_destruction); }
     &:active {
-      @include button(flat-active, $text-color: $background_destruction);
+      @include button(flat-active, $tc: $background_destruction);
       @include ink-reaction(active-dec, $fc: $background_destruction, $tr: ink-active-dec);
     }
   }
@@ -812,7 +812,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
         // sub-list rows grouping
         list {
-          @include radius($radius_2, none);
+          @include radius($r_2, none);
           border: 1px solid $foreground_div;
 
           > row.activatable {
@@ -875,7 +875,7 @@ window.sound-popover.background {
         &:dir(#{$_dir}) {
           background-image:
             linear-gradient(to $_opp_end,
-                            $background_tracker_out calc(66% - 1px),
+                            $foreground_tracker_out calc(66% - 1px),
                             track($background_destruction, $alpha_track_out) calc(66% - 1px),
                             track($background_destruction, $alpha_track_out) 100%);
         }
@@ -935,21 +935,21 @@ widget.budgie-clock-applet > widget > box > label {
 window.sound-popover.background box.horizontal {
   > button.flat.image-button { // horizontal layout
     &:first-child { // '-' button
-      @include button(flat-normal, $text-color: $foreground);
+      @include button(flat-normal, $tc: $foreground);
       @include ink-reaction(normal, $fc: $err, $tr: ink-normal-dec);
-      &:hover { @include button(flat-hover, $text-color: $err); }
+      &:hover { @include button(flat-hover, $tc: $err); }
       &:active {
-        @include button(flat-active, $text-color: $err);
+        @include button(flat-active, $tc: $err);
         @include ink-reaction(active-dec, $fc: $err, $tr: ink-active-dec);
       }
     }
 
     &:last-child { // '+' button
-      @include button(flat-normal, $text-color: $foreground);
+      @include button(flat-normal, $tc: $foreground);
       @include ink-reaction(normal, $fc: $background_success, $tr: ink-normal-dec);
-      &:hover { @include button(flat-hover, $text-color: $background_success); }
+      &:hover { @include button(flat-hover, $tc: $background_success); }
       &:active {
-        @include button(flat-active, $text-color: $background_success);
+        @include button(flat-active, $tc: $background_success);
         @include ink-reaction(active-dec, $fc: $background_success, $tr: ink-active-dec);
       }
     }
@@ -1100,7 +1100,7 @@ widget > box.workspace-switcher {
         min-width: $icon_size;
         min-height: $icon_size;
         padding: 4px;
-        @include radius($radius_2, none);
+        @include radius($r_2, none);
 
         > image { opacity: $alpha_foreground_3rd; }
 
@@ -1193,16 +1193,16 @@ window.budgie-popover.workspace-popover {
     @if $variant == mixed {
       @include ink-reaction(normal, $fc: $background_selection, $tr: ink-normal-dec);
       &:active {
-        @include button(flat-active, $text-color: $foreground_inv);
+        @include button(flat-active, $tc: $foreground_inv);
         @include ink-reaction(active-dec, $fc: $foreground_inv, $tr: ink-active-dec);
       }
     }
     &:checked {
       @if $variant == mixed {
-        @include button(flat-checked, $text-color: $label_selection_inv);
+        @include button(flat-checked, $tc: $label_selection_inv);
       }
       @else {
-        @include button(flat-checked, $text-color: $label_selection);
+        @include button(flat-checked, $tc: $label_selection);
       }
     }
 
@@ -1245,7 +1245,7 @@ window.budgie-popover.workspace-popover {
   @else { color: $foreground; }
   
   .notification-title {
-    @if $variant == mixed { color: $foreground_inv_secondary; }
+    @if $variant == mixed { color: $foreground_secondary_inv; }
     @else { color: $foreground_secondary; }
     font-size: 110%;
     font-weight: 500;
@@ -1269,7 +1269,7 @@ window.budgie-popover.workspace-popover {
     padding: 2px;
 
     trough {
-      background-color: $background_tracker_out;
+      background-color: $foreground_tracker_out;
       @if $variant == mixed { color: $foreground_inv; }
       @else { color: $foreground; }
     }
@@ -1321,8 +1321,8 @@ window.budgie-switcher-window {
 
   flowboxchild { // icon-tiles
     margin: $child_margin;
-    @include radius($radius_2);
-    color: if($variant == mixed, $foreground_accent_sec_inv, $foreground_accent_sec);
+    @include radius($r_2);
+    color: if($variant == mixed, $foreground_secondary_accent_inv, $foreground_secondary_accent);
     background-color: transparent;
     &:hover,
     &:active {
@@ -1376,10 +1376,10 @@ window.budgie-switcher-window {
 
       row.activatable {
         background-color: transparent;
-        color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
+        color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
 
         .dim-label {
-          color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
+          color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
           opacity: 1.0;
         }
 
@@ -1401,26 +1401,26 @@ window.budgie-switcher-window {
     min-width: $icon_size * 25;
     min-height: rem($widget_size * 1.2);
     margin: $budgie_osd_margin;
-    @include radius($radius_4 $radius_4 0 0, none);
+    @include radius($r_4 $r_4 0 0, none);
     @if $variant == mixed {
-      @include entry(flat-normal, $text-color: $foreground_inv);
+      @include entry(flat-normal, $tc: $foreground_inv);
       caret-color: $foreground_inv;
-      &:focus { @include entry(flat-focus, $text-color: $foreground_inv); }
-      &:disabled { @include entry(flat-disabled, $text-color: $foreground_inv); }
+      &:focus { @include entry(flat-focus, $tc: $foreground_inv); }
+      &:disabled { @include entry(flat-disabled, $tc: $foreground_inv); }
 
       selection { @extend %selected_items; }
     }
     @else {
-      @include entry(flat-normal, $text-color: $foreground);
+      @include entry(flat-normal, $tc: $foreground);
       caret-color: $foreground;
-      &:focus { @include entry(flat-focus, $text-color: $foreground); }
-      &:disabled { @include entry(flat-disabled, $text-color: $foreground); }
+      &:focus { @include entry(flat-focus, $tc: $foreground); }
+      &:disabled { @include entry(flat-disabled, $tc: $foreground); }
     }
     font-size: 110%;
 
     image {
       @if $variant == mixed {
-        &:not(:hover):not(:active) { color: $foreground_inv_secondary; }
+        &:not(:hover):not(:active) { color: $foreground_secondary_inv; }
         &:active { color: $background_inv; }
         &:disabled { color: $foreground_dis_inv; }
       }
@@ -1438,9 +1438,9 @@ window.budgie-switcher-window {
 
     slider {
       @if $variant == mixed {
-        background-color: track($foreground_inv_tertiary, $alpha_foreground_3rd);
+        background-color: track($foreground_tertiary_inv, $alpha_foreground_3rd);
         &:hover {
-          background-color: track($foreground_inv_secondary, $alpha_foreground_3rd);
+          background-color: track($foreground_secondary_inv, $alpha_foreground_3rd);
         }
         &:active { background-color: $foreground_inv; }
       }
@@ -1490,33 +1490,33 @@ window.budgie-switcher-window {
 // polkit-dialog specific styling
 .budgie-polkit-dialog {
   entry {
-    @include radius($radius_4 $radius_4 0 0, none);
+    @include radius($r_4 $r_4 0 0, none);
     @if $variant == mixed {
-      @include entry(flat-normal, $text-color: $foreground_inv);
+      @include entry(flat-normal, $tc: $foreground_inv);
       caret-color: $foreground_inv;
       &:focus {
-        @include entry(flat-focus, $text-color: $foreground_inv);
+        @include entry(flat-focus, $tc: $foreground_inv);
       }
       &:disabled {
-        @include entry(flat-disabled, $text-color: $foreground_inv);
+        @include entry(flat-disabled, $tc: $foreground_inv);
       }
 
       selection { @extend %selected_items; }
     }
     @else {
-      @include entry(flat-normal, $text-color: $foreground);
+      @include entry(flat-normal, $tc: $foreground);
       caret-color: $foreground;
       &:focus {
-        @include entry(flat-focus, $text-color: $foreground);
+        @include entry(flat-focus, $tc: $foreground);
       }
       &:disabled {
-        @include entry(flat-disabled, $text-color: $foreground);
+        @include entry(flat-disabled, $tc: $foreground);
       }
     }
   }
 
   .message {
-    color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
+    color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
   }
 
   .failure {
@@ -1593,7 +1593,7 @@ window.background.budgie-settings-window.csd {
   @include transition(reset);
 
   image {
-    border-radius: $radius;
+    border-radius: $r;
     background-size: $icon_size $icon_size;
     background-position: center center;
     background-repeat: no-repeat;
@@ -1760,21 +1760,21 @@ menuitem.budgie-menubar { // appindicator-applet?
 
 %greeter_entry {
   min-height: rem($widget_size);
-  @include radius($radius_4 $radius_4 0 0, none);
+  @include radius($r_4 $r_4 0 0, none);
   font-family: monospace;
   @if $variant == mixed {
-    @include entry(flat-normal, $text-color: $foreground_inv);
+    @include entry(flat-normal, $tc: $foreground_inv);
     caret-color: $foreground_inv;
-    &:focus { @include entry(flat-focus, $text-color: $foreground_inv); }
-    &:disabled { @include entry(flat-disabled, $text-color: $foreground_inv); }
+    &:focus { @include entry(flat-focus, $tc: $foreground_inv); }
+    &:disabled { @include entry(flat-disabled, $tc: $foreground_inv); }
 
     selection { @extend %selected_items; }
   }
   @else {
-    @include entry(flat-normal, $text-color: $foreground);
+    @include entry(flat-normal, $tc: $foreground);
     caret-color: $foreground;
-    &:focus { @include entry(flat-focus, $text-color: $foreground); }
-    &:disabled { @include entry(flat-disabled, $text-color: $foreground); }
+    &:focus { @include entry(flat-focus, $tc: $foreground); }
+    &:disabled { @include entry(flat-disabled, $tc: $foreground); }
   }
 }
 
@@ -1849,19 +1849,19 @@ menuitem.budgie-menubar { // appindicator-applet?
   ('#restart_dialog', '#restart_button', $background_destruction),
   ('#shutdown_dialog', '#shutdown_button', $background_destruction) {
     #{$node_id_1} button#{$node_id_2} {
-      @include button(raised-normal, $color: $_color, $text-color: $foreground_selection_secondary);
+      @include button(raised-normal, $c: $_color, $tc: $foreground_selection_secondary);
       @include ink-reaction(normal, $fc: $foreground_selection, $tr: ink-normal-dec);
-      &:hover { @include button(raised-hover, $color: $_color, $text-color: $foreground_selection); }
+      &:hover { @include button(raised-hover, $c: $_color, $tc: $foreground_selection); }
       &:active {
-        @include button(raised-active, $color: $background_selection, $text-color: $foreground_selection);
+        @include button(raised-active, $c: $background_selection, $tc: $foreground_selection);
         @include ink-reaction(active-dec, $fc: $foreground_selection, $tr: ink-active-dec);
       }
       &:checked { @include button(raised-checked); }
       &:disabled {
         @if $variant == mixed {
-          @include button(raised-disabled, $text-color: $foreground_inv);
+          @include button(raised-disabled, $tc: $foreground_inv);
         }
-        @else { @include button(raised-disabled, $text-color: $foreground); }
+        @else { @include button(raised-disabled, $tc: $foreground); }
       }
     }
   }
@@ -1964,14 +1964,14 @@ window.background.lightdm {
       min-width: $icon_size;
       min-height: $icon_size;
       padding: rem(6.7px, $sw: 1.0);
-      @include radius($radius);
+      @include radius($r);
     }
 
     &.flat.option-button { // session logo button
       min-width: $icon_size;
       min-height: $icon_size;
       padding: rem(6.7px, $sw: 1.0);
-      @include radius($radius);
+      @include radius($r);
       @if $variant != dark { @extend %inv_flat_button; }
       @else { @extend %flat_button; }
 
@@ -2004,7 +2004,7 @@ window.background.lightdm {
 
       &.selected { // selected row
         &, &:hover {
-          @include button(flat-normal, $text-color: $foreground_selection);
+          @include button(flat-normal, $tc: $foreground_selection);
           background-image: image($background_selection);
 
           image { opacity: 1.0; }
@@ -2017,10 +2017,10 @@ window.background.lightdm {
   .lightdm-combo entry {
     @extend %greeter_entry;
     @if $variant != dark {
-      @include entry(flat-normal, $text-color: $foreground_inv);
+      @include entry(flat-normal, $tc: $foreground_inv);
       caret-color: $foreground_inv;
-      &:focus { @include entry(flat-focus, $text-color: $foreground_inv); }
-      &:disabled { @include entry(flat-disabled, $text-color: $foreground_inv); }
+      &:focus { @include entry(flat-focus, $tc: $foreground_inv); }
+      &:disabled { @include entry(flat-disabled, $tc: $foreground_inv); }
     }
 
     selection { @extend %selected_items; }
@@ -2106,7 +2106,7 @@ window.background.lightdm {
     > box {
       padding: $toolbar_padding;
 
-      > button.image-button { @include radius($radius_2); }
+      > button.image-button { @include radius($r_2); }
 
       separator.vertical { // remove separator
         min-width: 0;
@@ -2123,7 +2123,7 @@ window.background.lightdm {
 // header grid?
 paned.horizontal > paned.horizontal stack grid.vertical > grid.horizontal {
   button.image-button {
-    &, &.toggle { @include radius($radius_2); }
+    &, &.toggle { @include radius($r_2); }
   }
 }
 
@@ -2135,7 +2135,7 @@ row.trackrow {
     .track-menu-button { // back to square button
       &, &.toggle { // back to square button
         margin: 0;
-        @include radius($radius_2);
+        @include radius($r_2);
       }
     }
   }
@@ -2162,7 +2162,7 @@ image.toolbar-cover-frame { // mask L/R edge borders
 
 headerbar > widget > box.horizontal button.image-button.popup.toggle {
   &:checked > image.selected { // Shuffle tracks?
-    @include radius($radius, none);
+    @include radius($r, none);
     box-shadow: inset 0 0 0 999px $base;
   }
 }
@@ -2268,8 +2268,8 @@ window.background:not(.csd) > box.vertical {
     background-color: transparent;
   }
 
-  @each $_class, $_radius in (audio, 0 0 $radius_2 0),
-                             (info, 0 0 0 $radius_2) {
+  @each $_class, $_radius in (audio, 0 0 $r_2 0),
+                             (info, 0 0 0 $r_2) {
     .#{$_class}panel { // OSDs placed at top-left/right corners
       border: none;
       border-radius: #{$_radius};
@@ -2300,18 +2300,18 @@ window.background:not(.csd) > box.vertical {
   }
 
   .framedimage { // avatar?
-    border-radius: $radius_2;
+    border-radius: $r_2;
     border: none;
     background-color: track($foreground_inv, $alpha_track_1);
   }
 
   .passwordentry {
     @extend %flat_entry_sizing;
-    @include entry(flat-normal, $text-color: $foreground_inv);
+    @include entry(flat-normal, $tc: $foreground_inv);
     caret-color: $foreground_inv;
     font-family: monospace;
-    &:focus { @include entry(flat-focus, $text-color: $foreground_inv); }
-    &:disabled { @include entry(flat-disabled, $text-color: $foreground_inv); }
+    &:focus { @include entry(flat-focus, $tc: $foreground_inv); }
+    &:disabled { @include entry(flat-disabled, $tc: $foreground_inv); }
     &:backdrop { // for alt-text keyboard layout?
       color: $background_selection;
     }
@@ -2356,14 +2356,14 @@ window.background:not(.csd) > box.vertical {
 
   .trackname {
     font-size: 90%;
-    color: $foreground_inv_secondary;
+    color: $foreground_secondary_inv;
     background-image: none;
     background-color: transparent;
   }
 
   .albumartist {
     font-size: 80%;
-    color: $foreground_inv_tertiary;
+    color: $foreground_tertiary_inv;
     background-image: none;
     background-color: transparent;
   }
@@ -2424,19 +2424,19 @@ $panel_child_spacing: if($ref_weight < 1.0, 2px, 3px);
     font-weight: 700;
     &:hover:not(:active):not(:checked) {
       color: if($variant != light, $foreground_selection, black);
-      box-shadow: inset 0 -2px $background_tracker_out;
+      box-shadow: inset 0 -2px $foreground_tracker_out;
     }
     &:checked {
       @if $variant != light {
-        @include button(flat-lined-checked, $text-color: $foreground_selection);
+        @include button(flat-lined-checked, $tc: $foreground_selection);
       }
       @else {
-        @include button(flat-lined-checked, $text-color: black);
+        @include button(flat-lined-checked, $tc: black);
       }
     }
     &:active {
-      @if $variant != light { @include button(flat-hover, $text-color: $foreground_selection); }
-      @else { @include button(flat-hover, $text-color: black); }
+      @if $variant != light { @include button(flat-hover, $tc: $foreground_selection); }
+      @else { @include button(flat-hover, $tc: black); }
       box-shadow: inset 0 -2px $background_selection;
     }
 
@@ -2473,8 +2473,8 @@ $panel_child_spacing: if($ref_weight < 1.0, 2px, 3px);
   widget.tasklist > button.toggle {
     font-weight: 400;
     &:hover {
-      @if $variant != light { @include button(flat-hover, $text-color: $foreground_selection); }
-      @else { @include button(flat-hover, $text-color: black); }
+      @if $variant != light { @include button(flat-hover, $tc: $foreground_selection); }
+      @else { @include button(flat-hover, $tc: black); }
     }
     &:checked {
       @if $variant != light { background-color: track($foreground_selection, $alpha_track_1); }
@@ -2535,7 +2535,7 @@ window#whiskermenu-window {
 
   stack > box > box.horizontal { // ugly resize-grip
     &:first-child widget,
-    &:last-child > widget:last-child { color: $background_tracker_out; }
+    &:last-child > widget:last-child { color: $foreground_tracker_out; }
   }
 
   entry { // enforce flat-style
@@ -2605,7 +2605,7 @@ $tabwin_padding: if($ref_weight < 1.0, 8px, 12px);
     font-weight: 500;
     &:not(:disabled) { background-image: none; } // unset ink-reactions
     &:not(:hover):not(:active):not(:checked):not(:disabled) {
-      color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
+      color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
     }
 
     box.vertical {
@@ -2677,13 +2677,13 @@ paned.headerbar_pane.titlebar > headerbar.header_right.titlebar {
   > box.linked.raised > button.toggle { // should be .text-button
     &:dir(ltr) {
       @include radius(0);
-      &:first-child { @include radius($radius_2 0 0 $radius_2); }
-      &:last-child { @include radius(0 $radius_2 $radius_2 0); }
+      &:first-child { @include radius($r_2 0 0 $r_2); }
+      &:last-child { @include radius(0 $r_2 $r_2 0); }
     }
     &:dir(rtl) {
       @include radius(0);
-      &:first-child { @include radius(0 $radius_2 $radius_2 0); }
-      &:last-child { @include radius($radius_2 0 0 $radius_2); }
+      &:first-child { @include radius(0 $r_2 $r_2 0); }
+      &:last-child { @include radius($r_2 0 0 $r_2); }
     }
   }
 }
@@ -2759,7 +2759,7 @@ window.background:not(.solid-csd) > box.vertical {
         min-height: if($ref_weight < 1.0, $icon_size * 1.5, $icon_size * 1.75);
         min-width: if($ref_weight < 1.0, $icon_size * 1.5, $icon_size * 1.75);
         margin: 2px 0;
-        @include radius($radius_2);
+        @include radius($r_2);
       }
     }
 
@@ -2807,12 +2807,12 @@ window.background:not(.solid-csd) > box.vertical {
 %browser_csd_titlebutton {
   // define global titlebutton class sizing
   @include button(flat-normal);
-  @include radius($radius, none);
+  @include radius($r, none);
   margin: 0; // unset margins
   padding: 0;
 
   &.close {
-    color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
+    color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
     &:hover {
       background-color: $background_destruction;
       color: $foreground_selection;
@@ -2843,7 +2843,7 @@ window.background:not(.solid-csd) > box.vertical {
 
   &.minimize,
   &.maximize {
-    color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
+    color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
     &:hover {
       @if $variant ==mixed {
         background-color: track($foreground_inv, $alpha_track_1);
@@ -2867,7 +2867,7 @@ window.background:not(.solid-csd) > box.vertical {
     }
     &:backdrop {
       @if $variant == mixed {
-        color: track($foreground_inv_secondary, $alpha_foreground_bdp);
+        color: track($foreground_secondary_inv, $alpha_foreground_bdp);
       }
       @else {
         color: track($foreground_secondary, $alpha_foreground_bdp);
@@ -2935,7 +2935,7 @@ window.background:not(.solid-csd) > box.vertical {
     > entry {
       @extend %_html_entry_spacing;
       // enforce fallback radius
-      @include radius($radius_4, none);
+      @include radius($r_4, none);
     }
   }
 }
@@ -3049,7 +3049,7 @@ window.background:not(.solid-csd) > box.vertical {
     #tasklist-button,
     #clock-applet-button,
     #showdesktop-button {
-      &:hover { box-shadow: inset 2px 0 $background_tracker_out; }
+      &:hover { box-shadow: inset 2px 0 $foreground_tracker_out; }
       &:checked,
       &:hover:checked { box-shadow: inset 2px 0 $background_selection; }
 
@@ -3069,20 +3069,20 @@ window.background:not(.solid-csd) > box.vertical {
       font-weight: 700;
       &:hover {
         @if $variant != light {
-          @include button(flat-normal, $text-color: $foreground_selection);
+          @include button(flat-normal, $tc: $foreground_selection);
         }
         @else {
-          @include button(flat-normal, $text-color: black);
+          @include button(flat-normal, $tc: black);
         }
-        box-shadow: inset 0 -2px $background_tracker_out;
+        box-shadow: inset 0 -2px $foreground_tracker_out;
       }
       &:active { animation: none; }
       &:checked {
         @if $variant != light {
-          @include button(flat-lined-checked, $text-color: $foreground_selection);
+          @include button(flat-lined-checked, $tc: $foreground_selection);
         }
         @else {
-          @include button(flat-lined-checked, $text-color: black);
+          @include button(flat-lined-checked, $tc: black);
         }
       }
 
@@ -3092,7 +3092,7 @@ window.background:not(.solid-csd) > box.vertical {
     // vertical panel mode?
     &.brisk-button-vertical {
       padding: 0;
-      &:hover { box-shadow: inset 2px 0 $background_tracker_out; }
+      &:hover { box-shadow: inset 2px 0 $foreground_tracker_out; }
       &:checked { box-shadow: inset 2px 0 $background_selection; }
     }
   }
@@ -3104,7 +3104,7 @@ window.background:not(.solid-csd) > box.vertical {
     entry { // search-entry
       margin: rem(4px);
       @extend %flat_entry_sizing;
-      @include radius($radius_4 $radius_4 0 0, none);
+      @include radius($r_4 $r_4 0 0, none);
       @include entry(flat-normal);
       &:focus { @include entry(flat-focus); }
       &:disabled { @include entry(flat-disabled); }
@@ -3138,8 +3138,8 @@ window.background:not(.solid-csd) > box.vertical {
         &:checked {
           background-color: $background_tracker;
           color: $label_selection;
-          &:dir(ltr) { @include radius($radius_2 $radius $radius $radius_2); }
-          &:dir(rtl) { @include radius($radius $radius_2 $radius_2 $radius); }
+          &:dir(ltr) { @include radius($r_2 $r $r $r_2); }
+          &:dir(rtl) { @include radius($r $r_2 $r_2 $r); }
         }
 
         image { padding: rem(8px) 0; }
@@ -3192,7 +3192,7 @@ window.background:not(.solid-csd) > box.vertical {
 
     frame { // draw actual widget
       border: 1px solid $foreground_div_sld;
-      border-radius: $radius_4;
+      border-radius: $r_4;
       background-color: $background_dark;
 
       // unset borders
@@ -3345,11 +3345,11 @@ window.background:not(.solid-csd) > box.vertical {
       &:first-child { // remove meaningless gaps
         &:dir(ltr) {
           margin-right: -2px;
-          @include radius($radius_2 0 0 $radius_2);
+          @include radius($r_2 0 0 $r_2);
         }
         &:dir(rtl) {
           margin-left: -2px;
-          @include radius(0 $radius_2 $radius_2 0);
+          @include radius(0 $r_2 $r_2 0);
         }
       }
       &:not(:first-child):not(:last-child) {
@@ -3359,11 +3359,11 @@ window.background:not(.solid-csd) > box.vertical {
       &:last-child {
         &:dir(ltr) {
           margin-left: -2px;
-          @include radius(0 $radius_2 $radius_2 0);
+          @include radius(0 $r_2 $r_2 0);
         }
         &:dir(rtl) {
           margin-right: -2px;
-          @include radius($radius_2 0 0 $radius_2);
+          @include radius($r_2 0 0 $r_2);
         }
       }
 
@@ -3373,7 +3373,7 @@ window.background:not(.solid-csd) > box.vertical {
 
   button.image-button.toggle { // most-left toggle button in path-bar pane
     @extend %toolitem_size;
-    @include radius($radius_2);
+    @include radius($r_2);
   }
 
   .caja-notebook {
@@ -3426,7 +3426,7 @@ window.background:not(.solid-csd) > box.vertical {
   }
 
   toolbar > toolbutton button.flat.image-button { // back to square buttons
-    @include radius($radius_2);
+    @include radius($r_2);
   }
 
   // 'presentation' mode fullscreen?
@@ -3591,7 +3591,7 @@ box#AuxToolbox {
       &.radio {
         @extend %toolitem_size;
         margin: 0;
-        @include radius($radius_2);
+        @include radius($r_2);
       }
     }
   }
@@ -3973,41 +3973,41 @@ button.flat.-panel-button { // generic panel buttons
   @include radius(0);
   font-weight: 700;
   @if $variant == mixed {
-    @include button(flat-normal, $text-color: $foreground_inv);
+    @include button(flat-normal, $tc: $foreground_inv);
     @include ink-reaction(normal, $fc: $foreground_inv, $tr: ink-normal-dec);
   }
   @else {
-    @include button(flat-normal, $text-color: $foreground);
+    @include button(flat-normal, $tc: $foreground);
     @include ink-reaction(normal, $fc: $foreground, $tr: ink-normal-dec);
   }
   @if $variant != light {
-    &:hover { @include button(flat-hover, $text-color: $foreground_selection); }
+    &:hover { @include button(flat-hover, $tc: $foreground_selection); }
     &:active {
-      @include button(flat-active, $text-color: $foreground_selection);
+      @include button(flat-active, $tc: $foreground_selection);
       @include ink-reaction(
                  active-dec, $fc: $foreground_selection, $tr: ink-active-dec);
     }
     &:disabled {
-      @include button(flat-disabled, $text-color: $foreground_inv);
+      @include button(flat-disabled, $tc: $foreground_inv);
     }
   }
   @else {
-    &:hover { @include button(flat-hover, $text-color: black); }
+    &:hover { @include button(flat-hover, $tc: black); }
     &:active {
-      @include button(flat-active, $text-color: black);
+      @include button(flat-active, $tc: black);
       @include ink-reaction(
                  active-dec, $fc: black, $tr: ink-active-dec);
     }
     &:disabled {
-      @include button(flat-disabled, $text-color: $foreground);
+      @include button(flat-disabled, $tc: $foreground);
     }
   }
   &:checked {
     @if $variant != light {
-      @include button(flat-lined-checked, $text-color: $foreground_selection);
+      @include button(flat-lined-checked, $tc: $foreground_selection);
     }
     @else {
-      @include button(flat-lined-checked, $text-color: black);
+      @include button(flat-lined-checked, $tc: black);
     }
   }
 
@@ -4242,8 +4242,8 @@ box.vertical > stack > box > revealer > stack > scrolledwindow {
 
     > row.activatable {
       &:selected {
-        &:dir(ltr) { @include radius(0 $radius $radius 0); }
-        &:dir(rtl) { @include radius($radius 0 0 $radius); }
+        &:dir(ltr) { @include radius(0 $r $r 0); }
+        &:dir(rtl) { @include radius($r 0 0 $r); }
 
         &, &:focus { outline-width: 0; } // unset focus outlines
 
@@ -4290,7 +4290,7 @@ window#GeanyMainWindow {
   }
 
   // stock CSS gets in our way
-  button#geany-close-tab-button { @include radius($radius_2, none); }
+  button#geany-close-tab-button { @include radius($r_2, none); }
 }
 
 // /**********
@@ -4328,7 +4328,7 @@ window.background > stack > box.horizontal > revealer { // left/right stack
         button.flat { // should use .image-button.small-button class!
           min-width: rem($small_widget);
           min-height: rem($small_widget);
-          @include radius($radius);
+          @include radius($r);
         }
       }
     }

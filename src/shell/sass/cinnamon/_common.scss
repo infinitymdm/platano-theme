@@ -35,7 +35,7 @@ stage {
 %button {
   min-height: 2em;
   padding: 7px 16px 8px;
-  border-radius: $radius_2;
+  border-radius: $r_2;
   font-weight: 500;
   @include button(flat-normal);
   &:focus { @include button(flat-focus); }
@@ -48,12 +48,12 @@ stage {
   min-height: 2.5em;
   padding: 9px 16px 10px;
   border: 0 none transparent;
-  border-radius: $radius_2;
-  @include button(flat-normal, $text-color: $osd_fg);
-  &:focus { @include button(flat-focus, $text-color: $osd_fg); }
-  &:hover { @include button(flat-hover, $text-color: $osd_fg); }
-  &:active { @include button(flat-active, $text-color: $osd_fg); }
-  &:insensitive { @include button(flat-disabled, $text-color: $osd_fg); }
+  border-radius: $r_2;
+  @include button(flat-normal, $tc: $osd_fg);
+  &:focus { @include button(flat-focus, $tc: $osd_fg); }
+  &:hover { @include button(flat-hover, $tc: $osd_fg); }
+  &:active { @include button(flat-active, $tc: $osd_fg); }
+  &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
 }
 
 // /***********
@@ -63,7 +63,7 @@ stage {
 %entry {
   min-height: 1.2em;
   padding: 7px 8px 8px;
-  border-radius: $radius_4 $radius_4 0 0;
+  border-radius: $r_4 $r_4 0 0;
   border: 0 none transparent;
   caret-size: 1px;
   transition: none;
@@ -85,16 +85,16 @@ stage {
 %osd_entry {
   min-height: 1.2em;
   padding: 7px 8px 8px;
-  border-radius: $radius_4 $radius_4 0 0;
+  border-radius: $r_4 $r_4 0 0;
   border: 0 none transparent;
   caret-size: 1px;
   selection-background-color: $background_selection;
   selected-color: $foreground_selection;
-  @include entry(normal, $text-color: $osd_fg);
-  &:hover { @include entry(hover, $text-color: $osd_fg); }
+  @include entry(normal, $tc: $osd_fg);
+  &:hover { @include entry(hover, $tc: $osd_fg); }
   &:focus,
-  &:focus:hover { @include entry(focus, $text-color: $osd_fg); }
-  &:insensitive { @include entry(disabled, $text-color: $osd_fg); }
+  &:focus:hover { @include entry(focus, $tc: $osd_fg); }
+  &:insensitive { @include entry(disabled, $tc: $osd_fg); }
 }
 
 // /**************
@@ -250,7 +250,7 @@ StScrollBar {
 //  *********/
 
 .cinnamon-link {
-  border-radius: $radius_2;
+  border-radius: $r_2;
   color: $foreground_link;
   text-decoration: underline;
   &:hover {
@@ -269,7 +269,7 @@ StScrollBar {
 
 #Tooltip {
   padding: 7px 8px 8px;
-  border-radius: $radius_2;
+  border-radius: $r_2;
   background-color: if($variant == mixed, opacity($background_tooltip_inv, $alpha_osd),
                                           opacity($background_tooltip, $alpha_osd));
   color: $osd_fg;
@@ -311,7 +311,7 @@ StScrollBar {
   .popup-menu-content {
     margin: 3px 5px (12px - 2px); // reduce bottom margin a bit
     padding: 0.3em 0;
-    border-radius: $radius_4;
+    border-radius: $r_4;
     border: 1px solid $foreground_div_sld;
     background-color: $background_dark;
     color: $foreground_secondary;
@@ -358,7 +358,7 @@ StScrollBar {
   &-combo-menu {
     padding: 1em;
     border: 1px solid $foreground_div;
-    border-radius: $radius_4;
+    border-radius: $r_4;
     color: $osd_fg;
     background-color: opacity($osd_bg, $alpha_osd);
   }
@@ -583,7 +583,7 @@ StScrollBar {
 
 .window-border {
   border: 4px solid $ovv_semi_fill_bg;
-  border-radius: $radius_2 $radius_2 0 0;
+  border-radius: $r_2 $r_2 0 0;
   box-shadow: inset 0 0 0 1px $ovv_semi_fill_bg;
 }
 
@@ -592,7 +592,7 @@ StScrollBar {
   -cinnamon-caption-spacing: 12px;
   spacing: 25px;
   padding: 0.3em 0.9em 0.4em;
-  border-radius: $radius_2;
+  border-radius: $r_2;
   color: $osd_fg;
   background-color: opacity($osd_bg, $alpha_osd);
   box-shadow: $empty_shadow;
@@ -677,7 +677,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
 .overview-icon {
   padding: 9px;
   border: none;
-  border-radius: $radius_2;
+  border-radius: $r_2;
   color: $osd_fg;
   transition-duration: $transition_d_standard;
   text-align: center;
@@ -732,7 +732,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
     height: 1.5em + 0.5em;
     margin: 0;
     padding: 0;
-    border-radius: $radius;
+    border-radius: $r;
     font-size: 90%;
     &:hover { background-color: $semi_fill_bg; }
     &:active { background-color: $fill_bg; }
@@ -757,7 +757,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
 
 .datemenu-date-label {
   padding: 0.4em 0;
-  border-radius: $radius_2;
+  border-radius: $r_2;
   color: $foreground;
   font-weight: 700;
   text-align: center;
@@ -772,7 +772,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
     height: 2.4em;
     padding: 0;
     margin: 0.2em;
-    border-radius: $radius;
+    border-radius: $r;
     font-size: 90%;
     text-align: center;
   }
@@ -914,7 +914,7 @@ $ws_thumb_spacing: 2.25em; // this affects to name-entry as well
 %switcher_item_box_child {
   .item-box {
     padding: 8px;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     &:outlined {
       padding: 6px;
       border: 2px solid $osd_out_fg;
@@ -1028,21 +1028,21 @@ $ripple_r: 52px;
     .modal-dialog-button {
       padding: 7px 16px 8px;
       border: 0 none transparent;
-      border-radius: $radius_2;
+      border-radius: $r_2;
       font-weight: 700;
       @if $variant != light {
-        @include button(flat-normal, $text-color: $foreground_accent_inv);
-        &:hover { @include button(flat-hover, $text-color: $foreground_accent_inv); }
-        &:focus { @include button(flat-focus, $text-color: $foreground_accent_inv); }
-        &:active { @include button(flat-active, $text-color: $foreground_accent_inv); }
-        &:insensitive { @include button(flat-disabled, $text-color: $osd_fg); }
+        @include button(flat-normal, $tc: $foreground_accent_inv);
+        &:hover { @include button(flat-hover, $tc: $foreground_accent_inv); }
+        &:focus { @include button(flat-focus, $tc: $foreground_accent_inv); }
+        &:active { @include button(flat-active, $tc: $foreground_accent_inv); }
+        &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
       }
       @else {
-        @include button(flat-normal, $text-color: $foreground_accent);
-        &:hover { @include button(flat-hover, $text-color: $foreground_accent); }
-        &:focus { @include button(flat-focus, $text-color: $foreground_accent); }
-        &:active { @include button(flat-active, $text-color: $foreground_accent); }
-        &:insensitive { @include button(flat-disabled, $text-color: $foreground); }
+        @include button(flat-normal, $tc: $foreground_accent);
+        &:hover { @include button(flat-hover, $tc: $foreground_accent); }
+        &:focus { @include button(flat-focus, $tc: $foreground_accent); }
+        &:active { @include button(flat-active, $tc: $foreground_accent); }
+        &:insensitive { @include button(flat-disabled, $tc: $foreground); }
       }
     }
   }
@@ -1085,7 +1085,7 @@ $ripple_r: 52px;
     @extend %osd_entry;
     width: 28em;
     padding: 7px;
-    border-radius: $radius_4 $radius_4 0 0;
+    border-radius: $r_4 $r_4 0 0;
     caret-color: $osd_fg;
     selected-color: $foreground_selection;
     selection-background-color: $background_selection;
@@ -1189,7 +1189,7 @@ $ripple_r: 52px;
   &-key {
     min-height: $ref_size * 2;
     min-width: $ref_size * 2;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     border: 1px solid mix($osd_sec_fg, $osd_bg, percentage($alpha_div_1));
     background-color: $osd_bg;
     color: $osd_sec_fg;
@@ -1224,7 +1224,7 @@ $ripple_r: 52px;
 
   &-subkeys { // long press on a key popup
     padding: 0;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     -arrow-border-radius: 0;
     -arrow-background-color: transparent;
     -arrow-border-width: 0;
@@ -1290,7 +1290,7 @@ $large_item: 10px;
 
   &-favorites-button {
     padding: $large_item;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     border: 0 none transparent;
     &:hover { @include button(flat-hover); }
   }
@@ -1300,7 +1300,7 @@ $large_item: 10px;
 
     &-button {
       padding: $large_item;
-      border-radius: $radius_2;
+      border-radius: $r_2;
       border: 0 none transparent;
     }
   }
@@ -1342,7 +1342,7 @@ $large_item: 10px;
     &-selected {
       @include button(flat-hover);
       padding: 0 $menu_spacing;
-      border-radius: $radius_2;
+      border-radius: $r_2;
       &:highlighted { font-weight: 700; }
     }
 
@@ -1354,7 +1354,7 @@ $large_item: 10px;
 
   StScrollView.menu-application-button { // extracted submenu container
     padding: 0;
-    border-radius: $radius_4;
+    border-radius: $r_4;
     border: 1px solid $foreground_div;
     background-color: $background;
 
@@ -1364,8 +1364,8 @@ $large_item: 10px;
       &:ltr { padding-left: $menu_spacing; }
       &:rtl { padding-right: $menu_spacing; }
 
-      &:first-child { border-radius: $radius_4 $radius_4 0 0; }
-      &:last-child { border-radius: 0 0 $radius_4 $radius_4; }
+      &:first-child { border-radius: $r_4 $r_4 0 0; }
+      &:last-child { border-radius: 0 0 $r_4 $r_4; }
 
       &:active {
         border-image: none; // image independent
@@ -1387,7 +1387,7 @@ $large_item: 10px;
     &-selected,
     &-greyed {
       padding: 0 $menu_spacing;
-      border-radius: $radius_2;
+      border-radius: $r_2;
       border: 0 none transparent;
       font-weight: 500;
     }
@@ -1398,8 +1398,8 @@ $large_item: 10px;
     &-selected {
       background-color: opacity($background_selection, $alpha_track_1);
       color: $label_selection;
-      &:ltr { border-radius: $radius_2 $radius $radius $radius_2; }
-      &:rtl { border-radius: $radius $radius_2 $radius_2 $radius; }
+      &:ltr { border-radius: $r_2 $r $r $r_2; }
+      &:rtl { border-radius: $r $r_2 $r_2 $r; }
     }
 
     &-greyed {
@@ -1717,7 +1717,7 @@ $large_item: 10px;
   }
 
   &-badge { // backgrounds for num-labels
-    border-radius: $radius;
+    border-radius: $r;
     background-color: if($variant == mixed, opacity($background_tooltip_inv, $alpha_osd),
                                             opacity($background_tooltip, $alpha_osd));
     box-shadow: $z-depth-1;
@@ -1772,11 +1772,11 @@ $large_item: 10px;
       width: $icon_size * 2;
       height: $icon_size * 2;
       padding: 0;
-      border-radius: $radius;
+      border-radius: $r;
       border: 0 none transparent;
       color: $osd_sec_fg;
-      &:hover{ @include button(flat-hover, $text-color: $osd_fg); }
-      &:active { @include button(flat-active, $text-color: $osd_fg); }
+      &:hover{ @include button(flat-hover, $tc: $osd_fg); }
+      &:active { @include button(flat-active, $tc: $osd_fg); }
 
       StIcon { icon-size: $icon_size; }
     }
@@ -2252,7 +2252,7 @@ $bottom_gap: 0.25em;
     selected-color: $foreground_selection;
     font-weight: 700;
     font-size: 90%;
-    &:focus { @include entry(focus, $text-color: $osd_fg); }
+    &:focus { @include entry(focus, $tc: $osd_fg); }
 
     &#selected {
       color: $osd_fg;
@@ -2261,12 +2261,12 @@ $bottom_gap: 0.25em;
   }
 
   &-workspace-thumbnail-frame {
-    border-radius: $radius_2;
+    border-radius: $r_2;
     border: 2px solid $osd_out_fg;
     background-color: transparent;
 
     &#active {
-      border-radius: $radius_2;
+      border-radius: $r_2;
       border: 2px solid $background_selection;
     }
   }
@@ -2338,7 +2338,7 @@ $bottom_gap: 0.25em;
 
   .button {
     padding: 4px;
-    border-radius: $radius_2;
+    border-radius: $r_2;
     border-color: $foreground_div_sld;
     background-color: $base;
     &:hover {
@@ -2378,7 +2378,7 @@ $bottom_gap: 0.25em;
   .entry {
     min-height: 16px + 4px * 2;
     padding: 0 8px; // do not set vertical padding causes truncation of StLabel
-    border-radius: $radius_2;
+    border-radius: $r_2;
     border-color: transparent;
     background-color: $base;
     color: $foreground_secondary;
@@ -2474,7 +2474,7 @@ StBin.menu {
     .item-box {
       margin: 0.3em;
       background-color: $hidden_fill_bg;
-      border-radius: $radius_4;
+      border-radius: $r_4;
       &:selected {
         background-color: opacity($background_accent, $alpha_track_2);
       }

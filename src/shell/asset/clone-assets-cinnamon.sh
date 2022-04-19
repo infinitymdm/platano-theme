@@ -41,21 +41,21 @@ do
     s="`echo $i | cut -d' ' -f1`.svg" # source
     r="`echo $i | cut -d' ' -f2`" # recolor flag
 
-    if [ "$radius" = "r1" ]; then
+    if [ "$r" = "r1" ]; then
         cp -f $SRC_DIR/$s.in $SRC_DIR/$s
 
         if [ $selection1 != $selection2 ]; then
             sed -i "s/$selection1/$selection2/gi" $SRC_DIR/$s
             echo $s is re-colored with $selection2.
         fi
-    elif [ "$radius" = "r2" ]; then
+    elif [ "$r" = "r2" ]; then
         cp -f $SRC_DIR/$s.in $SRC_DIR/$s
 
         if [ $accent1 != $accent2 ]; then
             sed -i "s/$accent1/$accent2/gi" $SRC_DIR/$s
             echo $s is re-colored with $accent2.
         fi
-    elif [ "$radius" = "r3" ]; then
+    elif [ "$r" = "r3" ]; then
         cp -f $SRC_DIR/$s.in $SRC_DIR/$s
 
         if [ $destruction1 != $destruction2 ]; then

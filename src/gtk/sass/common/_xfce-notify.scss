@@ -20,50 +20,50 @@
     }
 
     > label#body {
-      color: if($variant == mixed, $foreground_inv_secondary, $foreground_secondary);
+      color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
     }
   }
 
   buttonbox button {
     @if $variant == mixed {
-      @include button(flat-normal, $text-color: $foreground_accent_sec_inv);
+      @include button(flat-normal, $tc: $foreground_secondary_accent_inv);
       @include ink-reaction(normal, $fc: $foreground_accent_inv, $tr: ink-normal-dec);
       font-weight: 500;
       &:hover {
-        @include button(flat-hover, $text-color: $foreground_accent_inv);
+        @include button(flat-hover, $tc: $foreground_accent_inv);
       }
       &:active {
-        @include button(flat-active, $text-color: $foreground_accent_inv);
+        @include button(flat-active, $tc: $foreground_accent_inv);
         @include ink-reaction(active-dec, $fc: $foreground_accent_inv, $tr: ink-active-dec);
       }
       &:disabled {
-        @include button(flat-disabled, $text-color: $foreground_inv);
+        @include button(flat-disabled, $tc: $foreground_inv);
       }
       &:checked {
-        @include button(flat-checked, $text-color: $foreground_accent_inv);
+        @include button(flat-checked, $tc: $foreground_accent_inv);
         &:disabled {
-          @include button(flat-checked-disabled, $text-color: $foreground_accent_inv);
+          @include button(flat-checked-disabled, $tc: $foreground_accent_inv);
         }
       }
     }
     @else {
-      @include button(flat-normal, $text-color: $foreground_accent_sec);
+      @include button(flat-normal, $tc: $foreground_secondary_accent);
       @include ink-reaction(normal, $fc: $foreground_accent, $tr: ink-normal-dec);
       font-weight: 700;
       &:hover {
-        @include button(flat-hover, $text-color: $foreground_accent);
+        @include button(flat-hover, $tc: $foreground_accent);
       }
       &:active {
-        @include button(flat-active, $text-color: $foreground_accent);
+        @include button(flat-active, $tc: $foreground_accent);
         @include ink-reaction(active-dec, $fc: $foreground_accent, $tr: ink-active-dec);
       }
       &:disabled {
-        @include button(flat-disabled, $text-color: $foreground);
+        @include button(flat-disabled, $tc: $foreground);
       }
       &:checked {
-        @include button(flat-checked, $text-color: $foreground_accent);
+        @include button(flat-checked, $tc: $foreground_accent);
         &:disabled {
-          @include button(flat-checked-disabled, $text-color: $foreground_accent);
+          @include button(flat-checked-disabled, $tc: $foreground_accent);
         }
       }
     }
@@ -75,7 +75,7 @@
 
     trough {
       border-style: none;
-      background-color: track($background_accent, $background_tracker_out);
+      background-color: track($background_accent, $foreground_tracker_out);
       box-shadow: none;
     }
 

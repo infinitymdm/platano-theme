@@ -113,7 +113,7 @@
 // Text/foreground color of placeholders
 //
 
-@define-color placeholder_text_color #{"" + $foreground_placeholder};
+@define-color placeholder_text_color #{"" + $plc_fg};
 
 //
 // Widgets main borders color
@@ -148,21 +148,21 @@
 
 // unfocused window 'dot(s)'
 @define-color budgie_tasklist_indicator_color #{"" +
-  if($variant == light,
-    $background_selection,
-    saturate(lighten($background_selection, percentage($alpha_track_2)),
-      percentage($alpha_track_2)))};
+                if($variant == light,
+                   $background_selection,
+                   saturate(lighten($background_selection, percentage($alpha_track_2)),
+                     percentage($alpha_track_2)))};
 
 // focused window 'line'
 @define-color budgie_tasklist_indicator_color_active #{"" + $background_selection};
 
 // group-ed and unfocused window 'line(s)'
 @define-color budgie_tasklist_indicator_color_active_window #{"" +
-  if($variant == light,
-    saturate(lighten($background_selection, percentage($alpha_track_2)),
-      percentage($alpha_track_2)),
-    saturate(darken($background_selection, percentage($alpha_track_2)),
-      percentage($alpha_track_2)))};
+                if($variant == light,
+                   saturate(lighten($background_selection, percentage($alpha_track_2)),
+                     percentage($alpha_track_2)),
+                   saturate(darken($background_selection, percentage($alpha_track_2)),
+                     percentage($alpha_track_2)))};
 
 // attention 'dot'
 // FIXME: we can't fill whole widget backgrounds with our suggestion color

@@ -31,33 +31,33 @@ $empty_shadow: 0 0 transparent; // replacement of the 'none'
 // Entries
 //
 // $t: entry type
-// $text-color: text color
+// $tc: text color
 // $fc: focus color
 //
 // possible $t values: normal, focus, hover, disabled;
 //
 
-@mixin entry($t, $text-color: $foreground, $fc: $background_selection) {
+@mixin entry($t, $tc: $foreground, $fc: $background_selection) {
   @if $t == normal {
-    background-color: opacity($text-color, $alpha_track_1 / 2);
-    color: opacity($text-color, $alpha_foreground_2nd);
-    caret-color: opacity($text-color, $alpha_foreground_2nd);
-    box-shadow: inset 0 -2px opacity($text-color, $alpha_track_out);
+    background-color: opacity($tc, $alpha_track_1 / 2);
+    color: opacity($tc, $alpha_foreground_2nd);
+    caret-color: opacity($tc, $alpha_foreground_2nd);
+    box-shadow: inset 0 -2px opacity($tc, $alpha_track_out);
   }
   @else if $t == focus {
-    background-color: opacity($text-color, $alpha_track_1);
-    color: $text-color;
-    caret-color: $text-color;
+    background-color: opacity($tc, $alpha_track_1);
+    color: $tc;
+    caret-color: $tc;
     box-shadow: inset 0 -2px $fc;
   }
   @else if $t == hover {
-    background-color: opacity($text-color, $alpha_track_1);
-    color: $text-color;
-    box-shadow: inset 0 -2px opacity($text-color, $alpha_track_out);
+    background-color: opacity($tc, $alpha_track_1);
+    color: $tc;
+    box-shadow: inset 0 -2px opacity($tc, $alpha_track_out);
   }
   @else if $t == disabled {
-    background-color: opacity($text-color, $alpha_track_1 / 2 * $alpha_foreground_dis);
-    color: opacity($text-color, $alpha_foreground_dis);
+    background-color: opacity($tc, $alpha_track_1 / 2 * $alpha_foreground_dis);
+    color: opacity($tc, $alpha_foreground_dis);
     box-shadow: $empty_shadow;
   }
 }
@@ -66,8 +66,8 @@ $empty_shadow: 0 0 transparent; // replacement of the 'none'
 // Buttons
 //
 // $t:    button type,
-// $color:    base button color for colored* types
-// $text-color:   optional text color for colored* types
+// $c:    base button color for colored* types
+// $tc:   optional text color for colored* types
 //
 // possible $t values:
 // normal, focus, hover, active, disabled, flat-normal,
@@ -76,28 +76,28 @@ $empty_shadow: 0 0 transparent; // replacement of the 'none'
 // suggested-active, suggested-disabled;
 //
 
-@mixin button($t, $color: $base, $text-color: $foreground) {
+@mixin button($t, $c: $base, $tc: $foreground) {
   @if $t == normal {
-    border: 1px solid mix($text-color, $color, percentage($alpha_div_1));
-    background-color: $color;
-    color: opacity($text-color, $alpha_foreground_2nd);
+    border: 1px solid mix($tc, $c, percentage($alpha_div_1));
+    background-color: $c;
+    color: opacity($tc, $alpha_foreground_2nd);
   }
   @else if $t == focus {
-    border: 1px solid mix($text-color, $color, percentage($alpha_div_1));
-    background-color: $color;
-    color: $text-color;
-    box-shadow: inset 0 0 0 2px opacity($text-color, $alpha_track_out);
+    border: 1px solid mix($tc, $c, percentage($alpha_div_1));
+    background-color: $c;
+    color: $tc;
+    box-shadow: inset 0 0 0 2px opacity($tc, $alpha_track_out);
   }
 
   @else if $t == hover {
-    border-color: mix($text-color, $color, percentage($alpha_track_1));
-    background-color: mix($text-color, $color, percentage($alpha_track_1));
-    color: $text-color;
+    border-color: mix($tc, $c, percentage($alpha_track_1));
+    background-color: mix($tc, $c, percentage($alpha_track_1));
+    color: $tc;
   }
   @else if $t == active {
-    border-color: mix($text-color, $color, percentage($alpha_track_2));
-    background-color: mix($text-color, $color, percentage($alpha_track_2));
-    color: $text-color;
+    border-color: mix($tc, $c, percentage($alpha_track_2));
+    background-color: mix($tc, $c, percentage($alpha_track_2));
+    color: $tc;
   }
   @else if $t == checked {
     border-color: $background_selection;
@@ -105,55 +105,55 @@ $empty_shadow: 0 0 transparent; // replacement of the 'none'
     color: $foreground_selection;
   }
   @else if $t == disabled {
-    border-color: mix($text-color, $color, percentage($alpha_div_1 * $alpha_foreground_dis));
-    background-color: mix($text-color, $color, percentage($alpha_track_1 / 2 * $alpha_foreground_dis));
-    color: opacity($text-color, $alpha_foreground_dis);
+    border-color: mix($tc, $c, percentage($alpha_div_1 * $alpha_foreground_dis));
+    background-color: mix($tc, $c, percentage($alpha_track_1 / 2 * $alpha_foreground_dis));
+    color: opacity($tc, $alpha_foreground_dis);
   }
   @else if $t == flat-normal {
     border: none;
     background-color: if($variant != light, $hidden_fill_bg,
                                             opacity(white, 0.01));
-    color: opacity($text-color, $alpha_foreground_2nd);
+    color: opacity($tc, $alpha_foreground_2nd);
     box-shadow: inset 0 0 0 2px transparent;
   }
   @else if $t == flat-focus {
     border: none;
-    color: $text-color;
-    box-shadow: inset 0 0 0 2px opacity($text-color, $alpha_track_out);
+    color: $tc;
+    box-shadow: inset 0 0 0 2px opacity($tc, $alpha_track_out);
   }
   @else if $t == flat-hover {
     border: none;
-    background-color: opacity($text-color, $alpha_track_1);
-    color: $text-color;
+    background-color: opacity($tc, $alpha_track_1);
+    color: $tc;
   }
   @else if $t == flat-active {
     border: none;
-    background-color: opacity($text-color, $alpha_track_2);
-    color: $text-color;
+    background-color: opacity($tc, $alpha_track_2);
+    color: $tc;
     box-shadow: $empty_shadow;
   }
   @else if $t == flat-disabled {
     border: none;
     background-color: $hidden_fill_bg;
-    color: opacity($text-color, $alpha_foreground_dis);
+    color: opacity($tc, $alpha_foreground_dis);
     box-shadow: $empty_shadow;
   }
   @else if $t == suggested-normal {
     border: 2px solid transparent; // for outlines
-    background-color: $color;
-    color: opacity($text-color, $alpha_foreground_2nd);
+    background-color: $c;
+    color: opacity($tc, $alpha_foreground_2nd);
     box-shadow: $empty_shadow;
   }
   @else if $t == suggested-focus {
-    border: 2px solid opacity($text-color, $alpha_track_out);
-    color: $text-color;
+    border: 2px solid opacity($tc, $alpha_track_out);
+    color: $tc;
     box-shadow: $empty_shadow;
     transition-duration: $transition_d_standard; // revive transitions
   }
   @else if $t == suggested-hover {
     border: 2px solid transparent;
-    background-color: mix($text-color, $color, percentage($alpha_track_1));
-    color: $text-color;
+    background-color: mix($tc, $c, percentage($alpha_track_1));
+    color: $tc;
     box-shadow: $empty_shadow;
   }
   @else if $t == suggested-active {
@@ -164,8 +164,8 @@ $empty_shadow: 0 0 transparent; // replacement of the 'none'
   }
   @else if $t == suggested-disabled {
     border: 0 none transparent;
-    background-color: opacity($text-color, ($alpha_track_1));
-    color: opacity($text-color, $alpha_foreground_dis);
+    background-color: opacity($tc, ($alpha_track_1));
+    color: opacity($tc, $alpha_foreground_dis);
     box-shadow: $empty_shadow;
   }
 }

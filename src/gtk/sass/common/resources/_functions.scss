@@ -2,16 +2,16 @@
 // Alpha blending
 //
 
-@function track($color, $a) {
-  @return unquote("alpha(#{$color}, #{$a})");
+@function track($c, $a) {
+  @return unquote("alpha(#{$c}, #{$a})");
 }
 
 //
 // Color picker
 //
 
-@function color($color, $lv) {
-  @return nth($color, index($c_level, $lv));
+@function color($c, $lv) {
+  @return nth($c, index($c_level, $lv));
 }
 
 @function a_color($c_a, $lv_a) {
