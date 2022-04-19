@@ -1218,10 +1218,10 @@ window.budgie-popover.workspace-popover {
 %budgie_notification_window_base,
 .budgie-notification-window,
 .budgie-osd-window {
-  border-radius: $r_4;
+  border-radius: $r_8;
   background-color: transparent;
 
-  .drop-shadow { border-radius: $r_4; }
+  .drop-shadow { border-radius: $r_8; }
 }
 
 %budgie_notification_window_styling,
@@ -1229,12 +1229,12 @@ window.budgie-popover.workspace-popover {
   // draw actual backgrounds
   @if $variant == mixed { background-color: track($background_tooltip_inv, $alpha_osd); }
   @else { background-color: track($background_tooltip, $alpha_osd); }
+  margin: $shadow_margin_3;
 }
 
 .budgie-osd-window .drop-shadow {
   @if $variant == mixed { background-color: track($background_dark_inv, $alpha_osd); }
   @else { background-color: track($background_dark, $alpha_osd); }
-  margin: $shadow_margin_3;
 }
 
 %budgie_notification,
