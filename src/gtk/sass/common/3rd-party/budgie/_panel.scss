@@ -40,3 +40,291 @@
     }
   }
 }
+
+@each $along_side, $opp_side in (top, bottom),
+                                (bottom, top),
+                                (left, right),
+                                (right, left) {
+  // panel shadow styling
+  .#{$along_side} .shadow-block {
+    background-color: transparent;
+    background-image: linear-gradient(to #{$opp_side},
+                                      track(black, 0.23),
+                                      track(black, 0.08),
+                                      transparent);
+  }
+}
+
+// wnck tasklist styling
+.budgie-panel button#tasklist-button {
+  box-shadow: none; // unset standard wnck styling
+  @include ink-reaction(normal, $tr: ink-normal-dec);
+
+  label { margin-bottom: 0; } // unset baseline
+
+  image {
+    min-width: 0;
+    min-height: $icon_size * 1.5;
+
+    .left &,
+    .right & {
+      min-width: $icon_size * 1.5;
+      min-height: 0;
+    }
+  }
+
+  label,
+  image { opacity: $alpha_foreground_2nd; }
+
+  &:hover,
+  &:active,
+  &:checked {
+    box-shadow: none;
+
+    label,
+    image { opacity: 1.0; }
+  }
+
+  &:active {
+    @include ink-reaction(active-dec, $tr: ink-active-dec);
+  }
+}
+
+// icon tasklist styling
+%icon_tasklist_droptarget,
+box.pinned { // drop-target
+  &:drop(active) {
+    border: none;
+    border-radius: 0;
+    background-color: $color_bg_drop;
+    box-shadow: inset 0 0 0 1px $color_fg_drop;
+  }
+}
+
+.budgie-panel {
+  @at-root %budgie_icon_tasklist_button,
+  button.flat.launcher {
+    min-width: $icon_size;
+    min-height: $icon_size;
+    padding: 0;
+    border-radius: 0;
+    @if $variant == mixed {
+      @include button(flat-normal, $tc: $color_fg_inv);
+      @include ink-reaction(
+                 normal, $fc: $color_fg_inv, $tr: ink-normal-dec, $bs: 10, $i: 2);
+    }
+    @else {
+      @include button(flat-normal, $tc: $color_fg);
+      @include ink-reaction(
+                 normal, $fc: $color_fg, $tr: ink-normal-dec, $bs: 10, $i: 2);
+    }
+
+    > image {
+      opacity: $alpha_foreground_2nd;
+      transition: opacity $transition_d_standard $transition_t_dec,
+                  background-image 0s;
+    }
+
+    &:hover {
+      @if $variant == mixed { @include button(flat-hover, $tc: $color_fg_inv); }
+      @else { @include button(flat-hover, $tc: $color_fg); }
+      @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+      @else { -gtk-icon-filter: brightness(1.2); }
+
+      > image { opacity: 1.0; }
+    }
+    &:active {
+      @if $variant == mixed {
+        @include button(flat-active, $tc: $color_fg_inv);
+        @include
+          ink-reaction(
+            active-dec, $fc: $color_fg_inv, $tr: ink-active-dec, $bs: 10, $i: 2);
+      }
+      @else {
+        @include button(flat-active, $tc: $color_fg);
+        @include
+          ink-reaction(
+            active-dec, $fc: $color_fg, $tr: ink-active-dec, $bs: 10, $i: 2);
+      }
+
+      > image { opacity: 1.0; }
+    }
+    &:checked {
+      @if $variant == mixed { @include button(flat-hover, $tc: $color_fg_inv); }
+      @else { @include button(flat-hover, $tc: $color_fg); }
+      &:hover {
+        @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+        @else { -gtk-icon-filter: brightness(1.2); }
+      }
+
+      > image { opacity: 1.0; }
+    }
+  }
+
+  @at-root %running_budgie_icon_tasklist_button,
+  .unpinned button.flat.launcher,
+  .pinned button.flat.launcher.running {
+    &:hover {
+      @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+      @else { -gtk-icon-filter: brightness(1.2); }
+    }
+
+    > image {
+      background-repeat: no-repeat;
+      transition: opacity $transition_d_standard $transition_t_dec,
+                  background-image 0s;
+      opacity: 1.0;
+    }
+
+    &:hover,
+    &:active,
+    &:checked {
+      > image { background-image: none; }
+    }
+  }
+}
+
+// draw underscores and dots
+@each $position, $_line, $_dot in (top, 0 3px, 6px 3px),
+                                  (bottom, 0 -3px, 6px 3px),
+                                  (left, 3px 0, 3px 6px),
+                                  (right, -3px 0, 3px 6px) {
+  .#{$position} .budgie-panel {
+    button#tasklist-button,
+    button.flat.launcher {
+      &:hover {
+        @if $variant == mixed {
+          box-shadow: inset #{$_line} track($color_fg_inv, $alpha_foreground_bdp);
+        }
+        @else {
+          box-shadow: inset #{$_line} track($color_fg, $alpha_foreground_bdp);
+        }
+      }
+      &:active,
+      &:checked {
+        box-shadow: inset #{$_line} $color_bg_sel;
+      }
+    }
+
+    .unpinned button.flat.launcher,
+    .pinned button.flat.launcher.running {
+      > image {
+        background-image:
+          if($variant == light,
+             image($color_bg_sel),
+             image(saturate(lighten($color_bg_sel, percentage($alpha_track_2)),
+                   percentage($alpha_track_2))));
+        background-size: #{$_dot};
+        background-position: #{$position} center;
+      }
+
+      &:hover,
+      &:active,
+      &:checked {
+        box-shadow: inset #{$_line} $color_bg_sel;
+      }
+    }
+  }
+}
+
+// upcoming icon tasklist
+widget.icon-tasklist {
+  > box:drop(active) { // drop-target
+    @extend %icon_tasklist_droptarget;
+  }
+}
+
+box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
+  transition: opacity $transition_d_standard $transition_t_standard,
+              background-color $transition_d_long $transition_t_dec,
+              background-image $transition_d_long $transition_t_dec,
+              box-shadow $transition_d_none $transition_t_dec; // exclude box-shadows
+
+  &:hover,
+  &:checked,
+  &.running { box-shadow: none; } // unset before drawing indicators
+
+  &:active {
+    box-shadow: none;
+    transition: opacity $transition_d_standard $transition_t_standard,
+                background-color $transition_d_long $transition_t_dec,
+                background-image $transition_d_long $transition_t_dec,
+                box-shadow $transition_d_none $transition_t_dec;
+  }
+}
+
+@each $position, $_line, $_bg_p, $_bg_s in
+(top, 0 3px, bottom, '100% calc(100% - 3px)'),
+(bottom, 0 -3px, top, '100% calc(100% - 3px)'),
+(left, 3px 0, right, 'calc(100% - 3px) 100%'),
+(right, -3px 0, left, 'calc(100% - 3px) 100%') {
+  .#{$position} {
+    box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
+      &:not(:checked):hover {
+        @if $variant == mixed {
+          box-shadow: inset #{$_line} track($color_fg_inv, $alpha_foreground_bdp);
+        }
+        @else {
+          box-shadow: inset #{$_line} track($color_fg, $alpha_foreground_bdp);
+        }
+
+        &.running { box-shadow: inset #{$_line} $color_bg_sel; }
+      }
+      &:checked {
+        // unset default backgrounds before starting -image property
+        &, &:hover { background-color: transparent; }
+
+        // FIXME: background-color is drawn 'above' its line-indicators,
+        // it means we need to avoid those regions when filling backgrounds.
+        image {
+          background-position: #{$_bg_p};
+          background-size: #{$_bg_s};
+          background-repeat: no-repeat;
+          @if $variant == mixed {
+            background-image: image(track($color_fg_inv, $alpha_track_1));
+          }
+          @else {
+            background-image: image(track($color_fg, $alpha_track_1));
+          }
+        }
+      }
+    }
+  }
+}
+
+// end region
+.end-region > widget > widget {
+  > box.horizontal { // 'Stats Indicator'
+    > widget > widget > image { // 'bluetooth'
+      &:dir(ltr) { margin: 0 2px 0 -1px; }
+      &:dir(rtl) { margin: 0 -1px 0 2px; }
+    }
+
+    > widget.sound-applet > widget > image { // 'sound'
+      min-width: $icon_size + 2px;
+      margin: 0;
+    }
+
+    > widget > widget > box.horizontal > image,
+    box.battery-icon.horizontal > image { // 'battery'
+      min-width: $icon_size + 6px;
+    }
+  }
+
+  box.battery-icon { // 'percent label'
+    &.horizontal > label.percent-label {
+      &:dir(ltr) { margin: 0 -6px 0 3px; }
+      &:dir(rtl) { margin: 0 3px 0 -6px; }
+    }
+
+    &.vertical > label.percent-label {
+      font-size: 75%;
+      &:dir(ltr) { margin-right: -2px; }
+      &:dir(rtl) { margin-left: -2px; }
+    }
+  }
+
+  > image { // 'Notification' and 'User Indicator'
+    min-width: $icon_size + 4px;
+  }
+}
