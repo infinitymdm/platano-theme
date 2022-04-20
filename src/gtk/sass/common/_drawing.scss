@@ -27,32 +27,32 @@ $z-depth-5: 0 14px 19px rgba(0, 0, 0, 0.50);
 
 // tile borders + dummy z-depth-2 area
 $z-depth-2-tiled: 0 2.5px 4.5px transparent,
-                  1px 0 $div_sld_dark_fg, // side-edges
-                  -1px 0 $div_sld_dark_fg;
+                  1px 0 $color_fg_div_sld_dark, // side-edges
+                  -1px 0 $color_fg_div_sld_dark;
 $z-depth-2-tiled-top: 0 2.5px 4.5px transparent,
-                      0 1px $div_sld_dark_fg;
+                      0 1px $color_fg_div_sld_dark;
 $z-depth-2-tiled-bottom: 0 2.5px 4.5px transparent,
-                         0 -1px $div_sld_dark_fg;
+                         0 -1px $color_fg_div_sld_dark;
 $z-depth-2-tiled-left: 0 2.5px 4.5px transparent,
-                       1px 0 $div_sld_dark_fg;
+                       1px 0 $color_fg_div_sld_dark;
 $z-depth-2-tiled-right: 0 2.5px 4.5px transparent,
-                        -1px 0 $div_sld_dark_fg;
+                        -1px 0 $color_fg_div_sld_dark;
 
 // z-depth-2.5 actual shadows + dummy z-depth-4 area
 $z-depth-2-backdrop: 0 10px 14px transparent,
                      0 4.5px 5.5px rgba(0, 0, 0, 0.13),
                      $z-depth-2;
 $z-depth-2-backdrop-tiled: 0 10px 14px transparent,
-                           1px 0 $div_sld_dark_fg,
-                           -1px 0 $div_sld_dark_fg;
+                           1px 0 $color_fg_div_sld_dark,
+                           -1px 0 $color_fg_div_sld_dark;
 $z-depth-2-backdrop-tiled-top: 0 10px 14px transparent,
-                               0 1px $div_sld_dark_fg;
+                               0 1px $color_fg_div_sld_dark;
 $z-depth-2-backdrop-tiled-bottom: 0 10px 14px transparent,
-                                  0 -1px $div_sld_dark_fg;
+                                  0 -1px $color_fg_div_sld_dark;
 $z-depth-2-backdrop-tiled-left: 0 10px 14px transparent,
-                                1px 0 $div_sld_dark_fg;
+                                1px 0 $color_fg_div_sld_dark;
 $z-depth-2-backdrop-tiled-right: 0 10px 14px transparent,
-                                 -1px 0 $div_sld_dark_fg;
+                                 -1px 0 $color_fg_div_sld_dark;
 
 // Nautilus Desktop Label shadow
 $z-depth-1-label: 0 0 1px rgba(0, 0, 0, 0.26),
@@ -267,7 +267,7 @@ $z-depth-1-label: 0 0 1px rgba(0, 0, 0, 0.26),
     transition-delay: $transition_d_delay;
   }
   @else if $t == tab-active {
-    border-color: $background_selection;
+    border-color: $color_bg_sel;
     background-image:
       radial-gradient(circle farthest-corner at center,
                       track($fc, 0 * $i) percentage(1 / $bs),
@@ -292,7 +292,7 @@ $z-depth-1-label: 0 0 1px rgba(0, 0, 0, 0.26),
 // block-cursor;
 //
 
-@mixin entry($t, $c: $base, $tc: $foreground, $fc: $background_selection) {
+@mixin entry($t, $c: $color_base, $tc: $color_fg, $fc: $color_bg_sel) {
   @if $t == normal {
     border-color: mix($tc, $c, percentage($alpha_div_1));
     background-color: mix($tc, $c, percentage($alpha_track_1 / 2));
@@ -312,7 +312,7 @@ $z-depth-1-label: 0 0 1px rgba(0, 0, 0, 0.26),
     border: none;
     background-color: track($tc, $alpha_track_1 / 2);
     color: track($tc, $alpha_foreground_2nd);
-    box-shadow: inset 0 -2px $foreground_tracker_out;
+    box-shadow: inset 0 -2px $color_fg_trk_out;
   }
   @else if $t == flat-focus {
     border: none;
@@ -363,7 +363,7 @@ $z-depth-1-label: 0 0 1px rgba(0, 0, 0, 0.26),
 // $tc:   optional text color for colored* types
 //
 
-@mixin button($t, $c: $base, $tc: $foreground) {
+@mixin button($t, $c: $color_base, $tc: $color_fg) {
   @if $t == normal {
     border-color: mix($tc, $c, percentage($alpha_div_1));
     background-color: $c;
@@ -380,14 +380,14 @@ $z-depth-1-label: 0 0 1px rgba(0, 0, 0, 0.26),
     color: $tc;
   }
   @else if $t == checked {
-    border-color: $background_selection;
-    background-color: $background_selection;
-    color: $foreground_selection;
+    border-color: $color_bg_sel;
+    background-color: $color_bg_sel;
+    color: $color_fg_sel;
   }
   @else if $t == checked-hover {
-    border-color: mix($foreground_selection, $background_selection, percentage($alpha_track_1));
-    background-color: mix($foreground_selection, $background_selection, percentage($alpha_track_1));
-    color: $foreground_selection;
+    border-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_1));
+    background-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_1));
+    color: $color_fg_sel;
   }
   @else if $t == checked-disabled {
     border-color: mix($tc, $c, percentage($alpha_track_1));
@@ -429,7 +429,7 @@ $z-depth-1-label: 0 0 1px rgba(0, 0, 0, 0.26),
     border: none;
     background-color: track($tc, 0);
     color: $tc;
-    box-shadow: inset 0 -2px $background_selection;
+    box-shadow: inset 0 -2px $color_bg_sel;
   }
   @else if $t == flat-checked-disabled {
     border: none;
@@ -460,9 +460,9 @@ $z-depth-1-label: 0 0 1px rgba(0, 0, 0, 0.26),
     box-shadow: $z-depth-2;
   }
   @else if $t == raised-checked {
-    border-color: $background_selection;
-    background-color: $background_selection;
-    color: $foreground_selection;
+    border-color: $color_bg_sel;
+    background-color: $color_bg_sel;
+    color: $color_fg_sel;
     box-shadow: $z-depth-1;
   }
   @else if $t == raised-checked-disabled {
@@ -487,7 +487,7 @@ $z-depth-1-label: 0 0 1px rgba(0, 0, 0, 0.26),
 // $tc:   optional text color for colored* types
 //
 
-@mixin combobutton($t, $c: $base, $tc: $foreground) {
+@mixin combobutton($t, $c: $color_base, $tc: $color_fg) {
   @if $t == normal {
     border: none;
     background-color: track($tc, $alpha_track_1);
@@ -551,7 +551,7 @@ $z-depth-1-label: 0 0 1px rgba(0, 0, 0, 0.26),
 // normal, backdrop
 //
 
-@mixin overshoot($p, $t:normal, $c:$foreground) {
+@mixin overshoot($p, $t:normal, $c:$color_fg) {
   background-size: 150% 50%;
 
   @if ($p == left) or ($p == right) { background-size: 50% 150%; }

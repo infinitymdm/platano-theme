@@ -25,7 +25,7 @@ $font-family: Roboto, Sans-Serif;
 $font-family-for-ornament: Sans-Serif;
 
 stage {
-  color: $foreground;
+  color: $color_fg;
   @if $ver < 3.35 {
     font-family: $font-family;
     font-size: 10pt;
@@ -60,18 +60,18 @@ stage {
   text-shadow: none;
   icon-shadow: none;
   @if $variant != light {
-    @include button(flat-normal, $tc: $foreground_accent_inv);
-    &:hover { @include button(flat-hover, $tc: $foreground_accent_inv); }
-    &:focus { @include button(flat-focus, $tc: $foreground_accent_inv); }
-    &:active { @include button(flat-active, $tc: $foreground_accent_inv); }
+    @include button(flat-normal, $tc: $color_fg_acc_inv);
+    &:hover { @include button(flat-hover, $tc: $color_fg_acc_inv); }
+    &:focus { @include button(flat-focus, $tc: $color_fg_acc_inv); }
+    &:active { @include button(flat-active, $tc: $color_fg_acc_inv); }
     &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
   }
   @else {
-    @include button(flat-normal, $tc: $foreground_accent);
-    &:hover { @include button(flat-hover, $tc: $foreground_accent); }
-    &:focus { @include button(flat-focus, $tc: $foreground_accent); }
-    &:active { @include button(flat-active, $tc: $foreground_accent); }
-    &:insensitive { @include button(flat-disabled, $tc: $foreground); }
+    @include button(flat-normal, $tc: $color_fg_acc);
+    &:hover { @include button(flat-hover, $tc: $color_fg_acc); }
+    &:focus { @include button(flat-focus, $tc: $color_fg_acc); }
+    &:active { @include button(flat-active, $tc: $color_fg_acc); }
+    &:insensitive { @include button(flat-disabled, $tc: $color_fg); }
   }
   &:first-child { border-radius: 0 0 0 $r_8; }
   &:last-child { border-radius: 0 0 $r_8 0; }
@@ -93,8 +93,8 @@ StEntry {
   padding: if($ref_weight >= 1.0, 0 0.8em, 0 0.6em);
   border-radius: $r_4 $r_4 0 0;
   border-width: 0;
-  selection-background-color: $background_selection;
-  selected-color: $foreground_selection;
+  selection-background-color: $color_bg_sel;
+  selected-color: $color_fg_sel;
   transition-duration: $transition_d_none;
   @if $variant != light {
     @include entry(normal, $tc: $osd_fg);
@@ -103,16 +103,16 @@ StEntry {
     &:insensitive { @include entry(disabled, $tc: $osd_fg); }
   }
   @else {
-    @include entry(normal, $tc: $foreground);
-    &:hover { @include entry(hover, $tc: $foreground); }
-    &:focus { @include entry(focus, $tc: $foreground); }
-    &:insensitive { @include entry(disabled, $tc: $foreground); }
+    @include entry(normal, $tc: $color_fg);
+    &:hover { @include entry(hover, $tc: $color_fg); }
+    &:focus { @include entry(focus, $tc: $color_fg); }
+    &:insensitive { @include entry(disabled, $tc: $color_fg); }
   }
 
   StIcon {
     &.capslock-warning {
       @extend %entry_icon_sizing;
-      warning-color: $warn;
+      warning-color: $color_warn;
     }
 
     @if $ver > 3.35 {
@@ -122,7 +122,7 @@ StEntry {
 
   @if $ver > 3.35 {
     .hint-text { // placeholder labels
-      color: if($variant != light, $osd_ter_fg, $foreground_tertiary);
+      color: if($variant != light, $osd_ter_fg, $color_fg_3);
       &:ltr { margin-left: 2px; }
       &:rtl { margin-right: 2px; }
     }
@@ -132,7 +132,7 @@ StEntry {
 @if $ver > 3.35 {
   .capslock-warning-label {
     padding-bottom: if($ref_weight >= 1.0, 0.75em, 0.55em);
-    color: $warn;
+    color: $color_warn;
     font-size: 90%;
     text-align: center;
   }
@@ -185,11 +185,11 @@ StScrollBar {
 
 .slider {
   height: $icon_size;
-  color: $background_accent;
+  color: $color_bg_acc;
   -slider-height: 2px;
   -slider-background-color: $out_fg;        // background of the trough
   -slider-border-color: transparent;        // trough border color
-  -slider-active-background-color: $background_accent; // active trough fill
+  -slider-active-background-color: $color_bg_acc; // active trough fill
   -slider-active-border-color: transparent; // active trough border
   -slider-handle-border-width: 0;
   -slider-handle-radius: $icon_size / 2;
@@ -198,9 +198,9 @@ StScrollBar {
     -barlevel-height: 2px;
     -barlevel-background-color: $out_fg;
     -barlevel-border-color: transparent;
-    -barlevel-active-background-color: $background_accent;
+    -barlevel-active-background-color: $color_bg_acc;
     -barlevel-active-border-color: transparent;
-    -barlevel-overdrive-color: $background_destruction;
+    -barlevel-overdrive-color: $color_bg_dest;
     -barlevel-overdrive-border-color: transparent;
     -barlevel-overdrive-separator-width: 2px;
     -barlevel-border-width: 0;
@@ -323,7 +323,7 @@ StScrollBar {
       &-error-box {
         padding-top: if($ref_weight >= 1.0, 16px, 12px);
         spacing: if($ref_weight >= 1.0, 6px, 4px);
-        color: $err;
+        color: $color_err;
         font-size: 90%;
       }
 
@@ -543,14 +543,14 @@ StScrollBar {
     }
   }
   @else {
-    .dialog-list-title { color: $warn; }
+    .dialog-list-title { color: $color_warn; }
   }
 }
 
 %battery_warning {
   width: 28em;
   padding-top: if($ref_weight >= 1.0, 6px, 4px);
-  color: $warn;
+  color: $color_warn;
   &:ltr { text-align: left; }
   &:rtl { text-align: right; }
 }
@@ -732,7 +732,7 @@ StScrollBar {
     }
   }
 
-  &-error-label { color: $err; }
+  &-error-label { color: $color_err; }
 
   &-error-label,
   &-info-label,
@@ -783,7 +783,7 @@ StScrollBar {
     }
   }
 
-  &-user-root-label { color: $warn; }
+  &-user-root-label { color: $color_warn; }
 
   &-user-icon {
     @if $ver < 3.35 {
@@ -827,13 +827,13 @@ StScrollBar {
   &-box { spacing: if($ref_weight >= 1.0, 20px, 16px); }
 
   &-device {
-    border: 1px solid $foreground_div;
+    border: 1px solid $color_fg_div;
     border-radius: $r_2;
     &:hover,
     &:focus { background-color: $osd_semi_fill_bg; }
     &:active {
-      background-color: $background_selection;
-      color: $foreground_selection;
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
     }
   }
 
@@ -964,14 +964,14 @@ $avatar_width: $icon_size * 1.5;
   .popup-sub-menu {
     @if $ver < 3.35 {
       padding-bottom: 1px; // reserve bottom-border height
-      border-bottom: 1px solid $foreground_div;
+      border-bottom: 1px solid $color_fg_div;
     }
     @else {
       border-width: 0 0 1px;
       border-style: solid;
-      border-color: $foreground_div;
+      border-color: $color_fg_div;
     }
-    background-color: $background;
+    background-color: $color_bg;
     box-shadow: inset 0 2px 2px opacity(black, $alpha_track_1);
     @if $ver > 3.35 {
       .popup-menu-item {
@@ -991,7 +991,7 @@ $avatar_width: $icon_size * 1.5;
                                       $avatar_width / 2);
     }
     @else { spacing: if($ref_weight >= 1.0, 8px, 6px); }
-    color: $foreground_secondary;
+    color: $color_fg_2;
     font-weight: 400;
     transition-duration: $transition_d_none;
     &:ltr {
@@ -1018,36 +1018,36 @@ $avatar_width: $icon_size * 1.5;
     &:checked {
       &, &.selected {
         background-color: transparent;
-        color: $label_selection;
+        color: $color_lbl_sel;
         box-shadow: $empty_shadow;
       }
       &:hover {
-        background-color: opacity($background_selection, $alpha_track_1);
-        color: $label_selection;
+        background-color: opacity($color_bg_sel, $alpha_track_1);
+        color: $color_lbl_sel;
       }
       &:active {
-        background-color: opacity($background_selection, $alpha_track_2);
-        color: $label_selection;
+        background-color: opacity($color_bg_sel, $alpha_track_2);
+        color: $color_lbl_sel;
       }
-      &:insensitive { color: opacity($label_selection, $alpha_foreground_bdp); }
+      &:insensitive { color: opacity($color_lbl_sel, $alpha_foreground_bdp); }
     }
     &.selected {
       background-color: $semi_fill_bg;
-      color: $foreground;
+      color: $color_fg;
       transition-duration: $transition_d_none;
     }
     &:active {
       background-color: $fill_bg;
-      color: $foreground;
+      color: $color_fg;
       transition-duration: $transition_d_standard;
     }
-    &.selected:active { color: $foreground; }
-    &:insensitive { color: $foreground_dis; }
+    &.selected:active { color: $color_fg; }
+    &:insensitive { color: $color_fg_dis; }
   }
 
   .popup-inactive-menu-item { // all icons and other graphical elements
-    color: $foreground_secondary;
-    &:insensitive { color: $foreground_dis; }
+    color: $color_fg_2;
+    &:insensitive { color: $color_fg_dis; }
   }
 
   &.panel-menu {
@@ -1069,18 +1069,18 @@ $avatar_width: $icon_size * 1.5;
     &:insensitive { @include entry(disabled); }
 
     @if $ver > 3.35 {
-      .hint-text { color: $foreground_tertiary; }
+      .hint-text { color: $color_fg_3; }
     }
   }
 
   StScrollBar {
-    StBin#trough { background-color: opacity($base, $alpha_foreground_3rd); }
+    StBin#trough { background-color: opacity($color_base, $alpha_foreground_3rd); }
 
     StButton#vhandle,
     StButton#hhandle { // use variant-sensitive slider-bit
-      background-color: opacity($foreground, $alpha_foreground_3rd * $alpha_foreground_3rd);
-      &:hover { background-color: opacity($foreground, $alpha_foreground_2nd * $alpha_foreground_3rd); }
-      &:active { background-color: $foreground; }
+      background-color: opacity($color_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+      &:hover { background-color: opacity($color_fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+      &:active { background-color: $color_fg; }
     }
   }
 }
@@ -1104,7 +1104,7 @@ $avatar_width: $icon_size * 1.5;
     height: 0; // trick for minimum separator-menu-item height
     text-align: right;
     font-size: $icon_size; // fixed size
-    color: $label_selection;
+    color: $color_lbl_sel;
     font-family: $font-family-for-ornament;
     font-weight: 700;
   }
@@ -1133,9 +1133,9 @@ $avatar_width: $icon_size * 1.5;
 
 .popup-menu-boxpointer {
   @if $ver < 3.25 {
-    -arrow-background-color: $background_dark; // fake arrows
-    border: 1px solid $foreground_div_sld;
-    background-color: $background_dark;
+    -arrow-background-color: $color_bg_dark; // fake arrows
+    border: 1px solid $color_fg_div_sld;
+    background-color: $color_bg_dark;
   }
   @else {
     -arrow-background-color: transparent;
@@ -1143,8 +1143,8 @@ $avatar_width: $icon_size * 1.5;
     .popup-menu-content {
       @extend %popover_content;
       padding: if($ref_weight >= 1.0, 0.3em 0, 0.21em 0);
-      border: 1px solid $foreground_div_sld;
-      background-color: $background_dark;
+      border: 1px solid $color_fg_div_sld;
+      background-color: $color_bg_dark;
     }
   }
 }
@@ -1179,8 +1179,8 @@ $avatar_width: $icon_size * 1.5;
     margin: 0;
     spacing: 0;
     border-color: if($variant != dark,
-                     $foreground_div,
-                     mix(white, $background_dark, percentage($alpha_div_2)));
+                     $color_fg_div,
+                     mix(white, $color_bg_dark, percentage($alpha_div_2)));
     border-bottom-width: 1px;
     border-bottom-style: solid;
     background-color: transparent;
@@ -1192,12 +1192,12 @@ $avatar_width: $icon_size * 1.5;
       height: 1px;
       margin: 0;
       background-color: if($variant != dark,
-                           $foreground_div,
-                           mix(white, $background_dark, percentage($alpha_div_2)));
+                           $color_fg_div,
+                           mix(white, $color_bg_dark, percentage($alpha_div_2)));
 
       @if $ver > 3.35 and $variant == dark {
         .popup-sub-menu & {
-          background-color: mix(white, $background, percentage($alpha_div_2));
+          background-color: mix(white, $color_bg, percentage($alpha_div_2));
         }
       }
     }
@@ -1229,17 +1229,17 @@ $avatar_width: $icon_size * 1.5;
                   (5px - 2px) (12px - 2px) (6px - 2px));
       border-radius: $r_2;
       font-weight: 500;
-      @include button(suggested-normal, $c: $background_suggestion, $tc: $foreground_selection);
+      @include button(suggested-normal, $c: $color_bg_sgst, $tc: $color_fg_sel);
       &:hover {
-        @include button(suggested-hover, $c: $background_suggestion, $tc: $foreground_selection);
+        @include button(suggested-hover, $c: $color_bg_sgst, $tc: $color_fg_sel);
       }
       &:focus {
-        @include button(suggested-focus, $c: $background_suggestion, $tc: $foreground_selection);
+        @include button(suggested-focus, $c: $color_bg_sgst, $tc: $color_fg_sel);
       }
       &:active { @include button(suggested-active); }
       &:insensitive {
         padding: if($ref_weight >= 1.0, 7px 16px 8px, 5px 12px 6px);
-        @include button(suggested-disabled, $tc: $foreground);
+        @include button(suggested-disabled, $tc: $color_fg);
       }
     }
   }
@@ -1324,7 +1324,7 @@ $avatar_width: $icon_size * 1.5;
       // color already, so keep -background-color style-property transparent
       -barlevel-background-color: transparent;
       -barlevel-active-background-color: $sccs;
-      -barlevel-overdrive-color: $background_destruction;
+      -barlevel-overdrive-color: $color_bg_dest;
       -barlevel-overdrive-separator-width: 3px;
       -barlevel-border-width: 0;
     }
@@ -1379,7 +1379,7 @@ $avatar_width: $icon_size * 1.5;
     &:outlined { border: 2px solid $osd_out_fg; }
     &:selected {
       background-color: $inv_acc_fill_bg;
-      color: $foreground_accent_inv;
+      color: $color_fg_acc_inv;
     }
   }
 
@@ -1393,8 +1393,8 @@ $avatar_width: $icon_size * 1.5;
   .separator {
     width: 1px;
     background: if($variant != dark,
-                   $foreground_div,
-                   mix(white, $background_dark, percentage($alpha_div_2)));
+                   $color_fg_div,
+                   mix(white, $color_bg_dark, percentage($alpha_div_2)));
   }
 }
 
@@ -1487,9 +1487,9 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 //  *************************/
 
 .tile-preview { // no radius
-  border: 1px solid $background_selection;
+  border: 1px solid $color_bg_sel;
   border-radius: 0;
-  background-color: opacity($background_selection, $alpha_track_out);
+  background-color: opacity($color_bg_sel, $alpha_track_out);
 
   &-left.on-primary,
   &-left.on-primary.tile-preview-right,
@@ -1508,11 +1508,11 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   // this should be always smaller than min-height if f-s-f < 1.0
   height: if($ref_weight >= 1.0, 2.1em, 1.8em);
   @if ($ver > 3.25) and ($ver < 3.31) {
-    background-color: opacity($background_panel, $alpha_foreground_3rd);
+    background-color: opacity($color_bg_panel, $alpha_foreground_3rd);
     box-shadow: $empty_shadow;
   }
   @else {
-    background-color: $background_panel;
+    background-color: $color_bg_panel;
   }
   font-weight: 700;
   transition-timing-function: $transition_t_standard;
@@ -1548,7 +1548,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     &:active,
     &:overview {
       background-color: $panel_hidden_bg;
-      box-shadow: inset 0 2px $background_selection;
+      box-shadow: inset 0 2px $color_bg_sel;
     }
 
     @if $ver > 3.35 {
@@ -1587,7 +1587,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
     &:hover {
       background-color: $panel_hidden_bg;
-      color: if($variant != light, $foreground_selection, black);
+      color: if($variant != light, $color_fg_sel, black);
       box-shadow: inset 0 2px $osd_out_fg;
     }
     &:active,
@@ -1597,8 +1597,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       // Trick due to St limitations. It needs a background to draw
       // a box-shadow
       background-color: $panel_hidden_bg;
-      color: if($variant != light, $foreground_selection, black);
-      box-shadow: inset 0 2px $background_selection;
+      color: if($variant != light, $color_fg_sel, black);
+      box-shadow: inset 0 2px $color_bg_sel;
 
      @if $ver < 3.25 {
         > .system-status-icon { icon-shadow: none; }
@@ -1663,7 +1663,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
           &:focus,
           &:checked,
           &:overview {
-            .clock { box-shadow: inset 0 2px $background_selection; }
+            .clock { box-shadow: inset 0 2px $color_bg_sel; }
           }
         }
 
@@ -1671,7 +1671,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         > StBoxLayout > StIcon {
           padding-bottom: 1px; // keep the StLabel baseline
           icon-size: $icon_size;
-          color: $background_suggestion;
+          color: $color_bg_sgst;
         }
       }
     }
@@ -1693,28 +1693,28 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     }
   }
 
-  .screencast-indicator { color: $background_destruction; }
+  .screencast-indicator { color: $color_bg_dest; }
 
   @if $ver > 3.25 {
-    .remote-access-indicator { color: $warn; } // > 3.29.4
+    .remote-access-indicator { color: $color_warn; } // > 3.29.4
 
     @if $ver < 3.31 {
       &.solid { // solid-mode of TopBar
-        background-color: $background_panel; // fill whole area
+        background-color: $color_bg_panel; // fill whole area
         // FIXME: override ugly ubuntu.css
-        background-gradient-start: $background_panel;
-        background-gradient-end: $background_panel;
+        background-gradient-start: $color_bg_panel;
+        background-gradient-end: $color_bg_panel;
         transition-timing-function: $transition_t_dec;
         transition-duration: $transition_d_long; // transparent -> solid
 
-        .panel-corner { -panel-corner-background-color: $background_panel; }
+        .panel-corner { -panel-corner-background-color: $color_bg_panel; }
 
         .panel-button {
           color: $osd_fg;
           &:hover,
           &:active,
           &:focus,
-          &:checked { color: if($variant != light, $foreground_selection, black); }
+          &:checked { color: if($variant != light, $color_fg_sel, black); }
 
           @if $ver > 3.35 {
             &,
@@ -1748,10 +1748,10 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 }
 
 %translucent_panel {
-  background-color: if($variant == light, opacity($background_panel, $alpha_foreground_3rd),
+  background-color: if($variant == light, opacity($color_bg_panel, $alpha_foreground_3rd),
                                           $panel_hidden_bg);
   @if $ver > 3.25 { box-shadow: $empty_shadow; }
-  @else { box-shadow: inset 0 2px $background_panel; }
+  @else { box-shadow: inset 0 2px $color_bg_panel; }
   transition-timing-function: $transition_t_dec;
   transition-duration: $transition_d_long;
 }
@@ -1800,7 +1800,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     @extend %reset_cal;
     padding-left: 0;
     padding-right: 0;
-    color: $foreground;
+    color: $color_fg;
   }
 }
 
@@ -1828,8 +1828,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 .datemenu-calendar-column {
   border-style: solid;
   border-color: if($variant != dark,
-                   $foreground_div,
-                   mix(white, $background_dark, percentage($alpha_div_2)));
+                   $color_fg_div,
+                   mix(white, $color_bg_dark, percentage($alpha_div_2)));
 
   &:ltr { border-left-width: 1px; }
   &:rtl { border-right-width: 1px; }
@@ -1874,14 +1874,14 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .world-clocks-button,
   .weather-button,
   .events-section-title {
-    color: $foreground_secondary;
+    color: $color_fg_2;
     &:hover,
     &:focus {
-      color: $foreground;
+      color: $color_fg;
       background-color: $semi_fill_bg;
     }
     &:active {
-      color: $foreground;
+      color: $color_fg;
       background-color: $fill_bg;
     }
   }
@@ -1892,14 +1892,14 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .weather-button,
   .message-list-section-title, // in 3.24 cycle, use .event-section-title
   .events-section-title {
-    color: $foreground_secondary;
+    color: $color_fg_2;
     &:hover,
     &:focus {
-      color: $foreground;
+      color: $color_fg;
       background-color: $semi_fill_bg;
     }
     &:active {
-      color: $foreground;
+      color: $color_fg;
       background-color: $fill_bg;
     }
   }
@@ -1907,7 +1907,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
 @if $ver > 3.37 {
   .events-button {
-    color: $foreground;
+    color: $color_fg;
 
     .events {
       &-box { spacing: 0; }
@@ -1915,13 +1915,13 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       &-list { spacing: 0.4em; }
 
       &-title {
-        color: $foreground_tertiary;
+        color: $color_fg_3;
         font-weight: 700;
       }
     }
 
     .event-time {
-      color: $foreground_tertiary;
+      color: $color_fg_3;
       font-weight: 400;
       font-size: 90%;
     }
@@ -1930,12 +1930,12 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
 .datemenu-today-button { // re-define foregrounds
   .day-label {
-    color: $foreground_tertiary;
+    color: $color_fg_3;
     font-weight: 700;
   }
 
   .date-label {
-    color: $foreground_secondary;
+    color: $color_fg_2;
     font-size: 150%;
     font-weight: 500;
   }
@@ -1943,9 +1943,9 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   &:hover,
   &:focus,
   &:active {
-    .day-label { color: $foreground_secondary; }
+    .day-label { color: $color_fg_2; }
 
-    .date-label { color: $foreground; }
+    .date-label { color: $color_fg; }
   }
 }
 
@@ -1953,7 +1953,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .world-clocks-header,
   .weather-header,
   .events-section-title {
-    color: $foreground_tertiary;
+    color: $color_fg_3;
     font-weight: 700;
   }
 }
@@ -1962,7 +1962,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .weather-header,
   .message-list-section-title, // in 3.24 cycle, use .event-section-title
   .events-section-title {
-    color: $foreground_tertiary;
+    color: $color_fg_3;
     font-weight: 700;
   }
 }
@@ -1980,7 +1980,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .world-clocks {
     &-city,
     &-time {
-      color: $foreground;
+      color: $color_fg;
       font-weight: 400;
       font-size: 100%;
     }
@@ -1993,7 +1993,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     }
 
     &-timezone {
-      color: $foreground_tertiary;
+      color: $color_fg_3;
       font-size: 90%;
     }
   }
@@ -2008,7 +2008,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     }
 
     &-header.location {
-      color: $foreground_secondary;
+      color: $color_fg_2;
       font-weight: 400;
       font-size: 90%;
     }
@@ -2018,15 +2018,15 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         width: 2.4em; // = .calendar-day-base
         height: 2.4em;
         border-radius: $r;
-        background-color: opacity($foreground_secondary, $alpha_track_1);
-        color: $foreground_secondary;
+        background-color: opacity($color_fg_2, $alpha_track_1);
+        color: $color_fg_2;
         icon-size: if($ref_weight >= 1.0, $icon_size * 1.5,
                                           $icon_size);
       }
 
       &-time {
         @if $ver > 3.35 { padding: 0.2em 0 0.4em; }
-        color: $foreground_tertiary;
+        color: $color_fg_3;
         font-size: 80%;
       }
 
@@ -2039,7 +2039,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
 .calendar-month-label {
   padding: 4px 0;
-  color: $foreground;
+  color: $color_fg;
   font-weight: 700;
 }
 
@@ -2047,11 +2047,11 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   width: 2.1em;
   height: 2.1em;
   border-radius: $r;
-  color: $foreground;
+  color: $color_fg;
   background-color: transparent;
   &:hover { background-color: $semi_fill_bg; }
   &:focus {
-    background-color: opacity($background_dark, 0.01);
+    background-color: opacity($color_bg_dark, 0.01);
     box-shadow: inset 0 0 0 2px $out_fg;
     &:hover { background-color: $semi_fill_bg; }
   }
@@ -2064,7 +2064,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       @include image-loader($url: 'assets/calendar-arrow-left.svg');
     }
     @else {
-      color: $foreground_secondary;
+      color: $color_fg_2;
 
       StIcon { icon-size: $icon_size; }
     }
@@ -2073,7 +2073,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       @if $ver < 3.31 {
         @include image-loader($url: 'assets/calendar-arrow-left-hover.svg');
       }
-      @else { color: $foreground; }
+      @else { color: $color_fg; }
     }
 
     @if $ver < 3.31 {
@@ -2092,7 +2092,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       @include image-loader($url: 'assets/calendar-arrow-right.svg');
     }
     @else {
-      color: $foreground_secondary;
+      color: $color_fg_2;
 
       StIcon { icon-size: $icon_size; }
     }
@@ -2101,7 +2101,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       @if $ver < 3.31 {
         @include image-loader($url: 'assets/calendar-arrow-right-hover.svg');
       }
-      @else { color: $foreground; }
+      @else { color: $color_fg; }
     }
 
     @if $ver < 3.31 {
@@ -2131,8 +2131,8 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   &:active,
   &:selected {
     &, &:hover {
-      color: $foreground_selection;
-      background-color: $background_selection;
+      color: $color_fg_sel;
+      background-color: $color_bg_sel;
       transition-duration: $transition_d_standard;
     }
   }
@@ -2143,7 +2143,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     margin-top: 0.2em;
     padding: 0.5em 0 0;
     background-color: transparent;
-    color: $foreground_tertiary;
+    color: $color_fg_3;
     font-weight: 500;
     font-size: 90%;
     text-align: center;
@@ -2156,14 +2156,14 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   margin: 0.2em;
   @if $ver < 3.37 { padding: 0.5em 0 0; }
   background-color: transparent;
-  color: $foreground_tertiary;
+  color: $color_fg_3;
   font-weight: 500;
   text-align: center;
 }
 
 .calendar-day { // border collapse hack - see calendar.js
   border-width: 0;
-  color: $foreground;
+  color: $color_fg;
 
   &-top { border-top-width: 0; }
 
@@ -2171,7 +2171,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
   &-with-events {
     background-image: none;
-    color: $foreground_link;
+    color: $color_fg_lnk;
     font-weight: 500;
     @if $ver < 3.35 { text-decoration: underline; }
     @else {
@@ -2179,14 +2179,14 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       background-size: contain;
     }
     &:hover,
-    &:focus { background-color: opacity($foreground_link, $alpha_track_1); }
+    &:focus { background-color: opacity($color_fg_lnk, $alpha_track_1); }
     &:active,
     &:selected {
       &,
       &:hover,
       &:focus {
-        color: $foreground_selection;
-        background-color: $background_selection;
+        color: $color_fg_sel;
+        background-color: $color_bg_sel;
         @if $ver > 3.35 { background-image: none; }
         border-color: transparent;
       }
@@ -2204,17 +2204,17 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
   &,
   &.calendar-day-with-events {
-    background-color: if($variant == dark, $foreground_selection_secondary, $foreground_secondary);
-    color: if($variant == dark, $background_dark, $foreground_selection_secondary);
+    background-color: if($variant == dark, $color_fg_sel_2, $color_fg_2);
+    color: if($variant == dark, $color_bg_dark, $color_fg_sel_2);
     &:hover,
     &:focus {
-      background-color: if($variant == dark, $foreground_selection, $foreground);
-      color: if($variant == dark, black, $foreground_selection);
+      background-color: if($variant == dark, $color_fg_sel, $color_fg);
+      color: if($variant == dark, black, $color_fg_sel);
     }
     &:selected {
       &, &:hover {
-        color: $foreground_selection;
-        background-color: $background_selection;
+        color: $color_fg_sel;
+        background-color: $color_bg_sel;
         border-color: transparent;
       }
     }
@@ -2222,22 +2222,22 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 }
 
 .calendar-other-month-day {
-  color: opacity($foreground_tertiary, $alpha_foreground_3rd);
+  color: opacity($color_fg_3, $alpha_foreground_3rd);
   &:hover,
   &:focus {
-    color: $foreground_tertiary;
-    background-color: opacity($foreground_tertiary, $alpha_track_1);
+    color: $color_fg_3;
+    background-color: opacity($color_fg_3, $alpha_track_1);
   }
 
   &.calendar-day-with-events {
-    color: opacity($foreground_link, $alpha_foreground_3rd * $alpha_foreground_3rd);
+    color: opacity($color_fg_lnk, $alpha_foreground_3rd * $alpha_foreground_3rd);
     @if $ver > 3.35 {
       @include image-loader($url: 'calendar-today-other.svg');
     }
     &:hover,
     &:focus {
-      color: opacity($foreground_link, $alpha_foreground_3rd);
-      background-color: opacity($foreground_link, $alpha_foreground_3rd * $alpha_track_1);
+      color: opacity($color_fg_lnk, $alpha_foreground_3rd);
+      background-color: opacity($color_fg_lnk, $alpha_foreground_3rd * $alpha_track_1);
     }
   }
 }
@@ -2254,10 +2254,10 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
       margin:  if($ref_weight >= 1.0, 1.5em 1.5em 0, 1.2em 1.2em 0);
     }
     font-weight: 500;
-    @include button(flat-normal, $tc: $foreground_accent);
+    @include button(flat-normal, $tc: $color_fg_acc);
     &:hover,
-    &:focus { @include button(flat-hover, $tc: $foreground_accent); }
-    &:active { @include button(flat-active, $tc: $foreground_accent); }
+    &:focus { @include button(flat-hover, $tc: $color_fg_acc); }
+    &:active { @include button(flat-active, $tc: $color_fg_acc); }
     &:insensitive { @include button(flat-disabled); }
   }
 
@@ -2265,7 +2265,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     &-controls {
       margin:  if($ref_weight >= 1.0, 1.5em 1.5em 0, 1.2em 1.2em 0);
 
-      > StLabel { color: $foreground; } // 'Do Not Disturb' label
+      > StLabel { color: $color_fg; } // 'Do Not Disturb' label
     }
   }
 
@@ -2282,18 +2282,18 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
         padding: 0.45em;
         border-radius: $r;
         icon-size: $icon_size;
-        color: $foreground_secondary;
+        color: $color_fg_2;
         background-color: transparent;
       }
 
       // FIXME: how do you do this in sass?
       &:hover > StIcon,
       &:focus > StIcon {
-        color: $foreground;
+        color: $color_fg;
         background-color: $semi_fill_bg;
       }
       &:active > StIcon {
-        color: $foreground;
+        color: $color_fg;
         background-color: $fill_bg;
       }
     }
@@ -2322,7 +2322,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   // labels for empty messages/events
   &-placeholder {
     @if $ver > 3.35 { spacing: if($ref_weight >= 1.0, 12px, 8px); }
-    color: $foreground_tertiary;
+    color: $color_fg_3;
   }
 }
 
@@ -2345,113 +2345,113 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   .popup-menu & {
     @if $ver > 3.25 {
       padding: if($ref_weight >= 1.0, 0.6em, 0.45em);
-      background-color: $base;
-      @if $ver > 3.33 { border: 1px solid $base; }
+      background-color: $color_base;
+      @if $ver > 3.33 { border: 1px solid $color_base; }
     }
     @else {
       background-color: $semi_fill_bg;
       &:ltr { box-shadow: inset 4px 0 $out_fg; }
       &:rtl { box-shadow: inset -4px 0 $out_fg; }
     }
-    color: $foreground_secondary;
+    color: $color_fg_2;
 
     @if $ver < 3.31 {
       .message-icon-bin > StIcon,
       .message-title,
-      .message-content { color: $foreground_secondary; }
+      .message-content { color: $color_fg_2; }
     }
     @else {
       @if $ver > 3.35 {
         .message-icon-bin > StIcon,
         .message-icon-bin > .fallback-app-icon,
         .message-title,
-        .message-body { color: $foreground_secondary; }
+        .message-body { color: $color_fg_2; }
       }
       @else {
         .message-icon-bin > StIcon,
         .message-icon-bin > .fallback-app-icon,
         .message-title,
-        .message-content { color: $foreground_secondary; }
+        .message-content { color: $color_fg_2; }
       }
     }
 
     &:hover,
     &:focus {
       @if $ver > 3.25 {
-        background-color: mix($foreground, $base, percentage($alpha_track_1)); // use opaque
+        background-color: mix($color_fg, $color_base, percentage($alpha_track_1)); // use opaque
         @if $ver > 3.33 {
-          border: 1px solid mix($foreground, $base, percentage($alpha_track_1));
+          border: 1px solid mix($color_fg, $color_base, percentage($alpha_track_1));
         }
       }
       @else {
         background-color: $acc_semi_fill_bg;
-        &:ltr { box-shadow: inset 4px 0 opacity($background_accent, $alpha_foreground_2nd); }
-        &:rtl { box-shadow: inset -4px 0 opacity($background_accent, $alpha_foreground_2nd); }
+        &:ltr { box-shadow: inset 4px 0 opacity($color_bg_acc, $alpha_foreground_2nd); }
+        &:rtl { box-shadow: inset -4px 0 opacity($color_bg_acc, $alpha_foreground_2nd); }
       }
-      color: $foreground;
+      color: $color_fg;
 
       @if $ver < 3.31 {
         .message-icon-bin > StIcon,
         .message-title,
-        .message-content { color: $foreground; }
+        .message-content { color: $color_fg; }
       }
       @else {
         @if $ver > 3.35 {
           .message-icon-bin > StIcon,
           .message-icon-bin > .fallback-app-icon,
           .message-title,
-          .message-body { color: $foreground; }
+          .message-body { color: $color_fg; }
         }
         @else {
           .message-icon-bin > StIcon,
           .message-icon-bin > .fallback-app-icon,
           .message-title,
-          .message-content { color: $foreground; }
+          .message-content { color: $color_fg; }
         }
       }
 
       .message-secondary-bin {
         &,
-        > .event-time { color: $foreground_secondary; }
+        > .event-time { color: $color_fg_2; }
       }
     }
     &:active {
       @if $ver > 3.25 {
-        background-color: mix($foreground, $base, percentage($alpha_track_2));
+        background-color: mix($color_fg, $color_base, percentage($alpha_track_2));
         @if $ver > 3.33 {
-          border: 1px solid mix($foreground, $base, percentage($alpha_track_2));
+          border: 1px solid mix($color_fg, $color_base, percentage($alpha_track_2));
         }
       }
       @else {
         background-color: $acc_fill_bg;
-        &:ltr { box-shadow: inset 4px 0 $background_accent; }
-        &:rtl { box-shadow: inset -4px 0 $background_accent; }
+        &:ltr { box-shadow: inset 4px 0 $color_bg_acc; }
+        &:rtl { box-shadow: inset -4px 0 $color_bg_acc; }
       }
-      color: $foreground;
+      color: $color_fg;
 
       @if $ver < 3.31 {
         .message-icon-bin > StIcon,
         .message-title,
-        .message-content { color: $foreground; }
+        .message-content { color: $color_fg; }
       }
       @else {
         @if $ver > 3.35 {
           .message-icon-bin > StIcon,
           .message-icon-bin > .fallback-app-icon,
           .message-title,
-          .message-body { color: $foreground; }
+          .message-body { color: $color_fg; }
         }
         @else {
           .message-icon-bin > StIcon,
           .message-icon-bin > .fallback-app-icon,
           .message-title,
-          .message-content { color: $foreground; }
+          .message-content { color: $color_fg; }
         }
       }
 
       .message-secondary-bin {
         &,
-        > .event-time { color: $foreground_secondary; }
+        > .event-time { color: $color_fg_2; }
       }
     }
   }
@@ -2522,7 +2522,7 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
     .popup-menu & {
       &,
-      > .event-time { color: $foreground_tertiary; }
+      > .event-time { color: $color_fg_3; }
     }
   }
 
@@ -2564,27 +2564,27 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
 
     StButton > StIcon { // close button
       // FIXME: alpha blended secondary color can't be rendered in OSD?
-      color: $foreground_accent_inv;
+      color: $color_fg_acc_inv;
 
-      .popup-menu & { color: $foreground_secondary_accent; }
+      .popup-menu & { color: $color_fg_acc_2; }
     }
 
     StButton:hover > StIcon,
     StButton:focus > StIcon {
-      color: $foreground_accent_inv;
+      color: $color_fg_acc_inv;
       background-color: $inv_acc_semi_fill_bg;
 
       .popup-menu & {
-        color: $foreground_accent;
+        color: $color_fg_acc;
         background-color: $acc_semi_fill_bg;
       }
     }
     StButton:active > StIcon {
-      color: $foreground_accent_inv;
+      color: $color_fg_acc_inv;
       background-color: $inv_acc_fill_bg;
 
       .popup-menu & {
-        color: $foreground_accent;
+        color: $color_fg_acc;
         background-color: $acc_fill_bg;
       }
     }
@@ -2605,16 +2605,16 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
   padding: 0 8px;
   margin: 0 6px;
   border-radius: $r;
-  color: $foreground_secondary_accent;
+  color: $color_fg_acc_2;
   background: transparent;
   background-size: 32px 32px;
   &:hover {
-    color: $foreground_accent;
+    color: $color_fg_acc;
     @include image-loader($url: 'assets/media-control-hover.svg');
     background-size: 32px 32px;
   }
   &:active {
-    color: $foreground_accent;
+    color: $color_fg_acc;
     @include image-loader($url: 'assets/media-control-active.svg');
     background-size: 32px 32px;
   }
@@ -2639,14 +2639,14 @@ $ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
     box-shadow: $empty_shadow;
 
     .popup-menu .message & {
-      color: $foreground_tertiary;
+      color: $color_fg_3;
       background-color: $semi_fill_bg;
     }
 
     .popup-menu .message:hover &,
     .popup-menu .message:focus &,
     .popup-menu .message:active & {
-      color: $foreground_secondary;
+      color: $color_fg_2;
       background-color: $acc_fill_bg;
     }
   }
@@ -2714,7 +2714,7 @@ $ripple_d: 52px;
 
 %ripple_bg {
   border: 0 none transparent; // for safety
-  background-color: opacity($background_accent, $alpha_foreground_3rd);
+  background-color: opacity($color_bg_acc, $alpha_foreground_3rd);
   box-shadow: $empty_shadow;
 }
 
@@ -2742,8 +2742,8 @@ $ripple_d: 52px;
 //  **************/
 
 %rubberband {
-  border: 1px solid $background_selection;
-  background-color: opacity($background_selection, $alpha_track_out);
+  border: 1px solid $color_bg_sel;
+  background-color: opacity($color_bg_sel, $alpha_track_out);
   box-shadow: $empty_shadow; // for safety
 }
 
@@ -2776,8 +2776,8 @@ $close_button_size: if($ver < 3.35, 32px,
     }
     border-radius: $r;
     border: 0 none transparent;
-    background-color: $background_destruction;
-    color: $foreground_selection;
+    background-color: $color_bg_dest;
+    color: $color_fg_sel;
     box-shadow: $z-depth-1;
 
     StIcon { icon-size: $icon_size; } // for safety
@@ -2791,8 +2791,8 @@ $close_button_size: if($ver < 3.35, 32px,
       -st-background-image-shadow: $z-depth-2;
     }
     @else {
-      background-color: mix($background_destruction, $foreground_selection, percentage(1 - $alpha_track_1));
-      color: $foreground_selection;
+      background-color: mix($color_bg_dest, $color_fg_sel, percentage(1 - $alpha_track_1));
+      color: $color_fg_sel;
       box-shadow: $z-depth-2;
     }
   }
@@ -2802,8 +2802,8 @@ $close_button_size: if($ver < 3.35, 32px,
       -st-background-image-shadow: $z-depth-2;
     }
     @else {
-      background-color: $background_selection;
-      color: $foreground_selection;
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
       box-shadow: $z-depth-2;
     }
   }
@@ -2820,8 +2820,8 @@ $close_button_size: if($ver < 3.35, 32px,
     width: $ripple_d + ($progress_width * 2);
     height: $ripple_d + ($progress_width * 2);
     -pie-border-width: $progress_width;
-    -pie-border-color: $background_accent; // progress bit
-    -pie-background-color: opacity($background_accent, $alpha_track_out); // trough
+    -pie-border-color: $color_bg_acc; // progress bit
+    -pie-background-color: opacity($color_bg_acc, $alpha_track_out); // trough
   }
 }
 
@@ -2863,22 +2863,22 @@ $close_button_size: if($ver < 3.35, 32px,
       .button {
         font-weight: 500;
         @if $variant != light {
-          @include button(flat-normal, $tc: $foreground_accent_inv);
-          &:hover { @include button(flat-hover, $tc: $foreground_accent_inv); }
+          @include button(flat-normal, $tc: $color_fg_acc_inv);
+          &:hover { @include button(flat-hover, $tc: $color_fg_acc_inv); }
           &:active {
-            @include button(flat-active, $tc: $foreground_accent_inv);
+            @include button(flat-active, $tc: $color_fg_acc_inv);
             box-shadow: $empty_shadow;
           }
           &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
         }
         @else {
-          @include button(flat-normal, $tc: $foreground_accent);
-          &:hover { @include button(flat-hover, $tc: $foreground_accent); }
+          @include button(flat-normal, $tc: $color_fg_acc);
+          &:hover { @include button(flat-hover, $tc: $color_fg_acc); }
           &:active {
-            @include button(flat-active, $tc: $foreground_accent);
+            @include button(flat-active, $tc: $color_fg_acc);
             box-shadow: $empty_shadow;
           }
-          &:insensitive { @include button(flat-disabled, $tc: $foreground); }
+          &:insensitive { @include button(flat-disabled, $tc: $color_fg); }
         }
       }
     }
@@ -2893,7 +2893,7 @@ $close_button_size: if($ver < 3.35, 32px,
 
   &-scroll-view {
     padding: 0;
-    border: 1px solid $foreground_div;
+    border: 1px solid $color_fg_div;
     background-color: transparent;
   }
 
@@ -2904,8 +2904,8 @@ $close_button_size: if($ver < 3.35, 32px,
     color: $osd_fg;
     font-size: 100%;
     &:selected {
-      background-color: $background_selection;
-      color: $foreground_selection;
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
     }
   }
 
@@ -2942,13 +2942,13 @@ $close_button_size: if($ver < 3.35, 32px,
 
   @if $variant == light { // for .app-folder-popup
     StScrollView.all-apps StScrollBar {
-      StBin#trough { background-color: opacity($base, $alpha_foreground_3rd); }
+      StBin#trough { background-color: opacity($color_base, $alpha_foreground_3rd); }
 
       StButton#vhandle,
       StButton#hhandle {
-        background-color: opacity($foreground, $alpha_foreground_3rd * $alpha_foreground_3rd);
-        &:hover { background-color: opacity($foreground, $alpha_foreground_2nd * $alpha_foreground_3rd); }
-        &:active { background-color: $foreground; }
+        background-color: opacity($color_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+        &:hover { background-color: opacity($color_fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+        &:active { background-color: $color_fg; }
       }
     }
   }
@@ -3022,42 +3022,42 @@ $close_button_size: if($ver < 3.35, 32px,
   padding: if($ref_weight >= 1.0, 0.4em 0.8em, 0.3em 0.6em);
   border-radius: $r;
   border: 2px solid transparent;
-  background-color: opacity($base, $alpha_foreground_3rd);
+  background-color: opacity($color_base, $alpha_foreground_3rd);
   box-shadow: $empty_shadow;
   font-weight: 400;
   transition-duration: $transition_d_standard;
 
-  selection-background-color: $background_selection;
-  selected-color: $foreground_selection;
+  selection-background-color: $color_bg_sel;
+  selected-color: $color_fg_sel;
 
   &,
   StLabel {
     margin-bottom: 0.1em;
-    color: $foreground_tertiary; // shut up 3rd-party gresources
+    color: $color_fg_3; // shut up 3rd-party gresources
   }
 
   &:hover,
   &:focus {
-    caret-color: $foreground;
-    background-color: $base;
+    caret-color: $color_fg;
+    background-color: $color_base;
     box-shadow: $z-depth-2;
 
     &,
     StLabel {
-      color: $foreground; // shut up 3rd-party gresources
+      color: $color_fg; // shut up 3rd-party gresources
     }
   }
 
-  &:focus { border-color: $background_selection; }
+  &:focus { border-color: $color_bg_sel; }
 
   .search-entry-icon {
     icon-size: $icon_size;
-    color: $foreground_tertiary;
+    color: $color_fg_3;
   }
 
   &:hover,
   &:focus {
-    .search-entry-icon { color: $foreground; }
+    .search-entry-icon { color: $color_fg; }
   }
 }
 
@@ -3229,13 +3229,13 @@ $provider_icon_size: 32px; // for < 3.25
       }
     }
     &:checked {
-      background-color: $background_selection;
+      background-color: $color_bg_sel;
       transition-duration: $transition_d_standard;
 
       .list-search-result {
-        &-title { color: $foreground_selection; }
+        &-title { color: $color_fg_sel; }
 
-        &-description { color: $foreground_selection_secondary; }
+        &-description { color: $color_fg_sel_2; }
       }
     }
 
@@ -3369,8 +3369,8 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
     transition-duration: $transition_d_standard;
   }
   &:checked {
-    background-color: $background_selection;
-    color: $foreground_selection;
+    background-color: $color_bg_sel;
+    color: $color_fg_sel;
     transition-duration: $transition_d_standard;
   }
 
@@ -3429,8 +3429,8 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
 
 %tooltip_template {
   color: $osd_fg;
-  background-color: if($variant == mixed, opacity($background_tooltip_inv, $alpha_osd),
-                                          opacity($background_tooltip, $alpha_osd));
+  background-color: if($variant == mixed, opacity($color_bg_tooltip_inv, $alpha_osd),
+                                          opacity($color_bg_tooltip, $alpha_osd));
   box-shadow: $empty_shadow;
 }
 
@@ -3502,13 +3502,13 @@ $grid_size: 136px;
       box-shadow: $empty_shadow;
     }
     &:checked {
-      color: $foreground_selection;
-      background-color: $background_selection !important;
+      color: $color_fg_sel;
+      background-color: $color_bg_sel !important;
       box-shadow: $empty_shadow;
     }
     &:hover:checked {
-      color: $foreground_selection;
-      background-color: mix($background_selection, $foreground_selection, percentage($alpha_foreground_2nd)) !important;
+      color: $color_fg_sel;
+      background-color: mix($color_bg_sel, $color_fg_sel, percentage($alpha_foreground_2nd)) !important;
       box-shadow: $empty_shadow;
     }
   }
@@ -3553,8 +3553,8 @@ $grid_size: 136px;
   @if $ver > 3.33 {
     &:drop .overview-icon {
       border: none; // for safety
-      background-color: opacity($background_selection, $alpha_track_out);
-      box-shadow: inset 0 0 0 1px $background_selection;
+      background-color: opacity($color_bg_sel, $alpha_track_out);
+      box-shadow: inset 0 0 0 1px $color_bg_sel;
     }
   }
 
@@ -3568,14 +3568,14 @@ $grid_size: 136px;
   }
 
   &:checked .overview-icon {
-    background-color: $background_selection;
-    color: $foreground_selection;
+    background-color: $color_bg_sel;
+    color: $color_fg_sel;
     box-shadow: $empty_shadow;
     transition-duration: $transition_d_none;
   }
 
   &:checked:hover .overview-icon {
-    background-color: mix($foreground_selection, $background_selection, percentage($alpha_track_1));
+    background-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_1));
     transition-duration: $transition_d_short;
   }
 }
@@ -3594,7 +3594,7 @@ $grid_size: 136px;
   width: $icon_size * 6;
   height: 4px;
   border-radius: 0;
-  background-color: $background_selection;
+  background-color: $color_bg_sel;
 
   .dash-item-container & {
     width: $icon_size / 2;
@@ -3637,8 +3637,8 @@ $grid_size: 136px;
     &, &:hover {
       > .overview-icon {
         border-radius: $r_2;
-        background-color: $background_selection;
-        color: $foreground_selection;
+        background-color: $color_bg_sel;
+        color: $color_fg_sel;
         box-shadow: $empty_shadow;
       }
     }
@@ -3752,18 +3752,18 @@ $grid_size: 136px;
       padding: 0;
       border-radius: $r;
       @if $variant != light {
-        @include button(flat-normal, $tc: $foreground_accent_inv);
-        &:hover { @include button(flat-hover, $tc: $foreground_accent_inv); }
-        &:focus { @include button(flat-focus, $tc: $foreground_accent_inv); }
-        &:active { @include button(flat-active, $tc: $foreground_accent_inv); }
+        @include button(flat-normal, $tc: $color_fg_acc_inv);
+        &:hover { @include button(flat-hover, $tc: $color_fg_acc_inv); }
+        &:focus { @include button(flat-focus, $tc: $color_fg_acc_inv); }
+        &:active { @include button(flat-active, $tc: $color_fg_acc_inv); }
         &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
       }
       @else {
-        @include button(flat-normal, $tc: $foreground_accent);
-        &:hover { @include button(flat-hover, $tc: $foreground_accent); }
-        &:focus { @include button(flat-focus, $tc: $foreground_accent); }
-        &:active { @include button(flat-active, $tc: $foreground_accent); }
-        &:insensitive { @include button(flat-disabled, $tc: $foreground); }
+        @include button(flat-normal, $tc: $color_fg_acc);
+        &:hover { @include button(flat-hover, $tc: $color_fg_acc); }
+        &:focus { @include button(flat-focus, $tc: $color_fg_acc); }
+        &:active { @include button(flat-active, $tc: $color_fg_acc); }
+        &:insensitive { @include button(flat-disabled, $tc: $color_fg); }
       }
 
       > StIcon { icon-size: $icon_size; }
@@ -3825,7 +3825,7 @@ $grid_size: 136px;
       margin: 2px;
       padding: 0;
       background-image: none;
-      background-color: opacity($background_selection, $alpha_foreground_2nd);
+      background-color: opacity($color_bg_sel, $alpha_foreground_2nd);
       box-shadow: $empty_shadow;
     }
 
@@ -3833,7 +3833,7 @@ $grid_size: 136px;
       margin: 0;
       padding: 2px;
       background-image: none;
-      background-color: $background_selection;
+      background-color: $color_bg_sel;
       box-shadow: $empty_shadow;
     }
 
@@ -3841,10 +3841,10 @@ $grid_size: 136px;
       margin: 0;
       padding: 2px;
       background-image: none;
-      background-color: mix($background_selection, $foreground_selection, percentage($alpha_foreground_2nd));
+      background-color: mix($color_bg_sel, $color_fg_sel, percentage($alpha_foreground_2nd));
       @if $ver < 3.31 {
         box-shadow: 0 0 0 ($icon_size / 2)
-                    opacity(mix($background_selection, $foreground_selection, percentage($alpha_foreground_2nd)),
+                    opacity(mix($color_bg_sel, $color_fg_sel, percentage($alpha_foreground_2nd)),
                             $alpha_track_out);
       }
       @else { box-shadow: $empty_shadow; }
@@ -3869,13 +3869,13 @@ $grid_size: 136px;
     margin-bottom: 32px;
     padding: 12px;
     border: none;
-    background-color: $background;
-    color: $foreground;
+    background-color: $color_bg;
+    color: $color_fg;
     box-shadow: $z-depth-4;
 
     StBin.placeholder { // solid-line indicator for drop-target
       height: 4px;
-      background-color: $background_accent;
+      background-color: $color_bg_acc;
     }
   }
 
@@ -3885,11 +3885,11 @@ $grid_size: 136px;
     background-color: $hidden_fill_bg;
     &:ltr {
       padding: 0 0 0 12px;
-      box-shadow: inset 4px 0 $background_selection;
+      box-shadow: inset 4px 0 $color_bg_sel;
     }
     &:rtl {
       padding: 0 12px 0 0;
-      box-shadow: inset -4px 0 $background_selection;
+      box-shadow: inset -4px 0 $color_bg_sel;
     }
   }
 
@@ -3906,7 +3906,7 @@ $grid_size: 136px;
 
     .workspace-thumbnail-indicator {
       padding: 0 12px 0 0;
-      box-shadow: inset -4px 0 $background_selection;
+      box-shadow: inset -4px 0 $color_bg_sel;
     }
   }
 }
@@ -3942,7 +3942,7 @@ $grid_size: 136px;
 //  ********************************/
 
 .url-highlighter {
-  link-color: $foreground_link;
+  link-color: $color_fg_lnk;
 
   .notification-banner & { link-color: $osd_link_fg; }
 }
@@ -3963,8 +3963,8 @@ $grid_size: 136px;
   &,
   &:hover,
   &:focus {
-    background-color: if($variant == mixed, opacity($background_tooltip_inv, $alpha_osd),
-                                            opacity($background_tooltip, $alpha_osd));
+    background-color: if($variant == mixed, opacity($color_bg_tooltip_inv, $alpha_osd),
+                                            opacity($color_bg_tooltip, $alpha_osd));
     color: $osd_fg;
     box-shadow: $z-depth-2;
   }
@@ -3999,13 +3999,13 @@ $grid_size: 136px;
   width: 1.6em;
   height: 1.6em;
   border-radius: 0.9em; // should be 0.8 but whatever; wish I could do 50%;
-  border: 2px solid $foreground_selection;
+  border: 2px solid $color_fg_sel;
   font-weight: 700;
   font-size: 100%;
   -shell-counter-overlap-x: 3px;
   -shell-counter-overlap-y: 3px;
-  background-color: $background_suggestion;
-  color: $foreground_selection;
+  background-color: $color_bg_sgst;
+  color: $color_fg_sel;
   box-shadow: $z-depth-2;
 }
 
@@ -4096,7 +4096,7 @@ $grid_size: 136px;
   .legacy-tray {
     padding: 0;
     border: 0 none transparent;
-    background-color: $background_panel;
+    background-color: $color_bg_panel;
     &:ltr { border-radius: 0 $r_2 0 0; }
     &:rtl { border-radius: $r_2 0 0 0; }
 
@@ -4106,7 +4106,7 @@ $grid_size: 136px;
       height: $legacy_icon_size;
       padding: 4px 4px 2px;
       border-radius: $r_2;
-      border: 2px solid $background_panel;
+      border: 2px solid $color_bg_panel;
       color: $osd_sec_fg;
       &:hover,
       &:focus {
@@ -4139,7 +4139,7 @@ $grid_size: 136px;
 //  *************/
 
 .magnifier-zoom-region {
-  border: 2px solid $background_selection;
+  border: 2px solid $color_bg_sel;
 
   &.full-screen { border-width: 0; }
 }
@@ -4215,34 +4215,34 @@ $grid_size: 136px;
     &:grayed { // FIXME
       border-color: mix($osd_sec_fg, $osd_bg,
                         percentage($alpha_div_1 * $alpha_foreground_dis));
-      background-color: $background_panel;
+      background-color: $color_bg_panel;
       color: $osd_ter_fg;
       transition-timing-function: $transition_t_standard;
     }
 
     @if $ver > 3.25 {
       &.default-key {
-        background-color: mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2));
+        background-color: mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2));
         @if $ver < 3.35 { background-size: ($ref_size - 0.33) * 2; }
         color: $osd_sec_fg;
         &:focus,
         &:hover,
         &:checked {
           border-color:
-            mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
+            mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
                 $osd_fg, percentage($alpha_foreground_2nd));
           background-color:
-            mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
+            mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
                 $osd_fg, percentage($alpha_foreground_2nd));
           color: $osd_fg;
           transition-timing-function: $transition_t_standard;
         }
         &:active {
           border-color:
-            mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
+            mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
                 $osd_fg, percentage(1 - $alpha_track_2));
           background-color:
-            mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
+            mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
                 $osd_fg, percentage(1 - $alpha_track_2));
           color: $osd_fg;
           transition-timing-function: $transition_t_dec;
@@ -4250,27 +4250,27 @@ $grid_size: 136px;
       }
 
       &.enter-key {
-        border-color: $background_suggestion;
-        background-color: $background_suggestion;
+        border-color: $color_bg_sgst;
+        background-color: $color_bg_sgst;
         @if $ver < 3.35 { @include image-loader($url: 'key-enter.svg'); }
-        @else { color: $foreground_selection_secondary; }
+        @else { color: $color_fg_sel_2; }
         &:focus,
         &:hover,
         &:checked {
-          border-color: mix($background_suggestion, $foreground_selection, percentage($alpha_foreground_2nd));
-          background-color: mix($background_suggestion, $foreground_selection, percentage($alpha_foreground_2nd));
+          border-color: mix($color_bg_sgst, $color_fg_sel, percentage($alpha_foreground_2nd));
+          background-color: mix($color_bg_sgst, $color_fg_sel, percentage($alpha_foreground_2nd));
           @if $ver < 3.35 {
             @include image-loader($url: 'key-enter-active.svg');
           }
-          @else { color: $foreground_selection; }
+          @else { color: $color_fg_sel; }
         }
         &:active {
-          border-color: $background_selection;
-          background-color: $background_selection;
+          border-color: $color_bg_sel;
+          background-color: $color_bg_sel;
           @if $ver < 3.35 {
             @include image-loader($url: 'key-enter-active.svg');
           }
-          @else { color: $foreground_selection; }
+          @else { color: $color_fg_sel; }
         }
       }
 
@@ -4286,45 +4286,45 @@ $grid_size: 136px;
           @if $ver < 3.35 {
             @include image-loader($url: 'key-shift-uppercase.svg');
           }
-          @else { color: $background_selection; }
+          @else { color: $color_bg_sel; }
           &:focus,
           &:hover,
           &:checked {
             border-color:
-              mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
-                  $background_selection, percentage($alpha_foreground_2nd));
+              mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                  $color_bg_sel, percentage($alpha_foreground_2nd));
             background-color:
-              mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
-                  $background_selection, percentage($alpha_foreground_2nd));
+              mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                  $color_bg_sel, percentage($alpha_foreground_2nd));
           }
           &:active {
             border-color:
-              mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
-                  $background_selection, percentage(1 - $alpha_track_2));
+              mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                  $color_bg_sel, percentage(1 - $alpha_track_2));
             background-color:
-              mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
-                  $background_selection, percentage(1 - $alpha_track_2));
+              mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                  $color_bg_sel, percentage(1 - $alpha_track_2));
           }
           &:latched {
             @if $ver < 3.35 {
               @include image-loader($url: 'key-shift-latched-uppercase.svg');
             }
-            @else { color: $background_selection; }
+            @else { color: $color_bg_sel; }
             border-color:
-              mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
-                  $background_selection, percentage($alpha_foreground_2nd));
+              mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                  $color_bg_sel, percentage($alpha_foreground_2nd));
             background-color:
-              mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
-                  $background_selection, percentage($alpha_foreground_2nd));
+              mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                  $color_bg_sel, percentage($alpha_foreground_2nd));
             transition-timing-function: $transition_t_standard;
             &:focus,
             &:hover {
               border-color:
-                mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
-                    $background_selection, percentage(1 - $alpha_track_2));
+                mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                    $color_bg_sel, percentage(1 - $alpha_track_2));
               background-color:
-                mix(mix($osd_bg, $background_panel, percentage(1 - $alpha_track_2)),
-                    $background_selection, percentage(1 - $alpha_track_2));
+                mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                    $color_bg_sel, percentage(1 - $alpha_track_2));
             }
           }
         }
@@ -4352,27 +4352,27 @@ $grid_size: 136px;
     -arrow-base: 0;
     -arrow-rise: 0;
     -boxpointer-gap: $ref_size * 0.3;
-    background-color: $background_suggestion;
-    color: $foreground_selection;
+    background-color: $color_bg_sgst;
+    color: $color_fg_sel;
     box-shadow: $z-depth-2;
 
     .keyboard-key {
       border: 0 none transparent;
       background-color: $hidden_fill_bg;
-      color: $foreground_selection_secondary;
+      color: $color_fg_sel_2;
       box-shadow: inset 0 0 0 2px $ovv_out_fg;
       &:focus,
       &:hover,
       &:checked {
         border: 0 none transparent;
-        background-color: opacity($foreground_selection, $alpha_track_1);
-        color: $foreground_selection;
+        background-color: opacity($color_fg_sel, $alpha_track_1);
+        color: $color_fg_sel;
         box-shadow: $empty_shadow;
       }
       &:active {
         border: 0 none transparent;
-        background-color: opacity($foreground_selection, $alpha_track_2);
-        color: $foreground_selection;
+        background-color: opacity($color_fg_sel, $alpha_track_2);
+        color: $color_fg_sel;
         box-shadow: $empty_shadow;
       }
     }
@@ -4391,16 +4391,16 @@ $grid_size: 136px;
     StButton {
       padding: 0 $ref_size * 1.3;
       border-radius: $r;
-      background-color: $background_suggestion;
-      color: $foreground_selection_secondary;
+      background-color: $color_bg_sgst;
+      color: $color_fg_sel_2;
       &:hover,
       &:focus {
-        background-color: mix($foreground_selection, $background_suggestion, percentage($alpha_track_1));
-        color: $foreground_selection;
+        background-color: mix($color_fg_sel, $color_bg_sgst, percentage($alpha_track_1));
+        color: $color_fg_sel;
       }
       &:active {
-        background-color: $background_selection;
-        color: $foreground_selection;
+        background-color: $color_bg_sel;
+        color: $color_fg_sel;
       }
     }
   }
@@ -4425,15 +4425,15 @@ $grid_size: 136px;
         }
 
         &:latched {
-          border-color: $background_selection;
-          background-color: $background_selection;
+          border-color: $color_bg_sel;
+          background-color: $color_bg_sel;
           &:hover {
-            border-color: mix($foreground_selection, $background_selection, percentage($alpha_track_1));
-            background-color: mix($foreground_selection, $background_selection, percentage($alpha_track_1));
+            border-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_1));
+            background-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_1));
           }
           &:active {
-            border-color: mix($foreground_selection, $background_selection, percentage($alpha_track_2));
-            background-color: mix($foreground_selection, $background_selection, percentage($alpha_track_2));
+            border-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_2));
+            background-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_2));
           }
         }
       }
@@ -4496,10 +4496,10 @@ $grid_size: 136px;
       .candidate-index { color: $osd_fg; }
     }
     &:selected {
-      background-color: $background_suggestion;
-      color: $foreground_selection;
+      background-color: $color_bg_sgst;
+      color: $color_fg_sel;
 
-      .candidate-index { color: $foreground_selection_secondary; }
+      .candidate-index { color: $color_fg_sel_2; }
     }
   }
 
@@ -4514,16 +4514,16 @@ $grid_size: 136px;
   &-page-button {
     padding: 4px;
     @if $variant != light {
-      @include button(flat-normal, $tc: $foreground_accent_inv);
-      &:hover { @include button(flat-hover, $tc: $foreground_accent_inv); }
-      &:active { @include button(flat-active, $tc: $foreground_accent_inv); }
+      @include button(flat-normal, $tc: $color_fg_acc_inv);
+      &:hover { @include button(flat-hover, $tc: $color_fg_acc_inv); }
+      &:active { @include button(flat-active, $tc: $color_fg_acc_inv); }
       &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
     }
     @else {
-      @include button(flat-normal, $tc: $foreground_accent);
-      &:hover { @include button(flat-hover, $tc: $foreground_accent); }
-      &:active { @include button(flat-active, $tc: $foreground_accent); }
-      &:insensitive { @include button(flat-disabled, $tc: $foreground); }
+      @include button(flat-normal, $tc: $color_fg_acc);
+      &:hover { @include button(flat-hover, $tc: $color_fg_acc); }
+      &:active { @include button(flat-active, $tc: $color_fg_acc); }
+      &:insensitive { @include button(flat-disabled, $tc: $color_fg); }
     }
 
     &-previous {
@@ -4582,14 +4582,14 @@ $login_dialog_width: 23em;
 
   StEntry {
     @include entry(normal, $tc: $ovv_fg);
-    selection-background-color: $background_selection;
-    selected-color: $foreground_selection;
+    selection-background-color: $color_bg_sel;
+    selected-color: $color_fg_sel;
     transition-duration: $transition_d_none;
     &:hover { @include entry(hover, $tc: $ovv_fg); }
     &:focus { @include entry(focus, $tc: $ovv_fg); }
     &:insensitive { @include entry(disabled, $tc: $ovv_fg); }
 
-    StIcon.capslock-warning { color: $warn; } // CapsLock warning
+    StIcon.capslock-warning { color: $color_warn; } // CapsLock warning
 
     @if $ver > 3.35 {
       .hint-text { color: $ovv_ter_fg; }
@@ -4609,18 +4609,18 @@ $login_dialog_width: 23em;
     &:insensitive { @include button(flat-disabled, $tc: $ovv_fg); }
     &:default { // suggested-action button
       padding: (7px - 2px) (16px - 2px) (8px - 2px); // subtract borders
-      @include button(suggested-normal, $c: $background_suggestion, $tc: $foreground_selection);
+      @include button(suggested-normal, $c: $color_bg_sgst, $tc: $color_fg_sel);
       &:hover {
-        @include button(suggested-hover, $c: $background_suggestion, $tc: $foreground_selection);
+        @include button(suggested-hover, $c: $color_bg_sgst, $tc: $color_fg_sel);
       }
       &:focus {
-        @include button(suggested-focus, $c: $background_suggestion, $tc: $foreground_selection);
+        @include button(suggested-focus, $c: $color_bg_sgst, $tc: $color_fg_sel);
       }
       &:active { @include button(suggested-active); }
       &:insensitive {
         // revert to standard padding since mixin has no borders
         padding: 7px 16px 8px;
-        @include button(suggested-disabled, $tc: $foreground_selection);
+        @include button(suggested-disabled, $tc: $color_fg_sel);
       }
     }
   }
@@ -4640,8 +4640,8 @@ $login_dialog_width: 23em;
     .login-dialog-session-list-button {
       &:active,
       &:checked {
-        background-color: $background_selection;
-        color: $foreground_selection;
+        background-color: $color_bg_sel;
+        color: $color_fg_sel;
       }
     }
   }
@@ -4741,7 +4741,7 @@ $login_dialog_width: 23em;
     &-message { text-align: center; }
   }
 
-  &-message-warning { color: $warn; }
+  &-message-warning { color: $color_warn; }
 
   &-message-hint {
     padding-top: 0;
@@ -4808,33 +4808,33 @@ $login_dialog_width: 23em;
       &:selected {
         &, &:focus {
           background-color: $hidden_fill_bg;
-          box-shadow: inset 0 0 0 2px opacity($background_selection, $alpha_track_out);
+          box-shadow: inset 0 0 0 2px opacity($color_bg_sel, $alpha_track_out);
         }
         &:hover,
         &:hover:focus {
-          background-color: opacity($background_selection, $alpha_track_1);
+          background-color: opacity($color_bg_sel, $alpha_track_1);
         }
         &:active,
         &:active:focus {
-          background-color: opacity($background_selection, $alpha_track_2);
+          background-color: opacity($color_bg_sel, $alpha_track_2);
         }
       }
 
       &:logged-in {
         border-radius: 0;
-        background-color: opacity($background_selection, $alpha_track_2);
+        background-color: opacity($color_bg_sel, $alpha_track_2);
         &:focus,
         &:hover {
-          background-color: mix(opacity($background_selection, $alpha_track_2),
+          background-color: mix(opacity($color_bg_sel, $alpha_track_2),
                                 opacity($ovv_semi_fill_bg, $alpha_foreground_3rd));
         }
         &:active {
-          background-color: mix(opacity($background_selection, $alpha_track_2),
+          background-color: mix(opacity($color_bg_sel, $alpha_track_2),
                                 opacity($ovv_fill_bg, $alpha_foreground_3rd));
         }
 
-        &:ltr { box-shadow: inset 4px 0 $background_selection; }
-        &:rtl { box-shadow: inset -4px 0 $background_selection; }
+        &:ltr { box-shadow: inset 4px 0 $color_bg_sel; }
+        &:rtl { box-shadow: inset -4px 0 $color_bg_sel; }
       }
     }
 
@@ -4864,15 +4864,15 @@ $login_dialog_width: 23em;
     &:selected {
       &, &:focus {
         background-color: $hidden_fill_bg;
-        box-shadow: inset 0 0 0 2px opacity($background_selection, $alpha_track_out);
+        box-shadow: inset 0 0 0 2px opacity($color_bg_sel, $alpha_track_out);
       }
       &:hover,
       &:hover:focus {
-        background-color: opacity($background_selection, $alpha_track_1);
+        background-color: opacity($color_bg_sel, $alpha_track_1);
       }
       &:active,
       &:active:focus {
-        background-color: opacity($background_selection, $alpha_track_2);
+        background-color: opacity($color_bg_sel, $alpha_track_2);
       }
     }
 
@@ -4892,11 +4892,11 @@ $login_dialog_width: 23em;
     .login-dialog-timed-login-indicator {
       height: 4px;
       margin: 4px 0 0 0;
-      background-color: opacity($background_accent, $alpha_foreground_2nd);
+      background-color: opacity($color_bg_acc, $alpha_foreground_2nd);
     }
 
     &:focus .login-dialog-timed-login-indicator {
-      background-color: $background_accent;
+      background-color: $color_bg_acc;
     }
   }
 }
@@ -4929,8 +4929,8 @@ $login_dialog_width: 23em;
       &:focus { @include button(flat-focus, $tc: $ovv_fg); }
       &:hover { @include button(flat-hover, $tc: $ovv_fg); }
       &:active {
-        background-color: $background_selection;
-        color: $foreground_selection;
+        background-color: $color_bg_sel;
+        color: $color_fg_sel;
       }
 
       StIcon { icon-size: $icon_size; }
@@ -4972,8 +4972,8 @@ $login_dialog_width: 23em;
   padding: 12px 6px;
   border: none;
   border-radius: $r_8;
-  background-color: if($variant == mixed, opacity($background_tooltip_inv, $alpha_osd),
-                                          opacity($background_tooltip, $alpha_osd));
+  background-color: if($variant == mixed, opacity($color_bg_tooltip_inv, $alpha_osd),
+                                          opacity($color_bg_tooltip, $alpha_osd));
   color: $osd_fg;
 }
 
@@ -5016,12 +5016,12 @@ $login_dialog_width: 23em;
           @extend %onlock_notification;
 
           &.critical {
-            background-color: $background_destruction;
-            color: $foreground_selection;
+            background-color: $color_bg_dest;
+            color: $color_fg_sel;
 
             .unlock-dialog-notification-count-text {
-              background-color: $foreground_selection;
-              color: $background_destruction;
+              background-color: $color_fg_sel;
+              color: $color_bg_dest;
             }
           }
         }
@@ -5035,8 +5035,8 @@ $login_dialog_width: 23em;
       &-count-text {
         padding: 0 6px;
         border-radius: $r_2;
-        background-color: $background_suggestion;
-        color: $foreground_selection;
+        background-color: $color_bg_sgst;
+        color: $color_fg_sel;
         font-weight: 700;
       }
     }
@@ -5143,7 +5143,7 @@ $tool_icon_size: 24px;
     box-shadow:
       inset 0 -1px if($variant != light,
                       mix(white, $osd_bg, percentage($alpha_div_2)),
-                      mix(black, $background_dark, percentage($alpha_div_1)));
+                      mix(black, $color_bg_dark, percentage($alpha_div_1)));
 
     > StIcon { // 'color-picker' and 'trash'
       // base-line shift
@@ -5180,10 +5180,10 @@ $tool_icon_size: 24px;
       background-color: $hidden_fill_bg;
       color:
         if($variant != light,
-           saturate(lighten($background_selection, percentage($alpha_track_2)),
+           saturate(lighten($color_bg_sel, percentage($alpha_track_2)),
              percentage($alpha_track_2)),
-           $background_selection);
-      box-shadow: inset 0 -2px $background_selection;
+           $color_bg_sel);
+      box-shadow: inset 0 -2px $color_bg_sel;
       text-shadow: none;
       transition-duration: $transition_d_standard;
     }
@@ -5200,8 +5200,8 @@ $tool_icon_size: 24px;
 
 .lg-dialog {
   StEntry {
-    selection-background-color: $background_selection;
-    selected-color: $foreground_selection;
+    selection-background-color: $color_bg_sel;
+    selected-color: $color_fg_sel;
     @include entry(normal, $tc: $osd_fg);
     &:hover { @include entry(hover, $tc: $osd_fg); }
     &:focus { @include entry(focus, $tc: $osd_fg); }
@@ -5305,7 +5305,7 @@ StBoxLayout#Windows {
   padding: 6px;
   border: 1px solid if($variant != light,
                        mix(white, $osd_bg, percentage($alpha_div_2)),
-                       $foreground_div_sld);
+                       $color_fg_div_sld);
   border-radius: 0;
   background-color: $osd_bg;
   color: $osd_fg;

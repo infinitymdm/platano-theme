@@ -1,0 +1,41 @@
+// clock-applet styling
+widget.budgie-clock-applet > widget > box > label {
+  font-size: 100%;
+  &:first-child {
+    &:dir(ltr) { margin-left: 3px - 1px; }
+    &:dir(rtl) { margin-right: 3px - 1px; }
+  }
+  &:last-child {
+    &:dir(ltr) { margin-right: 3px + 2px; }
+    &:dir(rtl) { margin-left: 3px + 2px; }
+  }
+
+  .top &,
+  .bottom & {
+    &:only-child {
+      &:dir(ltr) {
+        margin-left: 3px - 1px;
+        margin-right: 3px - 2px;
+      }
+      &:dir(rtl) {
+        margin-left: 3px - 2px;
+        margin-right: 3px - 1px;
+      }
+    }
+  }
+
+  .left &,
+  .right & {
+    font-size: 80%;
+    &:first-child {
+      margin-top: 3px + 2px;
+      margin-bottom: 0;
+    }
+    &:last-child {
+      margin-top: 0;
+      margin-bottom: 3px + 1px;
+      // specificity bump
+      &:only-child { margin-top: 3px + 2px; }
+    }
+  }
+}

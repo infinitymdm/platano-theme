@@ -1,0 +1,81 @@
+// budgie specific popover widgets
+window.budgie-popover:not(.csd) {
+  &.background {
+    @extend %popover;
+    @include radius($r_4, none);
+    border: 1px solid $color_fg_div_sld;
+    background-clip: border-box;
+    background-color: $color_bg_dark;
+    box-shadow: $z-depth-2; // FIXME: we can't expose depth-3
+
+    separator.horizontal {
+      @if $variant == dark {
+        background-color: track(white, $alpha_div_2);
+      }
+    }
+
+    *:not(.linked):not(combobox):not(spinbutton) > entry:not(.combo) {
+      @extend %flat_entry_sizing;
+      @extend %flat_entry_styling;
+    }
+  }
+
+  > frame.container { // generic popover spacing
+    &,
+    > border {
+      border-style: none; // hide container borders
+      background-color: transparent;
+    }
+
+    stack { // icon-tasklist/clock popover stack
+      separator.horizontal { margin: rem($menu_padding) 0; }
+
+      &.clock-applet-stack { padding: 0; }
+
+      &.icon-popover-stack { padding: $popover_padding; }
+    }
+  }
+
+  &.budgie-menu,
+  &.caffeine-popover,
+  &.night-light-indicator,
+  &.places-menu,
+  &.user-menu,
+  &.workspace-popover {
+    > frame.container { padding: $popover_padding; }
+  }
+}
+
+// icon-tasklist popover styling
+$requested_height: 32px; // hard-coded
+
+stack.icon-popover-stack {
+  box.horizontal > button.flat {
+    min-height: $requested_height;
+    min-width: $requested_height;
+
+    &:first-child:not(:only-child) {
+      font-weight: 500; // text-buttons
+    }
+    &:not(:first-child):not(:only-child) {
+      &:not(:last-child) { // 'close' buttons
+        @include button(flat-normal, $tc: $color_bg_dest);
+        @include ink-reaction(normal, $fc: $color_bg_dest);
+        &:hover { @include button(flat-hover, $tc: $color_bg_dest); }
+        &:active {
+          @include button(flat-active, $tc: $color_bg_dest);
+          @include ink-reaction(active-dec, $fc: $color_bg_dest);
+        }
+        &:disabled { @include button(flat-disabled, $tc: $color_bg_dest); }
+        &:checked { @include button(flat-checked, $tc: $color_bg_dest); }
+      }
+    }
+  }
+
+  grid.horizontal { // bottom button container
+    > button.flat.image-button { // switch to outlined button array
+      @extend %action-area-button;
+      min-height: $requested_height;
+    }
+  }
+}

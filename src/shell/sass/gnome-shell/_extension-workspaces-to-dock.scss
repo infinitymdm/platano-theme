@@ -91,7 +91,7 @@
     }
     &:active .overview-icon,
     &:focus .overview-icon,
-    &:checked .overview-icon { background-color: $background_selection; }
+    &:checked .overview-icon { background-color: $color_bg_sel; }
   }
 
   .workspacestodock-shortcuts-panel > StButton { background-size: contain; }
@@ -156,11 +156,11 @@
   &-container {
     padding: 0;
     border-radius: $r_2;
-    border: 1px solid $foreground_div;
+    border: 1px solid $color_fg_div;
   }
 
   &-background {
-    border-top: 1px solid $foreground_div;
+    border-top: 1px solid $color_fg_div;
     border-radius: 0 0 $r_2 $r_2;
     background-color: $osd_bg;
 
@@ -214,7 +214,7 @@
     &-active > &-icon,
     &-active:hover > &-icon {
       background-color: $osd_semi_fill_bg;
-      box-shadow: inset 0 -2px $background_selection;
+      box-shadow: inset 0 -2px $color_bg_sel;
     }
   }
 }
@@ -233,7 +233,7 @@
     box-shadow: $z-depth-1;
 
     &-current {
-      color: $background_accent;
+      color: $color_bg_acc;
       box-shadow: $z-depth-2;
     }
   }
@@ -251,7 +251,7 @@
     box-shadow: $z-depth-1;
 
     &-current {
-      color: $background_accent;
+      color: $color_bg_acc;
       box-shadow: $z-depth-2;
     }
   }

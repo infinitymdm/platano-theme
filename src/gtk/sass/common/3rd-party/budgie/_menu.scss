@@ -1,0 +1,192 @@
+// main menu styling
+%budgie_trigger_button {
+  min-width: $icon_size;
+  min-height: $icon_size;
+  padding: 0;
+  @include radius(0, none);
+  background-color: transparent;
+  color: if($variant == mixed, $color_fg_inv, $color_fg);
+  font-weight: 700; // enforce bold weight
+  &:not(:disabled) {
+    background-color: transparent;
+    background-image: none;
+    animation: none;
+  }
+}
+
+button.flat.budgie-menu-launcher {
+  @extend %budgie_trigger_button;
+
+  box.horizontal > label {
+    &:dir(ltr) { margin-left: -$icon_size / 4; }
+    &:dir(rtl) { margin-right: -$icon_size / 4; }
+  }
+}
+
+.budgie-menu {
+  scrolledwindow,
+  list,
+  row,
+  scrollbar { // reset styling
+    min-width: 0;
+    min-height: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+  }
+
+  entry { margin-bottom: $popover_padding; }
+
+  row.activatable { // reset background
+    padding: 0;
+    background-image: none;
+    background-color: $color_bg_dark;
+    color: $color_fg_2;
+    transition-duration: $transition_d_none;
+
+    // FIXME: enlarge vertical spacing with padding of icons
+    image { padding: rem($menuitem_padding) 0; }
+
+    &:hover,
+    &:selected {
+      background-image: none;
+      background-color: $color_bg_dark;
+      // child button node has hover state already
+      color: $color_fg_2;
+      transition-duration: $transition_d_none;
+    }
+  }
+
+  .categories { // left-paned elements of GtkPopover
+    background-color: transparent;
+    &:dir(ltr) {
+      margin-right: $popover_padding;
+      border-right: 1px solid if($variant == dark, track(white, $alpha_div_2),
+                                                    $color_fg_div);
+    }
+    &:dir(rtl) {
+      margin-left: $popover_padding;
+      border-left: 1px solid if($variant == dark, track(white, $alpha_div_2),
+                                                  $color_fg_div);
+    }
+
+    button.flat.radio.category-button {
+      @include radius(0);
+      &:not(:active) { transition-duration: $transition_d_short; } // use list-transition
+      &:checked {
+        &, &:hover {
+          background-image: none;
+          background-color: $color_bg_trk;
+          color: $color_lbl_sel;
+        }
+        &:disabled {
+          color: track($color_fg_sel, $alpha_foreground_bdp);
+
+          label { color: inherit; }
+        }
+
+        &:dir(ltr) { @include radius(0 $r $r 0); }
+        &:dir(rtl) { @include radius($r 0 0 $r); }
+      }
+
+      > box > label { // tweak vertical spacing and font weight
+        padding: 0 rem($menuitem_padding, $sw: 1.0);
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+// user-indicator styling
+.user-menu {
+  frame.container {
+    separator { min-height: 0; } // hide separator
+  }
+
+  list,
+  row { // reset styling
+    border: none;
+    background: none;
+    box-shadow: none;
+  }
+
+  row {
+    &, .indicator-item { // stop weird and unhandled ripple-effect
+      &:active,
+      &:selected {
+        background-image: none;
+        animation: none;
+      }
+    }
+
+    &.activatable {
+      background-image: none;
+      background-color: $color_bg_dark;
+      color: $color_fg_2;
+      transition-duration: $transition_d_none;
+
+      .indicator-item {
+        label,
+        image { color: $color_fg_2; }
+      }
+
+      // FIXME: enlarge vertical spacing with padding of icons
+      image { padding: rem($menuitem_padding) 0; }
+
+      &:hover,
+      &:selected {
+        background-image: none;
+        background-color: $color_bg_dark;
+        color: $color_fg_2;
+        transition-duration: $transition_d_none;
+
+        .indicator-item {
+          label,
+          image { color: $color_fg_2; }
+
+          &:hover,
+          &:active,
+          &:checked {
+            label,
+            image { color: $color_fg; }
+          }
+        }
+      }
+    }
+  }
+
+  // top-row (user-name and avatar)
+  > frame.container > box.vertical row.activatable:first-child {
+    margin-bottom: $popover_padding;
+    outline-width: 0;
+
+    button.indicator-item {
+      border: 1px solid transparent;
+      @include button(normal);
+      font-weight: 500;
+      transition-timing-function: $transition_t_standard;
+      transition-property: background-color;
+      transition-duration: $transition_d_standard;
+
+      label,
+      image:first-child {
+        &:dir(ltr) { margin-left: -$icon_size / 4; } // align childs
+        &:dir(rtl) { margin-right: -$icon_size / 4; }
+      }
+
+      image {
+        color: $color_fg_2;
+        &:first-child { // avatar image
+          min-width: $icon_size * 1.5;
+          opacity: $alpha_foreground_2nd;
+        }
+      }
+
+      &:hover {
+        @include button(hover);
+
+        image:first-child { opacity: 1.0; }
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@
 //  ***************/
 
 %gnome_panel_toplevel {
-  background-color: $background_panel;
+  background-color: $color_bg_panel;
 
   @if $maj_ver == 3 {
     * { outline-width: 0; } // unset outlines
@@ -16,13 +16,13 @@
 %gnome_panel_applet {
   // do not set transparent background in this template
   // mate-panel >= 1.18.6 will be broken
-  color: if($variant == mixed, $foreground_inv, $foreground);
+  color: if($variant == mixed, $color_fg_inv, $color_fg);
   box-shadow: none;
 }
 
 %gnome_panel_menubar {
   border: unset;
-  color: if($variant == mixed, $foreground_inv, $foreground);
+  color: if($variant == mixed, $color_fg_inv, $color_fg);
   background-color: transparent;
   font-weight: 700;
 }
@@ -30,11 +30,11 @@
 %gnome_panel_menuitem {
   padding: 0 rem($menu_padding, $sw: 1.0);
   @include radius(0, none);
-  color: if($variant == mixed, $foreground_inv, $foreground);
+  color: if($variant == mixed, $color_fg_inv, $color_fg);
   background-color: transparent;
   &:hover {
     @if $variant != light {
-      @include button(flat-lined-checked, $tc: $foreground_selection);
+      @include button(flat-lined-checked, $tc: $color_fg_sel);
     }
     @else {
       @include button(flat-lined-checked, $tc: black);
@@ -81,7 +81,7 @@ gp-applet > menubar,
                             (left, 2px 0),
                             (right, -2px 0) {
     .#{$_layout} & {
-      &:hover { box-shadow: inset #{$_line} $background_selection; }
+      &:hover { box-shadow: inset #{$_line} $color_bg_sel; }
     }
   }
 }
@@ -95,15 +95,15 @@ gp-applet > menubar,
   @include radius(0, none);
   @include transition(reset);
   @if $variant != light {
-    @include button(flat-normal, $tc: $foreground_inv);
+    @include button(flat-normal, $tc: $color_fg_inv);
     &:hover {
-      @include button(flat-lined-hover, $tc: $foreground_selection);
+      @include button(flat-lined-hover, $tc: $color_fg_sel);
     }
-    &:disabled { @include button(flat-disabled, $tc: $foreground_inv); }
+    &:disabled { @include button(flat-disabled, $tc: $color_fg_inv); }
     &:checked {
       &, &:hover {
-        @include button(flat-lined-checked, $tc: $foreground_selection);
-        background-color: track($foreground_selection, $alpha_track_1);
+        @include button(flat-lined-checked, $tc: $color_fg_sel);
+        background-color: track($color_fg_sel, $alpha_track_1);
       }
     }
 
@@ -112,11 +112,11 @@ gp-applet > menubar,
     }
   }
   @else {
-    @include button(flat-normal, $tc: $foreground);
+    @include button(flat-normal, $tc: $color_fg);
     &:hover {
       @include button(flat-lined-hover, $tc: black);
     }
-    &:disabled { @include button(flat-disabled, $tc: $foreground); }
+    &:disabled { @include button(flat-disabled, $tc: $color_fg); }
     &:checked {
       &, &:hover {
         @include button(flat-lined-checked, $tc: black);
@@ -135,9 +135,9 @@ gp-applet > menubar,
                             (left, 2px 0),
                             (right, -2px 0) {
     .#{$_layout} & {
-      &:hover { box-shadow: inset #{$_line} $foreground_tracker_out; }
+      &:hover { box-shadow: inset #{$_line} $color_fg_trk_out; }
       &:checked,
-      &:hover:checked { box-shadow: inset #{$_line} $background_selection; }
+      &:hover:checked { box-shadow: inset #{$_line} $color_bg_sel; }
     }
   }
 
@@ -152,34 +152,34 @@ gp-applet > menubar,
 wnck-pager {
   @if $variant != light {
     background-color: transparent;
-    color: mix($foreground_inv, $background_panel, percentage($alpha_foreground_3rd)); // use opaque
+    color: mix($color_fg_inv, $color_bg_panel, percentage($alpha_foreground_3rd)); // use opaque
     box-shadow:
-      inset 0 0 0 1px mix($foreground_inv, $background_panel, percentage($alpha_foreground_bdp));
+      inset 0 0 0 1px mix($color_fg_inv, $color_bg_panel, percentage($alpha_foreground_bdp));
     &:hover {
-      background-color: $background_tracker;
-      color: $foreground_inv;
-      box-shadow: inset 0 0 0 1px $foreground_tracker_out;
+      background-color: $color_bg_trk;
+      color: $color_fg_inv;
+      box-shadow: inset 0 0 0 1px $color_fg_trk_out;
     }
     &:selected {
-      background-color: track($background_selection, $alpha_track_out);
-      color: $foreground_inv;
-      box-shadow: inset 0 0 0 1px $background_selection;
+      background-color: track($color_bg_sel, $alpha_track_out);
+      color: $color_fg_inv;
+      box-shadow: inset 0 0 0 1px $color_bg_sel;
     }
   }
   @else {
     background-color: transparent;
-    color: mix($foreground, $background_panel, percentage($alpha_foreground_3rd)); // use opaque
+    color: mix($color_fg, $color_bg_panel, percentage($alpha_foreground_3rd)); // use opaque
     box-shadow:
-      inset 0 0 0 1px mix($foreground, $background_panel, percentage($alpha_foreground_bdp));
+      inset 0 0 0 1px mix($color_fg, $color_bg_panel, percentage($alpha_foreground_bdp));
     &:hover {
-      background-color: $background_tracker;
-      color: $foreground;
-      box-shadow: inset 0 0 0 1px $foreground_tracker_out;
+      background-color: $color_bg_trk;
+      color: $color_fg;
+      box-shadow: inset 0 0 0 1px $color_fg_trk_out;
     }
     &:selected {
-      background-color: track($background_selection, $alpha_track_out);
-      color: $foreground;
-      box-shadow: inset 0 0 0 1px $background_selection;
+      background-color: track($color_bg_sel, $alpha_track_out);
+      color: $color_fg;
+      box-shadow: inset 0 0 0 1px $color_bg_sel;
     }
   }
 }
@@ -192,9 +192,9 @@ gp-arrow-button {
   margin: 0 rem($menu_padding);
   border: 1px solid transparent;
   background-image: none;
-  color: if($variant == mixed, $foreground_inv, $foreground);
+  color: if($variant == mixed, $color_fg_inv, $color_fg);
   &:hover,
-  &:active { color: if($variant != light, $foreground_selection, black); }
+  &:active { color: if($variant != light, $color_fg_sel, black); }
 }
 
 sn-button { padding: 0 rem($menu_padding, $sw: 1.0); }
@@ -205,7 +205,7 @@ gp-applet > separator {
     margin: 3px;
   }
 
-  background-color: $foreground_panel_div;
+  background-color: $color_fg_panel_inv;
 }
 
 // /****************
@@ -218,15 +218,15 @@ headerbar.titlebar.tweak-titlebar {
     > label.title { margin-bottom: 0; }
 
     // for hdyleaflet
-    + separator.vertical { background-color: $div_sld_dark_fg; }
+    + separator.vertical { background-color: $color_fg_div_sld_dark; }
   }
 }
 
 // sidebar
 .tweak-categories {
   @extend %sidebar_template;
-  background-image: image($background);
-  color: $foreground_secondary;
+  background-image: image($color_bg);
+  color: $color_fg_2;
 
   separator.horizontal {
     min-height: 0;
@@ -237,10 +237,10 @@ headerbar.titlebar.tweak-titlebar {
 
 .tweak-category {
   border: none;
-  color: $foreground_secondary;
+  color: $color_fg_2;
   background-color: transparent;
   font-weight: 500;
-  &:hover { color: $foreground; }
+  &:hover { color: $color_fg; }
 
   &.activatable { // specificity bump
     &:selected { @extend %selected_sidebar_row; }
@@ -263,7 +263,7 @@ row.tweak {
     }
   }
 
-  &.title { color: $foreground_tertiary; }
+  &.title { color: $color_fg_3; }
 
   &.title,
   &#AutostartTitle {
@@ -275,16 +275,16 @@ row.tweak {
 
   // child sub list elements
   &:not(.title) > list {
-    border: 1px solid $foreground_div;
+    border: 1px solid $color_fg_div;
 
     > row.activatable {
-      background-color: $base;
-      color: $foreground_secondary;
+      background-color: $color_base;
+      color: $color_fg_2;
       &:hover {
-        background-color: $background_tracker;
-        color: $foreground;
+        background-color: $color_bg_trk;
+        color: $color_fg;
       }
-      &:active { color: $foreground; }
+      &:active { color: $color_fg; }
 
       > box.horizontal {
         > label,
@@ -292,24 +292,24 @@ row.tweak {
       }
 
       // draw horizontal lines
-      &:not(:last-child) { border-bottom: 1px solid $foreground_div; }
+      &:not(:last-child) { border-bottom: 1px solid $color_fg_div; }
     }
   }
 }
 
 // container and tweaks in a group
-list.tweak-group-startup { background-color: $background; }
+list.tweak-group-startup { background-color: $color_bg; }
 
 %startup_list_row {
   padding: rem($entry_lr_space);
-  background-image: image($background);
+  background-image: image($color_bg);
   background-repeat: repeat-x;
   background-size: auto;
   transition-duration: 0s; // child 'grid' already has
   outline-width: 0; // hide outlines
   &:hover {
     > grid {
-      background-image: image(track($foreground_secondary, $alpha_track_1));
+      background-image: image(track($color_fg_2, $alpha_track_1));
       transition: background-image $transition_d_standard $transition_t_dec;
     }
   }
@@ -321,22 +321,22 @@ list.tweak-group-startup { background-color: $background; }
     transition: background-image $transition_d_standard $transition_t_dec;
 
     > button { // 'remove' buttons
-      @include button(raised-normal, $c: $background_destruction, $tc: $foreground_selection_secondary);
-      @include ink-reaction(normal, $fc: $foreground_selection, $tr: ink-normal-dec);
-      &:hover { @include button(raised-hover, $c: $background_destruction, $tc: $foreground_selection); }
+      @include button(raised-normal, $c: $color_bg_dest, $tc: $color_fg_sel_2);
+      @include ink-reaction(normal, $fc: $color_fg_sel, $tr: ink-normal-dec);
+      &:hover { @include button(raised-hover, $c: $color_bg_dest, $tc: $color_fg_sel); }
       &:active {
-        @include button(raised-active, $c: $background_selection, $tc: $foreground_selection);
-        @include ink-reaction(active-dec, $fc: $foreground_selection, $tr: ink-active-dec);
+        @include button(raised-active, $c: $color_bg_sel, $tc: $color_fg_sel);
+        @include ink-reaction(active-dec, $fc: $color_fg_sel, $tr: ink-active-dec);
       }
       &:checked {
         @include button(raised-checked);
         &:disabled {
-          border-color: mix($background_destruction, $background, percentage($alpha_track_1));
-          background-color: mix($background_destruction, $background, percentage($alpha_track_1));
-          color: $dis_sel_fg;
+          border-color: mix($color_bg_dest, $color_bg, percentage($alpha_track_1));
+          background-color: mix($color_bg_dest, $color_bg, percentage($alpha_track_1));
+          color: $color_fg_dis_sel;
         }
       }
-      &:disabled { @include button(raised-disabled, $c: $base, $tc: $foreground); }
+      &:disabled { @include button(raised-disabled, $c: $color_base, $tc: $color_fg); }
     }
   }
 }
@@ -369,8 +369,8 @@ dialog.background.csd > box.dialog-vbox.vertical {
   > searchbar + scrolledwindow > viewport.frame > list {
     // FIXME: who needed hard-coded 5px outer margins
     // causing weird pitch black band?
-    border: 1px solid $foreground_div_sld; // use opaque
-    box-shadow: 0 0 0 5px $background;
+    border: 1px solid $color_fg_div_sld; // use opaque
+    box-shadow: 0 0 0 5px $color_bg;
   }
 }
 
@@ -382,16 +382,16 @@ dialog.background.csd > box.dialog-vbox.vertical {
 $gf_margin: 12px;
 
 %gf_window {
-  @if $variant == mixed { color: $foreground_inv; }
-  @else { color: $foreground; }
+  @if $variant == mixed { color: $color_fg_inv; }
+  @else { color: $color_fg; }
 
-  levelbar block:not(.empty) { background-color: $background_success; }
+  levelbar block:not(.empty) { background-color: $color_bg_sccs; }
 
   &.solid {
-    @if $variant == mixed { color: $foreground_inv; }
-    @else { color: $foreground; }
+    @if $variant == mixed { color: $color_fg_inv; }
+    @else { color: $color_fg; }
 
-    levelbar block:not(.empty) { background-color: $background_success; }
+    levelbar block:not(.empty) { background-color: $color_bg_sccs; }
   }
 
   &:not(.solid) {
@@ -399,17 +399,17 @@ $gf_margin: 12px;
 
     > box {
       padding: $gf_margin;
-      @if $variant == mixed { background-color: track($background_dark_inv, $alpha_osd); }
-      @else { background-color: track($background_dark, $alpha_osd); }
+      @if $variant == mixed { background-color: track($color_bg_dark_inv, $alpha_osd); }
+      @else { background-color: track($color_bg_dark, $alpha_osd); }
     }
   }
 
   // for non-composited environments
   &.solid {
     border-radius: 0;
-    border: 1px solid $foreground_div;
-    @if $variant == mixed { background-color: track($background_dark_inv, $alpha_osd); }
-    @else { background-color: track($background_dark, $alpha_osd); }
+    border: 1px solid $color_fg_div;
+    @if $variant == mixed { background-color: track($color_bg_dark_inv, $alpha_osd); }
+    @else { background-color: track($color_bg_dark, $alpha_osd); }
   }
 }
 
@@ -473,13 +473,13 @@ $gf_margin: 12px;
 #gf-input-source {
   min-width: rem($ref_size * 9, $sw: 1.0);
   min-height: rem($ref_size * 9, $sw: 1.0);
-  color: if($variant != light, $foreground_inv, $foreground);
+  color: if($variant != light, $color_fg_inv, $color_fg);
   font-size: rem(40px, $sw: 1.0);
   font-weight: 400;
   &:selected {
     border-radius: 2px;
-    background-color: $background_tracker;
-    color: if($variant != light, $foreground_accent_inv, $foreground_accent);
+    background-color: $color_bg_trk;
+    color: if($variant != light, $color_fg_acc_inv, $color_fg_acc);
   }
 }
 
@@ -490,7 +490,7 @@ $gf_margin: 12px;
 
   gf-candidate-box {
     @include radius($r_2, none);
-    color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
+    color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
     @include transition(reset);
 
     label {
@@ -501,12 +501,12 @@ $gf_margin: 12px;
     }
 
     &:hover {
-      background-color: $background_tracker;
-      color: if($variant == mixed, $foreground_inv, $foreground);
+      background-color: $color_bg_trk;
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
     }
     &:selected {
-      background-color: $background_suggestion;
-      color: $foreground_selection;
+      background-color: $color_bg_sgst;
+      color: $color_fg_sel;
     }
   }
 
@@ -543,7 +543,7 @@ $gf_margin: 12px;
   padding: 4px 10px; // NEEDS_REVIEW
 
   label,
-  image { color: if($variant == mixed, $foreground_inv, $foreground); }
+  image { color: if($variant == mixed, $color_fg_inv, $color_fg); }
 }
 
 %gf_icon {
@@ -559,8 +559,8 @@ $gf_margin: 12px;
 
   &:selected {
     label {
-      background-color: $background_selection;
-      color: $foreground_selection;
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
     }
   }
 
@@ -589,12 +589,12 @@ $gf_margin: 12px;
   > frame {
     border-radius: $r_8;
     @if $variant == mixed { // alpha compositing doesn't work though
-      background-color: track($background_dark_inv, $alpha_osd);
-      color: $foreground_inv;
+      background-color: track($color_bg_dark_inv, $alpha_osd);
+      color: $color_fg_inv;
     }
     @else {
-      background-color: track($background_dark, $alpha_osd);
-      color: $foreground;
+      background-color: track($color_bg_dark, $alpha_osd);
+      color: $color_fg;
     }
 
     &, > border { border: none; }
@@ -611,18 +611,18 @@ $gf_margin: 12px;
       @include radius($r_4 $r_4 0 0, none);
       border: none;
       @if $variant == mixed {
-        @include entry(flat-normal, $tc: $foreground_inv);
-        caret-color: $foreground_inv;
-        &:focus { @include entry(flat-focus, $tc: $foreground_inv); }
-        &:disabled { @include entry(flat-disabled, $tc: $foreground_inv); }
+        @include entry(flat-normal, $tc: $color_fg_inv);
+        caret-color: $color_fg_inv;
+        &:focus { @include entry(flat-focus, $tc: $color_fg_inv); }
+        &:disabled { @include entry(flat-disabled, $tc: $color_fg_inv); }
 
         selection { @extend %selected_items; }
       }
       @else {
-        @include entry(flat-normal, $tc: $foreground);
-        caret-color: $foreground;
-        &:focus { @include entry(flat-focus, $tc: $foreground); }
-        &:disabled { @include entry(flat-disabled, $tc: $foreground); }
+        @include entry(flat-normal, $tc: $color_fg);
+        caret-color: $color_fg;
+        &:focus { @include entry(flat-focus, $tc: $color_fg); }
+        &:disabled { @include entry(flat-disabled, $tc: $color_fg); }
       }
     }
   }
@@ -640,7 +640,7 @@ $gf_margin: 12px;
 //  ************/
 
 %nautilus_desktop_items {
-  color: $foreground_selection;
+  color: $color_fg_sel;
   text-shadow: $z-depth-1-label; // non-sense for me
   &:selected { text-shadow: none; }
 }
@@ -656,7 +656,7 @@ $gf_margin: 12px;
 .background.nautilus-window:not(.nautilus-desktop-window) {
   &:not(nautilus-desktop-window) {
     // enforce base-color backgrounds
-    background-color: $base;
+    background-color: $color_base;
   }
 }
 
@@ -665,8 +665,8 @@ $gf_margin: 12px;
     @include radius($r_2, none);
     &:active:not(:focus) {
       // FIXME: prevent unneeded icon dimming when unfocused
-      background-color: $background_selection;
-      color: $foreground_selection;
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
     }
     @if $maj_ver == 3 {
       outline-width: 0; // unset outlines
@@ -691,7 +691,7 @@ $gf_margin: 12px;
 .nautilus-window {
   > grid.horizontal paned > separator {
     // do not use transparentize
-    background-image: image($foreground_div_sld);
+    background-image: image($color_fg_div_sld);
     background-size: $separator_narrow;
     background-repeat: repeat-y;
     @include transition(reset);
@@ -699,9 +699,9 @@ $gf_margin: 12px;
 
   > headerbar.titlebar { // radial-progress widget
     revealer > button.popup.toggle {
-      > widget { color: if($variant == mixed, $foreground_accent_inv, $foreground_accent); }
+      > widget { color: if($variant == mixed, $color_fg_acc_inv, $color_fg_acc); }
 
-      &:checked > widget { color: $foreground_selection; }
+      &:checked > widget { color: $color_fg_sel; }
     }
   }
 
@@ -715,7 +715,7 @@ $gf_margin: 12px;
   flowboxchild { // experimental 'new view' mode
     margin: unset; // unset spacing first
     padding: unset;
-    color: $foreground;
+    color: $color_fg;
     @if $maj_ver == 3 {
       outline-width: 0; // unset outlines
     }
@@ -752,8 +752,8 @@ $gf_margin: 12px;
 
       box.icon {
         &-item-background label {
-          background-color: $background_selection;
-          color: $foreground_selection;
+          background-color: $color_bg_sel;
+          color: $color_fg_sel;
         }
 
         // tone up image node
@@ -772,30 +772,30 @@ $gf_margin: 12px;
 
   &.free {
     @include radius($r, none);
-    background-color: mix($foreground, $base, percentage($alpha_track_1)); // legacy
-    color: mix($foreground, $base, percentage($alpha_track_1)); // >= 3.29.90
+    background-color: mix($color_fg, $color_base, percentage($alpha_track_1)); // legacy
+    color: mix($color_fg, $color_base, percentage($alpha_track_1)); // >= 3.29.90
   }
 
   &.used {
     @include radius($r, none);
-    background-color: $background_accent;
-    color: $background_accent;
+    background-color: $color_bg_acc;
+    color: $color_bg_acc;
   }
 
   &.unknown {
-    background-color: mix($background_accent, $base, percentage($alpha_foreground_3rd));
-    color: mix($background_accent, $base, percentage($alpha_foreground_3rd));
+    background-color: mix($color_bg_acc, $color_base, percentage($alpha_foreground_3rd));
+    color: mix($color_bg_acc, $color_base, percentage($alpha_foreground_3rd));
   }
 }
 
 // 'batch-rename' dialogs
 .conflict-row {
-  background-color: $warn_bg;
-  color: $sec_fix_fg;
+  background-color: $color_bg_warn;
+  color: $color_fg_fix_2;
   &:hover,
   &:active {
-    background-color: $warn;
-    color: $foreground_fix;
+    background-color: $color_warn;
+    color: $color_fg_fix;
   }
   &:selected { @extend %selected_items; }
 }
@@ -812,17 +812,17 @@ dialog.background.csd > box.dialog-vbox > grid.horizontal {
     @include radius($r_2, none);
 
     &.dim-label {
-      color: $foreground_tertiary;
+      color: $color_fg_3;
       &:selected {
-        &, &:focus { color: mix($foreground_selection, $background_selection, percentage($alpha_foreground_3rd)); }
+        &, &:focus { color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_foreground_3rd)); }
       }
     }
   }
 
   &-list-dim-label {
-    color: $foreground_tertiary;
+    color: $color_fg_3;
     &:selected {
-      &, &:focus { color: mix($foreground_selection, $background_selection, percentage($alpha_foreground_3rd)); }
+      &, &:focus { color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_foreground_3rd)); }
     }
   }
 }
@@ -858,23 +858,23 @@ dialog.background.csd > box.dialog-vbox > grid.horizontal {
   > border { border: none; }
 
   treeview.view {
-    background-color: $background;
+    background-color: $color_bg;
     font-weight: 400; // reset weight
     &:selected {
-      background-color: track($background_selection, $alpha_track_2);
-      color: $foreground;
-      &:hover { background-color: track($background_selection, $alpha_track_2); }
-      &:dir(ltr) { box-shadow: inset 4px 0 $background_selection; }
-      &:dir(rtl) { box-shadow: inset -4px 0 $background_selection; }
+      background-color: track($color_bg_sel, $alpha_track_2);
+      color: $color_fg;
+      &:hover { background-color: track($color_bg_sel, $alpha_track_2); }
+      &:dir(ltr) { box-shadow: inset 4px 0 $color_bg_sel; }
+      &:dir(rtl) { box-shadow: inset -4px 0 $color_bg_sel; }
       &:focus {
-        background-color: track($background_selection, $alpha_track_2);
-        color: $foreground;
-        &:hover { background-color: track($background_selection, $alpha_track_2); }
-        &:dir(ltr) { box-shadow: inset 4px 0 $background_selection; }
-        &:dir(rtl) { box-shadow: inset -4px 0 $background_selection; }
+        background-color: track($color_bg_sel, $alpha_track_2);
+        color: $color_fg;
+        &:hover { background-color: track($color_bg_sel, $alpha_track_2); }
+        &:dir(ltr) { box-shadow: inset 4px 0 $color_bg_sel; }
+        &:dir(rtl) { box-shadow: inset -4px 0 $color_bg_sel; }
       }
     }
-    &:hover { background-color: $background_tracker; }
+    &:hover { background-color: $color_bg_trk; }
   }
 }
 
@@ -923,15 +923,15 @@ window.background > box.vertical > paned.horizontal > frame {
       background-color: transparent;
 
       slider {
-        background-color: track($foreground_fix, $alpha_foreground_3rd * $alpha_foreground_3rd);
-        &:hover { background-color: track($foreground_fix, $alpha_foreground_2nd * $alpha_foreground_3rd); }
-        &:active { background-color: $foreground_fix; }
+        background-color: track($color_fg_fix, $alpha_foreground_3rd * $alpha_foreground_3rd);
+        &:hover { background-color: track($color_fg_fix, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+        &:active { background-color: $color_fg_fix; }
         &:disabled { opacity: $alpha_foreground_bdp; }
       }
 
       &.overlay-indicator {
         &:not(.dragging):not(.hovering) slider {
-          background-color: track($foreground_fix, $alpha_foreground_3rd * $alpha_foreground_3rd);
+          background-color: track($color_fg_fix, $alpha_foreground_3rd * $alpha_foreground_3rd);
         }
       }
     }
@@ -967,15 +967,15 @@ stack#conversation_viewer {
   }
 
   list.background.conversation-listbox {
-    background-color: $background;
+    background-color: $color_bg;
 
     > row.activatable {
       > box.geary_email {
         margin: -1px; // hide hard-coded parent borders
-        border-top: 1px solid $background;
+        border-top: 1px solid $color_bg;
 
         grid.geary-message-summary {
-          border-bottom: 1px solid $foreground_div;
+          border-bottom: 1px solid $color_fg_div;
         }
       }
 
@@ -988,7 +988,7 @@ stack#conversation_viewer {
       > widget.geary-composer-embed {
         headerbar { // in-line headerbars
           margin: -1px -1px 0; // FIXME: does not work
-          border-top: 1px solid $background;
+          border-top: 1px solid $color_bg;
         }
       }
     }
@@ -1008,17 +1008,17 @@ stack#conversation_viewer {
     headerbar.titlebar.incognito-mode {
       entry {
         @if $variant != light {
-          @include entry(normal, $c: $fix_base,
-                                 $tc: $foreground_fix);
-          caret-color: $foreground_fix;
+          @include entry(normal, $c: $color_base_fix,
+                                 $tc: $color_fg_fix);
+          caret-color: $color_fg_fix;
           &:focus {
-            @include entry(focus, $c: $fix_base,
-                                  $tc: $foreground_fix);
-            caret-color: $foreground_fix;
+            @include entry(focus, $c: $color_base_fix,
+                                  $tc: $color_fg_fix);
+            caret-color: $color_fg_fix;
           }
           &:disabled {
-            @include entry(disabled, $c: $fix_base,
-                                     $tc: $foreground_fix);
+            @include entry(disabled, $c: $color_base_fix,
+                                     $tc: $color_fg_fix);
           }
         }
       }
@@ -1027,28 +1027,28 @@ stack#conversation_viewer {
         // these classes are specificity bump to override titlebuttons
         &:not(.appmenu):not(.icon):not(:indeterminate) {
           @if $variant != light {
-            @include button(normal, $c: $fix_base,
-                                    $tc: $foreground_fix);
+            @include button(normal, $c: $color_base_fix,
+                                    $tc: $color_fg_fix);
             @include ink-reaction(
-                       normal, $fc: $foreground_fix, $tr: ink-normal-dec);
+                       normal, $fc: $color_fg_fix, $tr: ink-normal-dec);
             &:hover {
-              @include button(hover, $c: $fix_base,
-                                     $tc: $foreground_fix);
+              @include button(hover, $c: $color_base_fix,
+                                     $tc: $color_fg_fix);
             }
             &:active {
-              @include button(active, $c: $fix_base,
-                                      $tc: $foreground_fix);
+              @include button(active, $c: $color_base_fix,
+                                      $tc: $color_fg_fix);
               @include ink-reaction(
-                         active-dec, $fc: $foreground_fix, $tr: ink-active-dec);
+                         active-dec, $fc: $color_fg_fix, $tr: ink-active-dec);
             }
             &:disabled {
-              @include button(disabled, $c: $fix_base,
-                                        $tc: $foreground_fix);
+              @include button(disabled, $c: $color_base_fix,
+                                        $tc: $color_fg_fix);
             }
-            &:checked { @include button(checked, $tc: $foreground_selection); }
+            &:checked { @include button(checked, $tc: $color_fg_sel); }
             &:checked:disabled {
-              @include button(checked-disabled, $c: $fix_base,
-                                                $tc: $foreground_fix);
+              @include button(checked-disabled, $c: $color_base_fix,
+                                                $tc: $color_fg_fix);
             }
           }
         }
@@ -1059,36 +1059,36 @@ stack#conversation_viewer {
 
 headerbar.titlebar.incognito-mode {
   buttonbox.linked > widget {
-    color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
+    color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
   }
 }
 
 // reset inverted foreground color
 notebook > stack > box.vertical > paned.vertical > overlay {
-  > .floating-bar { color: $foreground_secondary; }
+  > .floating-bar { color: $color_fg_2; }
 }
 
 // overrides foregrounds for 3.24's ssd-mode
 .background headerbar entry {
   &.starred,
   &.non-starred {
-    color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
-    caret-color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
+    color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+    caret-color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
     &:focus {
-      color: if($variant == mixed, $foreground_inv, $foreground);
-      caret-color: if($variant == mixed, $foreground_inv, $foreground);
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
+      caret-color: if($variant == mixed, $color_fg_inv, $color_fg);
     }
     &:disabled {
-      color: if($variant == mixed, $dis_inv_sec_fg, $foreground_dis_secondary);
+      color: if($variant == mixed, $color_fg_dis_inv_2, $color_fg_dis_2);
     }
   }
 
   // render yellow 'star' icon if bookmarked
   &.starred > image.right {
-    color: track($ques_bg, $alpha_foreground_2nd);
+    color: track($color_bg_ques, $alpha_foreground_2nd);
     &:hover,
     &:active,
-    &:checked { color: $ques_bg; }
+    &:checked { color: $color_bg_ques; }
   }
 }
 
@@ -1097,7 +1097,7 @@ notebook > stack > box.vertical > paned.vertical > overlay {
   popover.background:not(.emoji-picker) > box.vertical > scrolledwindow {
     // re-define background colors for GtkListBox
     > viewport.frame > list.background {
-      background-color: $background_dark;
+      background-color: $color_bg_dark;
     }
   }
 }
@@ -1105,7 +1105,7 @@ notebook > stack > box.vertical > paned.vertical > overlay {
   popover:not(.emoji-picker) > box.vertical > scrolledwindow {
     // re-define background colors for GtkListBox
     > viewport.frame > list.background {
-      background-color: $background_dark;
+      background-color: $color_bg_dark;
     }
   }
 }
@@ -1114,13 +1114,13 @@ notebook > stack > box.vertical > paned.vertical > overlay {
 @if $maj_ver == 3 {
   popover.background:not(.emoji-picker) > box.vertical > stack > box.vertical {
     scrolledwindow > viewport.frame {
-      border: 1px solid $foreground_div;
+      border: 1px solid $color_fg_div;
 
       > list.background > row.activatable.bookmarks-row {
-        color: $foreground_secondary;
+        color: $color_fg_2;
         &:hover,
         &:active,
-        &:checked { color: $foreground; }
+        &:checked { color: $color_fg; }
 
         button.flat {
           min-width: $icon_size;
@@ -1135,13 +1135,13 @@ notebook > stack > box.vertical > paned.vertical > overlay {
 @else {
   popover:not(.emoji-picker) > box.vertical > stack > box.vertical {
     scrolledwindow > viewport.frame {
-      border: 1px solid $foreground_div;
+      border: 1px solid $color_fg_div;
 
       > list.background > row.activatable.bookmarks-row {
-        color: $foreground_secondary;
+        color: $color_fg_2;
         &:hover,
         &:active,
-        &:checked { color: $foreground; }
+        &:checked { color: $color_fg; }
 
         button.flat {
           min-width: $icon_size;
@@ -1156,14 +1156,14 @@ notebook > stack > box.vertical > paned.vertical > overlay {
 
 // bookmark-tag flowbox-childs (almost hard-coded)
 flowboxchild.bookmark-tag-widget {
-  color: track($foreground_fix, $alpha_foreground_3rd); // unchecked
+  color: track($color_fg_fix, $alpha_foreground_3rd); // unchecked
   font-weight: 500;
 
   label { margin-bottom: rem($baseline, $sw: 1.0); }
 
   button { @include radius($r_2); } // revert to square button
 
- &-selected { color: $foreground_selection; } // checked
+ &-selected { color: $color_fg_sel; } // checked
 }
 
 // search result counter labels
@@ -1181,7 +1181,7 @@ window.background box.vertical > paned.horizontal > box.vertical {
   // remove drop-shadow
   > box.vertical > toolbar.primary-toolbar {
     box-shadow: none;
-    border-bottom: 1px solid $foreground_div;
+    border-bottom: 1px solid $color_fg_div;
   }
 }
 
@@ -1206,13 +1206,13 @@ window.background box.vertical > paned.horizontal > box.vertical {
 
     &:selected {
       background-image:
-        image(mix($background_selection, $background, percentage($alpha_track_2)));
-      &:dir(ltr) { box-shadow: inset 4px 0 $background_selection; }
-      &:dir(rtl) { box-shadow: inset -4px 0 $background_selection; }
+        image(mix($color_bg_sel, $color_bg, percentage($alpha_track_2)));
+      &:dir(ltr) { box-shadow: inset 4px 0 $color_bg_sel; }
+      &:dir(rtl) { box-shadow: inset -4px 0 $color_bg_sel; }
     }
 
     label.pending-messages-count {
-      background-image: image($background_suggestion);
+      background-image: image($color_bg_sgst);
     }
   }
 }
@@ -1227,15 +1227,15 @@ window.background > box.horizontal > overlay > stack > overlay > box.vertical {
   > stack.view { // mimic inline-toolbar styling
     border-style: solid;
     border-width: 1px 0 0;
-    border-color: $foreground_div;
-    background-color: $background_dark;
+    border-color: $color_fg_div;
+    background-color: $color_bg_dark;
   }
 }
 
 popover.emoji-picker flowboxchild.emoji {
   // FIXME: why did devs ignore the global emoji theming?
   // Should set hover pseudo-class to child widget node.
-  &:hover > widget:not(:hover) label { color: $foreground_selection; }
+  &:hover > widget:not(:hover) label { color: $color_fg_sel; }
 }
 
 // /*************
@@ -1246,7 +1246,7 @@ popover.emoji-picker flowboxchild.emoji {
 .sidebar-paned {
   scrolledwindow {
     @extend %sidebar_template;
-    background-image: image($background);
+    background-image: image($color_bg);
   }
 
   treeview.view.sidebar { @extend %sidebar_treeview; }
@@ -1257,8 +1257,8 @@ window.csd > box.vertical > box.vertical,
 window.solid-csd > box.vertical > box.vertical {
   > toolbar.horizontal {
     margin: -1px 0;
-    border-top: 1px solid $foreground_div;
-    background-color: $background_dark;
+    border-top: 1px solid $color_fg_div;
+    background-color: $color_bg_dark;
     box-shadow: none;
   }
 
@@ -1329,8 +1329,8 @@ window.background > box.vertical > toolbar.primary-toolbar {
 notebook > stack grid.horizontal > grid.horizontal > grid.horizontal {
   button.flat.toggle { // 'edit' and 'browse' button
     &:checked { // draw underline indicator
-      background-color: $background_selection;
-      color: $foreground_selection;
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
     }
   }
 }
@@ -1398,9 +1398,9 @@ window.background {
 scrolledwindow {
   &.history-view.frame {
     border-bottom-color: if($variant == dark, track(white, $alpha_div_2),
-                                              $foreground_div);
+                                              $color_fg_div);
 
-    row.history-entry widget > label { color: $foreground_tertiary; }
+    row.history-entry widget > label { color: $color_fg_3; }
   }
 }
 
@@ -1411,8 +1411,8 @@ scrolledwindow {
 .gedit-bottom-panel-paned {
   .gedit-search-slider {
     @extend %app_slider;
-    background-color: track($background_tooltip, $alpha_osd);
-    color: $foreground;
+    background-color: track($color_bg_tooltip, $alpha_osd);
+    color: $color_fg;
   }
 }
 
@@ -1433,8 +1433,8 @@ paned.gedit-bottom-panel-paned + statusbar { // inline-toolbar styling
   padding: $toolbar_padding;
   border-style: solid;
   border-width: 1px 0 0;
-  border-color: $foreground_div;
-  background-color: $background_dark;
+  border-color: $color_fg_div;
+  background-color: $color_bg_dark;
 
   button.flat { // padding is overridden by (1px 8px 2px 4px)
     min-height: rem($small_widget);
@@ -1453,7 +1453,7 @@ paned.gedit-bottom-panel-paned + statusbar { // inline-toolbar styling
 
     > box.horizontal {  // header-part
       padding: rem($menu_padding) 0;
-      border-bottom: 1px solid $foreground_div;
+      border-bottom: 1px solid $color_fg_div;
     }
 
     treeview.view { @extend %sidebar_treeview; }
@@ -1479,10 +1479,10 @@ frame.gedit-map-frame > border {
   @if $mnr_ver < 23 {
     // styling for editor search
     frame.gb-search-frame {
-      background-image: image($background);
+      background-image: image($color_bg);
       padding: rem($menuitem_padding);
       border-style: solid;
-      border-color: $foreground_div;
+      border-color: $color_fg_div;
       border-width: 0 1px 1px;
       border-radius: 0;
 
@@ -1490,7 +1490,7 @@ frame.gedit-map-frame > border {
     }
 
     .gb-search-entry-occurrences-tag {
-      color: $foreground_dis;
+      color: $color_fg_dis;
       margin: rem(2px);
       padding: rem(2px);
       border-width: 0;
@@ -1513,13 +1513,13 @@ frame.gedit-map-frame > border {
     // Pillbox is used to render "languages" in the greeter.
     pillbox {
       border-radius: $r_2;
-      background-color: $background;
+      background-color: $color_bg;
     }
 
     // Styling in the genesis (create project) perspective.
     genesisperspective stack > box:first-child list row {
       padding: rem(10px);
-      border-bottom: 1px solid $foreground_div_sld;
+      border-bottom: 1px solid $color_fg_div_sld;
       &:last-child { border-bottom: none; }
     }
 
@@ -1529,8 +1529,8 @@ frame.gedit-map-frame > border {
     layouttabbar {
       min-height: rem($widget_size);
       padding: $toolbar_padding;
-      border-bottom: 1px solid $foreground_div_sld;
-      background-color: $background;
+      border-bottom: 1px solid $color_fg_div_sld;
+      background-color: $color_bg;
 
       box.horizontal > button {
         &, &.popup.toggle {
@@ -1541,8 +1541,8 @@ frame.gedit-map-frame > border {
           &:active { @include button(flat-active); }
           &:disabled { @include button(flat-disabled); }
           &:checked { // draw underline
-            background-color: $background_selection;
-            color: $foreground_selection;
+            background-color: $color_bg_sel;
+            color: $color_fg_sel;
           }
           &:checked:disabled { @include button(flat-checked-disabled); }
         }
@@ -1558,7 +1558,7 @@ frame.gedit-map-frame > border {
 
       separator.vertical {
         margin: 0 rem($baseline * 2); // expand vertically
-        background-color: $foreground_div;
+        background-color: $color_fg_div;
       }
 
       button {
@@ -1572,8 +1572,8 @@ frame.gedit-map-frame > border {
           &:active { @include button(flat-active); }
           &:disabled { @include button(flat-disabled); }
           &:checked { // draw underline
-            background-color: $background_selection;
-            color: $foreground_selection;
+            background-color: $color_bg_sel;
+            color: $color_fg_sel;
           }
           &:checked:disabled { @include button(flat-checked-disabled); }
         }
@@ -1597,59 +1597,59 @@ layout {
   // hide top/bottom pane-separator
   border-width: 0 1px 0;
   border-style: none solid none;
-  border-color: $foreground_div_sld;
+  border-color: $color_fg_div_sld;
   // revive top-edge border with box-shadow
-  box-shadow: inset 0 -1px $foreground_div_sld;
+  box-shadow: inset 0 -1px $color_fg_div_sld;
 
   -PnlDockBin-handle-size: 1;
 }
 
-eggsearchbar box.search-bar { background-color: $background_dark; }
+eggsearchbar box.search-bar { background-color: $color_bg_dark; }
 
 %omnibar_entry {
   // enforce inverted label color
   &:not(:hover):not(:active) > entry {
     @if $variant == mixed {
       background-image:
-        image(mix($foreground_inv, $inv_base, percentage($alpha_track_1 / 2)));
-      color: $foreground_secondary_inv;
-      caret-color: $foreground_secondary_inv;
+        image(mix($color_fg_inv, $color_base_inv, percentage($alpha_track_1 / 2)));
+      color: $color_fg_inv_2;
+      caret-color: $color_fg_inv_2;
 
-      label { color: $foreground_secondary_inv; }
+      label { color: $color_fg_inv_2; }
     }
     @else {
-      color: $foreground_secondary;
-      caret-color: $foreground_secondary;
+      color: $color_fg_2;
+      caret-color: $color_fg_2;
 
-      label { color: $foreground_secondary; }
+      label { color: $color_fg_2; }
     }
   }
 
   &:hover > entry {
     @if $variant == mixed {
       background-image:
-        image(mix($foreground_inv, $inv_base, percentage($alpha_track_1 / 2)));
-      color: $foreground_inv;
-      caret-color: $foreground_inv;
+        image(mix($color_fg_inv, $color_base_inv, percentage($alpha_track_1 / 2)));
+      color: $color_fg_inv;
+      caret-color: $color_fg_inv;
 
-      label { color: $foreground_inv; }
+      label { color: $color_fg_inv; }
     }
     @else {
-      color: $foreground;
-      caret-color: $foreground;
+      color: $color_fg;
+      caret-color: $color_fg;
 
-      label { color: $foreground; }
+      label { color: $color_fg; }
     }
   }
 
   &:active > entry {
     &, &:focus {
-      border-color: $background_selection;
-      background-image: image($background_selection);
-      color: $foreground_selection;
-      caret-color: $foreground_selection;
+      border-color: $color_bg_sel;
+      background-image: image($color_bg_sel);
+      color: $color_fg_sel;
+      caret-color: $color_fg_sel;
 
-      label { color: $foreground_selection; }
+      label { color: $color_fg_sel; }
     }
   }
 }
@@ -1681,7 +1681,7 @@ omnibar.linked {
 
     trough { background-color: transparent; }
 
-    progress { background-color: track($background_accent, $alpha_track_out); }
+    progress { background-color: track($color_bg_acc, $alpha_track_out); }
   }
 
   // child buttons have fixed 24px min-height/width via shared-omnibar.css
@@ -1691,21 +1691,21 @@ omnibar.linked {
 %tabstrip {
   min-height: rem($small_widget);
   padding: $toolbar_padding rem($ref_size);
-  border-bottom: 1px solid $foreground_div_sld;
-  background-color: $background;
+  border-bottom: 1px solid $color_fg_div_sld;
+  background-color: $color_bg;
 }
 
 %tabstrip_tab {
-  color: $foreground_tertiary;
+  color: $color_fg_3;
   font-weight: 500;
-  box-shadow: inset 0 -1px $foreground_tracker_out;
+  box-shadow: inset 0 -1px $color_fg_trk_out;
   &:hover {
-    color: $foreground;
-    box-shadow: inset 0 -2px $foreground_tracker_out;
+    color: $color_fg;
+    box-shadow: inset 0 -2px $color_fg_trk_out;
   }
   &:checked {
-    color: $foreground;
-    box-shadow: inset 0 -2px $background_selection;
+    color: $color_fg;
+    box-shadow: inset 0 -2px $color_bg_sel;
   }
 }
 
@@ -1720,7 +1720,7 @@ docktabstrip docktab { @extend  %tabstrip_tab; }
     dockstack > stack { // treeviews inside the left/right layoutpane
       > dockwidget treeview.project-tree.view,
       > devhelppanel treeview.view {
-        background-color: $background;
+        background-color: $color_bg;
         font-weight: 500;
         &:selected { @extend %selected_items; }
       }
@@ -1769,7 +1769,7 @@ greeter > box.vertical > stack {
     frame > list {
       // override shared.css
       row.activatable:not(:last-child) {
-        border-image: image($foreground_div) 0 0 1 / 0 0 1px;
+        border-image: image($color_fg_div) 0 0 1 / 0 0 1px;
       }
     }
   }
@@ -1796,14 +1796,14 @@ preferences > box.horizontal {
 
   preferencesgroup {
     > box.vertical > label { // titles
-      color: $foreground_tertiary;
+      color: $color_fg_3;
       font-weight: 700;
     }
 
     scrolledwindow > viewport.frame > list {
       // override shared.css
       row.activatable:not(:last-child) {
-        border-image: image($base) 0 0 1 / 0 0 1px;
+        border-image: image($color_base) 0 0 1 / 0 0 1px;
       }
     }
   }
@@ -1819,13 +1819,13 @@ ide {
   // left-pane sidebar?
   &editorsidebar {
     @extend %sidebar_template;
-    background-image: image($background);
+    background-image: image($color_bg);
   }
 
   // editor-pane headers?
   &layoutstackheader { // damned upstream CSS
-    border-bottom: 1px solid $foreground_div;
-    box-shadow: inset 0 0 0 26px track($fix_base, 0.05);
+    border-bottom: 1px solid $color_fg_div;
+    box-shadow: inset 0 0 0 26px track($color_base_fix, 0.05);
 
     button {
       min-width: 26px;
@@ -1840,7 +1840,7 @@ dzl {
   &multipaned {
     > box.vertical {
       // draw borders for pane-grip
-      border-top: 1px solid $foreground_div;
+      border-top: 1px solid $color_fg_div;
     }
 
     // 'open-pages' list
@@ -1860,12 +1860,12 @@ dzl {
   &preferencesview {
     entry.preferences-search.search {
       // add 1px bottom shadow as a border
-      box-shadow: inset 0 -1px $foreground_div;
+      box-shadow: inset 0 -1px $color_fg_div;
     }
 
     stacksidebar.sidebar viewport.frame > list {
       @extend %sidebar_template;
-      background-image: image($background);
+      background-image: image($color_bg);
 
       row.activatable {
         min-height: rem($widget_size);
@@ -1891,7 +1891,7 @@ list {
   popover.omnibar box.vertical & {
     // list node at the bottom?
     margin: $popover_padding;
-    background-color: $background_dark;
+    background-color: $color_bg_dark;
   }
 }
 
@@ -1922,9 +1922,9 @@ window.workbench > stack.titlebar > stack > headerbar > box.horizontal {
   }
 
   > box.horizontal > button.popup.toggle { // radial-progress widget
-    > widget { color: $foreground_accent; }
+    > widget { color: $color_fg_acc; }
 
-    &:checked > widget { color: $foreground_selection; }
+    &:checked > widget { color: $color_fg_sel; }
   }
 }
 
@@ -1938,9 +1938,9 @@ button.dzlmenubuttonitem.check { // menuitem buttons
 
   // :checked inside the popover menus!?
   &:checked label { // keep default label color
-    color: $foreground_secondary;
+    color: $color_fg_2;
 
-    &.dim-label { color: $foreground_secondary; }
+    &.dim-label { color: $color_fg_2; }
   }
 }
 
@@ -1960,8 +1960,8 @@ button.dzlmenubuttonitem.check { // menuitem buttons
   }
   @else {
     overlay > stack.background stack grid scrolledwindow.sidebar {
-      &:dir(ltr) { border-right: 1px solid $foreground_div; }
-      &:dir(rtl) { border-right: 1px solid $foreground_div; }
+      &:dir(ltr) { border-right: 1px solid $color_fg_div; }
+      &:dir(rtl) { border-right: 1px solid $color_fg_div; }
 
       list {
         @extend %sidebar_template;
@@ -1971,8 +1971,8 @@ button.dzlmenubuttonitem.check { // menuitem buttons
 }
 @else {
   overlay > stack.background stack grid scrolledwindow.sidebar {
-    &:dir(ltr) { border-right: 1px solid $foreground_div; }
-    &:dir(rtl) { border-right: 1px solid $foreground_div; }
+    &:dir(ltr) { border-right: 1px solid $color_fg_div; }
+    &:dir(rtl) { border-right: 1px solid $color_fg_div; }
 
     list { @extend %sidebar_template; }
   }
@@ -2019,7 +2019,7 @@ list.contacts {
     row.activatable { @extend %sidebar_row_template; }
   }
 
-  &-contact-list { border-top: 1px solid $foreground_div; }
+  &-contact-list { border-top: 1px solid $color_fg_div; }
 }
 
 list.contacts-view {
@@ -2033,16 +2033,16 @@ list.contacts-view {
 
 scrolledwindow.contacts-contact-form {
   // override stock style.css
-  background-image: image($base);
+  background-image: image($color_base);
 }
 
 @if $maj_ver == 3 {
   @if $mnr_ver > 23 { // >= 3.31.90
-    hdyleaflet > overlay > stack { background-color: $base; }
+    hdyleaflet > overlay > stack { background-color: $color_base; }
   }
 }
 @else {
-  hdyleaflet > overlay > stack { background-color: $base; }
+  hdyleaflet > overlay > stack { background-color: $color_base; }
 }
 
 // /**********
@@ -2052,7 +2052,7 @@ scrolledwindow.contacts-contact-form {
 window.background {
   > box.vertical > box.horizontal {
     > widget > label { // annotation title
-      color: $foreground_fix;
+      color: $color_fg_fix;
       font-weight: 700;
     }
   }
@@ -2075,8 +2075,8 @@ window.background.csd > box.vertical + headerbar.titlebar {
 // plugin mode in Ephy
 window.background > widget > window.background > box.vertical {
   > toolbar.horizontal {
-    border-top: 1px solid $foreground_div;
-    background-color: $background;
+    border-top: 1px solid $color_fg_div;
+    background-color: $color_bg;
   }
 
   > scrolledwindow {
@@ -2084,7 +2084,7 @@ window.background > widget > window.background > box.vertical {
       &,
       &.overlay-indicator,
       trough {
-        background-color: $background;
+        background-color: $color_bg;
         @include transition(reset);
       }
 
@@ -2103,7 +2103,7 @@ window.background > box.vertical box.horizontal {
   list.categories { // side-pane
     @extend %sidebar_template;
     border: none;
-    color: $foreground_secondary;
+    color: $color_fg_2;
 
     row.activatable.category { // use side-bar styling
       // paddings in row were hard-coded with crazy large values...
@@ -2121,15 +2121,15 @@ window.background > box.vertical box.horizontal {
       background-color: transparent; // hide single-line separators
 
       &.compressed-rows-group-separator { // use opaque color
-        background-image : image($foreground_div_sld);
+        background-image : image($color_fg_div_sld);
       }
     }
 
     // > 3.25.90
     row.event.activatable {
-      color: $foreground_secondary;
+      color: $color_fg_2;
       &:hover,
-      &:active { color: $foreground; }
+      &:active { color: $color_fg; }
       &:not(:disabled) { // for quicker response
         background-image: none;
         transition-duration: $transition_d_short;
@@ -2138,33 +2138,33 @@ window.background > box.vertical box.horizontal {
       }
 
       label.compressed-entries-label { // hard-coded background-color?
-        background-image: image($background_suggestion);
-        color: $foreground_selection;
+        background-image: image($color_bg_sgst);
+        color: $color_fg_sel;
         font-weight: 700;
       }
 
       &.compressed-row {
-        background-image: image($background);
-        color: $foreground;
+        background-image: image($color_bg);
+        color: $color_fg;
         &:hover {
-          background-image: image(mix($foreground, $background, percentage($alpha_track_1 / 2)));
-          color: $foreground;
+          background-image: image(mix($color_fg, $color_bg, percentage($alpha_track_1 / 2)));
+          color: $color_fg;
         }
         &:active {
           &, &:focus {
-            background-image: image(mix($foreground, $background, percentage($alpha_track_1)));
-            color: $foreground;
+            background-image: image(mix($color_fg, $color_bg, percentage($alpha_track_1)));
+            color: $color_fg;
           }
         }
 
         &.popover-activated-row {
-          background-image: image($background_selection);
-          color: $foreground_selection;
+          background-image: image($color_bg_sel);
+          color: $color_fg_sel;
         }
 
         &-header {
-          background-image: image($base); // stop highlighting
-          color: $label_selection;
+          background-image: image($color_base); // stop highlighting
+          color: $color_lbl_sel;
           &:not(:disabled) {
             transition-property: opacity, // exclude background-color
                                  border-image,
@@ -2174,20 +2174,20 @@ window.background > box.vertical box.horizontal {
             animation: none;
           }
           &:hover {
-            background-image: image(mix($label_selection,
-                                        $base, percentage($alpha_track_1 / 2)));
+            background-image: image(mix($color_lbl_sel,
+                                        $color_base, percentage($alpha_track_1 / 2)));
           }
           &:active {
             &, &:focus {
-              background-image: image(mix($label_selection,
-                                          $base, percentage($alpha_track_1)));
-              color: $label_selection;
+              background-image: image(mix($color_lbl_sel,
+                                          $color_base, percentage($alpha_track_1)));
+              color: $color_lbl_sel;
             }
           }
 
           label.compressed-entries-label {
-            background-image: image($background_selection);
-            color: $foreground_selection;
+            background-image: image($color_bg_sel);
+            color: $color_fg_sel;
             transition-duration: $transition_d_none;
           }
         }
@@ -2233,21 +2233,21 @@ terminal-window {
 
       &.background:not(.csd),
       vte-terminal {
-        background-color: if($variant == mixed, $inv_base,
-                                                $base);
-        color: if($variant == mixed, $foreground_inv, $foreground);
+        background-color: if($variant == mixed, $color_base_inv,
+                                                $color_base);
+        color: if($variant == mixed, $color_fg_inv, $color_fg);
       }
 
       @if $variant == mixed {
         scrollbar {
-          background-color: track($inv_base, $alpha_foreground_3rd);
+          background-color: track($color_base_inv, $alpha_foreground_3rd);
 
           slider {
-            background-color: track($foreground_inv, $alpha_foreground_3rd * $alpha_foreground_3rd);
+            background-color: track($color_fg_inv, $alpha_foreground_3rd * $alpha_foreground_3rd);
             &:hover {
-              background-color: track($foreground_inv, $alpha_foreground_2nd * $alpha_foreground_3rd);
+              background-color: track($color_fg_inv, $alpha_foreground_2nd * $alpha_foreground_3rd);
             }
-            &:active { background-color: $foreground_inv; }
+            &:active { background-color: $color_fg_inv; }
           }
         }
       }
@@ -2308,7 +2308,7 @@ terminal-window {
   }
 
   > box.horizontal {
-    label { color: $foreground_tertiary; } // titles
+    label { color: $color_fg_3; } // titles
 
     > stack > button.image-button {
       min-width: rem($small_widget);
@@ -2319,10 +2319,10 @@ terminal-window {
 }
 
 %pref_down_arrow {
-  @include button(flat-normal, $tc: $label_selection);
-  &:hover { @include button(flat-hover, $tc: $label_selection); }
-  &:active { @include button(flat-active, $tc: $label_selection); }
-  &:checked { @include button(flat-checked, $tc: $label_selection); }
+  @include button(flat-normal, $tc: $color_lbl_sel);
+  &:hover { @include button(flat-hover, $tc: $color_lbl_sel); }
+  &:active { @include button(flat-active, $tc: $color_lbl_sel); }
+  &:checked { @include button(flat-checked, $tc: $color_lbl_sel); }
 }
 
 // /*****************
@@ -2369,25 +2369,25 @@ frame#weather-page-content-view { // condition-specific
         $_mask_alpha,
         $_mix_pct in
   (clear,
-    $foreground_fix, $foreground_selection, $foreground_selection, $alpha_foreground_3rd, $alpha_track_1, 100%),
+    $color_fg_fix, $color_fg_sel, $color_fg_sel, $alpha_foreground_3rd, $alpha_track_1, 100%),
   (few-clouds,
-    $foreground_fix, $foreground_selection, $foreground_selection, $alpha_foreground_3rd, $alpha_track_1, 10%),
+    $color_fg_fix, $color_fg_sel, $color_fg_sel, $alpha_foreground_3rd, $alpha_track_1, 10%),
   (showers,
-    $foreground_selection, $foreground_fix, $foreground_fix, $alpha_foreground_2nd, $alpha_track_1, 50%),
+    $color_fg_sel, $color_fg_fix, $color_fg_fix, $alpha_foreground_2nd, $alpha_track_1, 50%),
   (showers-scattered,
-    $foreground_selection, $foreground_fix, $foreground_fix, $alpha_foreground_2nd, $alpha_track_1, 50%),
+    $color_fg_sel, $color_fg_fix, $color_fg_fix, $alpha_foreground_2nd, $alpha_track_1, 50%),
   (storm,
-    $foreground_selection, $foreground_fix, $foreground_fix, $alpha_foreground_2nd, $alpha_track_1, 50%),
+    $color_fg_sel, $color_fg_fix, $color_fg_fix, $alpha_foreground_2nd, $alpha_track_1, 50%),
   (overcast,
-    $foreground_fix, $foreground_selection, $foreground_inv, $alpha_foreground_2nd, $alpha_foreground_3rd, 75%),
+    $color_fg_fix, $color_fg_sel, $color_fg_inv, $alpha_foreground_2nd, $alpha_foreground_3rd, 75%),
   (fog,
-    $foreground_fix, $foreground_selection, $foreground_inv, $alpha_foreground_2nd, $alpha_foreground_3rd, 75%),
+    $color_fg_fix, $color_fg_sel, $color_fg_inv, $alpha_foreground_2nd, $alpha_foreground_3rd, 75%),
   (snow,
-    $foreground_selection, $foreground_link, $foreground_selection, $alpha_foreground_3rd, $alpha_track_1, 80%),
+    $color_fg_sel, $color_fg_lnk, $color_fg_sel, $alpha_foreground_3rd, $alpha_track_1, 80%),
   (few-clouds-night,
-    $foreground_selection, $foreground_link, $foreground_selection, $alpha_foreground_3rd, $alpha_track_1, 80%),
+    $color_fg_sel, $color_fg_lnk, $color_fg_sel, $alpha_foreground_3rd, $alpha_track_1, 80%),
   (clear-night,
-    $foreground_accent_inv, $foreground_selection, $foreground_selection, $alpha_foreground_2nd, $alpha_track_1, 100%) {
+    $color_fg_acc_inv, $color_fg_sel, $color_fg_sel, $alpha_foreground_2nd, $alpha_track_1, 100%) {
 
     &.weather-#{$_condition} {
       button.radio.text-button,
@@ -2517,20 +2517,20 @@ scrolledwindow.view > viewport.frame > stack { // left-pane
 
     > row.activatable {
       padding: 0; // unset padding
-      color: $foreground_secondary;
+      color: $color_fg_2;
       font-weight: 500;
 
       image.dim-label { opacity: $alpha_foreground_2nd; } // tone up icons
 
       label,
-      image { color: $foreground_secondary; }
+      image { color: $color_fg_2; }
 
       &:hover,
       &:active {
-        color: $foreground;
+        color: $color_fg;
 
         label,
-        image { color: $foreground; }
+        image { color: $color_fg; }
       }
 
       &:selected {
@@ -2540,11 +2540,11 @@ scrolledwindow.view > viewport.frame > stack { // left-pane
         &, &:focus { outline-width: 0; } // unset focus outlines
 
         &, &:hover {
-          background-color: $background_tracker;
-          color: $label_selection;
+          background-color: $color_bg_trk;
+          color: $color_lbl_sel;
 
           label,
-          image { color: $label_selection; }
+          image { color: $color_lbl_sel; }
         }
       }
     }
@@ -2554,7 +2554,7 @@ scrolledwindow.view > viewport.frame > stack { // left-pane
 dialog.background.csd {
   > headerbar.titlebar {
     > label:not(.title):not(.subtitle) {
-      color: if($variant == mixed, $foreground_inv, $foreground);
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
       font-weight: 700;
     }
   }
@@ -2599,7 +2599,7 @@ dialog.background.csd {
         @else { margin: 0; }
         padding: 0 rem($menuitem_padding);
         border: 0 none transparent;
-        color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
+        color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
         font-weight: 500;
       }
 
@@ -2607,14 +2607,14 @@ dialog.background.csd {
       &:active,
       &:checked,
       &.active { // '.active' class = :checked class
-        color: if($variant == mixed, $foreground_inv, $foreground);
+        color: if($variant == mixed, $color_fg_inv, $color_fg);
 
-        > .item { color: if($variant == mixed, $foreground_inv, $foreground); }
+        > .item { color: if($variant == mixed, $color_fg_inv, $color_fg); }
       }
       &:disabled {
-        color: if($variant == mixed, $foreground_dis_inv, $foreground_dis);
+        color: if($variant == mixed, $color_fg_dis_inv, $color_fg_dis);
 
-        > .item { color: if($variant == mixed, $foreground_dis_inv, $foreground_dis); }
+        > .item { color: if($variant == mixed, $color_fg_dis_inv, $color_fg_dis); }
       }
     }
 
@@ -2622,17 +2622,17 @@ dialog.background.csd {
     > label {
       @if $maj_ver == 3 {
         @if $mnr_ver < 23 {
-          color: if($variant == mixed, $foreground_tertiary_inv, $foreground_tertiary);
+          color: if($variant == mixed, $color_fg_inv_3, $color_fg_3);
         }
         @else { // hack for stock dconf-editor.css
           @if $variant == mixed {
-            &:not(:backdrop) { text-shadow: 1px 0 $foreground_tertiary_inv; }
+            &:not(:backdrop) { text-shadow: 1px 0 $color_fg_inv_3; }
           }
         }
       }
       @else {
         @if $variant == mixed {
-          &:not(:backdrop) { text-shadow: 1px 0 $foreground_tertiary_inv; }
+          &:not(:backdrop) { text-shadow: 1px 0 $color_fg_inv_3; }
         }
       }
     }
@@ -2653,11 +2653,11 @@ dialog.background.csd {
     }
 
     > row.key-row:not(:first-child) { // move separator lines into child rows
-      border-top: 1px solid $foreground_div;
+      border-top: 1px solid $color_fg_div;
     }
 
     > grid.vertical { // grid node for headers
-      background-color: $background;
+      background-color: $color_bg;
 
       // increase title height
       label.header-label { min-height: rem($widget_size); }
@@ -2696,50 +2696,50 @@ dialog.background.csd {
     label.item {
       margin: -6px 0; // compensate unneeded parent T/B margns
       // mask stock 3px border indicators
-      border-image: if($variant == mixed, image($background_dark_inv),
-                                          image($background_dark))
+      border-image: if($variant == mixed, image($color_bg_dark_inv),
+                                          image($color_bg_dark))
                       0 0 1 / 0 0 1px stretch;
 
       &:backdrop {
-        border-image: if($variant == mixed, image($background_inv), image($background))
+        border-image: if($variant == mixed, image($color_bg_inv), image($color_bg))
                         0 0 1 / 0 0 1px stretch;
       }
     }
 
     &:hover:not(.active) label.item {
-      color: if($variant == mixed, $foreground_inv, $foreground);
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
       box-shadow: inset 0 -2px if($variant == mixed,
-                                 track($foreground_inv, $alpha_track_out),
-                                 track($foreground, $alpha_track_out));
+                                 track($color_fg_inv, $alpha_track_out),
+                                 track($color_fg, $alpha_track_out));
     }
 
     &.active label.item { // redraw underline indicators
-      color: if($variant == mixed, $foreground_inv, $foreground);
-      box-shadow: inset 0 -2px $background_selection;
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
+      box-shadow: inset 0 -2px $color_bg_sel;
     }
   }
 }
 
 %dconf_maxd_pathbar_box {
   // this isn't perfect, but covering 99% unneeded borders at least...
-  border-image: if($variant == mixed, image($background_dark_inv), image($background_dark))
+  border-image: if($variant == mixed, image($color_bg_dark_inv), image($color_bg_dark))
                   0 0 2 / 0 0 2px stretch;
-  background-image: if($variant == mixed, image($background_dark_inv),
-                                          image($background_dark));
+  background-image: if($variant == mixed, image($color_bg_dark_inv),
+                                          image($color_bg_dark));
   &:backdrop {
-    border-image: if($variant == mixed, image($background_inv), image($background))
+    border-image: if($variant == mixed, image($color_bg_inv), image($color_bg))
                     0 0 2 / 0 0 2px stretch;
-    background-image: if($variant == mixed, image($background_inv),
-                                            image($background));
+    background-image: if($variant == mixed, image($color_bg_inv),
+                                            image($color_bg));
   }
 
   label,
-  image { color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary); }
+  image { color: if($variant == mixed, $color_fg_inv_2, $color_fg_2); }
 
   button:hover label.item,
-  button.active label.item { color: if($variant == mixed, $foreground_inv, $foreground); }
+  button.active label.item { color: if($variant == mixed, $color_fg_inv, $color_fg); }
 
-  > label { color: if($variant == mixed, $foreground_tertiary_inv, $foreground_tertiary); }
+  > label { color: if($variant == mixed, $color_fg_inv_3, $color_fg_3); }
 }
 
 // /*******************
@@ -2749,11 +2749,11 @@ dialog.background.csd {
 window.background > grid.horizontal.titlebar {
   // search-bar revealer
   @if $maj_ver == 3 {
-    box.vertical > headerbar + searchbar { background-color: $background_dark; }
+    box.vertical > headerbar + searchbar { background-color: $color_bg_dark; }
   }
   @else {
     box.vertical > headerbar + searchbar > revealer > box {
-      background-color: $background_dark;
+      background-color: $color_bg_dark;
     }
   }
 }
@@ -2775,11 +2775,11 @@ scrolledwindow > viewport.frame list.categories {
       &, &:focus { outline-width: 0; } // unset focus outlines
 
       &, &:hover {
-        background-color: $background_tracker;
-        color: $label_selection;
+        background-color: $color_bg_trk;
+        color: $color_lbl_sel;
 
         image.category-icon,
-        label.category-label { color: $label_selection; }
+        label.category-label { color: $color_lbl_sel; }
       }
     }
   }
@@ -2791,17 +2791,17 @@ scrolledwindow.character-list-scroll {
     background-color: transparent;
 
     slider {
-      background-color: track($ter_fix_fg, $alpha_foreground_3rd);
+      background-color: track($color_fg_fix_3, $alpha_foreground_3rd);
       &:hover {
-        background-color: track($sec_fix_fg, $alpha_foreground_3rd);
+        background-color: track($color_fg_fix_2, $alpha_foreground_3rd);
       }
-      &:active { background-color: $foreground_fix; }
+      &:active { background-color: $color_fg_fix; }
       &:disabled { opacity: $alpha_foreground_bdp; }
     }
 
     &.overlay-indicator {
       &:not(.dragging):not(.hovering) slider {
-        background-color: track($ter_fix_fg, $alpha_foreground_3rd);
+        background-color: track($color_fg_fix_3, $alpha_foreground_3rd);
       }
     }
   }
@@ -2822,67 +2822,67 @@ buttonbox.linked > button.toggle.toolbar-primary-buttons-software {
   }
 
   min-width: rem($widget_size * 3);
-  box-shadow: inset 0 -1px $foreground_tracker_out;
+  box-shadow: inset 0 -1px $color_fg_trk_out;
   &:not(:hover):not(:active):not(:checked):not(:disabled) {
-    color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
+    color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
   }
   @if $variant == mixed {
-    @include button(flat-normal, $tc: $foreground_inv);
+    @include button(flat-normal, $tc: $color_fg_inv);
     @include ink-reaction(
-      normal, $fc: $foreground_inv, $tr: ink-normal-dec);
-    &:hover { @include button(flat-lined-hover, $tc: $foreground_inv); }
+      normal, $fc: $color_fg_inv, $tr: ink-normal-dec);
+    &:hover { @include button(flat-lined-hover, $tc: $color_fg_inv); }
     &:active {
-      @include button(flat-active, $tc: $foreground_inv);
+      @include button(flat-active, $tc: $color_fg_inv);
       @include ink-reaction(
-        active-dec, $fc: $foreground_inv, $tr: ink-active-dec);
+        active-dec, $fc: $color_fg_inv, $tr: ink-active-dec);
     }
     &:disabled {
-      @include button(flat-disabled, $tc: $foreground_inv);
+      @include button(flat-disabled, $tc: $color_fg_inv);
     }
     &:checked {
-      @include button(flat-lined-checked, $tc: $label_selection_inv);
-      &:hover { @include button(flat-hover, $tc: $label_selection_inv); }
+      @include button(flat-lined-checked, $tc: $color_lbl_sel_inv);
+      &:hover { @include button(flat-hover, $tc: $color_lbl_sel_inv); }
     }
   }
   @else {
-    @include button(flat-normal, $tc: $foreground);
-    @include ink-reaction(normal, $fc: $foreground, $tr: ink-normal-dec);
-    &:hover { @include button(flat-lined-hover, $tc: $foreground); }
+    @include button(flat-normal, $tc: $color_fg);
+    @include ink-reaction(normal, $fc: $color_fg, $tr: ink-normal-dec);
+    &:hover { @include button(flat-lined-hover, $tc: $color_fg); }
     &:active {
-      @include button(flat-active, $tc: $foreground);
-      @include ink-reaction(active-dec, $fc: $foreground, $tr: ink-active-dec);
+      @include button(flat-active, $tc: $color_fg);
+      @include ink-reaction(active-dec, $fc: $color_fg, $tr: ink-active-dec);
     }
     &:disabled {
-      @include button(flat-disabled, $tc: $foreground);
+      @include button(flat-disabled, $tc: $color_fg);
     }
     &:checked {
-      @include button(flat-lined-checked, $tc: $label_selection);
-      &:hover { @include button(flat-hover, $tc: $label_selection); }
+      @include button(flat-lined-checked, $tc: $color_lbl_sel);
+      &:hover { @include button(flat-hover, $tc: $color_lbl_sel); }
     }
   }
 
   > box.horizontal > label.text-button {
     border: none;
     background: none;
-    color: if($variant == mixed, $foreground_secondary_inv, $foreground_secondary);
+    color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
     font-weight: 500;
   }
 
   &:hover,
   &:active {
-    color: if($variant == mixed, $foreground_inv, $foreground);
+    color: if($variant == mixed, $color_fg_inv, $color_fg);
 
     > box.horizontal > label.text-button {
-      color: if($variant == mixed, $foreground_inv, $foreground);
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
     }
   }
 
   &:checked {
     &, &:hover {
-      color: if($variant == mixed, $label_selection_inv, $label_selection);
+      color: if($variant == mixed, $color_lbl_sel_inv, $color_lbl_sel);
 
       > box.horizontal > label.text-button {
-        color: if($variant == mixed, $label_selection_inv, $label_selection);
+        color: if($variant == mixed, $color_lbl_sel_inv, $color_lbl_sel);
       }
     }
   }
@@ -2896,7 +2896,7 @@ buttonbox.linked > button.toggle.toolbar-primary-buttons-software {
 window.background > box.vertical > overlay > stack > widget > stack {
   // "Installed" stack
   > box.vertical > scrolledwindow > viewport.frame > widget > list {
-    background-color: $background; // override $base_color
+    background-color: $color_bg; // override $base_color
 
     // use asymmetrical separators
     > separator {
@@ -2908,9 +2908,9 @@ window.background > box.vertical > overlay > stack > widget > stack {
   // "Updates" stack
   widget > box.vertical.app-list {
     // override $base_color
-    background-image: image($background);
+    background-image: image($color_bg);
 
-    > box.vertical > list { background-color: $background; }
+    > box.vertical > list { background-color: $color_bg; }
 
     // use asymmetrical separators
     separator {
@@ -2926,11 +2926,11 @@ scrolledwindow.category-sidebar.frame > viewport.frame > list {
   margin-top: -4px; // hide weird header-gap
 
   > row.activatable {
-    color: $foreground_secondary;
+    color: $color_fg_2;
     font-weight: 500;
     &:hover {
-      background-color: $background_tracker;
-      color: $foreground;
+      background-color: $color_bg_trk;
+      color: $color_fg;
     }
     &:selected { @extend %selected_sidebar_row; }
   }
@@ -3006,7 +3006,7 @@ headerbar.titlebar > widget > stack > button:not(.flat) {
 
 // 'year-view' sidebar
 stack.view > calendar-view.year-view > box.vertical {
-  background-color: $background;
+  background-color: $color_bg;
 
   > stack { // unset presets
     > box.sidebar,
@@ -3022,8 +3022,8 @@ stack.view > calendar-view.year-view > box.vertical {
     @extend %action-area-button;
 
     // add missing borders
-    &:dir(ltr) { border-left: 1px solid $foreground_div; }
-    &:dir(rtl) { border-right: 1px solid $foreground_div; }
+    &:dir(ltr) { border-left: 1px solid $color_fg_div; }
+    &:dir(rtl) { border-right: 1px solid $color_fg_div; }
   }
 }
 
@@ -3071,12 +3071,12 @@ dialog.background {
 
 window.background > box.vertical > overlay > revealer.top + stack {
   margin-top: -1px; // hide weird frame
-  background-color: $background;
+  background-color: $color_bg;
 }
 
 window.background > box.vertical > overlay > stack > box.vertical {
   > scrolledwindow > viewport.frame {
-    box.vertical > label.heading { color: $foreground_tertiary; }
+    box.vertical > label.heading { color: $color_fg_3; }
   }
 }
 
@@ -3084,39 +3084,39 @@ window.background > box.vertical > overlay > stack > box.horizontal {
   > stack > box.horizontal > scrolledwindow > viewport.frame {
     // right-pane scrolled-window
     > box.vertical {
-      > label.heading { color: $foreground_tertiary; }
+      > label.heading { color: $color_fg_3; }
     }
 
     // left-pane sidebar
     > list {
       @extend %sidebar_template;
-      &:dir(ltr) { border-right: 1px solid $foreground_div; }
-      &:dir(rtl) { border-left: 1px solid $foreground_div; }
+      &:dir(ltr) { border-right: 1px solid $color_fg_div; }
+      &:dir(rtl) { border-left: 1px solid $color_fg_div; }
 
       > row.activatable {
         margin: -1px 0; // kill stock CSS's border settings
         padding: 0;
-        color: $foreground_secondary;
+        color: $color_fg_2;
 
         &, &:focus { outline-width: 0; } // unset focus outlines
 
         > label.sidebar {
-          color: $foreground_secondary;
+          color: $color_fg_2;
           font-weight: 500;
           // FIXME: outset 1px solid shadows for covering ugly hard-coded
           // separators
-          box-shadow: 0 -1px $background;
+          box-shadow: 0 -1px $color_bg;
         }
 
         &:hover {
-          &, > label.sidebar { color: $foreground; }
+          &, > label.sidebar { color: $color_fg; }
         }
         &:active,
         &:selected {
           &, &:hover {
-            background-color: $background_tracker;
+            background-color: $color_bg_trk;
 
-            &, > label.sidebar { color: $label_selection; }
+            &, > label.sidebar { color: $color_lbl_sel; }
           }
         }
       }
@@ -3127,20 +3127,20 @@ window.background > box.vertical > overlay > stack > box.horizontal {
 // tiles view buttons
 button.tile.view { // damned stock CSS
   flowbox > flowboxchild > & {
-    &:hover { box-shadow: inset 0 0 0 9999px track($foreground, $alpha_track_1); }
-    &:active { box-shadow: inset 0 0 0 9999px track($foreground, $alpha_track_2); }
+    &:hover { box-shadow: inset 0 0 0 9999px track($color_fg, $alpha_track_1); }
+    &:active { box-shadow: inset 0 0 0 9999px track($color_fg, $alpha_track_2); }
   }
 
   box > grid > & {
     &:hover {
       box-shadow: inset 0 0 0 9999px if($variant != dark,
-                                        track($foreground_inv, $alpha_track_1),
-                                        track($foreground, $alpha_track_1));
+                                        track($color_fg_inv, $alpha_track_1),
+                                        track($color_fg, $alpha_track_1));
     }
     &:active {
       box-shadow: inset 0 0 0 9999px if($variant != dark,
-                                        track($foreground_inv, $alpha_track_2),
-                                        track($foreground, $alpha_track_2));
+                                        track($color_fg_inv, $alpha_track_2),
+                                        track($color_fg, $alpha_track_2));
     }
   }
 
@@ -3166,7 +3166,7 @@ button.tile.view { // damned stock CSS
 // Note box
 box.note > label { font-weight: 700; } // title
 
-label.content.note { color: $foreground_fix; } // enforce dark label color
+label.content.note { color: $color_fg_fix; } // enforce dark label color
 
 // title and author box
 overlay.recipe > image + box {
@@ -3205,10 +3205,10 @@ widget {
     list {
       row {
         margin: -1px; // kill ugly parent borders
-        border: 1px solid $foreground_div_sld;
+        border: 1px solid $color_fg_div_sld;
 
         &.max {
-          color: $foreground_fix; // enforce dark foreground
+          color: $color_fg_fix; // enforce dark foreground
           // FIXME: we can't override the salmon-pinky background
           // background-image: image($destructive_color);
           // border: 1px solid $destructive_color;
@@ -3217,7 +3217,7 @@ widget {
 
       // kill ugly separators
       separator.list {
-        box-shadow: inset 0 0 0 1px $foreground_div_sld;
+        box-shadow: inset 0 0 0 1px $color_fg_div_sld;
       }
     }
   }
@@ -3228,35 +3228,35 @@ widget {
       margin: -1px; // kill ugly borders
 
       row.activatable {
-        color: $foreground_secondary;
+        color: $color_fg_2;
         &:hover,
-        &:active { color: $foreground; }
+        &:active { color: $color_fg; }
       }
 
       row:not(.activatable) { // top-most header row
-        color: $foreground_tertiary;
-        box-shadow: inset 0 -1px $foreground_div_sld;
+        color: $color_fg_3;
+        box-shadow: inset 0 -1px $color_fg_div_sld;
       }
 
       // mask other ugly separators
-      separator.list { box-shadow: inset 0 0 0 1px $background; }
+      separator.list { box-shadow: inset 0 0 0 1px $color_bg; }
     }
   }
 }
 
 %graph_switcher {
   background-image: none;
-  color: $foreground_secondary;
+  color: $color_fg_2;
   font-weight: 500;
   &:hover { // use opaque
-    background-image: image(mix($background, $foreground, percentage($alpha_foreground_2nd)));
-    color: $foreground;
+    background-image: image(mix($color_bg, $color_fg, percentage($alpha_foreground_2nd)));
+    color: $color_fg;
   }
   &:active,
   &:checked { // use opaque
     background-image: image( // use outline-track alpha
-                        mix($background_selection, $background, percentage($alpha_track_out)));
-    color: $label_selection;
+                        mix($color_bg_sel, $color_bg, percentage($alpha_track_out)));
+    color: $color_lbl_sel;
     animation: none;
   }
 }
@@ -3276,13 +3276,13 @@ widget {
 }
 
 box.speedometer {
-  // circular progress should be drawn with our $background_accent
+  // circular progress should be drawn with our $color_bg_acc
   // (progress bit still looks a bit brighter than we expected though)
-  &-outter { background-image: image($background_accent); }
+  &-outter { background-image: image($color_bg_acc); }
 
-  &-inner { box-shadow: inset 0 0 0 5px track($background_accent, $alpha_track_out); }
+  &-inner { box-shadow: inset 0 0 0 5px track($color_bg_acc, $alpha_track_out); }
 
-  &-content-area label { color: $foreground_accent; }
+  &-content-area label { color: $color_fg_acc; }
 }
 
 // /*********
@@ -3310,7 +3310,7 @@ menubar#MainMenu + box.vertical > widget, // main window
 menubar#MainMenu + widget { // 'Add view' window(s)
   > widget {
     &:not(.view) { // left-most pane
-      color: $foreground_tertiary;
+      color: $color_fg_3;
     }
   }
 }
@@ -3321,7 +3321,7 @@ menubar#MainMenu + widget { // 'Add view' window(s)
 
 %child_styling {
   border-radius: 0;
-  &:hover { box-shadow: inset 0 0 0 9999px $background_tracker; }
+  &:hover { box-shadow: inset 0 0 0 9999px $color_bg_trk; }
   &:first-child { @include radius($r_2 $r_2 0 0, none); }
   &:last-child { @include radius(0 0 $r_2 $r_2, none); }
   &:not(:first-child):not(:only-child) { margin-top: -1px; }
@@ -3329,11 +3329,11 @@ menubar#MainMenu + widget { // 'Add view' window(s)
 
 window.background > overlay > stack.content-bg {
   &,
-  stack box.content-bg { background-image: image($background); }
+  stack box.content-bg { background-image: image($color_bg); }
 }
 
 // parent container of button nodes
-box.boxes-menu.vertical > box.vertical { background-color: $base; }
+box.boxes-menu.vertical > box.vertical { background-color: $color_base; }
 
 // child elements
 row.boxes-menu-row { @extend %child_styling; }
@@ -3356,10 +3356,10 @@ button.boxes-menu-row {
 // FIXME: treeview node styling is locked, there's no way to override
 window.background > box.vertical > paned.horizontal {
   > paned.vertical > box.vertical + separator {
-    @if $variant == dark { background-color: $foreground_div_sld; }
+    @if $variant == dark { background-color: $color_fg_div_sld; }
 
     + frame {
-      background-color: $background_dark;
+      background-color: $color_bg_dark;
 
       > border { border: unset; } // unset unneeded frame
     }
@@ -3367,8 +3367,8 @@ window.background > box.vertical > paned.horizontal {
 
   // inline-toolbar?
   > box.vertical > revealer > toolbar.bottom-toolbar {
-    border-top: 1px solid $foreground_div;
-    background-color: $background_dark;
+    border-top: 1px solid $color_fg_div;
+    background-color: $color_bg_dark;
     &:dir(ltr) { padding-right: $toolbar_padding * 2; }
     &:dir(rtl) { padding-left: $toolbar_padding * 2; }
   }
@@ -3382,9 +3382,9 @@ box#eog-thumb-nav { // image gallery
   iconview.view {
     @include radius(0, none);
     &:selected {
-      background-color: $background_tracker;
-      color: $label_selection;
-      box-shadow: inset 0 4px $background_selection;
+      background-color: $color_bg_trk;
+      color: $color_lbl_sel;
+      box-shadow: inset 0 4px $color_bg_sel;
     }
   }
 }
