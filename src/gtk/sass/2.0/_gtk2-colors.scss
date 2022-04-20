@@ -9,12 +9,12 @@
 @import '../../../gtk/sass/common/colors';
 
 colors {
-  sel_bg: $background_selection;
-  sel_lb: $label_selection;
+  sel_bg: $color_bg_sel;
+  sel_lb: $color_lbl_sel;
 
-  acc_fg: $foreground_accent;
-  acc_bg: $background_accent;
+  acc_fg: $color_fg_acc;
+  acc_bg: $color_bg_acc;
 
-  lkn_fg: $foreground_link;
-  lkv_fg: $foreground_link_visited;
+  lkn_fg: $color_fg_lnk;
+  lkv_fg: $color_fg_lnk_vst;
 }

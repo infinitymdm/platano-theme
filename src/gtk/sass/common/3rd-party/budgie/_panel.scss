@@ -1,0 +1,42 @@
+// Panel
+.budgie-panel {
+  // solid-mode
+  background-color: $color_bg_panel;
+  color: if($variant == mixed, $color_fg_inv, $color_fg);
+  font-weight: 700;
+  @include transition(dec);
+
+  // used to indicate unread notifications
+  .alert { color: $color_bg_sgst; }
+
+  // dock-mode
+  &.dock-mode {
+    @each $_pos, $_rad, $_pad in (top, 0 0 $r_2 $r_2, 0 3px),
+      (bottom, $r_2 $r_2 0 0, 0 3px),
+      (left, 0 $r_2 $r_2 0, 3px 0),
+      (right, $r_2 0 0 $r-2, 3px 0) {
+      .#{$_pos} & {
+        padding: #{$_pad}; // prepare for rounded corners
+        border-radius: #{$_rad};
+      }
+    }
+  }
+
+  // transparent-mode
+  &.transparent {
+    // keep translucent background in light variant
+    background-color: if($variant == light, track($color_bg_panel, 
+        $alpha_foreground_3rd), transparent);
+    color: if($variant == mixed, $color_fg_inv, $color_fg);
+    @include transition(dec);
+
+    @if $variant != light {
+      // draw shadows by default
+      // FIXME: NaTray puts widgets as "widgets",
+      // so we can not render icons-shadows anyhow...
+      image { -gtk-icon-shadow: $z-depth-1; }
+      
+      label { text-shadow: $z-depth-1; }
+    }
+  }
+}

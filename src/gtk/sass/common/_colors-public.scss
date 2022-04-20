@@ -17,130 +17,130 @@
 // Widget text/foreground color
 //
 
-@define-color theme_fg_color #{"" + $foreground};
+@define-color theme_fg_color #{"" + $color_fg};
 
 //
 // Text color for entries, views and content in general
 //
 
-@define-color theme_text_color #{"" + $foreground};
+@define-color theme_text_color #{"" + $color_fg};
 
 //
 // Widget base background color
 //
 
-@define-color theme_bg_color #{"" + $background};
+@define-color theme_bg_color #{"" + $color_bg};
 
 //
 // Text widgets and the like base background color
 //
 
-@define-color theme_base_color #{"" + $base};
+@define-color theme_base_color #{"" + $color_base};
 
 //
 // Base background color of selections
 //
 
-@define-color theme_selected_bg_color #{"" + $background_selection};
+@define-color theme_selected_bg_color #{"" + $color_bg_sel};
 
 //
 // Text/foreground color of selections
 //
 
-@define-color theme_selected_fg_color #{"" + $foreground_selection};
+@define-color theme_selected_fg_color #{"" + $color_fg_sel};
 
 //
 // Base background color of insensitive widgets
 //
 
-@define-color insensitive_bg_color #{"" + $background};
+@define-color insensitive_bg_color #{"" + $color_bg};
 
 //
 // Text foreground color of insensitive widgets
 //
 
-@define-color insensitive_fg_color #{"" + $foreground_dis};
+@define-color insensitive_fg_color #{"" + $color_fg_dis};
 
 //
 // Insensitive text widgets and the like base background color
 //
 
-@define-color insensitive_base_color #{"" + $base};
+@define-color insensitive_base_color #{"" + $color_base};
 
 //
 // Widget text/foreground color on backdrop windows
 //
 
-@define-color theme_unfocused_fg_color #{"" + $foreground_dis};
+@define-color theme_unfocused_fg_color #{"" + $color_fg_dis};
 
 //
 // Text color for entries, views and content in general on backdrop windows
 //
 
-@define-color theme_unfocused_text_color #{"" + track($foreground, $alpha_foreground_bdp)};
+@define-color theme_unfocused_text_color #{"" + track($color_fg, $alpha_foreground_bdp)};
 
 //
 // Widget base background color on backdrop windows
 //
 
-@define-color theme_unfocused_bg_color #{"" + $background};
+@define-color theme_unfocused_bg_color #{"" + $color_bg};
 
 //
 // Text widgets and the like base background color on backdrop windows
 //
 
-@define-color theme_unfocused_base_color #{"" + $base};
+@define-color theme_unfocused_base_color #{"" + $color_base};
 
 //
 // Base background color of selections on backdrop windows
 //
 
-@define-color theme_unfocused_selected_bg_color #{"" + $background_selection};
+@define-color theme_unfocused_selected_bg_color #{"" + $color_bg_sel};
 
 //
 // Text/foreground color of selections on backdrop windows
 //
 
-@define-color theme_unfocused_selected_fg_color #{"" + $foreground_selection};
+@define-color theme_unfocused_selected_fg_color #{"" + $color_fg_sel};
 
 //
 // Insensitive foreground color on backdrop windows
 //
 
-@define-color unfocused_insensitive_color #{"" + $foreground_dis};
+@define-color unfocused_insensitive_color #{"" + $color_fg_dis};
 
 //
 // Text/foreground color of placeholders
 //
 
-@define-color placeholder_text_color #{"" + $plc_fg};
+@define-color placeholder_text_color #{"" + $color_fg_plc};
 
 //
 // Widgets main borders color
 //
 
-@define-color borders #{"" + $foreground_div_sld};
+@define-color borders #{"" + $color_fg_div_sld};
 
 //
 // Widgets main borders color on backdrop windows
 //
 
-@define-color unfocused_borders #{"" + $foreground_div_sld};
+@define-color unfocused_borders #{"" + $color_fg_div_sld};
 
 //
 // These are pretty self explicative
 //
 
-@define-color warning_color #{"" + $warn};
-@define-color error_color #{"" + $err};
-@define-color success_color #{"" + $background_success};
-@define-color link_color #{"" + $foreground_link};
+@define-color warning_color #{"" + $color_warn};
+@define-color error_color #{"" + $color_err};
+@define-color success_color #{"" + $color_bg_sccs};
+@define-color link_color #{"" + $color_fg_lnk};
 
 //
 // FIXME: this is really an API
 //
 
-@define-color content_view_bg #{"" + $background};
+@define-color content_view_bg #{"" + $color_bg};
 
 //
 // Budgie-desktop specific indicator colors
@@ -149,23 +149,23 @@
 // unfocused window 'dot(s)'
 @define-color budgie_tasklist_indicator_color #{"" +
                 if($variant == light,
-                   $background_selection,
-                   saturate(lighten($background_selection, percentage($alpha_track_2)),
+                   $color_bg_sel,
+                   saturate(lighten($color_bg_sel, percentage($alpha_track_2)),
                      percentage($alpha_track_2)))};
 
 // focused window 'line'
-@define-color budgie_tasklist_indicator_color_active #{"" + $background_selection};
+@define-color budgie_tasklist_indicator_color_active #{"" + $color_bg_sel};
 
 // group-ed and unfocused window 'line(s)'
 @define-color budgie_tasklist_indicator_color_active_window #{"" +
                 if($variant == light,
-                   saturate(lighten($background_selection, percentage($alpha_track_2)),
+                   saturate(lighten($color_bg_sel, percentage($alpha_track_2)),
                      percentage($alpha_track_2)),
-                   saturate(darken($background_selection, percentage($alpha_track_2)),
+                   saturate(darken($color_bg_sel, percentage($alpha_track_2)),
                      percentage($alpha_track_2)))};
 
 // attention 'dot'
 // FIXME: we can't fill whole widget backgrounds with our suggestion color
 //        because of lacking specific style-class on 'needs_attention' state,
 //        so use warning orange dot instead.
-@define-color budgie_tasklist_indicator_color_attention #{"" + $warn};
+@define-color budgie_tasklist_indicator_color_attention #{"" + $color_warn};
