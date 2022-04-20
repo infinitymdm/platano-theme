@@ -1,10 +1,10 @@
 themedir          = $(datadir)/themes
 platanodir        = $(DESTDIR)$(themedir)/Platano
-luminedir         = $(DESTDIR)$(themedir)/Platano-Lumine
-noirdir           = $(DESTDIR)$(themedir)/Platano-Noir
+luminedir         = $(DESTDIR)$(themedir)/Platano-Light
+noirdir           = $(DESTDIR)$(themedir)/Platano-Dark
 platanocompactdir = $(DESTDIR)$(themedir)/Platano-Compact
-luminecompactdir  = $(DESTDIR)$(themedir)/Platano-Lumine-Compact
-noircompactdir    = $(DESTDIR)$(themedir)/Platano-Noir-Compact
+luminecompactdir  = $(DESTDIR)$(themedir)/Platano-Light-Compact
+noircompactdir    = $(DESTDIR)$(themedir)/Platano-Dark-Compact
 
 shelldir   = $(srcdir)/gnome-shell
 if !GNOME_IS_338_OR_NEWER
@@ -239,7 +239,7 @@ shell_lumine_classic_file = \
 shell_lumine_wtd_file = \
 	$(shellluminedir)/extensions/workspaces-to-dock/workspaces-to-dock.css
 if !GNOME_IS_320_TO_324
-shell_lumine_gdm3_file  = $(shellluminedir)/gdm3-Platano-Lumine.css
+shell_lumine_gdm3_file  = $(shellluminedir)/gdm3-Platano-Light.css
 endif
 if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
@@ -380,7 +380,7 @@ shell_noir_classic_file = \
 shell_noir_wtd_file = \
 	$(shellnoirdir)/extensions/workspaces-to-dock/workspaces-to-dock.css
 if !GNOME_IS_320_TO_324
-shell_noir_gdm3_file = $(shellnoirdir)/gdm3-Platano-Noir.css
+shell_noir_gdm3_file = $(shellnoirdir)/gdm3-Platano-Dark.css
 endif
 if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
@@ -661,7 +661,7 @@ shell_lumine_compact_classic_file = \
 shell_lumine_compact_wtd_file = \
 	$(shellluminecompactdir)/extensions/workspaces-to-dock/workspaces-to-dock.css
 if !GNOME_IS_320_TO_324
-shell_lumine_compact_gdm3_file = $(shellluminecompactdir)/gdm3-Platano-Lumine-Compact.css
+shell_lumine_compact_gdm3_file = $(shellluminecompactdir)/gdm3-Platano-Light-Compact.css
 endif
 if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
@@ -798,7 +798,7 @@ shell_noir_compact_classic_file = \
 shell_noir_compact_wtd_file = \
 	$(shellnoircompactdir)/extensions/workspaces-to-dock/workspaces-to-dock.css
 if !GNOME_IS_320_TO_324
-shell_noir_compact_gdm3_file = $(shellnoircompactdir)/gdm3-Platano-Noir-Compact.css
+shell_noir_compact_gdm3_file = $(shellnoircompactdir)/gdm3-Platano-Dark-Compact.css
 endif
 if !GNOME_IS_338_OR_NEWER
 if !GNOME_IS_336_OR_NEWER
@@ -1003,15 +1003,15 @@ if !GNOME_IS_320_TO_324
 		$(SASSC) $(sassc_option) \
 		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3.scss ../gnome-shell/gdm3-Platano.css && \
 		$(SASSC) $(sassc_option) \
-		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-light.scss ../gnome-shell-light/gdm3-Platano-Lumine.css && \
+		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-light.scss ../gnome-shell-light/gdm3-Platano-Light.css && \
 		$(SASSC) $(sassc_option) \
-		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-dark.scss ../gnome-shell-dark/gdm3-Platano-Noir.css && \
+		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-dark.scss ../gnome-shell-dark/gdm3-Platano-Dark.css && \
 		$(SASSC) $(sassc_option) \
 		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-compact.scss ../gnome-shell-compact/gdm3-Platano-Compact.css && \
 		$(SASSC) $(sassc_option) \
-		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-light-compact.scss ../gnome-shell-light-compact/gdm3-Platano-Lumine-Compact.css && \
+		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-light-compact.scss ../gnome-shell-light-compact/gdm3-Platano-Light-Compact.css && \
 		$(SASSC) $(sassc_option) \
-		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-dark-compact.scss ../gnome-shell-dark-compact/gdm3-Platano-Noir-Compact.css
+		gnome-shell/$(GNOME_SCSS_VERSION)/gdm3-dark-compact.scss ../gnome-shell-dark-compact/gdm3-Platano-Dark-Compact.css
 endif
 
 	cd $(srcdir)/sass && \
@@ -1388,11 +1388,11 @@ CLEANFILES += \
 if !GNOME_IS_320_TO_324
 CLEANFILES += \
 	$(srcdir)/gnome-shell/gdm3-Platano.css \
-	$(srcdir)/gnome-shell-light/gdm3-Platano-Lumine.css \
-	$(srcdir)/gnome-shell-dark/gdm3-Platano-Noir.css \
+	$(srcdir)/gnome-shell-light/gdm3-Platano-Light.css \
+	$(srcdir)/gnome-shell-dark/gdm3-Platano-Dark.css \
 	$(srcdir)/gnome-shell-compact/gdm3-Platano-Compact.css \
-	$(srcdir)/gnome-shell-light-compact/gdm3-Platano-Lumine-Compact.css \
-	$(srcdir)/gnome-shell-dark-compact/gdm3-Platano-Noir-Compact.css
+	$(srcdir)/gnome-shell-light-compact/gdm3-Platano-Light-Compact.css \
+	$(srcdir)/gnome-shell-dark-compact/gdm3-Platano-Dark-Compact.css
 endif
 endif
 

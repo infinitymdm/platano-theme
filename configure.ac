@@ -109,10 +109,10 @@ AC_MSG_RESULT([
          datarootdir:            ${datarootdir}
          target directories:     ${datarootdir}/themes/Platano
                                  ${datarootdir}/themes/Platano-Compact
-                                 ${datarootdir}/themes/Platano-Lumine
-                                 ${datarootdir}/themes/Platano-Lumine-Compact
-                                 ${datarootdir}/themes/Platano-Noir
-                                 ${datarootdir}/themes/Platano-Noir-Compact
+                                 ${datarootdir}/themes/Platano-Light
+                                 ${datarootdir}/themes/Platano-Light-Compact
+                                 ${datarootdir}/themes/Platano-Dark
+                                 ${datarootdir}/themes/Platano-Dark-Compact
 
          glib-compile-resources: $GLIB_COMPILE_RESOURCES
          xmllint:                $XMLLINT

@@ -1,12 +1,12 @@
 [Desktop Entry]
 Type=X-GNOME-Metatheme
-Name=Platano-Lumine-Compact
+Name=Platano-Light-Compact
 Comment=A light Gtk theme based on Material Design with compact elements
 Encoding=UTF-8
 
 [X-GNOME-Metatheme]
 Type=X-GNOME-Metatheme
-GtkTheme=Platano-Lumine-Compact
-MetacityTheme=Platano-Lumine-Compact
+GtkTheme=Platano-Light-Compact
+MetacityTheme=Platano-Light-Compact
 IconTheme=Adwaita
 CursorTheme=Adwaita

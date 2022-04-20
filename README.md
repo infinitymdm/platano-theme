@@ -75,10 +75,10 @@ Installation from Git Source
 1. If previous versions were installed/existed, remove them first.
 
  ```
- sudo rm -rf /usr/share/themes/{Platano,Platano-Compact,Platano-Lumine,Platano-Lumine-Compact,Platano-Noir,Platano-Noir-Compact}
- sudo rm -rf /usr/local/share/themes/{Platano,Platano-Compact,Platano-Lumine,Platano-Lumine-Compact,Platano-Noir,Platano-Noir-Compact}
- rm -rf ~/.local/share/themes/{Platano,Platano-Compact,Platano-Lumine,Platano-Lumine-Compact,Platano-Noir,Platano-Noir-Compact}
- rm -rf ~/.themes/{Platano,Platano-Compact,Platano-Lumine,Platano-Lumine-Compact,Platano-Noir,Platano-Noir-Compact}
+ sudo rm -rf /usr/share/themes/{Platano,Platano-Compact,Platano-Light,Platano-Light-Compact,Platano-Dark,Platano-Dark-Compact}
+ sudo rm -rf /usr/local/share/themes/{Platano,Platano-Compact,Platano-Light,Platano-Light-Compact,Platano-Dark,Platano-Dark-Compact}
+ rm -rf ~/.local/share/themes/{Platano,Platano-Compact,Platano-Light,Platano-Light-Compact,Platano-Dark,Platano-Dark-Compact}
+ rm -rf ~/.themes/{Platano,Platano-Compact,Platano-Light,Platano-Light-Compact,Platano-Dark,Platano-Dark-Compact}
  ```
 
 2. Check build-requirements:
@@ -217,7 +217,7 @@ Extra Dock Support
 
  > **Note:**
  >
- >   * Both Platano and Platano-Noir shares the dark theming, Platano-Lumine uses light theming.
+ >   * Both Platano and Platano-Dark shares the dark theming, Platano-Light uses light theming.
  >   * Don't expect too much. Plank is NOT a themeable widget for me!
 
 Extra Compositor Support
