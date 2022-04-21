@@ -1,3 +1,4 @@
+// Widgets (from _widgets.scss of budgie-desktop built-in theme)
 %widgets {
 
     * {
@@ -5,7 +6,7 @@
         margin: 0;
     }
 
-    label:disabled { color: transparentize($fg_color, 0.65); }
+    label:disabled { color: transparentize($color_fg, 0.65); }
     label, image { color: inherit; }
 
     separator {
@@ -18,10 +19,10 @@
     entry {
         @include entry(selection,disabled);
 
-        caret-color: $fg_color;
+        caret-color: $color_fg;
 
         image {
-            color: $fg_color;
+            color: $color_fg;
             &.left { padding-left: 0; padding-right: 3px; }
             &.right { padding-right: 0; padding-left: 3px; }
         }
@@ -56,7 +57,7 @@
 
     // Spinbuttons
     spinbutton {
-        color: $fg_color;
+        color: $color_fg;
         caret-color: currentColor;
 
         &:not(.vertical) {
@@ -192,13 +193,13 @@
 
     // Lists
     @include lists(list, row, label, disabled);
-    list { color: $fg_color; }
+    list { color: $color_fg; }
     row.activatable {
         padding: 3px;
-        color: $fg_color;
+        color: $color_fg;
 
         &:hover { background-color: $button_bg; }
-        &:active { color: $fg_color; }
+        &:active { color: $color_fg; }
         &:selected {
             color: $selected_fg_color;
             background-color: $selected_bg_color;
@@ -221,11 +222,11 @@
 
                 &.top {
                     -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
-                    border-bottom: 1px solid mix($fg_color, $raven_bg, 10%);
+                    border-bottom: 1px solid mix($color_fg, $raven_bg, 10%);
                 }
                 &.bottom {
                     -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
-                    border-top: 1px solid mix($fg_color, $raven_bg, 10%);
+                    border-top: 1px solid mix($color_fg, $raven_bg, 10%);
                 }
             }
         }
