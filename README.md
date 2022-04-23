@@ -1,8 +1,10 @@
 ### Platano-theme
 
+A Gtk theme based on Material Design.
+
 Adapted from [Plata-theme by tista500 on Gitlab](https://gitlab.com/tista500/plata-theme).
 
-A Gtk theme based on Material Design.
+Note that this theme is currently work in progress, and is not ready for general use.
 
 ----------------------------------------------
 
@@ -36,6 +38,7 @@ That's the reason why `13.33px = 10pt` is used for rem/px conversion in Gtk 3.2x
 
 **Verify the fonts are rendered correctly via font-viewer tools like Gnome-Font-Viewer.**
 
+<<<<<<< Updated upstream
 Required Components
 -------------------
 Platano supports Gtk 2.24.x, 3.20.x, 3.22.x and 3.24.x.
@@ -225,14 +228,24 @@ Extra Compositor Support
  Compton is the famous stand-alone compositor that works well with the Openbox window-manager. The installer installs recommended configuration file `compton.conf` into `Platano/openbox-3` directory if Openbox support is enabled.
 
  Next, copy that file into `~/.config/` and restart compton to read the settings.  That compositor still has some limitations in its features for Platano, however.
+=======
+Installation
+------------
+
+Platano is not yet ready for use. Watch this repository for release announcements!
+>>>>>>> Stashed changes
 
 Public License
 --------------
  * GPLv2.0 (Codebase)
-
  * CC BY-SA 4.0 (Asset images)
 
  > **Note:**
  >
- > And an icon-theme in Cinnamon thumbnails:
  > [**Paper Icons**](http://snwh.org/paper/icons) by Sam Hewitt is licensed under CC-SA-4.0.
+
+ Special Thanks
+ --------------
+
+ * Tista500 on Gitlab for their work on Plata-theme
+ * The Buddies of Budgie organization who taught me about tools for theme development
