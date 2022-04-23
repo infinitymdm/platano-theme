@@ -35,9 +35,8 @@
       }
   
       image {
-        padding: math.div(
-          ($requested_width - $icon_size * ($max_children_per_line + 1)), 
-          ($max_children_per_line * 2)) 0;
+        padding: ($requested_width - $icon_size * ($max_children_per_line + 1)) 
+                 / ($max_children_per_line * 2) 0;
       }
     }
   }

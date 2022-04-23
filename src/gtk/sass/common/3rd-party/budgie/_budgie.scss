@@ -2,10 +2,6 @@
 //  * Budgie-Desktop *
 //  ******************/
 
-// This may need to move further up in the include trail
-@use 'sass:math';
-@use 'sass:color';
-
 // Used to reset all style properties set by the gtk theme
 %reset_style {
   background: none;
