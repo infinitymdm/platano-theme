@@ -1,0 +1,54 @@
+// alt-tab apps switcher styling
+$child_margin: 2px;
+
+window.budgie-switcher-window {
+  border-radius: $r_8;
+  background-color: transparent;
+
+  // draw actual backgrounds and shadows
+  .drop-shadow {
+    margin: $shadow_margin_4; // reserve area for shadows
+    padding: $budgie_osd_margin $budgie_osd_margin ($budgie_osd_margin / 4);
+    border-radius: $r_8;
+    @if $variant == mixed { background-color: track($color_bg_dark_inv, $alpha_osd); }
+    @else { background-color: track($color_bg_dark, $alpha_osd); }
+    box-shadow: $z-depth-4; // raise to level-4
+
+    label.budgie-switcher-title { // bottom label for app titles
+      // prepare for tall and dense fonts
+      min-height: 13.3px * 2; // use non-scaling unit
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
+      font-weight: 500;
+    }
+  }
+
+  flowboxchild { // icon-tiles
+    margin: $child_margin;
+    @include radius($r_2);
+    color: if($variant == mixed, $color_fg_acc_inv_2, $color_fg_acc_2);
+    background-color: transparent;
+    &:hover,
+    &:active {
+      background-color: track($color_bg_acc, $alpha_track_1);
+      color: if($variant == mixed, $color_fg_acc_inv, $color_fg_acc);
+    }
+    &:selected { // use the same values with Gnome-Shell
+      background-color: track($color_bg_acc, $alpha_track_2);
+      color: if($variant == mixed, $color_fg_acc_inv, $color_fg_acc);
+      @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+      @else { -gtk-icon-filter: brightness(1.2); }
+      &:disabled {
+        @if $variant == mixed {
+          background-color: track($color_fg_inv, $alpha_track_1);
+        }
+        @else {
+          background-color: track($color_fg, $alpha_track_1);
+        }
+        @if $maj_ver == 3 { -gtk-icon-effect: dim; }
+        @else { -gtk-icon-filter: opacity(0.5); }
+
+        &, label { color: if($variant == mixed, $color_fg_dis_inv, $color_fg_dis); }
+      }
+    }
+  }
+}

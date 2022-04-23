@@ -79,3 +79,28 @@ stack.icon-popover-stack {
     }
   }
 }
+
+// popover of sound-indicator styling
+window.sound-popover.background box.horizontal {
+  > button.flat.image-button { // horizontal layout
+    &:first-child { // '-' button
+      @include button(flat-normal, $tc: $color_fg);
+      @include ink-reaction(normal, $fc: $color_err, $tr: ink-normal-dec);
+      &:hover { @include button(flat-hover, $tc: $color_err); }
+      &:active {
+        @include button(flat-active, $tc: $color_err);
+        @include ink-reaction(active-dec, $fc: $color_err, $tr: ink-active-dec);
+      }
+    }
+
+    &:last-child { // '+' button
+      @include button(flat-normal, $tc: $color_fg);
+      @include ink-reaction(normal, $fc: $color_bg_sccs, $tr: ink-normal-dec);
+      &:hover { @include button(flat-hover, $tc: $color_bg_sccs); }
+      &:active {
+        @include button(flat-active, $tc: $color_bg_sccs);
+        @include ink-reaction(active-dec, $fc: $color_bg_sccs, $tr: ink-active-dec);
+      }
+    }
+  }
+}

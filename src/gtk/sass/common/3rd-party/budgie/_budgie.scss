@@ -19,10 +19,7 @@
   font-weight: unset;
 }
 
-@import 'settings';
 @import 'imports';
-
 @import 'widgets';
-
-// main container
-.budgie-container { background-color: transparent; }
+@import 'lightdm';
+@import 'main';

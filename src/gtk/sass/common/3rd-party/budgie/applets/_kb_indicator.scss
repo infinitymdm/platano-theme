@@ -1,0 +1,17 @@
+// keyboard indicator applet
+.top,
+.bottom {
+  widget.keyboard-indicator >  widget > box.horizontal {
+    > widget > image {
+      margin-top: rem(-0.7px, $sw: 1.0);
+      &:dir(ltr) { padding: $baseline 0 0 3px; }
+      &:dir(rtl) { padding: $baseline 3px 0 0; }
+    }
+
+    > stack > widget.keyboard-label > label {
+      margin-top: rem(-0.7px, $sw: 1.0);
+      &:dir(ltr) { padding: $baseline 3px rem($baseline, $sw: 1.0) 0; }
+      &:dir(rtl) { padding: $baseline 0 rem($baseline, $sw: 1.0) 3px; }
+    }
+  }
+}

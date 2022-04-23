@@ -249,6 +249,18 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
   }
 }
 
+// raven-controller applet
+button.flat.raven-trigger {
+  @extend %budgie_trigger_button;
+
+  image { margin: 0 3px; } // add internal spacing
+
+  .left &,
+  .right & {
+    image { margin: 3px 0; } // add internal spacing
+  }
+}
+
 // some specific scale styling
 box.audio-widget,
 window.sound-popover.background {

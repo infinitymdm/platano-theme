@@ -1,0 +1,7 @@
+menuitem.budgie-menubar { // appindicator-applet?
+    // app's override seems to set its L/R padding only,
+    // so this is NOT the theme-specific issue for me!
+    padding: unset; // unset T/B padding as well
+    @include radius(0, none); // clear roundness
+    &:backdrop { opacity: 1.0; } // unset fade-effect
+  }

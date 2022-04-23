@@ -1,5 +1,0 @@
-// Settings (from _settings.scss of budgie-desktop built-in theme)
-$roundness: 3px;
-$border_width: if($variant == 'default', 1px, 2px);
-$pos_list: ((top, bottom),(bottom,top),(left,right),(right,left));
-$asset_suffix: if($variant == 'default', '', '-hc');

@@ -1,0 +1,174 @@
+// run-dialog styling
+.background.csd.budgie-run-dialog {
+  border: none;
+  @if $variant == mixed {
+    background-color: track($color_bg_dark_inv, $alpha_osd);
+  }
+  @else {
+    background-color: track($color_bg_dark, $alpha_osd);
+  }
+
+  // specific 8px rounded corners need decoration
+  // radii as well.
+  &,
+  decoration { @include radius($r_8, none); }
+
+  scrolledwindow {
+    margin: 0 $budgie_osd_margin $budgie_osd_margin;
+    border: 1px solid if($variant == light, $color_fg_div,
+                                            track(white, $alpha_div_2));
+    background-color: transparent;
+
+    list {
+      background-color: transparent;
+
+      row.activatable {
+        background-color: transparent;
+        color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+
+        .dim-label {
+          color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+          opacity: 1.0;
+        }
+
+        &:hover,
+        &:active {
+          background-color: $color_bg_trk;
+          color: if($variant == mixed, $color_fg_inv, $color_fg);
+
+          .dim-label {
+            color: if($variant == mixed, $color_fg_inv, $color_fg);
+            opacity: 1.0;
+          }
+        }
+      }
+    }
+  }
+
+  entry.search {
+    min-width: $icon_size * 25;
+    min-height: rem($widget_size * 1.2);
+    margin: $budgie_osd_margin;
+    @include radius($r_4 $r_4 0 0, none);
+    @if $variant == mixed {
+      @include entry(flat-normal, $tc: $color_fg_inv);
+      caret-color: $color_fg_inv;
+      &:focus { @include entry(flat-focus, $tc: $color_fg_inv); }
+      &:disabled { @include entry(flat-disabled, $tc: $color_fg_inv); }
+
+      selection { @extend %selected_items; }
+    }
+    @else {
+      @include entry(flat-normal, $tc: $color_fg);
+      caret-color: $color_fg;
+      &:focus { @include entry(flat-focus, $tc: $color_fg); }
+      &:disabled { @include entry(flat-disabled, $tc: $color_fg); }
+    }
+    font-size: 110%;
+
+    image {
+      @if $variant == mixed {
+        &:not(:hover):not(:active) { color: $color_fg_inv_2; }
+        &:active { color: $color_bg_inv; }
+        &:disabled { color: $color_fg_dis_inv; }
+      }
+      @else {
+        &:not(:hover):not(:active) { color: $color_fg_2; }
+        &:active { color: $color_fg; }
+        &:disabled { color: $color_fg_dis; }
+      }
+    }
+  }
+
+  scrollbar {
+    border: none;
+    background: none;
+
+    slider {
+      @if $variant == mixed {
+        background-color: track($color_fg_inv_3, $alpha_foreground_3rd);
+        &:hover {
+          background-color: track($color_fg_inv_2, $alpha_foreground_3rd);
+        }
+        &:active { background-color: $color_fg_inv; }
+      }
+      &:disabled { opacity: $alpha_foreground_bdp; }
+    }
+  }
+}
+
+// session-dialog and polkit-dialog styling
+.budgie-session-dialog,
+.budgie-polkit-dialog {
+  border-radius: $r_8;
+  border-width: 0;
+  @if $variant == mixed {
+    background-color: track($color_bg_dark_inv, $alpha_osd);
+    color: $color_fg_inv;
+  }
+  @else {
+    background-color: track($color_bg_dark, $alpha_osd);
+    color: $color_fg;
+  }
+  font-weight: 700;
+
+  decoration { // composite with drop-shadows
+    border-radius: $r_8;
+    box-shadow: $z-depth-4;
+    &:backdrop {
+      box-shadow: $z-depth-2-backdrop;
+      transition: none;
+    }
+  }
+
+  buttonbox.linked > button:not(.flat) {
+    border: 2px solid transparent;
+    @include radius(0);
+    &:first-child {
+      @include radius(0 0 0 $r_8);
+      border-right-width: 0;
+    }
+    &:last-child {
+      @include radius(0 0 $r_8 0);
+      border-left-width: 0;
+    }
+  }
+}
+
+// polkit-dialog specific styling
+.budgie-polkit-dialog {
+  entry {
+    @include radius($r_4 $r_4 0 0, none);
+    @if $variant == mixed {
+      @include entry(flat-normal, $tc: $color_fg_inv);
+      caret-color: $color_fg_inv;
+      &:focus {
+        @include entry(flat-focus, $tc: $color_fg_inv);
+      }
+      &:disabled {
+        @include entry(flat-disabled, $tc: $color_fg_inv);
+      }
+
+      selection { @extend %selected_items; }
+    }
+    @else {
+      @include entry(flat-normal, $tc: $color_fg);
+      caret-color: $color_fg;
+      &:focus {
+        @include entry(flat-focus, $tc: $color_fg);
+      }
+      &:disabled {
+        @include entry(flat-disabled, $tc: $color_fg);
+      }
+    }
+  }
+
+  .message {
+    color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+  }
+
+  .failure {
+    color: $color_err;
+    font-weight: 700;
+  }
+}
