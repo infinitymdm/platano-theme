@@ -1,5 +1,8 @@
-
+// These are set up as mixins
+@import 'borders';
 @import 'panel';
+
+// These need to be set up as mixins & incorporated into main
 @import 'icon_tasklist';
 @import 'popover';
 @import 'menu';

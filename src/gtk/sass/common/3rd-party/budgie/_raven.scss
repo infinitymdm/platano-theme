@@ -8,9 +8,10 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
   outline-style: none; // unset outlines
 }
 
-.raven-frame { // hide frame
-  > border { border: none 0 transparent; }
-}
+// Not needed (?) See main.scss
+// .raven-frame { // hide frame
+//   > border { border: none 0 transparent; }
+// }
 
 .raven {
   padding: 0;

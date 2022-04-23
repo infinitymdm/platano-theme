@@ -1,9 +1,15 @@
 // main container
 .budgie-container { background-color: transparent; }
 
+// Panel
 .budgie-panel {
-  @include budgie_panel(button, separator, 'background-color')
+  @include budgie_panel(button, separator, 'background-color');
 }
+
+// Panel Borders
+@include borders ($pos_list);
+
+
 
 // misc settings
 .drop-shadow {
