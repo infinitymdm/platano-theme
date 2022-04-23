@@ -7,9 +7,9 @@
 }
 
 // Panel Borders
-@include borders ($pos_list);
+@include borders($pos_list);
 
-
+@include workspaces(frame, button, if($maj_ver >= 4, -gtk-icon-filter, -gtk-icon-effect));
 
 // misc settings
 .drop-shadow {

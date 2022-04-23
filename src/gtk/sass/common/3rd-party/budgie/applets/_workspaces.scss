@@ -1,114 +1,117 @@
 // workspace-switcher applet
-widget > box.workspace-switcher {
-  // main container
-  > box.workspace-layout {
-    widget.workspace-item {
-      @if $variant == mixed {
-        background-image: image(track($color_fg_inv, $alpha_foreground_bdp));
-      }
-      @else {
-        background-image: image(track($color_fg, $alpha_foreground_bdp));
-      }
-      background-repeat: no-repeat;
-      transition-duration: $transition_d_none; // for underline-indicators
+@mixin workspaces ($frame: '', $button: '', $iname: '-gtk-icon-effect') {
+  .workspace-popover {
+    $max_children_per_line: 4;
+    $requested_width: 150px;
 
-      &.current-workspace { background-image: image($color_bg_sel); }
+    #{$frame}.container { padding: 0; }
 
-      @each $position, $_size in (top, calc(100% - 4px) 3px),
-                                  (bottom, calc(100% - 4px) 3px),
-                                  (left, 3px calc(100% - 4px)),
-                                  (right, 3px calc(100% - 4px)) {
-        .#{$position} & {
-          background-position: #{$position} center;
-          background-size: #{$_size};
+    .workspace-popover-button-box {
+      > button {
+        min-width: $requested_width;
+        font-weight: 500;
+      }
+
+      // hide unneeded separators
+      > separator.horizontal {
+        min-height: 0;
+        margin: 0;
+        background-color: transparent;
+      }
+    }
+
+    // apps icon grid
+    flowboxchild {
+      button:not(:active) {
+        transition-timing-function: $transition_t_dec;
+        transition-duration: $transition_d_standard;
+        transition-property: opacity,
+                             border-color,
+                             border-image,
+                             background-color,
+                             background-image,
+                             box-shadow,
+                             icon-shadow;
+      }
+  
+      image {
+        padding: math.div(
+          ($requested_width - $icon_size * ($max_children_per_line + 1)), 
+          ($max_children_per_line * 2)) 0;
+      }
+    }
+  }
+
+  .workspace-switcher {
+    .workspace-layout {
+      .workspace-item {
+        @if $variant == mixed {
+          background-image: image(track($color_fg_inv, $alpha_foreground_bdp));
+        } @else {
+          background-image: image(track($color_fg, $alpha_foreground_bdp));
         }
-      }
+        background-repeat: no-repeat;
+        transition-duration: $transition_d_none; // for underline-indicators
 
-      button.workspace-icon-button {
-        min-width: $icon_size;
-        min-height: $icon_size;
-        padding: 4px;
-        @include radius($r_2, none);
+        &.current-workspace {
+          background-image: image($color_bg_sel);
 
-        > image { opacity: $alpha_foreground_3rd; }
-
-        &:hover,
-        &:active {
-          @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
-          @else { -gtk-icon-filter: brightness(1.2); }
-
-          > image { opacity: $alpha_foreground_2nd; }
-        }
-      }
-
-      // counter
-      label.workspace-more-label {
-        font-weight: 700;
-        opacity: $alpha_foreground_3rd;
-      }
-
-      &.current-workspace {
-        button.workspace-icon-button {
-          > image { opacity: 1.0; }
-
-          &:hover,
-          &:active {
-            @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
-            @else { -gtk-icon-filter: brightness(1.2); }
+          button.workspace-icon-button {
+            > image { 
+              opacity: 1.0; 
+            }
+  
+            &:hover, &:active {
+              #{$iname}: if($maj_ver >= 4, brightness(1.2), highlight);
+            }
+          }
+  
+          label.workspace-more-label { 
+            opacity: 1.0; 
           }
         }
 
-        label.workspace-more-label { opacity: 1.0; }
+        // counter
+        label.workspace-more-label {
+          font-weight: 700;
+          opacity: $alpha_foreground_3rd;
+        }
+
+        @each $position, $_size in (top, calc(100% - 4px) 3px),
+                                   (bottom, calc(100% - 4px) 3px),
+                                   (left, 3px calc(100% - 4px)),
+                                   (right, 3px calc(100% - 4px)) {
+          .#{$position} & {
+            background-position: #{$position} center;
+            background-size: #{$_size};
+          }
+        }
       }
     }
-  }
-
-  // 'plus' button
-  button.image-button.workspace-add-button { // expanded?
-    min-width: $icon_size;
-    min-height: $icon_size;
-    padding: 4px;
-    @include radius(0);
-    @if $variant == mixed { @extend %inv-action-area-button; }
-    @else { @extend %action-area-button; }
-  }
-}
-
-window.budgie-popover.workspace-popover {
-  $max_children_per_line: 4;
-  $requested_width: 150px;
-
-  box.workspace-popover-button-box {
-    > button.flat { // 'Rename' and 'Remove'
-      min-width: $requested_width;
-      font-weight: 500;
+    
+    button.image-button.workspace-add-button { // expanded?
+      min-width: $icon_size;
+      min-height: $icon_size;
+      padding: 4px;
+      @include radius(0);
+      @if $variant == mixed { @extend %inv-action-area-button; }
+      @else { @extend %action-area-button; }
     }
 
-    // hide unneeded separators
-    > separator.horizontal {
-      min-height: 0;
-      margin: 0;
-      background-color: transparent;
-    }
-  }
+    #{$button}.workspace-icon-button {
+      min-width: $icon_size;
+      min-height: $icon_size;
+      padding: 4px;
+      @include radius($r_2, none);
 
-  flowboxchild { // apps icon grid
-    button.flat:not(:active) {
-      transition-property: opacity,
-                            border-color,
-                            border-image,
-                            background-color,
-                            background-image,
-                            box-shadow,
-                            icon-shadow;
-      transition-timing-function: $transition_t_dec;
-      transition-duration: $transition_d_standard;
-    }
+      > image { opacity: $alpha_foreground_3rd; }
 
-    image {
-      padding: ($requested_width - $icon_size * ($max_children_per_line + 1))
-                / ($max_children_per_line * 2)
-                0;
+      &:hover,
+      &:active {
+        #{$iname}: if($maj_ver >= 4, brightness(1.2), highlight);
+
+        > image { opacity: $alpha_foreground_2nd; }
+      }
     }
   }
 }
