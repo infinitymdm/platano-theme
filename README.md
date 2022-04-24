@@ -1,10 +1,37 @@
 ### Platano-theme
 
-A Gtk theme based on Material Design.
+*Oro parece; Plata no es.*
 
-Adapted from [Plata-theme by tista500 on Gitlab](https://gitlab.com/tista500/plata-theme).
 
-Note that this theme is currently work in progress, and is not ready for general use.
+> **Note:**
+> This theme is currently a work in progress, and is not ready for
+> general use.
+
+Platano is a GTK theme based on Material Design principles. It's
+intended as a continuation of the wonderful 
+[Plata-theme by tista500](https://gitlab.com/tista500/plata-theme).
+
+What's in a name?
+-----------------
+
+The name Platano comes from a wonderful Spanish riddle I was taught
+several years ago, which appears at the top of this page:
+
+> *Oro parece; plata no es. ¿Que es?*
+
+Roughly translated:
+
+> *It looks like gold; silver (plata) it is not. What is it?*
+
+Translating doesn't help much though, as the answer is hidden within
+the riddle:
+
+> *plata no es*
+
+The answer? [Un Plátano](https://en.wikipedia.org/wiki/Cooking_banana)!
+
+Just like the "punch line" of this short riddle states, Plata this is
+not. This is Platano!
 
 ----------------------------------------------
 
