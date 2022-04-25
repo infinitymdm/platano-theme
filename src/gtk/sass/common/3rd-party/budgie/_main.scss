@@ -11,6 +11,11 @@
 
 @include workspaces(frame, button, if($maj_ver >= 4, -gtk-icon-filter, -gtk-icon-effect));
 
+// Budgie Menu
+.budgie-panel {
+  @include budgie_panel();
+}
+
 // misc settings
 .drop-shadow {
   margin: $shadow_margin_4;

@@ -1,6 +1,9 @@
+// These are set up as mixins
+@import 'workspaces';
+
+// These need to be setup as mixins & incorporated into main
 @import 'kb_indicator';
 @import 'separator';
-@import 'workspaces';
 @import 'show_desktop';
 @import 'pixel_saver';
 @import 'menubar';
