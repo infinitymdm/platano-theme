@@ -12,8 +12,8 @@
 @include workspaces(frame, button, if($maj_ver >= 4, -gtk-icon-filter, -gtk-icon-effect));
 
 // Budgie Menu
-.budgie-panel {
-  @include budgie_panel();
+.budgie-menu {
+  @include budgie_menu();
 }
 
 // misc settings
