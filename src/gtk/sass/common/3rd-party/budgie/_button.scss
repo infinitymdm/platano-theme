@@ -1,0 +1,14 @@
+%budgie_trigger_button {
+    min-width: $icon_size;
+    min-height: $icon_size;
+    padding: 0;
+    @include radius(0, none);
+    background-color: transparent;
+    color: if($variant == mixed, $color_fg_inv, $color_fg);
+    font-weight: 700; // enforce bold weight
+    &:not(:disabled) {
+      background-color: transparent;
+      background-image: none;
+      animation: none;
+    }
+  }

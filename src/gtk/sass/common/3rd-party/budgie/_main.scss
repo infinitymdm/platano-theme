@@ -16,6 +16,12 @@
   @include budgie_menu();
 }
 
+// Menu Button
+@include budgie_menu_button('button');
+
+// User Menu
+@include budgie_user_menu();
+
 // misc settings
 .drop-shadow {
   margin: $shadow_margin_4;
