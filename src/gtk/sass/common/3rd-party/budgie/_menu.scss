@@ -117,8 +117,8 @@
         outline-width: 0;
     
         button.indicator-item {
-          @include button(normal);
           border: 1px solid transparent;
+          @include button(normal);
           font-weight: 500;
           transition-timing-function: $transition_t_standard;
           transition-property: background-color;
