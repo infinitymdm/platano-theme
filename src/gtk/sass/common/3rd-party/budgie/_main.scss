@@ -9,6 +9,7 @@
 // Panel Borders
 @include borders($pos_list);
 
+// Workspace Switcher
 @include workspaces(frame, button, if($maj_ver >= 4, -gtk-icon-filter, -gtk-icon-effect));
 
 // Budgie Menu
@@ -21,6 +22,9 @@
 
 // User Menu
 @include budgie_user_menu();
+
+// Places Menu
+@include places_menu();
 
 // misc settings
 .drop-shadow {
