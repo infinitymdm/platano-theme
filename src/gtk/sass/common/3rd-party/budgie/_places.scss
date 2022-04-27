@@ -6,7 +6,6 @@
 
       > button:not(.image-button) { // an actual child
         padding: $toolbar_padding;
-        @include radius(0);
 
         box.horizontal {
           > label { 
