@@ -26,6 +26,13 @@
 // Places Menu
 @include places_menu();
 
+// Budgie-styled GtkMenus
+// .budgie-menu {
+//   @include budgie_menu();
+// }
+
+
+
 // misc settings
 .drop-shadow {
   margin: $shadow_margin_4;
