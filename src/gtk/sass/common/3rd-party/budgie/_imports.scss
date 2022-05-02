@@ -1,10 +1,9 @@
 @import 'applets/imports';
 
-// These are set up as mixins
+// These are set up as mixins and/or placeholders
 @import 'borders';
 @import 'panel';
-
-@import 'button'; // Currently a placeholder class
+@import 'button';
 
 // These need to be set up as mixins & incorporated into main
 @import 'icon_tasklist';

@@ -13,7 +13,7 @@
   }
 }
 
-%budge_osd_button { // OSD-style buttons
+%budgie_osd_button { // OSD-style buttons
   @if $variant == mixed { 
     @extend %inv-action-area-button; 
   } @else { 
