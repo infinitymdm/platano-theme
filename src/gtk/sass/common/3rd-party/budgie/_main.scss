@@ -26,12 +26,32 @@
 // Places Menu
 @include places_menu();
 
-// Budgie-styled GtkMenus
+// Budgie styled GtkMenus
+// This currently doesn't appear to do anything, which is why it's
+// commented out
 // .budgie-menu {
 //   @include budgie_menu();
 // }
 
+// Session Dialog
+.budgie-session-dialog {
+  @include budgie_session_dialog();
+}
 
+// Run Dialog
+.budgie-run-dialog {
+  @include budgie_run_dialog();
+}
+
+// PolKit Dialog
+.budgie-polkit-dialog {
+  @include budgie_polkit_dialog();
+}
+
+
+//////////////////////////////////////
+// Sort through the following stuff //
+//////////////////////////////////////
 
 // misc settings
 .drop-shadow {
@@ -77,11 +97,6 @@ window.background.budgie-settings-window.csd {
     }
   }
 }
-
-
-//////////////////////////////////////
-// Sort through the following stuff //
-//////////////////////////////////////
 
 box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
   transition: opacity $transition_d_standard $transition_t_standard,

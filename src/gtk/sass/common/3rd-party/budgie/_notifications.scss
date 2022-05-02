@@ -64,17 +64,6 @@
 
 .budgie-notification,
 .budgie-osd,
-.budgie-session-dialog,
-.budgie-polkit-dialog,
 .drop-shadow {
-  button { // OSD-style buttons
-    @if $variant == mixed { @extend %inv-action-area-button; }
-    @else { @extend %action-area-button; }
-
-    &.suggested-action,
-    &.destructive-action {
-      // hide unneeded shadows
-      &:not(:disabled) { box-shadow: none; }
-    }
-  }
+  button { @extend %budgie_osd_button; }
 }
