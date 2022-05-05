@@ -26,13 +26,6 @@
 // Places Menu
 @include places_menu();
 
-// Budgie styled GtkMenus
-// This currently doesn't appear to do anything, which is why it's
-// commented out
-// .budgie-menu {
-//   @include budgie_menu();
-// }
-
 // Session Dialog
 .budgie-session-dialog {
   @include budgie_session_dialog();
@@ -46,6 +39,11 @@
 // PolKit Dialog
 .budgie-polkit-dialog {
   @include budgie_polkit_dialog();
+}
+
+// Alt+tab Switcher
+.budgie-switcher-window {
+  @include budgie_switcher_window();
 }
 
 
@@ -115,6 +113,12 @@ box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
                 background-image $transition_d_long $transition_t_dec,
                 box-shadow $transition_d_none $transition_t_dec;
   }
+}
+
+.budgie-notification,
+.budgie-osd,
+.drop-shadow {
+  button { @extend %budgie_osd_button; }
 }
 
 @each $position, $_line, $_bg_p, $_bg_s in

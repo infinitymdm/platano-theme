@@ -61,9 +61,3 @@
     progress { background-color: $color_bg_sccs; }
   }
 }
-
-.budgie-notification,
-.budgie-osd,
-.drop-shadow {
-  button { @extend %budgie_osd_button; }
-}
