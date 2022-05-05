@@ -1,0 +1,151 @@
+// /*******************
+//  * Firefox Quantum *
+//  *******************/
+
+%_html_button_spacing {
+  min-width: unset; // do not set min-width/height
+  min-height: unset;
+  padding: if($ref_weight < 1.0, 4px 8px 5px, 7px 11px 8px);
+}
+
+%_html_entry_spacing {
+  min-width: if($ref_weight < 1.0, 24px, 24px + 4px);
+  min-height: if($ref_weight < 1.0, 24px, 24px + 4px);
+  padding: if($ref_weight < 1.0, 0 4px, 0 7px);
+}
+
+%browser_csd_titlebutton {
+  // define global titlebutton class sizing
+  @include button(flat-normal);
+  @include radius($r, none);
+  margin: 0; // unset margins
+  padding: 0;
+
+  &.close {
+    color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+    &:hover {
+      background-color: $color_bg_dest;
+      color: $color_fg_sel;
+    }
+    &:active,
+    &:backdrop:active {
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
+    }
+    &:backdrop {
+      @if $variant == mixed {
+        color: track($color_fg_inv, $alpha_foreground_bdp);
+      }
+      @else {
+        color: track($color_fg, $alpha_foreground_bdp);
+      }
+      &:hover {
+        background-color: track($color_bg_dest, $alpha_foreground_bdp);
+        @if $variant == mixed {
+          color: mix($color_fg_sel, $color_bg_dark_inv, percentage($alpha_foreground_bdp));
+        }
+        @else {
+          color: mix($color_fg_sel, $color_bg_dark, percentage($alpha_foreground_bdp));
+        }
+      }
+    }
+  }
+
+  &.minimize,
+  &.maximize {
+    color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+    &:hover {
+      @if $variant ==mixed {
+        background-color: track($color_fg_inv, $alpha_track_1);
+        color: $color_fg_inv;
+      }
+      @else {
+        background-color: track($color_fg, $alpha_track_1);
+        color: $color_fg;
+      }
+    }
+    &:active,
+    &:active:backdrop {
+      @if $variant ==mixed {
+        background-color: track($color_fg_inv, $alpha_track_2);
+        color: $color_fg_inv;
+      }
+      @else {
+        background-color: track($color_fg, $alpha_track_2);
+        color: $color_fg;
+      }
+    }
+    &:backdrop {
+      @if $variant == mixed {
+        color: track($color_fg_inv_2, $alpha_foreground_bdp);
+      }
+      @else {
+        color: track($color_fg_2, $alpha_foreground_bdp);
+      }
+      &:hover {
+        @if $variant ==mixed {
+          background-color: track($color_fg_inv, $alpha_track_1);
+          color: track($color_fg_inv, $alpha_foreground_bdp);
+        }
+        @else {
+          background-color: track($color_fg, $alpha_track_1);
+          color: track($color_fg, $alpha_foreground_bdp);
+        }
+      }
+    }
+  }
+}
+
+#MozillaGtkWidget.background {
+  @if $maj_ver == 3 {
+    @if $mnr_ver < 23 {
+      headerbar.titlebar { // legacy
+        padding: 0 if($ref_weight < 1.0, (28px - $icon_size * 1.25) / 2,
+                                          (28px - $icon_size * 1.5) / 2);
+
+        &.default-decoration button.titlebutton {
+          @extend %browser_csd_titlebutton;
+          min-width: if($ref_weight < 1.0, $icon_size * 1.25,
+                                            $icon_size * 1.5);
+          min-height: if($ref_weight < 1.0, $icon_size * 1.25,
+                                            $icon_size * 1.5);
+        }
+      }
+    }
+  }
+
+  window.background,
+  menu {
+    > menu { border: unset; } // hide ugly double borders
+  }
+
+  > widget {
+    // 'PageInfo' window's ViewGroup > radio?
+    > radiobutton,
+    > checkbutton {
+      &:focus { outline-width: 0; } // hide outlines
+    }
+
+    border { border-color: $color_fg_div_sld; }
+
+    separator { background-color: $color_fg_div_sld; }
+
+    > scrolledwindow > textview text {
+      &:selected { @extend %selected_items; }
+    }
+
+    > button {
+      &.combo, // generic button and combo spacing
+      & { @extend %_html_button_spacing; }
+
+      // toolbar combo buttons in 'downloads' sub-window
+      &:not(.combo) > button { @extend %_html_button_spacing; }
+    }
+
+    > entry {
+      @extend %_html_entry_spacing;
+      // enforce fallback radius
+      @include radius($r_4, none);
+    }
+  }
+}

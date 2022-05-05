@@ -1,0 +1,22 @@
+// /**************************
+//  * Remmina Remote Desktop *
+//  **************************/
+
+@if $maj_ver == 3 {
+  @if $mnr_ver < 23 {
+    window.background:not(.solid-csd) {
+      // inline headerbar
+      > box.vertical > headerbar:not(.titlebar) {
+        > box.horizontal {
+          > entry,
+          > entry.default { // .default is added when focused only? crazy...
+            @if $variant == mixed { @extend %inv_entry; }
+          }
+
+          // hide unneeded separator
+          > separator { background-color: transparent; }
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,33 @@
+// /******************
+//  * Budgie-Desktop *
+//  ******************/
+
+// Used to reset all style properties set by the gtk theme
+%reset_style {
+  background: none;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+  -gtk-icon-transform: none;
+  opacity: 1;
+  min-width: 0;
+  min-height: 0;
+  padding: unset;
+  font-size: unset;
+  font-weight: unset;
+}
+
+// Settings (from budgie-desktop theme)
+$roundness: 3px;
+$border_width: if($variant == 'default', 1px, 2px);
+$pos_list: ((top, bottom),(bottom,top),(left,right),(right,left));
+
+@import 'imports';
+@import 'widgets';
+@import 'lightdm';
+
 // main container
 .budgie-container { background-color: transparent; }
 

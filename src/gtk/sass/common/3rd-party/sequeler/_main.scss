@@ -1,0 +1,45 @@
+// /************
+//  * Sequeler *
+//  ************/
+
+grid.horizontal {
+  &.library-titlebar {
+    // override stylesheet.css
+    border-image: image($color_bg) 0 0 1 / 0 0 1px;
+
+    label { color: $color_fg_3; }
+  }
+
+  &.library-toolbar {
+    border-image: image($color_fg_div_sld) 1 0 0 / 1px 0 0;
+
+    separator.vertical { // hide unneeded separators
+      min-width: 0;
+      min-height: 0;
+      background: none;
+    }
+
+    button.flat { @include radius(0); }
+  }
+}
+
+flowbox flowboxchild.library-box { // GtkFlowBox in sidebar
+  &, &:hover {
+    grid.library-inner-box { // override stylecsheet.css
+      grid,
+      label { color: $color_fg; }
+    }
+  }
+
+  &:selected {
+    @extend %selected_sidebar_row;
+    &, &:hover {
+      background-image: image(track($color_lbl_sel, $alpha_track_1));
+
+      grid.library-inner-box {
+        grid,
+        label { color: $color_lbl_sel; }
+      }
+    }
+  }
+}

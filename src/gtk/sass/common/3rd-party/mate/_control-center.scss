@@ -1,0 +1,19 @@
+// /***********************
+//  * Mate-Control-Center *
+//  ***********************/
+
+// almost out of control, and looks ugly
+window#MyControlCenter > frame > box.horizontal {
+  > widget > scrolledwindow.frame {
+    border: none;
+    // draw pane-separator with borders
+    // FIXME: rendering quality is quite poor
+    &:dir(ltr) { border-left: 1px solid $color_fg_div_sld; }
+    &:dir(rtl) { border-right: 1px solid $color_fg_div_sld; }
+
+    > widget.view { // content-view
+      all: unset;
+      background-color: $color_bg; // does not work
+    }
+  }
+}

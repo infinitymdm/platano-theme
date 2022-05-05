@@ -1,0 +1,128 @@
+// /************************
+//  * Cinnamon-Screensaver *
+//  ************************/
+
+.csstage {
+  .unlockbox {
+    color: $color_fg_inv;
+    font-size: 110%;
+    font-weight: 400;
+  }
+
+  .clock { color: $color_fg_inv; }
+
+  .toppanel {
+    border: none;
+    color: $color_fg_inv;
+    background-color: transparent;
+  }
+
+  @each $_class, $_radius in (audio, 0 0 $r_2 0),
+                              (info, 0 0 0 $r_2) {
+    .#{$_class}panel { // OSDs placed at top-left/right corners
+      border: none;
+      border-radius: #{$_radius};
+      background-color: track($color_bg_dark_inv, $alpha_osd);
+      box-shadow: $z-depth-1;
+    }
+  }
+
+  .notificationwidget,
+  .powerwidget {
+    padding: $menuitem_padding;
+    color: $color_fg_inv;
+    background-color: transparent;
+    font-size: 100%;
+    font-weight: 500;
+  }
+
+  .auth-message {
+    color: $color_err;
+    font-size: 90%;
+    font-weight: 700;
+  }
+
+  .caps-message {
+    color: $color_warn;
+    font-size: 90%;
+    font-weight: 700;
+  }
+
+  .framedimage { // avatar?
+    border-radius: $r_2;
+    border: none;
+    background-color: track($color_fg_inv, $alpha_track_1);
+  }
+
+  .passwordentry {
+    @extend %flat_entry_sizing;
+    @include entry(flat-normal, $tc: $color_fg_inv);
+    caret-color: $color_fg_inv;
+    font-family: monospace;
+    &:focus { @include entry(flat-focus, $tc: $color_fg_inv); }
+    &:disabled { @include entry(flat-disabled, $tc: $color_fg_inv); }
+    &:backdrop { // for alt-text keyboard layout?
+      color: $color_bg_sel;
+    }
+
+    selection { @extend %selected_items; }
+
+    image.left {
+      margin-right: 8px;
+      color: inherit;
+    }
+
+    @if $maj_ver == 3 {
+      progress {
+        @include radius(0, none);
+        margin: 0; // unset spacing
+        padding: 0;
+      }
+    }
+    @else {
+      progress > trough > progress {
+        @include radius(0, none);
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  .transparentbutton { // = 'unlock'/'switch-user' button
+    min-width: rem($widget_size);
+    min-height: rem($widget_size);
+    @extend %inv-action-area-button;
+  }
+
+  .volumeslider {
+    min-height: 24px;
+    min-width: 100px;
+    padding: 3px 0px;
+    background-color: track($color_fg_inv, $alpha_track_out);
+    color: $color_bg_sccs;
+    &:disabled { background-color: track($color_bg_sccs, $alpha_track_out); }
+  }
+
+  .trackname {
+    font-size: 90%;
+    color: $color_fg_inv_2;
+    background-image: none;
+    background-color: transparent;
+  }
+
+  .albumartist {
+    font-size: 80%;
+    color: $color_fg_inv_3;
+    background-image: none;
+    background-color: transparent;
+  }
+
+  viewport {
+    &,
+    &.frame {
+      border-style: none;
+      background-color: transparent;
+      background-image: none;
+    }
+  }
+}

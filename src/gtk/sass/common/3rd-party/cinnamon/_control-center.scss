@@ -1,0 +1,62 @@
+// /***************************
+//  * Cinnamon-Control-Center *
+//  ***************************/
+
+window.background:not(.csd) > box.vertical {
+  > stack > scrolledwindow > viewport,
+  > scrolledwindow > viewport {
+    iconview {
+      &, &.view {
+        background-color: transparent;
+        &:selected {
+          @extend %selected_items;
+
+          label { color: $color_fg_sel; }
+        }
+      }
+    }
+
+    box.vertical > toolbar {
+      border: none;
+      background-color: $color_bg;
+      box-shadow: none;
+
+      *:not(button) > label {
+        padding: rem(5.3px, $sw: 1.0);
+        color: $color_fg_3;
+      }
+    }
+
+    box.vertical > list {
+      &, > row {
+        background-image: none;
+        background-color: $color_base;
+        @include transition(reset);
+      }
+
+      > row {
+        &:hover,
+        &:active { // unset hover/active effects
+          background-image: none;
+          background-color: transparent;
+          @include transition(reset);
+        }
+        &:selected { // use -image instead for >= 3.6.x
+          background-image: image($color_bg_sel);
+          color: $color_fg_sel;
+        }
+
+        &:hover combobox button.combo { // revert to standard highlighting
+          background-color: mix($color_fg, $color_base, percentage($alpha_track_1));
+          &:hover { background-color: track($color_fg, $alpha_track_1 * 1.5); }
+          &:active,
+          &:checked { background-color: track($color_fg, $alpha_track_2); }
+          &:disabled {
+            background-color:
+              mix($color_fg, $color_base, percentage(($alpha_track_1 * 2 / 3) * $alpha_foreground_dis));
+          }
+        }
+      }
+    }
+  }
+}

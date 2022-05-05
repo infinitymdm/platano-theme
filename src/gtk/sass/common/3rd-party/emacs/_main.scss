@@ -1,0 +1,26 @@
+// /**************
+//  * Emacs24/25 *
+//  **************/
+
+@each $_version in '', '24' {
+  window#Emacs#{$_version} {
+    widget#emacs#{$_version} {
+      > widget {
+        > scrollbar {
+          background-color: $color_base;
+
+          // scrollbar node width '16px' is hard-coded?
+          &.vertical {
+            trough {
+              border-width: 0 1px 0;
+              border-style: solid;
+              border-color: $color_fg_div_sld;
+            }
+
+            slider { min-width: 16px - (1px * 2); }
+          }
+        }
+      }
+    }
+  }
+}
