@@ -1,20 +1,22 @@
-// /**************
-//  * Mate-Tweak *
-//  **************/
+@if $mate_support == yes {
+  // /**************
+  //  * Mate-Tweak *
+  //  **************/
 
-.background:not(.csd) > box.horizontal {
-  > notebook { // right-pane
-    // remove unwanted frames/borders
-    &.frame {
-      border: none;
+  .background:not(.csd) > box.horizontal {
+    > notebook { // right-pane
+      // remove unwanted frames/borders
+      &.frame {
+        border: none;
 
-      > stack {
-        border-width: 1px;
-        border-style: solid;
-        border-color: $color_bg;
-        box-shadow: none;
-        &:dir(ltr) { border-left-color: $color_fg_div_pane; }
-        &:dir(rtl) { border-right-color: $color_fg_div_pane; }
+        > stack {
+          border-width: 1px;
+          border-style: solid;
+          border-color: $color_bg;
+          box-shadow: none;
+          &:dir(ltr) { border-left-color: $color_fg_div_pane; }
+          &:dir(rtl) { border-right-color: $color_fg_div_pane; }
+        }
       }
     }
   }

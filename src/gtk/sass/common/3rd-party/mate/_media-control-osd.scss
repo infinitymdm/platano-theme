@@ -1,39 +1,42 @@
-// /*************************
-//  * Mate-MediaControl-OSD *
-//  *************************/
+@if $mate_support == yes {
+  
+  // /*************************
+  //  * Mate-MediaControl-OSD *
+  //  *************************/
 
-// OSDs are much blurred?
-MsdOsdWindow {
-  &.background.osd {
-    border-radius: $r_8;
-    @if $variant == mixed {
-      border: 1px solid track($color_bg_dark_inv, $alpha_osd);
-      background-color: track($color_bg_dark_inv, $alpha_osd);
-    }
-    @else {
-      border: 1px solid track($color_bg_dark, $alpha_osd);
-      background-color: track($color_bg_dark, $alpha_osd);
-    }
-    box-shadow: none;
-
-    // FIXME: seems images have inverted fore/back colors?
-    image { color: if($variant == mixed, $color_fg_inv, $color_fg); }
-
-    .trough {
-      border-radius: 0;
-      border: none;
+  // OSDs are much blurred?
+  MsdOsdWindow {
+    &.background.osd {
+      border-radius: $r_8;
       @if $variant == mixed {
-        background-color: track($color_fg_inv, $alpha_track_out);
+        border: 1px solid track($color_bg_dark_inv, $alpha_osd);
+        background-color: track($color_bg_dark_inv, $alpha_osd);
       }
       @else {
-        background-color: track($color_fg, $alpha_track_out);
+        border: 1px solid track($color_bg_dark, $alpha_osd);
+        background-color: track($color_bg_dark, $alpha_osd);
       }
-    }
+      box-shadow: none;
 
-    .progressbar {
-      border-radius: 0;
-      border: none;
-      background-color: $color_bg_sccs;
+      // FIXME: seems images have inverted fore/back colors?
+      image { color: if($variant == mixed, $color_fg_inv, $color_fg); }
+
+      .trough {
+        border-radius: 0;
+        border: none;
+        @if $variant == mixed {
+          background-color: track($color_fg_inv, $alpha_track_out);
+        }
+        @else {
+          background-color: track($color_fg, $alpha_track_out);
+        }
+      }
+
+      .progressbar {
+        border-radius: 0;
+        border: none;
+        background-color: $color_bg_sccs;
+      }
     }
   }
 }

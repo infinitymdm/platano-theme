@@ -26,7 +26,7 @@
 @import 'firefox/main';
 
 // Mate Desktop
-@if $mate_support == yes { @import 'mate/main'; }
+@import 'mate/main';
 
 // LibreOffice
 @import 'libreoffice/main';
