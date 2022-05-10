@@ -1,0 +1,340 @@
+// /************
+//  * GtkScale *
+//  ************/
+
+%scale_trough {
+  border-radius: 0;
+  background-color: $color_fg_trk_out;
+  box-shadow: none;
+  &:disabled {
+    color: $color_fg_dis;
+    background-color: $color_fg_trk_out;
+  }
+}
+
+%scale_highlight {
+  border-radius: 0;
+  background-color: $color_bg_acc;
+  &:disabled {
+    color: $color_fg_dis;
+    background-color: $color_fg_trk_out;
+  }
+}
+
+scale {
+  @if $maj_ver == 4 {
+    &:focus(visible) { outline: none; } // enforce hiding outlines
+  }
+
+  &, &.fine-tune {
+    padding: ($scale_slider_size - $scale_trough_size) / 2;
+
+    &.marks {
+      &-before,
+      &-after { // vertically centered placements
+        &.horizontal { margin-top: $scale_trough_size / 2; }
+      }
+    }
+  }
+
+  slider,
+  &.fine-tune slider {
+    background-repeat: no-repeat;
+    background-position: center;
+    transition-property: background-image,
+                          background-size,
+                          box-shadow;
+    transition-timing-function: $transition_t_acc;
+    transition-duration: $transition_d_standard;
+
+    @each $s, $as in ('', ''),
+                      (':hover', '',),
+                      (':active', '-active'),
+                      (':disabled', '-insensitive') {
+      &#{$s} {
+        $_url: 'assets/slider#{$as}';
+        background-image: -gtk-scaled(url('#{$_url}.png'),
+                                      url('#{$_url}@2.png'));
+        background-size: $scale;
+
+        @if $s == ':hover' {
+          $_url: 'assets/slider#{$as}';
+          background-image: -gtk-scaled(url('#{$_url}.png'),
+                                        url('#{$_url}@2.png')),
+                            -gtk-scaled(url('#{$_url}.png'),
+                                        url('#{$_url}@2.png'));
+          background-size: $scale, 100% 100%;
+        }
+        @if $s == ':active' {
+          background-size: 100% 100%;
+        }
+        @if $s == ':disabled' {
+          $_url: 'assets/slider#{$as}#{$asset_suffix}';
+          background-image: -gtk-scaled(url('#{$_url}.png'),
+                                        url('#{$_url}@2.png'));
+        }
+      }
+    }
+  }
+
+  slider,
+  &.fine-tune slider {
+    min-height: $scale_slider_size;
+    min-width: $scale_slider_size;
+    margin: -(($scale_slider_size - $scale_trough_size) / 2);
+  }
+
+  // the backing bit sizing
+  trough {
+    min-height: $scale_trough_size;
+    min-width: $scale_trough_size;
+    border-radius: 0;
+    border-width: 0;
+  }
+
+  fill,
+  highlight {
+    min-height: 0;
+    min-width: 0;
+    border-radius: 0;
+    border-width: 0;
+  }
+
+  // the backing bit styling
+  trough { @extend %scale_trough; }
+
+  // the colored part of the backing bit
+  highlight { @extend %scale_highlight; }
+
+  // switch to orange tracking bit
+  &.fine-tune highlight { background-color: $color_warn; }
+
+  // this is another differently styled part of the backing bit,
+  // the most relevant use case is for example in media player
+  // to indicate how much video stream as been cached
+  fill {
+    @extend %scale_trough;
+
+    background-color: track($color_bg_acc, $alpha_track_1);
+
+    &:disabled {
+      border-color: transparent;
+      background-color: transparent;
+    }
+  }
+
+  @if &maj_ver == 3 {
+    // same opacity value with dim-label
+    @if $variant == mixed {
+      .osd &,
+      .app-notification &,
+      .floating-bar &,
+      headerbar &,
+      messagedialog & {
+        value { color: track($color_fg_inv, $alpha_foreground_3rd); }
+      }
+    }
+    @else {
+      value { color: track($color_fg, $alpha_foreground_3rd); }
+    }
+  }
+
+  separator {
+    color: transparent;
+    background-color: $color_bg_trk;
+  }
+}
+
+scale { // marks color
+  @if $maj_ver == 3 {
+    marks {
+      color: track(currentColor, $alpha_foreground_3rd);
+      @each $marks_class, $marks_pos, $marks_margin in (top, top, bottom),
+                                                        (bottom, bottom, top),
+                                                        (top, left, right),
+                                                        (bottom, right, left) {
+        &.#{$marks_class} {
+          margin-#{$marks_margin}: $_marks_distance;
+          margin-#{$marks_pos}: -($_marks_distance + $_marks_length);
+        }
+      }
+    }
+
+    &.horizontal {
+      indicator {
+        min-height: $_marks_length;
+        min-width: 1px;
+      }
+    }
+
+    &.vertical {
+      indicator {
+        min-height: 1px;
+        min-width: $_marks_length;
+      }
+    }
+  }
+  @else {
+    &.horizontal > marks,
+    &.vertical > marks {
+      color: track(currentColor, $alpha_foreground_3rd);
+
+      indicator { background-color: currentColor; }
+    }
+
+    &.horizontal > value,
+    &.vertical > value {
+      // same opacity value with dim-label
+      color: track(currentColor, $alpha_foreground_3rd);
+    }
+
+    // NEED_REVIEW: need to compute proper values in future
+    &.horizontal > value {
+      &.left { margin-right: 9px; }
+
+      &.right { margin-left: 9px; }
+    }
+
+    &.vertical > value {
+      &.top { margin-bottom: 9px; }
+
+      &.bottom { margin-top: 9px; }
+    }
+
+    @each $d, $_top, $_bottom, $_h, $_w in
+      ('horizontal', bottom, top, height, width),
+      ('vertical', right, left, width, height) {
+
+      &.#{$d} > marks {
+        &.top { margin-#{$_top}: $_marks_distance; }
+
+        &.bottom { margin-#{$_bottom}: $_marks_distance; }
+
+        indicator {
+          min-#{$_h}: $_marks_length;
+          min-#{$_w}: 1px;
+        }
+      }
+    }
+  }
+}
+
+// scale with marks
+@each $d,$dn in ('horizontal', 'horz'),
+                ('vertical', 'vert') {
+  @each $ws,$w,$we in  (':last-child:not(:only-child)',
+                        'scale-has-marks-above', 'scale_marks_above'),
+                        (':first-child:not(:only-child)',
+                        'scale-has-marks-below', 'scale_marks_below') {
+    scale.#{$d} {
+      %#{$w}-#{$dn},
+      contents#{$ws} > trough > slider {
+        @each $s,$as in ('',''),
+                        (':hover',''),
+                        (':active','-active'),
+                        (':disabled','-insensitive') {
+          &#{$s} {
+            @extend %#{$we}_#{$dn}; // negative margin makes trough shrinking
+            $_url: 'assets/slider-#{$dn}-#{$w}#{$as}';
+            background-image: -gtk-scaled(url('#{$_url}.png'),
+                                          url('#{$_url}@2.png'));
+
+            @if $s == ':hover' {
+              $_url: 'assets/slider-#{$dn}-#{$w}';
+              background-image: -gtk-scaled(url('#{$_url}.png'),
+                                            url('#{$_url}@2.png')),
+                                -gtk-scaled(url('#{$_url}.png'),
+                                            url('#{$_url}@2.png'));
+              background-size: $scale, 100% 100%;
+            }
+            @if $s == ':active' { background-size: 100% 100%; }
+            @if $s == ':disabled' {
+              $_url: 'assets/slider-#{$dn}-#{$w}#{$as}#{$asset_suffix}';
+              background-image: -gtk-scaled(url('#{$_url}.png'),
+                                            url('#{$_url}@2.png'));
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+$thick_side: $scale_slider_size * 3 / 4;
+$thin_side: $scale_slider_size / 2;
+
+scale { // scales for color
+  &.color,
+  &.fine-tune.color {
+    // min-height: 0;
+    // min-width: 0;
+
+    // not actual trough color
+    trough {
+      min-width: $scale_trough_size * 2;
+      min-height: $scale_trough_size * 2;
+      border-radius: 0;
+      background-color: transparent;
+    }
+
+    slider {
+      min-height: $scale_slider_size;
+      min-width: $scale_slider_size;
+      margin: -($scale_slider_size - $scale_trough_size * 2);
+    }
+
+    &.horizontal {
+      margin: 0 (-$thin_side) $thin_side;
+      padding: 0 ($thin_side);
+
+      slider {
+        &,
+        &:hover,
+        &:active,
+        &:disabled { @extend %scale-has-marks-above-horz; }
+      }
+    }
+
+    &.vertical {
+      &:dir(ltr) {
+        margin: (-$thin_side) (-$thin_side) (-$thin_side) $thin_side;
+        padding: $thin_side $thin_side $thin_side 0;
+
+        slider {
+          &,
+          &:hover,
+          &:active,
+          &:disabled { @extend %scale-has-marks-below-vert; }
+        }
+      }
+
+      &:dir(rtl) {
+        margin: (-$thin_side) $thin_side (-$thin_side) (-$thin_side);
+        padding: $thin_side 0 $thin_side $thin_side;
+
+        slider {
+          &,
+          &:hover,
+          &:active,
+          &:disabled { @extend %scale-has-marks-above-vert; }
+        }
+      }
+    }
+  }
+}
+
+%scale_marks_above_horz {
+  margin: (-$thick_side) (-$thin_side) (-$thin_side) (-$thin_side);
+}
+
+%scale_marks_below_horz {
+  margin: (-$thin_side) (-$thin_side) (-$thick_side) (-$thin_side);
+}
+
+%scale_marks_above_vert {
+  margin: (-$thin_side) (-$thin_side) (-$thin_side) (-$thick_side);
+}
+
+%scale_marks_below_vert {
+  margin: (-$thin_side) (-$thick_side) (-$thin_side) (-$thin_side);
+}

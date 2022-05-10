@@ -1,0 +1,47 @@
+// /************
+//  * Calendar *
+//  ************/
+
+calendar {
+  margin: rem($menuitem_padding) 0;
+  padding: if($ref_weight < 1.0, 2px 2px, 4px 3px);
+  border: 1px solid $color_fg_div;
+  color: $color_fg;
+  font-weight: 500;
+  &:selected {
+    background-image: image($color_bg_sel);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: if($ref_weight < 1.0, 100% calc(100% - (2px * 2)),
+                                            100% calc(100% - (4px * 2)));
+    color: $color_fg_sel;
+  }
+
+  &.header {
+    border: 1px solid transparent;
+    border-bottom-color: if($variant == dark, track(white, $alpha_div_2),
+                                              $color_fg_div);
+  }
+
+  &.button,
+  &.header.button {
+    @include button(flat-normal, $tc: $color_fg_3);
+    &:hover {
+      @include button(flat-hover, $tc: $color_fg_2);
+    }
+    &:active {
+      @include button(flat-active, $tc: $color_fg_2);
+    }
+    &:disabled {
+      @include button(flat-disabled);
+    }
+  }
+
+  &:indeterminate { color: track($color_fg, $alpha_foreground_3rd * $alpha_foreground_3rd); }
+
+  &.highlight { // padding for week-number column
+    padding-top: 0;
+    padding-bottom: if($ref_weight < 1.0, 2px * 2, 4px * 2);
+    color: $color_fg_3;
+  }
+}

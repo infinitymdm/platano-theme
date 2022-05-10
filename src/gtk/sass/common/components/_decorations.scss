@@ -1,0 +1,228 @@
+// /**********************
+//  * Window Decorations *
+//  *********************/
+
+decoration {
+  margin: $deco_margin; // this is used for the resize cursor area
+  @include radius($r_2 $r_2 0 0, none);
+  border-width: 0;
+  background-color: transparent;
+  box-shadow: $z-depth-4;
+  @include transition(normal-deco);
+
+  &:backdrop {
+    // the transparent shadow here is to enforce that the shadow extents don't
+    // change when we go to backdrop, to prevent jumping windows.
+    // The biggest shadow should be in the same order then in the active state
+    // or the jumping will happen during the transition.
+    box-shadow: $z-depth-2-backdrop;
+  }
+
+  .fullscreen &,
+  .maximized & {
+    &, &:backdrop { border-radius: 0; }
+  }
+
+  @if $maj_ver == 3 {
+    @if $mnr_ver > 23 {
+      // FIXME: maxd SSDs seem to introduce unwanted window edge artifacts
+      // when the child modal-dialog is attached on GNOME 3.32, mystery...
+      window.fullscreen:not(.csd) &,
+      window.maximized:not(.csd) & {
+        &, &:backdrop {
+          box-shadow: none;
+          transition-duration: 0s;
+        }
+      }
+    }
+  }
+  @else {
+    window.fullscreen:not(.csd) &,
+    window.maximized:not(.csd) & {
+      &, &:backdrop {
+        box-shadow: none;
+        transition-duration: 0s;
+      }
+    }
+  }
+
+  @each $_constraint,
+        $_shadow in ('', $z-depth-2-backdrop-tiled),
+                    ('-top', $z-depth-2-backdrop-tiled-top),
+                    ('-bottom', $z-depth-2-backdrop-tiled-bottom),
+                    ('-left', $z-depth-2-backdrop-tiled-left),
+                    ('-right' $z-depth-2-backdrop-tiled-right) {
+    // draw empty shadows + window edges when tiled
+    // FIXME: window node was not needed semantically, but Solus build seems
+    // to draw tiled-edges in GtkDialogs. Mystery...
+    window.tiled#{$_constraint} & {
+      border-radius: 0;
+      box-shadow: #{$_shadow};
+    }
+  }
+
+  // server-side decorations as used by mutter
+  .ssd & { box-shadow: $z-depth-2; }
+
+  // 'tiled' state in X11-SSD mode
+  @each $_constraint,
+        $_shadow in ('', $z-depth-2-tiled),
+                    ('-top', $z-depth-2-tiled-top),
+                    ('-bottom', $z-depth-2-tiled-bottom),
+                    ('-left', $z-depth-2-tiled-left),
+                    ('-right' $z-depth-2-tiled-right) {
+    // draw empty shadows + window edges when tiled
+    window.ssd.tiled#{$_constraint} & { box-shadow: #{$_shadow}; }
+  }
+
+  .popup & { box-shadow: none; }
+
+  .csd.popup & {
+    @include radius($r_4, none);
+    box-shadow: $z-depth-3;
+  }
+
+  tooltip.csd & {
+    @include radius($r_2, none);
+    box-shadow: none;
+    @include transition(reset);
+  }
+
+  messagedialog.csd & {
+    @include radius($r_8, none);
+    box-shadow: $z-depth-4;
+    &:backdrop { box-shadow: $z-depth-2-backdrop; }
+  }
+
+  .solid-csd & {
+    margin: 0;
+    padding: 2px + 1px; // actual outset borders + inset border-frame
+    border-radius: 0;
+    border: none;
+    background-color: $color_fg_div_sld;
+    @if $variant == light {
+      box-shadow: inset 0 0 0 2px $color_bg_dark,
+                  inset 0 1px $color_fg_div_top;
+    }
+    @else {
+      box-shadow: inset 0 0 0 2px $color_bg_dark_inv,
+                  inset 0 1px $color_fg_div_top;
+    }
+  }
+}
+
+// Window manager buttons
+.csd headerbar:not(.default-decoration),
+.solid-csd headerbar:not(.default-decoration) {
+  > box.horizontal { // hide vertical separators
+    &.left,
+    &.right {
+      separator.vertical {
+        min-width: 0;
+        background-color: transparent;
+      }
+    }
+  }
+
+  button.titlebutton {
+    // optimize sizes with flat-style
+    min-width: calc(#{rem($widget_size)} - 0.5px * 2);
+    min-height: calc(#{rem($widget_size)} - 0.5px * 2);
+    margin: calc(#{$toolbar_padding} + 0.75px)
+            0
+            calc(#{$toolbar_padding} + 0.5px);
+    padding: 0;
+    @include radius($r, none);
+    @if $variant == light {
+      @extend %flat_button;
+    }
+    @else {
+      @extend %inv_flat_button;
+    }
+
+    &.close {
+      &:hover {
+        background-color: $color_bg_dest;
+        color: $color_fg_sel;
+      }
+      &:active {
+        background-color: $color_bg_dest;
+        color: $color_fg_sel;
+        @include ink-reaction(
+                    active-close-dec, $fc: $color_bg_sel, $tr: ink-active-dec);
+      }
+    }
+  }
+}
+
+// specific button styling for Mutter's SSDs, Metacity's CSDs and XWayland
+%ssd_button {
+  min-width: $titlebutton_small;
+  min-height: $titlebutton_small;
+  margin: 0; // reset outer margins
+  padding: 0;
+  @include radius($r, none);
+  @if $variant == light { @extend %flat_button; }
+  @else { @extend %inv_flat_button; }
+}
+
+.csd headerbar.titlebar.default-decoration {
+  @if $maj_ver == 3 {
+    button.titlebutton { @extend %ssd_button; }
+  }
+  @else {
+    button.titlebutton,
+    menubutton.titlebutton { @extend %ssd_button; } // for appmenu
+  }
+}
+
+.ssd .titlebar,
+headerbar.titlebar.default-decoration {
+  button.titlebutton {
+    @extend %ssd_button;
+    &:not(.close) {
+      &:active { // draw solid bg instead
+        background-color: if($variant == mixed,
+                              track($color_fg_inv,  $alpha_track_2),
+                              track($color_fg, $alpha_track_2));
+      }
+      &:backdrop {
+        color: if($variant == mixed, track($color_fg_inv_2, $alpha_foreground_bdp),
+                                      track($color_fg_2, $alpha_foreground_bdp));
+        &:hover {
+          color: if($variant == mixed, track($color_fg_inv, $alpha_foreground_bdp),
+                                        track($color_fg, $alpha_foreground_bdp));
+        }
+        &:active { color: if($variant == mixed, $color_fg_inv, $color_fg); }
+      }
+    }
+
+    &.close {
+      color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+      &:hover {
+        background-color: $color_bg_dest;
+        color: $color_fg_sel;
+      }
+      &:active {
+        background-color: $color_bg_sel;
+        color: $color_fg_sel;
+      }
+      &:backdrop {
+        color: if($variant == mixed, track($color_fg_inv_2, $alpha_foreground_bdp),
+                                      track($color_fg_2, $alpha_foreground_bdp));
+        &:hover {
+          background-color: track($color_bg_dest, $alpha_foreground_bdp);
+          color: track($color_fg_sel, $alpha_foreground_bdp);
+        }
+        &:active {
+          background-color: $color_bg_sel;
+          color: $color_fg_sel;
+        }
+      }
+    }
+  }
+
+  @if $maj_ver == 4 {
+    menubutton.titlebutton { @extend %ssd_button; } // for appmenu
+  }
+}

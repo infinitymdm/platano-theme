@@ -1,0 +1,535 @@
+// /***************
+//  * Header bars *
+//  ***************/
+
+.titlebar,
+headerbar {
+  background-color: if($variant == mixed, $color_bg_dark_inv, $color_bg_dark);
+  background-clip: border-box;
+
+  // text colors
+  color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+
+  label,
+  image {
+    &:disabled {
+      color: if($variant == mixed, $color_fg_dis_inv, $color_fg_dis);
+    }
+  }
+
+  // titles
+  label.title {
+    margin-bottom: rem($baseline, $sw: 1.0);
+    padding: 0 rem($txt_button_lr_space);
+    font-weight: 700;
+  }
+
+  label.subtitle {
+    @extend %dim_label;
+    padding: 0 rem($txt_button_lr_space);
+    font-size: if($ref_weight < 1.0, 80%, 90%);
+  }
+
+  button { // titles inside the buttons
+    box.vertical,
+    grid {
+      label.title {
+        margin: rem(-$baseline * 2) 0;
+        padding: 0 rem($txt_button_lr_space);
+        font-size: if($ref_weight < 1.0, 90%, 100%);
+      }
+
+      label.subtitle {
+        margin: rem(-$baseline * 2) 0;
+        padding: 0 rem($txt_button_lr_space);
+        padding-bottom: rem($baseline);
+      }
+    }
+  }
+
+  // menu
+  menu menuitem { // reset text color
+    color: $color_fg_2;
+    &:hover { color: $color_fg; }
+    &:disabled {
+      &, label { color: $color_fg_dis; }
+    }
+
+    accelerator { color: $color_fg_3; }
+
+    separator { color: $color_fg_div; }
+  }
+
+  // check and radio
+  checkbutton.text-button,
+  radiobutton.text-button {
+    @if $variant == mixed {
+      color: $color_fg_inv_2;
+      &:hover,
+      &:active,
+      &:checked { color: $color_fg_inv; }
+      &:disabled,
+      &:disabled:active,
+      &:disabled:indeterminate { color: $color_fg_dis_inv; }
+    }
+  }
+}
+
+.titlebar {
+  &.default-decoration {
+    min-height: $titlebutton_small;
+    padding: if($ref_weight < 1.0, 2px 3px, 4px 5px);
+    border-radius: $r_2 $r_2 0 0;
+    border-width: 1px 0 0;
+    border-top-color: $color_fg_div_top;
+
+    &:backdrop {
+      > * { opacity: 1.0; } // unset %fade_effect
+      border-top-color: if($variant == mixed, $color_bg_inv, $color_bg);
+      background-color: if($variant == mixed, $color_bg_inv, $color_bg);
+    }
+
+    .title { // fade_effect doesn't work
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
+      &:backdrop { color: $color_fg_title_unf; }
+
+      margin: 0 rem($menuitem-padding, $sw: 1.0) rem($baseline, $sw: 1.0);
+    }
+  }
+
+  .tiled &,
+  .tiled-top &,
+  .tiled-bottom &,
+  .tiled-left &,
+  .tiled-right &,
+  .maximized &,
+  .fullscreen & {
+    border-top-color: if($variant == mixed, $color_bg_dark_inv,
+                                            $color_bg_dark);
+    border-radius: 0;
+  }
+}
+
+headerbar { // solid-CSDs
+  .solid-csd & {
+    &:dir(rtl), &:dir(ltr) { // specificity bump
+      &, &:not(:only-child):last-child {
+        margin: -1px -1px 0 -1px; // hide inset border-frame in decoration node
+        border-radius: 0;
+        border-top: 0 none transparent; // unset top-edge
+      }
+    }
+  }
+
+  .solid-csd box &:not(:only-child):last-child { // revive separators
+    &:dir(ltr) { border-left: 1px solid $color_fg_div; }
+    &:dir(rtl) { border-right: 1px solid $color_fg_div; }
+  }
+}
+
+headerbar {
+  &.selection-mode { // selection-mode
+    border-width: 1px 0;
+    border-top-color: $color_fg_div_sel_top;
+    background-color: $color_bg_sel_dark;
+    @include transition(std);
+    &:backdrop {
+      @if $variant == mixed {
+        border-top-color: mix($color_bg_sel_dark,
+                              $color_bg_inv, percentage($alpha_foreground_bdp));
+        background-color: mix($color_bg_sel_dark,
+                              $color_bg_inv, percentage($alpha_foreground_bdp));
+      }
+      @else {
+        border-top-color: mix($color_bg_sel_dark,
+                              $color_bg, percentage($alpha_foreground_bdp));
+        background-color: mix($color_bg_sel_dark,
+                              $color_bg, percentage($alpha_foreground_bdp));
+      }
+    }
+
+    button.selection-menu {
+      padding-left: rem($txt_button_lr_space);
+      padding-right: rem($txt_button_lr_space);
+
+      arrow {
+        @extend %arrow_size;
+        -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
+      }
+    }
+
+    .tiled &,
+    .tiled-top &,
+    .tiled-bottom &,
+    .tiled-left &,
+    .tiled-right &,
+    .maximized &,
+    .fullscreen & {
+      border-top-color: $color_bg_sel_dark;
+      border-radius: 0;
+
+      &:backdrop {
+        @if $variant == mixed {
+          border-top-color: mix($color_bg_sel_dark,
+                                $color_bg_inv, percentage($alpha_foreground_bdp));
+        }
+        @else {
+          border-top-color: mix($color_bg_sel_dark,
+                                $color_bg, percentage($alpha_foreground_bdp));
+        }
+      }
+    }
+  }
+}
+
+@if $maj_ver == 3 { // for Epiphany
+  @if $mnr_ver > 23 {
+    window.incognito-mode headerbar,
+    headerbar.incognito-mode {
+      @extend %incognito_headerbar_bg;
+    }
+
+    window.incognito-mode {
+      &.tiled,
+      &.tiled-top,
+      &.tiled-bottom,
+      &.tiled-left,
+      &.tiled-right,
+      &.maximized,
+      &.fullscreen {
+        headerbar { @extend %maxd_incognito_headerbar_bg; }
+      }
+    }
+
+    headerbar.incognito-mode {
+      .tiled &,
+      .tiled-top &,
+      .tiled-bottom &,
+      .tiled-left &,
+      .tiled-right &,
+      .maximized &,
+      .fullscreen & { @extend %maxd_incognito_headerbar_bg; }
+    }
+  }
+}
+@else {
+  window.incognito-mode {
+    headerbar { @extend %incognito_headerbar_bg; }
+
+    &.tiled,
+    &.tiled-top,
+    &.tiled-bottom,
+    &.tiled-left,
+    &.tiled-right,
+    &.maximized,
+    &.fullscreen {
+      headerbar { @extend %maxd_incognito_headerbar_bg; }
+    }
+  }
+}
+
+%incognito_headerbar_bg {
+  border-top-color: if($variant == mixed,
+                       mix(white, $color_bg_tooltip_inv, percentage($alpha_div_1)),
+                       mix(white, $color_bg_tooltip, percentage($alpha_div_2)));
+  background-color: if($variant == mixed, $color_bg_tooltip_inv, $color_bg_tooltip);
+  &:backdrop {
+    border-top-color: if($variant == mixed, $color_bg_inv, $color_bg);
+    background-color: if($variant == mixed, $color_bg_inv, $color_bg);
+  }
+}
+
+%maxd_incognito_headerbar_bg {
+  border-top-color: if($variant == mixed, $color_bg_tooltip_inv, $color_bg_tooltip);
+  &:backdrop { border-top-color: if($variant == mixed, $color_bg_inv, $color_bg); }
+}
+
+headerbar {
+  &:not(.default-decoration) {
+    min-height: rem($widget_size) + ($toolbar_padding * 2);
+  }
+
+  @extend %fade_effect; // add fade_effect
+  @if $maj_ver == 4 { border-spacing: 6px; }
+  // draw borders
+  border-width: 1px 0 1px;
+  border-style: solid;
+  // do not use transparentize
+  border-color: $color_fg_div;
+  border-top-color: $color_fg_div_top;
+
+  &:backdrop {
+    border-top-color: if($variant == light, $color_bg, $color_bg_inv);
+    background-color: if($variant == light, $color_bg, $color_bg_inv);
+  }
+
+  @if $maj_ver == 4 {
+    &.titlebar headerbar:not(.titlebar) { // nested headerbar mode
+      background: none; // resetting needed by sliding animations
+    }
+  }
+
+  .tiled &,
+  .tiled-top &,
+  .tiled-bottom &,
+  .tiled-left &,
+  .tiled-right &,
+  .maximized &,
+  .fullscreen & {
+    border-top-color: if($variant == light, $color_bg_dark, $color_bg_dark_inv);
+    border-radius: 0;
+
+    &:backdrop {
+      border-top-color: if($variant == light, $color_bg, $color_bg_inv);
+    }
+  }
+
+  // reduce hidden gap reserved for separators
+  > box.horizontal {
+    @if $maj_ver == 3 {
+      &.left { margin-right: -6px; }
+
+      &.right { margin-left: -6px; }
+    }
+    @else {
+      &.left,
+      &.right { border-spacing: 0; }
+    }
+  }
+
+  // To avoid double-padding, set it only for titlebar in case it
+  // is placed on the header-bar.
+  &.titlebar,
+  .csd &,
+  .solid-csd &,
+  box &:only-child {
+    @extend %headerbar_child_margins;
+    padding: 0 $toolbar_padding; // only add lateral spacer
+  }
+}
+
+%headerbar_child_margins {
+  button, // set spacer with vertical margin
+  menubutton,
+  entry,
+  spinbutton,
+  scale { margin: $toolbar_padding 0; }
+
+  > box.vertical,
+  > stack > box.vertical {
+    > label.title {
+      margin: if($ref_weight < 1.0, rem(-$baseline * 2) 0, 0);
+    }
+
+    > label.subtitle { margin: rem(-$baseline * 2) 0; }
+  }
+
+  menubutton > button { margin: 0; } // reset child button node T/B margins
+}
+
+.background:not(.maximized):not(.fullscreen):not(.tiled):not(.solid-csd) {
+  &:not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right) {
+    headerbar,
+    .titlebar { // set rounded corners
+      border-top-left-radius: $r_2;
+      border-top-right-radius: $r_2;
+    }
+
+    box.horizontal headerbar {
+      &:not(:last-child) {
+        &:dir(ltr) {
+          border-top-left-radius: $r_2;
+          border-top-right-radius: 0;
+        }
+        &:dir(rtl) {
+          border-top-left-radius: 0;
+          border-top-right-radius: $r_2;
+        }
+      }
+
+      &:last-child {
+        &:dir(ltr) { border-top-left-radius: 0; }
+        &:dir(rtl) { border-top-right-radius: 0; }
+      }
+    }
+
+    box.vertical headerbar:not(.titlebar) { // inline-mode
+      &:not(:last-child) {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+  }
+}
+
+.background:not(.maximized):not(.fullscreen):not(.tiled):not(.solid-csd) {
+  &:not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right) {
+    headerbar.titlebar {
+      headerbar:not(.titlebar):not(:only-child) { // for hdyleaflet
+        &:first-child {
+          &:dir(ltr) { border-top-right-radius: 0; }
+          &:dir(rtl) { border-top-left-radius: 0; }
+        }
+        &:last-child {
+          &:dir(ltr) { border-top-left-radius: 0; }
+          &:dir(rtl) { border-top-right-radius: 0; }
+        }
+      }
+    }
+  }
+}
+
+// force using rounded corners in case of paned titlebars
+window:not(.maximized):not(.fullscreen):not(.tiled):not(.solid-csd) {
+  &:not(.tiled-top):not(.tiled-bottom):not(.tiled-left):not(.tiled-right) {
+    paned.titlebar,
+    grid.titlebar {
+      border-top-left-radius: $r_2;
+      border-top-right-radius: $r_2;
+
+      separator:first-child + headerbar { // only-child case
+        border-top-left-radius: $r_2;
+      }
+
+      headerbar:first-child {
+        border-top-left-radius: $r_2;
+        border-top-right-radius: 0;
+      }
+
+      headerbar:last-child {
+        border-top-left-radius: 0;
+        border-top-right-radius: $r_2;
+      }
+    }
+  }
+}
+
+// workaround for inline-mode headerbars
+.background:not(.csd):not(.ssd):not(.solid-csd) {
+  box headerbar,
+  headerbar {
+    &, &:not(:last-child) {
+      @extend %headerbar_child_margins;
+      padding: 0 $toolbar_padding; // only add lateral spacer
+      border-radius: 0;
+      border-top: 0 none transparent;
+
+      // unset fade-effect
+      &:backdrop > * { opacity: 1.0; }
+    }
+  }
+
+  &.tiled,
+  &.tiled-top,
+  &.tiled-bottom,
+  &.tiled-left,
+  &.tiled-right,
+  &.maximized,
+  &.fullscreen {
+    box headerbar,
+    headerbar {
+      &, &:not(:last-child) {
+        border-top: 0 none transparent;
+        background-color: if($variant == light, $color_bg_dark, $color_bg_dark_inv);
+      }
+    }
+  }
+}
+
+@if $maj_ver == 3 {
+  // Development versions of apps to use a differently styled headerbar
+  @if $mnr_ver > 23 {
+    headerbar.titlebar:not(.selection-mode) {
+      // devel-mode does not work properly in selection-mode?
+      window.devel & { @extend %devel_headerbar; }
+    }
+  }
+}
+@else {
+  headerbar.titlebar:not(.selection-mode) {
+    window.devel & { @extend %devel_headerbar; }
+  }
+}
+
+%devel_headerbar {
+  @if $variant == light {
+    background-image: -gtk-scaled(
+                      url("assets/dev-mode.png"),
+                      url("assets/dev-mode@2.png"));
+  }
+  @else {
+    background-image: -gtk-scaled(
+                      url("assets/dev-mode-dark.png"),
+                      url("assets/dev-mode-dark@2.png"));
+  }
+  background-position: 75% top;
+  background-size: $dev_asset_size $dev_asset_size;
+  background-repeat: no-repeat;
+  &:backdrop {
+    @if $variant == light {
+      background-image: image(track($color_bg, $alpha_foreground_bdp)),
+                        -gtk-scaled(
+                        url("assets/dev-mode.png"),
+                        url("assets/dev-mode@2.png"));
+    }
+    @else {
+      background-image: image(track($color_bg_inv, $alpha_foreground_bdp)),
+                        -gtk-scaled(
+                        url("assets/dev-mode-dark.png"),
+                        url("assets/dev-mode-dark@2.png")),
+    }
+  }
+}
+
+dialog.background.csd > headerbar.titlebar {
+  // enforce square shape in 'Cancel' and 'Open' button
+  > button:not(.image-button):not(.text-button):not(.toggle):not(.popup) {
+    // specificity bump
+    &:not(.suggested-action):not(.destructive-action) {
+      &:not(.titlebutton):not(.selection-menu) {
+        @include radius($r_2, none);
+        padding: 0 rem($txt_button_lr_space);
+      }
+    }
+  }
+}
+
+@if $maj_ver == 3 { // for hdyleaflet >= 3.31.90
+  @if $mnr_ver > 23 {
+    headerbar.titlebar { @extend %hdyleaflet; }
+  }
+}
+@else {
+  headerbar.titlebar { @extend %hdyleaflet; }
+}
+
+%hdyleaflet {
+  headerbar:not(.titlebar):not(:only-child) {
+    background-color: transparent;
+
+    + separator { background-color: $color_fg_div_sld_dark; }
+  }
+
+  &.selection-mode headerbar:not(.titlebar):not(:only-child) {
+    border-top-color: $color_fg_div_sel_top;
+    &:backdrop { // override default border-top color
+      @if $variant == mixed {
+        border-top-color: mix($color_bg_sel_dark,
+                              $color_bg_inv, percentage($alpha_foreground_bdp));
+      }
+      @else {
+        border-top-color: mix($color_bg_sel_dark,
+                              $color_bg, percentage($alpha_foreground_bdp));
+      }
+    }
+
+    + separator { background-color: transparent; }
+  }
+
+  &:backdrop { // prevent double fade_effect
+    hdyleaflet,
+    *:not(hdyleaflet) headerbar:not(.titlebar):not(:only-child) > * {
+      opacity: 1.0;
+    }
+  }
+}

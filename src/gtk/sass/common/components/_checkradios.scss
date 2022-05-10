@@ -1,0 +1,223 @@
+// /*************************
+//  * Check and Radio items *
+//  *************************/
+
+// draw regular check and radio items using our PNG assets
+// all assets are rendered from assets.svg. never add pngs directly
+
+@each $w,$a in ('check', 'checkbox'),
+               ('radio','radio') {
+  @each $s,$as in ('','-unchecked'),
+                  (':hover', '-unchecked-active'),
+                  (':active', '-unchecked-active'),
+                  (':disabled','-unchecked-insensitive'),
+                  (':indeterminate', '-mixed'),
+                  (':indeterminate:hover', '-mixed-active'),
+                  (':indeterminate:active', '-mixed-active'),
+                  (':indeterminate:disabled', '-mixed-insensitive'),
+                  (':checked', '-checked'),
+                  (':checked:hover', '-checked-active'),
+                  (':checked:active', '-checked-active'),
+                  (':checked:disabled','-checked-insensitive') {
+    // workaround for WebKitGtk, FirefoxQuantum and LibreOffice
+    #{$w}#{$s} {
+      border-radius: if($w == check, $r_2, $r);
+      background-color: if($variant ==dark, $color_bg, transparent);
+      -gtk-icon-source:
+        -gtk-scaled(url("assets/#{$a}#{$as}#{$asset_suffix}.png"),
+                    url("assets/#{$a}#{$as}#{$asset_suffix}@2.png"));
+    }
+
+    // standard checks and radios
+    .background:not(#MozillaGtkWidget) #{$w}#{$s} {
+      @if $variant == dark { background-color: transparent; }
+    }
+
+    // dark-variant-only mode
+    @if $variant == mixed {
+      .background:not(#MozillaGtkWidget) headerbar #{$w}#{$s},
+      messagedialog.background:not(#MozillaGtkWidget) #{$w}#{$s} {
+        -gtk-icon-source: -gtk-scaled(url("assets/#{$a}#{$as}-dark.png"),
+                                      url("assets/#{$a}#{$as}-dark@2.png"));
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.background:not(#MozillaGtkWidget) {
+  // check/radio inside treeview
+  treeview.view check,
+  treeview.view radio {
+    &, &:only-child {
+      padding: 0; // FIXME: negative margin doesn't work.
+    }
+  }
+}
+
+// check/radio inside selected-rows
+@each $w,$a in ('check', 'checkbox'),
+               ('radio','radio') {
+  @each $s,$as in ('','-unchecked'),
+                  (':active', '-unchecked'),
+                  (':indeterminate', '-mixed'),
+                  (':indeterminate:active', '-mixed'),
+                  (':checked', '-checked'),
+                  (':checked:active', '-checked') {
+    .background:not(#MozillaGtkWidget) {
+      treeview.view,
+      row {
+        #{$w}:selected#{$s},
+        #{$w}:selected:focus#{$s} {
+          -gtk-icon-source:
+            -gtk-scaled(url("assets/#{$a}#{$as}-selected.png"),
+                        url("assets/#{$a}#{$as}-selected@2.png"));
+          -gtk-icon-shadow: none;
+        }
+        // use dark variant for insensitive states
+        #{$w}:selected:disabled,
+        #{$w}:selected:focus:disabled {
+          -gtk-icon-source:
+            -gtk-scaled(url("assets/#{$a}-unchecked-insensitive-dark.png"),
+                        url("assets/#{$a}-unchecked-insensitive-dark@2.png"));
+        }
+        #{$w}:selected:indeterminate:disabled,
+        #{$w}:selected:focus:indeterminate:disabled {
+          -gtk-icon-source:
+            -gtk-scaled(url("assets/#{$a}-mixed-insensitive-dark.png"),
+                        url("assets/#{$a}-mixed-insensitive-dark@2.png"));
+        }
+        #{$w}:selected:checked:disabled,
+        #{$w}:selected:focus:checked:disabled {
+          -gtk-icon-source:
+            -gtk-scaled(url("assets/#{$a}-checked-insensitive-dark.png"),
+                        url("assets/#{$a}-checked-insensitive-dark@2.png"));
+        }
+      }
+    }
+  }
+}
+
+// selection-mode
+@each $s,$as in ('','-selectionmode'),
+                (':hover', '-active-selectionmode'),
+                (':active', '-active-selectionmode'),
+                (':disabled', '-insensitive-selectionmode'),
+                (':checked', '-checked-selectionmode'),
+                (':checked:hover', '-checked-active-selectionmode'),
+                (':checked:active', '-checked-active-selectionmode'),
+                (':disabled:checked', '-checked-insensitive-selectionmode') {
+  .background:not(#MozillaGtkWidget) {
+    .view.content-view.check#{$s}:not(list),
+    .content-view .tile check#{$s} {
+      -gtk-icon-source:
+        -gtk-scaled(url("assets/checkbox#{$as}#{$asset_suffix}.png"),
+                    url("assets/checkbox#{$as}#{$asset_suffix}@2.png"));
+      background-color: transparent;
+    }
+  }
+}
+
+checkbutton.text-button,
+radiobutton.text-button {
+  // FIXME: exclude damned FirefoxQuantum
+  .background:not(#MozillaGtkWidget) & {
+    min-height: $menuitem_height;
+    padding: 0 rem($menuitem_padding, $sw: 1.0);
+    @include transition(std);
+
+    label { padding-bottom: rem($baseline, $sw: 1.0); }
+  }
+
+  color: $color_fg_2;
+  &:hover,
+  &:active,
+  &:checked { color: $color_fg; }
+  //&:disabled,
+  //&:disabled:active,
+  //&:disabled:indeterminate {
+  //  // set insensitive color, which is overridden otherwise
+  //  // color: $color_fg_dis;
+  //}
+}
+
+.background:not(#MozillaGtkWidget) {
+  .view.content-view.check:not(list),
+  .content-view .tile check {
+    @if $maj_ver == 3 {
+      // define specific sizes before setting generic
+      // check/radio sizes
+      min-height: $icon_size * 2.5;
+      min-width: $icon_size * 2.5;
+    }
+    @else {
+      -gtk-icon-size: $icon_size * 2.5;
+    }
+    margin: 0; // remove unneeded spacing for animations
+    padding: 0;
+    outline-width: 0; // hide unneeded outlines
+  }
+}
+
+radio,
+check {
+  @if $maj_ver == 3 {
+    min-width: $icon_size;
+    min-height: $icon_size;
+    margin: 0;
+    padding: 0;
+  }
+  @else {
+    -gtk-icon-size: $icon_size;
+  }
+
+  // FIXME: exclude damned FirefoxQuantum as well
+  .background:not(#MozillaGtkWidget) & {
+    @include radius($r, none);
+    margin: (-$icon_size / 3) rem($menuitem_padding);
+    padding: ($icon_size / 3);
+    @include ink-reaction(normal, $tr: ink-normal-std);
+    &:hover { @include ink-reaction(active-dec, $tr: ink-active-std); }
+    &:hover:checked,
+    &:hover:indeterminate {
+     @include ink-reaction(active-dec, $fc: $color_bg_sel, $tr: ink-active-std);
+    }
+
+    // icon transformations
+    &,
+    &:active {
+      -gtk-icon-transform: scale(0);
+    }
+
+    &:not(:active) {
+      -gtk-icon-transform: scale(1);
+    }
+  }
+
+  .background:not(#MozillaGtkWidget) menuitem & {
+    @extend %memnuitem_check_radio;
+    margin: 0;
+    &:dir(ltr) { margin-right: rem($menuitem_padding); }
+    &:dir(rtl) { margin-left: rem($menuitem_padding); }
+    &:not(:backdrop) { // unset transitions/animations
+      -gtk-icon-transform: unset;
+      @include transition(reset);
+      animation: none;
+    }
+  }
+
+  .background:not(#MozillaGtkWidget) popover modelbutton & {
+    @extend %memnuitem_check_radio;
+    margin: 0 rem($menuitem_padding);
+  }
+}
+
+%memnuitem_check_radio {
+  min-width: $icon_size;
+  min-height: $icon_size;
+  padding: 0;
+  &:not(:backdrop) {
+    background-image: none;
+    color: inherit;
+  }
+}

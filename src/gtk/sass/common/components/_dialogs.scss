@@ -1,0 +1,164 @@
+// /***********
+//  * Dialogs *
+//  ***********/
+
+messagedialog {
+  &.background {
+    color: if($variant == light, $color_fg, $color_fg_inv);
+    background-color:
+      if($variant == light, track($color_bg_dark, $alpha_osd),
+                            track($color_bg_dark_inv, $alpha_osd));
+
+    &.csd {
+      // rounded bottom border styling for csd version
+      border-bottom-left-radius: $r_8;
+      border-bottom-right-radius: $r_8;
+
+      // specificity bump to override generic headerbar radius
+      &:not(.maximized):not(.fullscreen):not(.tiled):not(.solid-csd) {
+        &:not(.tiled-top):not(.tiled-bottom) {
+          &:not(.tiled-left):not(.tiled-right) {
+            .titlebar {
+              min-height: unset; // reset unneeded min-height
+              border-top-left-radius: $r_8;
+              border-top-right-radius: $r_8;
+              background-color:
+                if($variant == light, track($color_bg_dark, $alpha_osd),
+                                      track($color_bg_dark_inv, $alpha_osd));
+            }
+          }
+        }
+      }
+    }
+
+    // use opaque
+    &.solid-csd {
+      background-color:
+        if($variant == light, $color_bg_dark, $color_bg_dark_inv);
+    }
+  }
+
+  .dialog-action-box {
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+
+    buttonbox.dialog-action-area { margin: -6px; }
+  }
+
+  @if $maj_ver == 4 {
+    // prevent labels running into action-area
+    box.dialog-vbox.vertical { border-spacing: 10px; }
+
+    label.title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+  }
+
+  .titlebar {
+    min-height: $titlebutton_small + 3px + 2px;
+    border-style: none;
+    border-top-left-radius: $r_2;
+    border-top-right-radius: $r_2;
+    color: if($variant == light, $color_fg, $color_fg_inv);
+    background-color:
+      if($variant == light, $color_bg_dark, $color_bg_dark_inv);
+  }
+
+  &.background {
+    @if $variant == mixed {
+      entry {
+        &, &.combo { @extend %inv_entry; }
+      }
+
+      button { @extend  %inv_button; }
+
+      combobox { @extend %inv_combobox; }
+    }
+  }
+
+  @if $variant == mixed {
+    checkbutton.text-button,
+    radiobutton.text-button {
+      color: $color_fg_inv_2;
+      &:hover,
+      &:active,
+      &:checked { color: $color_fg_inv; }
+      &:disabled,
+      &:disabled:active,
+      &:disabled:indeterminate { color: $color_fg_dis_inv; }
+    }
+  }
+
+  @if $variant == mixed {
+    expander {
+      label { color: $color_fg_inv; }
+
+      title {
+        label,
+        arrow {
+          color: $color_fg_inv_2;
+          &:hover,
+          &:active { color: $color_fg_inv; }
+          &:disabled { color: $color_fg_dis_inv; }
+        }
+      }
+    }
+
+    textview.view { // scrolled text-views
+      &, > text {
+        background-color: $color_base;
+        color: $color_fg;
+        caret-color: $color_fg;
+      }
+    }
+  }
+
+  &.background,
+  &.csd.background {
+    .dialog-action-area button {
+      @include radius(0);
+      @if $variant == mixed { @extend %inv-action-area-button; }
+      @else { @extend %action-area-button; }
+    }
+  }
+
+  &.csd.background {
+    .dialog-action-area.linked button {
+      margin: 2px;
+      @include radius(0);
+      &:first-child {
+        margin-right: 0;
+        @include radius(0 0 0 $r_8);
+      }
+      &:last-child {
+        margin-left: 0;
+        @include radius(0 0 $r_8 0);
+      }
+      &:only-child {
+        margin: 2px;
+        @include radius(0 0 $r_8 $r_8);
+      }
+    }
+  }
+}
+
+filechooser {
+  .dialog-action-box { border-top: 1px solid $color_fg_div; }
+
+  #pathbarbox {
+    border-bottom: 0 none transparent;
+    background-color: $color_bg;
+  }
+
+  // override defaults to prevent to be bold
+  box > paned.horizontal > separator {
+    background-image: image($color_fg_div_sld);
+  }
+}
+
+filechooserbutton:drop(active) {
+  box-shadow: none;
+  border-color: transparent;
+}

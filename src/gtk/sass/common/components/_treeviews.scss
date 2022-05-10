@@ -1,0 +1,180 @@
+// /**************
+//  * Tree Views *
+//  **************/
+
+treeview.view {
+  @if $maj_ver == 3 {
+    @at-root * {
+      -GtkTreeView-horizontal-separator: 4;
+      -GtkTreeView-grid-line-width: 0;
+      -GtkTreeView-grid-line-pattern: '';
+      -GtkTreeView-tree-line-width: 1;
+      -GtkTreeView-tree-line-pattern: '';
+      -GtkTreeView-expander-size: 16;
+    }
+  }
+
+  // this is actually the tree lines color,
+  // while this is the grid lines color, better then nothing to avoid borders
+  // being overridden by the previously set props
+  border-left-color: $color_fg_trk_out;
+  border-top-color: $color_fg_div;
+
+  border-radius: 0; // rest border radius in lists
+
+  // clear backgrounds
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+
+  &:hover,
+  &:active {
+    border-radius: 0;
+    background-color: $color_bg_trk;
+  }
+  &:selected {
+    border-radius: 0;
+    &, &:focus { @extend %selected_items; }
+  }
+
+  // override foreground colors
+  &, entry,
+  entry > label {
+    color: $color_fg_2;
+    &:hover,
+    &:active,
+    &:focus { color: $color_fg; }
+    &:selected {
+      &, &:focus { @extend %selected_items; }
+    }
+    &:disabled {
+      color: $color_fg_dis;
+      &:selected { color: $color_fg_dis_sel; }
+    }
+  }
+
+  &.separator {
+    min-height: if($ref_weight < 1.0, 1px + 2px,
+                                      1px + (2px * 2));
+
+    &,
+    &:hover,
+    &:active { // unify all pseudo-class specific styling
+      color: $color_fg_div_sld;
+    }
+  }
+
+  &.sidebar { // for lollypop
+    background-color: $color_bg;
+    font-weight: 500;
+  }
+
+  &:drop(active) {
+    border-style: solid none;
+    border-width: 1px;
+    border-color: $color_fg_drop;
+
+    &.after { border-top-style: none; }
+
+    &.before { border-bottom-style: none; }
+  }
+
+  &.expander {
+    min-width: $icon_size;
+    min-height: $icon_size;
+    &:dir(ltr) { -gtk-icon-source: -gtk-icontheme('pan-end-symbolic'); }
+    &:dir(rtl) { -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl'); }
+
+    &:checked { -gtk-icon-source: -gtk-icontheme('pan-down-symbolic'); }
+    &:selected {
+      color: if($variant == dark, $color_fg_sel_2, $color_fg_2);
+      &:hover,
+      &:active {
+        color: if($variant == dark, $color_fg_sel, $color_fg);
+      }
+    }
+  }
+
+  &.progressbar { // progressbar bit in treeviews
+    box-shadow: inset 0 (-$progress_size) $color_bg_acc;
+    &:selected { box-shadow: inset 0 (-$progress_size) $color_fg_sel; }
+  }
+
+  &.trough { // progressbar trough in treeviews
+    box-shadow: inset 0 (-$progress_size) track($color_bg_acc, $alpha_track_out);
+    &:selected {
+      box-shadow: inset 0 (-$progress_size) track($color_fg_sel, $alpha_track_out);
+    }
+  }
+
+  &, paned & { // redraw some stuff for RhythmBox
+    background-color: $color_base;
+
+    &:hover,
+    row:hover { color: $color_fg; }
+
+    &:selected,
+    row:selected { @extend %selected_items; }
+  }
+
+  header {
+    button {
+      @extend %column_header_button;
+      background-color: $color_bg;
+      color: $color_fg_3;
+      &:hover {
+        @extend %column_header_button;
+        background-color: $color_bg_trk;
+        color: $color_fg_2;
+      }
+      &:active {
+        background-color: $color_bg_trk;
+        color: $color_fg;
+      }
+      &:disabled {
+        @extend %column_header_button;
+        background-color: $color_bg;
+        color: $color_fg_dis;
+      }
+    }
+  }
+
+  button.dnd,
+  header.button.dnd { // for treeview-like derive widgets
+    &,
+    &:hover,
+    &:active,
+    &:selected {
+      min-height: $menuitem_height;
+      padding: 0 rem($menuitem_padding);
+      border: 1px solid $color_fg_div;
+      @include radius(0);
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
+      box-shadow: none;
+      font-weight: 400;
+      @include transition(reset);
+    }
+  }
+
+  header button:last-child,
+  &:last-child button { // treeview-like derived widgets in Banshee
+                        // and Evolution
+    border-right-style: none;
+  }
+
+  // see tests/testaccel to test
+  acceleditor > label { background-color: $color_bg_sel; }
+}
+
+%column_header_button {
+  min-height: $menuitem_height;
+  margin: unset; // stop conflicting with 'notebook header button' nodes
+  padding: 0 rem($menuitem_padding);
+  border-style: none solid solid none;
+  border-width: 1px;
+  border-color: $color_fg_div;
+  @include radius(0);
+  box-shadow: none;
+  font-weight: 400;
+}

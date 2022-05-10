@@ -1,0 +1,24 @@
+// /****************
+//  * Print dialog *
+// *****************/
+
+printdialog {
+  @if $maj_ver == 3 {
+    paper {
+      padding: 0;
+      color: $color_fg;
+      border: 1px solid $color_fg_div;
+      background-color: $color_base;
+    }
+  }
+  @else {
+    drawing {
+      padding: 0;
+      border: none;
+      color: $color_fg;
+      background-color: $color_base;
+    }
+  }
+
+  .dialog-action-box { margin: rem(12px); }
+}
