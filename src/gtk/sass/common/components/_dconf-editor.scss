@@ -1,0 +1,166 @@
+// /****************
+//  * Dconf-Editor *
+//  ****************/
+
+.dconf-editor {
+  > headerbar.titlebar > box.pathbar { // legacy
+    min-height: $icon_size;
+    margin: $toolbar_padding 0;
+    padding: 0 rem($menuitem_padding);
+
+    > button {
+      min-height: $icon_size;
+      margin: $toolbar_padding 0;
+      padding: 0;
+      @include radius($r_2);
+
+      > .item {
+        @if $maj_ver == 3 {
+          @if $mnr_ver < 21 { margin: (-$toolbar_padding) 0; }
+          @else { margin: 0; }
+        }
+        @else { margin: 0; }
+        padding: 0 rem($menuitem_padding);
+        border: 0 none transparent;
+        color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+        font-weight: 500;
+      }
+
+      &:hover,
+      &:active,
+      &:checked,
+      &.active { // '.active' class = :checked class
+        color: if($variant == mixed, $color_fg_inv, $color_fg);
+
+        > .item { color: if($variant == mixed, $color_fg_inv, $color_fg); }
+      }
+      &:disabled {
+        color: if($variant == mixed, $color_fg_dis_inv, $color_fg_dis);
+
+        > .item { color: if($variant == mixed, $color_fg_dis_inv, $color_fg_dis); }
+      }
+    }
+
+    // slash symbols
+    > label {
+      @if $maj_ver == 3 {
+        @if $mnr_ver < 23 {
+          color: if($variant == mixed, $color_fg_inv_3, $color_fg_3);
+        }
+        @else { // hack for stock dconf-editor.css
+          @if $variant == mixed {
+            &:not(:backdrop) { text-shadow: 1px 0 $color_fg_inv_3; }
+          }
+        }
+      }
+      @else {
+        @if $variant == mixed {
+          &:not(:backdrop) { text-shadow: 1px 0 $color_fg_inv_3; }
+        }
+      }
+    }
+  }
+
+  list.properties-list > row.activatable {
+    &:hover,
+    &:active { // unset hover/active effects
+      background-image: none;
+      animation: none;
+    }
+  }
+
+  list.keys-list { // >= 3.27.91
+    > grid.horizontal > separator,
+    > grid.vertical > label.header-label + separator { // hide separators
+      all: unset;
+    }
+
+    > row.key-row:not(:first-child) { // move separator lines into child rows
+      border-top: 1px solid $color_fg_div;
+    }
+
+    > grid.vertical { // grid node for headers
+      background-color: $color_bg;
+
+      // increase title height
+      label.header-label { min-height: rem($widget_size); }
+    }
+  }
+
+  @if $maj_ver == 3 { // >= 3.31.90
+    @if $mnr_ver > 23 {
+      headerbar box.centerwidget { @extend %dconf_pathbar_box; }
+
+      &.maximized box.centerwidget box.pathbar {
+        @extend %dconf_maxd_pathbar_box;
+      }
+    }
+  }
+  @else {
+    headerbar box.centerwidget { @extend %dconf_pathbar_box; }
+
+    &.maximized box.centerwidget box.pathbar {
+      @extend %dconf_maxd_pathbar_box;
+    }
+  }
+
+}
+
+%dconf_pathbar_box {
+  box.pathbar button { // stock CSS has 6px T/B margins!?
+    &:not(.flat):not(.suggested-action):not(.destructive-action) {
+      &:not(.titlebutton):not(.selection-menu):not(.text-button) {
+        &:not(.lock):not(.color):not(.image-button) {
+          min-height: rem($ref_size, $sw: 1.0); // shrink height
+        }
+      }
+    }
+
+    label.item {
+      margin: -6px 0; // compensate unneeded parent T/B margns
+      // mask stock 3px border indicators
+      border-image: if($variant == mixed, image($color_bg_dark_inv),
+                                          image($color_bg_dark))
+                      0 0 1 / 0 0 1px stretch;
+
+      &:backdrop {
+        border-image: if($variant == mixed, image($color_bg_inv), image($color_bg))
+                        0 0 1 / 0 0 1px stretch;
+      }
+    }
+
+    &:hover:not(.active) label.item {
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
+      box-shadow: inset 0 -2px if($variant == mixed,
+                                  track($color_fg_inv, $alpha_track_out),
+                                  track($color_fg, $alpha_track_out));
+    }
+
+    &.active label.item { // redraw underline indicators
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
+      box-shadow: inset 0 -2px $color_bg_sel;
+    }
+  }
+}
+
+%dconf_maxd_pathbar_box {
+  // this isn't perfect, but covering 99% unneeded borders at least...
+  border-image: if($variant == mixed, image($color_bg_dark_inv), image($color_bg_dark))
+                  0 0 2 / 0 0 2px stretch;
+  background-image: if($variant == mixed, image($color_bg_dark_inv),
+                                          image($color_bg_dark));
+  &:backdrop {
+    border-image: if($variant == mixed, image($color_bg_inv), image($color_bg))
+                    0 0 2 / 0 0 2px stretch;
+    background-image: if($variant == mixed, image($color_bg_inv),
+                                            image($color_bg));
+  }
+
+  label,
+  image { color: if($variant == mixed, $color_fg_inv_2, $color_fg_2); }
+
+  button:hover label.item,
+  button.active label.item { color: if($variant == mixed, $color_fg_inv, $color_fg); }
+
+  > label { color: if($variant == mixed, $color_fg_inv_3, $color_fg_3); }
+}

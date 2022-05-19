@@ -1,0 +1,90 @@
+// /***************
+//  * Gnome-Usage *
+//  ***************/
+
+// FIXME: why was 'adwaita.css' used for all user-themes? :/
+widget {
+  &#PROCESSOR,
+  &#MEMORY {
+    list {
+      row {
+        margin: -1px; // kill ugly parent borders
+        border: 1px solid $color_fg_div_sld;
+
+        &.max {
+          color: $color_fg_fix; // enforce dark foreground
+          // FIXME: we can't override the salmon-pinky background
+          // background-image: image($destructive_color);
+          // border: 1px solid $destructive_color;
+        }
+      }
+
+      // kill ugly separators
+      separator.list {
+        box-shadow: inset 0 0 0 1px $color_fg_div_sld;
+      }
+    }
+  }
+
+  &#STORAGE {
+    list {
+      @extend %sidebar_template;
+      margin: -1px; // kill ugly borders
+
+      row.activatable {
+        color: $color_fg_2;
+        &:hover,
+        &:active { color: $color_fg; }
+      }
+
+      row:not(.activatable) { // top-most header row
+        color: $color_fg_3;
+        box-shadow: inset 0 -1px $color_fg_div_sld;
+      }
+
+      // mask other ugly separators
+      separator.list { box-shadow: inset 0 0 0 1px $color_bg; }
+    }
+  }
+}
+
+%graph_switcher {
+  background-image: none;
+  color: $color_fg_2;
+  font-weight: 500;
+  &:hover { // use opaque
+    background-image: image(mix($color_bg, $color_fg, percentage($alpha_foreground_2nd)));
+    color: $color_fg;
+  }
+  &:active,
+  &:checked { // use opaque
+    background-image: image( // use outline-track alpha
+                        mix($color_bg_sel, $color_bg, percentage($alpha_track_out)));
+    color: $color_lbl_sel;
+    animation: none;
+  }
+}
+
+@if $maj_ver == 3 {
+  @if $mnr_ver < 23 {
+    graph-switcher-button.toggle { @extend %graph_switcher; }
+  }
+  @else {
+    button.flat.graph-switcher { // >= 3.30
+      @extend %graph_switcher;
+    }
+  }
+}
+@else {
+  button.flat.graph-switcher { @extend %graph_switcher; }
+}
+
+box.speedometer {
+  // circular progress should be drawn with our $color_bg_acc
+  // (progress bit still looks a bit brighter than we expected though)
+  &-outter { background-image: image($color_bg_acc); }
+
+  &-inner { box-shadow: inset 0 0 0 5px track($color_bg_acc, $alpha_track_out); }
+
+  &-content-area label { color: $color_fg_acc; }
+}

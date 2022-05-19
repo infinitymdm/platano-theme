@@ -1,0 +1,165 @@
+// /******************
+//  * Gnome-Software *
+//  ******************/
+
+// get more uniformity for all 'All', 'Installed', 'Updates' buttons
+buttonbox.linked > button.toggle.toolbar-primary-buttons-software {
+  &:first-child,
+  &:last-child,
+  &:not(:first-child):not(:last-child) {
+    min-height: rem($widget_size);
+    border: none;
+    @include radius(0);
+  }
+
+  min-width: rem($widget_size * 3);
+  box-shadow: inset 0 -1px $color_fg_trk_out;
+  &:not(:hover):not(:active):not(:checked):not(:disabled) {
+    color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+  }
+  @if $variant == mixed {
+    @include button(flat-normal, $tc: $color_fg_inv);
+    @include ink-reaction(
+      normal, $fc: $color_fg_inv, $tr: ink-normal-dec);
+    &:hover { @include button(flat-lined-hover, $tc: $color_fg_inv); }
+    &:active {
+      @include button(flat-active, $tc: $color_fg_inv);
+      @include ink-reaction(
+        active-dec, $fc: $color_fg_inv, $tr: ink-active-dec);
+    }
+    &:disabled {
+      @include button(flat-disabled, $tc: $color_fg_inv);
+    }
+    &:checked {
+      @include button(flat-lined-checked, $tc: $color_lbl_sel_inv);
+      &:hover { @include button(flat-hover, $tc: $color_lbl_sel_inv); }
+    }
+  }
+  @else {
+    @include button(flat-normal, $tc: $color_fg);
+    @include ink-reaction(normal, $fc: $color_fg, $tr: ink-normal-dec);
+    &:hover { @include button(flat-lined-hover, $tc: $color_fg); }
+    &:active {
+      @include button(flat-active, $tc: $color_fg);
+      @include ink-reaction(active-dec, $fc: $color_fg, $tr: ink-active-dec);
+    }
+    &:disabled {
+      @include button(flat-disabled, $tc: $color_fg);
+    }
+    &:checked {
+      @include button(flat-lined-checked, $tc: $color_lbl_sel);
+      &:hover { @include button(flat-hover, $tc: $color_lbl_sel); }
+    }
+  }
+
+  > box.horizontal > label.text-button {
+    border: none;
+    background: none;
+    color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+    font-weight: 500;
+  }
+
+  &:hover,
+  &:active {
+    color: if($variant == mixed, $color_fg_inv, $color_fg);
+
+    > box.horizontal > label.text-button {
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
+    }
+  }
+
+  &:checked {
+    &, &:hover {
+      color: if($variant == mixed, $color_lbl_sel_inv, $color_lbl_sel);
+
+      > box.horizontal > label.text-button {
+        color: if($variant == mixed, $color_lbl_sel_inv, $color_lbl_sel);
+      }
+    }
+  }
+
+  > box.horizontal > label.counter-label {
+    margin: 2px 0; // make slight T/B spaces
+    font-weight: 700;
+  }
+}
+
+window.background > box.vertical > overlay > stack > widget > stack {
+  // "Installed" stack
+  > box.vertical > scrolledwindow > viewport.frame > widget > list {
+    background-color: $color_bg; // override $base_color
+
+    // use asymmetrical separators
+    > separator {
+      &:dir(ltr) { border-left: $icon_size * 6 solid transparent; }
+      &:dir(rtl) { border-right: $icon_size * 6 solid transparent; }
+    }
+  }
+
+  // "Updates" stack
+  widget > box.vertical.app-list {
+    // override $base_color
+    background-image: image($color_bg);
+
+    > box.vertical > list { background-color: $color_bg; }
+
+    // use asymmetrical separators
+    separator {
+      &:dir(ltr) { border-left: $icon_size * 6 solid transparent; }
+      &:dir(rtl) { border-right: $icon_size * 6 solid transparent; }
+    }
+  }
+}
+
+// sidebar-pane styling
+scrolledwindow.category-sidebar.frame > viewport.frame > list {
+  @extend %sidebar_template;
+  margin-top: -4px; // hide weird header-gap
+
+  > row.activatable {
+    color: $color_fg_2;
+    font-weight: 500;
+    &:hover {
+      background-color: $color_bg_trk;
+      color: $color_fg;
+    }
+    &:selected { @extend %selected_sidebar_row; }
+  }
+}
+
+%gnome-software_round_button,
+button.round-button { // categories expander button
+  // > 3.25.90, dropped from upstream CSS
+  min-height: 32px;
+  min-width: 32px;
+  padding: 0;
+  border: 0 none transparent;
+  @include radius($r);
+}
+
+@if $maj_ver == 3 {
+  @if $mnr_ver > 23 { // >= 3.32.0, origin-box container
+    window.background.csd > headerbar.titlebar > box.horizontal {
+      > label.dim-label + button.popup.toggle {
+        @extend %origin_box_button; // enforce text-and-image-button styling
+      }
+    }
+  }
+}
+@else {
+  window.background.csd > headerbar.titlebar > box.horizontal {
+    > label.dim-label + button.popup.toggle { @extend %origin_box_button; }
+  }
+}
+
+%origin_box_button {
+  &:not(.flat):not(.text-button):not(.image-button) {
+    &:dir(ltr), &:dir(rtl) { // specificity bump
+      @include radius($r_2, none);
+      padding: 0 rem($txt_button_lr_space / 2);
+
+      label,
+      image { padding: 0 rem($txt_button_lr_space / 2); }
+    }
+  }
+}

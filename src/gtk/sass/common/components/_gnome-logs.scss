@@ -1,0 +1,123 @@
+// /**************
+//  * Gnome-Logs *
+//  **************/
+
+window.background > box.vertical box.horizontal {
+  list.categories { // side-pane
+    @extend %sidebar_template;
+    border: none;
+    color: $color_fg_2;
+
+    row.activatable.category { // use side-bar styling
+      // paddings in row were hard-coded with crazy large values...
+      @extend %sidebar_row_template;
+
+      > label {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+
+  > box.vertical > scrolledwindow > viewport.frame > list { // right-pane
+    > separator {
+      background-color: transparent; // hide single-line separators
+
+      &.compressed-rows-group-separator { // use opaque color
+        background-image : image($color_fg_div_sld);
+      }
+    }
+
+    // > 3.25.90
+    row.event.activatable {
+      color: $color_fg_2;
+      &:hover,
+      &:active { color: $color_fg; }
+      &:not(:disabled) { // for quicker response
+        background-image: none;
+        transition-duration: $transition_d_short;
+        transition-delay: $transition_d_none;
+        animation: none;
+      }
+
+      label.compressed-entries-label { // hard-coded background-color?
+        background-image: image($color_bg_sgst);
+        color: $color_fg_sel;
+        font-weight: 700;
+      }
+
+      &.compressed-row {
+        background-image: image($color_bg);
+        color: $color_fg;
+        &:hover {
+          background-image: image(mix($color_fg, $color_bg, percentage($alpha_track_1 / 2)));
+          color: $color_fg;
+        }
+        &:active {
+          &, &:focus {
+            background-image: image(mix($color_fg, $color_bg, percentage($alpha_track_1)));
+            color: $color_fg;
+          }
+        }
+
+        &.popover-activated-row {
+          background-image: image($color_bg_sel);
+          color: $color_fg_sel;
+        }
+
+        &-header {
+          background-image: image($color_base); // stop highlighting
+          color: $color_lbl_sel;
+          &:not(:disabled) {
+            transition-property: opacity, // exclude background-color
+                                  border-image,
+                                  background-image,
+                                  box-shadow;
+            transition-duration: $transition_d_short;
+            animation: none;
+          }
+          &:hover {
+            background-image: image(mix($color_lbl_sel,
+                                        $color_base, percentage($alpha_track_1 / 2)));
+          }
+          &:active {
+            &, &:focus {
+              background-image: image(mix($color_lbl_sel,
+                                          $color_base, percentage($alpha_track_1)));
+              color: $color_lbl_sel;
+            }
+          }
+
+          label.compressed-entries-label {
+            background-image: image($color_bg_sel);
+            color: $color_fg_sel;
+            transition-duration: $transition_d_none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@if $maj_ver == 3 {
+  @if $mnr_ver > 23 {
+    button.title-menu-button.flat {
+      label.title {
+        margin-top: if($ref_weight < 1.0, 0, rem($baseline * 2));
+        margin-bottom: 0;
+      }
+
+      label.subtitle { margin: 0; }
+    }
+  }
+}
+@else {
+  button.title-menu-button.flat {
+    label.title {
+      margin-top: if($ref_weight < 1.0, 0, rem($baseline * 2));
+      margin-bottom: 0;
+    }
+
+    label.subtitle { margin: 0; }
+  }
+}

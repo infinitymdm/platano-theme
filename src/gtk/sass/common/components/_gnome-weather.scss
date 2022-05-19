@@ -1,0 +1,95 @@
+// /*****************
+//  * Gnome-Weather *
+//  *****************/
+
+frame#locations-frame > border { // hide double borders
+  border: none;
+}
+
+frame#weather-page-content-view {
+  .linked.osd.stack-switcher {
+    background: transparent;
+
+    > button.radio.text-button { // remove underlines
+      @include radius(0);
+      &:checked {
+        &, &:hover {
+          border-image: radial-gradient(circle farthest-corner at center,
+                                        currentColor 100%,
+                                        transparent)
+                                        0 0 2 / 0 0 2px;
+        }
+      }
+    }
+  }
+
+  button.osd {
+    min-width: rem($widget_size);
+    min-height: rem($widget_size);
+    padding: rem($txt_button_lr_space / 2);
+    @include radius($r);
+  }
+
+  frame#weekly-forecast-frame { background: transparent; }
+}
+
+frame#weather-page-content-view { // condition-specific
+  @each $_condition,
+        $_label_1_color,
+        $_label_2_color,
+        $_frame_mask,
+        $_label_alpha,
+        $_mask_alpha,
+        $_mix_pct in
+  (clear,
+    $color_fg_fix, $color_fg_sel, $color_fg_sel, $alpha_foreground_3rd, $alpha_track_1, 100%),
+  (few-clouds,
+    $color_fg_fix, $color_fg_sel, $color_fg_sel, $alpha_foreground_3rd, $alpha_track_1, 10%),
+  (showers,
+    $color_fg_sel, $color_fg_fix, $color_fg_fix, $alpha_foreground_2nd, $alpha_track_1, 50%),
+  (showers-scattered,
+    $color_fg_sel, $color_fg_fix, $color_fg_fix, $alpha_foreground_2nd, $alpha_track_1, 50%),
+  (storm,
+    $color_fg_sel, $color_fg_fix, $color_fg_fix, $alpha_foreground_2nd, $alpha_track_1, 50%),
+  (overcast,
+    $color_fg_fix, $color_fg_sel, $color_fg_inv, $alpha_foreground_2nd, $alpha_foreground_3rd, 75%),
+  (fog,
+    $color_fg_fix, $color_fg_sel, $color_fg_inv, $alpha_foreground_2nd, $alpha_foreground_3rd, 75%),
+  (snow,
+    $color_fg_sel, $color_fg_lnk, $color_fg_sel, $alpha_foreground_3rd, $alpha_track_1, 80%),
+  (few-clouds-night,
+    $color_fg_sel, $color_fg_lnk, $color_fg_sel, $alpha_foreground_3rd, $alpha_track_1, 80%),
+  (clear-night,
+    $color_fg_acc_inv, $color_fg_sel, $color_fg_sel, $alpha_foreground_2nd, $alpha_track_1, 100%) {
+
+    &.weather-#{$_condition} {
+      button.radio.text-button,
+      button.osd {
+        @include button(flat-normal,
+                        $tc: track($_label_1_color, $_label_alpha));
+        background-image: none; // disable ink reactions
+        box-shadow: none; // unset lines
+        &:hover {
+          color: #{$_label_1_color};
+          @include button(flat-hover, $tc: $_label_1_color);
+        }
+        &:active {
+          // FIXME: ink reaction can't be rendered smoothly,
+          // so fill background instead.
+          background-color: track($_label_1_color, $alpha_track_2);
+          color: #{$_label_1_color};
+          animation: none;
+        }
+        &:checked {
+          @include button(flat-normal, $tc: $_label_1_color);
+        }
+      }
+
+      frame#weekly-forecast-frame {
+        background-image: image(track($_frame_mask, $_mask_alpha));
+
+        * { color: mix($_label_1_color, $_label_2_color, $_mix_pct); }
+      }
+    }
+  }
+}

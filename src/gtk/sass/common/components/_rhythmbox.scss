@@ -1,0 +1,129 @@
+// /*************
+//  * RhythmBox *
+//  *************/
+
+// tweak sidebar styling
+.sidebar-paned {
+  scrolledwindow {
+    @extend %sidebar_template;
+    background-image: image($color_bg);
+  }
+
+  treeview.view.sidebar { @extend %sidebar_treeview; }
+}
+
+// tweak border and frame in alt-toolbar
+window.csd > box.vertical > box.vertical,
+window.solid-csd > box.vertical > box.vertical {
+  > toolbar.horizontal {
+    margin: -1px 0;
+    border-top: 1px solid $color_fg_div;
+    background-color: $color_bg_dark;
+    box-shadow: none;
+  }
+
+  > frame {
+    margin: -1px 0;
+    padding: 0;
+
+    > border { border: none; }
+  }
+}
+
+window.background > box.vertical > box.vertical > toolbar.horizontal {
+  // prev/play/next buttons in alternate-mode bottom toolbar
+  toolitem .linked.horizontal > button:not(.image-button):not(.text-button) {
+    padding: 0 rem($toolitem_size / 4, $sw: 1.0); // revive L/R padding
+  }
+}
+
+// hard-coded spacing depends on non-scalable unit,
+// seems cover-art widget is the most biggest thing?
+$album_art: 54px;
+$album_art_small: 36px;
+$min_button: 24px - (1px * 2);
+$toolitem_margin: ($album_art - $min_button) / 2;
+
+window.background > box.vertical > toolbar.primary-toolbar {
+  toolitem {
+    &:first-child { // 'prev/play/next'
+      .linked > button.image-button.raised {
+        min-width: $min_button * 2.0;
+        min-height: $min_button * 2.0;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    .linked > button.image-button.raised { // 'shuffle/repeat'
+      min-width: $min_button * 1.5;
+      min-height: $min_button * 1.5;
+      padding: 0;
+    }
+
+    button.flat.scale { // 'volume'
+      min-width: $min_button;
+      min-height: $min_button;
+      margin-top: $toolitem_margin;
+      margin-bottom: $toolitem_margin;
+      padding: 0;
+    }
+
+    > box.horizontal:not(.linked) > button.toggle,
+    > .linked > button:not(.toggle):not(.raised):not(.flat) {
+      min-width: $min_button * 1.5;
+      min-height: $min_button * 1.5;
+      padding: 0;
+    }
+
+    &:last-child { // 'gear'
+      button.popup.toggle {
+        min-width: $min_button * 1.5;
+        min-height: $min_button * 1.5;
+        padding: 0;
+      }
+    }
+  }
+}
+
+notebook > stack grid.horizontal > grid.horizontal > grid.horizontal {
+  button.flat.toggle { // 'edit' and 'browse' button
+    &:checked { // draw underline indicator
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
+    }
+  }
+}
+
+// 'plugins' dialog
+dialog.background > box.dialog-vbox.vertical > box.vertical {
+  > toolbar.inline-toolbar.horizontal {
+    // remove weird margins
+    margin: -2px -2px;
+
+    > toolitem {
+      box > button {
+        min-width: $widget_size - 10.7px;
+        min-height: $widget_size - 10.7px;
+        padding: 0;
+      }
+
+      buttonbox > button {
+        min-width: $widget_size - 10.7px;
+        min-height: $widget_size - 10.7px;
+        padding: 0;
+        @include radius($r_2);
+      }
+    }
+  }
+}
+
+// bottom toolbar buttons (alternate toolbar mode)
+paned.sidebar-paned + box.vertical > frame + toolbar > toolitem {
+  > .linked > button,
+  > box.horizontal > button.toggle { // prevent jumping button heights
+    min-width: $album_art_small;
+    min-height: $album_art_small;
+    padding: 0;
+  }
+}

@@ -1,0 +1,28 @@
+// /*************
+//  * Evolution *
+//  *************/
+
+window.background > box.vertical > box.horizontal + paned.horizontal > widget {
+  > toolbutton > button.image-button.toggle {
+    // FIXME: 3+ layers of selector is bad practice, this should be class
+    // damned 24px icons are not allocated at center of the parent button node
+    // without meaningless padding... 
+    min-width: $icon_size * 1.5;
+    min-height: $icon_size * 1.5;
+    padding: if($ref_weight < 1.0, $icon_size / 4, $icon_size / 2);
+  }
+}
+
+infobar > revealer > box.horizontal > box + buttonbox {
+  > button.flat.image-button { @include radius($r_2); }
+
+  > button + box.linked > button {
+    &:not(.destructive-action):not(.suggested-action) {
+      &.text-button,
+      &.toggle {
+        min-width: 0; // FIXME: force loading 16px arrow images
+        padding: 0 rem($txt_button_lr_space / 2);
+      }
+    }
+  }
+}
