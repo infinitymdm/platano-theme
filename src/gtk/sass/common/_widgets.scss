@@ -1,76 +1,46 @@
-@import 'components/base';
-
-@import 'components/flowbox';
-
-@import 'components/assistant';
-
-@import 'components/spinner';
-
-@import 'components/typography';
-
-@import 'components/textentries';
-
-@import 'components/buttons';
-
-@import 'components/links';
-
-@import 'components/spinbutton';
-
-@import 'components/comboboxes';
-
-@import 'components/toolbars';
-
-@import 'components/headerbars';
-
-@import 'components/pathbars';
-
-@import 'components/treeviews';
-
-@import 'components/menus';
-
-@import 'components/popovers';
-
-@import 'components/notebooks';
-
-@import 'components/scrollbars';
-
-@import 'components/switches';
-
-@import 'components/checkradios';
-
-@import 'components/scales';
-
-@import 'components/progressbars';
-
-@import 'components/levelbars';
-
-@import 'components/printdialogs';
-
-@import 'components/frames';
-
-@import 'components/lists';
-
-@import 'components/notifications';
-
-@import 'components/expanders';
-
-@import 'components/calendar';
-
-@import 'components/dialogs';
-
-@import 'components/sidebars';
-
-@import 'components/filechoosers';
-
-@import 'components/paned';
-
-@import 'components/video';
-
-@import 'components/infobar';
-
-@import 'components/tooltips';
-
-@import 'components/colorchooser';
+@import 'widgets/appicons';
+@import 'widgets/assistant';
+@import 'widgets/base';
+@import 'widgets/buttons';
+@import 'widgets/calendar';
+@import 'widgets/checkradios';
+@import 'widgets/colorchooser';
+@import 'widgets/comboboxes';
+@import 'widgets/decorations';
+@import 'widgets/dialogs';
+@import 'widgets/emojipicker';
+@import 'widgets/expanders';
+@import 'widgets/filechoosers';
+@import 'widgets/flowbox';
+@import 'widgets/frames';
+@import 'widgets/headerbars';
+@import 'widgets/infobar';
+@import 'widgets/levelbars';
+@import 'widgets/links';
+@import 'widgets/lists';
+@import 'widgets/menus';
+@import 'widgets/notebooks';
+@import 'widgets/notifications';
+@import 'widgets/paned';
+@import 'widgets/pathbars';
+@import 'widgets/popovers';
+@import 'widgets/printdialogs';
+@import 'widgets/progressbars';
+@import 'widgets/scales';
+@import 'widgets/scrollbars';
+@import 'widgets/selections';
+@import 'widgets/shortcuts';
+@import 'widgets/sidebars';
+@import 'widgets/spinbutton';
+@import 'widgets/spinner';
+@import 'widgets/switches';
+@import 'widgets/textentries';
+@import 'widgets/toolbars';
+@import 'widgets/tooltips';
+@import 'widgets/touchhandles';
+@import 'widgets/treeviews';
+@import 'widgets/typography';
+@import 'widgets/video';
 
 
 // /********
@@ -173,15 +143,3 @@ button.flat.scale { // standalone Speaker/Mic buttons
   @include radius($r_4 0 0 0, none);
   border-width: 1px 0 0 1px;
 }
-
-@import 'components/decorations';
-
-@import 'components/selections';
-
-@import 'components/touchhandles';
-
-@import 'components/shortcuts';
-
-@import 'components/appicons';
-
-@import 'components/emojipicker';
