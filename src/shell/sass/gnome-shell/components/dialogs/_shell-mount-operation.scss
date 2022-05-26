@@ -1,0 +1,114 @@
+// /*******************************
+//  * ShellMountOperation Dialogs *
+//  *******************************/
+
+
+@if $ver < 3.35 {
+  .shell-mount-operation-icon { icon-size: $icon_size * 3; }
+
+  @if $ver > 3.25 {
+    .mount {
+      &-dialog {
+        spacing: if($ref_weight >= 1.0, 24px, 18px);
+
+        .message-dialog {
+          &-title {
+            max-width: 34em;
+            padding-top: if($ref_weight >= 1.0, 10px, 8px);
+            padding-bottom: if($ref_weight >= 1.0, 6px, 5px);
+            &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+            &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+          }
+
+          &-body {
+            width: 28em;
+            &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+            &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+          }
+        }
+      }
+    }
+  }
+  @else {
+    .show-processes,
+    .mount-question {
+      &-dialog { spacing: if($ref_weight >= 1.0, 24px, 18px); }
+
+      &-dialog-subject {
+        padding-top: if($ref_weight >= 1.0, 10px, 8px);
+        padding-bottom: if($ref_weight >= 1.0, 6px, 5px);
+        &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+        &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+      }
+
+      &-dialog-description {
+        width: 28em;
+        &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+        &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+      }
+    }
+  }
+}
+
+@if $ver < 3.35 {
+  @if $ver > 3.25 {
+    .mount {
+      &-dialog-app-list {
+        max-height: if($ref_weight >= 1.0, 200px, 180px);
+        padding-top: if($ref_weight >= 1.0, 24px, 18px);
+        &:ltr {
+          padding-left: if($ref_weight >= 1.0, 49px, 37px);
+          padding-right: if($ref_weight >= 1.0, 32px, 26px);
+        }
+        &:rtl {
+          padding-right: if($ref_weight >= 1.0, 49px, 37px);
+          padding-left: if($ref_weight >= 1.0, 32px, 26px);
+        }
+
+        &-item {
+          color: $osd_sec_fg;
+          &:hover { color: $osd_fg; }
+          &:ltr { padding-right: if($ref_weight >= 1.0, 1em, 0.7em); }
+          &:rtl { padding-left: if($ref_weight >= 1.0, 1em, 0.7em); }
+        }
+
+        &-item-icon {
+          &:ltr { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+          &:rtl { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+        }
+
+        &-item-name { font-size: 100%; }
+      }
+    }
+  }
+  @else {
+    .show-processes-dialog {
+      &-app-list {
+        max-height: if($ref_weight >= 1.0, 200px, 180px);
+        padding-top: if($ref_weight >= 1.0, 24px, 18px);
+        &:ltr {
+          padding-left: if($ref_weight >= 1.0, 49px, 37px);
+          padding-right: if($ref_weight >= 1.0, 32px, 26px);
+        }
+        &:rtl {
+          padding-right: if($ref_weight >= 1.0, 49px, 37px);
+          padding-left: if($ref_weight >= 1.0, 32px, 26px);
+        }
+
+        &-item {
+          color: $osd_sec_fg;
+          &:hover { color: $osd_fg; }
+          &:ltr { padding-right: if($ref_weight >= 1.0, 1em, 0.7em); }
+          &:rtl { padding-left: if($ref_weight >= 1.0, 1em, 0.7em); }
+        }
+
+        &-item-icon {
+          &:ltr { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+          &:rtl { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+        }
+
+        &-item-name { font-size: 100%; }
+      }
+    }
+  }
+}

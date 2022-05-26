@@ -1,0 +1,49 @@
+// /*************
+//  * Dashboard *
+//  *************/
+
+#dash {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: $empty_shadow;
+  font-size: 90%;
+  transition-duration: $transition_d_long;
+
+  .placeholder {
+    width: 24px;
+    height: 24px;
+    @include image-loader($url: 'assets/dash-placeholder.svg');
+    background-size: 24px 24px;
+  }
+
+  .empty-dash-drop-target {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.dash-item-container {
+  background: transparent;
+
+  > StWidget { padding: 0; }
+}
+
+.dash-label { // osd tooltip
+  @extend %tooltip_template;
+  // non-scalable unit instead
+  padding: if($ref_weight >= 1.0, 7px 8px 8px,
+                                  6px 7px 7px);
+  border-radius: $r_2;
+  @if $ver > 3.33 { border: 0 none transparent; }
+  text-align: center;
+  -x-offset: 8px;
+}
+
+%tooltip_template {
+  color: $osd_fg;
+  background-color: if($variant == mixed, opacity($color_bg_tooltip_inv, $alpha_osd),
+                                          opacity($color_bg_tooltip, $alpha_osd));
+  box-shadow: $empty_shadow;
+}

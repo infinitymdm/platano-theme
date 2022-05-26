@@ -1,0 +1,27 @@
+// /***************
+//  * Check Boxes *
+//  ***************/
+
+.check-box {
+  StBoxLayout { spacing: 0.8em; }
+
+  StBin {
+    width: $icon_size;
+    height: $icon_size;
+    @include image-loader($url: 'assets/checkbox-off.svg');
+    color: $osd_sec_fg;
+  }
+
+  &:focus StBin {
+    @include image-loader($url: 'assets/checkbox-off-hover.svg');
+    color: $osd_fg;
+  }
+  &:checked StBin {
+    @include image-loader($url: 'assets/checkbox.svg');
+    color: $osd_fg;
+  }
+  &:focus:checked StBin {
+    @include image-loader($url: 'assets/checkbox-hover.svg');
+    color: $osd_fg;
+  }
+}

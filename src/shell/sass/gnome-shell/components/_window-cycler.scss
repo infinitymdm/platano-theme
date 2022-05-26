@@ -1,0 +1,8 @@
+// /*****************
+//  * Window Cycler *
+//  *****************/
+
+.cycler-highlight {
+  border-radius: $r_2 $r_2 0 0;
+  @extend %rubberband;
+}

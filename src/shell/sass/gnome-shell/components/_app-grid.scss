@@ -1,0 +1,421 @@
+// /******************
+//  * App Vault/Grid *
+//  ******************/
+
+$grid_size: 136px;
+
+.icon-grid {
+  @if $ver < 3.37 {
+    spacing: 30px;
+    -shell-grid-horizontal-item-size: $grid_size;
+    -shell-grid-vertical-item-size: $grid_size;
+  }
+  @else {
+    row-spacing: $icon_grid_spacing;
+    column-spacing: $icon_grid_spacing;
+    max-row-spacing: $icon_grid_spacing * 2;
+    max-column-spacing: $icon_grid_spacing * 2;
+  }
+
+  .overview-icon { icon-size: $icon_size * 6; }
+}
+
+@if $ver > 3.25 {
+  .system-action-icon { // system-action icons in search results
+    icon-size: $icon_size * 3;
+    border-radius: $r;
+    background-color: opacity($osd_bg, $alpha_osd);
+    color: $osd_fg;
+    box-shadow: $z-depth-2;
+  }
+}
+
+@if $ver < 3.37 {
+  .app-view-controls { // favorites | all toggle container
+    width: if($ref_weight >= 1.0, 400px, 340px);
+    margin-bottom: if($ref_weight >= 1.0, 12px, 9px);
+    border-radius: $r;
+    background-color: $hidden_fill_bg !important;
+    box-shadow: $empty_shadow;
+  }
+
+  .app-view-control { // favorites | all toggle button
+    padding: if($ref_weight >= 1.0, 7px 32px 8px, 5px 32px 6px);
+    border-radius: $r;
+    color: $ovv_sec_fg;
+    background-color: $hidden_fill_bg !important;
+    box-shadow: inset 0 0 0 1px $ovv_out_fg;
+    font-weight: 500;
+    &:ltr {
+      &:first-child { margin-right: 6px; }
+      &:last-child { margin-left: 6px; }
+    }
+    &:rtl {
+      &:first-child { margin-left: 6px; }
+      &:last-child { margin-right: 6px; }
+    }
+
+    &:hover {
+      color: $ovv_fg;
+      background-color: $ovv_semi_fill_bg !important;
+      box-shadow: $empty_shadow;
+    }
+    &:active {
+      color: $ovv_fg;
+      background-color: $ovv_fill_bg !important;
+      box-shadow: $empty_shadow;
+    }
+    &:checked {
+      color: $color_fg_sel;
+      background-color: $color_bg_sel !important;
+      box-shadow: $empty_shadow;
+    }
+    &:hover:checked {
+      color: $color_fg_sel;
+      background-color: mix($color_bg_sel, $color_fg_sel, percentage($alpha_foreground_2nd)) !important;
+      box-shadow: $empty_shadow;
+    }
+  }
+}
+
+// Icon tile
+.app-well-app,
+.app-well-app.app-folder,
+.show-apps,
+.grid-search-result {
+  .overview-icon {
+    padding: 9px;
+    border: none;
+    border-radius: $r_2;
+    color: $ovv_sec_fg;
+    box-shadow: $empty_shadow;
+    font-weight: 700;
+    text-align: center;
+    transition-duration: $transition_d_none;
+
+    // FIXME: on some GPUs, text-shadow property strongly affects to rendering
+    // performance while transitioning #overview <-> .all-apps, so do not set
+    // label shadows.
+
+    &.overview-icon-with-label {
+      padding: 9px;
+      spacing: 9px;
+    }
+  }
+
+  &:focus .overview-icon,
+  &:hover .overview-icon,
+  &:selected .overview-icon {
+    border-image: none;
+    background-color: $ovv_semi_fill_bg;
+    background-image: none;
+    color: $ovv_fg;
+    box-shadow: $empty_shadow;
+    transition-duration: $transition_d_short;
+  }
+
+  @if $ver > 3.33 {
+    &:drop .overview-icon {
+      border: none; // for safety
+      background-color: opacity($color_bg_sel, $alpha_track_out);
+      box-shadow: inset 0 0 0 1px $color_bg_sel;
+    }
+  }
+
+  &:active .overview-icon {
+    border-image: none;
+    background-color: $ovv_fill_bg;
+    background-image: none;
+    color: $ovv_fg;
+    box-shadow: $empty_shadow;
+    transition-duration: $transition_d_standard;
+  }
+
+  &:checked .overview-icon {
+    background-color: $color_bg_sel;
+    color: $color_fg_sel;
+    box-shadow: $empty_shadow;
+    transition-duration: $transition_d_none;
+  }
+
+  &:checked:hover .overview-icon {
+    background-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_1));
+    transition-duration: $transition_d_short;
+  }
+}
+
+.app-well-app,
+.show-apps {
+  .overview-icon {
+    // set circle dock buttons on dash
+    #dash & { border-radius: $r; }
+
+    #panel & { border-radius: 0; }
+  }
+}
+
+.app-well-app-running-dot { // running apps indicator
+  width: $icon_size * 6;
+  height: 4px;
+  border-radius: 0;
+  background-color: $color_bg_sel;
+
+  .dash-item-container & {
+    width: $icon_size / 2;
+    height:  $icon_size / 2;
+    margin-bottom: 2px;
+    border-radius: $r;
+  }
+}
+
+// Collections
+.app-folder-icon {
+  padding: 7px;
+  spacing-rows: 7px;
+  spacing-columns: 7px;
+}
+
+.app-well-app.app-folder {
+  > .overview-icon {
+    background-color: $ovv_semi_fill_bg;
+    box-shadow: $empty_shadow;
+  }
+
+  &:hover,
+  &:focus {
+    > .overview-icon {
+      background-color: $ovv_fill_bg;
+      box-shadow: $empty_shadow;
+    }
+  }
+  &:active {
+    &, &:hover {
+      > .overview-icon {
+        border-radius: $r_2;
+        background-color: $ovv_fill_bg;
+        box-shadow: $empty_shadow;
+      }
+    }
+  }
+  &:checked {
+    &, &:hover {
+      > .overview-icon {
+        border-radius: $r_2;
+        background-color: $color_bg_sel;
+        color: $color_fg_sel;
+        box-shadow: $empty_shadow;
+      }
+    }
+  }
+}
+
+@if $ver < 3.35 {
+  .app-folder-popup { // expanded collection
+    -arrow-border-radius: 0;
+    -arrow-border-width: 0; // FIXME: damned ubuntu-session draws unneeded borders
+    -arrow-border-color: transparent;
+    -arrow-background-color: transparent;
+    -arrow-base: 0;
+    -arrow-rise: 12px;
+
+    &-bin {
+      padding: 5px;
+      border-radius: $r_8;
+      background-color: opacity($osd_bg, $alpha_osd);
+      box-shadow: $z-depth-1;
+
+      .app-well-app { // enforce variant specific colors
+        .overview-icon { color: $osd_sec_fg; }
+
+        &:focus,
+        &:hover,
+        &:selected {
+          .overview-icon {
+            background-color: $osd_semi_fill_bg;
+            color: $osd_fg;
+          }
+        }
+
+        &:active .overview-icon {
+          background-color: $osd_fill_bg;
+          color: $osd_fg;
+        }
+      }
+    }
+  }
+}
+@else {
+  .app-folder-dialog {
+    @if $ver < 3.37 {
+      spacing: if($ref_weight >= 1.0, 16px, 12px);
+      padding-bottom: $r_8; // do not cut-off scrollbars
+    }
+    @else { padding: if($ref_weight >= 1.0, 12px, 8px); }
+    border-radius: $r_8;
+    border: 0 none transparent;
+    background-color: opacity($osd_bg, $alpha_osd);
+    box-shadow: $z-depth-4;
+
+    &-container {
+      @if $ver < 3.37 {
+        width: if($ref_weight >= 1.0, 800px, 600px);
+        height: if($ref_weight >= 1.0, 600px, 400px);
+      }
+      @else {
+        width: if($ref_weight >= 1.0, 600px, 500px);
+        height: if($ref_weight >= 1.0, 700px, 600px);
+      }
+      padding: if($ref_weight >= 1.0, 12px, 8px);
+
+      .app-well-app {
+        .overview-icon { color: $osd_sec_fg; }
+
+        &:focus,
+        &:hover,
+        &:selected {
+          .overview-icon {
+            background-color: $osd_semi_fill_bg;
+            color: $osd_fg;
+          }
+        }
+
+        &:active .overview-icon {
+          background-color: $osd_fill_bg;
+          color: $osd_fg;
+        }
+      }
+    }
+
+    .folder-name-container {
+      padding: if($ref_weight >= 1.0, 24px, 20px);
+      spacing: if($ref_weight >= 1.0, 10px, 8px);
+
+      .folder-name {
+        &-label,
+        &-entry {
+          font-weight: 700;
+          font-size: 120%;
+        }
+
+        &-entry {
+          width: if($ref_weight >= 1.0, 300px, 200px);
+        }
+
+        &-label { // use the same internal padding with StEntry
+          padding: if($ref_weight >= 1.0, 0.75em 0.8em, 0.55em 0.6em);
+          color: $osd_fg;
+        }
+      }
+    }
+
+    .edit-folder-button { // circular icon button
+      width: if($ref_weight >= 1.0, $icon_size + (10px * 2),
+                                    $icon_size + (7px * 2));
+      height: if($ref_weight >= 1.0, $icon_size + (10px * 2),
+                                     $icon_size + (7px * 2));
+      padding: 0;
+      border-radius: $r;
+      @if $variant != light {
+        @include button(flat-normal, $tc: $color_fg_acc_inv);
+        &:hover { @include button(flat-hover, $tc: $color_fg_acc_inv); }
+        &:focus { @include button(flat-focus, $tc: $color_fg_acc_inv); }
+        &:active { @include button(flat-active, $tc: $color_fg_acc_inv); }
+        &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
+      }
+      @else {
+        @include button(flat-normal, $tc: $color_fg_acc);
+        &:hover { @include button(flat-hover, $tc: $color_fg_acc); }
+        &:focus { @include button(flat-focus, $tc: $color_fg_acc); }
+        &:active { @include button(flat-active, $tc: $color_fg_acc); }
+        &:insensitive { @include button(flat-disabled, $tc: $color_fg); }
+      }
+
+      > StIcon { icon-size: $icon_size; }
+    }
+
+    @if $ver > 3.37 {
+      .icon-grid {
+        row-spacing: $icon_grid_spacing / 3;
+        column-spacing: $icon_grid_spacing / 2;
+      }
+
+      .page-indicators {
+        margin-bottom: $icon_size;
+
+        .page-indicator { padding: 0 ($icon_size / 2) $icon_size; }
+      }
+    }
+  }
+}
+
+.page-indicator {
+  padding: if($ref_weight >= 1.0, $icon_size ($icon_size * 1.5),
+                                  $icon_size);
+
+  @if $ver > 3.35 {
+    .page-indicator-icon { // there's no :checked state
+      width: $icon_size - 2px;
+      height: $icon_size - 2px;
+      border-radius: $r;
+      background-color: $ovv_fg;
+    }
+
+    &:insensitive {
+      .page-indicator-icon { background-color: red; }
+    }
+  }
+  @else {
+    .page-indicator-icon {
+      width: $icon_size - 2px;
+      height: $icon_size - 2px;
+      margin: 2px;
+      padding: 0;
+      border-radius: $r;
+      border: 0 none transparent; // avoid stock CSS's borders
+      background-image: none;
+      background-color: $hidden_fill_bg;
+      box-shadow: inset 0 0 0 2px $ovv_ter_fg;
+    }
+
+    &:hover .page-indicator-icon {
+      margin: 0;
+      padding: 2px;
+      background-image: none;
+      background-color: $hidden_fill_bg;
+      box-shadow: inset 0 0 0 2px $ovv_fg;
+    }
+
+    &:active .page-indicator-icon {
+      margin: 2px;
+      padding: 0;
+      background-image: none;
+      background-color: opacity($color_bg_sel, $alpha_foreground_2nd);
+      box-shadow: $empty_shadow;
+    }
+
+    &:checked .page-indicator-icon {
+      margin: 0;
+      padding: 2px;
+      background-image: none;
+      background-color: $color_bg_sel;
+      box-shadow: $empty_shadow;
+    }
+
+    &:checked:hover .page-indicator-icon {
+      margin: 0;
+      padding: 2px;
+      background-image: none;
+      background-color: mix($color_bg_sel, $color_fg_sel, percentage($alpha_foreground_2nd));
+      @if $ver < 3.31 {
+        box-shadow: 0 0 0 ($icon_size / 2)
+                    opacity(mix($color_bg_sel, $color_fg_sel, percentage($alpha_foreground_2nd)),
+                            $alpha_track_out);
+      }
+      @else { box-shadow: $empty_shadow; }
+    }
+  }
+}
+
+@if $ver < 3.37 {
+  .no-frequent-applications-label { @extend %status_text; }
+}

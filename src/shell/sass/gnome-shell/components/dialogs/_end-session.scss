@@ -1,0 +1,85 @@
+// /**********************
+//  * End Session Dialog *
+//  **********************/
+
+.end-session-dialog {
+  @if $ver > 3.35 { width: 30em; }
+  @else { spacing: if($ref_weight >= 1.0, 42px, 30px); }
+  border: none;
+
+  &-list { padding-top: if($ref_weight >= 1.0, 20px, 14px); }
+
+  &-layout {
+    &:ltr { padding-left: if($ref_weight >= 1.0, 17px, 12px); }
+    &:rtl { padding-right: if($ref_weight >= 1.0, 17px, 12px); }
+  }
+
+  &-description {
+    width: 28em;
+    padding-bottom: if($ref_weight >= 1.0, 10px, 7px);
+    &:ltr { text-align: left; }
+    &:rtl { text-align: right; }
+  }
+
+  @if $ver > 3.35 {
+    &-battery-warning { @extend %battery_warning; }
+  }
+  @else {
+    &-warning { @extend %battery_warning; }
+  }
+
+  &-logout-icon {
+    width: $icon_size * 3;
+    height: $icon_size * 3;
+    background-size: contain;
+    color: $osd_fg;
+    @if $ver < 3.31 { border-radius: $r_2; }
+    @else { border-radius: $r; } // circular shape
+  }
+
+  &-shutdown-icon {
+    width: $icon_size * 3;
+    height: $icon_size * 3;
+    color: $osd_fg;
+  }
+
+  @if $ver < 3.35 {
+    &-inhibitor-layout {
+      spacing: if($ref_weight >= 1.0, 16px, 12px);
+      max-height: if($ref_weight >= 1.0, 200px, 180px);
+      padding-right: if($ref_weight >= 1.0, 65px, 50px);
+      padding-left: if($ref_weight >= 1.0, 65px, 50px);
+    }
+
+    &-session-list,
+    &-app-list { spacing: if($ref_weight >= 1.0, 1em, 0.7em); }
+
+    &-list-header {
+      font-weight: 700;
+      &:ltr { text-align: left; }
+      &:rtl { text-align: right; }
+    }
+
+    &-app-list-item,
+    &-session-list-item { spacing: if($ref_weight >= 1.0, 1em, 0.7em); }
+
+    &-app-list-item-name,
+    &-session-list-item-name { font-weight: 700; }
+
+    &-app-list-item-description {
+      color: $osd_ter_fg;
+      font-size: 100%;
+    }
+  }
+  @else {
+    .dialog-list-title { color: $color_warn; }
+  }
+}
+
+%battery_warning {
+  width: 28em;
+  padding-top: if($ref_weight >= 1.0, 6px, 4px);
+  color: $color_warn;
+  &:ltr { text-align: left; }
+  &:rtl { text-align: right; }
+}

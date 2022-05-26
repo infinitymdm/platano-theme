@@ -1,0 +1,34 @@
+// /*****************
+//  * Access Dialog *
+//  *****************/
+
+@if $ver < 3.35 {
+  .access-dialog { spacing: if($ref_weight >= 1.0, 30px, 24px); }
+}
+
+@if $ver < 3.25 {
+  .access-dialog {
+    &-main-layout {
+      padding: if($ref_weight >= 1.0, 1em 1.6em 0, 0.7em 1.2em 0);
+      spacing: if($ref_weight >= 1.0, 1em, 0.7em);
+    }
+
+    &-content {
+      max-width: 28em;
+      spacing: if($ref_weight >= 1.0, 2em, 1.6em);
+    }
+
+    &-icon {
+      min-width: $icon_size * 3;
+      icon-size: $icon_size * 3;
+    }
+
+    &-title { font-weight: 700; }
+
+    &-subtitle {
+      color: $osd_ter_fg;
+      font-weight: 700;
+      font-size: 110%;
+    }
+  }
+}

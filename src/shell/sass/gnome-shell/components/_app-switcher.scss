@@ -1,0 +1,59 @@
+// /****************
+//  * App Switcher *
+//  ****************/
+
+.switcher-popup {
+  padding: if($ref_weight >= 1.0, 8px, 6px);
+  spacing: if($ref_weight >= 1.0, 16px, 12px);
+}
+
+.osd-window,
+.resize-popup,
+.switcher-list { @extend %osd-panel; }
+
+.switcher-list {
+  > StLabel { // for app titles in AlternativeTabExtension
+    // prepare for tall/dense font-families
+    min-height: 13.3px * 2; // use 'px' unit
+  }
+
+  &-item-container { spacing: if($ref_weight >= 1.0, 8px, 6px); }
+
+  .item-box {
+    padding: if($ref_weight >= 1.0, 6px, 4px);
+    border: 2px solid transparent;
+    border-radius: $r_2;
+
+    &:outlined { border: 2px solid $osd_out_fg; }
+    &:selected {
+      background-color: $inv_acc_fill_bg;
+      color: $color_fg_acc_inv;
+    }
+  }
+
+  .thumbnail-box {
+    padding: 2px;
+    spacing: 4px;
+  }
+
+  .thumbnail { width: if($ref_weight >= 1.0, 256px, 192px); }
+
+  .separator {
+    width: 1px;
+    background: if($variant != dark,
+                    $color_fg_div,
+                    mix(white, $color_bg_dark, percentage($alpha_div_2)));
+  }
+}
+
+.switcher-arrow {
+  border-color: transparent;
+  color: $osd_sec_fg;
+  &:highlighted { color: $osd_fg; }
+}
+
+.input-source-switcher-symbol {
+  width: if($ref_weight >= 1.0, 96px, 72px);
+  height: if($ref_weight >= 1.0, 96px, 72px);
+  font-size: if($ref_weight >= 1.0, 300%, 240%);
+}

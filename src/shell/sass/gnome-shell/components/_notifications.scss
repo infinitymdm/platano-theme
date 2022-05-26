@@ -1,0 +1,196 @@
+// /********************************
+//  * Notifications & Message Tray *
+//  ********************************/
+
+.url-highlighter {
+  link-color: $color_fg_lnk;
+
+  .notification-banner & { link-color: $osd_link_fg; }
+}
+
+// Banners
+.notification-banner {
+  // override Adwaita's protection
+  @if $ver > 3.33 {
+    min-height: if($ref_weight >= 1.0, $icon_size + (8px * 2),
+                                        $icon_size + (6px * 2));
+  }
+
+  width: 34em;
+  margin: 6px;
+  border: none;
+  border-radius: $r_8;
+  font-size: 110%;
+  &,
+  &:hover,
+  &:focus {
+    background-color: if($variant == mixed, opacity($color_bg_tooltip_inv, $alpha_osd),
+                                            opacity($color_bg_tooltip, $alpha_osd));
+    color: $osd_fg;
+    box-shadow: $z-depth-2;
+  }
+
+  .notification {
+    &-icon { padding: if($ref_weight >= 1.0, 8px, 6px); }
+
+    &-content {
+      padding: if($ref_weight >= 1.0, 8px, 6px);
+      spacing: if($ref_weight >= 1.0, 8px, 6px);
+    }
+
+    &-actions {
+      padding: 0;
+      spacing: 0;
+      border: transparent;
+      background-color: transparent;
+    }
+  }
+
+  .secondary-icon { icon-size: $icon_size; }
+
+  .notification-button {
+    @extend %modal_dialog_button;
+    // override Adwaita's protection
+    @if $ver > 3.33 { min-height: 1em; }
+    padding: if($ref_weight >= 1.0, 9px 4px 10px, 6px 3px 7px);
+  }
+}
+
+.summary-source-counter {
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 0.9em; // should be 0.8 but whatever; wish I could do 50%;
+  border: 2px solid $color_fg_sel;
+  font-weight: 700;
+  font-size: 100%;
+  -shell-counter-overlap-x: 3px;
+  -shell-counter-overlap-y: 3px;
+  background-color: $color_bg_sgst;
+  color: $color_fg_sel;
+  box-shadow: $z-depth-2;
+}
+
+.secondary-icon { icon-size: $icon_size - 2px; }
+
+// Chat bubbles
+.chat {
+  &-body { spacing: 5px; }
+
+  &-response { margin: 5px; }
+
+  &-log-message { color: $osd_sec_fg; }
+
+  &-new-group { padding-top: 1em; }
+
+  &-received {
+    &:ltr { padding-left: 4px; }
+    &:rtl { padding-right: 4px; }
+  }
+
+  &-sent {
+    color: $osd_sec_fg;
+    &:ltr { padding-left: 18pt; }
+    &:rtl { padding-right: 18pt; }
+  }
+
+  &-meta-message {
+    color: $dis_osd_fg;
+    font-weight: 700;
+    font-size: 90%;
+    &:ltr { padding-left: 4px; }
+    &:rtl { padding-right: 4px; }
+  }
+}
+
+// Hotplug
+.hotplug {
+  &-transient-box {
+    spacing: 6px;
+    padding: 2px 72px 2px 12px;
+  }
+
+  &-notification-item {
+    @extend %modal_dialog_button;
+    padding: 2px 10px;
+
+    &-icon {
+      padding: 2px 5px;
+      icon-size: $icon_size * 1.5;
+    }
+  }
+
+  &-resident-box { spacing: 8px; }
+
+  &-resident-mount {
+    spacing: 8px;
+    border-radius: $r_2;
+    &:hover { background-color: $osd_semi_fill_bg; }
+    &:active { background-color: $osd_fill_bg; }
+
+    &-label {
+      padding-left: 6px;
+      color: $osd_sec_fg;
+    }
+
+    &-icon {
+      padding-left: 6px;
+      icon-size: $icon_size * 1.5;
+    }
+  }
+
+  &-resident-eject-icon { icon-size: $icon_size; }
+
+  &-resident-eject-button {
+    padding: 7px;
+    border-radius: $r_2;
+    color: $osd_fg;
+  }
+}
+
+@if $ver < 3.25 {
+  // /***************
+  //  * Legacy Tray *
+  //  ***************/
+
+  $legacy_icon_size: if($ref_weight >= 1.0, 24px, 16px);
+
+  .legacy-tray {
+    padding: 0;
+    border: 0 none transparent;
+    background-color: $color_bg_panel;
+    &:ltr { border-radius: 0 $r_2 0 0; }
+    &:rtl { border-radius: $r_2 0 0 0; }
+
+    &-handle,
+    &-icon {
+      width: $legacy_icon_size;
+      height: $legacy_icon_size;
+      padding: 4px 4px 2px;
+      border-radius: $r_2;
+      border: 2px solid $color_bg_panel;
+      color: $osd_sec_fg;
+      &:hover,
+      &:focus {
+        background-color: $osd_semi_fill_bg;
+        color: $osd_fg;
+      }
+      &:active {
+        background-color: $osd_fill_bg;
+        color: $osd_fg;
+      }
+
+      StIcon { icon-size: $legacy_icon_size; }
+    }
+
+    &-icon-box {
+      spacing: 3px;
+      &:ltr { padding-left: 3px; }
+      &:rtl { padding-right: 3px; }
+
+      StButton {
+        width: $legacy_icon_size;
+        height: $legacy_icon_size;
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+// /**********************
+//  * Activities Ripples *
+//  **********************/
+
+$ripple_d: 52px;
+
+%ripple_bg {
+  border: 0 none transparent; // for safety
+  background-color: opacity($color_bg_acc, $alpha_foreground_3rd);
+  box-shadow: $empty_shadow;
+}
+
+.ripple-box {
+  width: $ripple_d;
+  height: $ripple_d;
+  border-radius: 0 0 $ripple_d 0; // top-left corner
+  background-image: none; // need to unset the stock asset images
+  @extend %ripple_bg;
+
+  &:rtl { border-radius: 0 0 0 $ripple_d; } // top-right corner
+}
+
+@if $ver > 3.33 {
+  .ripple-pointer-location {
+    width: $ripple_d;
+    height: $ripple_d;
+    border-radius: $ripple_d / 2;
+    @extend %ripple_bg;
+  }
+}

@@ -1,0 +1,48 @@
+// /**************************
+//  * Audio Selection Dialog *
+//  **************************/
+
+.audio-device-selection-dialog {
+  @if $ver < 3.35 {
+    spacing: if($ref_weight >= 1.0, 32px, 24px);
+  }
+  @else {
+    .modal-dialog-content-box {
+      margin-bottom: if($ref_weight >= 1.0, 28px, 21px);
+    }
+  }
+}
+
+.audio-selection {
+  @if $ver < 3.35 {
+    &-content {
+      padding: if($ref_weight >= 1.0, 24px, 20px);
+      spacing: if($ref_weight >= 1.0, 20px, 16px);
+    }
+
+    &-title {
+      font-weight: 700;
+      text-align: center;
+    }
+  }
+
+  &-box { spacing: if($ref_weight >= 1.0, 20px, 16px); }
+
+  &-device {
+    border: 1px solid $color_fg_div;
+    border-radius: $r_2;
+    &:hover,
+    &:focus { background-color: $osd_semi_fill_bg; }
+    &:active {
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
+    }
+  }
+
+  &-device-box {
+    padding: if($ref_weight >= 1.0, 2em, 1.6em);
+    spacing: if($ref_weight >= 1.0, 2em, 1.6em);
+  }
+
+  &-device-icon { icon-size: $icon_size * 4; }
+}

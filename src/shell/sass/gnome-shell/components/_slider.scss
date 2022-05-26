@@ -1,0 +1,27 @@
+// /**********
+//  * Slider *
+//  **********/
+
+.slider {
+  height: $icon_size;
+  color: $color_bg_acc;
+  -slider-height: 2px;
+  -slider-background-color: $out_fg;        // background of the trough
+  -slider-border-color: transparent;        // trough border color
+  -slider-active-background-color: $color_bg_acc; // active trough fill
+  -slider-active-border-color: transparent; // active trough border
+  -slider-handle-border-width: 0;
+  -slider-handle-radius: $icon_size / 2;
+  @if $ver > 3.25 {
+    // barlevels are for >= 3.29.90
+    -barlevel-height: 2px;
+    -barlevel-background-color: $out_fg;
+    -barlevel-border-color: transparent;
+    -barlevel-active-background-color: $color_bg_acc;
+    -barlevel-active-border-color: transparent;
+    -barlevel-overdrive-color: $color_bg_dest;
+    -barlevel-overdrive-border-color: transparent;
+    -barlevel-overdrive-separator-width: 2px;
+    -barlevel-border-width: 0;
+  }
+}

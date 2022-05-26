@@ -1,0 +1,62 @@
+// /**********************
+//  * Workspace Switcher *
+//  **********************/
+
+$ws_container_size: if($ref_weight >= 1.0, 50px, 36px);
+
+.workspace-switcher {
+  padding: 0;
+  spacing: if($ref_weight >= 1.0, 8px, 6px);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+
+  &-group { padding: if($ref_weight >= 1.0, 12px, 8px); }
+
+  &-container { @extend %osd-panel; }
+}
+
+%switcher_arrow_active {
+  height: $ws_container_size + (2px * 2); // concern the box's border width
+  border: 0 none transparent;
+  border-radius: $r_2;
+  background-size: 24px;
+  background-color: $inv_acc_fill_bg;
+}
+
+.ws-switcher {
+  @if $ver < 3.31 {
+    @each $d in up, down {
+      &-active-#{$d} {
+        @extend %switcher_arrow_active;
+        @include image-loader($url: 'assets/go-#{$d}.svg');
+      }
+    }
+  }
+  @else {
+    @each $d in up, down, left, right {
+      &-active-#{$d} {
+        @extend %switcher_arrow_active;
+        @include image-loader($url: 'assets/go-#{$d}.svg');
+      }
+    }
+  }
+
+  &-box {
+    height: $ws_container_size;
+    border: 2px solid $osd_out_fg;
+    border-radius: $r_2;
+    background: transparent;
+  }
+}
+
+%osd-panel {
+  // the value of bottom-padding is shared with '.switcher-arrow' size,
+  // so do not reduce to < 12px (StDrawingArea)
+  padding: if($ref_weight >= 1.0, 16px, 12px);
+  border-radius: $r_8;
+  border: 0 none transparent;
+  color: $osd_fg;
+  background-color: opacity($osd_bg, $alpha_osd);
+  box-shadow: $z-depth-4;
+}
