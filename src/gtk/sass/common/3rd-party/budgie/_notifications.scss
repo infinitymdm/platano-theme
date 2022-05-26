@@ -2,10 +2,10 @@
 %budgie_notification_window_base,
 .budgie-notification-window,
 .budgie-osd-window {
-  border-radius: $r_4;
+  border-radius: $r_8;
   background-color: transparent;
 
-  .drop-shadow { border-radius: $r_4; }
+  .drop-shadow { border-radius: $r_8; }
 }
 
 %budgie_notification_window_styling,
@@ -18,7 +18,7 @@
 .budgie-osd-window .drop-shadow {
   @if $variant == mixed { background-color: track($color_bg_dark_inv, $alpha_osd); }
   @else { background-color: track($color_bg_dark, $alpha_osd); }
-  margin: $shadow_margin_3;
+  margin: $shadow_margin_2;
 }
 
 %budgie_notification,
