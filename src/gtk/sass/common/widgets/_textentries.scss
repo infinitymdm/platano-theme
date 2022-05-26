@@ -1,0 +1,455 @@
+// /****************
+//  * Text Entries *
+//  ****************/
+
+entry {
+  // subtract border widths
+  min-height: calc(#{rem($widget_size)} - 2px * 2);
+  min-width: calc(#{rem($widget_size)} - 2px * 2);
+  padding: 0 rem($entry_lr_space);
+  border: 2px solid transparent; // initialize borders
+  @include radius($r_2, none);
+  background-clip: border-box;
+  @include transition(dec);
+  @include entry(normal);
+  &:focus { @include entry(focus); }
+  &:disabled { @include entry(disabled); }
+
+  .background & {
+    @include radius($r, none);
+  }
+
+  @if $maj_ver == 4 {
+    block-cursor { @include entry(block-cursor); }
+  }
+
+  @at-root %flat_entry_sizing,
+  toolbar *:not(.linked) &,
+  popover *:not(.linked):not(combobox) > &:not(.combo),
+  &.flat {
+    min-height: rem($widget_size);
+    min-width: rem($widget_size);
+    border-width: 0;
+    @include radius($r_4 $r_4 0 0, none);
+  }
+
+  @at-root %flat_entry_styling,
+  toolbar *:not(.linked) &,
+  popover *:not(.linked):not(combobox) > &:not(.combo),
+  &.flat {
+    @include entry(flat-normal);
+    &:focus { @include entry(flat-focus); }
+    &:disabled { @include entry(flat-disabled); }
+  }
+
+  selection { @extend %selected_texts; }
+
+  image { // icons inside the entry
+    &.left { margin-right: rem($entry_lr_space); }
+    &.right { margin-left: rem($entry_lr_space); }
+  }
+
+  @if $maj_ver == 4 {
+    placeholder { @extend %dim_label; }
+  }
+
+  @if $maj_ver == 3 {
+    progress { @extend %entry_progress; }
+  }
+  @else {
+    progress > trough > progress { @extend %entry_progress; }
+  }
+
+  @if $maj_ver == 3 {
+    toolbar *:not(.linked) & progress,
+    &.flat progress { @include radius(0, none); }
+  }
+  @else {
+    toolbar *:not(.linked) & progress > trough > progress,
+    &.flat progress > trough > progress { @include radius(0, none); }
+  }
+
+  // entry error, warning and missing style
+  @each $e_type, $e_color in (error, $color_err),
+                              (warning, $color_warn) {
+    &.#{$e_type} {
+      @include entry(normal, $fc: $e_color);
+      &:focus { @include entry(focus, $fc: $e_color); }
+      &:disabled { @include entry(disabled, $tc: $e_color); }
+
+        selection { @extend %selected_items; }
+
+      toolbar *:not(.linked) &,
+      &.flat {
+        @include entry(flat-normal, $fc: $e_color);
+        &:focus { @include entry(flat-focus, $fc: $e_color); }
+        &:disabled { @include entry(flat-disabled, $tc: $e_color); }
+      }
+    }
+  }
+
+  @if $maj_ver == 3 { // entry icons colors
+    image { @extend %entry_icon; }
+  }
+  @else {
+    > image { @extend %entry_icon; }
+  }
+
+  @if $maj_ver == 4 {
+    &:focus > placeholder { opacity: 0; } // hide placeholders when focused
+
+    &.password image.caps-lock-indicator {
+      color: track(currentColor, $alpha_foreground_3rd); // dim CapsLock icon
+    }
+  }
+
+  &:drop(active) {
+    &, &:focus { box-shadow: inset 0 0 0 2px $color_fg_drop; }
+
+    @if $variant == mixed {
+      headerbar & { box-shadow: inset 0 0 0 2px $color_fg_drop_inv; }
+    }
+  }
+
+  treeview & { // reset styling inside tree-view
+    &, &.flat {
+      &, &:focus {
+        min-width: 0;
+        min-height: 0;
+        padding: 0 2px;
+        @include radius(0, none);
+        background-color: $color_base;
+        box-shadow: none;
+        @include transition(reset);
+
+        @if $maj_ver == 4 {
+          progress > trough > progress { @include radius(0, none); }
+        }
+        @else {
+          progress {  @include radius(0, none); }
+        }
+      }
+    }
+  }
+
+  @if $variant == mixed {
+    headerbar & { @extend %inv_entry; }
+
+    &.osd,
+    .osd & {
+      @extend %flat_entry_sizing;
+      @include entry(flat-normal, $tc: $color_fg_inv);
+      caret-color: $color_fg_inv;
+      &:focus {
+        @include entry(flat-focus, $tc: $color_fg_inv);
+      }
+      &:disabled {
+        @include entry(flat-disabled, $tc: $color_fg_inv);
+      }
+
+      selection { @extend %selected_items; }
+
+      @if $maj_ver == 4 {
+        block-cursor {
+          @include entry(block-cursor, $tc: $color_fg_inv, $c: $color_base_inv);
+        }
+      }
+    }
+  }
+
+  .linked &:not(.flat) {
+    &:not(:first-child):not(:last-child) {
+      @include radius(0, none);
+      @include linked-entry-outline($cld: center);
+
+      @if $maj_ver == 3 {
+        progress { @include radius(0, none); }
+      }
+      @else {
+        progress > trough > progress { @include radius(0, none); }
+      }
+    }
+    &:dir(ltr) {
+      &:first-child {
+        @include radius($r_2 0 0 $r_2, none);
+        @include linked-entry-outline($dir: ltr, $cld: first);
+
+        .background & {
+          @include radius($r 0 0 $r, none);
+        }
+
+        @if $maj_ver == 3 {
+          progress { @include radius($r 0 0 $r, none); }
+        }
+        @else {
+          progress > trough > progress {
+            @include radius($r 0 0 $r, none);
+          }
+        }
+      }
+      &:last-child {
+        @include radius(0 $r_2 $r_2 0, none);
+        @include linked-entry-outline($dir: ltr, $cld: last);
+
+        .background & {
+          @include radius(0 $r $r 0, none);
+        }
+
+        @if $maj_ver == 3 {
+          progress { @include radius(0 $r $r 0, none); }
+        }
+        @else {
+          progress > trough > progress {
+            @include radius(0 $r $r 0, none);
+          }
+        }
+      }
+    }
+    &:dir(rtl) {
+      &:first-child {
+        @include radius(0 $r_2 $r_2 0, none);
+        @include linked-entry-outline($dir: rtl, $cld: first);
+
+        .background & {
+          @include radius(0 $r $r 0, none);
+        }
+
+        @if $maj_ver == 3 {
+          progress { @include radius(0 $r $r 0, none); }
+        }
+        @else {
+          progress > trough > progress {
+            @include radius(0 $r $r 0, none);
+          }
+        }
+      }
+      &:last-child {
+        @include radius($r_2 0 0 $r_2, none);
+        @include linked-entry-outline($dir: rtl, $cld: last);
+
+        .background & {
+          @include radius($r 0 0 $r, none);
+        }
+
+        @if $maj_ver == 3 {
+          progress { @include radius($r 0 0 $r, none); }
+        }
+        @else {
+          progress > trough > progress {
+            @include radius($r 0 0 $r, none);
+          }
+        }
+      }
+    }
+    &:only-child:last-child {
+      &:dir(ltr), &:dir(rtl) {
+        @include radius($r, none);
+        @include linked-entry-outline($cld: only);
+
+        @if $maj_ver == 3 {
+          progress { @include radius($r, none); }
+        }
+        @else {
+          progress > trough > progress { @include radius($r, none); }
+        }
+      }
+    }
+  }
+
+  .linked &.flat,
+  toolitem .linked &:not(.flat) {
+    &:not(:first-child):not(:last-child) {
+      @include radius(0, none);
+    }
+    &:dir(ltr) {
+      &:first-child { @include radius($r_4 0 0 0, none); }
+      &:last-child { @include radius(0 $r_4 0 0, none); }
+    }
+    &:dir(rtl) {
+      &:first-child { @include radius(0 $r_4 0 0, none); }
+      &:last-child { @include radius($r_4 0 0 0, none); }
+    }
+    &:only-child:last-child {
+      &:dir(ltr), &:dir(rtl) {
+        @include radius($r_4 $r_4 0 0, none);
+      }
+    }
+  }
+
+  .linked.vertical &:not(.flat) {
+    &:not(:first-child):not(:last-child) {
+      @include linked-entry-outline($dir: vert, $cld: vert-center);
+
+      &, .background & {
+        @include radius(0, none);
+        border-left-width: 2px;
+        border-right-width: 2px;
+      }
+
+      @if $maj_ver == 3 {
+        progress { @include radius(0, none); }
+      }
+      @else {
+        progress > trough > progress { @include radius(0, none); }
+      }
+    }
+    &:first-child {
+      @include linked-entry-outline($dir: vert, $cld: first);
+
+      &, .background & {
+        @include radius($r_4 $r_4 0 0, none);
+        border-left-width: 2px;
+        border-right-width: 2px;
+      }
+
+      @if $maj_ver == 3 {
+        progress { @include radius($r_4 $r_4 0 0, none); }
+      }
+      @else {
+        progress > trough > progress {
+          @include radius($r_4 $r_4 0 0, none);
+        }
+      }
+    }
+    &:last-child {
+      @include linked-entry-outline($dir: vert, $cld: last);
+
+      &, .background & {
+        @include radius(0 0 $r_4 $r_4, none);
+        border-left-width: 2px;
+        border-right-width: 2px;
+      }
+
+      @if $maj_ver == 3 {
+        progress { @include radius(0 0 $r_4 $r_4, none); }
+      }
+      @else {
+        progress > trough > progress {
+          @include radius(0 0 $r_4 $r_4, none);
+        }
+      }
+    }
+    &:only-child:last-child {
+      &, .background & {
+        @include radius($r, none);
+        @include linked-entry-outline($cld: only);
+      }
+
+      @if $maj_ver == 3 {
+        progress { @include radius($r, none); }
+      }
+      @else {
+        progress > trough > progress { @include radius($r, none); }
+      }
+    }
+  }
+
+  .linked.vertical &.flat {
+    &:not(:first-child):not(:last-child) {
+      @include radius(0, none);
+    }
+    &:first-child { @include radius($r_4 $r_4 0 0, none); }
+    &:last-child { @include radius(0 0 $r_4 $r_4, none); }
+    &:only-child:last-child {
+      @include radius($r_4 $r_4 0 0, none);
+    }
+  }
+
+  &.entry-tag { // for libgd apps
+    min-height: $icon_size;
+    margin: rem($baseline * 2);
+    padding: 0 rem($entry_lr_space);
+    @include radius($r, none);
+    border: 0 none transparent;
+    background-image: image($color_bg_sgst);
+    box-shadow: none;
+    &:not(:hover):not(:active) { color: $color_fg_sel_2; }
+    &:hover,
+    &:active { color: $color_fg_sel; }
+
+    &:dir(ltr) {
+      margin-left: rem($entry_lr_space);
+      margin-right: rem(-$entry_lr_space / 2);
+    }
+    &:dir(rtl) {
+      margin-left: rem(-$entry_lr_space / 2);
+      margin-right: rem($entry_lr_space);
+    }
+
+    &.button {
+      &,
+      &:hover,
+      &:active { // unset styling
+        background-color: transparent;
+        background-image: none;
+        border-image: none;
+        border: none;
+        box-shadow: none;
+        animation: none;
+      }
+      &:not(:hover):not(:active) { color: $color_fg_sel_2; }
+      &:hover,
+      &:active { color: $color_fg_sel; }
+    }
+  }
+
+  > window.background:not(.csd) { // 'candidate' pop-down window
+    border-radius: 0;
+    background-color: $color_base;
+
+    // non-CSD decoration
+    decoration { box-shadow: $z-depth-1; }
+
+    frame > border { border: none; }
+
+    treeview.view {
+      &:selected { // fallback to standard hovering
+        background-color: $color_bg_trk;
+        color: $color_fg;
+      }
+    }
+  }
+
+  .inline-toolbar &,
+  actionbar & {
+    min-height: calc(#{rem($small_widget)} - 2px * 2);
+    padding: 0 rem($entry_lr_space);
+    &.flat { min-height: rem($small_widget); }
+  }
+}
+
+%entry_icon {
+  &:not(:hover):not(:active) { color: track(currentColor, $alpha_foreground_2nd); }
+  &:active { color: $color_bg_sel; }
+  &:disabled { color: track(currentColor, $alpha_foreground_dis); }
+}
+
+%entry_progress {
+  margin: 0 rem(-$entry_lr_space);
+  padding: 0 rem($entry_lr_space);
+  @include radius($r, none);
+  background-color: track($color_bg_acc, $alpha_track_out);
+}
+
+%inv_entry {
+  @include entry(normal, $c: $color_base_inv,
+                          $tc: $color_fg_inv);
+  caret-color: $color_fg_inv;
+  &:focus {
+    @include entry(focus, $c: $color_base_inv,
+                          $tc: $color_fg_inv);
+    caret-color: $color_fg_inv;
+  }
+  &:disabled {
+    @include entry(disabled, $c: $color_base_inv,
+                              $tc: $color_fg_inv);
+  }
+
+  selection { @extend %selected_items; }
+
+  @if $maj_ver == 4 {
+    block-cursor {
+      @include entry(block-cursor, $tc: $color_fg_inv, $c: $color_base_inv);
+    }
+  }
+}

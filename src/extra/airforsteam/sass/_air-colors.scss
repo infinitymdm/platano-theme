@@ -9,20 +9,20 @@
 @import '../../../gtk/sass/common/colors';
 
 colors {
-  selection: to-upper-case(#{$sel_bg});
+  selection: to-upper-case(#{$color_bg_sel});
 
-  rb: #{red($sel_bg)};
+  rb: #{red($color_bg_sel)};
 
-  gb: #{green($sel_bg)};
+  gb: #{green($color_bg_sel)};
 
-  bb: #{blue($sel_bg)};
+  bb: #{blue($color_bg_sel)};
 
-  accent_label: to-upper-case(#{$acc_fg});
+  accent_label: to-upper-case(#{$color_fg_acc});
 
   // round values for selected-label color
-  rl: #{round(red($acc_fg))};
+  rl: #{round(red($color_fg_acc))};
 
-  gl: #{round(green($acc_fg))};
+  gl: #{round(green($color_fg_acc))};
 
-  bl: #{round(blue($acc_fg))};
+  bl: #{round(blue($color_fg_acc))};
 }

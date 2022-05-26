@@ -1,10 +1,10 @@
-themedir         = $(datadir)/themes
-platadir         = $(DESTDIR)$(themedir)/Plata
-luminedir        = $(DESTDIR)$(themedir)/Plata-Lumine
-noirdir          = $(DESTDIR)$(themedir)/Plata-Noir
-platacompactdir  = $(DESTDIR)$(themedir)/Plata-Compact
-luminecompactdir = $(DESTDIR)$(themedir)/Plata-Lumine-Compact
-noircompactdir   = $(DESTDIR)$(themedir)/Plata-Noir-Compact
+themedir          = $(datadir)/themes
+platanodir        = $(DESTDIR)$(themedir)/Platano
+luminedir         = $(DESTDIR)$(themedir)/Platano-Light
+noirdir           = $(DESTDIR)$(themedir)/Platano-Dark
+platanocompactdir = $(DESTDIR)$(themedir)/Platano-Compact
+luminecompactdir  = $(DESTDIR)$(themedir)/Platano-Light-Compact
+noircompactdir    = $(DESTDIR)$(themedir)/Platano-Dark-Compact
 
 metacitydir   = $(srcdir)/metacity-1
 metacity_xml_file = \
@@ -451,44 +451,44 @@ endif
 
 install-data-local:
 if ENABLE_FLASHBACK
-	$(MKDIR_P) $(platadir)/metacity-1
+	$(MKDIR_P) $(platanodir)/metacity-1
 	$(MKDIR_P) $(luminedir)/metacity-1
 	$(MKDIR_P) $(noirdir)/metacity-1
-	$(MKDIR_P) $(platacompactdir)/metacity-1
+	$(MKDIR_P) $(platanocompactdir)/metacity-1
 	$(MKDIR_P) $(luminecompactdir)/metacity-1
 	$(MKDIR_P) $(noircompactdir)/metacity-1
-	cp -Rv $(metacity_xml_file) $(platadir)/metacity-1
+	cp -Rv $(metacity_xml_file) $(platanodir)/metacity-1
 	cp -Rv $(metacity_xml_file) $(noirdir)/metacity-1
 	cp -Rv $(metacity_lumine_xml_file) $(luminedir)/metacity-1
-	cp -Rv $(metacity_compact_xml_file) $(platacompactdir)/metacity-1
+	cp -Rv $(metacity_compact_xml_file) $(platanocompactdir)/metacity-1
 	cp -Rv $(metacity_compact_xml_file) $(noircompactdir)/metacity-1
 	cp -Rv $(metacity_lumine_compact_xml_file) $(luminecompactdir)/metacity-1
-	cp -Rv $(metacity_asset_file) $(platadir)/metacity-1
+	cp -Rv $(metacity_asset_file) $(platanodir)/metacity-1
 	cp -Rv $(metacity_asset_file) $(noirdir)/metacity-1
 	cp -Rv $(metacity_lumine_asset_file) $(luminedir)/metacity-1
-	cp -Rv $(metacity_compact_asset_file) $(platacompactdir)/metacity-1
+	cp -Rv $(metacity_compact_asset_file) $(platanocompactdir)/metacity-1
 	cp -Rv $(metacity_compact_asset_file) $(noircompactdir)/metacity-1
 	cp -Rv $(metacity_lumine_compact_asset_file) $(luminecompactdir)/metacity-1
 endif
 
 if ENABLE_CINNAMON
 if !ENABLE_FLASHBACK
-	$(MKDIR_P) $(platadir)/metacity-1
+	$(MKDIR_P) $(platanodir)/metacity-1
 	$(MKDIR_P) $(luminedir)/metacity-1
 	$(MKDIR_P) $(noirdir)/metacity-1
-	$(MKDIR_P) $(platacompactdir)/metacity-1
+	$(MKDIR_P) $(platanocompactdir)/metacity-1
 	$(MKDIR_P) $(luminecompactdir)/metacity-1
 	$(MKDIR_P) $(noircompactdir)/metacity-1
-	cp -Rv $(metacity_xml_file) $(platadir)/metacity-1
+	cp -Rv $(metacity_xml_file) $(platanodir)/metacity-1
 	cp -Rv $(metacity_xml_file) $(noirdir)/metacity-1
 	cp -Rv $(metacity_lumine_xml_file) $(luminedir)/metacity-1
-	cp -Rv $(metacity_compact_xml_file) $(platacompactdir)/metacity-1
+	cp -Rv $(metacity_compact_xml_file) $(platanocompactdir)/metacity-1
 	cp -Rv $(metacity_compact_xml_file) $(noircompactdir)/metacity-1
 	cp -Rv $(metacity_lumine_compact_xml_file) $(luminecompactdir)/metacity-1
-	cp -Rv $(metacity_asset_file) $(platadir)/metacity-1
+	cp -Rv $(metacity_asset_file) $(platanodir)/metacity-1
 	cp -Rv $(metacity_asset_file) $(noirdir)/metacity-1
 	cp -Rv $(metacity_lumine_asset_file) $(luminedir)/metacity-1
-	cp -Rv $(metacity_compact_asset_file) $(platacompactdir)/metacity-1
+	cp -Rv $(metacity_compact_asset_file) $(platanocompactdir)/metacity-1
 	cp -Rv $(metacity_compact_asset_file) $(noircompactdir)/metacity-1
 	cp -Rv $(metacity_lumine_compact_asset_file) $(luminecompactdir)/metacity-1
 endif
@@ -496,49 +496,49 @@ endif
 
 if ENABLE_MATE
 if !ENABLE_FLASHBACK
-	$(MKDIR_P) $(platadir)/metacity-1
+	$(MKDIR_P) $(platanodir)/metacity-1
 	$(MKDIR_P) $(luminedir)/metacity-1
 	$(MKDIR_P) $(noirdir)/metacity-1
-	$(MKDIR_P) $(platacompactdir)/metacity-1
+	$(MKDIR_P) $(platanocompactdir)/metacity-1
 	$(MKDIR_P) $(luminecompactdir)/metacity-1
 	$(MKDIR_P) $(noircompactdir)/metacity-1
-	cp -Rv $(metacity_xml_file) $(platadir)/metacity-1
+	cp -Rv $(metacity_xml_file) $(platanodir)/metacity-1
 	cp -Rv $(metacity_xml_file) $(noirdir)/metacity-1
 	cp -Rv $(metacity_lumine_xml_file) $(luminedir)/metacity-1
-	cp -Rv $(metacity_compact_xml_file) $(platacompactdir)/metacity-1
+	cp -Rv $(metacity_compact_xml_file) $(platanocompactdir)/metacity-1
 	cp -Rv $(metacity_compact_xml_file) $(noircompactdir)/metacity-1
 	cp -Rv $(metacity_lumine_compact_xml_file) $(luminecompactdir)/metacity-1
-	cp -Rv $(metacity_asset_file) $(platadir)/metacity-1
+	cp -Rv $(metacity_asset_file) $(platanodir)/metacity-1
 	cp -Rv $(metacity_asset_file) $(noirdir)/metacity-1
 	cp -Rv $(metacity_lumine_asset_file) $(luminedir)/metacity-1
-	cp -Rv $(metacity_compact_asset_file) $(platacompactdir)/metacity-1
+	cp -Rv $(metacity_compact_asset_file) $(platanocompactdir)/metacity-1
 	cp -Rv $(metacity_compact_asset_file) $(noircompactdir)/metacity-1
 	cp -Rv $(metacity_lumine_compact_asset_file) $(luminecompactdir)/metacity-1
 endif
 endif
 
 if ENABLE_XFCE
-	$(MKDIR_P) $(platadir)/xfwm4
+	$(MKDIR_P) $(platanodir)/xfwm4
 	$(MKDIR_P) $(noirdir)/xfwm4
 	$(MKDIR_P) $(luminedir)/xfwm4
-	$(MKDIR_P) $(platacompactdir)/xfwm4
+	$(MKDIR_P) $(platanocompactdir)/xfwm4
 	$(MKDIR_P) $(noircompactdir)/xfwm4
 	$(MKDIR_P) $(luminecompactdir)/xfwm4
-	cp -Rv $(xfwm_file) $(platadir)/xfwm4
+	cp -Rv $(xfwm_file) $(platanodir)/xfwm4
 	cp -Rv $(xfwm_file) $(noirdir)/xfwm4
 	cp -Rv $(xfwm_lumine_file) $(luminedir)/xfwm4
-	cp -Rv $(xfwm_compact_file) $(platacompactdir)/xfwm4
+	cp -Rv $(xfwm_compact_file) $(platanocompactdir)/xfwm4
 	cp -Rv $(xfwm_compact_file) $(noircompactdir)/xfwm4
 	cp -Rv $(xfwm_lumine_compact_file) $(luminecompactdir)/xfwm4
 endif
 
 if ENABLE_OPENBOX
-	$(MKDIR_P) $(platadir)/openbox-3
+	$(MKDIR_P) $(platanodir)/openbox-3
 	$(MKDIR_P) $(noirdir)/openbox-3
 	$(MKDIR_P) $(luminedir)/openbox-3
-	cp -Rv $(openbox_file) $(platadir)/openbox-3
-	cp -Rv $(openbox_rc_file) $(platadir)/openbox-3/themerc
-	cp -Rv $(openbox_compton_file) $(platadir)/openbox-3
+	cp -Rv $(openbox_file) $(platanodir)/openbox-3
+	cp -Rv $(openbox_rc_file) $(platanodir)/openbox-3/themerc
+	cp -Rv $(openbox_compton_file) $(platanodir)/openbox-3
 	cp -Rv $(openbox_file) $(noirdir)/openbox-3
 	cp -Rv $(openbox_rc_noir_file) $(noirdir)/openbox-3/themerc
 	cp -Rv $(openbox_file) $(luminedir)/openbox-3
@@ -553,20 +553,20 @@ uninstall-local:
 if ENABLE_FLASHBACK
 	test -e $(noirdir)/metacity-1 && rm -rfv $(noirdir)/metacity-1
 	test -e $(luminedir)/metacity-1 && rm -rfv $(luminedir)/metacity-1
-	test -e $(platadir)/metacity-1 && rm -rfv $(platadir)/metacity-1
+	test -e $(platanodir)/metacity-1 && rm -rfv $(platanodir)/metacity-1
 	test -e $(noircompactdir)/metacity-1 && rm -rfv $(noircompactdir)/metacity-1
 	test -e $(luminecompactdir)/metacity-1 && rm -rfv $(luminecompactdir)/metacity-1
-	test -e $(platacompactdir)/metacity-1 && rm -rfv $(platacompactdir)/metacity-1
+	test -e $(platanocompactdir)/metacity-1 && rm -rfv $(platanocompactdir)/metacity-1
 endif
 
 if ENABLE_CINNAMON
 if !ENABLE_FLASHBACK
 	test -e $(noirdir)/metacity-1 && rm -rfv $(noirdir)/metacity-1
 	test -e $(luminedir)/metacity-1 && rm -rfv $(luminedir)/metacity-1
-	test -e $(platadir)/metacity-1 && rm -rfv $(platadir)/metacity-1
+	test -e $(platanodir)/metacity-1 && rm -rfv $(platanodir)/metacity-1
 	test -e $(noircompactdir)/metacity-1 && rm -rfv $(noircompactdir)/metacity-1
 	test -e $(luminecompactdir)/metacity-1 && rm -rfv $(luminecompactdir)/metacity-1
-	test -e $(platacompactdir)/metacity-1 && rm -rfv $(platacompactdir)/metacity-1
+	test -e $(platanocompactdir)/metacity-1 && rm -rfv $(platanocompactdir)/metacity-1
 endif
 endif
 
@@ -574,23 +574,23 @@ if ENABLE_MATE
 if !ENABLE_FLASHBACK
 	test -e $(noirdir)/metacity-1 && rm -rfv $(noirdir)/metacity-1
 	test -e $(luminedir)/metacity-1 && rm -rfv $(luminedir)/metacity-1
-	test -e $(platadir)/metacity-1 && rm -rfv $(platadir)/metacity-1
+	test -e $(platanodir)/metacity-1 && rm -rfv $(platanodir)/metacity-1
 	test -e $(noircompactdir)/metacity-1 && rm -rfv $(noircompactdir)/metacity-1
 	test -e $(luminecompactdir)/metacity-1 && rm -rfv $(luminecompactdir)/metacity-1
-	test -e $(platacompactdir)/metacity-1 && rm -rfv $(platacompactdir)/metacity-1
+	test -e $(platanocompactdir)/metacity-1 && rm -rfv $(platanocompactdir)/metacity-1
 endif
 endif
 
 if ENABLE_XFCE
 	test -e $(noirdir)/xfwm4 && rm -rfv $(noirdir)/xfwm4
 	test -e $(luminedir)/xfwm4 && rm -rfv $(luminedir)/xfwm4
-	test -e $(platadir)/xfwm4 && rm -rfv $(platadir)/xfwm4
+	test -e $(platanodir)/xfwm4 && rm -rfv $(platanodir)/xfwm4
 endif
 
 if ENABLE_OPENBOX
 	test -e $(noirdir)/openbox-3 && rm -rfv $(noirdir)/openbox-3
 	test -e $(luminedir)/openbox-3 && rm -rfv $(luminedir)/openbox-3
-	test -e $(platadir)/openbox-3 && rm -rfv $(platadir)/openbox-3
+	test -e $(platanodir)/openbox-3 && rm -rfv $(platanodir)/openbox-3
 endif
 
 # ****************************

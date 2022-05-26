@@ -9,193 +9,193 @@
 // Foreground colors
 //
 
-$fg: if($variant == dark, color($grey, 100),
+$color_fg: if($variant == dark, color($grey, 100),
                           mix(color($grey, 900), black));
-$sec_fg: track($fg, $a_fg_2nd);
-$ter_fg: track($fg, $a_fg_3rd);
+$color_fg_2: track($color_fg, $alpha_foreground_2nd);
+$color_fg_3: track($color_fg, $alpha_foreground_3rd);
 
-$sel_fg: white;
-$sec_sel_fg: track($sel_fg, $a_fg_sel_2nd);
-$ter_sel_fg: track($sel_fg, $a_fg_sel_3rd);
+$color_fg_sel: white;
+$color_fg_sel_2: track($color_fg_sel, $alpha_foreground_selection_secondary);
+$color_fg_sel_3: track($color_fg_sel, $alpha_foreground_sel_3rd);
 
-$dis_fg: track($fg, $a_fg_dis);
-$dis_sec_fg: track($sec_fg, $a_fg_dis);
-$dis_ter_fg: track($ter_fg, $a_fg_dis);
+$color_fg_dis: track($color_fg, $alpha_foreground_dis);
+$color_fg_dis_2: track($color_fg_2, $alpha_foreground_dis);
+$color_fg_dis_3: track($color_fg_3, $alpha_foreground_dis);
 
-$dis_sel_fg: track($sel_fg, $a_fg_bdp);
-$dis_sec_sel_fg: track($sec_sel_fg, $a_fg_bdp);
-$dis_ter_sel_fg: track($ter_sel_fg, $a_fg_bdp);
+$color_fg_dis_sel: track($color_fg_sel, $alpha_foreground_bdp);
+$color_fg_dis_sel_2: track($color_fg_sel_2, $alpha_foreground_bdp);
+$color_fg_dis_sel_3: track($color_fg_sel_3, $alpha_foreground_bdp);
 
 // placeholder text in GtkEntry
-$plc_fg: if($variant == light, color($grey, $primary_level),
+$color_fg_plc: if($variant == light, color($grey, $primary_level),
                                color($grey, $primary_level + 200));
 
 //
 // Inverted foreground colors
 //
 
-$inv_fg: color($grey, 100);
-$inv_sec_fg: track($inv_fg, $a_fg_2nd);
-$inv_ter_fg: track($inv_fg, $a_fg_3rd);
+$color_fg_inv: color($grey, 100);
+$color_fg_inv_2: track($color_fg_inv, $alpha_foreground_2nd);
+$color_fg_inv_3: track($color_fg_inv, $alpha_foreground_3rd);
 
-$dis_inv_fg: track($inv_fg, $a_fg_dis);
-$dis_inv_sec_fg: track($inv_sec_fg, $a_fg_dis);
+$color_fg_dis_inv: track($color_fg_inv, $alpha_foreground_dis);
+$color_fg_dis_inv_2: track($color_fg_inv_2, $alpha_foreground_dis);
 // for SSD titlebars
-$unf_title_fg: if($variant == light, track($fg, $a_fg_bdp),
-                                     track($inv_fg, $a_fg_bdp));
+$color_fg_title_unf: if($variant == light, track($color_fg, $alpha_foreground_bdp),
+                                     track($color_fg_inv, $alpha_foreground_bdp));
 
-$fix_fg: color($grey, 900);
-$sec_fix_fg: track($fix_fg, $a_fg_2nd);
-$ter_fix_fg: track($fix_fg, $a_fg_3rd);
-$dis_fix_fg: track($fix_fg, $a_fg_dis);
+$color_fg_fix: color($grey, 900);
+$color_fg_fix_2: track($color_fg_fix, $alpha_foreground_2nd);
+$color_fg_fix_3: track($color_fg_fix, $alpha_foreground_3rd);
+$color_fg_fix_dis: track($color_fg_fix, $alpha_foreground_dis);
 
 //
 // Background colors
 //
 
-$bg: if($variant == dark,
-        mix(color($grey, 900), black, percentage($a_fg_2nd)),
+$color_bg: if($variant == dark,
+        mix(color($grey, 900), black, percentage($alpha_foreground_2nd)),
         mix(color($grey, 50), color($grey, 100)));
-$base: if($variant == dark,
+$color_base: if($variant == dark,
           mix(color($grey, 900), black),
           white);
-$dark_bg: if($variant == dark,
-             mix(color($grey, 900), black, percentage($a_trk_2)),
+$color_bg_dark: if($variant == dark,
+             mix(color($grey, 900), black, percentage($alpha_track_2)),
              mix(color($grey, 200), color($grey, 300)));
 
 //
 // Dark background colors on light variant
 //
 
-$inv_bg: mix(color($grey, 900), black, percentage($a_fg_2nd));
-$inv_base: mix(color($grey, 900), black);
-$inv_dark_bg: mix(color($grey, 900), black, percentage($a_trk_2));
+$color_bg_inv: mix(color($grey, 900), black, percentage($alpha_foreground_2nd));
+$color_base_inv: mix(color($grey, 900), black);
+$color_bg_dark_inv: mix(color($grey, 900), black, percentage($alpha_track_2));
 
 //
 // Light background colors on dark variant
 //
 
-$fix_base: white;
+$color_base_fix: white;
 
 //
 // Selection (primary) colors
 //
 
 // Default: #3f51b5 (Indigo500)
-$sel_bg: $key_selection_color;
-// $sel_bg: color($indigo, $primary_level);
-$sel_label: if($variant == dark,
+$color_bg_sel: $key_selection_color;
+// $color_bg_sel: color($indigo, $primary_level);
+$color_lbl_sel: if($variant == dark,
                saturate(
-                 lighten($sel_bg, percentage($a_trk_2)),
-                 percentage($a_trk_2)),
-               $sel_bg);
-$inv_sel_label: saturate(
-                  lighten($sel_bg, percentage($a_trk_2)),
-                  percentage($a_trk_2));
+                 lighten($color_bg_sel, percentage($alpha_track_2)),
+                 percentage($alpha_track_2)),
+               $color_bg_sel);
+$color_lbl_sel_inv: saturate(
+                  lighten($color_bg_sel, percentage($alpha_track_2)),
+                  percentage($alpha_track_2));
 
 //
 // Accent (secondary) colors
 //
 
 // Default: #7986cb (Indigo300)
-$acc_bg: $key_accent_color;
-//$acc_bg: color($indigo, $secondary_level);
-$acc_fg: if($variant == dark,
+$color_bg_acc: $key_accent_color;
+//$color_bg_acc: color($indigo, $secondary_level);
+$color_fg_acc: if($variant == dark,
             saturate(
-              lighten($acc_bg, percentage($a_trk_1)),
-              percentage($a_trk_1)),
+              lighten($color_bg_acc, percentage($alpha_track_1)),
+              percentage($alpha_track_1)),
             saturate(
-              darken($acc_bg, percentage($a_trk_2)),
-              percentage($a_trk_2)));
-$sec_acc_fg: track($acc_fg, $a_fg_sel_2nd);
-$drp_fg: $acc_fg;
-$drp_bg: track($drp_fg, $a_trk_out);
+              darken($color_bg_acc, percentage($alpha_track_2)),
+              percentage($alpha_track_2)));
+$color_fg_acc_2: track($color_fg_acc, $alpha_foreground_selection_secondary);
+$color_fg_drop: $color_fg_acc;
+$color_bg_drop: track($color_fg_drop, $alpha_track_out);
 
-$inv_acc_fg: saturate(
-              lighten($acc_bg, percentage($a_trk_1)),
-              percentage($a_trk_1));
-$inv_sec_acc_fg: track($inv_acc_fg, $a_fg_2nd);
-$inv_drp_fg: $inv_acc_fg;
+$color_fg_acc_inv: saturate(
+              lighten($color_bg_acc, percentage($alpha_track_1)),
+              percentage($alpha_track_1));
+$color_fg_acc_inv_2: track($color_fg_acc_inv, $alpha_foreground_2nd);
+$color_fg_drop_inv: $color_fg_acc_inv;
 
 //
 // Tracker colors
 //
 
-$trk_bg: track(currentColor, $a_trk_1);
-$trk_out_fg: track(currentColor, $a_trk_out);
+$color_bg_trk: track(currentColor, $alpha_track_1);
+$color_fg_trk_out: track(currentColor, $alpha_track_out);
 
 //
 // Edge colors
 //
 
-$div_fg: if($variant == dark, track(black, $a_div_0),
-                              track(black, $a_div_1));
-$div_sld_fg: if($variant == dark, mix(black, $base, percentage($a_div_0)),
-                                  mix(black, $bg, percentage($a_div_1)));
-$div_sld_dark_fg: if($variant != light,
+$color_fg_div: if($variant == dark, track(black, $alpha_div_0),
+                              track(black, $alpha_div_1));
+$color_fg_div_sld: if($variant == dark, mix(black, $color_base, percentage($alpha_div_0)),
+                                  mix(black, $color_bg, percentage($alpha_div_1)));
+$color_fg_div_sld_dark: if($variant != light,
                      black,
-                     mix(black, $dark_bg, percentage($a_div_1)));
-$div_top_fg: if($variant == light,
-                mix(white, $dark_bg, percentage($a_div_1)),
-                mix(white, $inv_dark_bg, percentage($a_div_2)));
-$div_pane_fg: if($variant == dark, track(black, $a_div_1),
-                                   track(black, $a_div_2));
+                     mix(black, $color_bg_dark, percentage($alpha_div_1)));
+$color_fg_div_top: if($variant == light,
+                mix(white, $color_bg_dark, percentage($alpha_div_1)),
+                mix(white, $color_bg_dark_inv, percentage($alpha_div_2)));
+$color_fg_div_pane: if($variant == dark, track(black, $alpha_div_1),
+                                   track(black, $alpha_div_2));
 
 //
 // Misc colors
 //
 
-$link: color($blue, $primary_level);
-$link_vst: color($purple, $primary_level);
+$color_lnk: color($blue, $primary_level);
+$color_lnk_vst: color($purple, $primary_level);
 
-$link_fg: if($variant == dark,
-             saturate(lighten($link, percentage($a_trk_1)),
-               percentage($a_trk_1)),
-             $link);
-$link_vst_fg: if($variant == dark,
-                 saturate(lighten($link_vst, percentage($a_trk_2)),
-                   percentage($a_trk_2)),
-                 $link_vst);
+$color_fg_lnk: if($variant == dark,
+             saturate(lighten($color_lnk, percentage($alpha_track_1)),
+               percentage($alpha_track_1)),
+             $color_lnk);
+$color_fg_lnk_vst: if($variant == dark,
+                 saturate(lighten($color_lnk_vst, percentage($alpha_track_2)),
+                   percentage($alpha_track_2)),
+                 $color_lnk_vst);
 
 // Default: #673ab7 (DPurple500)
-$sggt_bg: $key_suggestion_color;
-// $sggt_bg: color($d_purple, $primary_level);
+$color_bg_sgst: $key_suggestion_color;
+// $color_bg_sgst: color($d_purple, $primary_level);
 
 // Default: #f44336 (Red500)
-$dest_bg: $key_destruction_color;
-// $dest_bg: color($red, $primary_level);
+$color_bg_dest: $key_destruction_color;
+// $color_bg_dest: color($red, $primary_level);
 
-$info: color($teal, $primary_level);
-$warn: color($orange, $primary_level);
-$err: color($red, $primary_level);
+$color_info: color($teal, $primary_level);
+$color_warn: color($orange, $primary_level);
+$color_err: color($red, $primary_level);
 
-$sccs_bg: color($green, $primary_level);
-$info_bg: color($teal, $secondary_level);
-$ques_bg: color($yellow, $secondary_level);
-$warn_bg: color($orange, $secondary_level);
-$err_bg: $err;
+$color_bg_sccs: color($green, $primary_level);
+$color_bg_info: color($teal, $secondary_level);
+$color_bg_ques: color($yellow, $secondary_level);
+$color_bg_warn: color($orange, $secondary_level);
+$color_bg_err: $color_err;
 
 //
 // Tooltip background color
 //
 
-$tooltip_bg: if($variant == dark, color($grey, 800),
+$color_bg_tooltip: if($variant == dark, color($grey, 800),
                                   color($grey, 400));
-$inv_tooltip_bg: color($grey, 800);
+$color_bg_tooltip_inv: color($grey, 800);
 
 //
 // Solid panel color
 //
 
-$panel_bg: if($variant == light, color($grey, 300), black);
-$panel_div_fg: if($variant == light, track($fg, $a_div_2),
-                                     track($inv_fg, $a_div_2));
+$color_bg_panel: if($variant == light, color($grey, 300), black);
+$color_fg_panel_inv: if($variant == light, track($color_fg, $alpha_div_2),
+                                     track($color_fg_inv, $alpha_div_2));
 
 //
 // Selection-mode headerbar
 //
 
-$dark_sel_bg: if($variant == light,
-                 mix($sel_bg, $dark_bg, percentage($a_fg_bdp)),
-                 mix($sel_bg, $inv_dark_bg, percentage($a_fg_bdp)));
-$div_top_sel_fg: mix(white, $dark_sel_bg, percentage($a_div_2));
+$color_bg_sel_dark: if($variant == light,
+                 mix($color_bg_sel, $color_bg_dark, percentage($alpha_foreground_bdp)),
+                 mix($color_bg_sel, $color_bg_dark_inv, percentage($alpha_foreground_bdp)));
+$color_fg_div_sel_top: mix(white, $color_bg_sel_dark, percentage($alpha_div_2));

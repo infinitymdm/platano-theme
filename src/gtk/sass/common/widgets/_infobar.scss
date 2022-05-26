@@ -1,0 +1,72 @@
+// /**************
+//  * GtkInfoBar *
+//  **************/
+
+%inforbar_box {
+  padding: $toolbar_padding;
+  border-bottom: 1px solid $color_fg_div_sld; // do not use transparentize
+  background-color: $color_bg_dark;
+}
+
+infobar {
+  @if $maj_ver == 3 {
+    @if $mnr_ver < 23 { @extend %inforbar_box; }
+    @else {
+      > revealer > box { @extend %inforbar_box; }
+    }
+  }
+  @else {
+    > revealer > box { @extend %inforbar_box; }
+  }
+
+  selection {
+    &, &:focus { @extend %selected_items; }
+  }
+
+  &.info,
+  &.question,
+  &.warning,
+  &.error {
+    &, buttonbox:not(.linked) {
+      button:not(.destructive-action):not(.suggested-action) {
+        @extend %flat_button;
+      }
+    }
+  }
+}
+
+@each $_type, $_color in (info, $color_bg_info),
+                          (question, $color_bg_ques),
+                          (warning, $color_bg_warn),
+                          (error, $color_bg_err) {
+  infobar.#{$_type} {
+    @if $maj_ver == 3 {
+      @if $mnr_ver < 23 {
+        background-color: if($variant == dark,
+                              mix($_color, $color_bg, percentage($alpha_track_1)),
+                              mix($_color, $color_bg_dark, percentage($alpha_track_2)));
+      }
+      @else {
+        > revealer > box {
+          background-color: if($variant == dark,
+                                mix($_color, $color_bg, percentage($alpha_track_1)),
+                                mix($_color, $color_bg_dark, percentage($alpha_track_2)));
+        }
+      }
+    }
+    @else {
+      > revealer > box {
+        background-color: if($variant == dark,
+                              mix($_color, $color_bg, percentage($alpha_track_1)),
+                              mix($_color, $color_bg_dark, percentage($alpha_track_2)));
+      }
+    }
+    color: mix($color_fg, $_color, percentage($alpha_foreground_3rd));
+
+    progressbar { // use 'white' bit and trough
+      trough { background-color: track($_color, $alpha_track_out); }
+
+      progress { background-color: $_color; }
+    }
+  }
+}

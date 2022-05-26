@@ -9,11 +9,11 @@ Summary
 How to tweak the theme
 ----------------------
 
-Plata is a complex theme, so to keep it maintainable it's written and
+Platano is a complex theme, so to keep it maintainable it's written and
 processed in SASS, the generated CSS is then transformed into a gresource
 file during gtk build and used at runtime in a non-legible or editable form.
 
-It is very likely your change will happen in the _common.scss file.
+It is very likely your change will happen in the _widgets.scss file.
 That's where all the widget selectors are defined.
 Here's a rundown of the "supporting" stylesheets, that are unlikely to be the
 right place for a drive by stylesheet fix:
@@ -26,11 +26,7 @@ _colors.scss        - global color definitions. We keep the number of defined
 
 _drawing.scss       - drawing helper mixings/functions to allow easier
                       definition of widget drawing under specific context.
-                      This is why Plata isn't 15000 LOC.
+                      This is why Platano isn't 15000 LOC.
 
-_common.scss        - actual definitions of style for each widget. This is
+_widgets.scss       - actual definitions of style for each widget. This is
                       where you are likely to add/remove your changes.
-
-You can read about SASS at http://sass-lang.com/documentation/. Once you make
-your changes to the _common.scss file, you can either run the ./parse-sass.sh
-script or keep SASS watching for changes as you edit.

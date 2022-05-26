@@ -1,0 +1,315 @@
+// /************
+//  * Keyboard *
+//  ************/
+
+// On-screen Keyboard
+#keyboard {
+  background-color: if($variant != light, opacity(black, $alpha_foreground_3rd),
+                                          opacity(white, $alpha_foreground_dis));
+
+  @if $ver > 3.31 {
+    .page-indicator { // in the .emoji-panel
+      padding: 0 ($icon_size / 2) $icon_size;
+
+      // set variant-specific colors
+      .page-indicator-icon { box-shadow: inset 0 0 0 2px $color_fg_osd_3; }
+
+      &:hover .page-indicator-icon { box-shadow: inset 0 0 0 2px $color_fg_osd; }
+
+      &:active .page-indicator-icon,
+      &:checked .page-indicator-icon { box-shadow: $empty_shadow; }
+    }
+  }
+}
+
+@if $ver > 3.25 {
+  .key-container { // current
+    // no need to set variant specific spacing
+    padding: $ref_size * 0.3;
+    spacing: $ref_size * 0.3;
+  }
+}
+
+.keyboard {
+  &-layout { // legacy
+    spacing: $ref_size * 0.3;
+    padding: $ref_size * 0.3;
+  }
+
+  &-row { spacing: $ref_size * 0.3; } // legacy
+
+  &-key {
+    min-height: $ref_size * 2;
+    min-width: $ref_size * 2;
+    padding: 0;
+    border-radius: $r_2;
+    border: 1px solid mix($color_fg_osd_2, $color_bg_osd, percentage($alpha_div_1));
+    background-color: $color_bg_osd;
+    color: $color_fg_osd_2;
+    box-shadow: $empty_shadow;
+    text-shadow: none;
+    icon-shadow: none;
+    font-size: $ref_size * 2; // use unscalable unit
+    font-weight: 700;
+    transition-timing-function: $transition_t_standard;
+    &:focus,
+    &:hover,
+    &:checked {
+      border-color: mix($color_bg_osd, $color_fg_osd, percentage($alpha_foreground_2nd));
+      background-color: mix($color_bg_osd, $color_fg_osd, percentage($alpha_foreground_2nd));
+      color: $color_fg_osd;
+      transition-timing-function: $transition_t_standard;
+    }
+    &:active {
+      border-color: mix($color_bg_osd, $color_fg_osd, percentage(1 - $alpha_track_2));
+      background-color: mix($color_bg_osd, $color_fg_osd, percentage(1 - $alpha_track_2));
+      color: $color_fg_osd;
+      transition-timing-function: $transition_t_dec;
+    }
+    &:grayed { // FIXME
+      border-color: mix($color_fg_osd_2, $color_bg_osd,
+                        percentage($alpha_div_1 * $alpha_foreground_dis));
+      background-color: $color_bg_panel;
+      color: $color_fg_osd_3;
+      transition-timing-function: $transition_t_standard;
+    }
+
+    @if $ver > 3.25 {
+      &.default-key {
+        background-color: mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2));
+        @if $ver < 3.35 { background-size: ($ref_size - 0.33) * 2; }
+        color: $color_fg_osd_2;
+        &:focus,
+        &:hover,
+        &:checked {
+          border-color:
+            mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                $color_fg_osd, percentage($alpha_foreground_2nd));
+          background-color:
+            mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                $color_fg_osd, percentage($alpha_foreground_2nd));
+          color: $color_fg_osd;
+          transition-timing-function: $transition_t_standard;
+        }
+        &:active {
+          border-color:
+            mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                $color_fg_osd, percentage(1 - $alpha_track_2));
+          background-color:
+            mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                $color_fg_osd, percentage(1 - $alpha_track_2));
+          color: $color_fg_osd;
+          transition-timing-function: $transition_t_dec;
+        }
+      }
+
+      &.enter-key {
+        border-color: $color_bg_sgst;
+        background-color: $color_bg_sgst;
+        @if $ver < 3.35 { @include image-loader($url: 'key-enter.svg'); }
+        @else { color: $color_fg_sel_2; }
+        &:focus,
+        &:hover,
+        &:checked {
+          border-color: mix($color_bg_sgst, $color_fg_sel, percentage($alpha_foreground_2nd));
+          background-color: mix($color_bg_sgst, $color_fg_sel, percentage($alpha_foreground_2nd));
+          @if $ver < 3.35 {
+            @include image-loader($url: 'key-enter-active.svg');
+          }
+          @else { color: $color_fg_sel; }
+        }
+        &:active {
+          border-color: $color_bg_sel;
+          background-color: $color_bg_sel;
+          @if $ver < 3.35 {
+            @include image-loader($url: 'key-enter-active.svg');
+          }
+          @else { color: $color_fg_sel; }
+        }
+      }
+
+      &.shift-key {
+        &-lowercase {
+          @if $ver < 3.35 {
+            @include image-loader($url: 'key-shift.svg');
+          }
+          @else { color: $color_fg_osd_2; }
+        }
+
+        &-uppercase {
+          @if $ver < 3.35 {
+            @include image-loader($url: 'key-shift-uppercase.svg');
+          }
+          @else { color: $color_bg_sel; }
+          &:focus,
+          &:hover,
+          &:checked {
+            border-color:
+              mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                  $color_bg_sel, percentage($alpha_foreground_2nd));
+            background-color:
+              mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                  $color_bg_sel, percentage($alpha_foreground_2nd));
+          }
+          &:active {
+            border-color:
+              mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                  $color_bg_sel, percentage(1 - $alpha_track_2));
+            background-color:
+              mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                  $color_bg_sel, percentage(1 - $alpha_track_2));
+          }
+          &:latched {
+            @if $ver < 3.35 {
+              @include image-loader($url: 'key-shift-latched-uppercase.svg');
+            }
+            @else { color: $color_bg_sel; }
+            border-color:
+              mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                  $color_bg_sel, percentage($alpha_foreground_2nd));
+            background-color:
+              mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                  $color_bg_sel, percentage($alpha_foreground_2nd));
+            transition-timing-function: $transition_t_standard;
+            &:focus,
+            &:hover {
+              border-color:
+                mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                    $color_bg_sel, percentage(1 - $alpha_track_2));
+              background-color:
+                mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                    $color_bg_sel, percentage(1 - $alpha_track_2));
+            }
+          }
+        }
+      }
+
+      @if $ver < 3.35 {
+        &.hide-key { @include image-loader($url: 'key-hide.svg'); }
+
+        &.layout-key { @include image-loader($url: 'key-layout.svg'); }
+      }
+    }
+
+    @if $ver > 3.35 {
+      StIcon { icon-size: $ref_size * 2; }
+    }
+  }
+
+  &-subkeys { //long press on a key popup
+    padding: 0;
+    border-radius: $r_2;
+    -arrow-border-radius: 0;
+    -arrow-background-color: transparent;
+    -arrow-border-width: 0;
+    -arrow-border-color: transparent;
+    -arrow-base: 0;
+    -arrow-rise: 0;
+    -boxpointer-gap: $ref_size * 0.3;
+    background-color: $color_bg_sgst;
+    color: $color_fg_sel;
+    box-shadow: $z-depth-2;
+
+    .keyboard-key {
+      border: 0 none transparent;
+      background-color: $color_bg_fill_hidden;
+      color: $color_fg_sel_2;
+      box-shadow: inset 0 0 0 2px $color_bg_ovv_out;
+      &:focus,
+      &:hover,
+      &:checked {
+        border: 0 none transparent;
+        background-color: opacity($color_fg_sel, $alpha_track_1);
+        color: $color_fg_sel;
+        box-shadow: $empty_shadow;
+      }
+      &:active {
+        border: 0 none transparent;
+        background-color: opacity($color_fg_sel, $alpha_track_2);
+        color: $color_fg_sel;
+        box-shadow: $empty_shadow;
+      }
+    }
+  }
+}
+
+@if $ver > 3.25 {
+  // OSK suggestion actor
+  .word-suggestions {
+    min-height: 1.6em;
+    spacing: $ref_size * 1.3;
+    padding: $ref_size * 0.3 0 0;
+    font-weight: 500;
+    font-size: 130%;
+
+    StButton {
+      padding: 0 $ref_size * 1.3;
+      border-radius: $r;
+      background-color: $color_bg_sgst;
+      color: $color_fg_sel_2;
+      &:hover,
+      &:focus {
+        background-color: mix($color_fg_sel, $color_bg_sgst, percentage($alpha_track_1));
+        color: $color_fg_sel;
+      }
+      &:active {
+        background-color: $color_bg_sel;
+        color: $color_fg_sel;
+      }
+    }
+  }
+}
+
+@if $ver > 3.31 { // Emoji keyboard
+  .emoji {
+    &-panel {
+      .keyboard-key {
+        color: $color_fg_ovv_2;
+        &:focus,
+        &:hover,
+        &:active,
+        &:checked { color: $color_fg_ovv; }
+
+        &.default-key { // 'ABC' and 'down-arrow' key
+          color: $color_fg_osd_2;
+          &:focus,
+          &:hover,
+          &:active,
+          &:checked { color: $color_fg_osd; }
+        }
+
+        &:latched {
+          border-color: $color_bg_sel;
+          background-color: $color_bg_sel;
+          &:hover {
+            border-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_1));
+            background-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_1));
+          }
+          &:active {
+            border-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_2));
+            background-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_2));
+          }
+        }
+      }
+    }
+
+    &-page {
+      .keyboard-key { // use flat-style
+        border: 0 none transparent;
+        background-color: transparent;
+        color: $color_fg_ovv_2; // do not set variant-specific
+        &:focus,
+        &:hover {
+          border: 0 none transparent;
+          background-color: opacity($color_fg_ovv, $alpha_track_1);
+          color: $color_fg_ovv;
+        }
+        &:active {
+          border: 0 none transparent;
+          background-color: opacity($color_fg_ovv, $alpha_track_2);
+          color: $color_fg_ovv;
+        }
+      }
+    }
+  }
+}

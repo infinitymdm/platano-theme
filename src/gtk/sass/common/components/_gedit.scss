@@ -1,0 +1,66 @@
+// /*********
+//  * Gedit *
+//  *********/
+
+.gedit-bottom-panel-paned {
+  .gedit-search-slider {
+    @extend %app_slider;
+    background-color: track($color_bg_tooltip, $alpha_osd);
+    color: $color_fg;
+  }
+}
+
+paned.titlebar.horizontal {
+  headerbar {
+    button.flat.toggle.popup:not(.image-button) { // left-pane header button
+      @include radius($r_2);
+
+      box > .title {
+        margin-top: rem($baseline, $sw: 1.0);
+        padding: 0;
+      }
+    }
+  }
+}
+
+paned.gedit-bottom-panel-paned + statusbar { // inline-toolbar styling
+  padding: $toolbar_padding;
+  border-style: solid;
+  border-width: 1px 0 0;
+  border-color: $color_fg_div;
+  background-color: $color_bg_dark;
+
+  button.flat { // padding is overridden by (1px 8px 2px 4px)
+    min-height: rem($small_widget);
+
+    box {
+      &:dir(ltr) { margin: -1px -4px -2px 4px; }
+      &:dir(rtl) { margin: -1px 4px -2px -4px; }
+    }
+  }
+}
+
+.gedit-side-panel-paned.horizontal {
+  // 'file-browser' pane
+  > box.vertical > stack > grid.horizontal {
+    @extend %sidebar_template;
+
+    > box.horizontal {  // header-part
+      padding: rem($menu_padding) 0;
+      border-bottom: 1px solid $color_fg_div;
+    }
+
+    treeview.view { @extend %sidebar_treeview; }
+  }
+}
+
+.gedit-document-panel { // 'documents' pane
+  @extend %sidebar_template;
+
+  row { @extend %sidebar_row_template; }
+}
+
+frame.gedit-map-frame > border {
+  &:dir(ltr) { border-width: 0 0 0 1px; }
+  &:dir(rtl) { border-width: 0 1px 0 0; }
+}

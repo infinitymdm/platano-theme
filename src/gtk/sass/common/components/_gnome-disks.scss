@@ -1,0 +1,17 @@
+// /***************
+//  * Gnome-Disks *
+//  ***************/
+
+.background.csd > box.vertical > paned.horizontal > scrolledwindow,
+.background.solid-csd > box.vertical > paned.horizontal > scrolledwindow {
+  // side-bar styling
+  @extend %sidebar_template;
+
+  treeview.view {
+    @extend %sidebar_treeview;
+    &:selected:last-child {
+      &:dir(ltr) { @include radius(0 $r $r 0); }
+      &:dir(rtl) { @include radius($r 0 0 $r); }
+    }
+  }
+}

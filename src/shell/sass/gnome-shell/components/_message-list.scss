@@ -1,0 +1,409 @@
+// /****************
+//  * Message List *
+//  ****************/
+
+.message-list {
+  width: if($ref_weight >= 1.0, 420px, 380px);
+
+  &-clear-button.button {
+    @if $ver < 3.35 {
+      margin:  if($ref_weight >= 1.0, 1.5em 1.5em 0, 1.2em 1.2em 0);
+    }
+    font-weight: 500;
+    @include button(flat-normal, $tc: $color_fg_acc);
+    &:hover,
+    &:focus { @include button(flat-hover, $tc: $color_fg_acc); }
+    &:active { @include button(flat-active, $tc: $color_fg_acc); }
+    &:insensitive { @include button(flat-disabled); }
+  }
+
+  @if $ver > 3.35 { // parent container of button and switch
+    &-controls {
+      margin:  if($ref_weight >= 1.0, 1.5em 1.5em 0, 1.2em 1.2em 0);
+
+      > StLabel { color: $color_fg; } // 'Do Not Disturb' label
+    }
+  }
+
+  @if $ver < 3.25 {
+    &-sections { spacing: if($ref_weight >= 1.0, 1.5em, 1.2em); }
+
+    &-section,
+    &-section-list { spacing: 0.7em; }
+
+    &-section-title-box { spacing: 0.4em; }
+
+    &-section-close {
+      > StIcon {
+        padding: 0.45em;
+        border-radius: $r;
+        icon-size: $icon_size;
+        color: $color_fg_2;
+        background-color: transparent;
+      }
+
+      // FIXME: how do you do this in sass?
+      &:hover > StIcon,
+      &:focus > StIcon {
+        color: $color_fg;
+        background-color: $color_bg_semi_fill;
+      }
+      &:active > StIcon {
+        color: $color_fg;
+        background-color: $color_bg_fill;
+      }
+    }
+  }
+  @else {
+    &-sections { spacing: 0; }
+
+    &-section {
+      spacing: 0;
+      padding: 0;
+
+      &-list {
+        spacing: 1px; // for internal separators
+        margin-top: if($ref_weight >= 1.0, 0.6em / 2, 0.45em / 2);
+        margin-bottom: if($ref_weight >= 1.0, 0.6em * 1.5, 0.45em * 1.5);
+        padding: 0;
+        border: 1px solid if($variant == dark, $color_bg_fill_hidden,
+                                                opacity(white, 0.01));
+        // set a half of div_fg for internal separators
+        background-color: if($variant == dark, opacity(white, $alpha_div_2),
+                                                opacity(black, $alpha_div_2));
+      }
+    }
+  }
+
+  // labels for empty messages/events
+  &-placeholder {
+    @if $ver > 3.35 { spacing: if($ref_weight >= 1.0, 12px, 8px); }
+    color: $color_fg_3;
+  }
+}
+
+.message {
+  // No need to set any height/min-height with fixed values,
+  // 'no-values' can keep its height automatically even
+  // if switched to scrolled-view mode.
+  // So only padding property seems enough to control the spacing.
+  @if $ver > 3.25 { padding: if($ref_weight >= 1.0, 0.9em, 0.6em); }
+  @else { padding: 6px; }
+  border-radius: 0;
+  background-color: transparent;
+  color: $color_fg_osd;
+  @if $ver > 3.35 {
+    margin: 0;
+    border: 0 none transparent;
+    box-shadow: $empty_shadow;
+  }
+
+  .popup-menu & {
+    @if $ver > 3.25 {
+      padding: if($ref_weight >= 1.0, 0.6em, 0.45em);
+      background-color: $color_base;
+      @if $ver > 3.33 { border: 1px solid $color_base; }
+    }
+    @else {
+      background-color: $color_bg_semi_fill;
+      &:ltr { box-shadow: inset 4px 0 $color_fg_out; }
+      &:rtl { box-shadow: inset -4px 0 $color_fg_out; }
+    }
+    color: $color_fg_2;
+
+    @if $ver < 3.31 {
+      .message-icon-bin > StIcon,
+      .message-title,
+      .message-content { color: $color_fg_2; }
+    }
+    @else {
+      @if $ver > 3.35 {
+        .message-icon-bin > StIcon,
+        .message-icon-bin > .fallback-app-icon,
+        .message-title,
+        .message-body { color: $color_fg_2; }
+      }
+      @else {
+        .message-icon-bin > StIcon,
+        .message-icon-bin > .fallback-app-icon,
+        .message-title,
+        .message-content { color: $color_fg_2; }
+      }
+    }
+
+    &:hover,
+    &:focus {
+      @if $ver > 3.25 {
+        background-color: mix($color_fg, $color_base, percentage($alpha_track_1)); // use opaque
+        @if $ver > 3.33 {
+          border: 1px solid mix($color_fg, $color_base, percentage($alpha_track_1));
+        }
+      }
+      @else {
+        background-color: $color_bg_acc_semi_fill;
+        &:ltr { box-shadow: inset 4px 0 opacity($color_bg_acc, $alpha_foreground_2nd); }
+        &:rtl { box-shadow: inset -4px 0 opacity($color_bg_acc, $alpha_foreground_2nd); }
+      }
+      color: $color_fg;
+
+      @if $ver < 3.31 {
+        .message-icon-bin > StIcon,
+        .message-title,
+        .message-content { color: $color_fg; }
+      }
+      @else {
+        @if $ver > 3.35 {
+          .message-icon-bin > StIcon,
+          .message-icon-bin > .fallback-app-icon,
+          .message-title,
+          .message-body { color: $color_fg; }
+        }
+        @else {
+          .message-icon-bin > StIcon,
+          .message-icon-bin > .fallback-app-icon,
+          .message-title,
+          .message-content { color: $color_fg; }
+        }
+      }
+
+      .message-secondary-bin {
+        &,
+        > .event-time { color: $color_fg_2; }
+      }
+    }
+    &:active {
+      @if $ver > 3.25 {
+        background-color: mix($color_fg, $color_base, percentage($alpha_track_2));
+        @if $ver > 3.33 {
+          border: 1px solid mix($color_fg, $color_base, percentage($alpha_track_2));
+        }
+      }
+      @else {
+        background-color: $color_bg_acc_fill;
+        &:ltr { box-shadow: inset 4px 0 $color_bg_acc; }
+        &:rtl { box-shadow: inset -4px 0 $color_bg_acc; }
+      }
+      color: $color_fg;
+
+      @if $ver < 3.31 {
+        .message-icon-bin > StIcon,
+        .message-title,
+        .message-content { color: $color_fg; }
+      }
+      @else {
+        @if $ver > 3.35 {
+          .message-icon-bin > StIcon,
+          .message-icon-bin > .fallback-app-icon,
+          .message-title,
+          .message-body { color: $color_fg; }
+        }
+        @else {
+          .message-icon-bin > StIcon,
+          .message-icon-bin > .fallback-app-icon,
+          .message-title,
+          .message-content { color: $color_fg; }
+        }
+      }
+
+      .message-secondary-bin {
+        &,
+        > .event-time { color: $color_fg_2; }
+      }
+    }
+  }
+
+  &-icon-bin {
+    @if $ver > 3.25 {
+      margin: if($ref_weight >= 1.0, 0.2em 0.6em 0, 0.2em 0.45em 0);
+    }
+    @else {
+      // subtract .message-content's 'close' button padding
+      &:ltr { margin: 4px - 2px 0 0 6px; }
+      &:rtl { margin: 4px - 2px 6px 0 0; }
+    }
+    padding: 0; // FIXME: needs to override the stock gresource
+                // (Since upstream still uses padding properties)
+
+    @if $ver < 3.31 {
+      > StIcon {
+        min-width: $icon_size;  // for an indentation of .message-content
+        min-height: $icon_size; // reserve StIcon region even if StIcon was null
+        color: $color_fg_osd;
+        icon-size: $icon_size;
+        -st-icon-style: symbolic;
+      }
+    }
+    @else {
+      > StIcon,
+      > .fallback-app-icon {
+        min-width: $icon_size;
+        min-height: $icon_size;
+        color: $color_fg_osd;
+        icon-size: $icon_size;
+        -st-icon-style: symbolic;
+      }
+    }
+  }
+
+  &-secondary-bin {
+    color: $color_fg_osd_3;
+    @if $ver > 3.25 {
+      &:ltr { padding-left: if($ref_weight >= 1.0, 0.6em, 0.45em); }
+      &:rtl { padding-right: if($ref_weight >= 1.0, 0.6em, 0.45em); }
+    }
+    @else {
+      &:ltr { padding-left: 6px; }
+      &:rtl { padding-right: 6px; }
+    }
+
+    > .event-time {
+      @if $ver > 3.25 {
+        min-height: $icon_size - 4px;
+        margin-bottom: (1.15em - 0.9em) * 1.22;
+        padding: 0;
+        font-size: 90%;
+      }
+      @else {
+        // '.message-title' padding + extra 0.1em for finer base-line
+        padding-bottom: 0.5em + 0.1em;
+        font-size: 80%;
+      }
+      color: $color_fg_osd_3;
+    }
+
+    > StIcon {
+      padding: 0.2em;
+      icon-size: $icon_size;
+    }
+
+    .popup-menu & {
+      &,
+      > .event-time { color: $color_fg_3; }
+    }
+  }
+
+  &-title {
+    @if $ver > 3.25 {
+      min-height: $icon_size - 4px;
+      margin-bottom: 0.1em; // base-line correction
+      padding: 1.33px 0 0; // for smaller font-scaling-factor
+    }
+    @else {
+      padding: 0 0 4px;
+    }
+    color: $color_fg_osd;
+    font-weight: 700;
+    font-size: 110%;
+  }
+
+  &-content {
+    @if $ver > 3.25 {
+      padding: 0;
+    }
+    @else {
+      padding: 0 8px 4px;
+      font-size: 90%;
+    }
+    color: $color_fg_osd;
+
+    * > StIcon {
+      @if $ver > 3.25 {
+        padding: 0.2em;
+        icon-size: $icon_size;
+      }
+      @else {
+        padding: 2px;
+        icon-size: 1.09em;
+      }
+      border-radius: $r;
+    }
+
+    StButton > StIcon { // close button
+      // FIXME: alpha blended secondary color can't be rendered in OSD?
+      color: $color_fg_acc_inv;
+
+      .popup-menu & { color: $color_fg_acc_2; }
+    }
+
+    StButton:hover > StIcon,
+    StButton:focus > StIcon {
+      color: $color_fg_acc_inv;
+      background-color: $color_bg_acc_semi_fill_inv;
+
+      .popup-menu & {
+        color: $color_fg_acc;
+        background-color: $color_bg_acc_semi_fill;
+      }
+    }
+    StButton:active > StIcon {
+      color: $color_fg_acc_inv;
+      background-color: $color_bg_acc_fill_inv;
+
+      .popup-menu & {
+        color: $color_fg_acc;
+        background-color: $color_bg_acc_fill;
+      }
+    }
+  }
+
+  @if $ver > 3.35 {
+    &-body { color: $color_fg_osd; }
+  }
+}
+
+@if $ver > 3.35 {
+  // NEEDS_REVIEW: Was this really needed?
+  .message-close-button {
+  }
+}
+
+.message-media-control {
+  padding: 0 8px;
+  margin: 0 6px;
+  border-radius: $r;
+  color: $color_fg_acc_2;
+  background: transparent;
+  background-size: 32px 32px;
+  &:hover {
+    color: $color_fg_acc;
+    @include image-loader($url: 'assets/media-control-hover.svg');
+    background-size: 32px 32px;
+  }
+  &:active {
+    color: $color_fg_acc;
+    @include image-loader($url: 'assets/media-control-active.svg');
+    background-size: 32px 32px;
+  }
+  &:insensitive {
+    color: $color_fg_acc;
+    background-image: none;
+    background: transparent;
+  }
+}
+
+.media-message-cover-icon {
+  // use 'important' flag to override .message-icon-bin > StIcon size
+  icon-size: if($ref_weight >= 1.0, 48px, 36px) !important;
+
+  &.fallback {
+    icon-size: if($ref_weight >= 1.0, 24px, 16px) !important;
+    padding: if($ref_weight >= 1.0, 12px, 10px);
+    border: none;
+    border-radius: $r_2;
+    color: $color_fg_osd_3;
+    background-color: $color_bg_osd_semi_fill;
+    box-shadow: $empty_shadow;
+
+    .popup-menu .message & {
+      color: $color_fg_3;
+      background-color: $color_bg_semi_fill;
+    }
+
+    .popup-menu .message:hover &,
+    .popup-menu .message:focus &,
+    .popup-menu .message:active & {
+      color: $color_fg_2;
+      background-color: $color_bg_acc_fill;
+    }
+  }
+}

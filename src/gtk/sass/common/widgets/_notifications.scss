@@ -1,0 +1,52 @@
+// /*********************
+//  * App Notifications *
+//  *********************/
+
+%app_slider {
+  margin: $shadow_margin_2;
+  padding: $toolbar_padding;
+  @include radius(0 0 $r_8 $r_8, none);
+  background-clip: border-box;
+  box-shadow: $z-depth-2;
+}
+
+.app-notification {
+  @extend %app_slider;
+  @if $variant == mixed {
+    background-color: track($color_bg_tooltip_inv, $alpha_osd);
+    color: $color_fg_inv;
+  }
+  @else {
+    background-color: track($color_bg_tooltip, $alpha_osd);
+    color: $color_fg;
+  }
+
+  &,
+  > box.horizontal {
+    > label { padding: 0 rem($entry_lr_space); }
+  }
+
+  box.vertical {
+    > label {
+      &#summary {
+        color: if($variant == mixed, $color_fg_inv, $color_fg);
+        font-weight: 700;
+      }
+
+      &#body {
+        color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+      }
+    }
+  }
+
+  border { border: none; }
+
+  button { 
+    @if $variant == mixed {
+      @extend %inv-action-area-button;
+    }
+    @else {
+      @extend %action-area-button;
+    }
+  }
+}

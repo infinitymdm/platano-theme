@@ -93,28 +93,28 @@ else
     if [ $GIO_MINOR_VERSION -ge "53" ]; then
         $SASSC \
             gnome-shell/$GNOME_SCSS_VERSION/gdm3.scss \
-            ../gnome-shell/gdm3-Plata.css
-        echo Wrote ../gnome-shell/gdm3-Plata.css
+            ../gnome-shell/gdm3-Platano.css
+        echo Wrote ../gnome-shell/gdm3-Platano.css
         $SASSC \
             gnome-shell/$GNOME_SCSS_VERSION/gdm3-light.scss \
-            ../gnome-shell-light/gdm3-Plata-Lumine.css
-        echo Wrote ../gnome-shell-light/gdm3-Plata-Lumine.css
+            ../gnome-shell-light/gdm3-Platano-Light.css
+        echo Wrote ../gnome-shell-light/gdm3-Platano-Light.css
         $SASSC \
             gnome-shell/$GNOME_SCSS_VERSION/gdm3-dark.scss \
-            ../gnome-shell-dark/gdm3-Plata-Noir.css
-        echo Wrote ../gnome-shell-dark/gdm3-Plata-Noir.css
+            ../gnome-shell-dark/gdm3-Platano-Dark.css
+        echo Wrote ../gnome-shell-dark/gdm3-Platano-Dark.css
         $SASSC \
             gnome-shell/$GNOME_SCSS_VERSION/gdm3-compact.scss \
-            ../gnome-shell-compact/gdm3-Plata-Compact.css
-        echo Wrote ../gnome-shell-compact/gdm3-Plata-Compact.css
+            ../gnome-shell-compact/gdm3-Platano-Compact.css
+        echo Wrote ../gnome-shell-compact/gdm3-Platano-Compact.css
         $SASSC \
             gnome-shell/$GNOME_SCSS_VERSION/gdm3-light-compact.scss \
-            ../gnome-shell-light-compact/gdm3-Plata-Lumine-Compact.css
-        echo Wrote ../gnome-shell-light-compact/gdm3-Plata-Lumine-Compact.css
+            ../gnome-shell-light-compact/gdm3-Platano-Light-Compact.css
+        echo Wrote ../gnome-shell-light-compact/gdm3-Platano-Light-Compact.css
         $SASSC \
             gnome-shell/$GNOME_SCSS_VERSION/gdm3-dark-compact.scss \
-            ../gnome-shell-dark-compact/gdm3-Plata-Noir-Compact.css
-        echo Wrote ../gnome-shell-dark-compact/gdm3-Plata-Noir-Compact.css
+            ../gnome-shell-dark-compact/gdm3-Platano-Dark-Compact.css
+        echo Wrote ../gnome-shell-dark-compact/gdm3-Platano-Dark-Compact.css
     fi
     $SASSC \
         gnome-shell/$GNOME_SCSS_VERSION/pad-osd.scss \

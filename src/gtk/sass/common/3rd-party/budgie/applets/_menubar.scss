@@ -1,0 +1,5 @@
+@mixin budgie_menu() { // appindicator-applet?
+  padding: unset; // unset T/B padding as well
+  @include radius(0, none); // clear roundness
+  &:backdrop { opacity: 1.0; } // unset fade-effect
+}

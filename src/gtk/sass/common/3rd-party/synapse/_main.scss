@@ -1,0 +1,12 @@
+// /***********
+//  * Synapse *
+//  ***********/
+
+window.background:not(.solid-csd) > box.vertical {
+  > widget widget,
+  > box.vertical widget {
+    &:selected { // selected-row?
+      @extend %selected_items;
+    }
+  }
+}

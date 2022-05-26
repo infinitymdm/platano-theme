@@ -1,0 +1,105 @@
+// pixel-saver-applet
+%pixel_saver_button {
+    min-width: $icon_size;
+    min-height: $icon_size;
+    padding: 0;
+    border: none;
+    background: none;
+    color: if($variant == mixed, $color_fg_inv, $color_fg);
+    @include transition(reset);
+  
+    image {
+      border-radius: $r;
+      background-size: $icon_size $icon_size;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+  
+    &:hover,
+    &:active {
+      background: none;
+      color: if($variant != light, $color_fg_sel, black);
+      @include transition(reset);
+  
+      image { -gtk-icon-shadow: none; }
+    }
+  
+    // hide unneeded button images when Raven widget was shown
+    &:disabled image { opacity: 0; }
+  }
+  
+  %pixel_saver_button_ink_reaction {
+    &:hover image {
+      @if $variant != light {
+        background-image: image(track($color_fg_sel, $alpha_track_1));
+      }
+      @else {
+        background-image: image(track(black, $alpha_track_1));
+      }
+    }
+  
+    &:active image {
+      @if $variant != light {
+        background-image: image(track($color_fg_sel, $alpha_track_2));
+      }
+      @else {
+        background-image: image(track(black, $alpha_track_2));
+      }
+    }
+  }
+  
+  %pixel_saver_label_spacing {
+    > widget > label {
+      &:dir(ltr) { padding-right: 3px; }
+      &:dir(rtl) { padding-left: 3px; }
+    }
+  }
+  
+  .budgie-panel > box > widget > box {
+    // FIXME: Ubuntu-budgie has a downstream patch breaking our theming,
+    // there's no specific style-classes.
+    > button.flat.image-button {
+      @extend %pixel_saver_button;
+      @extend %pixel_saver_button_ink_reaction;
+    }
+  
+    &.horizontal {
+      @extend %pixel_saver_label_spacing;
+  
+      > button.flat.image-button { padding: 0 3px; }
+    }
+  }
+  
+  .budgie-panel box.titlebar { // Github original applet
+    border-radius: 0;
+    background: unset;
+  
+    > widget > label { // titles
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
+    }
+  
+    > button.image-button.titlebutton {
+      @extend %pixel_saver_button;
+  
+      &.close {
+        &:hover image {
+          background-image: image($color_bg_dest);
+          color: $color_fg_sel;
+        }
+  
+        &:active image {
+          background-image: image($color_bg_sel);
+          color: $color_fg_sel;
+        }
+      }
+  
+      &:not(.close) { @extend %pixel_saver_button_ink_reaction; }
+    }
+  
+    &.horizontal { // spacing
+      @extend %pixel_saver_label_spacing;
+      padding: 0 3px;
+  
+      > button.image-button.titlebutton { padding: 0 3px; }
+    }
+  }

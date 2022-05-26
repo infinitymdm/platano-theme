@@ -1,0 +1,120 @@
+// /***********
+//  * Sidebar *
+//  ***********/
+
+%sidebar_template {
+  background-color: $color_bg;
+}
+
+%sidebar_row_template {
+  min-height: rem($small_widget);
+  background-color: transparent;
+  color: $color_fg_2;
+  font-weight: 500;
+  &:hover {
+    background-color: $color_bg_trk;
+    color: $color_fg;
+  }
+  &:selected { @extend %selected_sidebar_row; }
+
+  &:dir(ltr) { padding: 0 0 0 rem($menuitem_padding); }
+  &:dir(rtl) { padding: 0 rem($menuitem_padding) 0 0; }
+}
+
+%sidebar_treeview {
+  min-height: rem($small_widget);
+  background-color: transparent;
+  box-shadow: none;
+  font-weight: 500;
+  &:hover {
+    background-color: $color_bg_trk;
+    color: $color_fg;
+  }
+  &:selected {
+    &, &:focus {
+      background-color: $color_bg_trk;
+      color: $color_lbl_sel;
+      &:hover {
+        background-color: $color_bg_trk;
+        color: $color_lbl_sel;
+
+        label { color: $color_lbl_sel; }
+      }
+    }
+  }
+}
+
+%selected_sidebar_row {
+  outline-width: 0; // unset focus outlines
+  background-color: $color_bg_trk;
+  color: $color_lbl_sel;
+
+  &:dir(ltr) { @include radius(0 $r $r 0); }
+  &:dir(rtl) { @include radius($r 0 0 $r); }
+
+  &:focus { outline-width: 0; }
+
+  label { color: $color_lbl_sel; }
+
+  &:hover {
+    background-color: $color_bg_trk;
+    color: $color_lbl_sel;
+
+    label { color: $color_lbl_sel; }
+  }
+
+  button {
+    color: track($color_lbl_sel, $alpha_foreground_2nd);
+    &:hover,
+    &:active,
+    &:checked { color: $color_lbl_sel; }
+    &:disabled { color: $color_fg_dis; }
+  }
+}
+
+// FIXME: exclude treeview node for lollypop's sidebar
+// FIXME2: exclude separator node for HdyLeafLet
+.sidebar:not(treeview):not(separator) {
+  border: none;
+  color: $color_fg_2;
+
+  .frame { background-color: transparent; }
+
+  treeview.view { @extend %sidebar_treeview; }
+
+  // fill actual background
+  background-color: $color_bg;
+
+  row {
+    @extend %sidebar_row_template;
+
+    &.sidebar-row {
+      margin: -1px 0; // subtract gaps
+    }
+  }
+}
+
+stacksidebar {
+  row {
+    @extend %sidebar_row_template;
+
+    > label {
+      padding-left: rem($pathbar_min_size * 1.5, $sw: 1.0);
+      padding-right: rem($pathbar_min_size * 1.5, $sw: 1.0);
+    }
+
+    &.needs-attention > label { @extend %needs_attention; }
+  }
+
+  scrolledwindow > .frame {
+    &:dir(ltr) { border-right: 1px solid $color_fg_div; }
+    &:dir(rtl) { border-left: 1px solid $color_fg_div; }
+
+    list { @extend %sidebar_template; }
+  }
+
+  separator { // hide separators
+    min-height: 0;
+    background-color: transparent;
+  }
+}

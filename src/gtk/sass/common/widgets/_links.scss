@@ -1,0 +1,52 @@
+// /*********
+//  * Links *
+//  *********/
+
+%link,
+*:link {
+  @at-root %normal_link,
+  & {
+    color: $color_fg_lnk;
+    &:hover,
+    &:active { color: $color_fg_lnk; }
+
+    *:selected & {
+      color: $color_fg_sel_2;
+      &:hover,
+      &:active { color: $color_fg_sel; }
+    }
+  }
+
+  @at-root %visited_link,
+  &:visited {
+    color: $color_fg_lnk_vst;
+    &:hover,
+    &:active { color: $color_fg_lnk_vst; }
+
+    *:selected & {
+      color: $color_fg_sel_3;
+      &:hover,
+      &:active { color: $color_fg_sel_2; }
+    }
+  }
+
+  @at-root %selected_link,
+  &:selected { color: $color_fg_sel_2; }
+
+  &:disabled { opacity: $alpha_foreground_bdp; }
+}
+
+link {
+  &:link { @extend %normal_link; }
+  &:visited { @extend %visited_link; }
+}
+
+button.flat.link { // specificity bump with .flat class
+  @extend %link;
+  &:hover { background-color: track(currentColor, $alpha_track_1); }
+
+  > label {
+    color: inherit;
+    text-decoration-line: underline;
+  }
+}

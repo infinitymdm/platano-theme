@@ -1,0 +1,157 @@
+// /************
+//  * Popovers *
+//  ************/
+
+%popover_basic {
+  background-color: $color_bg_dark;
+  box-shadow: $z-depth-3;
+}
+
+%popover_backdrop {
+  box-shadow: $z-depth-1;
+}
+
+%popover_border {
+  @include radius(0, none);
+  border: 1px solid $color_fg_div_sld;
+
+  .csd & { @include radius($r_4, none); }
+}
+
+%popover_menu {
+  margin: 0;
+  padding: 0;
+
+  separator.horizontal {
+    margin-top: rem($menu_padding);
+    margin-bottom: rem($menu_padding);
+  }
+}
+
+%popover_boxpointer {
+  border: 1px solid $color_fg_div_sld;
+  background-color: $color_bg_dark;
+}
+
+%popover_misc {
+  > list,
+  > .view,
+  > toolbar,
+  &.osd > toolbar {
+    border-style: none;
+    border-image: none;
+    background-color: transparent;
+  }
+
+  &, list {
+    separator { margin: 0; } // unset outer margins
+  }
+
+  list {
+    > row,
+    > .activatable { // limited transitions by default
+      padding: 0; // unset padding
+      transition-property: opacity,
+                            background-image;
+    }
+  }
+
+  button {
+    menuitem.flat,
+    &.flat {
+      color: $color_fg_2;
+      font-weight: 400;
+      font-size: 100%;
+      // transition-duration: 0s; // better than 'none'
+      &:hover { color: $color_fg; }
+      // enforce insensitive foregrounds
+      &:disabled { color: $color_fg_dis_2; }
+    }
+  }
+}
+
+%popover_osd {
+  &.osd { @extend %osd; }
+
+  &.touch-selection, // do not use OSD-style
+  &.magnifier {
+    button.image-button {
+      @extend %action-area-button;
+    }
+  }
+}
+
+@if $maj_ver == 3 {
+  %popover,
+  popover.background {
+    @extend %popover_basic;
+    @extend %popover_border;
+    padding: 0;
+    &:backdrop { @extend %popover_backdrop; }
+
+    &.menu {
+      @extend %popover_menu;
+      // compensate outer margins
+      > stack { margin: -$popover_padding; }
+    }
+
+    @extend %popover_misc;
+  }
+}
+@else {
+  %popover,
+  popover {
+    &.background {
+      padding: 0;
+      background-color: transparent;
+    }
+
+    &.menu > arrow,
+    > arrow { @extend %popover_boxpointer; }
+
+    > contents {
+      @extend %popover_basic;
+      @extend %popover_border;
+      &:backdrop { @extend %popover_backdrop; }
+
+      &.menu { @extend %popover_menu; }
+    }
+
+    &.menu {
+      padding: 0; // NEEDS_REVIEW
+
+      box { // button containers
+        &.inline-buttons {
+          padding: 0 $popover_padding;
+          border: none;
+        }
+
+        &.circular-buttons { padding-bottom: $popover_padding; }
+      }
+
+      // NEEDS_REVIEW: we might revert to standard T/B margins
+      separator { margin: $popover_padding 0; }
+
+      accelerator { // = check/radio spacing
+        margin: 0 rem($menuitem_padding);
+        padding: 0 ($icon_size / 3);
+      }
+
+      &:not(.osd) {
+        button.flat.image-button.model,
+        modelbutton {
+          &:selected { @include button(flat-checked); }
+        }
+      }
+    }
+
+    @extend %popover_misc;
+  }
+}
+
+@if $maj_ver == 3 {
+  popover.background { @extend %popover_osd; }
+}
+@else {
+  popover { @extend %popover_osd; }
+}

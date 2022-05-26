@@ -1,0 +1,13 @@
+// /*************
+//  * Filezilla *
+//  *************/
+
+// FIXME: this is not our issue, wxPizza should use GtkFrame instead.
+window.background {
+  > widget:not(combobox):not(spinbutton):not(toolbar) {
+    entry {
+      border-radius: 0;
+      border: 1px solid $color_fg_div_sld;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+// /************
+//  * Switches *
+//  ************/
+
+.toggle-switch {
+  width: 40px;
+  height: 20px;
+  background-size: contain;
+}
+
+@if $ver < 3.31 {
+  @each $v in us, intl {
+    .toggle-switch-#{$v} {
+      @include image-loader($url: 'toggle-off.svg');
+      &:checked { @include image-loader($url: 'toggle-on.svg'); }
+    }
+  }
+}
+@else {
+  .toggle-switch {
+    @include image-loader($url: 'toggle-off.svg');
+    &:checked { @include image-loader($url: 'toggle-on.svg'); }
+  }
+}

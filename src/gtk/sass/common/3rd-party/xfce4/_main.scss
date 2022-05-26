@@ -1,0 +1,266 @@
+// /*********
+//  * XFce4 *
+//  *********/
+
+// Thunar file manager
+@import 'thunar';
+
+.XfceHeading {
+  border: 0 none transparent;
+  background-color: if($variant == mixed, $color_bg_dark_inv, $color_bg_dark);
+  color: if($variant == mixed, $color_fg_inv, $color_fg);
+  &:backdrop {
+    background-color: if($variant == mixed, $color_bg_inv, $color_bg);
+    color: if($variant == mixed, track($color_fg_inv, $alpha_foreground_bdp),
+                                  track($color_fg, $alpha_foreground_bdp));
+  }
+
+  entry:not(.flat) {
+    @if $variant == mixed { @extend %inv_entry; }
+  }
+}
+
+$panel_child_spacing: if($ref_weight < 1.0, 2px, 3px);
+
+.xfce4-panel {
+  background-color: $color_bg_panel;
+  color: if($variant == mixed, $color_fg_inv, $color_fg);
+  font-weight: 700;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+
+  &, // unset borders
+  frame > border { border: 0 none transparent; }
+
+  &#XfcePanelWindow { // main panel container >= 4.13.3?
+    // FIXME: unneeded 1px borders are reserved by its code itself (< 4.14?)
+    border-color: $color_bg_panel; // keep this for safety
+
+    &, &.marching-ants { transition: none; } // unset transitions
+  }
+
+  button:not(:selected) { all: unset; } // unset all styling first
+
+  button {
+    background-color: transparent;
+    color: if($variant == mixed, $color_fg_inv, $color_fg);
+    font-weight: 700;
+    &:hover:not(:active):not(:checked) {
+      color: if($variant != light, $color_fg_sel, black);
+      box-shadow: inset 0 -2px $color_fg_trk_out;
+    }
+    &:checked {
+      @if $variant != light {
+        @include button(flat-lined-checked, $tc: $color_fg_sel);
+      }
+      @else {
+        @include button(flat-lined-checked, $tc: black);
+      }
+    }
+    &:active {
+      @if $variant != light { @include button(flat-hover, $tc: $color_fg_sel); }
+      @else { @include button(flat-hover, $tc: black); }
+      box-shadow: inset 0 -2px $color_bg_sel;
+    }
+
+    label { margin-bottom: 0; } // unset baseline
+
+    &.flat.toggle { // generic panel buttons
+      label,
+      image { padding: 0 $panel_child_spacing; }
+    }
+
+    &#launcher-arrow { // launcher applet
+      // FIXME: quite weird pseudo-class transitions, especially :hover
+      // state can't be cleared properly ( -> an upstream issue)
+      &, + button.toggle {
+        &:hover { box-shadow: none; } // hide indicators
+      }
+
+      + button.toggle:checked { // 'arrow' toggle button
+        color: $color_bg_sel;
+        box-shadow: none;
+      }
+    }
+
+    &#xfce4-notification-plugin { padding: 0 1px; } // for 4.12.2
+  }
+
+  menu {
+    font-weight: 400; // for enforcing regular weight
+    text-shadow: none;
+    @if $maj_ver == 3 { -gtk-icon-effect: none; }
+    @else { -gtk-icon-filter: none; }
+  }
+
+  widget.tasklist > button.toggle {
+    font-weight: 400;
+    &:hover {
+      @if $variant != light { @include button(flat-hover, $tc: $color_fg_sel); }
+      @else { @include button(flat-hover, $tc: black); }
+    }
+    &:checked {
+      @if $variant != light { background-color: track($color_fg_sel, $alpha_track_1); }
+      @else { background-color: track(black, $alpha_track_1); }
+    }
+
+    box.horizontal {
+      label {
+        &:dir(ltr) { padding-right: $panel_child_spacing; }
+        &:dir(rtl) { padding-left: $panel_child_spacing; }
+      }
+
+      image {
+        &:dir(ltr) { margin-left: $panel_child_spacing; }
+        &:dir(rtl) { margin-right: $panel_child_spacing; }
+      }
+    }
+  }
+
+  &.vertical { // unset child spacing in vertical layout
+    button.flat.toggle,
+    widget.tasklist > button.toggle {
+      label,
+      image {
+        &:dir(ltr), &:dir(rtl) {
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+XfdesktopIconView.view {
+  border-radius: 2px;
+  background: transparent;
+  color: $color_fg_sel;
+  text-shadow: $z-depth-1-label; // non-sense for me
+  &:active {
+    background-color: $color_bg_sel;
+    text-shadow: none;
+  }
+
+  .rubberband { @extend %rubberband; }
+}
+
+window#whiskermenu-window {
+  background-color: $color_bg_dark;
+
+  // no CSD class even if the sw compositor was enabled.
+  > frame > border {
+    border-radius: 0;
+    border: 1px solid $color_fg_div_sld;
+  }
+
+  // why wasn't .popup class implemented in this window node? :/
+  > decoration { box-shadow: $z-depth-3; }
+
+  stack > box > box.horizontal { // ugly resize-grip
+    &:first-child widget,
+    &:last-child > widget:last-child { color: $color_fg_trk_out; }
+  }
+
+  entry { // enforce flat-style
+    @extend %flat_entry_sizing;
+    @include entry(flat-normal);
+    &:focus { @include entry(flat-focus); }
+    &:disabled { @include entry(flat-disabled); }
+  }
+
+  scrolledwindow {
+    > viewport button.radio {
+      &:not(:disabled) {
+        border-radius: 0;
+        background-image: none;
+        animation: none;
+        transition: none;
+      }
+      &:hover { background-color: $color_bg_trk; }
+      &:checked {
+        background-color: track($color_bg_sel, $alpha_track_1);
+        color: $color_lbl_sel;
+      }
+    }
+
+    treeview.view:selected:hover {
+      background-color: mix($color_fg, $color_base, percentage($alpha_track_1));
+      color: $color_fg;
+    }
+  }
+}
+
+$tabwin_padding: if($ref_weight < 1.0, 8px, 12px);
+
+#xfwm-tabwin {
+  -XfwmTabwinWidget-icon-size: $icon_size * 3;
+  -XfwmTabwinWidget-preview-size: $icon_size * 6;
+  -XfwmTabwinWidget-listview-icon-size: $icon_size * 2;
+
+  all: unset;
+
+  &.background {
+    border: 0 none transparent;
+    border-radius: $r_8;
+    @if $variant == mixed {
+      background-color: track($color_bg_dark_inv, $alpha_osd);
+      color: $color_fg_inv;
+    }
+    @else {
+      background-color: track($color_bg_dark, $alpha_osd);
+      color: $color_fg;
+    }
+  }
+
+  > box.vertical {
+    padding: $tabwin_padding;
+
+    > label {
+      margin-top: $tabwin_padding;
+      font-weight: 400;
+    }
+  }
+
+  button.flat {
+    @if $variant == mixed { @extend %inv-action-area-button; }
+    @else { @extend %action-area-button; }
+    padding: $tabwin_padding;
+    font-weight: 500;
+    &:not(:disabled) { background-image: none; } // unset ink-reactions
+    &:not(:hover):not(:active):not(:checked):not(:disabled) {
+      color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+    }
+
+    box.vertical {
+      > label { padding-top: $tabwin_padding / 2; }
+
+      > image { padding: ($tabwin_padding / 2) 0; }
+    }
+
+    box.horizontal > label {
+      &:dir(ltr) { padding-left: $tabwin_padding / 2; }
+      &:dir(rtl) { padding-right: $tabwin_padding / 2; }
+    }
+  }
+
+  .tabwin-app-grid button.flat {
+    min-width: $icon_size * 6 + $tabwin_padding * 2;
+    min-height: $icon_size * 6 + $tabwin_padding * 2;
+  }
+}
+
+dialog.xfsm-logout-dialog.keycap { // keycap class!? crazy...
+  @include radius(0, none);
+  border: 1px solid $color_fg_div_sld;
+  background-color: $color_bg;
+  color: $color_fg;
+  box-shadow: none;
+
+  label.xfsm-logout-label {
+    color: $color_fg_3;
+    font-weight: 700;
+  }
+
+  // hide unneeded separator
+  separator.horizontal { background-color: transparent; }
+}

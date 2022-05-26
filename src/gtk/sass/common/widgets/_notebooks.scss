@@ -1,0 +1,266 @@
+// /*************
+//  * Notebooks *
+//  *************/
+
+%header_frame {
+  @each $_header, $_margin in (top, -1px -1px 0 -1px),
+                              (bottom, 0 -1px -1px -1px),
+                              (left, -1px 0 -1px -1px),
+                              (right, -1px -1px -1px 0) {
+    &.#{$_header} { margin: #{$_margin}; }
+  }
+}
+
+%notebook_stack {
+  &:only-child {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  // the :not(:only-child) is for "hidden" notebooks
+  &:not(:only-child) { background-color: $color_base; }
+}
+
+%static_tabs {
+  background-color: $color_bg;
+  tabs { background-color: transparent; }
+
+  @each $_header, $_border in (top, 0 -1px),
+                              (bottom, 0 1px),
+                              (left, -1px 0),
+                              (right, 1px 0) {
+    &.#{$_header} {
+      // FIXME: outset borders
+      box-shadow: inset #{$_border} $color_fg_div;
+    }
+  }
+
+  &.top {
+    > tabs {
+      margin: rem($menuitem_padding / 2) rem($menuitem_padding) 0;
+
+      > tab {
+        min-height: $menuitem_height;
+        padding: 0 rem($menuitem_padding * 2.5);
+        border-bottom-width: $tab_indicator_size;
+        box-shadow: none;
+        &.reorderable-page {
+          margin: 0 -1px;
+          padding: rem($menuitem_padding / 2) rem($menuitem_padding * 1.5);
+          border-left-width: 1px;
+          border-right-width: 1px;
+        }
+      }
+    }
+  }
+
+  &.bottom {
+    > tabs {
+      margin: 0 rem($menuitem_padding) rem($menuitem_padding / 2);
+
+      > tab {
+        min-height: $menuitem_height;
+        padding: 0 rem($menuitem_padding * 2.5);
+        border-top-width: $tab_indicator_size;
+        box-shadow: none;
+        &.reorderable-page {
+          margin: 0 -1px;
+          padding: rem($menuitem_padding / 2) rem($menuitem_padding * 1.5);
+          border-left-width: 1px;
+          border-right-width: 1px;
+        }
+      }
+    }
+  }
+
+  &.left {
+    > tabs {
+      margin: rem($menuitem_padding) 0;
+
+      > tab {
+        padding: rem($menuitem_padding) rem($menuitem_padding * 1.5);
+        border-right-width: $tab_indicator_size;
+        box-shadow: none;
+        &.reorderable-page {
+          margin: -1px 0;
+          border-bottom-width: 1px;
+          border-top-width: 1px;
+        }
+      }
+    }
+  }
+
+  &.right {
+    > tabs {
+      margin: rem($menuitem_padding) 0;
+
+      > tab {
+        padding: rem($menuitem_padding) rem($menuitem_padding * 1.5);
+        border-left-width: $tab_indicator_size;
+        box-shadow: none;
+        &.reorderable-page {
+          margin: -1px 0;
+          border-bottom-width: 1px;
+          border-top-width: 1px;
+        }
+      }
+    }
+  }
+}
+
+%reorderable_tab {
+  @each $_tab, $_border, $_rad, $_line in
+    (top, bottom, $r_1 $r_1 0 0, 0 1px),
+    (bottom, top, 0 0 $r_1 $r_1, 0 -1px),
+    (left, right, $r_1 0 0 $r_1, 1px 0),
+    (right, left, 0 $r_1 $r_1 0, -1px 0) {
+
+    &.#{$_tab} tab.reorderable-page {
+      border: 1px solid transparent;
+      border-radius: #{$_rad};
+      background-color: transparent;
+      &:hover {
+        border-color: $color_fg_div;
+        border-#{$_tab}-color: $color_fg_trk_out;
+        border-#{$_border}-color: transparent;
+        background-color: mix($color_base, $color_bg);
+        box-shadow: inset #{$_line} $color_fg_trk_out;
+      }
+      &:checked {
+        border-color: $color_fg_div;
+        border-#{$_tab}-color: $color_bg_sel;
+        border-#{$_border}-color: $color_base;
+        background-color: $color_base;
+        box-shadow: inset #{$_line} $color_bg_sel;
+      }
+    }
+  }
+}
+
+%tab_arrows {
+  > tabs > arrow {
+    color: $color_fg_3;
+    @include transition(reset);
+    &:hover,
+    &:active { color: $color_fg; }
+    &:disabled { color: transparent; }
+  }
+}
+
+notebook {
+  padding: 0;
+
+  &.frame {
+    border: 1px solid $color_fg_div_sld;
+
+    // remove madness borders around header
+    > header { @extend %header_frame; }
+  }
+
+  > stack { @extend %notebook_stack; }
+
+  > header {
+    @extend %static_tabs;
+    @extend %reorderable_tab;
+    @extend %tab_arrows;
+  }
+}
+
+notebook {
+  tab {
+    border: 0 solid transparent;
+    background-color: transparent;
+    color: $color_fg_3;
+    font-weight: 500;
+    @if $variant == dark {
+      @include ink-reaction(tab-normal, $fc: $color_lbl_sel, $bs: 10, $i: 2); }
+    @else {
+      @include ink-reaction(tab-normal, $fc: $color_bg_sel, $bs: 10, $i: 2); }
+    &:hover {
+      // do not use alpha-blended borders
+      border-color: mix($color_fg, $color_bg, percentage($alpha_track_out));
+      color: $color_fg_2;
+      transition-duration: $transition_d_standard;
+    }
+    &:checked {
+      color: $color_lbl_sel;
+      @if $variant == dark {
+        @include ink-reaction(tab-active, $fc: $color_lbl_sel, $bs: 10);
+      }
+      @else {
+        @include ink-reaction(tab-active, $fc: $color_bg_sel, $bs: 10);
+      }
+      &:hover { color: $color_lbl_sel; }
+    }
+
+    &.reorderable-page { // revert to fg
+      &:hover { color: $color_fg_2; }
+      // use shallower ink
+      @include ink-reaction(tab-normal, $fc: $color_fg_3, $bs: 10, $i: 2);
+      &:checked {
+        color: $color_fg;
+        @include ink-reaction(tab-active, $fc: $color_fg_3, $bs: 10);
+        &:hover { color: $color_fg; }
+      }
+    }
+
+    button.flat { color: $color_fg_3; }
+
+    &:hover button.flat,
+    &:checked button.flat {
+      color: $color_fg_2;
+      &:hover,
+      &:active { color: $color_fg; }
+    }
+    &:disabled button.flat { color: $color_fg_dis; }
+  }
+
+  &:not(.reorderable-page) > entry {
+    min-height: $menuitem_height;
+    @include entry(flat-normal);
+    &:focus { @include entry(flat-focus); }
+    &:disabled { @include entry(flat-disabled); }
+  }
+
+  header { // child spacing
+    tabs > arrow { // arrows
+      @extend %arrow_size;
+      margin: 0 rem($menuitem_padding);
+      padding: 0;
+      @include radius(0);
+    }
+
+    tab label { padding-bottom: rem($baseline, $sw: 1.0); }
+
+    button { // buttons
+      &, &.small-button {
+        &, &.flat { @extend %tab_close_button; }
+      }
+
+      &.image-button { // revert to square
+        @include radius($r_2);
+      }
+    }
+
+    tab button { // tab close button
+      &,
+      &.image-button,
+      &.small-button {
+        &, &.flat {
+          @include radius($r);
+          &:dir(ltr):last-child { margin-left: rem($menuitem_padding); }
+          &:dir(rtl):last-child { margin-right: rem($menuitem_padding); }
+        }
+      }
+    }
+  }
+}
+
+%tab_close_button {
+  min-height: calc(#{$icon_size} + 1px + #{rem($menuitem_padding)});
+  min-width: calc(#{$icon_size} + 1px + #{rem($menuitem_padding)});
+  padding: 0;
+  margin-top: rem($menuitem_padding / 2);
+  margin-bottom: rem($menuitem_padding / 2);
+}

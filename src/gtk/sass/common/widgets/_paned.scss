@@ -1,0 +1,95 @@
+// /*********
+//  * Paned *
+//  *********/
+
+paned {
+  > separator {
+    min-width: 1px;
+    min-height: 1px;
+    border-style: none;
+    background-color: transparent;
+    -gtk-icon-source: none; // defeats the ugly default handle decoration
+    // using background instead of a border
+    // since the border will get rendered twice (?)
+    // FIXME: some damned non-native apps (like wxGtk3) can't render
+    // alpha-blended pane separators at all.
+    background-image: image($color_fg_div_sld);
+    background-size: $separator_narrow;
+
+    .background & {
+      // do not across over GtkHeaderBar with solid border
+      &,
+      &:backdrop,
+      &:selected {
+        // FIXME: still happened double-border though
+        background-image: image($color_fg_div_pane);
+      }
+    }
+
+    .background > grid.vertical & { // do not use transparentize
+      &,
+      &:backdrop,
+      &:selected {
+        background-image: image($color_fg_div_sld);
+      }
+    }
+
+    &.wide {
+      min-width: rem(6px);
+      min-height: rem(6px);
+      margin: 0;
+      padding: 0;
+      // FIXME: use opaque borders to avoid double-border
+      background-color: $color_bg;
+      background-image: image($color_fg_div_sld),
+                        image($color_fg_div_sld);
+      background-size: $separator_wide;
+
+      &:backdrop,
+      &:selected { // FIXME: is this needed?
+        background-image: image($color_fg_div_sld),
+                          image($color_fg_div_sld);
+      }
+    }
+  }
+
+  &.horizontal > separator {
+    background-repeat: repeat-y;
+
+    &:dir(ltr) {
+      margin: 0 rem(-$menuitem_padding) 0 0;
+      padding: 0 rem($menuitem_padding) 0 0;
+      background-position: left;
+    }
+    &:dir(rtl) {
+      margin: 0 0 0 rem(-$menuitem_padding);
+      padding: 0 0 0 rem($menuitem_padding);
+      background-position: right;
+    }
+
+    &.wide {
+      background-repeat: repeat-y, repeat-y;
+      background-position: left, right;
+
+      &:dir(ltr),
+      &:dir(rtl) { // reset spacing
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  &.vertical > separator {
+    margin: 0 0 rem(-$menuitem_padding) 0;
+    padding: 0 0 rem($menuitem_padding) 0;
+    background-repeat: repeat-x;
+    background-position: top;
+
+    &.wide {
+      margin: 0; // reset spacing
+      padding: 0;
+      background-repeat: repeat-x, repeat-x;
+      background-position: bottom, top;
+    }
+  }
+}

@@ -1,0 +1,90 @@
+// /************
+//  * Inkscape *
+//  ************/
+
+// 2nd-row toolbars
+box#AuxToolbox {
+  border-top: 1px solid $color_fg_div;
+
+  toolbar {
+    @if $ref_weight < 1.0 {
+      min-height: rem($toolitem_size, $sw: 1.0) + $toolbar_padding * 2;
+    }
+    border: none;
+  }
+
+  box#StyleSwatch label { font-size: 90%; } // shrink labels
+}
+
+// left/right-side, vertical toolbars
+#SnapToolbar,
+#ToolToolbar {
+  > button,
+  > toolitem > button,
+  > toolbutton > button {
+    // dim disabled icons
+    &:disabled {
+      image { opacity: $alpha_foreground_dis; }
+
+      &:checked { background-color: track($color_fg, $alpha_track_1); }
+    }
+  }
+}
+
+// scrolled color-palette
+#PreviewHolderScroller > viewport.frame {
+  padding: 1px 0;
+  border-style: solid none; // add fake border to top/bottom
+  border-width: 1px 0;
+  border-color: transparent;
+}
+
+// misc
+#DesktopMainTable spinbutton > entry {
+  &:dir(ltr) { margin-right: rem(8px); } // gap between entry and buttons
+  &:dir(rtl) { margin-left: rem(8px); }
+  // workaround for truncated labels in GimpSpinScale
+  // FIXME: need to override weird inner-padding?
+  padding: 0;
+
+  // re-fit to the parent entry node spacing
+  @if $maj_ver == 3 {
+    > progress { margin: 0; }
+  }
+  @else {
+    > progress trough > progress { margin: 0; }
+  }
+}
+
+#InkscapePanel {
+  box#PanelContents,
+  box#PaintSelector {
+    button {
+      &.toggle,
+      &.radio {
+        @extend %toolitem_size;
+        margin: 0;
+        @include radius($r_2);
+      }
+    }
+  }
+}
+
+box#InkSpinScale { // >= 0.92+
+  // cover up ugly stock style.css
+  border-image: image($color_bg) 2 / 2px;
+  box-shadow: inset 0 0 0 999px $color_bg;
+
+  trough {
+    &:not(:disabled) { background-color: track($color_bg_acc, $alpha_track_out); }
+  }
+}
+
+box#DockBox > paned#DockBoxPane {
+  // dock control buttons have 8px * 8px child widget?
+  widget#GdlDock paned widget > widget > button.flat {
+    min-width: $icon_size;
+    min-height: $icon_size;
+    padding: $icon_size / 4;
+  }
+}

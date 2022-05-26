@@ -1,0 +1,97 @@
+// places-indicator styling
+@mixin places_menu() {
+  .places-menu {
+    .places-section-header {
+      padding: 0;
+
+      > button:not(.image-button) { // an actual child
+        padding: $toolbar_padding;
+
+        box.horizontal {
+          > label { 
+            font-weight: 500; 
+          }
+
+          > image {
+            &:first-child {
+              color: $color_bg_acc;
+
+              &:dir(ltr) { 
+                margin-left: 4px; 
+              }
+
+              &:dir(rtl) {
+                margin-right: 4px;
+              }
+            }
+
+            &:not(:first-child) { // 'arrow'
+              // same margins with 'eject' button
+              &:dir(ltr) { 
+                margin-right: $toolbar_padding;
+              }
+
+              &:dir(rtl) {
+                margin-left: $toolbar_padding;
+              }
+            }
+          }
+        }
+      }
+
+      button.image-button { 
+        margin: rem($baseline * 2) rem(5.3px) rem(4px);
+      }
+    }
+
+    .alternative-label { // 'always expanded' option
+      font-size: 15px; // same size with 'Local volumes' label?
+
+      font-weight: 400;
+      &:dir(ltr) {
+        padding: 0 0 3px 3px; 
+      }
+      &:dir(rtl) {
+        padding: 0 3px 3px 0;
+      }
+    }
+
+    box.vertical > revealer {
+      > list { // drop-down list
+        border: 1px solid $color_fg_div;
+        background-color: $color_bg_dark;
+
+        &.always-expand { // 'always expanded' option
+          // unset revealer elevations
+          border: none;
+          background-color: transparent;
+        }
+      }
+    }
+
+    .places-list {
+      background-color: transparent;
+
+      > row.activatable {
+        transition: none;
+
+        &:hover, &:active {
+          color: $color_fg;
+          background: none;
+        }
+      }
+
+      label.dim-label {
+        font-size: 90%;
+        font-weight: 700;
+      }
+    }
+
+    box.unlock-area {
+      border-width: 1px 0 1px;
+      border-style: solid none solid;
+      border-color: $color_fg_div;
+      background-color: $color_bg;
+    }
+  }
+}

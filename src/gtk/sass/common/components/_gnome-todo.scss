@@ -1,0 +1,31 @@
+// /**************
+//  * Gnome-Todo *
+//  **************/
+
+window.org-gnome-Todo headerbar > box.horizontal {
+  // 'new-list' text-button
+  > button.toggle.popup {
+    &:not(.suggested-action):not(.destructive-action) {
+      &:not(.titlebutton):not(.selection-menu) {
+        &:not(.text-button):not(.lock):not(.color):not(.image-button) {
+          @include radius($r_2, none);
+
+          > label { padding: 0 rem($txt_button_lr_space / 2); }
+        }
+      }
+    }
+  }
+}
+
+@if $maj_ver == 3 {
+  window > popover > stack > grid > button.text-button {
+    // prevent unwanted truncation of drop-shadows
+    margin: 2px 6px 12px;
+  }
+}
+@else {
+  window > popover > contents > stack > grid > button.text-button {
+    // prevent unwanted truncation of drop-shadows
+    margin: 2px 6px 12px;
+  }
+}

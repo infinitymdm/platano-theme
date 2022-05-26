@@ -1,0 +1,28 @@
+// show-desktop applet
+.budgie-panel {
+  // specificity bump to prevent conflicts
+  > box > widget > button.flat:not(.raven-trigger):not(.budgie-menu-launcher) {
+    @extend %budgie_trigger_button;
+    @if $variant == mixed {
+      @include ink-reaction(normal, $fc: $color_bg_sel, $tr: ink-normal-dec);
+      &:active {
+        @include button(flat-active, $tc: $color_fg_inv);
+        @include ink-reaction(active-dec, $fc: $color_fg_inv, $tr: ink-active-dec);
+      }
+    }
+    &:checked {
+      @if $variant == mixed {
+        @include button(flat-checked, $tc: $color_lbl_sel_inv);
+      }
+      @else {
+        @include button(flat-checked, $tc: $color_lbl_sel);
+      }
+    }
+
+    .top &,
+    .bottom & { padding: 0 4px; }
+
+    .left &,
+    .right & { padding: 2px 0; }
+  }
+}

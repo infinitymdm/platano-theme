@@ -1,0 +1,209 @@
+// /***************
+//  * Gnome-Panel *
+//  ***************/
+
+%gnome_panel_toplevel {
+  background-color: $color_bg_panel;
+
+  @if $maj_ver == 3 {
+    * { outline-width: 0; } // unset outlines
+  }
+  @else {
+    *:focus(visible) { outline-width: 0; } // unset outlines
+  }
+}
+
+%gnome_panel_applet {
+  // do not set transparent background in this template
+  // mate-panel >= 1.18.6 will be broken
+  color: if($variant == mixed, $color_fg_inv, $color_fg);
+  box-shadow: none;
+}
+
+%gnome_panel_menubar {
+  border: unset;
+  color: if($variant == mixed, $color_fg_inv, $color_fg);
+  background-color: transparent;
+  font-weight: 700;
+}
+
+%gnome_panel_menuitem {
+  padding: 0 rem($menu_padding, $sw: 1.0);
+  @include radius(0, none);
+  color: if($variant == mixed, $color_fg_inv, $color_fg);
+  background-color: transparent;
+  &:hover {
+    @if $variant != light {
+      @include button(flat-lined-checked, $tc: $color_fg_sel);
+    }
+    @else {
+      @include button(flat-lined-checked, $tc: black);
+    }
+  }
+}
+
+panel-toplevel.background { @extend %gnome_panel_toplevel; }
+
+panel-applet,
+panel-plug,
+panel-toplevel > grid.horizontal > widget > widget {
+  @extend %gnome_panel_applet;
+  background-color: transparent;
+}
+
+.gnome-panel-menu-bar,
+gp-applet > menubar,
+#clock-applet-button {
+  @extend %gnome_panel_menubar;
+
+  .background & { border: unset; }
+}
+
+@if $maj_ver == 3 {
+  .gnome-panel-menu-bar > menuitem,
+  gp-applet menubar > menuitem {
+    @extend %gnome_panel_menuitem;
+    @extend %gnome_panel_menuitem_misc;
+  }
+}
+@else {
+  .gnome-panel-menu-bar > box > menuitem,
+  gp-applet menubar > box > menuitem {
+    @extend %gnome_panel_menuitem;
+    @extend %gnome_panel_menuitem_misc;
+  }
+}
+
+%gnome_panel_menuitem_misc {
+  .vertical & { padding: rem($menu_padding, $sw: 1.0) 0; }
+
+  @each $_layout, $_line in (top, 0 2px),
+                            (left, 2px 0),
+                            (right, -2px 0) {
+    .#{$_layout} & {
+      &:hover { box-shadow: inset #{$_line} $color_bg_sel; }
+    }
+  }
+}
+
+#tasklist-button,
+#clock-applet-button,
+#showdesktop-button {
+  min-width: $icon_size;
+  min-height: $icon_size;
+  padding: 0 rem($menu_padding, $sw: 1.0);
+  @include radius(0, none);
+  @include transition(reset);
+  @if $variant != light {
+    @include button(flat-normal, $tc: $color_fg_inv);
+    &:hover {
+      @include button(flat-lined-hover, $tc: $color_fg_sel);
+    }
+    &:disabled { @include button(flat-disabled, $tc: $color_fg_inv); }
+    &:checked {
+      &, &:hover {
+        @include button(flat-lined-checked, $tc: $color_fg_sel);
+        background-color: track($color_fg_sel, $alpha_track_1);
+      }
+    }
+
+    &, &.flat {
+      &:active { animation: none; }
+    }
+  }
+  @else {
+    @include button(flat-normal, $tc: $color_fg);
+    &:hover {
+      @include button(flat-lined-hover, $tc: black);
+    }
+    &:disabled { @include button(flat-disabled, $tc: $color_fg); }
+    &:checked {
+      &, &:hover {
+        @include button(flat-lined-checked, $tc: black);
+        background-color: track(black, $alpha_track_1);
+      }
+    }
+
+    &, &.flat {
+      &:active { animation: none; }
+    }
+  }
+
+  .vertical & { padding: rem($menu_padding, $sw: 1.0) 0; }
+
+  @each $_layout, $_line in (top, 0 2px),
+                            (left, 2px 0),
+                            (right, -2px 0) {
+    .#{$_layout} & {
+      &:hover { box-shadow: inset #{$_line} $color_fg_trk_out; }
+      &:checked,
+      &:hover:checked { box-shadow: inset #{$_line} $color_bg_sel; }
+    }
+  }
+
+  label { margin-bottom: 0; } // unset baseline
+}
+
+#tasklist-button {
+  &,
+  label { font-weight: 400; }
+}
+
+wnck-pager {
+  @if $variant != light {
+    background-color: transparent;
+    color: mix($color_fg_inv, $color_bg_panel, percentage($alpha_foreground_3rd)); // use opaque
+    box-shadow:
+      inset 0 0 0 1px mix($color_fg_inv, $color_bg_panel, percentage($alpha_foreground_bdp));
+    &:hover {
+      background-color: $color_bg_trk;
+      color: $color_fg_inv;
+      box-shadow: inset 0 0 0 1px $color_fg_trk_out;
+    }
+    &:selected {
+      background-color: track($color_bg_sel, $alpha_track_out);
+      color: $color_fg_inv;
+      box-shadow: inset 0 0 0 1px $color_bg_sel;
+    }
+  }
+  @else {
+    background-color: transparent;
+    color: mix($color_fg, $color_bg_panel, percentage($alpha_foreground_3rd)); // use opaque
+    box-shadow:
+      inset 0 0 0 1px mix($color_fg, $color_bg_panel, percentage($alpha_foreground_bdp));
+    &:hover {
+      background-color: $color_bg_trk;
+      color: $color_fg;
+      box-shadow: inset 0 0 0 1px $color_fg_trk_out;
+    }
+    &:selected {
+      background-color: track($color_bg_sel, $alpha_track_out);
+      color: $color_fg;
+      box-shadow: inset 0 0 0 1px $color_bg_sel;
+    }
+  }
+}
+
+na-tray-applet { -NaTrayApplet-icon-padding: 2px; }
+
+gp-arrow-button {
+  min-width: rem($widget_size / 2);
+  min-height: 0;
+  margin: 0 rem($menu_padding);
+  border: 1px solid transparent;
+  background-image: none;
+  color: if($variant == mixed, $color_fg_inv, $color_fg);
+  &:hover,
+  &:active { color: if($variant != light, $color_fg_sel, black); }
+}
+
+sn-button { padding: 0 rem($menu_padding, $sw: 1.0); }
+
+gp-applet > separator {
+  &.vertical {
+    min-width: 2px;
+    margin: 3px;
+  }
+
+  background-color: $color_fg_panel_inv;
+}

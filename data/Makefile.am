@@ -1,10 +1,10 @@
-themedir         = $(datadir)/themes
-platadir         = $(DESTDIR)$(themedir)/Plata
-luminedir        = $(DESTDIR)$(themedir)/Plata-Lumine
-noirdir          = $(DESTDIR)$(themedir)/Plata-Noir
-platacompactdir  = $(DESTDIR)$(themedir)/Plata-Compact
-luminecompactdir = $(DESTDIR)$(themedir)/Plata-Lumine-Compact
-noircompactdir   = $(DESTDIR)$(themedir)/Plata-Noir-Compact
+themedir           = $(datadir)/themes
+platanodir         = $(DESTDIR)$(themedir)/Platano
+luminedir          = $(DESTDIR)$(themedir)/Platano-Light
+noirdir            = $(DESTDIR)$(themedir)/Platano-Dark
+platanocompactdir  = $(DESTDIR)$(themedir)/Platano-Compact
+luminecompactdir   = $(DESTDIR)$(themedir)/Platano-Light-Compact
+noircompactdir     = $(DESTDIR)$(themedir)/Platano-Dark-Compact
 
 index_file               = $(srcdir)/index.theme
 index_light_file         = $(srcdir)/index.theme-light
@@ -24,10 +24,10 @@ all:
 # *****************
 
 install-data-local:
-	cp -Rv $(index_file) $(platadir)/index.theme
+	cp -Rv $(index_file) $(platanodir)/index.theme
 	cp -Rv $(index_light_file) $(luminedir)/index.theme
 	cp -Rv $(index_dark_file) $(noirdir)/index.theme
-	cp -Rv $(index_compact_file) $(platacompactdir)/index.theme
+	cp -Rv $(index_compact_file) $(platanocompactdir)/index.theme
 	cp -Rv $(index_light_compact_file) $(luminecompactdir)/index.theme
 	cp -Rv $(index_dark_compact_file) $(noircompactdir)/index.theme
 
@@ -38,10 +38,10 @@ install-data-local:
 uninstall-local:
 	test -e $(noirdir)/index.theme && rm -rfv $(noirdir)/index.theme
 	test -e $(luminedir)/index.theme && rm -rfv $(luminedir)/index.theme
-	test -e $(platadir)/index.theme && rm -rfv $(platadir)/index.theme
+	test -e $(platanodir)/index.theme && rm -rfv $(platanodir)/index.theme
 	test -e $(noircompactdir)/index.theme && rm -rfv $(noircompactdir)/index.theme
 	test -e $(luminecompactdir)/index.theme && rm -rfv $(luminecompactdir)/index.theme
-	test -e $(platacompactdir)/index.theme && rm -rfv $(platacompactdir)/index.theme
+	test -e $(platanocompactdir)/index.theme && rm -rfv $(platanocompactdir)/index.theme
 
 # ****************************
 # * Clean up generated files *

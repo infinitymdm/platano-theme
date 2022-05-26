@@ -1,0 +1,75 @@
+// /*************
+//  * Selection *
+//  *************/
+
+%selected_items {
+  background-color: $color_bg_sel;
+  color: $color_fg_sel;
+  &:disabled {
+    background-color: track($color_bg_sel, $alpha_foreground_dis);
+    color: $color_fg_dis_sel;
+  }
+  &:focus {
+    background-color: $color_bg_sel;
+    color: $color_fg_sel;
+    &:disabled {
+      background-color: track($color_bg_sel, $alpha_foreground_dis);
+      color: $color_fg_dis_sel;
+    }
+  }
+}
+
+%selected_texts {
+  @if $variant == dark {
+    background-color: $color_bg_sel;
+    color: $color_fg_sel;
+    &:disabled {
+      background-color: track($color_bg_sel, $alpha_foreground_dis);
+      color: $color_fg_dis_sel;
+    }
+  }
+  @else {
+    background-color: track($color_bg_sel, $alpha_foreground_bdp);
+    color: $color_fg;
+    &:disabled {
+      background-color: track($color_bg_sel, $alpha_track_out);
+      color: $color_fg_dis;
+    }
+  }
+  &:focus {
+    @if $variant == dark {
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
+      &:disabled {
+        background-color: track($color_bg_sel, $alpha_foreground_dis);
+        color: $color_fg_dis_sel;
+      }
+    }
+    @else {
+      background-color: track($color_bg_sel, $alpha_foreground_bdp);
+      color: $color_fg;
+      &:disabled {
+        background-color: track($color_bg_sel, $alpha_track_out);
+        color: $color_fg_dis;
+      }
+    }
+  }
+}
+
+// FIXME: needs to be done widget by widget,
+// this wildcard should really die
+*:not(decoration):not(window):drop(active) {
+  &, &:focus {
+    border-color: $color_fg_drop;
+    box-shadow: inset 0 0 0 1px $color_fg_drop;
+    caret-color: $color_fg_drop;
+
+    @if $variant == mixed {
+      headerbar & {
+        border-color: $color_fg_drop_inv;
+        box-shadow: inset 0 0 0 1px $color_fg_drop_inv;
+        caret-color: $color_fg_drop_inv;
+      }
+    }
+  }
+}

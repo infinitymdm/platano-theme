@@ -6,64 +6,64 @@
 #XfceNotifyWindow {
   &, &:hover {
     border-radius: 2px;
-    border: 1px solid $div_fg;
-    color: if($variant == mixed, $inv_fg, $fg);
-    @if $variant == mixed { background-color: track($inv_tooltip_bg, $a_osd); }
-    @else { background-color: track($tooltip_bg, $a_osd); }
+    border: 1px solid $color_fg_div;
+    color: if($variant == mixed, $color_fg_inv, $color_fg);
+    @if $variant == mixed { background-color: track($color_bg_tooltip_inv, $alpha_osd); }
+    @else { background-color: track($color_bg_tooltip, $alpha_osd); }
     box-shadow: none;
   }
 
   box.vertical {
     > label#summary {
-      color: if($variant == mixed, $inv_fg, $fg);
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
       font-weight: 700;
     }
 
     > label#body {
-      color: if($variant == mixed, $inv_sec_fg, $sec_fg);
+      color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
     }
   }
 
   buttonbox button {
     @if $variant == mixed {
-      @include button(flat-normal, $tc: $inv_sec_acc_fg);
-      @include ink-reaction(normal, $fc: $inv_acc_fg, $tr: ink-normal-dec);
+      @include button(flat-normal, $tc: $color_fg_acc_inv_2);
+      @include ink-reaction(normal, $fc: $color_fg_acc_inv, $tr: ink-normal-dec);
       font-weight: 500;
       &:hover {
-        @include button(flat-hover, $tc: $inv_acc_fg);
+        @include button(flat-hover, $tc: $color_fg_acc_inv);
       }
       &:active {
-        @include button(flat-active, $tc: $inv_acc_fg);
-        @include ink-reaction(active-dec, $fc: $inv_acc_fg, $tr: ink-active-dec);
+        @include button(flat-active, $tc: $color_fg_acc_inv);
+        @include ink-reaction(active-dec, $fc: $color_fg_acc_inv, $tr: ink-active-dec);
       }
       &:disabled {
-        @include button(flat-disabled, $tc: $inv_fg);
+        @include button(flat-disabled, $tc: $color_fg_inv);
       }
       &:checked {
-        @include button(flat-checked, $tc: $inv_acc_fg);
+        @include button(flat-checked, $tc: $color_fg_acc_inv);
         &:disabled {
-          @include button(flat-checked-disabled, $tc: $inv_acc_fg);
+          @include button(flat-checked-disabled, $tc: $color_fg_acc_inv);
         }
       }
     }
     @else {
-      @include button(flat-normal, $tc: $sec_acc_fg);
-      @include ink-reaction(normal, $fc: $acc_fg, $tr: ink-normal-dec);
+      @include button(flat-normal, $tc: $color_fg_acc_2);
+      @include ink-reaction(normal, $fc: $color_fg_acc, $tr: ink-normal-dec);
       font-weight: 700;
       &:hover {
-        @include button(flat-hover, $tc: $acc_fg);
+        @include button(flat-hover, $tc: $color_fg_acc);
       }
       &:active {
-        @include button(flat-active, $tc: $acc_fg);
-        @include ink-reaction(active-dec, $fc: $acc_fg, $tr: ink-active-dec);
+        @include button(flat-active, $tc: $color_fg_acc);
+        @include ink-reaction(active-dec, $fc: $color_fg_acc, $tr: ink-active-dec);
       }
       &:disabled {
-        @include button(flat-disabled, $tc: $fg);
+        @include button(flat-disabled, $tc: $color_fg);
       }
       &:checked {
-        @include button(flat-checked, $tc: $acc_fg);
+        @include button(flat-checked, $tc: $color_fg_acc);
         &:disabled {
-          @include button(flat-checked-disabled, $tc: $acc_fg);
+          @include button(flat-checked-disabled, $tc: $color_fg_acc);
         }
       }
     }
@@ -75,7 +75,7 @@
 
     trough {
       border-style: none;
-      background-color: track($acc_bg, $trk_out_fg);
+      background-color: track($color_bg_acc, $color_fg_trk_out);
       box-shadow: none;
     }
 
@@ -83,7 +83,7 @@
       border-style: none;
       border-radius: 0;
       background-image: none;
-      background-color: $acc_bg;
+      background-color: $color_bg_acc;
     }
   }
 }

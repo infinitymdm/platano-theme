@@ -1,0 +1,94 @@
+// /*****************
+//  * Progress bars *
+//  *****************/
+
+progressbar {
+  // sizing
+  &.horizontal {
+    trough,
+    progress {
+      min-width: 0;
+      min-height: $progress_size;
+      border-style: none;
+    }
+
+    @if $maj_ver == 4 {
+      trough { min-width: 150px; } // NEEDS_REVIEW
+    }
+  }
+
+  &.vertical {
+    trough,
+    progress {
+      min-width: $progress_size;
+      min-height: 0;
+      border-style: none;
+    }
+
+    @if $maj_ver == 4 {
+      trough { min-height: 80px; } // NEEDS_REVIEW
+    }
+  }
+
+  // FIXME: insensitive state missing and some other state
+  // should be set probably
+  font-size: 90%;
+  color: $color_fg_3;
+
+  trough {
+    box-shadow: none;
+    border-radius: 0;
+    background-color: track($color_bg_acc, $alpha_track_out);
+  }
+
+  progress {
+    box-shadow: none;
+    border-radius: 0;
+    background-color: $color_bg_acc;
+    &.left {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    &.right {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &.top {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+    &.bottom {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &.osd {
+    &.horizontal {
+      min-width: 0;
+      min-height: $progress_size;
+    }
+    &.vertical {
+      min-width: $progress_size;
+      min-height: 0;
+    }
+
+    trough {
+      border-style: none;
+      box-shadow: none;
+      background-color: track($color_bg_acc, $alpha_track_out);
+    }
+
+    @if $maj_ver == 4 {
+      // makes the progress indicator disappear, when the fraction is 0
+      &.empty progress { all: unset; }
+    }
+
+    progress {
+      background-image: none;
+      background-color: $color_bg_acc;
+      border-style: none;
+      border-radius: 0;
+    }
+  }
+}

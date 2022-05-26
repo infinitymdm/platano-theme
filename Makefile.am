@@ -1,12 +1,12 @@
 ACLOCAL_AMFLAGS = -I m4
 
-themedir         = $(datadir)/themes
-platadir         = $(DESTDIR)$(themedir)/Plata
-luminedir        = $(DESTDIR)$(themedir)/Plata-Lumine
-noirdir          = $(DESTDIR)$(themedir)/Plata-Noir
-platacompactdir  = $(DESTDIR)$(themedir)/Plata-Compact
-luminecompactdir = $(DESTDIR)$(themedir)/Plata-Lumine-Compact
-noircompactdir   = $(DESTDIR)$(themedir)/Plata-Noir-Compact
+themedir          = $(datadir)/themes
+platanodir        = $(DESTDIR)$(themedir)/Platano
+luminedir         = $(DESTDIR)$(themedir)/Platano-Light
+noirdir           = $(DESTDIR)$(themedir)/Platano-Dark
+platanocompactdir = $(DESTDIR)$(themedir)/Platano-Compact
+luminecompactdir  = $(DESTDIR)$(themedir)/Platano-Light-Compact
+noircompactdir    = $(DESTDIR)$(themedir)/Platano-Dark-Compact
 
 SUBDIRS = \
 	src/gtk \
@@ -20,12 +20,12 @@ EXTRA_DIST = \
 	LICENSE_CC_BY_SA4
 
 install-data-hook:
-	cp -Rv $(EXTRA_DIST) $(platadir)
+	cp -Rv $(EXTRA_DIST) $(platanodir)
 
 uninstall-hook:
 	test -e $(noirdir) && rm -rfv $(noirdir)
 	test -e $(luminedir) && rm -rfv $(luminedir)
-	test -e $(platadir) && rm -rfv $(platadir)
+	test -e $(platanodir) && rm -rfv $(platanodir)
 	test -e $(noircompactdir) && rm -rfv $(noircompactdir)
 	test -e $(luminecompactdir) && rm -rfv $(luminecompactdir)
-	test -e $(platacompactdir) && rm -rfv $(platacompactdir)
+	test -e $(platanocompactdir) && rm -rfv $(platanocompactdir)

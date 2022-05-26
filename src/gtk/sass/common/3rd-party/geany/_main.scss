@@ -1,0 +1,33 @@
+// /*********
+//  * Geany *
+//  *********/
+
+window#GeanyMainWindow {
+  toolbar#GeanyToolbar { border-bottom: 1px solid $color_fg_div; }
+
+  paned.vertical {
+    > notebook.frame { // bottom-frame
+      &:dir(ltr) { border-width: 0 0 1px 1px; }
+      &:dir(rtl) { border-width: 0 1px 1px 0; }
+
+      treeview.view:selected {
+        background-color: $color_bg_trk;
+        color: $color_lbl_sel;
+      }
+    }
+
+    paned.horizontal > notebook.frame {
+      border: none; // remove double borders around the L/R panes
+
+      > stack > scrolledwindow { // left-pane
+        @extend %sidebar_template;
+
+        // Geany overrides theme's font settings anyway
+        treeview.view { @extend %sidebar_treeview; }
+      }
+    }
+  }
+
+  // stock CSS gets in our way
+  button#geany-close-tab-button { @include radius($r_2, none); }
+}

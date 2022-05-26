@@ -1,0 +1,48 @@
+// /*************
+//  * Level Bar *
+//  *************/
+
+levelbar {
+  &.horizontal {
+    block {
+      @if $maj_ver == 3 {
+        min-width: $progress_size * 9;
+        min-height: $progress_size;
+      }
+      @else { min-height: $progress_size; }
+    }
+
+    trough { padding: ($progress_size / 2) 1px; }
+
+    &.discrete block { margin: 0 1px; }
+  }
+  &.vertical {
+    block {
+      @if $maj_ver == 3 {
+        min-width: $progress_size;
+        min-height: $progress_size * 9;
+      }
+      @else { min-width: $progress_size; }
+    }
+
+    trough { padding: 1px ($progress_size / 2); }
+
+    &.discrete block { margin: 1px 0; }
+  }
+
+  block {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+
+    &.low { background-color: $color_warn; }
+
+    &:not(.empty),
+    &.high { background-color: $color_bg_acc; }
+
+    &.full,
+    &.filled { background-color: $color_bg_sccs; }
+
+    &.empty { background-color: $color_fg_trk_out; }
+  }
+}

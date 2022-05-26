@@ -28,58 +28,58 @@
     max-width: 18.75em;
     padding: 3px 6px 1px;
     border-radius: 0;
-    background-color: $panel_hidden_bg;
+    background-color: $color_bg_panel_hidden;
     background-gradient-drection: vertical;
-    background-gradient-start: $panel_hidden_bg;
-    background-gradient-end: $panel_hidden_bg;
-    color: $osd_sec_fg;
+    background-gradient-start: $color_bg_panel_hidden;
+    background-gradient-end: $color_bg_panel_hidden;
+    color: $color_fg_osd_2;
     box-shadow: none;
     text-shadow: none;
   }
 
   &:hover > StWidget {
     background-gradient-drection: vertical;
-    background-gradient-start: $osd_semi_fill_bg;
-    background-gradient-end: $osd_semi_fill_bg;
-    color: $osd_fg;
-    box-shadow: inset 0 -2px $osd_out_fg;
+    background-gradient-start: $color_bg_osd_semi_fill;
+    background-gradient-end: $color_bg_osd_semi_fill;
+    color: $color_fg_osd;
+    box-shadow: inset 0 -2px $color_fg_osd_out;
   }
 
   &:active > StWidget,
   &:focus > StWidget {
     background-gradient-drection: vertical;
-    background-gradient-start: $osd_semi_fill_bg;
-    background-gradient-end: $osd_semi_fill_bg;
-    color: $osd_fg;
-    box-shadow: inset 0 -2px $sel_bg;
+    background-gradient-start: $color_bg_osd_semi_fill;
+    background-gradient-end: $color_bg_osd_semi_fill;
+    color: $color_fg_osd;
+    box-shadow: inset 0 -2px $color_bg_sel;
   }
 
   &.focused {
     & > StWidget,
     &:active > StWidget {
-      color: $osd_fg;
-      box-shadow: inset 0 -2px $sel_bg;
+      color: $color_fg_osd;
+      box-shadow: inset 0 -2px $color_bg_sel;
     }
   }
 
   &.minimized {
     > StWidget {
-      color: $osd_ter_fg;
+      color: $color_fg_osd_3;
       box-shadow: none;
     }
     &:hover > StWidget {
       background-gradient-drection: vertical;
-      background-gradient-start: $osd_semi_fill_bg;
-      background-gradient-end: $osd_semi_fill_bg;
-      box-shadow: inset 0 -2px $osd_out_fg;
-      color: $osd_fg;
+      background-gradient-start: $color_bg_osd_semi_fill;
+      background-gradient-end: $color_bg_osd_semi_fill;
+      box-shadow: inset 0 -2px $color_fg_osd_out;
+      color: $color_fg_osd;
     }
     &:active > StWidget {
       background-gradient-drection: vertical;
-      background-gradient-start: $osd_semi_fill_bg;
-      background-gradient-end: $osd_semi_fill_bg;
-      box-shadow: inset 0 -2px $sel_bg;
-      color: $osd_fg;
+      background-gradient-start: $color_bg_osd_semi_fill;
+      background-gradient-end: $color_bg_osd_semi_fill;
+      box-shadow: inset 0 -2px $color_bg_sel;
+      color: $color_fg_osd;
     }
   }
 
@@ -93,29 +93,29 @@
   padding: 3px;
 
   > StWidget {
-    border: 1px solid $osd_out_fg;
-    background-color: $panel_hidden_bg;
+    border: 1px solid $color_fg_osd_out;
+    background-color: $color_bg_panel_hidden;
     background-gradient-drection: vertical;
-    background-gradient-start: $panel_hidden_bg;
-    background-gradient-end: $panel_hidden_bg;
-    color: $osd_sec_fg;
+    background-gradient-start: $color_bg_panel_hidden;
+    background-gradient-end: $color_bg_panel_hidden;
+    color: $color_fg_osd_2;
     font-weight: 700;
   }
 
   &:hover > StWidget {
     background-gradient-drection: vertical;
-    background-gradient-start: $osd_semi_fill_bg;
-    background-gradient-end: $osd_semi_fill_bg;
-    color: $osd_fg;
+    background-gradient-start: $color_bg_osd_semi_fill;
+    background-gradient-end: $color_bg_osd_semi_fill;
+    color: $color_fg_osd;
   }
   &:active > StWidget,
   &:checked > StWidget,
   &:focus > StWidget {
-    border: 1px solid $sel_bg;
+    border: 1px solid $color_bg_sel;
     background-gradient-drection: vertical;
-    background-gradient-start: opacity($sel_bg, $a_trk_out);
-    background-gradient-end: opacity($sel_bg, $a_trk_out);
-    color: $osd_fg;
+    background-gradient-start: opacity($color_bg_sel, $alpha_track_out);
+    background-gradient-end: opacity($color_bg_sel, $alpha_track_out);
+    color: $color_fg_osd;
   }
 }
 

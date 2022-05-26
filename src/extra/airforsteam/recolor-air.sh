@@ -10,7 +10,7 @@
 # (at your option) any later version.
 #
 
-SRC_FILE="Resource/colors/plata-noir.styles"
+SRC_FILE="Resource/colors/platano-noir.styles"
 KEY_FILE="../../gtk/sass/common/resources/_key_colors.scss"
 
 # Generate CSS for color source

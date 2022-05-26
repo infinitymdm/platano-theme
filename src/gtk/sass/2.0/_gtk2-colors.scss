@@ -9,12 +9,12 @@
 @import '../../../gtk/sass/common/colors';
 
 colors {
-  sel_bg: $sel_bg;
-  sel_lb: $sel_label;
+  sel_bg: $color_bg_sel;
+  sel_lb: $color_lbl_sel;
 
-  acc_fg: $acc_fg;
-  acc_bg: $acc_bg;
+  acc_fg: $color_fg_acc;
+  acc_bg: $color_bg_acc;
 
-  lkn_fg: $link_fg;
-  lkv_fg: $link_vst_fg;
+  lkn_fg: $color_fg_lnk;
+  lkv_fg: $color_fg_lnk_vst;
 }

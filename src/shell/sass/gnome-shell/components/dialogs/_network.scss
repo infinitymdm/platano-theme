@@ -1,0 +1,94 @@
+// /*******************
+//  * Network Dialogs *
+//  *******************/
+
+.nm-dialog {
+  max-height: 34em;
+  min-height: 28em;
+  min-width: 34em;
+
+  &-content {
+    spacing: if($ref_weight >= 1.0, 20px, 16px);
+    padding: if($ref_weight >= 1.0, 24px, 18px);
+  }
+
+  &-header-hbox {
+    spacing: if($ref_weight >= 1.0, 10px, 7px);
+    // dimming for subtitle
+    color: $color_fg_osd_3;
+  }
+
+  &-header { // title
+    color: $color_fg_osd;
+    font-weight: 700;
+    font-size: 110%;
+  }
+
+  &-header-icon {
+    icon-size: $icon_size * 2;
+    color: $color_fg_osd;
+  }
+
+  &-airplane {
+    &-box {
+      spacing: if($ref_weight >= 1.0, 12px, 9px);
+
+      .button {
+        font-weight: 500;
+        @if $variant != light {
+          @include button(flat-normal, $tc: $color_fg_acc_inv);
+          &:hover { @include button(flat-hover, $tc: $color_fg_acc_inv); }
+          &:active {
+            @include button(flat-active, $tc: $color_fg_acc_inv);
+            box-shadow: $empty_shadow;
+          }
+          &:insensitive { @include button(flat-disabled, $tc: $color_fg_osd); }
+        }
+        @else {
+          @include button(flat-normal, $tc: $color_fg_acc);
+          &:hover { @include button(flat-hover, $tc: $color_fg_acc); }
+          &:active {
+            @include button(flat-active, $tc: $color_fg_acc);
+            box-shadow: $empty_shadow;
+          }
+          &:insensitive { @include button(flat-disabled, $tc: $color_fg); }
+        }
+      }
+    }
+
+    &-headline {
+      font-weight: 700;
+      text-align: center;
+    }
+
+    &-text { color: $color_fg_osd; }
+  }
+
+  &-scroll-view {
+    padding: 0;
+    border: 1px solid $color_fg_div;
+    background-color: transparent;
+  }
+
+  &-item {
+    spacing: if($ref_weight >= 1.0, 20px, 16px);
+    padding: if($ref_weight >= 1.0, 12px, 8px);
+    background-color: transparent; // shut up 3rd-party gresources
+    color: $color_fg_osd;
+    font-size: 100%;
+    &:selected {
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
+    }
+  }
+
+  &-icons { spacing: 6px; }
+
+  &-icon { icon-size: $icon_size; }
+}
+
+.no-networks {
+  &-label { color: $color_fg_osd_3; }
+
+  &-box { spacing: if($ref_weight >= 1.0, 12px, 8px); }
+}

@@ -1,0 +1,59 @@
+// /***********
+//  * Entries *
+//  ***********/
+
+%entry_icon_sizing {
+  icon-size: $icon_size;
+  padding: 0 0.3em;
+}
+
+StEntry {
+  min-height: if($ref_weight >= 1.0, 1em + 0.7em + 0.8em,
+                                      1em + 0.5em + 0.6em);
+  padding: if($ref_weight >= 1.0, 0 0.8em, 0 0.6em);
+  border-radius: $r_4 $r_4 0 0;
+  border-width: 0;
+  selection-background-color: $color_bg_sel;
+  selected-color: $color_fg_sel;
+  transition-duration: $transition_d_none;
+  @if $variant != light {
+    @include entry(normal, $tc: $color_fg_osd);
+    &:hover { @include entry(hover, $tc: $color_fg_osd); }
+    &:focus { @include entry(focus, $tc: $color_fg_osd); }
+    &:insensitive { @include entry(disabled, $tc: $color_fg_osd); }
+  }
+  @else {
+    @include entry(normal, $tc: $color_fg);
+    &:hover { @include entry(hover, $tc: $color_fg); }
+    &:focus { @include entry(focus, $tc: $color_fg); }
+    &:insensitive { @include entry(disabled, $tc: $color_fg); }
+  }
+
+  StIcon {
+    &.capslock-warning {
+      @extend %entry_icon_sizing;
+      warning-color: $color_warn;
+    }
+
+    @if $ver > 3.35 {
+      &.peek-password { @extend %entry_icon_sizing; }
+    }
+  }
+
+  @if $ver > 3.35 {
+    .hint-text { // placeholder labels
+      color: if($variant != light, $color_fg_osd_3, $color_fg_3);
+      &:ltr { margin-left: 2px; }
+      &:rtl { margin-right: 2px; }
+    }
+  }
+}
+
+@if $ver > 3.35 {
+  .capslock-warning-label {
+    padding-bottom: if($ref_weight >= 1.0, 0.75em, 0.55em);
+    color: $color_warn;
+    font-size: 90%;
+    text-align: center;
+  }
+}

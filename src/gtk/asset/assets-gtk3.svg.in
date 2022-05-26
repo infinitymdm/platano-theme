@@ -2045,7 +2045,7 @@
        inkscape:label="#g4632"
        transform="matrix(0.99998822,0,0,1.0000008,-61.998826,51.999391)"
        style="opacity:1;fill:none;stroke:#111111;stroke-width:2.00018144;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;enable-background:new"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-off-hover.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-off-hover.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <rect
@@ -2068,14 +2068,14 @@
        rx="1.0000461"
        ry="1.0000461"
        inkscape:label="#rect4505-8"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-off.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-off.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <g
        inkscape:label="#g4615"
        id="checkbox-checked"
        transform="matrix(0.8,0,0,0.8,1.0000008,175.47244)"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"
        style="opacity:0.87000002;enable-background:new">
@@ -2097,7 +2097,7 @@
        inkscape:label="#g4584"
        id="checkbox-checked-active"
        transform="matrix(0.8,0,0,0.8,6.000001,175.47244)"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on-hover.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on-hover.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <path
@@ -2118,7 +2118,7 @@
        inkscape:label="#g4650"
        transform="matrix(1.000026,0,0,1.0000094,-87.002645,56.993651)"
        style="opacity:1;fill:none;stroke:#111111;stroke-width:1.99949372;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.87000002;enable-background:new"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/radio-off.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/radio-off.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <circle
@@ -2133,7 +2133,7 @@
        inkscape:label="#g4650"
        transform="matrix(1.000026,0,0,1.0000094,-62.002645,56.993651)"
        style="opacity:1;fill:none;stroke:#111111;stroke-width:1.99949372;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;enable-background:new"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/radio-off-hover.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/radio-off-hover.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <circle
@@ -2146,7 +2146,7 @@
     <g
        id="radio-checked"
        inkscape:label="#g4659"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/radio-on.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/radio-on.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"
        transform="translate(-6.9999989,-265)"
@@ -2190,7 +2190,7 @@
       <g
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
-         inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on.png"
+         inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on.png"
          transform="matrix(0.8,0,0,0.8,8,440.47246)"
          id="Check-Radio_check-on-3"
          inkscape:label="#g4615"
@@ -2223,7 +2223,7 @@
            inkscape:label="#g4615"
            id="Check-Radio_check-on-3-2"
            transform="matrix(0.8,0,0,0.8,8,440.47246)"
-           inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on.png"
+           inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on.png"
            inkscape:export-xdpi="90"
            inkscape:export-ydpi="90">
           <path
@@ -2315,7 +2315,7 @@
        transform="matrix(0.8,0,0,0.8,11,175.47244)"
        id="checkbox-checked-insensitive"
        inkscape:label="#g4620"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on-insensitive.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on-insensitive.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <path
@@ -2336,7 +2336,7 @@
        inkscape:label="#g4632"
        transform="matrix(0.99998822,0,0,1.0000008,-36.998826,51.999385)"
        style="opacity:1;fill:none;stroke:#111111;stroke-width:2.00001097;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.28;enable-background:new"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-off-insensitive.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-off-insensitive.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <rect
@@ -2354,7 +2354,7 @@
        inkscape:label="#g4650"
        transform="matrix(1.000026,0,0,1.0000094,-37.002645,56.993645)"
        style="opacity:1;stroke:#111111;stroke-width:1.99949372;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.28;enable-background:new;fill:none"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/radio-off-insensitive.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/radio-off-insensitive.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <circle
@@ -2368,7 +2368,7 @@
        style="enable-background:new"
        id="radio-checked-insensitive"
        inkscape:label="#g4818"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/radio-on-insensitive.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/radio-on-insensitive.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"
        transform="translate(-77,-265)">
@@ -2399,7 +2399,7 @@
       <g
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
-         inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on-insensitive.png"
+         inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on-insensitive.png"
          inkscape:label="#g4620"
          id="Check-Radio_check-on-insensitive-2"
          transform="matrix(0.8,0,0,0.8,88,440.47246)"
@@ -2426,7 +2426,7 @@
          transform="translate(-6.0602588e-8,1.7814506e-5)"
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
-         inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/radio-on-insensitive.png"
+         inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/radio-on-insensitive.png"
          inkscape:label="#g4818"
          id="Check-Radio_radio-on-insensitive-7"
          style="enable-background:new">
@@ -2477,7 +2477,7 @@
        inkscape:label="#g4632"
        transform="matrix(0.99998822,0,0,1.0000008,88.001174,51.999387)"
        style="opacity:1;fill:none;stroke:#f5f5f5;stroke-width:2.00018144;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;enable-background:new"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-off-hover.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-off-hover.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <rect
@@ -2500,14 +2500,14 @@
        rx="1.0000461"
        ry="1.0000461"
        inkscape:label="#rect4505-8"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-off.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-off.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <g
        inkscape:label="#g4615"
        id="checkbox-checked-dark"
        transform="matrix(0.8,0,0,0.8,151,175.47244)"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"
        style="opacity:0.87000002;enable-background:new">
@@ -2529,7 +2529,7 @@
        inkscape:label="#g4584"
        id="checkbox-checked-active-dark"
        transform="matrix(0.8,0,0,0.8,156,175.47244)"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on-hover.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on-hover.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <path
@@ -2550,7 +2550,7 @@
        inkscape:label="#g4650"
        transform="matrix(1.000026,0,0,1.0000094,62.997355,56.993647)"
        style="opacity:1;fill:none;stroke:#f5f5f5;stroke-width:1.99949372;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.87058824;enable-background:new"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/radio-off.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/radio-off.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <circle
@@ -2565,7 +2565,7 @@
        inkscape:label="#g4650"
        transform="matrix(1.000026,0,0,1.0000094,87.997355,56.993647)"
        style="opacity:1;fill:none;stroke:#f5f5f5;stroke-width:1.99949372;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;enable-background:new"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/radio-off-hover.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/radio-off-hover.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <circle
@@ -2578,7 +2578,7 @@
     <g
        id="radio-checked-dark"
        inkscape:label="#g4659"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/radio-on.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/radio-on.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"
        transform="translate(143,-265)"
@@ -2622,7 +2622,7 @@
       <g
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
-         inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on.png"
+         inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on.png"
          transform="matrix(0.8,0,0,0.8,8,440.47246)"
          id="Check-Radio_check-on-3-8"
          inkscape:label="#g4615"
@@ -2655,7 +2655,7 @@
            inkscape:label="#g4615"
            id="Check-Radio_check-on-3-2-1"
            transform="matrix(0.8,0,0,0.8,8,440.47246)"
-           inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on.png"
+           inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on.png"
            inkscape:export-xdpi="90"
            inkscape:export-ydpi="90">
           <path
@@ -2747,7 +2747,7 @@
        transform="matrix(0.8,0,0,0.8,161,175.47244)"
        id="checkbox-checked-insensitive-dark"
        inkscape:label="#g4620"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on-insensitive.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on-insensitive.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <path
@@ -2768,7 +2768,7 @@
        inkscape:label="#g4632"
        transform="matrix(0.99998822,0,0,1.0000008,113.00117,51.999387)"
        style="opacity:1;fill:none;stroke:#f5f5f5;stroke-width:2.00001097;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.27843139;enable-background:new"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-off-insensitive.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-off-insensitive.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <rect
@@ -2786,7 +2786,7 @@
        inkscape:label="#g4650"
        transform="matrix(1.000026,0,0,1.0000094,112.99736,56.993647)"
        style="opacity:1;fill:none;stroke:#f5f5f5;stroke-width:1.99949372;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.27843139;enable-background:new"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/radio-off-insensitive.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/radio-off-insensitive.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <circle
@@ -2800,7 +2800,7 @@
        style="enable-background:new"
        id="radio-checked-insensitive-dark"
        inkscape:label="#g4818"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/radio-on-insensitive.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/radio-on-insensitive.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"
        transform="translate(73,-265)">
@@ -2831,7 +2831,7 @@
       <g
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
-         inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on-insensitive.png"
+         inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on-insensitive.png"
          inkscape:label="#g4620"
          id="Check-Radio_check-on-insensitive-2-5"
          transform="matrix(0.8,0,0,0.8,88,440.47246)"
@@ -2858,7 +2858,7 @@
          transform="translate(-6.0602588e-8,1.7814506e-5)"
          inkscape:export-ydpi="90"
          inkscape:export-xdpi="90"
-         inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/radio-on-insensitive.png"
+         inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/radio-on-insensitive.png"
          inkscape:label="#g4818"
          id="Check-Radio_radio-on-insensitive-7-7"
          style="enable-background:new">
@@ -2909,7 +2909,7 @@
        inkscape:label="#g4632"
        transform="matrix(0.99998822,0,0,1.0000008,138.00118,51.999391)"
        style="opacity:1;fill:none;stroke:#ffffff;stroke-width:2.00018144;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;enable-background:new"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-off-hover.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-off-hover.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <rect
@@ -2927,7 +2927,7 @@
        inkscape:label="#g4584"
        id="checkbox-checked-selected"
        transform="matrix(0.8,0,0,0.8,206,175.47244)"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on-hover.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on-hover.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <path
@@ -2948,7 +2948,7 @@
        inkscape:label="#g4650"
        transform="matrix(1.000026,0,0,1.0000094,137.99736,56.993651)"
        style="opacity:1;fill:none;stroke:#ffffff;stroke-width:1.99949372;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;enable-background:new"
-       inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/radio-off-hover.png"
+       inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/radio-off-hover.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <circle
@@ -2973,7 +2973,7 @@
            inkscape:label="#g4615"
            id="Check-Radio_check-on-3-2-1-3"
            transform="matrix(0.8,0,0,0.8,8,440.47246)"
-           inkscape:export-filename="/usr/share/themes/Plata/gtk-2.0/Check-Radio/check-on.png"
+           inkscape:export-filename="/usr/share/themes/Platano/gtk-2.0/Check-Radio/check-on.png"
            inkscape:export-xdpi="90"
            inkscape:export-ydpi="90">
           <path

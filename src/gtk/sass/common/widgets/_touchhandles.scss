@@ -1,0 +1,56 @@
+// /**********************
+//  * Touch Copy & Paste *
+//  *********************/
+
+// touch selection handlebars for the Popover.osd above
+cursor-handle {
+  min-width: $handle_width;
+  min-height: $handle_height;
+  padding: 0 ($handle_width / 2);
+  border: none;
+  background: none;
+  box-shadow: none;
+
+  &.top:dir(ltr),
+  &.bottom:dir(rtl) { // start-handle
+    -gtk-icon-source:
+      -gtk-scaled(url('assets/handle-start#{$asset_suffix}.png'),
+                  url('assets/handle-start#{$asset_suffix}@2.png'));
+    -gtk-icon-transform: scale(0.9);
+    &:hover,
+    &:active {
+      -gtk-icon-transform: scale(1.0);
+    }
+  }
+
+  &.top:dir(rtl),
+  &.bottom:dir(ltr) { // end-handle
+    -gtk-icon-source:
+      -gtk-scaled(url('assets/handle-end#{$asset_suffix}.png'),
+                  url('assets/handle-end#{$asset_suffix}@2.png'));
+    -gtk-icon-transform: scale(0.9);
+    &:hover,
+    &:active {
+      -gtk-icon-transform: scale(1.0);
+    }
+  }
+
+  &.insertion-cursor {
+    &:dir(ltr),
+    &:dir(rtl) {
+      -gtk-icon-source: -gtk-scaled(
+        url('assets/slider-horz-scale-has-marks-above#{$asset_suffix}.png'),
+        url('assets/slider-horz-scale-has-marks-above#{$asset_suffix}@2.png'));
+      -gtk-icon-transform: scale(0.9);
+      &:hover,
+      &:active { -gtk-icon-transform: scale(1.0); }
+    }
+  }
+}
+
+@if $maj_ver == 3 {
+  popover.background.touch-selection { background-color: $color_bg_dark; }
+}
+@else {
+  popover.touch-selection > contents.background { background-color: $color_bg_dark; }
+}

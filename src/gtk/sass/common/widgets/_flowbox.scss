@@ -1,0 +1,32 @@
+// /**************
+//  * GtkFlowBox *
+//  **************/
+
+flowbox {
+    flowboxchild {
+      padding: rem($menu_padding, $sw: 1.0);
+      @include radius(0, $r_2);
+      &:selected { @extend %selected_items; }
+    }
+  }
+  
+  frame.content-view flowbox > flowboxchild.tile {
+    margin: if($ref_weight < 1.0, 6px, 8px);
+    padding: if($ref_weight < 1.0, 6px, 8px);
+    @include radius(2px, none);
+    background-color: $color_base;
+    color: $color_fg_2;
+    box-shadow: $z-depth-1;
+    @include transition(dec);
+    &:selected {
+      background-color: track($color_bg_sel, $alpha_track_out);
+      color: $color_fg;
+      box-shadow: $z-depth-2;
+      @include transition(dec);
+    }
+    &:disabled {
+      background-color: $color_bg_trk;
+      color: $color_fg_dis_2;
+      box-shadow: none;
+    }
+  }

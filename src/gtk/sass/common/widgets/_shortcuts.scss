@@ -1,0 +1,54 @@
+// /*******************
+//  * Shortcut Window *
+//  *******************/
+
+@if $maj_ver == 4 {
+  shortcut { border-spacing: 6px; }
+}
+
+.keycap {
+  min-width: rem($widget_size / 2, $sw: 1.0);
+  min-height: rem($widget_size / 2, $sw: 1.0);
+  padding: rem((($widget_size / 2) - ($ref_size + $baseline)) / 2, $sw: 1.0)
+            rem((($widget_size / 2) - $ref_size) / 2, $sw: 1.0)
+            rem((($widget_size / 2) - ($ref_size - $baseline)) / 2, $sw: 1.0);
+  border: none;
+  @include radius($r_2, none);
+  @if $variant == mixed {
+    background-color: $color_bg_dark_inv;
+    color: $color_fg_inv;
+  }
+  @else {
+    background-color: $color_bg_dark;
+    color: $color_fg;
+  }
+  box-shadow: $z-depth-1;
+  font-weight: 700;
+
+  // shortcut keycaps for Gnome-builder
+  tooltip.background & {
+    background-color: $color_bg_sgst;
+    color: $color_fg_sel;
+    box-shadow: none;
+  }
+}
+
+@if $maj_ver == 3 {
+  shortcut.horizontal {
+    padding-bottom: 6px; // reserve drop-shadow region
+
+    tooltip.background & { padding: 0; } // reset for tooltip nodes
+  }
+}
+@else {
+  shortcuts { // NEEDS_REVIEW
+    &-section {
+      margin: 20px;
+    }
+  }
+
+  .shortcuts-search-results {
+    margin: 20px;
+    border-spacing: 24px;
+  }
+}

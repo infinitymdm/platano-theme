@@ -1,0 +1,219 @@
+//  *****************
+//  * Common States *
+//  *****************/
+
+* {
+  padding: 0;
+  background-clip: padding-box;
+
+  outline-color: $color_fg_trk_out;
+  -gtk-outline-radius: $r_2;
+
+  -gtk-secondary-caret-color: $color_bg_sel;
+
+  // disable drop-shadows as default
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+}
+
+@each $_node, // visible focus styling
+      $_style,
+      $_width,
+      $_offset in (button, solid, 2px, -4px),
+                  (modelbutton, solid, 2px, -2px),
+                  (flowboxchild, solid, 2px, -2px),
+                  (checkbutton, solid, 2px, 0),
+                  (radiobutton, solid, 2px, 0),
+                  (iconview, none, 0, 0),
+                  (switch, none, 0, 0),
+                  (scale, none, 0, 0),
+                  (trough, none, 0, 0),
+                  (row, solid, 2px, -2px),
+                  (tab, none, 0, 0),
+                  (label, solid, 2px, 0), {
+  @if $maj_ver == 3 {
+    #{$_node} {
+      outline-style: #{$_style};
+      outline-width: #{$_width};
+      outline-offset: #{$_offset};
+
+      @if $_style == solid {
+        .titlebar &,
+        headerbar & { // enforce hiding all in these elements
+          outline-style: none;
+          outline-width: 0;
+        }
+      }
+    }
+  }
+  @else {
+    #{$_node}:focus(visible) {
+      outline-style: #{$_style};
+      outline-width: #{$_width};
+      outline-offset: #{$_offset};
+
+      @if $_style == solid {
+        .titlebar &,
+        headerbar & { // enforce hiding all in these elements
+          outline-style: none;
+          outline-width: 0;
+        }
+      }
+    }
+  }
+}
+
+// /***************
+//  * Base States *
+//  ***************/
+
+.background {
+  background-color: $color_bg;
+  color: $color_fg;
+}
+
+@if $maj_ver == 4 {
+  // icon sizing
+  .normal-icons { -gtk-icon-size: $icon_size; }
+
+  .large-icons,
+  image.drag-icons { -gtk-icon-size: $icon_size * 2; }
+}
+
+*:disabled {
+  @if $maj_ver == 4 { -gtk-icon-filter: opacity($alpha_foreground_3rd); }
+  @else { -gtk-icon-effect: dim; }
+}
+
+// for backdrop, tone down element surfaces with transparentize
+%fade_effect {
+  > * { @include transition(acc-acc, $p: $transition_p_hdb); }
+
+  &:backdrop > * {
+    opacity: $alpha_foreground_bdp;
+    @include transition(dec-dec, $p: $transition_p_hdb);
+  }
+}
+
+.gtkstyle-fallback {
+  background-color: $color_bg;
+  color: $color_fg_2;
+  &:hover {
+    background-color: mix($color_fg, $color_bg, percentage($alpha_track_1));
+    color: $color_fg;
+  }
+  &:active {
+    background-color: mix($color_fg, $color_bg, percentage($alpha_track_2));
+    color: $color_fg;
+  }
+  &:disabled {
+    background-color: $color_bg;
+    color: $color_fg_dis;
+  }
+  &:selected {
+    background-color: $color_bg_sel;
+    color: $color_fg_sel;
+  }
+}
+
+%view,
+.view {
+  background-color: $color_base;
+  color: $color_fg;
+  &:hover,
+  &:active,
+  &:selected { @include radius($r_2); }
+  &:disabled { color: $color_fg_dis; }
+  &:selected {
+    &, &:focus { @extend %selected_items; }
+  }
+}
+
+@if $maj_ver == 3 {
+  .view,
+  textview {
+    text { @extend %text; }
+  }
+
+  textview border { background-color: $color_bg; }
+}
+@else {
+  textview {
+    > text { @extend %text; }
+
+    border { background-color: $color_bg; }
+  }
+}
+
+%text {
+  background-color: $color_base;
+  color: $color_fg;
+  &:disabled { color: $color_fg_dis; }
+
+  selection { @extend %selected_texts; }
+}
+
+iconview { @extend %view; }
+
+%rubberband {
+  border: 1px solid $color_bg_sel;
+  background-color: track($color_bg_sel, $alpha_track_out);
+}
+
+rubberband {
+  &,
+  flowbox &,
+  treeview & { @extend %rubberband; }
+}
+
+.rubberband { // content-view class needs this style-class, too
+  &,
+  .content-view & { @extend %rubberband; }
+}
+
+label {
+  caret-color: currentColor; // this shouldn't be needed.
+
+  &.separator { color: $color_fg_3; }
+
+  &:disabled { color: $color_fg_dis; }
+  &:selected,
+  row:selected & { // no need to set backgrounds
+    color: $color_fg_sel;
+    &:disabled { color: $color_fg_dis_sel; }
+  }
+
+  selection { @extend %selected_texts; }
+
+  // always use dark foreground in Gnome-Software
+  &.kudo-label { color: $color_fg_fix; }
+}
+
+%dim_label,
+.dim-label { opacity: $alpha_foreground_3rd; }
+
+%osd,
+.osd { opacity: $alpha_osd; }
+
+.monospace { font-family: Monospace; }
+
+// vbox and hbox separators
+separator {
+  min-height: 1px;
+  min-width: 1px;
+  background-color: $color_fg_div;
+
+  popover &,
+  menu > &,
+  menuitem & { // dark variant specific
+    @if $variant == dark {
+      background-color: track(white, $alpha_div_2);
+    }
+  }
+}
+
+%arrow_size,
+arrow {
+  min-height: $icon_size;
+  min-width: $icon_size;
+}

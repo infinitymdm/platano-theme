@@ -50,9 +50,9 @@ case "$1" in
         cd ../gtk-"$1" && ln -sf ../asset/assets-gtk3 assets && cd ../sass
         $(command -v glib-compile-resources) --sourcedir=../gtk-"$1" \
                                              ../gtk-"$1"/"$xml"
-        echo '@import url("resource:///com/plata-theme/gtk-'$1'/gtk-contained.css");' \
+        echo '@import url("resource:///com/platano-theme/gtk-'$1'/gtk-contained.css");' \
             > ../gtk-"$1"/gtk.css
-        echo '@import url("resource:///com/plata-theme/gtk-'$1'/gtk-contained-dark.css");' \
+        echo '@import url("resource:///com/platano-theme/gtk-'$1'/gtk-contained-dark.css");' \
             > ../gtk-"$1"/gtk-dark.css
 
         rm -f ../gtk-"$1"/"$xml"
@@ -64,9 +64,9 @@ case "$1" in
         cd ../gtk-"$1"-compact && ln -sf ../asset/assets-gtk3 assets && cd ../sass
         $(command -v glib-compile-resources) --sourcedir=../gtk-"$1"-compact \
                                              ../gtk-"$1"-compact/"$xml"
-        echo '@import url("resource:///com/plata-theme/gtk-'$1'-compact/gtk-contained.css");' \
+        echo '@import url("resource:///com/platano-theme/gtk-'$1'-compact/gtk-contained.css");' \
             > ../gtk-"$1"-compact/gtk.css
-        echo '@import url("resource:///com/plata-theme/gtk-'$1'-compact/gtk-contained-dark.css");' \
+        echo '@import url("resource:///com/platano-theme/gtk-'$1'-compact/gtk-contained-dark.css");' \
             > ../gtk-"$1"-compact/gtk-dark.css
 
         rm -f ../gtk-"$1"-compact/"$xml"
@@ -78,9 +78,9 @@ case "$1" in
         cd ../gtk-"$1"-light && ln -sf ../asset/assets-gtk3 assets && cd ../sass
         $(command -v glib-compile-resources) --sourcedir=../gtk-"$1"-light \
                                              ../gtk-"$1"-light/"$xml"
-        echo '@import url("resource:///com/plata-theme/gtk-'$1'-light/gtk-contained.css");' \
+        echo '@import url("resource:///com/platano-theme/gtk-'$1'-light/gtk-contained.css");' \
             > ../gtk-"$1"-light/gtk.css
-        echo '@import url("resource:///com/plata-theme/gtk-'$1'-light/gtk-contained-dark.css");' \
+        echo '@import url("resource:///com/platano-theme/gtk-'$1'-light/gtk-contained-dark.css");' \
             > ../gtk-"$1"-light/gtk-dark.css
 
         rm -f ../gtk-"$1"-light/"$xml"
@@ -92,9 +92,9 @@ case "$1" in
         cd ../gtk-"$1"-light-compact && ln -sf ../asset/assets-gtk3 assets && cd ../sass
         $(command -v glib-compile-resources) --sourcedir=../gtk-"$1"-light-compact \
                                              ../gtk-"$1"-light-compact/"$xml"
-        echo '@import url("resource:///com/plata-theme/gtk-'$1'-light-compact/gtk-contained.css");' \
+        echo '@import url("resource:///com/platano-theme/gtk-'$1'-light-compact/gtk-contained.css");' \
             > ../gtk-"$1"-light-compact/gtk.css
-        echo '@import url("resource:///com/plata-theme/gtk-'$1'-light-compact/gtk-contained-dark.css");' \
+        echo '@import url("resource:///com/platano-theme/gtk-'$1'-light-compact/gtk-contained-dark.css");' \
             > ../gtk-"$1"-light-compact/gtk-dark.css
 
         rm -f ../gtk-"$1"-light-compact/"$xml"
@@ -106,7 +106,7 @@ case "$1" in
         cd ../gtk-"$1"-dark && ln -sf ../asset/assets-gtk3 assets && cd ../sass
         $(command -v glib-compile-resources) --sourcedir=../gtk-"$1"-dark \
                                              ../gtk-"$1"-dark/"$xml"
-        echo '@import url("resource:///com/plata-theme/gtk-'$1'-dark/gtk-contained-dark.css");' \
+        echo '@import url("resource:///com/platano-theme/gtk-'$1'-dark/gtk-contained-dark.css");' \
             > ../gtk-"$1"-dark/gtk.css
 
         rm -f ../gtk-"$1"-dark/"$xml"
@@ -118,7 +118,7 @@ case "$1" in
         cd ../gtk-"$1"-dark-compact && ln -sf ../asset/assets-gtk3 assets && cd ../sass
         $(command -v glib-compile-resources) --sourcedir=../gtk-"$1"-dark-compact \
                                              ../gtk-"$1"-dark-compact/"$xml"
-        echo '@import url("resource:///com/plata-theme/gtk-'$1'-dark-compact/gtk-contained-dark.css");' \
+        echo '@import url("resource:///com/platano-theme/gtk-'$1'-dark-compact/gtk-contained-dark.css");' \
             > ../gtk-"$1"-dark-compact/gtk.css
 
         rm -f ../gtk-"$1"-dark-compact/"$xml"

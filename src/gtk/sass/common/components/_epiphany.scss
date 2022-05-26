@@ -1,0 +1,177 @@
+// /************
+//  * Epiphany *
+//  ************/
+
+// incognito-mode styling
+@if $maj_ver == 3 {
+  @if $mnr_ver < 23 {
+    // most of widget styling are hard-coded by ephy's stylesheet,
+    // but we should force using dark foregrounds at least...
+
+    headerbar.titlebar.incognito-mode {
+      entry {
+        @if $variant != light {
+          @include entry(normal, $c: $color_base_fix,
+                                  $tc: $color_fg_fix);
+          caret-color: $color_fg_fix;
+          &:focus {
+            @include entry(focus, $c: $color_base_fix,
+                                  $tc: $color_fg_fix);
+            caret-color: $color_fg_fix;
+          }
+          &:disabled {
+            @include entry(disabled, $c: $color_base_fix,
+                                      $tc: $color_fg_fix);
+          }
+        }
+      }
+
+      button:not(.destructive-action):not(.suggested-action) {
+        // these classes are specificity bump to override titlebuttons
+        &:not(.appmenu):not(.icon):not(:indeterminate) {
+          @if $variant != light {
+            @include button(normal, $c: $color_base_fix,
+                                    $tc: $color_fg_fix);
+            @include ink-reaction(
+                        normal, $fc: $color_fg_fix, $tr: ink-normal-dec);
+            &:hover {
+              @include button(hover, $c: $color_base_fix,
+                                      $tc: $color_fg_fix);
+            }
+            &:active {
+              @include button(active, $c: $color_base_fix,
+                                      $tc: $color_fg_fix);
+              @include ink-reaction(
+                          active-dec, $fc: $color_fg_fix, $tr: ink-active-dec);
+            }
+            &:disabled {
+              @include button(disabled, $c: $color_base_fix,
+                                        $tc: $color_fg_fix);
+            }
+            &:checked { @include button(checked, $tc: $color_fg_sel); }
+            &:checked:disabled {
+              @include button(checked-disabled, $c: $color_base_fix,
+                                                $tc: $color_fg_fix);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+headerbar.titlebar.incognito-mode {
+  buttonbox.linked > widget {
+    color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+  }
+}
+
+// reset inverted foreground color
+notebook > stack > box.vertical > paned.vertical > overlay {
+  > .floating-bar { color: $color_fg_2; }
+}
+
+// overrides foregrounds for 3.24's ssd-mode
+.background headerbar entry {
+  &.starred,
+  &.non-starred {
+    color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+    caret-color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+    &:focus {
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
+      caret-color: if($variant == mixed, $color_fg_inv, $color_fg);
+    }
+    &:disabled {
+      color: if($variant == mixed, $color_fg_dis_inv_2, $color_fg_dis_2);
+    }
+  }
+
+  // render yellow 'star' icon if bookmarked
+  &.starred > image.right {
+    color: track($color_bg_ques, $alpha_foreground_2nd);
+    &:hover,
+    &:active,
+    &:checked { color: $color_bg_ques; }
+  }
+}
+
+// popover for downloaded lists
+@if $maj_ver == 3 {
+  popover.background:not(.emoji-picker) > box.vertical > scrolledwindow {
+    // re-define background colors for GtkListBox
+    > viewport.frame > list.background {
+      background-color: $color_bg_dark;
+    }
+  }
+}
+@else {
+  popover:not(.emoji-picker) > box.vertical > scrolledwindow {
+    // re-define background colors for GtkListBox
+    > viewport.frame > list.background {
+      background-color: $color_bg_dark;
+    }
+  }
+}
+
+// popover for bookmarks
+@if $maj_ver == 3 {
+  popover.background:not(.emoji-picker) > box.vertical > stack > box.vertical {
+    scrolledwindow > viewport.frame {
+      border: 1px solid $color_fg_div;
+
+      > list.background > row.activatable.bookmarks-row {
+        color: $color_fg_2;
+        &:hover,
+        &:active,
+        &:checked { color: $color_fg; }
+
+        button.flat {
+          min-width: $icon_size;
+          min-height: $icon_size;
+          padding: rem(4px); // Same as of image.sidebar-icon
+          @include radius($r);
+        }
+      }
+    }
+  }
+}
+@else {
+  popover:not(.emoji-picker) > box.vertical > stack > box.vertical {
+    scrolledwindow > viewport.frame {
+      border: 1px solid $color_fg_div;
+
+      > list.background > row.activatable.bookmarks-row {
+        color: $color_fg_2;
+        &:hover,
+        &:active,
+        &:checked { color: $color_fg; }
+
+        button.flat {
+          min-width: $icon_size;
+          min-height: $icon_size;
+          padding: rem(4px); // Same as of image.sidebar-icon
+          @include radius($r);
+        }
+      }
+    }
+  }
+}
+
+// bookmark-tag flowbox-childs (almost hard-coded)
+flowboxchild.bookmark-tag-widget {
+  color: track($color_fg_fix, $alpha_foreground_3rd); // unchecked
+  font-weight: 500;
+
+  label { margin-bottom: rem($baseline, $sw: 1.0); }
+
+  button { @include radius($r_2); } // revert to square button
+
+  &-selected { color: $color_fg_sel; } // checked
+}
+
+// search result counter labels
+.linked > entry.search > entry { // enforce "no-relief" labels
+  min-height: unset;
+  border: unset;
+  background: none;
+}

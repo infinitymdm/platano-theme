@@ -1,0 +1,16 @@
+// /*********
+//  * Glade *
+//  *********/
+
+GladeWindow {
+  headerbar#headerbar.titlebar {
+    button#recent-button.popup.toggle { // down-arrow button
+      min-width: $icon_size;
+      @include radius($r_2);
+    }
+  }
+
+  box.horizontal scrolledwindow.frame + button.image-button {
+    @include radius($r_2);
+  }
+}
