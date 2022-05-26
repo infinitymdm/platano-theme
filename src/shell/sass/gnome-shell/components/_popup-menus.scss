@@ -79,12 +79,12 @@ $avatar_width: $icon_size * 1.5;
       &:insensitive { color: opacity($color_lbl_sel, $alpha_foreground_bdp); }
     }
     &.selected {
-      background-color: $semi_fill_bg;
+      background-color: $color_bg_semi_fill;
       color: $color_fg;
       transition-duration: $transition_d_none;
     }
     &:active {
-      background-color: $fill_bg;
+      background-color: $color_bg_fill;
       color: $color_fg;
       transition-duration: $transition_d_standard;
     }
@@ -208,14 +208,14 @@ $avatar_width: $icon_size * 1.5;
   background: transparent; // needs to reset?
   // candidate popups are rendered as OSDs, so no need to set edge borders
   @if $ver < 3.25 {
-    background-color: opacity($osd_bg, $alpha_osd);
-    color: $osd_sec_fg;
+    background-color: opacity($color_bg_osd, $alpha_osd);
+    color: $color_fg_osd_2;
   }
   @else {
     .candidate-popup-content {
       @extend %popover_content;
-      background-color: opacity($osd_bg, $alpha_osd);
-      color: $osd_sec_fg;
+      background-color: opacity($color_bg_osd, $alpha_osd);
+      color: $color_fg_osd_2;
     }
   }
 }

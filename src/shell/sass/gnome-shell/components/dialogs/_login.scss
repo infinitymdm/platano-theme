@@ -15,18 +15,18 @@ $login_dialog_width: 23em;
   background-color: transparent;
 
   StEntry {
-    @include entry(normal, $tc: $ovv_fg);
+    @include entry(normal, $tc: $color_fg_ovv);
     selection-background-color: $color_bg_sel;
     selected-color: $color_fg_sel;
     transition-duration: $transition_d_none;
-    &:hover { @include entry(hover, $tc: $ovv_fg); }
-    &:focus { @include entry(focus, $tc: $ovv_fg); }
-    &:insensitive { @include entry(disabled, $tc: $ovv_fg); }
+    &:hover { @include entry(hover, $tc: $color_fg_ovv); }
+    &:focus { @include entry(focus, $tc: $color_fg_ovv); }
+    &:insensitive { @include entry(disabled, $tc: $color_fg_ovv); }
 
     StIcon.capslock-warning { color: $color_warn; } // CapsLock warning
 
     @if $ver > 3.35 {
-      .hint-text { color: $ovv_ter_fg; }
+      .hint-text { color: $color_fg_ovv_3; }
     }
   }
 
@@ -36,11 +36,11 @@ $login_dialog_width: 23em;
     padding: 7px 16px 8px;
     font-weight: 500;
     font-size: 110%;
-    @include button(flat-normal, $tc: $ovv_fg);
-    &:hover { @include button(flat-hover, $tc: $ovv_fg); }
-    &:focus { @include button(flat-focus, $tc: $ovv_fg); }
-    &:active { @include button(flat-active, $tc: $ovv_fg); }
-    &:insensitive { @include button(flat-disabled, $tc: $ovv_fg); }
+    @include button(flat-normal, $tc: $color_fg_ovv);
+    &:hover { @include button(flat-hover, $tc: $color_fg_ovv); }
+    &:focus { @include button(flat-focus, $tc: $color_fg_ovv); }
+    &:active { @include button(flat-active, $tc: $color_fg_ovv); }
+    &:insensitive { @include button(flat-disabled, $tc: $color_fg_ovv); }
     &:default { // suggested-action button
       padding: (7px - 2px) (16px - 2px) (8px - 2px); // subtract borders
       @include button(suggested-normal, $c: $color_bg_sgst, $tc: $color_fg_sel);
@@ -102,14 +102,14 @@ $login_dialog_width: 23em;
   @if $ver < 3.35 {
     .login-dialog-username,
     .user-widget-label {
-      color: $ovv_fg;
+      color: $color_fg_ovv;
       @extend %login_label_sizing;
       @extend %login_label_spacing;
     }
   }
   @else {
     .user-widget-label {
-      color: $ovv_fg;
+      color: $color_fg_ovv;
 
       .user-widget.horizontal & {
         @extend %login_label_sizing;
@@ -154,7 +154,7 @@ $login_dialog_width: 23em;
   .login-dialog-username,
   .user-widget-label {
     padding-left: 15px;
-    color: $ovv_fg;
+    color: $color_fg_ovv;
     @extend %login_label_sizing;
   }
 
@@ -164,7 +164,7 @@ $login_dialog_width: 23em;
 .login-dialog {
   &-logo-bin { padding: 24px 0; }
 
-  &-banner { color: $ovv_sec_fg; }
+  &-banner { color: $color_fg_ovv_2; }
 
   &-button-box {
     @if $ver > 3.35 { width: $login_dialog_width; }
@@ -180,7 +180,7 @@ $login_dialog_width: 23em;
   &-message-hint {
     padding-top: 0;
     padding-bottom: 20px;
-    color: $ovv_ter_fg;
+    color: $color_fg_ovv_3;
   }
 
   &-user-selection-box { padding: 100px 0; }
@@ -196,25 +196,25 @@ $login_dialog_width: 23em;
   &-not-listed-label {
     padding: 4px 8px 5px;
     border-radius: $r_2;
-    color: $ovv_acc_fg;
+    color: $color_fg_ovv_acc;
     font-weight: 500;
     font-size: 90%;
     text-align: center;
 
     .login-dialog-not-listed-button:focus & {
-      color: $ovv_acc_fg;
-      background-color: $hidden_fill_bg;
-      box-shadow: inset 0 0 0 2px $acc_fill_bg;
+      color: $color_fg_ovv_acc;
+      background-color: $color_bg_fill_hidden;
+      box-shadow: inset 0 0 0 2px $color_bg_acc_fill;
     }
 
     .login-dialog-not-listed-button:hover & {
-      color: $ovv_acc_fg;
-      background-color: $acc_semi_fill_bg;
+      color: $color_fg_ovv_acc;
+      background-color: $color_bg_acc_semi_fill;
     }
 
     .login-dialog-not-listed-button:active & {
-      color: $ovv_acc_fg;
-      background-color: $acc_fill_bg;
+      color: $color_fg_ovv_acc;
+      background-color: $color_bg_acc_fill;
       box-shadow: $empty_shadow;
     }
   }
@@ -226,22 +226,22 @@ $login_dialog_width: 23em;
     &:expanded .login-dialog-user-list-item {
       @if $ver < 3.25 {
         &:focus {
-          color: $ovv_fg;
-          background-color: $hidden_fill_bg;
-          box-shadow: inset 0 0 0 2px $ovv_out_fg;
+          color: $color_fg_ovv;
+          background-color: $color_bg_fill_hidden;
+          box-shadow: inset 0 0 0 2px $color_bg_ovv_out;
         }
         &:hover {
-          color: $ovv_fg;
-          background-color: $ovv_semi_fill_bg;
+          color: $color_fg_ovv;
+          background-color: $color_bg_ovv_semi_fill;
         }
         &:active {
-          color: $ovv_fg;
-          background-color: $ovv_fill_bg;
+          color: $color_fg_ovv;
+          background-color: $color_bg_ovv_fill;
         }
       }
       &:selected {
         &, &:focus {
-          background-color: $hidden_fill_bg;
+          background-color: $color_bg_fill_hidden;
           box-shadow: inset 0 0 0 2px opacity($color_bg_sel, $alpha_track_out);
         }
         &:hover,
@@ -260,11 +260,11 @@ $login_dialog_width: 23em;
         &:focus,
         &:hover {
           background-color: mix(opacity($color_bg_sel, $alpha_track_2),
-                                opacity($ovv_semi_fill_bg, $alpha_foreground_3rd));
+                                opacity($color_bg_ovv_semi_fill, $alpha_foreground_3rd));
         }
         &:active {
           background-color: mix(opacity($color_bg_sel, $alpha_track_2),
-                                opacity($ovv_fill_bg, $alpha_foreground_3rd));
+                                opacity($color_bg_ovv_fill, $alpha_foreground_3rd));
         }
 
         &:ltr { box-shadow: inset 4px 0 $color_bg_sel; }
@@ -286,18 +286,18 @@ $login_dialog_width: 23em;
 
     @if $ver > 3.25 {
       .login-dialog-username, // actual label color
-      .user-widget-label { color: $ovv_sec_fg; }
+      .user-widget-label { color: $color_fg_ovv_2; }
     }
 
     &:focus {
-      background-color: $hidden_fill_bg;
-      box-shadow: inset 0 0 0 2px $ovv_out_fg;
+      background-color: $color_bg_fill_hidden;
+      box-shadow: inset 0 0 0 2px $color_bg_ovv_out;
     }
-    &:hover { background-color: $ovv_semi_fill_bg; }
-    &:active { background-color: $ovv_fill_bg; }
+    &:hover { background-color: $color_bg_ovv_semi_fill; }
+    &:active { background-color: $color_bg_ovv_fill; }
     &:selected {
       &, &:focus {
-        background-color: $hidden_fill_bg;
+        background-color: $color_bg_fill_hidden;
         box-shadow: inset 0 0 0 2px opacity($color_bg_sel, $alpha_track_out);
       }
       &:hover,
@@ -314,12 +314,12 @@ $login_dialog_width: 23em;
     &:hover,
     &:active {
       .login-dialog-username,
-      .user-widget-label { color: $ovv_fg; }
+      .user-widget-label { color: $color_fg_ovv; }
     }
     &:selected {
       &, &:focus {
         .login-dialog-username,
-        .user-widget-label { color: $ovv_sel_label; }
+        .user-widget-label { color: $color_lbl_ovv_sel; }
       }
     }
 
@@ -349,7 +349,7 @@ $login_dialog_width: 23em;
 
   &-label {
     padding-top: 1em;
-    color: $ovv_ter_fg;
+    color: $color_fg_ovv_3;
     font-size: 100%;
   }
 }
@@ -359,9 +359,9 @@ $login_dialog_width: 23em;
     &-list-button {
       padding: 4px;
       border-radius: $r;
-      @include button(flat-normal, $tc: $ovv_fg);
-      &:focus { @include button(flat-focus, $tc: $ovv_fg); }
-      &:hover { @include button(flat-hover, $tc: $ovv_fg); }
+      @include button(flat-normal, $tc: $color_fg_ovv);
+      &:focus { @include button(flat-focus, $tc: $color_fg_ovv); }
+      &:hover { @include button(flat-hover, $tc: $color_fg_ovv); }
       &:active {
         background-color: $color_bg_sel;
         color: $color_fg_sel;

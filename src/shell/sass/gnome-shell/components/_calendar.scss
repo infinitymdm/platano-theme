@@ -104,11 +104,11 @@
     &:hover,
     &:focus {
       color: $color_fg;
-      background-color: $semi_fill_bg;
+      background-color: $color_bg_semi_fill;
     }
     &:active {
       color: $color_fg;
-      background-color: $fill_bg;
+      background-color: $color_bg_fill;
     }
   }
 }
@@ -122,11 +122,11 @@
     &:hover,
     &:focus {
       color: $color_fg;
-      background-color: $semi_fill_bg;
+      background-color: $color_bg_semi_fill;
     }
     &:active {
       color: $color_fg;
-      background-color: $fill_bg;
+      background-color: $color_bg_fill;
     }
   }
 }
@@ -275,13 +275,13 @@
   border-radius: $r;
   color: $color_fg;
   background-color: transparent;
-  &:hover { background-color: $semi_fill_bg; }
+  &:hover { background-color: $color_bg_semi_fill; }
   &:focus {
     background-color: opacity($color_bg_dark, 0.01);
-    box-shadow: inset 0 0 0 2px $out_fg;
-    &:hover { background-color: $semi_fill_bg; }
+    box-shadow: inset 0 0 0 2px $color_fg_out;
+    &:hover { background-color: $color_bg_semi_fill; }
   }
-  &:active { background-color: $fill_bg; }
+  &:active { background-color: $color_bg_fill; }
 }
 
 .calendar-change-month {
@@ -353,7 +353,7 @@
   text-align: center;
   transition-duration: $transition_d_short;
   &:hover,
-  &:focus { background-color: $semi_fill_bg; }
+  &:focus { background-color: $color_bg_semi_fill; }
   &:active,
   &:selected {
     &, &:hover {

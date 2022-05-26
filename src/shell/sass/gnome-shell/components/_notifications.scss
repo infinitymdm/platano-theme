@@ -5,7 +5,7 @@
 .url-highlighter {
   link-color: $color_fg_lnk;
 
-  .notification-banner & { link-color: $osd_link_fg; }
+  .notification-banner & { link-color: $color_fg_osd_link; }
 }
 
 // Banners
@@ -26,7 +26,7 @@
   &:focus {
     background-color: if($variant == mixed, opacity($color_bg_tooltip_inv, $alpha_osd),
                                             opacity($color_bg_tooltip, $alpha_osd));
-    color: $osd_fg;
+    color: $color_fg_osd;
     box-shadow: $z-depth-2;
   }
 
@@ -78,7 +78,7 @@
 
   &-response { margin: 5px; }
 
-  &-log-message { color: $osd_sec_fg; }
+  &-log-message { color: $color_fg_osd_2; }
 
   &-new-group { padding-top: 1em; }
 
@@ -88,13 +88,13 @@
   }
 
   &-sent {
-    color: $osd_sec_fg;
+    color: $color_fg_osd_2;
     &:ltr { padding-left: 18pt; }
     &:rtl { padding-right: 18pt; }
   }
 
   &-meta-message {
-    color: $dis_osd_fg;
+    color: $color_fg_osd_dis;
     font-weight: 700;
     font-size: 90%;
     &:ltr { padding-left: 4px; }
@@ -124,12 +124,12 @@
   &-resident-mount {
     spacing: 8px;
     border-radius: $r_2;
-    &:hover { background-color: $osd_semi_fill_bg; }
-    &:active { background-color: $osd_fill_bg; }
+    &:hover { background-color: $color_bg_osd_semi_fill; }
+    &:active { background-color: $color_bg_osd_fill; }
 
     &-label {
       padding-left: 6px;
-      color: $osd_sec_fg;
+      color: $color_fg_osd_2;
     }
 
     &-icon {
@@ -143,7 +143,7 @@
   &-resident-eject-button {
     padding: 7px;
     border-radius: $r_2;
-    color: $osd_fg;
+    color: $color_fg_osd;
   }
 }
 
@@ -168,15 +168,15 @@
       padding: 4px 4px 2px;
       border-radius: $r_2;
       border: 2px solid $color_bg_panel;
-      color: $osd_sec_fg;
+      color: $color_fg_osd_2;
       &:hover,
       &:focus {
-        background-color: $osd_semi_fill_bg;
-        color: $osd_fg;
+        background-color: $color_bg_osd_semi_fill;
+        color: $color_fg_osd;
       }
       &:active {
-        background-color: $osd_fill_bg;
-        color: $osd_fg;
+        background-color: $color_bg_osd_fill;
+        color: $color_fg_osd;
       }
 
       StIcon { icon-size: $legacy_icon_size; }

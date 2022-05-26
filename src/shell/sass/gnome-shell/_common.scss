@@ -29,7 +29,12 @@ stage {
   @else { font-size: 100%; }
 }
 
+// Icon grid settings
+$grid_size: 136px;
 $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
+
+// Activities ripples
+$ripple_d: 52px;
 
 // /**************************
 //  * gnome-shell components *
@@ -58,7 +63,7 @@ $icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
 }
 
 %status_text {
-  color: $ovv_ter_fg;
+  color: $color_fg_ovv_3;
   font-weight: 700;
   font-size: 200%;
 }

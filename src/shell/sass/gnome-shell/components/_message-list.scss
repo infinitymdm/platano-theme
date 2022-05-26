@@ -46,11 +46,11 @@
       &:hover > StIcon,
       &:focus > StIcon {
         color: $color_fg;
-        background-color: $semi_fill_bg;
+        background-color: $color_bg_semi_fill;
       }
       &:active > StIcon {
         color: $color_fg;
-        background-color: $fill_bg;
+        background-color: $color_bg_fill;
       }
     }
   }
@@ -66,7 +66,7 @@
         margin-top: if($ref_weight >= 1.0, 0.6em / 2, 0.45em / 2);
         margin-bottom: if($ref_weight >= 1.0, 0.6em * 1.5, 0.45em * 1.5);
         padding: 0;
-        border: 1px solid if($variant == dark, $hidden_fill_bg,
+        border: 1px solid if($variant == dark, $color_bg_fill_hidden,
                                                 opacity(white, 0.01));
         // set a half of div_fg for internal separators
         background-color: if($variant == dark, opacity(white, $alpha_div_2),
@@ -91,7 +91,7 @@
   @else { padding: 6px; }
   border-radius: 0;
   background-color: transparent;
-  color: $osd_fg;
+  color: $color_fg_osd;
   @if $ver > 3.35 {
     margin: 0;
     border: 0 none transparent;
@@ -105,9 +105,9 @@
       @if $ver > 3.33 { border: 1px solid $color_base; }
     }
     @else {
-      background-color: $semi_fill_bg;
-      &:ltr { box-shadow: inset 4px 0 $out_fg; }
-      &:rtl { box-shadow: inset -4px 0 $out_fg; }
+      background-color: $color_bg_semi_fill;
+      &:ltr { box-shadow: inset 4px 0 $color_fg_out; }
+      &:rtl { box-shadow: inset -4px 0 $color_fg_out; }
     }
     color: $color_fg_2;
 
@@ -140,7 +140,7 @@
         }
       }
       @else {
-        background-color: $acc_semi_fill_bg;
+        background-color: $color_bg_acc_semi_fill;
         &:ltr { box-shadow: inset 4px 0 opacity($color_bg_acc, $alpha_foreground_2nd); }
         &:rtl { box-shadow: inset -4px 0 opacity($color_bg_acc, $alpha_foreground_2nd); }
       }
@@ -179,7 +179,7 @@
         }
       }
       @else {
-        background-color: $acc_fill_bg;
+        background-color: $color_bg_acc_fill;
         &:ltr { box-shadow: inset 4px 0 $color_bg_acc; }
         &:rtl { box-shadow: inset -4px 0 $color_bg_acc; }
       }
@@ -228,7 +228,7 @@
       > StIcon {
         min-width: $icon_size;  // for an indentation of .message-content
         min-height: $icon_size; // reserve StIcon region even if StIcon was null
-        color: $osd_fg;
+        color: $color_fg_osd;
         icon-size: $icon_size;
         -st-icon-style: symbolic;
       }
@@ -238,7 +238,7 @@
       > .fallback-app-icon {
         min-width: $icon_size;
         min-height: $icon_size;
-        color: $osd_fg;
+        color: $color_fg_osd;
         icon-size: $icon_size;
         -st-icon-style: symbolic;
       }
@@ -246,7 +246,7 @@
   }
 
   &-secondary-bin {
-    color: $osd_ter_fg;
+    color: $color_fg_osd_3;
     @if $ver > 3.25 {
       &:ltr { padding-left: if($ref_weight >= 1.0, 0.6em, 0.45em); }
       &:rtl { padding-right: if($ref_weight >= 1.0, 0.6em, 0.45em); }
@@ -268,7 +268,7 @@
         padding-bottom: 0.5em + 0.1em;
         font-size: 80%;
       }
-      color: $osd_ter_fg;
+      color: $color_fg_osd_3;
     }
 
     > StIcon {
@@ -291,7 +291,7 @@
     @else {
       padding: 0 0 4px;
     }
-    color: $osd_fg;
+    color: $color_fg_osd;
     font-weight: 700;
     font-size: 110%;
   }
@@ -304,7 +304,7 @@
       padding: 0 8px 4px;
       font-size: 90%;
     }
-    color: $osd_fg;
+    color: $color_fg_osd;
 
     * > StIcon {
       @if $ver > 3.25 {
@@ -328,26 +328,26 @@
     StButton:hover > StIcon,
     StButton:focus > StIcon {
       color: $color_fg_acc_inv;
-      background-color: $inv_acc_semi_fill_bg;
+      background-color: $color_bg_acc_semi_fill_inv;
 
       .popup-menu & {
         color: $color_fg_acc;
-        background-color: $acc_semi_fill_bg;
+        background-color: $color_bg_acc_semi_fill;
       }
     }
     StButton:active > StIcon {
       color: $color_fg_acc_inv;
-      background-color: $inv_acc_fill_bg;
+      background-color: $color_bg_acc_fill_inv;
 
       .popup-menu & {
         color: $color_fg_acc;
-        background-color: $acc_fill_bg;
+        background-color: $color_bg_acc_fill;
       }
     }
   }
 
   @if $ver > 3.35 {
-    &-body { color: $osd_fg; }
+    &-body { color: $color_fg_osd; }
   }
 }
 
@@ -375,7 +375,7 @@
     background-size: 32px 32px;
   }
   &:insensitive {
-    color: $dis_acc_fg;
+    color: $color_fg_acc;
     background-image: none;
     background: transparent;
   }
@@ -390,20 +390,20 @@
     padding: if($ref_weight >= 1.0, 12px, 10px);
     border: none;
     border-radius: $r_2;
-    color: $osd_ter_fg;
-    background-color: $osd_semi_fill_bg;
+    color: $color_fg_osd_3;
+    background-color: $color_bg_osd_semi_fill;
     box-shadow: $empty_shadow;
 
     .popup-menu .message & {
       color: $color_fg_3;
-      background-color: $semi_fill_bg;
+      background-color: $color_bg_semi_fill;
     }
 
     .popup-menu .message:hover &,
     .popup-menu .message:focus &,
     .popup-menu .message:active & {
       color: $color_fg_2;
-      background-color: $acc_fill_bg;
+      background-color: $color_bg_acc_fill;
     }
   }
 }

@@ -26,15 +26,15 @@ StScrollBar {
   StBin#trough {
     margin: 0;
     border-radius: 0;
-    background-color: opacity($osd_fg, $alpha_track_1);
+    background-color: opacity($color_fg_osd, $alpha_track_1);
   }
 
   StButton#vhandle,
   StButton#hhandle {
     margin: 0;
     border-radius: 0;
-    background-color: opacity($osd_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
-    &:hover { background-color: opacity($osd_fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
-    &:active { background-color: $osd_fg; }
+    background-color: opacity($color_fg_osd, $alpha_foreground_3rd * $alpha_foreground_3rd);
+    &:hover { background-color: opacity($color_fg_osd, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+    &:active { background-color: $color_fg_osd; }
   }
 }

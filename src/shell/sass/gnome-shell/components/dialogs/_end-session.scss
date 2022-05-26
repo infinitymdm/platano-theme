@@ -32,7 +32,7 @@
     width: $icon_size * 3;
     height: $icon_size * 3;
     background-size: contain;
-    color: $osd_fg;
+    color: $color_fg_osd;
     @if $ver < 3.31 { border-radius: $r_2; }
     @else { border-radius: $r; } // circular shape
   }
@@ -40,7 +40,7 @@
   &-shutdown-icon {
     width: $icon_size * 3;
     height: $icon_size * 3;
-    color: $osd_fg;
+    color: $color_fg_osd;
   }
 
   @if $ver < 3.35 {
@@ -67,7 +67,7 @@
     &-session-list-item-name { font-weight: 700; }
 
     &-app-list-item-description {
-      color: $osd_ter_fg;
+      color: $color_fg_osd_3;
       font-size: 100%;
     }
   }

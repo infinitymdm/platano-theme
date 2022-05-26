@@ -11,7 +11,7 @@
 .Button {
   stroke-width: 0.25;
   stroke: $color_fg_acc;
-  fill: $acc_semi_fill_bg;
+  fill: $color_bg_acc_semi_fill;
 }
 
 .Ring {
@@ -31,5 +31,5 @@
 .TouchRing {
   stroke-width: 0.1 !important;
   stroke: $color_fg_acc !important;
-  fill: $acc_fill_bg !important;
+  fill: $color_bg_acc_fill !important;
 }

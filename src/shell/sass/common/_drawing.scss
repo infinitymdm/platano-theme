@@ -111,7 +111,7 @@ $empty_shadow: 0 0 transparent; // replacement of the 'none'
   }
   @else if $t == flat-normal {
     border: none;
-    background-color: if($variant != light, $hidden_fill_bg,
+    background-color: if($variant != light, $color_bg_fill_hidden,
                                             opacity(white, 0.01));
     color: opacity($tc, $alpha_foreground_2nd);
     box-shadow: inset 0 0 0 2px transparent;
@@ -134,7 +134,7 @@ $empty_shadow: 0 0 transparent; // replacement of the 'none'
   }
   @else if $t == flat-disabled {
     border: none;
-    background-color: $hidden_fill_bg;
+    background-color: $color_bg_fill_hidden;
     color: opacity($tc, $alpha_foreground_dis);
     box-shadow: $empty_shadow;
   }

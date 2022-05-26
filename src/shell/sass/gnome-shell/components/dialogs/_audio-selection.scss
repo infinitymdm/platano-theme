@@ -32,7 +32,7 @@
     border: 1px solid $color_fg_div;
     border-radius: $r_2;
     &:hover,
-    &:focus { background-color: $osd_semi_fill_bg; }
+    &:focus { background-color: $color_bg_osd_semi_fill; }
     &:active {
       background-color: $color_bg_sel;
       color: $color_fg_sel;

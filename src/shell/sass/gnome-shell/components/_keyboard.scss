@@ -12,9 +12,9 @@
       padding: 0 ($icon_size / 2) $icon_size;
 
       // set variant-specific colors
-      .page-indicator-icon { box-shadow: inset 0 0 0 2px $osd_ter_fg; }
+      .page-indicator-icon { box-shadow: inset 0 0 0 2px $color_fg_osd_3; }
 
-      &:hover .page-indicator-icon { box-shadow: inset 0 0 0 2px $osd_fg; }
+      &:hover .page-indicator-icon { box-shadow: inset 0 0 0 2px $color_fg_osd; }
 
       &:active .page-indicator-icon,
       &:checked .page-indicator-icon { box-shadow: $empty_shadow; }
@@ -43,9 +43,9 @@
     min-width: $ref_size * 2;
     padding: 0;
     border-radius: $r_2;
-    border: 1px solid mix($osd_sec_fg, $osd_bg, percentage($alpha_div_1));
-    background-color: $osd_bg;
-    color: $osd_sec_fg;
+    border: 1px solid mix($color_fg_osd_2, $color_bg_osd, percentage($alpha_div_1));
+    background-color: $color_bg_osd;
+    color: $color_fg_osd_2;
     box-shadow: $empty_shadow;
     text-shadow: none;
     icon-shadow: none;
@@ -55,50 +55,50 @@
     &:focus,
     &:hover,
     &:checked {
-      border-color: mix($osd_bg, $osd_fg, percentage($alpha_foreground_2nd));
-      background-color: mix($osd_bg, $osd_fg, percentage($alpha_foreground_2nd));
-      color: $osd_fg;
+      border-color: mix($color_bg_osd, $color_fg_osd, percentage($alpha_foreground_2nd));
+      background-color: mix($color_bg_osd, $color_fg_osd, percentage($alpha_foreground_2nd));
+      color: $color_fg_osd;
       transition-timing-function: $transition_t_standard;
     }
     &:active {
-      border-color: mix($osd_bg, $osd_fg, percentage(1 - $alpha_track_2));
-      background-color: mix($osd_bg, $osd_fg, percentage(1 - $alpha_track_2));
-      color: $osd_fg;
+      border-color: mix($color_bg_osd, $color_fg_osd, percentage(1 - $alpha_track_2));
+      background-color: mix($color_bg_osd, $color_fg_osd, percentage(1 - $alpha_track_2));
+      color: $color_fg_osd;
       transition-timing-function: $transition_t_dec;
     }
     &:grayed { // FIXME
-      border-color: mix($osd_sec_fg, $osd_bg,
+      border-color: mix($color_fg_osd_2, $color_bg_osd,
                         percentage($alpha_div_1 * $alpha_foreground_dis));
       background-color: $color_bg_panel;
-      color: $osd_ter_fg;
+      color: $color_fg_osd_3;
       transition-timing-function: $transition_t_standard;
     }
 
     @if $ver > 3.25 {
       &.default-key {
-        background-color: mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2));
+        background-color: mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2));
         @if $ver < 3.35 { background-size: ($ref_size - 0.33) * 2; }
-        color: $osd_sec_fg;
+        color: $color_fg_osd_2;
         &:focus,
         &:hover,
         &:checked {
           border-color:
-            mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
-                $osd_fg, percentage($alpha_foreground_2nd));
+            mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                $color_fg_osd, percentage($alpha_foreground_2nd));
           background-color:
-            mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
-                $osd_fg, percentage($alpha_foreground_2nd));
-          color: $osd_fg;
+            mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                $color_fg_osd, percentage($alpha_foreground_2nd));
+          color: $color_fg_osd;
           transition-timing-function: $transition_t_standard;
         }
         &:active {
           border-color:
-            mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
-                $osd_fg, percentage(1 - $alpha_track_2));
+            mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                $color_fg_osd, percentage(1 - $alpha_track_2));
           background-color:
-            mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
-                $osd_fg, percentage(1 - $alpha_track_2));
-          color: $osd_fg;
+            mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                $color_fg_osd, percentage(1 - $alpha_track_2));
+          color: $color_fg_osd;
           transition-timing-function: $transition_t_dec;
         }
       }
@@ -133,7 +133,7 @@
           @if $ver < 3.35 {
             @include image-loader($url: 'key-shift.svg');
           }
-          @else { color: $osd_sec_fg; }
+          @else { color: $color_fg_osd_2; }
         }
 
         &-uppercase {
@@ -145,18 +145,18 @@
           &:hover,
           &:checked {
             border-color:
-              mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+              mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
                   $color_bg_sel, percentage($alpha_foreground_2nd));
             background-color:
-              mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+              mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
                   $color_bg_sel, percentage($alpha_foreground_2nd));
           }
           &:active {
             border-color:
-              mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+              mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
                   $color_bg_sel, percentage(1 - $alpha_track_2));
             background-color:
-              mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+              mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
                   $color_bg_sel, percentage(1 - $alpha_track_2));
           }
           &:latched {
@@ -165,19 +165,19 @@
             }
             @else { color: $color_bg_sel; }
             border-color:
-              mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+              mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
                   $color_bg_sel, percentage($alpha_foreground_2nd));
             background-color:
-              mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+              mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
                   $color_bg_sel, percentage($alpha_foreground_2nd));
             transition-timing-function: $transition_t_standard;
             &:focus,
             &:hover {
               border-color:
-                mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
                     $color_bg_sel, percentage(1 - $alpha_track_2));
               background-color:
-                mix(mix($osd_bg, $color_bg_panel, percentage(1 - $alpha_track_2)),
+                mix(mix($color_bg_osd, $color_bg_panel, percentage(1 - $alpha_track_2)),
                     $color_bg_sel, percentage(1 - $alpha_track_2));
             }
           }
@@ -212,9 +212,9 @@
 
     .keyboard-key {
       border: 0 none transparent;
-      background-color: $hidden_fill_bg;
+      background-color: $color_bg_fill_hidden;
       color: $color_fg_sel_2;
-      box-shadow: inset 0 0 0 2px $ovv_out_fg;
+      box-shadow: inset 0 0 0 2px $color_bg_ovv_out;
       &:focus,
       &:hover,
       &:checked {
@@ -264,18 +264,18 @@
   .emoji {
     &-panel {
       .keyboard-key {
-        color: $ovv_sec_fg;
+        color: $color_fg_ovv_2;
         &:focus,
         &:hover,
         &:active,
-        &:checked { color: $ovv_fg; }
+        &:checked { color: $color_fg_ovv; }
 
         &.default-key { // 'ABC' and 'down-arrow' key
-          color: $osd_sec_fg;
+          color: $color_fg_osd_2;
           &:focus,
           &:hover,
           &:active,
-          &:checked { color: $osd_fg; }
+          &:checked { color: $color_fg_osd; }
         }
 
         &:latched {
@@ -297,17 +297,17 @@
       .keyboard-key { // use flat-style
         border: 0 none transparent;
         background-color: transparent;
-        color: $ovv_sec_fg; // do not set variant-specific
+        color: $color_fg_ovv_2; // do not set variant-specific
         &:focus,
         &:hover {
           border: 0 none transparent;
-          background-color: opacity($ovv_fg, $alpha_track_1);
-          color: $ovv_fg;
+          background-color: opacity($color_fg_ovv, $alpha_track_1);
+          color: $color_fg_ovv;
         }
         &:active {
           border: 0 none transparent;
-          background-color: opacity($ovv_fg, $alpha_track_2);
-          color: $ovv_fg;
+          background-color: opacity($color_fg_ovv, $alpha_track_2);
+          color: $color_fg_ovv;
         }
       }
     }

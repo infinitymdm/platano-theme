@@ -2,8 +2,6 @@
 //  * App Vault/Grid *
 //  ******************/
 
-$grid_size: 136px;
-
 .icon-grid {
   @if $ver < 3.37 {
     spacing: 30px;
@@ -24,8 +22,8 @@ $grid_size: 136px;
   .system-action-icon { // system-action icons in search results
     icon-size: $icon_size * 3;
     border-radius: $r;
-    background-color: opacity($osd_bg, $alpha_osd);
-    color: $osd_fg;
+    background-color: opacity($color_bg_osd, $alpha_osd);
+    color: $color_fg_osd;
     box-shadow: $z-depth-2;
   }
 }
@@ -35,16 +33,16 @@ $grid_size: 136px;
     width: if($ref_weight >= 1.0, 400px, 340px);
     margin-bottom: if($ref_weight >= 1.0, 12px, 9px);
     border-radius: $r;
-    background-color: $hidden_fill_bg !important;
+    background-color: $color_bg_fill_hidden !important;
     box-shadow: $empty_shadow;
   }
 
   .app-view-control { // favorites | all toggle button
     padding: if($ref_weight >= 1.0, 7px 32px 8px, 5px 32px 6px);
     border-radius: $r;
-    color: $ovv_sec_fg;
-    background-color: $hidden_fill_bg !important;
-    box-shadow: inset 0 0 0 1px $ovv_out_fg;
+    color: $color_fg_ovv_2;
+    background-color: $color_bg_fill_hidden !important;
+    box-shadow: inset 0 0 0 1px $color_bg_ovv_out;
     font-weight: 500;
     &:ltr {
       &:first-child { margin-right: 6px; }
@@ -56,13 +54,13 @@ $grid_size: 136px;
     }
 
     &:hover {
-      color: $ovv_fg;
-      background-color: $ovv_semi_fill_bg !important;
+      color: $color_fg_ovv;
+      background-color: $color_bg_ovv_semi_fill !important;
       box-shadow: $empty_shadow;
     }
     &:active {
-      color: $ovv_fg;
-      background-color: $ovv_fill_bg !important;
+      color: $color_fg_ovv;
+      background-color: $color_bg_ovv_fill !important;
       box-shadow: $empty_shadow;
     }
     &:checked {
@@ -87,7 +85,7 @@ $grid_size: 136px;
     padding: 9px;
     border: none;
     border-radius: $r_2;
-    color: $ovv_sec_fg;
+    color: $color_fg_ovv_2;
     box-shadow: $empty_shadow;
     font-weight: 700;
     text-align: center;
@@ -107,9 +105,9 @@ $grid_size: 136px;
   &:hover .overview-icon,
   &:selected .overview-icon {
     border-image: none;
-    background-color: $ovv_semi_fill_bg;
+    background-color: $color_bg_ovv_semi_fill;
     background-image: none;
-    color: $ovv_fg;
+    color: $color_fg_ovv;
     box-shadow: $empty_shadow;
     transition-duration: $transition_d_short;
   }
@@ -124,9 +122,9 @@ $grid_size: 136px;
 
   &:active .overview-icon {
     border-image: none;
-    background-color: $ovv_fill_bg;
+    background-color: $color_bg_ovv_fill;
     background-image: none;
-    color: $ovv_fg;
+    color: $color_fg_ovv;
     box-shadow: $empty_shadow;
     transition-duration: $transition_d_standard;
   }
@@ -177,14 +175,14 @@ $grid_size: 136px;
 
 .app-well-app.app-folder {
   > .overview-icon {
-    background-color: $ovv_semi_fill_bg;
+    background-color: $color_bg_ovv_semi_fill;
     box-shadow: $empty_shadow;
   }
 
   &:hover,
   &:focus {
     > .overview-icon {
-      background-color: $ovv_fill_bg;
+      background-color: $color_bg_ovv_fill;
       box-shadow: $empty_shadow;
     }
   }
@@ -192,7 +190,7 @@ $grid_size: 136px;
     &, &:hover {
       > .overview-icon {
         border-radius: $r_2;
-        background-color: $ovv_fill_bg;
+        background-color: $color_bg_ovv_fill;
         box-shadow: $empty_shadow;
       }
     }
@@ -221,24 +219,24 @@ $grid_size: 136px;
     &-bin {
       padding: 5px;
       border-radius: $r_8;
-      background-color: opacity($osd_bg, $alpha_osd);
+      background-color: opacity($color_bg_osd, $alpha_osd);
       box-shadow: $z-depth-1;
 
       .app-well-app { // enforce variant specific colors
-        .overview-icon { color: $osd_sec_fg; }
+        .overview-icon { color: $color_fg_osd_2; }
 
         &:focus,
         &:hover,
         &:selected {
           .overview-icon {
-            background-color: $osd_semi_fill_bg;
-            color: $osd_fg;
+            background-color: $color_bg_osd_semi_fill;
+            color: $color_fg_osd;
           }
         }
 
         &:active .overview-icon {
-          background-color: $osd_fill_bg;
-          color: $osd_fg;
+          background-color: $color_bg_osd_fill;
+          color: $color_fg_osd;
         }
       }
     }
@@ -253,7 +251,7 @@ $grid_size: 136px;
     @else { padding: if($ref_weight >= 1.0, 12px, 8px); }
     border-radius: $r_8;
     border: 0 none transparent;
-    background-color: opacity($osd_bg, $alpha_osd);
+    background-color: opacity($color_bg_osd, $alpha_osd);
     box-shadow: $z-depth-4;
 
     &-container {
@@ -268,20 +266,20 @@ $grid_size: 136px;
       padding: if($ref_weight >= 1.0, 12px, 8px);
 
       .app-well-app {
-        .overview-icon { color: $osd_sec_fg; }
+        .overview-icon { color: $color_fg_osd_2; }
 
         &:focus,
         &:hover,
         &:selected {
           .overview-icon {
-            background-color: $osd_semi_fill_bg;
-            color: $osd_fg;
+            background-color: $color_bg_osd_semi_fill;
+            color: $color_fg_osd;
           }
         }
 
         &:active .overview-icon {
-          background-color: $osd_fill_bg;
-          color: $osd_fg;
+          background-color: $color_bg_osd_fill;
+          color: $color_fg_osd;
         }
       }
     }
@@ -303,7 +301,7 @@ $grid_size: 136px;
 
         &-label { // use the same internal padding with StEntry
           padding: if($ref_weight >= 1.0, 0.75em 0.8em, 0.55em 0.6em);
-          color: $osd_fg;
+          color: $color_fg_osd;
         }
       }
     }
@@ -320,7 +318,7 @@ $grid_size: 136px;
         &:hover { @include button(flat-hover, $tc: $color_fg_acc_inv); }
         &:focus { @include button(flat-focus, $tc: $color_fg_acc_inv); }
         &:active { @include button(flat-active, $tc: $color_fg_acc_inv); }
-        &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
+        &:insensitive { @include button(flat-disabled, $tc: $color_fg_osd); }
       }
       @else {
         @include button(flat-normal, $tc: $color_fg_acc);
@@ -357,7 +355,7 @@ $grid_size: 136px;
       width: $icon_size - 2px;
       height: $icon_size - 2px;
       border-radius: $r;
-      background-color: $ovv_fg;
+      background-color: $color_fg_ovv;
     }
 
     &:insensitive {
@@ -373,16 +371,16 @@ $grid_size: 136px;
       border-radius: $r;
       border: 0 none transparent; // avoid stock CSS's borders
       background-image: none;
-      background-color: $hidden_fill_bg;
-      box-shadow: inset 0 0 0 2px $ovv_ter_fg;
+      background-color: $color_bg_fill_hidden;
+      box-shadow: inset 0 0 0 2px $color_fg_ovv_3;
     }
 
     &:hover .page-indicator-icon {
       margin: 0;
       padding: 2px;
       background-image: none;
-      background-color: $hidden_fill_bg;
-      box-shadow: inset 0 0 0 2px $ovv_fg;
+      background-color: $color_bg_fill_hidden;
+      box-shadow: inset 0 0 0 2px $color_fg_ovv;
     }
 
     &:active .page-indicator-icon {

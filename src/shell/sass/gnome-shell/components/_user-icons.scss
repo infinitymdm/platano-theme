@@ -5,10 +5,10 @@
 %framed_user_icon {
   background-size: contain;
   border: 0 none transparent;
-  color: $osd_fg;
+  color: $color_fg_osd;
   &:hover {
-    border-color: $osd_fg;
-    color: $osd_fg;
+    border-color: $color_fg_osd;
+    color: $color_fg_osd;
   }
 }
 

@@ -12,9 +12,9 @@
 
     StButton#vhandle,
     StButton#hhandle { // use variant-sensitive slider-bit
-      background-color: opacity($ovv_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
-      &:hover { background-color: opacity($ovv_fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
-      &:active { background-color: $ovv_fg; }
+      background-color: opacity($color_fg_ovv, $alpha_foreground_3rd * $alpha_foreground_3rd);
+      &:hover { background-color: opacity($color_fg_ovv, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+      &:active { background-color: $color_fg_ovv; }
     }
   }
 
@@ -56,12 +56,12 @@
 }
 
 .window-clone-border {
-  border: 4px solid $ovv_semi_fill_bg;
+  border: 4px solid $color_bg_ovv_semi_fill;
   border-radius: $r_2 $r_2 0 0;
   // For window decorations with round corners we can't match
   // the exact shape when the window is scaled. So apply a shadow
   // to fix that case
-  box-shadow: inset 0 0 0 1px $ovv_semi_fill_bg;
+  box-shadow: inset 0 0 0 1px $color_bg_ovv_semi_fill;
 }
 
 .window-caption { // hovered tooltips
@@ -85,11 +85,11 @@
     spacing: if($ref_weight >= 1.0, 25px, 19px);
     padding: if($ref_weight >= 1.0, 0.3em 0.9em 0.4em, 0.2em 0.6em 0.3em);
     border-radius: $r_2;
-    background-color: opacity($osd_bg, $alpha_osd);
+    background-color: opacity($color_bg_osd, $alpha_osd);
     -shell-caption-spacing: if($ref_weight >= 1.0, 12px, 8px);
     &:hover {
-      color: $osd_fg;
-      background-color: $osd_semi_fill_bg;
+      color: $color_fg_osd;
+      background-color: $color_bg_osd_semi_fill;
     }
   }
 }
@@ -204,8 +204,8 @@ $provider_icon_size: 32px; // for < 3.25
       // FIXME: keep meaningless gradient properties
       // otherwise warnings are recorded
       -gradient-height: 1px;
-      -gradient-start: $ovv_out_fg;
-      -gradient-end: $ovv_out_fg;
+      -gradient-start: $color_bg_ovv_out;
+      -gradient-end: $color_bg_ovv_out;
       &:ltr {
         margin-left: if($ref_weight >= 1.0, $provider_icon_size * (2 + 0.5),
                                             $provider_icon_size * (2 + 0.25));
@@ -221,7 +221,7 @@ $provider_icon_size: 32px; // for < 3.25
     @if $ver > 3.25 {
       padding: if($ref_weight >= 1.0, 8px, 6px);
       border-radius: $r_8;
-      background-color: opacity($osd_bg, $alpha_osd);
+      background-color: opacity($color_bg_osd, $alpha_osd);
       box-shadow: $z-depth-2;
       @if $ver > 3.35 {
         border: 0 none transparent;
@@ -240,15 +240,15 @@ $provider_icon_size: 32px; // for < 3.25
   &-results {
     @if $ver > 3.25 {
       spacing: 0;
-      background-color: $hidden_fill_bg;
+      background-color: $color_bg_fill_hidden;
       &:ltr {
         // concern the inset fake border width
         padding-left: if($ref_weight >= 1.0, 8px, 6px) + 1px;
-        box-shadow: inset 1px 0 opacity($osd_fg, $alpha_track_out);
+        box-shadow: inset 1px 0 opacity($color_fg_osd, $alpha_track_out);
       }
       &:rtl {
         padding-right: if($ref_weight >= 1.0, 8px, 6px) + 1px;
-        box-shadow: inset -1px 0 opacity($osd_fg, $alpha_track_out);
+        box-shadow: inset -1px 0 opacity($color_fg_osd, $alpha_track_out);
       }
     }
     @else { spacing: 3px; }
@@ -267,42 +267,42 @@ $provider_icon_size: 32px; // for < 3.25
     &:hover {
       transition-duration: $transition_d_none;
       @if $ver > 3.25 {
-        background-color: $osd_semi_fill_bg;
+        background-color: $color_bg_osd_semi_fill;
 
         .list-search-result {
-          &-title { color: $osd_fg; }
+          &-title { color: $color_fg_osd; }
 
-          &-description { color: $osd_sec_fg; }
+          &-description { color: $color_fg_osd_2; }
         }
       }
       @else {
-        background-color: $ovv_semi_fill_bg;
+        background-color: $color_bg_ovv_semi_fill;
 
         .list-search-result {
-          &-title { color: $ovv_fg; }
+          &-title { color: $color_fg_ovv; }
 
-          &-description { color: $ovv_sec_fg; }
+          &-description { color: $color_fg_ovv_2; }
         }
       }
     }
     &:active {
       transition-duration: $transition_d_standard;
       @if $ver > 3.25 {
-        background-color: $osd_fill_bg;
+        background-color: $color_bg_osd_fill;
 
         .list-search-result {
-          &-title { color: $osd_fg; }
+          &-title { color: $color_fg_osd; }
 
-          &-description { color: $osd_sec_fg; }
+          &-description { color: $color_fg_osd_2; }
         }
       }
       @else {
-        background-color: $ovv_fill_bg;
+        background-color: $color_bg_ovv_fill;
 
         .list-search-result {
-          &-title { color: $ovv_fg; }
+          &-title { color: $color_fg_ovv; }
 
-          &-description { color: $ovv_sec_fg; }
+          &-description { color: $color_fg_ovv_2; }
         }
       }
     }
@@ -338,8 +338,8 @@ $provider_icon_size: 32px; // for < 3.25
     &-title {
       font-weight: 700;
       font-size: 110%;
-      @if $ver > 3.25 { color: $osd_sec_fg; }
-      @else { color: $ovv_fg; }
+      @if $ver > 3.25 { color: $color_fg_osd_2; }
+      @else { color: $color_fg_ovv; }
 
       @if $ver > 3.25 {
         StIcon,
@@ -360,10 +360,10 @@ $provider_icon_size: 32px; // for < 3.25
     &-description {
       @if $ver > 3.25 {
         padding: 0;
-        color: $osd_ter_fg;
+        color: $color_fg_osd_3;
       }
       @else {
-        color: $ovv_sec_fg;
+        color: $color_fg_ovv_2;
         font-size: 90%;
       }
     }
@@ -386,7 +386,7 @@ $provider_icon_size: 32px; // for < 3.25
         }
         font-size: 90%;
         @if $ver > 3.25 {
-          color: $osd_ter_fg;
+          color: $color_fg_osd_3;
           &:ltr {
             margin-left: if($ref_weight >= 1.0, $results_icon_size  / 3,
                                                 $results_icon_size  / 6);
@@ -396,14 +396,14 @@ $provider_icon_size: 32px; // for < 3.25
                                                   $results_icon_size / 6);
           }
         }
-        @else { color: $ovv_sec_fg; }
+        @else { color: $color_fg_ovv_2; }
 
         .search-provider-icon:hover &,
         .search-provider-icon:focus &,
         .search-provider-icon:active &,
         .search-provider-icon:checked & {
-          @if $ver > 3.25 { color: $osd_fg; }
-          @else { color: $ovv_fg; }
+          @if $ver > 3.25 { color: $color_fg_osd; }
+          @else { color: $color_fg_ovv; }
         }
       }
     }
@@ -420,7 +420,7 @@ $provider_icon_size: 32px; // for < 3.25
                                         $results_icon_size * 2.42);
     padding: if($ref_weight >= 1.0, 0 $results_icon_size / 4,
                                     0 $results_icon_size / 8);
-    color: $osd_ter_fg;
+    color: $color_fg_osd_3;
     &:ltr { border-radius: $r_2 $r $r $r_2; }
     &:rtl { border-radius: $r $r_2 $r_2 $r; }
   }
@@ -428,20 +428,20 @@ $provider_icon_size: 32px; // for < 3.25
     margin: if($ref_weight >= 1.0, $provider_icon_size / 4 0, 0);
     padding: $provider_icon_size / 2;
     border-radius: $r;
-    color: $ovv_sec_fg;
+    color: $color_fg_ovv_2;
   }
   border: none;
   transition-duration: $transition_d_none;
   &:focus,
   &:selected,
   &:hover {
-    @if $ver > 3.25 { background-color: $osd_semi_fill_bg; }
-    @else { background-color: $ovv_semi_fill_bg; }
+    @if $ver > 3.25 { background-color: $color_bg_osd_semi_fill; }
+    @else { background-color: $color_bg_ovv_semi_fill; }
     transition-duration: $transition_d_none;
   }
   &:active {
-    @if $ver > 3.25 { background-color: $osd_fill_bg; }
-    @else { background-color: $ovv_fill_bg; }
+    @if $ver > 3.25 { background-color: $color_bg_osd_fill; }
+    @else { background-color: $color_bg_ovv_fill; }
     transition-duration: $transition_d_standard;
   }
   &:checked {

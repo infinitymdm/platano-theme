@@ -17,10 +17,10 @@ StEntry {
   selected-color: $color_fg_sel;
   transition-duration: $transition_d_none;
   @if $variant != light {
-    @include entry(normal, $tc: $osd_fg);
-    &:hover { @include entry(hover, $tc: $osd_fg); }
-    &:focus { @include entry(focus, $tc: $osd_fg); }
-    &:insensitive { @include entry(disabled, $tc: $osd_fg); }
+    @include entry(normal, $tc: $color_fg_osd);
+    &:hover { @include entry(hover, $tc: $color_fg_osd); }
+    &:focus { @include entry(focus, $tc: $color_fg_osd); }
+    &:insensitive { @include entry(disabled, $tc: $color_fg_osd); }
   }
   @else {
     @include entry(normal, $tc: $color_fg);
@@ -42,7 +42,7 @@ StEntry {
 
   @if $ver > 3.35 {
     .hint-text { // placeholder labels
-      color: if($variant != light, $osd_ter_fg, $color_fg_3);
+      color: if($variant != light, $color_fg_osd_3, $color_fg_3);
       &:ltr { margin-left: 2px; }
       &:rtl { margin-right: 2px; }
     }

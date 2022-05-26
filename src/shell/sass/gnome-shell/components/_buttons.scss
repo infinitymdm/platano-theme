@@ -29,7 +29,7 @@
     &:hover { @include button(flat-hover, $tc: $color_fg_acc_inv); }
     &:focus { @include button(flat-focus, $tc: $color_fg_acc_inv); }
     &:active { @include button(flat-active, $tc: $color_fg_acc_inv); }
-    &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
+    &:insensitive { @include button(flat-disabled, $tc: $color_fg_osd); }
   }
   @else {
     @include button(flat-normal, $tc: $color_fg_acc);

@@ -66,8 +66,8 @@
         }
 
         &-item {
-          color: $osd_sec_fg;
-          &:hover { color: $osd_fg; }
+          color: $color_fg_osd_2;
+          &:hover { color: $color_fg_osd; }
           &:ltr { padding-right: if($ref_weight >= 1.0, 1em, 0.7em); }
           &:rtl { padding-left: if($ref_weight >= 1.0, 1em, 0.7em); }
         }
@@ -96,8 +96,8 @@
         }
 
         &-item {
-          color: $osd_sec_fg;
-          &:hover { color: $osd_fg; }
+          color: $color_fg_osd_2;
+          &:hover { color: $color_fg_osd; }
           &:ltr { padding-right: if($ref_weight >= 1.0, 1em, 0.7em); }
           &:rtl { padding-left: if($ref_weight >= 1.0, 1em, 0.7em); }
         }

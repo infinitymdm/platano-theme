@@ -2,8 +2,6 @@
 //  * Activities Ripples *
 //  **********************/
 
-$ripple_d: 52px;
-
 %ripple_bg {
   border: 0 none transparent; // for safety
   background-color: opacity($color_bg_acc, $alpha_foreground_3rd);

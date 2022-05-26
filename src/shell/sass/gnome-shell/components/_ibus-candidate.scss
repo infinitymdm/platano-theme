@@ -6,11 +6,11 @@
   &-popup-content {
     padding: 0.5em;
     spacing: 0.3em;
-    color: $osd_ter_fg;
+    color: $color_fg_osd_3;
   }
 
   &-index {
-    color: $osd_sec_fg;
+    color: $color_fg_osd_2;
     &:ltr { padding: 0.3em 0.5em 0.3em 0; }
     &:rtl { padding: 0.3em 0 0.3em 0.5em; }
   }
@@ -18,20 +18,20 @@
   &-box {
     padding: 0.3em 0.5em;
     border-radius: $r_2;
-    color: $osd_sec_fg;
+    color: $color_fg_osd_2;
     font-size: 110%;
     transition-duration: $transition_d_none;
     &:hover {
-      background-color: $osd_semi_fill_bg;
-      color: $osd_fg;
+      background-color: $color_bg_osd_semi_fill;
+      color: $color_fg_osd;
 
-      .candidate-index { color: $osd_fg; }
+      .candidate-index { color: $color_fg_osd; }
     }
     &:active {
-      background-color: $osd_fill_bg;
-      color: $osd_fg;
+      background-color: $color_bg_osd_fill;
+      color: $color_fg_osd;
 
-      .candidate-index { color: $osd_fg; }
+      .candidate-index { color: $color_fg_osd; }
     }
     &:selected {
       background-color: $color_bg_sgst;
@@ -55,7 +55,7 @@
       @include button(flat-normal, $tc: $color_fg_acc_inv);
       &:hover { @include button(flat-hover, $tc: $color_fg_acc_inv); }
       &:active { @include button(flat-active, $tc: $color_fg_acc_inv); }
-      &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
+      &:insensitive { @include button(flat-disabled, $tc: $color_fg_osd); }
     }
     @else {
       @include button(flat-normal, $tc: $color_fg_acc);

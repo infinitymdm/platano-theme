@@ -24,7 +24,7 @@
   &-thumbnail-indicator {
     border: none;
     border-radius: 0;
-    background-color: $hidden_fill_bg;
+    background-color: $color_bg_fill_hidden;
     &:ltr {
       padding: 0 0 0 12px;
       box-shadow: inset 4px 0 $color_bg_sel;

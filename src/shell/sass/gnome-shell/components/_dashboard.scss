@@ -42,7 +42,7 @@
 }
 
 %tooltip_template {
-  color: $osd_fg;
+  color: $color_fg_osd;
   background-color: if($variant == mixed, opacity($color_bg_tooltip_inv, $alpha_osd),
                                           opacity($color_bg_tooltip, $alpha_osd));
   box-shadow: $empty_shadow;

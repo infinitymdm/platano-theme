@@ -15,18 +15,18 @@
   &-header-hbox {
     spacing: if($ref_weight >= 1.0, 10px, 7px);
     // dimming for subtitle
-    color: $osd_ter_fg;
+    color: $color_fg_osd_3;
   }
 
   &-header { // title
-    color: $osd_fg;
+    color: $color_fg_osd;
     font-weight: 700;
     font-size: 110%;
   }
 
   &-header-icon {
     icon-size: $icon_size * 2;
-    color: $osd_fg;
+    color: $color_fg_osd;
   }
 
   &-airplane {
@@ -42,7 +42,7 @@
             @include button(flat-active, $tc: $color_fg_acc_inv);
             box-shadow: $empty_shadow;
           }
-          &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
+          &:insensitive { @include button(flat-disabled, $tc: $color_fg_osd); }
         }
         @else {
           @include button(flat-normal, $tc: $color_fg_acc);
@@ -61,7 +61,7 @@
       text-align: center;
     }
 
-    &-text { color: $osd_fg; }
+    &-text { color: $color_fg_osd; }
   }
 
   &-scroll-view {
@@ -74,7 +74,7 @@
     spacing: if($ref_weight >= 1.0, 20px, 16px);
     padding: if($ref_weight >= 1.0, 12px, 8px);
     background-color: transparent; // shut up 3rd-party gresources
-    color: $osd_fg;
+    color: $color_fg_osd;
     font-size: 100%;
     &:selected {
       background-color: $color_bg_sel;
@@ -88,7 +88,7 @@
 }
 
 .no-networks {
-  &-label { color: $osd_ter_fg; }
+  &-label { color: $color_fg_osd_3; }
 
   &-box { spacing: if($ref_weight >= 1.0, 12px, 8px); }
 }

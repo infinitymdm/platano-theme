@@ -9,8 +9,8 @@ $tool_icon_size: 24px;
   padding: 8px;
   border: none;
   border-radius: $r_8; // affects small OSD while inspecting
-  background-color: opacity($osd_bg, $alpha_osd);
-  color: $osd_fg;
+  background-color: opacity($color_bg_osd, $alpha_osd);
+  color: $color_fg_osd;
   box-shadow: $z-depth-4;
 
   &.lg-dialog {
@@ -22,10 +22,10 @@ $tool_icon_size: 24px;
     padding: if($ref_weight >= 1.0, 0 8px, 0 6px);
     border: none;
     border-radius: 0;
-    background-color: $hidden_fill_bg;
+    background-color: $color_bg_fill_hidden;
     box-shadow:
       inset 0 -1px if($variant != light,
-                      mix(white, $osd_bg, percentage($alpha_div_2)),
+                      mix(white, $color_bg_osd, percentage($alpha_div_2)),
                       mix(black, $color_bg_dark, percentage($alpha_div_1)));
 
     > StIcon { // 'color-picker' and 'trash'
@@ -40,7 +40,7 @@ $tool_icon_size: 24px;
     min-height: $tool_icon_size + if($ref_weight >= 1.0, 8px, 6px);
     padding: if($ref_weight >= 1.0, 0 8px * 2, 0 6px * 2);
     border-bottom-width: 0;
-    color: $osd_ter_fg;
+    color: $color_fg_osd_3;
     @if $ver < 3.35 { // stop using fixed-fonts
       font-family: $font-family;
       font-weight: 500;
@@ -51,16 +51,16 @@ $tool_icon_size: 24px;
     &:hover {
       border-bottom-width: 0;
       border-color: transparent;
-      background-color: $hidden_fill_bg;
-      color: $osd_fg;
-      box-shadow: inset 0 -2px $osd_out_fg;
+      background-color: $color_bg_fill_hidden;
+      color: $color_fg_osd;
+      box-shadow: inset 0 -2px $color_fg_osd_out;
       text-shadow: none;
       transition-duration: $transition_d_standard;
     }
     &:selected {
       border-bottom-width: 0;
       border-color: transparent;
-      background-color: $hidden_fill_bg;
+      background-color: $color_bg_fill_hidden;
       color:
         if($variant != light,
            saturate(lighten($color_bg_sel, percentage($alpha_track_2)),
@@ -85,29 +85,29 @@ $tool_icon_size: 24px;
   StEntry {
     selection-background-color: $color_bg_sel;
     selected-color: $color_fg_sel;
-    @include entry(normal, $tc: $osd_fg);
-    &:hover { @include entry(hover, $tc: $osd_fg); }
-    &:focus { @include entry(focus, $tc: $osd_fg); }
-    &:insensitive { @include entry(disabled, $tc: $osd_fg); }
+    @include entry(normal, $tc: $color_fg_osd);
+    &:hover { @include entry(hover, $tc: $color_fg_osd); }
+    &:focus { @include entry(focus, $tc: $color_fg_osd); }
+    &:insensitive { @include entry(disabled, $tc: $color_fg_osd); }
   }
 
   .shell-link {
-    color: opacity($osd_link_fg, $alpha_foreground_2nd);
+    color: opacity($color_fg_osd_link, $alpha_foreground_2nd);
     &:hover,
-    &:active { color: $osd_link_fg; }
+    &:active { color: $color_fg_osd_link; }
   }
 
   @if $ver > 3.37 {
     .actor-link {
-      color: $osd_sec_fg;
+      color: $color_fg_osd_2;
       &:hover,
-      &:active { color: $osd_fg; }
+      &:active { color: $color_fg_osd; }
     }
   }
 }
 
 .lg-completions-text {
-  color: $osd_sec_fg;
+  color: $color_fg_osd_2;
   font-style: italic;
   font-size: 90%;
 }
@@ -127,11 +127,11 @@ $tool_icon_size: 24px;
     border-radius: $r_2;
     font-weight: 500;
     @if $variant == mixed {
-      @include button(normal, $c: $osd_base, $tc: $osd_fg);
-      &:hover { @include button(hover, $c: $osd_base, $tc: $osd_fg); }
-      &:focus { @include button(focus, $c: $osd_base, $tc: $osd_fg); }
-      &:active { @include button(active, $c: $osd_base, $tc: $osd_fg); }
-      &:insensitive { @include button(flat-disabled, $tc: $osd_fg); }
+      @include button(normal, $c: $color_base_osd, $tc: $color_fg_osd);
+      &:hover { @include button(hover, $c: $color_base_osd, $tc: $color_fg_osd); }
+      &:focus { @include button(focus, $c: $color_base_osd, $tc: $color_fg_osd); }
+      &:active { @include button(active, $c: $color_base_osd, $tc: $color_fg_osd); }
+      &:insensitive { @include button(flat-disabled, $tc: $color_fg_osd); }
     }
     @else {
       @include button(normal);
@@ -158,13 +158,13 @@ $tool_icon_size: 24px;
 
   &-name {
     padding-bottom: (6px / 2) 0;
-    color: $osd_fg;
+    color: $color_fg_osd;
     font-weight: 700;
     font-size: 130%;
   }
 
   &-description {
-    color: $osd_sec_fg;
+    color: $color_fg_osd_2;
     font-weight: 400;
     font-size: 90%;
     &:ltr { padding: 6px 0 6px (6px * 2); }
@@ -187,10 +187,10 @@ StBoxLayout#Windows {
 #LookingGlassPropertyInspector {
   padding: 6px;
   border: 1px solid if($variant != light,
-                       mix(white, $osd_bg, percentage($alpha_div_2)),
+                       mix(white, $color_bg_osd, percentage($alpha_div_2)),
                        $color_fg_div_sld);
   border-radius: 0;
-  background-color: $osd_bg;
-  color: $osd_fg;
+  background-color: $color_bg_osd;
+  color: $color_fg_osd;
   box-shadow: $empty_shadow;
 }

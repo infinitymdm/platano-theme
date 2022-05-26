@@ -19,20 +19,20 @@
         spacing: if($ref_weight >= 1.0, 20px, 16px);
       }
       @else { spacing: if($ref_weight >= 1.0, 18px, 12px); }
-      color: $osd_fg;
+      color: $color_fg_osd;
     }
 
     @if $ver < 3.35 {
       &-icon {
         min-width: $icon_size * 3;
-        color: $osd_fg;
+        color: $color_fg_osd;
         icon-size: $icon_size * 3;
         -st-icon-style: symbolic;
       }
     }
 
     &-title {
-      color: $osd_fg;
+      color: $color_fg_osd;
       font-size: 130%;
       @if $ver > 3.35 {
         font-weight: 700;
@@ -63,6 +63,6 @@
 }
 
 %message_dialog_subtitle {
-  color: $osd_sec_fg;
+  color: $color_fg_osd_2;
   font-weight: 400;
 }

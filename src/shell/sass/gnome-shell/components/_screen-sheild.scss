@@ -4,7 +4,7 @@
 
 %unlock_clock {
   padding-bottom: 1.5em;
-  color: $ovv_fg;
+  color: $color_fg_ovv;
   text-align: center;
 }
 
@@ -34,15 +34,15 @@
   border-radius: $r_8;
   background-color: if($variant == mixed, opacity($color_bg_tooltip_inv, $alpha_osd),
                                           opacity($color_bg_tooltip, $alpha_osd));
-  color: $osd_fg;
+  color: $color_fg_osd;
 }
 
 %unlock_scrollbar {
   StButton#vhandle,
   StButton#hhandle {
-    background-color: opacity($ovv_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
-    &:hover { background-color: opacity($ovv_fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
-    &:active { background-color: $ovv_fg; }
+    background-color: opacity($color_fg_ovv, $alpha_foreground_3rd * $alpha_foreground_3rd);
+    &:hover { background-color: opacity($color_fg_ovv, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+    &:active { background-color: $color_fg_ovv; }
   }
 }
 
@@ -112,7 +112,7 @@
         height: 48px;
         -arrow-thickness: 12px;
         -arrow-shadow: none;
-        color: $ovv_fg;
+        color: $color_fg_ovv;
       }
     }
 

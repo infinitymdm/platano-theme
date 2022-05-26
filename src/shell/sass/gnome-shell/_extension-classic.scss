@@ -15,7 +15,7 @@
     background-gradient-drection: vertical;
     background-gradient-start: $color_bg_panel;
     background-gradient-end: $color_bg_panel;
-    color: $osd_fg;
+    color: $color_fg_osd;
 
     StLabel { text-shadow: none; }
 
@@ -40,7 +40,7 @@
     StIcon { icon-shadow: none; }
 
     .panel-button {
-      color: $osd_fg;
+      color: $color_fg_osd;
       &:hover,
       &:active,
       &:focus,
@@ -48,10 +48,10 @@
 
       &:active,
       &:focus {
-        background-color: $panel_hidden_bg;
+        background-color: $color_bg_panel_hidden;
         background-gradient-drection: vertical;
-        background-gradient-start: $panel_hidden_bg;
-        background-gradient-end: $panel_hidden_bg;
+        background-gradient-start: $color_bg_panel_hidden;
+        background-gradient-end: $color_bg_panel_hidden;
       }
     }
   }
