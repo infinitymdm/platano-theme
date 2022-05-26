@@ -29,6 +29,8 @@ stage {
   @else { font-size: 100%; }
 }
 
+$icon_grid_spacing: if($ref_weight >= 1.0, 36px, 27px);
+
 // /**************************
 //  * gnome-shell components *
 //  **************************/
