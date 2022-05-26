@@ -1,0 +1,184 @@
+// /************
+//  * Toolbars *
+//  ************/
+
+%toolitem_size {
+  min-width: rem($toolitem_size / 2, $sw: 1.0);
+  min-height: rem($toolitem_size, $sw: 1.0);
+  padding: 0 rem($toolitem_size / 4, $sw: 1.0);
+}
+
+toolbar {
+  @if $maj_ver == 3 {
+    -GtkWidget-window-dragging: true;
+  }
+
+  padding: $toolbar_padding;
+  background-color: $color_bg;
+
+  &:not(.osd) {
+    // sizing
+    button,
+    .linked > button {
+      &, &.flat {
+        &,
+        &.text-button,
+        &.image-button { @extend %toolitem_size; }
+      }
+    }
+
+    // enforce square image buttons
+    *:not(.linked) > button.image-button { @include radius($r_2); }
+
+    combobox {
+      button.combo,
+      .linked > button.combo { @extend %toolitem_size; }
+
+      .background & .linked > entry.combo:not(.flat) { // optimize radius
+        &:dir(ltr) { @include radius($r_4 0 0 0, none); }
+        &:dir(rtl) { @include radius(0 $r_4 0 0, none); }
+
+        + button.combo {
+          &:dir(ltr) { @include radius(0 $r_4 $r_4 0, none); }
+          &:dir(rtl) { @include radius($r_4 0 0 $r_4, none); }
+        }
+      }
+    }
+
+    entry {
+      &, &.combo {
+        &, &.flat {
+          min-height: calc(#{rem($toolitem_size, $sw: 1.0)} - 2px * 2);
+        }
+      }
+    }
+
+    spinbutton:not(.vertical) {
+      &,
+      entry,
+      button {
+        min-height: calc(#{rem($toolitem_size, $sw: 1.0)} - 2px * 2);
+      }
+    }
+  }
+
+  // toolbar separators
+  separator {
+    min-width: 0;
+    min-height: 0;
+    background-color: $color_fg_div; // keep initial color
+  }
+
+  &.horizontal {
+    *:not(.linked) > {
+      button,
+      entry,
+      combobox,
+      spinbutton { margin: 0 2px; }
+    }
+
+    separator { margin: 0 rem($menuitem_padding); }
+  }
+
+  &.vertical {
+    *:not(.linked) > {
+      button,
+      entry,
+      combobox,
+      spinbutton { margin: 2px 0; }
+    }
+
+    separator { margin: rem($menuitem_padding) 0; }
+
+    frame & {
+      &:dir(ltr) { border-right: 1px solid $color_fg_div; }
+      &:dir(rtl) { border-left: 1px solid $color_fg_div; }
+    }
+  }
+
+  // OSD
+  @at-root %osd_toolbar,
+  &.osd {
+    margin: $shadow_margin_3;
+    padding: $toolbar_padding rem($menuitem_padding);
+    @include radius($r_8);
+    background-color: if($variant == light, $color_bg_dark, $color_bg_dark_inv);
+    color: if($variant == light, $color_fg, $color_fg_inv);
+    box-shadow: $z-depth-3;
+
+    &.toolbar { // unset drop-shadows for Gnome-documents since that app can't
+                // deal with outer margins at all.
+      margin: unset;
+      box-shadow: none;
+    }
+
+    button,
+    .linked > button {
+      &, &.flat {
+        @if $variant == mixed {
+          @extend %inv-action-area-button;
+        }
+        @else {
+          @extend %action-area-button;
+        }
+        min-height: rem($widget_size);
+        min-width: rem($widget_size);
+      }
+    }
+
+    button { // enforce overriding radius
+      &, &.flat { @include radius($r); }
+    }
+
+    .linked > button {
+      &, &.flat { // enforce overriding radius
+        &:first-child,
+        &:last-child {
+          &:dir(ltr), &:dir(rtl) { @include radius($r); }
+        }
+      }
+    }
+  }
+}
+
+// searchbar, location-bar, inline-toolbar, statusbar & actionbar
+@each $_type, $_width in ('.inline-toolbar', 0 1px 1px),
+                          ('.location-bar', 0 0 1px) {
+  #{$_type} {
+    padding: $toolbar_padding;
+    border-style: solid;
+    border-width: #{$_width};
+    border-color: $color_fg_div;
+    background-color: $color_bg_dark;
+  }
+}
+
+searchbar {
+  padding: if($maj_ver == 4, 0, $toolbar_padding);
+  background-image: linear-gradient(to bottom,
+                                    $color_bg_dark calc(100% - 2px),
+                                    $color_fg_div calc(100% - 2px),
+                                    $color_fg_div calc(100% - 1px),
+                                    transparent calc(100% - 1px),
+                                    transparent 100%);
+  background-repeat: no-repeat;
+
+  @if $maj_ver == 4 {
+    > revealer > box { padding: $toolbar_padding; }
+  }
+}
+
+actionbar {
+  background-color: $color_bg_dark;
+
+  // actual padding
+  > revealer > box { padding: $toolbar_padding; }
+}
+
+@if $maj_ver == 3 {
+  @if $mnr_ver > 23 {
+    statusbar { padding: $toolbar_padding; }
+  }
+} @else {
+  statusbar { padding: $toolbar_padding; }
+}

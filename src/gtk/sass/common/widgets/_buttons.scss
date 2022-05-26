@@ -1,0 +1,854 @@
+// /***********
+//  * Buttons *
+//  ***********/
+
+button {
+  // subtract border widths
+  min-height: calc(#{rem($widget_size)} - 1px * 2);
+  min-width: calc(#{rem($widget_size)} - 1px * 2);
+  padding: 0 rem($txt_button_lr_space);
+  border: 1px solid transparent; // initialize borders
+  @include radius($r_2);
+  background-clip: border-box;
+  @include button(normal);
+  font-weight: 500;
+  @include ink-reaction(normal, $tr: ink-normal-dec);
+  &:hover { @include button(hover); }
+  &:disabled { @include button(disabled); }
+  &:checked { @include button(checked); }
+  &:checked:hover { @include button(checked-hover); }
+  &:checked:disabled { @include button(checked-disabled); }
+
+  // active state for non-native apps
+  &:active {
+    background-color: mix($color_fg, $color_base, percentage($alpha_track_2));
+  }
+
+  // active state for native apps
+  .background &:active {
+    @include button(active);
+    @include ink-reaction(active-dec, $tr: ink-active-dec);
+  }
+
+  @at-root %flat_button,
+  &.flat {
+    min-height: rem($widget_size);
+    min-width: rem($widget_size);
+    border: none;
+    @include button(flat-normal);
+    @include ink-reaction(normal, $tr: ink-normal-dec);
+    &:hover { @include button(flat-hover); }
+    &:active {
+      @include button(flat-active);
+      @include ink-reaction(active-dec, $tr: ink-active-dec);
+    }
+    &:disabled { @include button(flat-disabled); }
+    &:checked { @include button(flat-checked); }
+    &:checked:disabled { @include button(flat-checked-disabled); }
+  }
+
+  label { margin-bottom: rem($baseline, $sw: 1.0); }
+
+  &.image-button,
+  &.circular,
+  &.close {
+    min-height: calc(#{rem($widget_size)} - 0.5px * 2);
+    min-width: calc(#{rem($widget_size)} - 0.5px * 2);
+    padding: 0;
+    @include radius($r);
+    @include ink-reaction(normal, $bs: 10, $tr: ink-normal-dec);
+    &:active { @include ink-reaction(active-dec, $bs: 10,
+                                      $tr: ink-active-dec); }
+
+    &.flat {
+      min-height: rem($widget_size);
+      min-width: rem($widget_size);
+    }
+
+    &:not(.text-button) {
+      label,
+      image { padding: 0; }
+    }
+  }
+
+  &.text-button,
+  &.text-button.image-button,
+  &.lock {
+    @include radius($r_2);
+    padding: 0 rem($txt_button_lr_space / 2);
+
+    label,
+    image { padding: 0 rem($txt_button_lr_space / 2); }
+  }
+
+  headerbar & { // GtkHeaderBar specific
+    &:not(.flat),
+    label.text-button:not(.flat) {
+      &:not(.suggested-action):not(.destructive-action) {
+        @if $variant == mixed { @extend %inv_button; }
+      }
+    }
+
+    label.text-button { // workaround for Gnome-Software
+      padding: 0;
+      &:dir(ltr) { padding-right: rem($entry_lr_space / 2); }
+      &:dir(rtl) { padding-left: rem($entry_lr_space / 2); }
+    }
+
+    &.flat {
+      &:not(.suggested-action):not(.destructive-action) {
+        @if $variant == mixed {
+          @include button(flat-normal, $tc: $color_fg_inv);
+          @include ink-reaction(normal, $fc: $color_fg_inv,
+                                        $tr: ink-normal-dec);
+          &:hover { @include button(flat-hover, $tc: $color_fg_inv); }
+          &:active {
+            @include button(flat-active, $tc: $color_fg_inv);
+            @include ink-reaction(active-dec, $fc: $color_fg_inv,
+                                              $tr: ink-active-dec);
+          }
+          &:disabled { @include button(flat-disabled, $tc: $color_fg_inv); }
+        }
+        &:checked { // enforce outlined-checked styling
+          @include button(checked);
+          &:hover { @include button(checked-hover); }
+          &:disabled {
+            @if $variant == mixed {
+              @include button(checked-disabled, $tc: $color_fg_inv);
+            }
+            @else { @include button(checked-disabled); }
+          }
+        }
+      }
+    }
+  }
+
+  headerbar *:not(.linked) > &:not(.flat),
+  headerbar > &:not(.flat) { // set radius
+    &:not(.suggested-action):not(.destructive-action) {
+      &:not(.titlebutton):not(.selection-menu) {
+        &:not(.text-button):not(.lock):not(.color):not(.image-button) {
+          // enforce circular buttons
+          @include radius($r, none);
+        }
+      }
+
+      &.text-button {
+        &, &.image-button { @include radius($r_2, none); }
+      }
+
+      &.lock,
+      &.color { @include radius($r_2, none); }
+    }
+  }
+
+  headerbar:not(.selection-mode) *:not(.linked) > &:not(.flat),
+  headerbar:not(.selection-mode) > &:not(.flat) { // set spacing
+    &:not(.suggested-action):not(.destructive-action) {
+      &:not(.titlebutton):not(.selection-menu) {
+        &:not(.text-button):not(.lock):not(.color):not(.image-button) {
+          min-height: calc(#{rem($widget_size)} - 0.5px * 2);
+          min-width: calc(#{rem($widget_size)} - 0.5px * 2);
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  headerbar.selection-mode *:not(.linked) > &:not(.flat),
+  headerbar.selection-mode > &:not(.flat) { // set spacing
+    &:not(.suggested-action):not(.destructive-action) {
+      &:not(.titlebutton):not(.selection-menu) {
+        &:not(.text-button):not(.lock):not(.color):not(.image-button) {
+          min-height: calc(#{rem($widget_size)} + 0.5px * 2);
+          min-width: calc(#{rem($widget_size)} + 0.5px * 2);
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  headerbar.selection-mode & {
+    &:not(.suggested-action):not(.destructive-action) {
+      &:not(.titlebutton),
+      &.selection-menu { // enforce flat buttons
+        min-height: calc(#{rem($widget_size)} + 0.5px * 2);
+        min-width: calc(#{rem($widget_size)} + 0.5px * 2);
+        @if $variant == mixed {
+          @include button(flat-normal, $tc: $color_fg_inv);
+          &:hover { @include button(flat-hover, $tc: $color_fg_inv); }
+          &:active { @include button(flat-active, $tc: $color_fg_inv); }
+          &:disabled { @include button(flat-disabled, $tc: $color_fg_inv); }
+          &:checked {
+            background-color: $color_bg_sel;
+            color: $color_fg_sel;
+          }
+          &:checked:disabled {
+            @include button(flat-checked-disabled, $tc: $color_fg_inv);
+          }
+        }
+        @else {
+          @include button(flat-normal, $tc: $color_fg);
+          &:hover { @include button(flat-hover, $tc: $color_fg); }
+          &:active { @include button(flat-active, $tc: $color_fg); }
+          &:disabled { @include button(flat-disabled, $tc: $color_fg); }
+          &:checked {
+            background-color: $color_bg_sel;
+            color: $color_fg_sel;
+          }
+          &:checked:disabled {
+            @include button(flat-checked-disabled, $tc: $color_fg);
+          }
+        }
+      }
+    }
+  }
+
+  %button_drop_target,
+  &:drop(active) {
+    color: $color_fg_drop;
+    background-color: $color_bg_drop;
+
+    @if $variant == mixed {
+      headerbar & { color: $color_fg_drop_inv; }
+    }
+  }
+
+  separator { // remove vertical separator
+    min-height: 0;
+    min-width: 0;
+    border-color: transparent;
+    background-color: transparent;
+  }
+
+  // overlay / OSD style
+  @if $variant == mixed {
+    &.osd,
+    .osd & {
+      &, &.flat {
+        min-height: rem($widget_size);
+        min-width: rem($widget_size);
+        @include button(flat-normal, $tc: $color_fg_acc_inv);
+        &:hover { @include button(flat-hover, $tc: $color_fg_acc_inv); }
+        &:active { @include button(flat-active, $tc: $color_fg_acc_inv); }
+        &:disabled { @include button(flat-disabled, $tc: $color_fg_inv); }
+        &:checked { @include button(flat-checked, $tc: $color_fg_acc_inv); }
+        &:checked:disabled {
+          @include button(flat-checked-disabled, $tc: $color_fg_acc_inv);
+        }
+      }
+    }
+  }
+  @else {
+    &.osd,
+    .osd & {
+      &, &.flat {
+        min-height: rem($widget_size);
+        min-width: rem($widget_size);
+        @include button(flat-normal, $tc: $color_fg_acc);
+        &:hover { @include button(flat-hover, $tc: $color_fg_acc); }
+        &:active { @include button(flat-active, $tc: $color_fg_acc); }
+        &:disabled { @include button(flat-disabled, $tc: $color_fg); }
+        &:checked { @include button(flat-checked, $tc: $color_fg_acc); }
+        &:checked:disabled {
+          @include button(flat-checked-disabled, $tc: $color_fg_acc);
+        }
+      }
+    }
+  }
+
+  // big standalone buttons like in Documents pager
+  &.osd {
+    @at-root %osd_image_button,
+    &.image-button { // enforce flat-buttons
+      min-height: rem($widget_size);
+      min-width: rem($widget_size);
+      padding: rem($txt_button_lr_space / 2);
+      &:not(:disabled) {
+        background-color: if($variant == light, track($color_bg_dark, $alpha_osd),
+                                                track($color_bg_dark_inv, $alpha_osd));
+        &:hover {
+          background-color:
+            if($variant == light,
+                track(mix($color_bg_dark, $color_fg_acc, percentage($alpha_foreground_2nd)),
+                      $alpha_osd),
+                track(mix($color_bg_dark_inv, $color_fg_acc, percentage($alpha_foreground_2nd)),
+                      $alpha_osd));
+        }
+      }
+    }
+    &:disabled { opacity: 0; }
+
+    .linked > & { // 'rotate CW/CCW' linked-buttons
+      &.image-button {
+        &:not(:disabled) {
+          padding: rem($txt_button_lr_space / 2);
+          @include radius($r_2);
+          background-color: if($variant == light,
+                                track($color_bg_dark, $alpha_osd),
+                                track($color_bg_dark_inv, $alpha_osd));
+          &:hover {
+            background-color:
+              if($variant == light,
+                  track(mix($color_bg_dark, $color_fg_acc, percentage($alpha_foreground_2nd)),
+                        $alpha_osd),
+                  track(mix($color_bg_dark_inv, $color_fg_acc, percentage($alpha_foreground_2nd)),
+                        $alpha_osd));
+          }
+        }
+        &:first-child {
+          &:dir(ltr) { @include radius($r_2 0 0 $r_2); }
+          &:dir(rtl) { @include radius(0 $r_2 $r_2 0); }
+        }
+        &:last-child {
+          &:dir(ltr) { @include radius(0 $r_2 $r_2 0); }
+          &:dir(rtl) { @include radius($r_2 0 0 $r_2); }
+        }
+      }
+    }
+  }
+
+  // Suggested and Destructive Action buttons
+  @each $b_type, $b_color in (suggested-action, $color_bg_sgst),
+                              (destructive-action, $color_bg_dest) {
+    &, &.flat {
+      &.#{$b_type} { // 1px border exists
+        min-height: calc(#{rem($widget_size)} - 1px * 2);
+        min-width: calc(#{rem($widget_size)} - 1px * 2);
+        @include button(raised-normal, $c: $b_color,
+                                        $tc: $color_fg_sel_2);
+        @include ink-reaction(normal, $fc: $color_fg_sel,
+                              $tr: ink-normal-dec);
+        &:hover {
+          @include button(raised-hover, $c: $b_color,
+                                        $tc: $color_fg_sel);
+        }
+        &:active {
+          @include button(raised-active, $c: $color_bg_sel,
+                                          $tc: $color_fg_sel);
+          @include ink-reaction(active-dec, $fc: $color_fg_sel,
+                                $tr: ink-active-dec);
+        }
+        &:checked {
+          @include button(raised-checked);
+          &:disabled {
+            border-color: mix($b_color, $color_bg, percentage($alpha_track_1));
+            background-color: mix($b_color, $color_bg, percentage($alpha_track_1));
+            color: $color_fg_dis_sel;
+          }
+        }
+        &:disabled {
+          @include button(raised-disabled, $tc: $color_fg);
+        }
+      }
+    }
+  }
+
+  stackswitcher & { // do not shrink button width
+    &:first-child,
+    &:last-child,
+    &:not(:first-child):not(:last-child) {
+      min-height: rem($widget_size);
+    }
+
+    &.image-button.radio { // outlined linked-array
+      min-width: rem($widget_size);
+      @include radius(0);
+      &:dir(ltr) { border-right-width: 0; }
+      &:dir(rtl) { border-left-width: 0; }
+      &:first-child {
+        &:dir(ltr) { @include radius($r_2 0 0 $r_2); }
+        &:dir(rtl) { @include radius(0 $r_2 $r_2 0); }
+      }
+      &:last-child {
+        &:dir(ltr) {
+          @include radius(0 $r_2 $r_2 0);
+          border-right-width: 1px;
+        }
+        &:dir(rtl) {
+          @include radius($r_2 0 0 $r_2);
+          border-left-width: 1px;
+        }
+      }
+    }
+
+    &.text-button:not(.circular) { // exclude circular class
+      &, &.flat { // use tab-like switcher styling
+        min-width: rem($widget_size * 3);
+        @include radius(0);
+        border: none;
+        @include button(flat-normal, $tc: $color_fg_3);
+        box-shadow: inset 0 -1px $color_fg_trk_out;
+        @include ink-reaction(normal, $tr: ink-normal-dec);
+        &:hover { @include button(flat-lined-hover); }
+        &:active {
+          @include button(flat-active);
+          @include ink-reaction(active-dec, $tr: ink-active-dec);
+        }
+        &:disabled { @include button(flat-disabled); }
+        &:checked {
+          @include button(flat-lined-checked, $tc: $color_lbl_sel);
+          &:hover { @include button(flat-hover, $tc: $color_lbl_sel); }
+        }
+
+        headerbar &:not(.suggested-action):not(.destructive-action) {
+          &:not(:hover):not(:active):not(:checked):not(:disabled) {
+            color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+          }
+
+          @if $variant == mixed {
+            @include ink-reaction(
+                        normal, $fc: $color_fg_inv, $tr: ink-normal-dec);
+            &:hover { @include button(flat-lined-hover, $tc: $color_fg_inv); }
+            &:active {
+              @include button(flat-active, $tc: $color_fg_inv);
+              @include ink-reaction(
+                          active-dec, $fc: $color_fg_inv, $tr: ink-active-dec);
+            }
+            &:disabled {
+              @include button(flat-disabled, $tc: $color_fg_inv);
+            }
+            &:checked {
+              @include button(flat-lined-checked, $tc: $color_lbl_sel_inv);
+              &:hover { @include button(flat-hover, $tc: $color_lbl_sel_inv); }
+            }
+          }
+        }
+      }
+    }
+
+    &.circular.text-button.radio { // for shortcut windows
+      &, &.flat {
+        min-width: rem($widget_size);
+        min-height: rem($widget_size);
+        padding: 0;
+        @include radius($r);
+
+        // we just concern that numeric button only
+        label { margin-bottom: 0; }
+      }
+    }
+  }
+
+  .stack-switcher > & {
+    // to position the needs attention dot, padding is added to the button
+    // child, a label needs just lateral padding while an icon needs vertical
+    // padding added too.
+    label {
+      padding: 0 rem($txt_button_lr_space / 2) rem($baseline, $sw: 1.0);
+    }
+
+    image {
+      padding: rem($txt_button_lr_space / 4) rem($txt_button_lr_space / 2);
+    }
+
+    &.text-button {
+      // compensate text-button paddings
+      padding: 0 rem($txt_button_lr_space / 2);
+    }
+
+    &.image-button:not(.text-button) {
+      image { padding: 0; } // reset padding
+    }
+
+    &.needs-attention {
+      label,
+      image { @extend %needs_attention; }
+
+      &:active,
+      &:checked {
+        label,
+        image {
+          animation: none;
+          background-image: none;
+        }
+      }
+    }
+  }
+
+  // linked-array
+  .linked.horizontal:not(stackswitcher) > & {
+    @include radius(0); // optimize radius and widths
+    &:dir(ltr) { border-right-width: 0; }
+    &:dir(rtl) { border-left-width: 0; }
+    &:first-child {
+      &:dir(ltr) { @include radius($r_2 0 0 $r_2); }
+      &:dir(rtl) { @include radius(0 $r_2 $r_2 0); }
+    }
+    &:last-child {
+      &:dir(ltr) {
+        @include radius(0 $r_2 $r_2 0);
+        border-right-width: 1px;
+      }
+      &:dir(rtl) {
+        @include radius($r_2 0 0 $r_2);
+        border-left-width: 1px;
+      }
+    }
+    &:only-child {
+      &:dir(ltr), &:dir(rtl) {
+        @include radius($r_2);
+        border-width: 1px;
+      }
+    }
+
+    &.flat {
+      border: none;
+      &:first-child {
+        &:dir(ltr) { @include radius($r_2 0 0 $r_2); }
+        &:dir(rtl) { @include radius(0 $r_2 $r_2 0); }
+      }
+      &:last-child {
+        &:dir(ltr) {
+          @include radius(0 $r_2 $r_2 0);
+          border-right-width: 0;
+        }
+        &:dir(rtl) {
+          @include radius($r_2 0 0 $r_2);
+          border-left-width: 0;
+        }
+      }
+      &:only-child {
+        &:dir(ltr), &:dir(rtl) {
+          @include radius($r_2);
+          border-width: 0;
+        }
+      }
+    }
+  }
+
+  // vertical array
+  .linked.vertical > & {
+    @include radius(0); // optimize radius and widths
+    border-bottom-width: 0;
+    &:first-child { @include radius($r_2 $r_2 0 0); }
+    &:last-child {
+      @include radius(0 0 $r_2 $r_2);
+      border-bottom-width: 1px;
+    }
+    &:only-child {
+      @include radius($r_2);
+      border-width: 1px;
+    }
+
+    &.flat {
+      border: none;
+      &:first-child { @include radius($r_2 $r_2 0 0); }
+      &:last-child {
+        @include radius(0 0 $r_2 $r_2);
+        border-bottom-width: 0;
+      }
+      &:only-child {
+        @include radius($r_2);
+        border-width: 0;
+      }
+    }
+  }
+
+  // generic switcher image buttons
+  .linked > &:not(.text-button):not(.combo),
+  .linked.vertical > &:not(.text-button):not(.combo) {
+    &, &.radio {
+      padding: 0;
+
+      label {
+        margin-bottom: 0;
+        padding: 0 rem($txt_button_lr_space / 2) rem($baseline, $sw: 1.0);
+      }
+
+      widget image,
+      box.horizontal > image { // for some special cases
+        padding: 0  rem($txt_button_lr_space / 2);
+      }
+    }
+  }
+
+  // inline-toolbar and action-bar buttons
+  .inline-toolbar *:not(.linked) > &,
+  actionbar *:not(.linked) > & {
+    &,
+    &.image-button,
+    &.text-button {
+      &:not(.suggested-action):not(.destructive-action) {
+        @include button(flat-normal);
+        &:hover { @include button(flat-hover); }
+        &:active { @include button(flat-active); }
+        &:disabled { @include button(flat-disabled); }
+        &:checked { @include button(flat-checked); }
+        &:checked:disabled { @include button(flat-checked-disabled); }
+      }
+    }
+  }
+
+  .inline-toolbar &,
+  actionbar & {
+    &,
+    &:not(.text-button).image-button,
+    &.circular {
+      min-width: rem($small_widget);
+      min-height: rem($small_widget);
+      padding: 0;
+
+      label {
+        padding-left: rem($entry_lr_space);
+        padding-right: rem($entry_lr_space);
+      }
+    }
+
+    &.text-button,
+    &.color {
+      min-height: rem($small_widget);
+      padding: 0 rem($entry_lr_space);
+      @include radius($r_2);
+    }
+
+    &.suggested-action,
+    &.destructive-action { border: none; }
+  }
+
+  .inline-toolbar .linked > &,
+  actionbar .linked > & {
+    &,
+    &:not(.text-button).image-button,
+    &.circular,
+    &.image-button.toggle {
+      min-width: rem($small_widget);
+      min-height: rem($small_widget);
+      padding: 0;
+
+      label {
+        padding-left: rem($entry_lr_space);
+        padding-right: rem($entry_lr_space);
+      }
+
+      image { padding: 0; } // reset padding
+    }
+
+    &.text-button {
+      min-height: rem($small_widget);
+      padding: 0 rem($entry_lr_space);
+      @include radius($r_2);
+    }
+  }
+}
+
+%needs_attention {
+  background-image: -gtk-scaled(url("assets/needs-attention.png"),
+                                url("assets/needs-attention@2.png"));
+  background-repeat: no-repeat;
+  background-position: right 2px;
+  background-size: $attention;
+  animation: needs_attention $transition_d_long $transition_t_dec forwards;
+  &:dir(rtl) { background-position: left 2px; }
+}
+
+// menu buttons on GtkPopover
+modelbutton.flat,
+menuitem button.flat {
+  min-height: $menuitem_height;
+  min-width: $menuitem_width;
+  padding: 0 rem($entry_lr_space);
+  @include button(flat-normal);
+  @include transition(reset);
+  &:hover { @include button(flat-hover); }
+  &:active { @include button(flat-active); }
+  &:checked { @include button(flat-checked); }
+  &:checked:disabled { @include button(flat-checked-disabled); }
+  &:disabled { @include button(flat-disabled); }
+
+  check,
+  radio {
+    &:first-child { margin-right: rem($txt_button_lr_space); }
+    &:last-child { margin-left: rem($txt_button_lr_space); }
+  }
+}
+
+modelbutton.flat arrow {
+  @extend %arrow_size;
+  background: none;
+  &:hover { background: none; }
+  &.left { -gtk-icon-source: -gtk-icontheme("pan-start-symbolic"); }
+  &.right { -gtk-icon-source: -gtk-icontheme("pan-end-symbolic"); }
+}
+
+// color-picker buttons
+button.color {
+  padding: 0; // fill with child colorswatch
+  &, &:active {
+    background-image: none;
+    animation: none; // hide parent inks
+  }
+
+  > colorswatch:first-child:last-child { // :first-child:last-child for
+                                          // a specificity bump, it gets
+                                          // overridden by the colorpicker style
+    &, overlay {
+      @include radius($r_2, none);
+      box-shadow: none; // switch from raised to depth-0
+    }
+  }
+
+  // draw ink reactions onto overlay directly
+  // and use black ink always
+  colorswatch overlay {
+    // margin: -1px; // cover up parent 1px borders
+    @include button(flat-normal, $tc: black);
+    @include ink-reaction(normal, $fc: black, $tr: ink-normal-dec);
+  }
+
+  &:hover colorswatch overlay,
+  &:checked colorswatch overlay {
+    @include button(flat-hover, $tc: black);
+  }
+
+  &:active colorswatch overlay {
+    @include button(flat-active, $tc: black);
+    @include ink-reaction(active-dec, $fc: black, $tr: ink-active-dec);
+  }
+
+  &:disabled colorswatch {
+    &, &:disabled {
+      &, overlay { opacity: $alpha_foreground_dis; }
+    }
+  }
+}
+
+// toolpalette buttons
+toolpalette {
+  toolitemgroup {
+    > button { @include radius(0); }
+
+    arrow { @extend %arrow_size; }
+  }
+
+  toolbutton {
+    > button.toggle { // use square buttons
+      @include radius($r_2);
+    }
+  }
+}
+
+@if $maj_ver == 4 {
+  // font-selector buttons
+  fontbutton { // standard raised button styling
+    @include button(normal);
+    min-height: calc(#{rem($widget_size)} - 1px * 2);
+    min-width: calc(#{rem($widget_size)} - 1px * 2);
+    padding: 0 rem($txt_button_lr_space);
+    @include radius($r_2);
+    &:hover { @include button(hover); }
+    &:active { @include button(active); }
+    &:disabled { @include button(disabled); }
+    &:checked { @include button(checked); }
+    &:checked:disabled { @include button(checked-disabled); }
+  }
+}
+
+// button box is always shown with flat-buttons
+buttonbox {
+  &, &.dialog-action-area {
+    &:not(.linked) button {
+      &:not(.suggested-action):not(.destructive-action) {
+        @extend %action-area-button;
+      }
+    }
+  }
+
+  dialog.background & {
+    &.dialog-action-area.linked button { @extend %action-area-button; }
+  }
+
+  dialog.background:not(.csd) > box.dialog-vbox > box.dialog-action-box > & {
+    &.dialog-action-area:not(.linked) button { // switch to fixed height
+      min-height: $widget_size - 10.3px;
+    }
+  }
+}
+
+%inv_button {
+  @include button(normal, $c: $color_base_inv,
+                          $tc: $color_fg_inv);
+  @include ink-reaction(
+              normal, $fc: $color_fg_inv, $tr: ink-normal-dec);
+  &:hover {
+    @include button(hover, $c: $color_base_inv,
+                            $tc: $color_fg_inv);
+  }
+  &:active {
+    @include button(active, $c: $color_base_inv,
+                            $tc: $color_fg_inv);
+    @include ink-reaction(
+                active-dec, $fc: $color_fg_inv, $tr: ink-active-dec);
+  }
+  &:disabled {
+    @include button(disabled, $c: $color_base_inv,
+                              $tc: $color_fg_inv);
+  }
+  &:checked {
+    @include button(checked);
+    &:hover { @include button(checked-hover); }
+    &:disabled {
+      @include button(checked-disabled, $c: $color_base_inv,
+                                        $tc: $color_fg_inv);
+    }
+  }
+}
+
+%inv_flat_button {
+  @include button(flat-normal, $tc: $color_fg_inv);
+  @include ink-reaction(normal, $fc: $color_fg_inv, $tr: ink-normal-dec);
+  &:hover { @include button(flat-hover, $tc: $color_fg_inv); }
+  &:active {
+    @include button(flat-active, $tc: $color_fg_inv);
+    @include ink-reaction(active-dec, $fc: $color_fg_inv, $tr: ink-active-dec);
+  }
+  &:disabled { @include button(flat-disabled, $tc: $color_fg_inv); }
+  &:checked { @include button(flat-checked, $tc: $color_fg_inv); }
+  &:checked:disabled {
+    @include button(flat-checked-disabled, $tc: $color_fg_inv);
+  }
+}
+
+%action-area-button {
+  @include button(flat-normal, $tc: $color_fg_acc_2);
+  @include ink-reaction(normal, $fc: $color_fg_acc, $tr: ink-normal-dec);
+  font-weight: 700;
+  &:hover {
+    @include button(flat-hover, $tc: $color_fg_acc);
+  }
+  &:active {
+    @include button(flat-active, $tc: $color_fg_acc);
+    @include ink-reaction(active-dec, $fc: $color_fg_acc, $tr: ink-active-dec);
+  }
+  &:disabled {
+    @include button(flat-disabled, $tc: $color_fg);
+  }
+  &:checked {
+    @include button(flat-checked, $tc: $color_fg_acc);
+    &:disabled {
+      @include button(flat-checked-disabled, $tc: $color_fg_acc);
+    }
+  }
+}
+
+%inv-action-area-button {
+  @include button(flat-normal, $tc: $color_fg_acc_inv_2);
+  @include ink-reaction(normal, $fc: $color_fg_acc_inv, $tr: ink-normal-dec);
+  font-weight: 500;
+  &:hover {
+    @include button(flat-hover, $tc: $color_fg_acc_inv);
+  }
+  &:active {
+    @include button(flat-active, $tc: $color_fg_acc_inv);
+    @include ink-reaction(active-dec, $fc: $color_fg_acc_inv, $tr: ink-active-dec);
+  }
+  &:disabled {
+    @include button(flat-disabled, $tc: $color_fg_inv);
+  }
+  &:checked {
+    @include button(flat-checked, $tc: $color_fg_acc_inv);
+    &:disabled {
+      @include button(flat-checked-disabled, $tc: $color_fg_acc_inv);
+    }
+  }
+}

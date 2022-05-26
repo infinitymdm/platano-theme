@@ -16,7 +16,7 @@ The 'parse-sass.sh' requires a development package of libgtk-3.0 to check
 the current version of Gtk 3.x via pkg-config. Or simply run
 './parse-sass.sh -a' to generate all of Gtk versioned CSSs.
 
-It is very likely your change will happen in the _common.scss file.
+It is very likely your change will happen in the _widgets.scss file.
 That's where all the widget selectors are defined.
 Here's a rundown of the "supporting" stylesheets, that are unlikely to be the
 right place for a drive by stylesheet fix:
@@ -33,7 +33,7 @@ _drawing.scss       - drawing helper mixings/functions to allow easier
                       definition of widget drawing under specific context.
                       This is why Platano isn't 15000 LOC.
 
-_common.scss        - actual definitions of style for each widget. This is
+_widgets.scss        - actual definitions of style for each widget. This is
                       where you are likely to add/remove your changes.
 
 _misc.scss          - some apps-specifc styling for miscellaneous
@@ -41,7 +41,3 @@ _misc.scss          - some apps-specifc styling for miscellaneous
 
 _3rd_party.scss     - apps-specific and DE-specific styling for
                       'non-GNOME' apps and DEs.
-
-You can read about SASS at http://sass-lang.com/documentation/. Once you make
-your changes to the _common.scss file, you can either run the ./parse-sass.sh
-script.

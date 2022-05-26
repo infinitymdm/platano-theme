@@ -1,0 +1,19 @@
+// /**********************
+//  * Geolocation Dialog *
+//  **********************/
+
+@if $ver < 3.35 {
+  .geolocation-dialog { spacing: if($ref_weight >= 1.0, 32px, 24px); }
+}
+
+@if $ver < 3.25 {
+  .geolocation-dialog {
+    &-main-layout { spacing: if($ref_weight >= 1.0, 1em, 0.7em); }
+
+    &-content { spacing: if($ref_weight >= 1.0, 2em, 1.6em); }
+
+    &-icon { icon-size: $icon_size * 3; }
+
+    &-title { font-weight: 700; }
+  }
+}

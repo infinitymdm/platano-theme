@@ -1,0 +1,72 @@
+// /*********
+//  * Lists *
+//  *********/
+
+list {
+  border-color: $color_fg_div;
+  background-color: $color_base;
+}
+
+row {
+  @if $maj_ver == 3 { padding: 2px rem($menuitem_padding); }
+  @else {
+    &.expander { padding: 0; } // unset padding
+
+    // move root padding to its childs
+    &.expander .row-header { padding: 2px rem($menuitem_padding); }
+
+    list.separators &:not(:first-child) {
+      // draw list separators
+      border-top: 1px solid $color_fg_div_sld;
+    }
+  }
+}
+
+row.activatable {
+  @include ink-reaction(normal, $fc: $color_fg_3, $tr: ink-normal-row, $bs: 7);
+
+  &.has-open-popup, // this is for indicating which sidebar row
+                    // generated a popover
+  &:hover {         // see https://bugzilla.gnome.org/show_bug.cgi?id=754411
+    background-color: $color_bg_trk;
+    @include transition(ink-normal-row);
+  }
+  &:active {
+    // use shallower ink
+    @include ink-reaction(active-dec, $fc: $color_fg_3, $tr: ink-active-row);
+  }
+  &:selected {
+    &:hover {
+      background-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_1));
+    }
+  }
+}
+
+// button and entry spacing
+row {
+  button.small-button {
+    min-width: calc(#{rem($small_widget)} - 1px * 2);
+    min-height: calc(#{rem($small_widget)} - 1px * 2);
+    margin: rem($widget_size - $small_widget) / 2 0;
+    padding: 0;
+    @include radius($r);
+    &.flat {
+      min-width: rem($small_widget);
+      min-height: rem($small_widget);
+    }
+  }
+
+  // .round-button is used in some other places
+  // reset spacing for 'eject' button
+  placessidebar & {
+    button.image-button:not(.text-button):not(.round-button),
+    button.circular {
+      min-width: $icon_size;
+      min-height: $icon_size;
+      margin: 0; // unset outer margins
+      padding: rem(4px); // Same as of image.sidebar-icon
+    }
+  }
+}
+
+row:selected { @extend %selected_items; }

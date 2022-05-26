@@ -1,0 +1,10 @@
+// /********************
+//  * Transmission-Gtk *
+//  ********************/
+
+window.background:not(.solid-csd) > box.vertical > grid.horizontal {
+  // add spacing for 'Ratio' label
+  > label {
+    padding: 0 rem(5.3px, $sw: 1.0) rem($baseline, $sw: 1.0);
+  }
+}

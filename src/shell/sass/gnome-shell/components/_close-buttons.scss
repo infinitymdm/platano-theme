@@ -1,0 +1,54 @@
+// /*****************
+//  * Close Buttons *
+//  *****************/
+
+$close_button_size: if($ver < 3.35, 32px,
+                                    if($ref_weight >= 1.0, 2.5em, 1.8em));
+
+.window-close {
+  width: $close_button_size;
+  height: $close_button_size;
+  @if $ver < 3.37 { -shell-close-overlap: $close_button_size * 0.75; }
+  @if $ver < 3.31 {
+    @include image-loader($url: 'assets/window-close.svg');
+    background-size: $close_button_size;
+    -st-background-image-shadow: $z-depth-1;
+  }
+  @else {
+    @if $ver > 3.35 {
+      margin: 0.1em; // previent unwanted truncated button top
+    }
+    border-radius: $r;
+    border: 0 none transparent;
+    background-color: $color_bg_dest;
+    color: $color_fg_sel;
+    box-shadow: $z-depth-1;
+
+    StIcon { icon-size: $icon_size; } // for safety
+  }
+  // FIXME: image duration causes weird deformation of images
+  // while transitioning, keep non-duration here
+  transition-duration: $transition_d_none;
+  &:hover {
+    @if $ver < 3.31 {
+      @include image-loader($url: 'assets/window-close-hover.svg');
+      -st-background-image-shadow: $z-depth-2;
+    }
+    @else {
+      background-color: mix($color_bg_dest, $color_fg_sel, percentage(1 - $alpha_track_1));
+      color: $color_fg_sel;
+      box-shadow: $z-depth-2;
+    }
+  }
+  &:active {
+    @if $ver < 3.31 {
+      @include image-loader($url: 'assets/window-close-active.svg');
+      -st-background-image-shadow: $z-depth-2;
+    }
+    @else {
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
+      box-shadow: $z-depth-2;
+    }
+  }
+}

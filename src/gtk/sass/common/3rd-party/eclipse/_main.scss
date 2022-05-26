@@ -1,0 +1,41 @@
+// /**********************
+//  * Eclipse/SWT (neon) *
+//  **********************/
+
+window.background:not(.solid-csd) > box.vertical {
+  > scrolledwindow widget > toolbar {
+    box-shadow: none; // remove inline-shadows
+
+    button { // hard-coded crazy zero-padding
+      &, &.flat {
+        min-height: if($ref_weight < 1.0, $icon_size * 1.5, $icon_size * 1.75);
+        min-width: if($ref_weight < 1.0, $icon_size * 1.5, $icon_size * 1.75);
+        margin: 2px 0;
+        @include radius($r_2);
+      }
+    }
+
+    separator { margin: 2px 0; }
+  }
+
+  > scrolledwindow > widget > widget {
+    border-width: 0 0 1px;
+    border-style: none none solid;
+    border-color: transparent transparent $color_fg_div_sld;
+  }
+
+  widget > frame > widget > widget > scrolledwindow > textview {
+    // override hard-coded crazy rgb(0,0,0)
+    text { background-image: image($color_base); }
+  }
+
+  scrolledwindow widget > widget {
+    > checkbutton check,
+    > radiobutton radio { // disable ripple animations
+      &:hover,
+      &:active,
+      &:hover:checked,
+      &:hover:indeterminate { animation: none; }
+    }
+  }
+}

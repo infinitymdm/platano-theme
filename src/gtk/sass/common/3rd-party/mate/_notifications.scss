@@ -1,0 +1,22 @@
+@if $mate_support == yes {
+  
+  // /***************************
+  //  * Mate-Notification-Slate *
+  //  ***************************/
+
+  // use budgie-style OSDs
+  .slate-notification {
+    &-window {
+      @extend %budgie_notification_window_base;
+
+      .drop-shadow {
+        @extend %budgie_notification_window_styling;
+        margin: $shadow_margin_3; // enlarge the shadow area
+        border-radius: $r_8;
+      }
+    }
+
+    @extend %budgie_notification;
+    border-radius: $r_8;
+  }
+}

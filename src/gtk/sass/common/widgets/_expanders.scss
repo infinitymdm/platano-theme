@@ -1,0 +1,56 @@
+// /*************
+//  * Expanders *
+//  *************/
+
+%expander_label {
+  color: $color_fg_2;
+  &:hover,
+  &:active { color: $color_fg; }
+  &:selected { color: $color_fg_sel; }
+  &:disabled { color: $color_fg_dis; }
+}
+
+%expander_label_spacing {
+  margin-bottom: rem($baseline, $sw: 1.0);
+  // spacer between arrow and label
+  &:dir(ltr) { padding-left: rem($menu_padding, $sw: 1.0); }
+  &:dir(rtl) { padding-right: rem($menu_padding, $sw: 1.0); }
+}
+
+%expander_arrow {
+  @extend %arrow_size;
+  -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
+  &:dir(rtl) { -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl'); }
+  &:checked { -gtk-icon-source: -gtk-icontheme('pan-down-symbolic'); }
+  &:not(:hover):not(:active) { color: track(currentColor, $alpha_foreground_2nd); }
+  &:selected { color: $color_fg_sel; }
+  &:disabled { color: $color_fg_dis; }
+}
+
+@if $maj_ver == 3 {
+  expander {
+    label { @extend %expander_label; }
+
+    title {
+      padding: rem($menu_padding) rem($menuitem_padding);
+
+      > arrow { @extend %expander_arrow; }
+    }
+
+    > label { @extend %expander_label_spacing; }
+  }
+}
+@else {
+  expander {
+    @extend %expander_label;
+    @extend %expander_arrow;
+
+    &-widget {
+      label { @extend %expander_label; }
+
+      title { padding: rem($menu_padding) rem($menuitem_padding); }
+
+      > label { @extend %expander_label_spacing; }
+    }
+  }
+}

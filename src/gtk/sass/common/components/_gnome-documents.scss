@@ -1,0 +1,15 @@
+// /*******************
+//  * Gnome-Documents *
+//  *******************/
+
+window.background > grid.horizontal.titlebar {
+  // search-bar revealer
+  @if $maj_ver == 3 {
+    box.vertical > headerbar + searchbar { background-color: $color_bg_dark; }
+  }
+  @else {
+    box.vertical > headerbar + searchbar > revealer > box {
+      background-color: $color_bg_dark;
+    }
+  }
+}

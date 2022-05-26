@@ -1,0 +1,14 @@
+@if $ver > 3.33 {
+  // /*************
+  //  * App Icons *
+  //  *************/
+
+  // by default, we don't expose any icon outlines/shadows.
+  .lowres-icon { // outline for low res icons
+    icon-shadow: none;
+  }
+
+  .icon-dropshadow { // drop-shadow for large icons
+    icon-shadow: none;
+  }
+}

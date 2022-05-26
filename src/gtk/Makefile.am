@@ -1,10 +1,10 @@
 themedir           = $(datadir)/themes
 platanodir         = $(DESTDIR)$(themedir)/Platano
-luminedir          = $(DESTDIR)$(themedir)/Platano-Lumine
-noirdir            = $(DESTDIR)$(themedir)/Platano-Noir
+luminedir          = $(DESTDIR)$(themedir)/Platano-Light
+noirdir            = $(DESTDIR)$(themedir)/Platano-Dark
 platanocompactdir  = $(DESTDIR)$(themedir)/Platano-Compact
-luminecompactdir   = $(DESTDIR)$(themedir)/Platano-Lumine-Compact
-noircompactdir     = $(DESTDIR)$(themedir)/Platano-Noir-Compact
+luminecompactdir   = $(DESTDIR)$(themedir)/Platano-Light-Compact
+noircompactdir     = $(DESTDIR)$(themedir)/Platano-Dark-Compact
 
 gtk3_assetdir = $(srcdir)/asset/assets-gtk3
 

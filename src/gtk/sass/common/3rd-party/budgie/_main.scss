@@ -1,0 +1,228 @@
+// /******************
+//  * Budgie-Desktop *
+//  ******************/
+
+// Used to reset all style properties set by the gtk theme
+%reset_style {
+  background: none;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+  -gtk-icon-transform: none;
+  opacity: 1;
+  min-width: 0;
+  min-height: 0;
+  padding: unset;
+  font-size: unset;
+  font-weight: unset;
+}
+
+// Settings (from budgie-desktop theme)
+$roundness: 3px;
+$border_width: if($variant == 'default', 1px, 2px);
+$pos_list: ((top, bottom),(bottom,top),(left,right),(right,left));
+
+@import 'imports';
+@import 'widgets';
+@import 'lightdm';
+
+// main container
+.budgie-container { background-color: transparent; }
+
+// Panel
+.budgie-panel {
+  @include budgie_panel(button, separator, 'background-color');
+}
+
+// Panel Borders
+@include borders($pos_list);
+
+// Workspace Switcher
+@include workspaces(frame, button, if($maj_ver >= 4, -gtk-icon-filter, -gtk-icon-effect));
+
+// Budgie Menu
+.budgie-menu {
+  @include budgie_menu();
+}
+
+// Menu Button
+@include budgie_menu_button('button');
+
+// User Menu
+@include budgie_user_menu();
+
+// Places Menu
+@include places_menu();
+
+// Session Dialog
+.budgie-session-dialog {
+  @include budgie_session_dialog();
+}
+
+// Run Dialog
+.budgie-run-dialog {
+  @include budgie_run_dialog();
+}
+
+// PolKit Dialog
+.budgie-polkit-dialog {
+  @include budgie_polkit_dialog();
+}
+
+// Alt+tab Switcher
+.budgie-switcher-window {
+  @include budgie_switcher_window();
+}
+
+
+//////////////////////////////////////
+// Sort through the following stuff //
+//////////////////////////////////////
+
+// misc settings
+.drop-shadow {
+  margin: $shadow_margin_4;
+  background-color: transparent;
+  background-image: none;
+  box-shadow: $z-depth-4;
+}
+
+// settings-window
+window.background.budgie-settings-window.csd {
+  > box.horizontal > scrolledwindow > viewport.frame { // left-pane
+    &:dir(ltr) { border-right: 1px solid $color_fg_div; }
+    &:dir(rtl) { border-left: 1px solid $color_fg_div; }
+  }
+
+  box.settings-page.vertical { // right-pane
+    // reserve the margin for raised widget's drop-shadows
+    box.settings-frame.vertical > grid.horizontal { margin-bottom: 8px; }
+
+    // hide double-borders
+    buttonbox.inline-toolbar { border-style: none none solid; }
+
+    frame > box.vertical > overlay { // inline header
+      > label.dim-label { // title
+        font-size: 110%;
+        font-weight: 500;
+      }
+
+      > button.popup.suggested-action.toggle { // 'plus' button
+        @extend %gnome-software_round_button;
+        margin: 8px; // prevent truncated drop-shadow
+      }
+    }
+
+    frame > box.vertical > list > row {
+      &:dir(ltr) { padding-right: 12px; }
+      &:dir(rtl) { padding-left: 12px; }
+
+      button.desutructive-action.round-button {
+        @extend %gnome-software_round_button;
+      }
+    }
+  }
+}
+
+box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
+  transition: opacity $transition_d_standard $transition_t_standard,
+              background-color $transition_d_long $transition_t_dec,
+              background-image $transition_d_long $transition_t_dec,
+              box-shadow $transition_d_none $transition_t_dec; // exclude box-shadows
+
+  &:hover,
+  &:checked,
+  &.running { box-shadow: none; } // unset before drawing indicators
+
+  &:active {
+    box-shadow: none;
+    transition: opacity $transition_d_standard $transition_t_standard,
+                background-color $transition_d_long $transition_t_dec,
+                background-image $transition_d_long $transition_t_dec,
+                box-shadow $transition_d_none $transition_t_dec;
+  }
+}
+
+.budgie-notification,
+.budgie-osd,
+.drop-shadow {
+  button { @extend %budgie_osd_button; }
+}
+
+@each $position, $_line, $_bg_p, $_bg_s in
+(top, 0 3px, bottom, '100% calc(100% - 3px)'),
+(bottom, 0 -3px, top, '100% calc(100% - 3px)'),
+(left, 3px 0, right, 'calc(100% - 3px) 100%'),
+(right, -3px 0, left, 'calc(100% - 3px) 100%') {
+  .#{$position} {
+    box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
+      &:not(:checked):hover {
+        @if $variant == mixed {
+          box-shadow: inset #{$_line} track($color_fg_inv, $alpha_foreground_bdp);
+        }
+        @else {
+          box-shadow: inset #{$_line} track($color_fg, $alpha_foreground_bdp);
+        }
+
+        &.running { box-shadow: inset #{$_line} $color_bg_sel; }
+      }
+      &:checked {
+        // unset default backgrounds before starting -image property
+        &, &:hover { background-color: transparent; }
+
+        // FIXME: background-color is drawn 'above' its line-indicators,
+        // it means we need to avoid those regions when filling backgrounds.
+        image {
+          background-position: #{$_bg_p};
+          background-size: #{$_bg_s};
+          background-repeat: no-repeat;
+          @if $variant == mixed {
+            background-image: image(track($color_fg_inv, $alpha_track_1));
+          }
+          @else {
+            background-image: image(track($color_fg, $alpha_track_1));
+          }
+        }
+      }
+    }
+  }
+}
+
+// end region
+.end-region > widget > widget {
+  > box.horizontal { // 'Stats Indicator'
+    > widget > widget > image { // 'bluetooth'
+      &:dir(ltr) { margin: 0 2px 0 -1px; }
+      &:dir(rtl) { margin: 0 -1px 0 2px; }
+    }
+
+    > widget.sound-applet > widget > image { // 'sound'
+      min-width: $icon_size + 2px;
+      margin: 0;
+    }
+
+    > widget > widget > box.horizontal > image,
+    box.battery-icon.horizontal > image { // 'battery'
+      min-width: $icon_size + 6px;
+    }
+  }
+
+  box.battery-icon { // 'percent label'
+    &.horizontal > label.percent-label {
+      &:dir(ltr) { margin: 0 -6px 0 3px; }
+      &:dir(rtl) { margin: 0 3px 0 -6px; }
+    }
+
+    &.vertical > label.percent-label {
+      font-size: 75%;
+      &:dir(ltr) { margin-right: -2px; }
+      &:dir(rtl) { margin-left: -2px; }
+    }
+  }
+
+  > image { // 'Notification' and 'User Indicator'
+    min-width: $icon_size + 4px;
+  }
+}

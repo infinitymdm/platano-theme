@@ -1,0 +1,44 @@
+// /***********
+//  * Buttons *
+//  ***********/
+
+.button {
+  padding: if($ref_weight >= 1.0, 7px 16px 8px, 5px 12px 6px);
+  border-radius: $r_2;
+  border: none;
+  font-weight: 500;
+  @include button(flat-normal);
+  &:hover { @include button(flat-hover); }
+  &:focus { @include button(flat-focus); }
+  &:active { @include button(flat-active); }
+  &:insensitive { @include button(flat-disabled); }
+}
+
+.modal-dialog-linked-button {
+  @extend %modal_dialog_button;
+  padding: if($ref_weight >= 1.0, 9px 16px 10px, 6px 12px 7px);
+}
+
+%modal_dialog_button {
+  border: 0 none transparent;
+  font-weight: 500;
+  text-shadow: none;
+  icon-shadow: none;
+  @if $variant != light {
+    @include button(flat-normal, $tc: $color_fg_acc_inv);
+    &:hover { @include button(flat-hover, $tc: $color_fg_acc_inv); }
+    &:focus { @include button(flat-focus, $tc: $color_fg_acc_inv); }
+    &:active { @include button(flat-active, $tc: $color_fg_acc_inv); }
+    &:insensitive { @include button(flat-disabled, $tc: $color_fg_osd); }
+  }
+  @else {
+    @include button(flat-normal, $tc: $color_fg_acc);
+    &:hover { @include button(flat-hover, $tc: $color_fg_acc); }
+    &:focus { @include button(flat-focus, $tc: $color_fg_acc); }
+    &:active { @include button(flat-active, $tc: $color_fg_acc); }
+    &:insensitive { @include button(flat-disabled, $tc: $color_fg); }
+  }
+  &:first-child { border-radius: 0 0 0 $r_8; }
+  &:last-child { border-radius: 0 0 $r_8 0; }
+  &:first-child:last-child { border-radius: 0 0 $r_8 $r_8; }
+}

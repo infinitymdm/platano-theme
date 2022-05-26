@@ -1,0 +1,14 @@
+// /************
+//  * Seahorse *
+//  ************/
+
+window.background box.vertical > paned.horizontal > box.vertical {
+  // FIXME: This selector is terrible - using cascaded generic 
+  // selectors instead of a class is bad practice.
+  
+  // remove drop-shadow
+  > box.vertical > toolbar.primary-toolbar {
+    box-shadow: none;
+    border-bottom: 1px solid $color_fg_div;
+  }
+}

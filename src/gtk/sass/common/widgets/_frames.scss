@@ -1,0 +1,69 @@
+// /**********
+//  * Frames *
+//  **********/
+
+%basic_frame {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border: 1px solid $color_fg_div;
+  box-shadow: none;
+}
+
+@if $maj_ver == 3 {
+  frame > border,
+  .frame {
+    @extend %basic_frame;
+
+    &.flat { border-style: none; }
+  }
+}
+@else {
+  frame,
+  .frame {
+    @extend %basic_frame;
+
+    &.flat { border-style: none; }
+  }
+}
+
+actionbar {
+  @if $maj_ver == 3 {
+    > frame > border { border-width: 1px 0 0; }
+  }
+  @else {
+    > frame { border-width: 1px 0 0; }
+  }
+
+  > revealer > box { border-top: 1px solid $color_fg_div; }
+}
+
+%scrolledwindow,
+scrolledwindow {
+  viewport.frame { // avoid double borders when viewport inside
+                    // scrolled window
+    border-style: none;
+  }
+
+  // This is used by GtkScrolledWindow,
+  // when content is touch-dragged past boundaries.
+  // This draws a box on top of the content, the size changes programmatically.
+  overshoot {
+    &.top { @include overshoot(top); }
+    &.bottom { @include overshoot(bottom); }
+    &.left { @include overshoot(left); }
+    &.right { @include overshoot(right); }
+  }
+
+  junction { // the small square between two scrollbars
+    border-color: transparent;
+    // the border image is used to add the missing dot 
+    // between the borders, details, details, details...
+    border-image: linear-gradient(to bottom,
+                                  $color_fg_div 1px,
+                                  transparent 1px) 0 0 0 1 / 0 1px stretch;
+    background-color: $color_base;
+
+    &:dir(rtl) { border-image-slice: 0 1 0 0; }
+  }
+}

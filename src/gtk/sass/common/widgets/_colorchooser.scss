@@ -1,0 +1,75 @@
+// /*****************
+//  * Color Chooser *
+//  *****************/
+
+colorswatch {
+  // This widget is made of two boxes one on top of the other,
+  // the lower box is colorswatch {} the other one is
+  // colorswatch > .overlay {}, colorswatch has the programmatically set
+  // background, so most of the style is applied to the overlay box.
+  @include radius($r_2);
+  box-shadow: $z-depth-1;
+  @include transition(std);
+
+  // do not use roundness
+  &, &.overlay { @include radius(0, none); }
+
+  // hover effect
+  &:hover { box-shadow: $z-depth-2; }
+
+  // no hover effect for the colorswatch in the color editor
+  GtkColorEditor & {
+    @include radius($r, none); // same radius as the entry
+    &:hover { box-shadow: $z-depth-1; }
+  }
+
+  // indicator and keynav outline colors
+  &.color-dark { color: track(white, $alpha_foreground_2nd); }
+
+  &.color-light { color: track(black, $alpha_foreground_2nd); }
+
+  // make the add color button looks like, well, a button
+  &#add-color-button {
+    background-image: linear-gradient(to right,
+                                      $color_bg_err 25%,
+                                      $color_bg_warn 25%,
+                                      $color_bg_warn 50%,
+                                      $color_bg_info 50%,
+                                      $color_bg_info 75%,
+                                      $color_bg_ques 75%);
+    color: white;
+  }
+
+  &#editor-color-sample {
+    min-width: rem($widget_size);
+    min-height: rem($widget_size);
+    // FIXME: 32px hard-coded height in widget-factory?
+    margin: calc((#{rem($widget_size)} - 32px) / 2) 0;
+    @include radius($r_2, none);
+    box-shadow: inset 0 0 0 1px $color_fg_div_sld;
+  }
+}
+
+// colorchooser spacing
+colorchooser overlay > grid {
+  // FIXME: above 'editor-color-sample' needs extra
+  @if rem($widget_size) < (32px / $ref_size * 1rem) {
+    padding-top: calc((32px - #{rem($widget_size)}) / 2);
+  }
+}
+
+// colorscale popup
+colorchooser .popover.osd {
+  padding: $toolbar_padding;
+  border: none;
+  @include radius($r_8, none);
+  box-shadow: none;
+  color: if($variant == light, $color_fg, $color_fg_inv);
+  background-color: if($variant == light, $color_bg_dark,
+                                          $color_bg_dark_inv);
+
+  label {
+    color: if($variant == light, $color_fg_acc, $color_fg_acc_inv);
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,126 @@
+// /**********
+//  * Switch *
+//  **********/
+
+switch {
+  min-width: $switch_width - 4px; // reduce empty space in pixmaps
+  min-height: $switch_height - 2px;
+  margin-top: calc((#{rem($widget_size)} - (#{$switch_height} - 2px)) / 2);
+  margin-bottom: calc((#{rem($widget_size)} - (#{$switch_height} - 2px)) / 2);
+  background-size: $switch_width $switch_height;
+  background-repeat: no-repeat;
+  background-position: center center;
+  font-size: 0;
+  @include transition(dec-dec);
+
+  slider { // set dummy sizes
+    min-width: $icon_size;
+    min-height: $icon_size;
+  }
+
+  &,
+  slider,
+  headerbar & image:disabled,
+  .titlebar & image:disabled { // specificity bump
+    color: transparent;
+  }
+
+  // use ugly pixmaps
+  @extend %pixmap_switch;
+
+  @if $variant == mixed {
+    headerbar &,
+    messagedialog & { @extend %inv_pixmap_switch; }
+  }
+
+  row:selected & {
+    background-image: -gtk-scaled(
+                      url("assets/toggle-off-selected-row.png"),
+                      url("assets/toggle-off-selected-row@2.png"));
+    &:hover {
+      background-image: -gtk-scaled(
+                        url("assets/toggle-off-selected-row-hover.png"),
+                        url("assets/toggle-off-selected-row-hover@2.png"));
+    }
+    &:checked {
+      background-image: -gtk-scaled(
+                        url("assets/toggle-on-selected-row.png"),
+                        url("assets/toggle-on-selected-row@2.png"));
+      &:hover {
+        background-image: -gtk-scaled(
+                          url("assets/toggle-on-selected-row-hover.png"),
+                          url("assets/toggle-on-selected-row-hover@2.png"));
+      }
+    }
+  }
+}
+
+%pixmap_switch {
+  background-image: -gtk-scaled(
+                    url("assets/toggle-off#{$asset_suffix}.png"),
+                    url("assets/toggle-off#{$asset_suffix}@2.png"));
+  &:hover {
+    background-image: -gtk-scaled(
+                      url("assets/toggle-off-hover#{$asset_suffix}.png"),
+                      url("assets/toggle-off-hover#{$asset_suffix}@2.png"));
+  }
+  &:checked {
+    background-image: -gtk-scaled(
+                      url("assets/toggle-on.png"),
+                      url("assets/toggle-on@2.png"));
+    &:hover {
+      background-image: -gtk-scaled(
+                        url("assets/toggle-on-hover.png"),
+                        url("assets/toggle-on-hover@2.png"));
+    }
+    &:disabled,
+    &:disabled:hover {
+      background-image:
+        -gtk-scaled(
+          url("assets/toggle-on-insensitive#{$asset_suffix}.png"),
+          url("assets/toggle-on-insensitive#{$asset_suffix}@2.png"));
+    }
+  }
+  &:disabled,
+  &:disabled:hover {
+    background-image:
+      -gtk-scaled(
+        url("assets/toggle-off-insensitive#{$asset_suffix}.png"),
+        url("assets/toggle-off-insensitive#{$asset_suffix}@2.png"));
+  }
+}
+
+%inv_pixmap_switch {
+  background-image: -gtk-scaled(
+                    url("assets/toggle-off-dark.png"),
+                    url("assets/toggle-off-dark@2.png"));
+  &:hover {
+    background-image: -gtk-scaled(
+                      url("assets/toggle-off-hover-dark.png"),
+                      url("assets/toggle-off-hover-dark@2.png"));
+  }
+  &:checked {
+    background-image: -gtk-scaled(
+                      url("assets/toggle-on.png"),
+                      url("assets/toggle-on@2.png"));
+    &:hover {
+      background-image: -gtk-scaled(
+                        url("assets/toggle-on-hover.png"),
+                        url("assets/toggle-on-hover@2.png"));
+    }
+    &:disabled,
+    &:disabled:hover {
+      background-image:
+        -gtk-scaled(
+          url("assets/toggle-on-insensitive-dark.png"),
+          url("assets/toggle-on-insensitive-dark@2.png"));
+    }
+  }
+  &:disabled,
+  &:disabled:hover {
+    background-image:
+      -gtk-scaled(
+        url("assets/toggle-off-insensitive-dark.png"),
+        url("assets/toggle-off-insensitive-dark@2.png"));
+  }
+}

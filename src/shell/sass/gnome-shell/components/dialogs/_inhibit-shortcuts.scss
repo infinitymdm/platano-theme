@@ -1,0 +1,11 @@
+@if $ver > 3.25 {
+  // /****************************
+  //  * Inhibit-Shortcuts Dialog *
+  //  ****************************/
+
+  @if $ver < 3.35 {
+    .inhibit-shortcuts-dialog {
+      spacing: if($ref_weight >= 1.0, 32px, 24px);
+    }
+  }
+}

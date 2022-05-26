@@ -1,0 +1,165 @@
+// /*********
+//  * Geary *
+//  *********/
+
+.geary-titlebar-right {
+  > .linked.raised > button {
+    // 'archive' button
+    &:not(.image-button):not(.text-button):not(.suggested-action) {
+      > widget > box {
+        > label {
+          padding-bottom: 0;
+          &:dir(ltr) { padding-left: 0; }
+          &:dir(rtl) { padding-right: 0; }
+        }
+
+        > image { // archive icon
+          margin-top: rem($baseline, $sw: 1.0); // reset baseline
+        }
+      }
+    }
+  }
+}
+
+%folder_frame_border { border-width: 0 0 1px; }
+
+%conversation_frame {
+  > border { border: none; }
+
+  treeview.view {
+    background-color: $color_bg;
+    font-weight: 400; // reset weight
+    &:selected {
+      background-color: track($color_bg_sel, $alpha_track_2);
+      color: $color_fg;
+      &:hover { background-color: track($color_bg_sel, $alpha_track_2); }
+      &:dir(ltr) { box-shadow: inset 4px 0 $color_bg_sel; }
+      &:dir(rtl) { box-shadow: inset -4px 0 $color_bg_sel; }
+      &:focus {
+        background-color: track($color_bg_sel, $alpha_track_2);
+        color: $color_fg;
+        &:hover { background-color: track($color_bg_sel, $alpha_track_2); }
+        &:dir(ltr) { box-shadow: inset 4px 0 $color_bg_sel; }
+        &:dir(rtl) { box-shadow: inset -4px 0 $color_bg_sel; }
+      }
+    }
+    &:hover { background-color: $color_bg_trk; }
+  }
+}
+
+%folder_frame {
+  @extend %sidebar_template;
+
+  treeview.view.sidebar {
+    @extend %sidebar_treeview;
+
+    &.cell { // = row height of placessidebar
+      min-height: rem($small_widget);
+    }
+  }
+}
+
+@if $maj_ver == 3 {
+  @if $mnr_ver < 23 {
+    // left-pane styling (legacy)
+    .sidebar.vertical > paned.sidebar-pane-separator {
+      .conversation-frame { @extend %conversation_frame; }
+
+      .folder-frame {
+        > border { @extend %folder_frame_border; }
+
+        > scrolledwindow { @extend %folder_frame; }
+      }
+    }
+  }
+}
+
+// left-pane styling (current)
+.sidebar.vertical > paned.geary-sidebar-pane-separator {
+  .geary-conversation-frame { @extend %conversation_frame; }
+
+  .geary-folder-frame {
+    > border { @extend  %folder_frame_border; }
+
+    > scrolledwindow { @extend %folder_frame; }
+  }
+}
+
+window.background > box.vertical > paned.horizontal > frame {
+  // right-paned scrolledwindow
+  > box.vertical > paned.vertical > overlay {
+    > scrolledwindow > scrollbar { // always use light-variant
+      background-color: transparent;
+
+      slider {
+        background-color: track($color_fg_fix, $alpha_foreground_3rd * $alpha_foreground_3rd);
+        &:hover { background-color: track($color_fg_fix, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+        &:active { background-color: $color_fg_fix; }
+        &:disabled { opacity: $alpha_foreground_bdp; }
+      }
+
+      &.overlay-indicator {
+        &:not(.dragging):not(.hovering) slider {
+          background-color: track($color_fg_fix, $alpha_foreground_3rd * $alpha_foreground_3rd);
+        }
+      }
+    }
+
+    @if $maj_ver == 3 {
+      @if $mnr_ver < 23 {
+        > label.bottom { // mimic floating-bar styling
+          @extend %floating_bar;
+          padding: $toolbar_padding;
+
+          &.left { @extend %floating_bar_left; }
+
+          &.right { @extend %floating_bar_right; }
+        }
+      }
+    }
+  }
+}
+
+// right-pane styling
+stack#conversation_viewer {
+  scrolledwindow.geary-conversation-scroller {
+    // FIXME: overshoot effect sometimes can't finish its transition,
+    // then it causes ramaining some part of indicators.
+    overshoot {
+      &.top,
+      &.bottom,
+      &.left,
+      &.right { background: none; }
+    }
+
+    > viewport.frame { border: none; } // unset borders
+  }
+
+  list.background.conversation-listbox {
+    background-color: $color_bg;
+
+    > row.activatable {
+      > box.geary_email {
+        margin: -1px; // hide hard-coded parent borders
+        border-top: 1px solid $color_bg;
+
+        grid.geary-message-summary {
+          border-bottom: 1px solid $color_fg_div;
+        }
+      }
+
+      &:not(.geary-expanded) { // retracted headers
+        grid.geary-headers.vertical {
+          label { @extend %dim_label; } // tone down
+        }
+      }
+
+      > widget.geary-composer-embed {
+        headerbar { // in-line headerbars
+          margin: -1px -1px 0; // FIXME: does not work
+          border-top: 1px solid $color_bg;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,193 @@
+// /**************
+//  * ComboBoxes *
+//  **************/
+
+combobox {
+  arrow {
+    @extend %arrow_size;
+    -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
+  }
+
+  .background & {
+    arrow,
+    cellview { min-height: $min_combo; }
+  }
+
+  &:drop(active) {
+    button.combo { @extend %button_drop_target; }
+  }
+
+  button.combo {
+    min-width: 0;
+    min-height: $min_combo; // this affects to cellview as well
+    padding: $combo_button_padding_0 rem($entry_lr_space);
+    border: none;
+    @include radius($r_4);
+    @include combobutton(solid-normal);
+    @include ink-reaction(tab-normal, $tr: ink-normal-combo, $bs: 12, $i: 2);
+    // damned LO can't renders outlines correctly
+    outline-width: 0;
+    &:hover { @include combobutton(solid-hover); }
+    &:active { @include combobutton(solid-active); }
+    &:checked {
+      @include combobutton(solid-checked);
+      @include ink-reaction(tab-active, $tr: ink-active-combo, $bs: 12);
+    }
+    &:disabled { @include combobutton(solid-disabled); }
+
+    .background & { outline-width: 2px; } // revive standard outlines
+
+    // some rare cases
+    row.activatable:hover & {
+      background-color: $color_base; // tone down
+      &:hover,
+      &:active,
+      &:checked { background-color: track($color_fg, $alpha_track_1); }
+      &:disabled {
+        background-color:
+          mix($color_fg, $color_base, percentage(($alpha_track_1 * 2 / 3) * $alpha_foreground_dis));
+      }
+    }
+  }
+
+  entry.combo:not(.flat) + button.combo {
+    // concern 2px entry borders
+    padding: $combo_button_padding_2 $combo_button_padding_6;
+  }
+
+  headerbar &,
+  headerbar .linked > & {
+    > button.combo {
+      @if $variant == mixed { @extend %inv_combobox; }
+    }
+  }
+
+  @if $variant == mixed {
+    @at-root %inv_combobox,
+    .osd & {
+      background-color: track($color_fg_inv_2, $alpha_track_1 / 2);
+      color: $color_fg_inv_2;
+      &:hover,
+      &:active,
+      &:checked {
+        background-color: track($color_fg_inv, $alpha_track_1);
+        color: $color_fg_inv;
+      }
+      &:disabled {
+        background-color: track($color_fg_dis_inv, $alpha_track_1 / 2 * $alpha_foreground_dis);
+        color: $color_fg_dis_inv;
+      }
+
+      @if $maj_ver == 4 {
+        block-cursor {
+          @include entry(block-cursor, $tc: $color_fg_inv, $c: $color_base_inv);
+        }
+      }
+    }
+  }
+}
+
+.linked {
+  &:not(.vertical) > combobox {
+    &:not(:first-child):not(:last-child) {
+      &:dir(ltr),
+      &:dir(rtl) { 
+        button.combo { @include radius(0); }
+      }
+    }
+    &:first-child {
+      &:dir(ltr),
+      &:dir(rtl) { 
+        button.combo { @include radius($r_4 0 0 $r_4); }
+      }
+    }
+    &:last-child {
+      &:dir(ltr),
+      &:dir(rtl) {
+        button.combo { @include radius(0 $r_4 $r_4 0); }
+      }
+    }
+    &:only-child {
+      &:dir(ltr),
+      &:dir(rtl) {
+        button.combo { @include radius($r_4); }
+      }
+    }
+  }
+}
+
+// workaround for LibreOffice with fallback-mode liked-buttons
+@each $order, $radius, $edge in (first-child, $r_2 0 0 $r_2, right),
+                                (last-child, 0 $r_2 $r_2 0, left) {
+  .linked:not(combobox) > button.combo:#{$order} {
+    border-radius: #{$radius};
+    border-#{$edge}-width: 0;
+
+    &:only-child { @include radius($r_4); }
+  }
+}
+
+.linked.horizontal > entry.combo + button.combo { // fake combo entry+button
+  &:last-child { // specificity bump
+    &:dir(ltr) {
+      @include radius(0 $r_2 $r_2 0);
+
+      .background & {
+        @include radius(0 $r $r 0);
+      }
+    }
+    &:dir(rtl) {
+      @include radius($r_2 0 0 $r_2);
+
+      .background & {
+        @include radius($r 0 0 $r);
+      }
+    }
+  }
+
+  toolitem & {
+    &:last-child { // toolbar flat-style
+      &:dir(ltr) { @include radius(0 $r_4 $r_4 0); }
+      &:dir(rtl) { @include radius($r_4 0 0 $r_4); }
+    }
+  }
+}
+
+.linked.horizontal {
+  > entry:not(.flat) + button { // non-combo entry + button
+    &:not(.flat):last-child { // specificity bump
+      &:dir(ltr) {
+        @include radius(0 $r_2 $r_2 0);
+
+        .background & {
+          @include radius(0 $r $r 0);
+        }
+      }
+      &:dir(rtl) {
+        @include radius($r_2 0 0 $r_2);
+
+        .background & {
+          @include radius($r 0 0 $r);
+        }
+      }
+    }
+
+    + button:not(.flat):last-child { // search-entry + up/down buttons
+      &:dir(ltr) { @include radius(0 $r $r 0); }
+      &:dir(rtl) { @include radius($r 0 0 $r); }
+    }
+  }
+
+  > button:not(.flat) + entry:not(.flat) + button:not(.flat) { // a rare case
+    &:last-child {
+      &:dir(ltr) {
+        @include radius(0 $r_2 $r_2 0);
+        border-left-width: 0;
+      }
+      &:dir(rtl) {
+        @include radius($r_2 0 0 $r_2);
+        border-right-width: 0;
+      }
+    }
+  }
+}

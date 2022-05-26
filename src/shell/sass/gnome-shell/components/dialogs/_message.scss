@@ -1,0 +1,68 @@
+@if $ver > 3.25 {
+  // /******************
+  //  * Message Dialog *
+  //  ******************/
+
+  .message-dialog {
+    @if $ver < 3.35 {
+      &-main-layout {
+        padding: if($ref_weight >= 1.0, 12px 20px 0,
+                                        8px 16px 0);
+        spacing: if($ref_weight >= 1.0, 12px, 8px);
+      }
+    }
+
+    &-content {
+      @if $ver < 3.35 {
+        max-width: 28em;
+        // same values with the parent lateral padding
+        spacing: if($ref_weight >= 1.0, 20px, 16px);
+      }
+      @else { spacing: if($ref_weight >= 1.0, 18px, 12px); }
+      color: $color_fg_osd;
+    }
+
+    @if $ver < 3.35 {
+      &-icon {
+        min-width: $icon_size * 3;
+        color: $color_fg_osd;
+        icon-size: $icon_size * 3;
+        -st-icon-style: symbolic;
+      }
+    }
+
+    &-title {
+      color: $color_fg_osd;
+      font-size: 130%;
+      @if $ver > 3.35 {
+        font-weight: 700;
+        text-align: center;
+
+        // for loooong titles
+        @if $ver < 3.37 {
+          &.leightweight { font-size: 90%; }
+        }
+        @else {
+          &.leightweight,
+          &.lightweight { font-size: 90%; }
+        }
+      }
+      @else { font-weight: 500; }
+    }
+
+    @if $ver < 3.35 {
+      &-subtitle { @extend %message_dialog_subtitle; }
+    }
+    @else {
+      &-description {
+        @extend %message_dialog_subtitle;
+        text-align: center;
+      }
+    }
+  }
+}
+
+%message_dialog_subtitle {
+  color: $color_fg_osd_2;
+  font-weight: 400;
+}

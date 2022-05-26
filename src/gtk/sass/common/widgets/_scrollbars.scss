@@ -1,0 +1,132 @@
+// /**************
+//  * Scrollbars *
+//  **************/
+
+scrollbar {
+  @if $maj_ver == 3 {
+    @at-root * { // disable steppers
+      -GtkScrollbar-has-backward-stepper: false;
+      -GtkScrollbar-has-forward-stepper: false;
+    }
+  }
+
+  background-color: track($color_base, $alpha_foreground_3rd);
+
+  // scrollbar border
+  @each $_side,$_margin in ('top', '0 0 -2px 0'),
+                            ('bottom', '-2px 0 0 0'),
+                            ('left', '0 -2px 0 0'),
+                            ('right', '0 0 0 -2px') {
+    &.#{$_side} {
+      border: none;
+
+      .background scrolledwindow > &:not(.overlay-indicator) {
+        // Negative margins can reduce the unwanted gap
+        // since we don't have any outer borders and
+        // Gtk seems to allocate 1px borders always when
+        // overlay-indicator was disabled.
+        margin: #{$_margin};
+      }
+    }
+  }
+
+  // slider coloring
+  slider {
+    background-color: track($color_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+    @include transition(std);
+    &:hover { background-color: track($color_fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+    &:active { background-color: $color_fg; }
+    &:disabled { opacity: $alpha_foreground_bdp; }
+  }
+
+  // slider sizing
+  @each $_position,$_min_w,$_min_l in
+  ('vertical', $slider_min_width, $slider_min_length),
+  ('horizontal', $slider_min_length, $slider_min_width) {
+    &.#{$_position} {
+      slider {
+        min-width: #{$_min_w};
+        min-height: #{$_min_l};
+        margin: 0;
+        border-radius: 0;
+        border: 0 none transparent;
+      }
+      @if $maj_ver == 3 {
+        &.fine-tune {
+          min-width: #{$_min_w};
+          min-height: #{$_min_l};
+          margin: 0;
+          border-radius: 0;
+          border: 0 none transparent;
+        }
+      }
+      @else {
+        range.fine-tune {
+          min-width: #{$_min_w};
+          min-height: #{$_min_l};
+          margin: 0;
+          border-radius: 0;
+          border: 0 none transparent;
+        }
+      }
+    }
+  }
+
+  &.overlay-indicator {
+    &:not(.dragging):not(.hovering) { // Overlay scrolling indicator
+      border-color: transparent;
+      background-color: transparent;
+
+      slider {
+        margin: 0;
+        border: 0 none transparent;
+        // FIXME: for WebKitGtk2
+        background-color: track(mix($color_fg_fix, $color_base_fix), $alpha_foreground_3rd);
+
+        .background & { // standard color
+          background-color: track($color_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+        }
+      }
+
+      button {
+        min-width: $slider_min_width;
+        min-height: $slider_min_width;
+        border-radius: 0;
+        border: none;
+        background-color: track($color_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+        -gtk-icon-source: none;
+      }
+
+      // slider and button sizing
+      @each $_position,$_min_w,$_min_l,$_button_s in
+      ('vertical', $slider_min_width / 2, $slider_min_length, 'min-width'),
+      ('horizontal', $slider_min_length, $slider_min_width / 2, 'min-height') {
+        &.#{$_position} {
+          slider {
+            min-width: #{$_min_w};
+            min-height: #{$_min_l};
+            margin: 0;
+          }
+
+          button {
+            #{$_button_s}: #{$_min_w};
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    &.dragging,
+    &.hovering { opacity: $alpha_foreground_bdp * 2; }
+
+    &.hovering { // slow-down when deforming
+      &.vertical slider {
+        animation: slow_down_vert $transition_d_standard $transition_t_lin forwards;
+      }
+
+      &.horizontal slider {
+        animation: slow_down_horz $transition_d_standard $transition_t_lin forwards;
+      }
+    }
+  }
+}

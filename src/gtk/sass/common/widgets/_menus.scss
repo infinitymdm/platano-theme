@@ -1,0 +1,241 @@
+// /*********
+//  * Menus *
+//  *********/
+
+.menubar, menubar {
+  @if $maj_ver == 3 {
+    -GtkWidget-window-dragging: true;
+  }
+
+  padding: 0;
+  background-color: if($variant == light, $color_bg_dark, $color_bg_dark_inv);
+  &:backdrop { background-color: if($variant == light, $color_bg, $color_bg_inv); }
+
+  .background & {
+    border-bottom: 1px solid if($variant == mixed,
+                                mix(black, $color_bg_dark_inv, percentage($alpha_div_0)),
+                                $color_fg_div_sld);
+    @extend %fade_effect; // add fade_effect
+  }
+
+  @if $maj_ver == 3 {
+    > menuitem { @extend %menuitem; }
+  }
+  @else {
+    > box > menuitem,
+    > item { // item nodes for inline-menubar inside the popover nodes
+      @extend %menuitem;
+    }
+
+    > item:selected { // = menuitem:hover pseudo-class styling
+      background-color: $color_bg_trk;
+      color: if($variant == light, $color_fg, $color_fg_inv);
+    }
+
+    // remove padding and rounding from menubar submenu decoration
+    .csd.popup decoration { border-radius: 0; }
+  }
+}
+
+%menuitem {
+  padding: rem($menuitem_padding, $sw: 1.0) rem($entry_lr_space, $sw: 1.0);
+  @include radius($r_4 $r_4 0 0, none);
+  background-color: transparent;
+  color: if($variant == light, $color_fg_2, $color_fg_inv_2);
+  @include transition(std);
+  &:hover { // Seems like it :hover even with keyboard focus
+    background-color: $color_bg_trk;
+    color: if($variant == light, $color_fg, $color_fg_inv);
+  }
+  &:disabled { color: if($variant == light, $color_fg_dis, $color_fg_dis_inv); }
+
+  label { padding-bottom: rem($baseline, $sw: 1.0); }
+}
+
+.menu,
+.context-menu,
+menu {
+  &,
+  .solid-csd.popup & {
+    padding: rem($menu_padding) 1px;
+    border-radius: 0;
+    border-width: 1px; // adds borders in a non composited env
+    border-style: solid;
+    border-color: $color_fg_div_sld;
+    background-color: $color_bg_dark;
+    background-clip: border-box;
+  }
+
+  .csd.popup & { // axes borders in a composited env
+    // FIXME: we need to put this margin to somewhere else
+    @if $maj_ver == 3 {
+      margin: rem($menu_padding) 0;
+    }
+    padding: rem($menu_padding) 0;
+    border-radius: $r_4; // same with the combobox
+  }
+
+  font: initial; // decouple the font of context-menus from parent nodes
+
+  menuitem {
+    // FIXME: we want to drop vertical padding from menuitem,
+    // but damned FF can't apply min-height property.
+    min-height: $icon_size;
+    min-width: $menuitem_width;
+    padding: rem($menuitem_padding) rem($entry_lr_space);
+    background-clip: border-box;
+    color: $color_fg_2;
+    font: initial;
+    &:hover {
+      background-color: $color_bg_trk;
+      color: $color_fg;
+    }
+    &:disabled { color: $color_fg_dis; }
+
+    label { padding-bottom: rem($baseline, $sw: 1.0); }
+
+    // submenu indicators
+    arrow {
+      @extend %arrow_size;
+      &:dir(ltr) {
+        -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
+        margin-left: rem($entry_lr_space);
+      }
+      &:dir(rtl) {
+        -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl');
+        margin-right: rem($entry_lr_space);
+      }
+    }
+
+    // avoids labels color being overridden, see
+    // https://bugzilla.gnome.org/show_bug.cgi?id=767058
+    label,
+    arrow {
+      &:dir(rtl),
+      &:dir(ltr) { color: inherit; }
+    }
+  }
+
+  > arrow { // overflow buttons
+    @extend %arrow_size;
+    margin: 0 1px;
+    @include button(flat-normal);
+    @include transition(dec);
+    &:hover { @include button(flat-hover); }
+    &:active { @include button(flat-active); }
+    &:disabled {
+      border-color: transparent;
+      background-color: transparent;
+      color: transparent;
+    }
+
+    // do not use .top/.bottom style-class (outdated?)
+    &:first-child {
+      margin-top: rem(-$menu_padding);
+      padding: 0 0 rem($menu_padding);
+      -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
+      @include radius($r_4 $r_4 0 0, none);
+      border-bottom: 1px solid if($variant == dark, track(white, $alpha_div_2),
+                                                    $color_fg_div);
+    }
+    &:last-child {
+      margin-top: rem($menu_padding * 2);
+      margin-bottom: rem(-$menu_padding * 3);
+      padding: rem($menu_padding) 0 0;
+      -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
+      @include radius(0 0 $r_4 $r_4, none);
+      border-top: 1px solid if($variant == dark, track(white, $alpha_div_2),
+                                                 $color_fg_div);
+    }
+  }
+
+  > separator { margin: rem($menu_padding) 0; }
+}
+
+menuitem {
+  accelerator { color: track(currentColor, $alpha_foreground_3rd); }
+
+  separator { margin: rem($menu_padding) 0; }
+}
+
+window.popup {
+  &, &.solid-csd { border-radius: 0; }
+
+  &.csd { // round corners for CSD menus
+    border-radius: $r_4; // same with the combobox
+
+    @if $maj_ver == 4 {
+      // clear root background to draw child menu node radius correctly
+      &.background { background-color: transparent; }
+    }
+  }
+}
+
+combobox > window.popup { // combobox specific context-menu popup
+  // To prevent unwanted 'popup shift', these spacing parameter
+  // tweaks are needed.
+
+  decoration { @include transition(reset); } // do not set transitions
+
+  > menu,
+  #gtk-combobox-popup-menu { // specificity bump with node-id
+    // subtract child baseline padding
+    padding: rem($menu_padding - $baseline) 0;
+    @include transition(reset); // do not set transitions
+
+    > menuitem {
+     // Create 1px L/R gap, otherwise hovered fill-area will hang over the
+     // parent 4px rounded edges especially in case of smaller (tiny)
+     // font-scaling * font-size. 
+      margin: 0 1px;
+      padding-top: $combo_button_padding_0;
+      padding-bottom: $combo_button_padding_0;
+      font-weight: 500; // = GtkComboButton
+
+      cellview {
+        min-height: $min_combo; // = combobox child cellview spacing
+        margin: 0 -1px; // reset parent margins
+      }
+    }
+  }
+}
+
+#IBus { // ibus-candidate popups
+  &Candidate {
+    border: 1px solid $color_fg_div;
+    background-color: $color_bg_dark;
+
+    > box > label { color: $color_fg_3; }
+
+    widget label {
+      color: $color_fg_2;
+      font-size: 110%;
+      -gtk-secondary-caret-color: $color_bg_sgst; // =< 1.5.14
+      &:selected { color: $color_fg_sel; }
+    }
+
+    button.flat.image-button { margin: rem($menu_padding); }
+  }
+
+  &Handle { // a grip inside the ibus-candidate popups
+    // override ugly grey backgrounds
+    background-image: image($color_bg_dark);
+  }
+
+  @if $maj_ver == 3 {
+    @if $mnr_ver > 23 {
+      &Emojier {
+        &WhiteLabel,
+        &GoldLabel,
+        &SelectedLabel { padding: $toolbar_padding; }
+      }
+    }
+  }
+  @else {
+    &Emojier {
+      &WhiteLabel,
+      &GoldLabel,
+      &SelectedLabel { padding: $toolbar_padding; }
+    }
+  }
+}

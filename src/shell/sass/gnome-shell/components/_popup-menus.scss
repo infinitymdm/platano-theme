@@ -1,0 +1,324 @@
+// /******************
+//  * Popovers/Menus *
+//  ******************/
+
+$extra_spacing: 3px;
+$avatar_width: $icon_size * 1.5;
+
+.popup-menu {
+  min-width: 15em;
+
+  .popup-sub-menu {
+    @if $ver < 3.35 {
+      padding-bottom: 1px; // reserve bottom-border height
+      border-bottom: 1px solid $color_fg_div;
+    }
+    @else {
+      border-width: 0 0 1px;
+      border-style: solid;
+      border-color: $color_fg_div;
+    }
+    background-color: $color_bg;
+    box-shadow: inset 0 2px 2px opacity(black, $alpha_track_1);
+    @if $ver > 3.35 {
+      .popup-menu-item {
+        &:ltr { padding-left: if($ref_weight >= 1.0, 8px * 1.5, 6px); }
+        &:rtl { padding-right: if($ref_weight >= 1.0, 8px * 1.5, 6px); }
+      }
+    }
+  }
+
+  @if $ver < 3.25 {
+    .popup-menu-content { padding: if($ref_weight >= 1.0, 0.3em 0, 0.21em 0); }
+  }
+
+  .popup-menu-item {
+    @if $ver < 3.35 {
+      spacing: if($ref_weight >= 1.0, $avatar_width / 2 - $extra_spacing,
+                                      $avatar_width / 2);
+    }
+    @else { spacing: if($ref_weight >= 1.0, 8px, 6px); }
+    color: $color_fg_2;
+    font-weight: 400;
+    transition-duration: $transition_d_none;
+    &:ltr {
+      @if $ver < 3.35 {
+        padding: if($ref_weight >= 1.0, 0.45em $avatar_width 0.45em 0,
+                                        0.3em $avatar_width 0.3em 0);
+      }
+      @else {
+        padding: if($ref_weight >= 1.0, 0.45em ($icon_size + 8px) 0.45em 0,
+                                        0.3em ($icon_size + 6px) 0.3em 0);
+      }
+    }
+    &:rtl {
+      @if $ver < 3.35 {
+        padding: if($ref_weight >= 1.0, 0.45em 0 0.45em $avatar_width,
+                                        0.3em 0 0.3em $avatar_width);
+      }
+      @else {
+        padding: if($ref_weight >= 1.0, 0.45em 0 0.45em ($icon_size + 8px),
+                                        0.3em 0 0.3em ($icon_size + 6px));
+      }
+    }
+
+    &:checked {
+      &, &.selected {
+        background-color: transparent;
+        color: $color_lbl_sel;
+        box-shadow: $empty_shadow;
+      }
+      &:hover {
+        background-color: opacity($color_bg_sel, $alpha_track_1);
+        color: $color_lbl_sel;
+      }
+      &:active {
+        background-color: opacity($color_bg_sel, $alpha_track_2);
+        color: $color_lbl_sel;
+      }
+      &:insensitive { color: opacity($color_lbl_sel, $alpha_foreground_bdp); }
+    }
+    &.selected {
+      background-color: $color_bg_semi_fill;
+      color: $color_fg;
+      transition-duration: $transition_d_none;
+    }
+    &:active {
+      background-color: $color_bg_fill;
+      color: $color_fg;
+      transition-duration: $transition_d_standard;
+    }
+    &.selected:active { color: $color_fg; }
+    &:insensitive { color: $color_fg_dis; }
+  }
+
+  .popup-inactive-menu-item { // all icons and other graphical elements
+    color: $color_fg_2;
+    &:insensitive { color: $color_fg_dis; }
+  }
+
+  &.panel-menu {
+    @if $ver < 3.25 {
+      -boxpointer-gap: 4px;
+      margin-bottom: 16px;
+    }
+    @else {
+      // child popup-menu-content has 3px top-margin
+      -boxpointer-gap: 4px - 3px;
+    }
+  }
+
+  StEntry { // use variant-sensitive foreground colors
+    @include entry(normal);
+    transition-duration: $transition_d_none;
+    &:hover { @include entry(hover); }
+    &:focus { @include entry(focus); }
+    &:insensitive { @include entry(disabled); }
+
+    @if $ver > 3.35 {
+      .hint-text { color: $color_fg_3; }
+    }
+  }
+
+  StScrollBar {
+    StBin#trough { background-color: opacity($color_base, $alpha_foreground_3rd); }
+
+    StButton#vhandle,
+    StButton#hhandle { // use variant-sensitive slider-bit
+      background-color: opacity($color_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+      &:hover { background-color: opacity($color_fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+      &:active { background-color: $color_fg; }
+    }
+  }
+}
+
+.popup-menu {
+  &-arrow { // not really top bar only
+    @if $ver < 3.31 {
+      width: $icon_size;
+      height: $icon_size;
+    }
+    @else { icon-size: $icon_size; }
+  }
+
+  &-icon { icon-size: $icon_size; }
+
+  &-ornament {
+    @if $ver < 3.35 {
+      width: 1em; // protect the region
+    }
+    @else { width: $icon_size; }
+    height: 0; // trick for minimum separator-menu-item height
+    text-align: right;
+    font-size: $icon_size; // fixed size
+    color: $color_lbl_sel;
+    font-family: $font-family-for-ornament;
+    font-weight: 700;
+  }
+}
+
+.popup-menu-boxpointer,
+.candidate-popup-boxpointer {
+  @if $ver < 3.33 { // affects boxpointer placement
+    -arrow-border-radius: $icon_size * 1.5;
+  }
+  @else { -arrow-border-radius: 0; }
+  -arrow-border-width: 0;
+  -arrow-border-color: transparent;
+  -arrow-base: 0;
+  -arrow-rise: 0;
+  -arrow-box-shadow: $empty_shadow; // dreaming. bug #689995
+  @if $ver < 3.25 {
+    border-radius: $r_4;
+    box-shadow: $z-depth-3;
+  }
+  @else { // shut up 3rd-party gresources
+    border-radius: 0;
+    box-shadow: $empty_shadow;
+  }
+}
+
+.popup-menu-boxpointer {
+  @if $ver < 3.25 {
+    -arrow-background-color: $color_bg_dark; // fake arrows
+    border: 1px solid $color_fg_div_sld;
+    background-color: $color_bg_dark;
+  }
+  @else {
+    -arrow-background-color: transparent;
+
+    .popup-menu-content {
+      @extend %popover_content;
+      padding: if($ref_weight >= 1.0, 0.3em 0, 0.21em 0);
+      border: 1px solid $color_fg_div_sld;
+      background-color: $color_bg_dark;
+    }
+  }
+}
+
+%popover_content {
+  margin: 3px 5px 12px;
+  border-radius: $r_4;
+  box-shadow: $z-depth-3;
+}
+
+.candidate-popup-boxpointer {
+  -arrow-background-color: transparent;
+  border: 0 none transparent;
+  background: transparent; // needs to reset?
+  // candidate popups are rendered as OSDs, so no need to set edge borders
+  @if $ver < 3.25 {
+    background-color: opacity($color_bg_osd, $alpha_osd);
+    color: $color_fg_osd_2;
+  }
+  @else {
+    .candidate-popup-content {
+      @extend %popover_content;
+      background-color: opacity($color_bg_osd, $alpha_osd);
+      color: $color_fg_osd_2;
+    }
+  }
+}
+
+.popup-separator-menu-item {
+  @if $ver < 3.35 {
+    height: 1px; // not really the whole box
+    margin: 0;
+    spacing: 0;
+    border-color: if($variant != dark,
+                     $color_fg_div,
+                     mix(white, $color_bg_dark, percentage($alpha_div_2)));
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    background-color: transparent;
+  }
+  @else {
+    padding: 0;
+
+    .popup-separator-menu-item-separator {
+      height: 1px;
+      margin: 0;
+      background-color: if($variant != dark,
+                           $color_fg_div,
+                           mix(white, $color_bg_dark, percentage($alpha_div_2)));
+
+      @if $ver > 3.35 and $variant == dark {
+        .popup-sub-menu & {
+          background-color: mix(white, $color_bg, percentage($alpha_div_2));
+        }
+      }
+    }
+  }
+}
+
+@if $ver > 3.33 { // rename popup-menu
+  $rename_popup_content: if($ref_weight >= 1.0, 8px, 6px);
+
+  .rename-folder-popup { // concern .popup-menu-item
+    .popup-menu {
+      &-content { padding: $rename_popup_content 0; }
+
+      &-ornament { width: 0; } // clear unneeded ornament
+
+      &-item {
+        spacing: $rename_popup_content;
+        &:ltr { padding: 0 $rename_popup_content 0 0; }
+        &:rtl { padding: 0 0 0 $rename_popup_content; }
+      }
+    }
+
+    StEntry {
+    }
+
+    .button { // suggested-action button
+      padding: if($ref_weight >= 1.0, // subtract borders
+                  (7px - 2px) (16px - 2px) (8px - 2px),
+                  (5px - 2px) (12px - 2px) (6px - 2px));
+      border-radius: $r_2;
+      font-weight: 500;
+      @include button(suggested-normal, $c: $color_bg_sgst, $tc: $color_fg_sel);
+      &:hover {
+        @include button(suggested-hover, $c: $color_bg_sgst, $tc: $color_fg_sel);
+      }
+      &:focus {
+        @include button(suggested-focus, $c: $color_bg_sgst, $tc: $color_fg_sel);
+      }
+      &:active { @include button(suggested-active); }
+      &:insensitive {
+        padding: if($ref_weight >= 1.0, 7px 16px 8px, 5px 12px 6px);
+        @include button(suggested-disabled, $tc: $color_fg);
+      }
+    }
+  }
+}
+
+// Background menu
+.background-menu {
+  -boxpointer-gap: 0;
+  -arrow-rise: 0;
+}
+
+// an avatar icon in menus
+.system-switch-user-submenu-icon {
+  @if $ver < 3.31 {
+    &.user-icon {
+      icon-size: $icon_size + 4px;
+      padding: 0 if($ref_weight >= 1.0,
+                    ($avatar_width - ($icon_size + 4px) + $extra_spacing) / 2,
+                    ($avatar_width - ($icon_size + 4px)) / 2);
+    }
+
+    &.default-icon {
+      icon-size: $icon_size;
+      padding: 0 if($ref_weight >= 1.0,
+                    ($avatar_width - $icon_size + $extra_spacing) / 2,
+                    ($avatar_width - $icon_size) / 2);
+    }
+  }
+  @elif $ver < 3.33 {
+    icon-size: $icon_size;
+    padding: 0 if($ref_weight >= 1.0,
+                  ($avatar_width - $icon_size + $extra_spacing) / 2,
+                  ($avatar_width - $icon_size) / 2);
+  }
+}

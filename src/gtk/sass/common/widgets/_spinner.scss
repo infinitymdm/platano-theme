@@ -1,0 +1,30 @@
+// /*********************
+//  * Spinner Animation *
+//  *********************/
+
+spinner {
+  min-width: $icon_size;
+  min-height: $icon_size;
+  -gtk-icon-source: -gtk-icontheme('process-working-symbolic');
+  background: none;
+  color: $color_fg_acc;
+  opacity: 0; // non spinning spinner makes no sense
+  &:checked {
+    opacity: 1.0;
+    animation: spinner $transition_d_spin $transition_t_lin infinite;
+    &:backdrop { opacity: 1.0; }
+  }
+  &:disabled { color: track($color_fg_acc, $alpha_foreground_bdp); }
+  &:backdrop { opacity: 0; }
+
+  .osd &,
+  .app-notification &,
+  .floating-bar &,
+  headerbar &,
+  messagedialog & {
+    @if $variant == mixed {
+      color: $color_fg_acc_inv;
+      &:disabled { color: track($color_fg_acc_inv, $alpha_foreground_bdp); }
+    }
+  }
+}

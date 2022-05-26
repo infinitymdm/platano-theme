@@ -1,0 +1,86 @@
+// /************************
+//  * Gnome-Control-Center *
+//  ************************/
+
+// users section
+stack > box.vertical widget overlay grid.horizontal > stack {
+  // prevent unwanted truncation of shadows
+  padding: $shadow_margin_3;
+}
+
+// carousel widgets
+.carousel-arrow-container.bottom.horizontal {
+  // prevent double density border
+  margin-bottom: -1px;
+}
+
+button.carousel-item.flat.menu.radio:focus {
+  // outlines cause unwanted region-violations on avatar GtkImages,
+  // so let's hide them
+  outline-width: 0;
+}
+
+scrolledwindow.view > viewport.frame > stack { // left-pane
+  > list, // > 3.25.90
+  > box.vertical > entry.search + list { // > 3.33.90
+    @extend %sidebar_template;
+
+    > row.activatable {
+      padding: 0; // unset padding
+      color: $color_fg_2;
+      font-weight: 500;
+
+      image.dim-label { opacity: $alpha_foreground_2nd; } // tone up icons
+
+      label,
+      image { color: $color_fg_2; }
+
+      &:hover,
+      &:active {
+        color: $color_fg;
+
+        label,
+        image { color: $color_fg; }
+      }
+
+      &:selected {
+        &:dir(ltr) { @include radius(0 $r $r 0); }
+        &:dir(rtl) { @include radius($r 0 0 $r); }
+
+        &, &:focus { outline-width: 0; } // unset focus outlines
+
+        &, &:hover {
+          background-color: $color_bg_trk;
+          color: $color_lbl_sel;
+
+          label,
+          image { color: $color_lbl_sel; }
+        }
+      }
+    }
+  }
+}
+
+dialog.background.csd {
+  > headerbar.titlebar {
+    > label:not(.title):not(.subtitle) {
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
+      font-weight: 700;
+    }
+  }
+}
+
+@if $maj_ver == 3 {
+  @if $mnr_ver > 23 {
+    flowboxchild > overlay > image + button.image-button.osd.remove-button {
+      // subtract app's CSS T/B padding
+      min-height: calc(#{rem($widget_size)} - 1px * 2);
+    }
+  }
+}
+@else {
+  flowboxchild > overlay > image + button.image-button.osd.remove-button {
+    // subtract app's CSS T/B padding
+    min-height: calc(#{rem($widget_size)} - 1px * 2);
+  }
+}

@@ -1,0 +1,198 @@
+// /*****************
+//  * GtkSpinButton *
+//  *****************/
+
+spinbutton {
+  &:not(.vertical) {
+    // in this horizontal configuration, the whole spinbutton
+    // behaves as the entry, so we extend the entry styling
+    // and nuke the style on the internal entry
+    min-height: calc(#{rem($widget_size)} - 2px * 2);
+    min-width: calc(#{rem($widget_size)} - 2px * 2);
+    border: 2px solid transparent; // initialize borders
+    @include radius($r_4, none);
+    @include entry(normal);
+    @include transition(std);
+    &:focus { @include entry(focus); }
+    &:disabled { @include entry(disabled); }
+
+    // FIXME: this should not be set at all, but otherwise it gets the wrong
+    // color
+    &:disabled { color: $color_fg_dis; }
+
+    @if $maj_ver == 3 {
+      entry,
+      toolbar & entry,
+      popover & > entry:not(.combo) { // specificity bump
+        &, // unset all of fallback mode
+        &:focus,
+        &:disabled { @extend %spin_entry_reset; }
+
+        progress {  @include radius($r_4, none); }
+      }
+    }
+    @else { // NEEDS_REVIEW
+      progress > trough > progress { @include radius($r_4, none); }
+    }
+
+    button {
+      min-width: $icon_size;
+      min-height: calc(#{rem($widget_size)} - 2px * 2);
+      padding: 0 rem($entry_lr_space / 2);
+      @include radius(0);
+      @include button(flat-normal);
+      &:hover { @include button(flat-hover); }
+      &:active { @include button(flat-active); }
+      &:disabled { @include button(flat-disabled); }
+
+      &.down { // '-' button
+        &:hover,
+        &:active {
+          background-color: track($color_err, $alpha_track_1);
+          color: $color_err;
+        }
+      }
+      &.up { // '+' button
+        &:hover,
+        &:active {
+          background-color: track($color_bg_sccs, $alpha_track_1);
+          color: $color_bg_sccs;
+        }
+      }
+    }
+  }
+
+  @if $variant == mixed {
+    .osd & {
+      &:not(.vertical),
+      &.vertical { // specificity bump
+        // set default foregrounds in top node
+        background-color: track($color_fg_inv, $alpha_track_1);
+        color: $color_fg_inv;
+        caret-color: $color_fg_inv;
+        &:focus {
+          background-color: track($color_fg_inv, $alpha_track_2);
+          color: $color_fg_inv;
+          caret-color: $color_fg_inv;
+        }
+
+        @if $maj_ver == 3 {
+          entry {
+            &, &:focus {
+              color: $color_fg_inv;
+              caret-color: $color_fg_inv;
+
+              selection { @extend %selected_items; }
+            }
+            &:disabled { color: $color_fg_dis_inv; }
+          }
+        }
+        @else { // NEEDS_REVIEW
+          text {
+            &, &:focus {
+              color: $color_fg_inv;
+              caret-color: $color_fg_inv;
+
+              selection { @extend %selected_items; }
+            }
+            &:disabled { color: $color_fg_dis_inv; }
+          }
+        }
+
+        button {
+          color: $color_fg_inv_2;
+          &:disabled { color: $color_fg_dis_inv; }
+
+          &.down {
+            &:hover,
+            &:active { color: $color_err; }
+          }
+
+          &.up {
+            &:hover,
+            &:active { color: $color_bg_sccs; }
+          }
+        }
+      }
+    }
+  }
+
+  &.vertical {
+    min-height: calc(#{rem($widget_size)} - 2px * 2);
+    min-width: calc(#{rem($widget_size)} - 2px * 2);
+    padding: 0;
+    border: 2px solid transparent; // initialize borders
+    @include radius($r_4, none);
+    @include entry(normal);
+    @include transition(std);
+    &:focus { @include entry(focus); }
+    &:disabled { @include entry(disabled); }
+
+    @if $maj_ver == 3 {
+      entry,
+      toolbar & entry,
+      popover & > entry:not(.combo) { // specificity bump
+        &, // unset all of fallback mode
+        &:focus,
+        &:disabled { @extend %spin_entry_reset; }
+
+        progress {  @include radius($r_4, none); }
+      }
+    }
+    @else { // NEEDS_REVIEW
+      progress > trough > progress { @include radius($r_4, none); }
+    }
+
+    button {
+      min-width: calc(#{rem($widget_size)} - 2px * 2);
+      min-height: calc(#{rem($widget_size)} - 2px * 2);
+      padding: 0;
+      @include radius($r_4);
+      @include button(flat-normal);
+      &:hover { @include button(flat-hover); }
+      &:active { @include button(flat-active); }
+      &:disabled { @include button(flat-disabled); }
+
+      &.up { // '+' button
+        @include radius($r_4 $r_4 0 0);
+        &:hover,
+        &:active {
+          background-color: track($color_bg_sccs, $alpha_track_1);
+          color: $color_bg_sccs;
+        }
+      }
+
+      &.down { // '-' button
+        @include radius(0 0 $r_4 $r_4);
+        &:hover,
+        &:active {
+          background-color: track($color_err, $alpha_track_1);
+          color: $color_err;
+        }
+      }
+    }
+  }
+
+  // Misc
+  treeview & {
+    entry {
+      &, &:focus {
+        min-width: 0;
+        min-height: 0;
+        padding: 0;
+        @include radius(0, none);
+        background-color: $color_base;
+        box-shadow: none;
+        @include transition(reset);
+        &:selected { @extend %selected_items; }
+      }
+    }
+  }
+}
+
+%spin_entry_reset {
+  margin: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+}

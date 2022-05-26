@@ -1,0 +1,51 @@
+// /***************
+//  * Chrome(ium) *
+//  ***************/
+
+%chromium_unfocused_tab {
+  color: if($variant == mixed,
+            mix($color_fg_inv, $color_bg_dark_inv, percentage($alpha_foreground_3rd)),
+            mix($color_fg, $color_bg_dark, percentage($alpha_foreground_3rd)));
+}
+
+window.background.chromium {
+  menubar {
+    @extend %chromium_unfocused_tab; // for SSDs
+  }
+
+  headerbar.titlebar {
+    @extend %chromium_unfocused_tab; // for CSDs
+
+    // from nav_button_provider_gtk3.cc (> 62.0.3202?)
+    button.titlebutton { // title-buttons
+      @extend %browser_csd_titlebutton;
+      min-width: $titlebutton_small;
+      min-height: $titlebutton_small;
+    }
+  }
+
+  button { // for active-tab top edge borders
+    border-color: $color_bg_sel;
+  }
+
+  > button:not(.suggested-action):not(.destructive-action),
+  > treeview.view button {
+    // and then reset above borders for generic buttons
+    border-color: $color_fg_div;
+  }
+
+  > treeview.view button { background-color: $color_bg; } // header buttons
+
+  > scrollbar button { // stepper buttons
+    border-color: $color_bg;
+    background-color: $color_bg;
+  }
+
+  > button.suggested-action:selected { // for 'focused' prominent button
+    background-color: mix($color_fg_sel, $color_bg_sgst, percentage($alpha_track_1));
+  }
+
+  @if $variant == mixed { // do not mix with foregrounds
+    > spinner { color: $color_bg_acc; }
+  }
+}

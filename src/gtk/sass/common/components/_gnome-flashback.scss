@@ -1,0 +1,260 @@
+// /*******************
+//  * Gnome-Flashback *
+//  *******************/
+
+// use message-dialog style for popup osd windows
+$gf_margin: 12px;
+
+%gf_window {
+  @if $variant == mixed { color: $color_fg_inv; }
+  @else { color: $color_fg; }
+
+  levelbar block:not(.empty) { background-color: $color_bg_sccs; }
+
+  &.solid {
+    @if $variant == mixed { color: $color_fg_inv; }
+    @else { color: $color_fg; }
+
+    levelbar block:not(.empty) { background-color: $color_bg_sccs; }
+  }
+
+  &:not(.solid) {
+    background: none;
+
+    > box {
+      padding: $gf_margin;
+      @if $variant == mixed { background-color: track($color_bg_dark_inv, $alpha_osd); }
+      @else { background-color: track($color_bg_dark, $alpha_osd); }
+    }
+  }
+
+  // for non-composited environments
+  &.solid {
+    border-radius: 0;
+    border: 1px solid $color_fg_div;
+    @if $variant == mixed { background-color: track($color_bg_dark_inv, $alpha_osd); }
+    @else { background-color: track($color_bg_dark, $alpha_osd); }
+  }
+}
+
+%gf_window_decoration_3 {
+  &:not(.solid) > box {
+    margin: 0 0 (16px - $gf_margin);
+    @include radius($r_4, none);
+    box-shadow: $z-depth-3;
+  }
+}
+
+%gf_window_decoration_4 {
+  &:not(.solid) > box {
+    margin: (16px - $gf_margin) (24px - $gf_margin) (32px - $gf_margin);
+    @include radius($r_8, none);
+    box-shadow: $z-depth-4;
+  }
+}
+
+// popup window widget
+#gf-label-window,
+#gf-bubble,
+#gf-osd-window,
+#gf-input-source-popup {
+  @extend %gf_window;
+  @extend %gf_window_decoration_4;
+}
+
+#gf-label-window {
+  font-size: rem($ref_size * 3, $sw: 1.0);
+  font-weight: 400;
+}
+
+#gf-bubble box.horizontal > button.flat { // OSD-style button
+  @if $variant == mixed {
+    @extend %inv-action-area-button;
+  }
+  @else {
+    @extend %action-area-button;
+  }
+  min-width: $icon_size;
+  min-height: $icon_size;
+  padding: rem($menuitem_padding, $sw: 1.0);
+  @include radius($r);
+}
+
+#notification-popup-window {
+  button.text-button:not(.flat) { // 'clear' button
+    @extend %action-area-button;
+  }
+
+  button.flat:not(.text-button) { // close button
+    min-width: $icon_size;
+    min-height: $icon_size;
+    padding: rem($menuitem_padding, $sw: 1.0);
+    @include radius($r);
+  }
+}
+
+// input-source switcher labels
+#gf-input-source {
+  min-width: rem($ref_size * 9, $sw: 1.0);
+  min-height: rem($ref_size * 9, $sw: 1.0);
+  color: if($variant != light, $color_fg_inv, $color_fg);
+  font-size: rem(40px, $sw: 1.0);
+  font-weight: 400;
+  &:selected {
+    border-radius: 2px;
+    background-color: $color_bg_trk;
+    color: if($variant != light, $color_fg_acc_inv, $color_fg_acc);
+  }
+}
+
+// popup for input-source candidates
+#gf-candidate-popup {
+  @extend %gf_window;
+  @extend %gf_window_decoration_3;
+
+  gf-candidate-box {
+    @include radius($r_2, none);
+    color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
+    @include transition(reset);
+
+    label {
+      padding: rem($baseline * 2)
+               rem($entry_lr_space)
+               rem($baseline * 3);
+      font-size: 110%;
+    }
+
+    &:hover {
+      background-color: $color_bg_trk;
+      color: if($variant == mixed, $color_fg_inv, $color_fg);
+    }
+    &:selected {
+      background-color: $color_bg_sgst;
+      color: $color_fg_sel;
+    }
+  }
+
+  .linked > button { // page-up&down buttons
+    &, &.flat {
+      @if $variant == mixed {
+        @extend %inv-action-area-button;
+      }
+      @else {
+        @extend %action-area-button;
+      }
+      min-height: rem($widget_size);
+      min-width: rem($widget_size);
+    }
+  }
+}
+
+@if $maj_ver == 3 {
+  @if $mnr_ver > 23 {
+    gf-screensaver-panel { @extend %gf_ss_panel; }
+
+    gf-icon { @extend %gf_icon; }
+  }
+}
+@else {
+  gf-screensaver-panel { @extend %gf_ss_panel; }
+
+  gf-icon { @extend %gf_icon; }
+}
+
+%gf_ss_panel {
+  @extend %gnome_panel_toplevel;
+  @extend %gnome_panel_applet;
+  padding: 4px 10px; // NEEDS_REVIEW
+
+  label,
+  image { color: if($variant == mixed, $color_fg_inv, $color_fg); }
+}
+
+%gf_icon {
+  margin: 2px;
+  @extend %nautilus_desktop_items;
+  &:hover,
+  &:selected {
+    image {
+      @if $maj_ver == 3 { -gtk-icon-effect: highlight; }
+      @else { -gtk-icon-filter: brightness(1.2); }
+    }
+  }
+
+  &:selected {
+    label {
+      background-color: $color_bg_sel;
+      color: $color_fg_sel;
+    }
+  }
+
+  label {
+    padding: $r_2;
+    border-radius: $r_2;
+  }
+}
+
+@if $maj_ver == 3 {
+  @if $mnr_ver > 23 {
+    gf-unlock-dialog { @extend %gf_unlock_dialog; }
+  }
+}
+@else {
+  gf-unlock-dialog { @extend %gf_unlock_dialog; }
+}
+
+%gf_unlock_dialog {
+  border-radius: $r_8;
+  box-shadow: $z-depth-4;
+  background: transparent;
+
+  &.background { background: transparent; }
+
+  > frame {
+    border-radius: $r_8;
+    @if $variant == mixed { // alpha compositing doesn't work though
+      background-color: track($color_bg_dark_inv, $alpha_osd);
+      color: $color_fg_inv;
+    }
+    @else {
+      background-color: track($color_bg_dark, $alpha_osd);
+      color: $color_fg;
+    }
+
+    &, > border { border: none; }
+  }
+
+  notebook {
+    button {
+      @if $variant == mixed { @extend %inv_flat_button; }
+      @else { @extend %flat_button; }
+    }
+
+    entry:not(.flat) {
+      min-height: rem($widget_size);
+      @include radius($r_4 $r_4 0 0, none);
+      border: none;
+      @if $variant == mixed {
+        @include entry(flat-normal, $tc: $color_fg_inv);
+        caret-color: $color_fg_inv;
+        &:focus { @include entry(flat-focus, $tc: $color_fg_inv); }
+        &:disabled { @include entry(flat-disabled, $tc: $color_fg_inv); }
+
+        selection { @extend %selected_items; }
+      }
+      @else {
+        @include entry(flat-normal, $tc: $color_fg);
+        caret-color: $color_fg;
+        &:focus { @include entry(flat-focus, $tc: $color_fg); }
+        &:disabled { @include entry(flat-disabled, $tc: $color_fg); }
+      }
+    }
+  }
+
+  buttonbox:not(.linked) button { // specificity bump
+    &:not(.suggested-action):not(.destructive-action) {
+      @if $variant == mixed { @extend %inv-action-area-button; }
+      @else { @extend %action-area-button; }
+    }
+  }
+}
