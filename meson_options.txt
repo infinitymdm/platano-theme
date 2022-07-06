@@ -1,0 +1,20 @@
+option(
+  'theme_name',
+  type: 'string',
+  value: 'Platano',
+  description: 'Base theme name',
+)
+
+option(
+  'sizes',
+  type: 'array',
+  choices: ['default', 'compact'],
+  description: 'List of size variants to build',
+)
+
+option(
+  'colors',
+  type: 'array',
+  choices: ['default', 'light', 'dark'],
+  description: 'List of color variants to build',
+)

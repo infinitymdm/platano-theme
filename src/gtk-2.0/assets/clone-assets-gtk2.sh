@@ -10,8 +10,8 @@
 # (at your option) any later version.
 #
 
-ASSETS_DIR="../assets-gtk2"
-ASSETS_CLONE_DIR="../assets-clone"
+ASSETS_DIR="./assets-gtk2"
+ASSETS_CLONE_DIR="./assets-clone"
 INDEX_CLONE="assets-clone-gtk2.txt"
 
 # Clone stock SVG files
