@@ -1,0 +1,104 @@
+$maj_ver: 3;
+$mnr_ver: 24;
+$variant: 'dark';
+$ref_weight: 1.0;
+
+@import 'palette';
+@import 'functions';
+@import 'variables';
+@import 'colors';
+@import 'drawing';
+@import 'colors-public';
+
+/*
+ * color_fg:            #{$color_fg}
+ * color_fg_2:          #{$color_fg_2}
+ * color_fg_3:          #{$color_fg_3}
+ *
+ * color_fg_sel:        #{$color_fg_sel}
+ * color_fg_sel_2:      #{$color_fg_sel_2}
+ * color_fg_sel_3:      #{$color_fg_sel_3}
+ * 
+ * color_fg_dis:        #{$color_fg_dis}
+ * color_fg_dis_2:      #{$color_fg_dis_2}
+ * color_fg_dis_3:      #{$color_fg_dis_3}
+ *
+ * color_fg_dis_sel:    #{$color_fg_dis_sel}
+ * color_fg_dis_sel_2:  #{$color_fg_dis_sel_2}
+ * color_fg_dis_sel_3:  #{$color_fg_dis_sel_3}
+ * 
+ * color_fg_plc:        #{$color_fg_plc}
+ * 
+ * color_fg_inv:        #{$color_fg_inv}
+ * color_fg_inv_2:      #{$color_fg_inv_2}
+ * color_fg_inv_3:      #{$color_fg_inv_3}
+ * 
+ * color_fg_dis_inv:    #{$color_fg_dis_inv}
+ * color_fg_dis_inv_2:  #{$color_fg_dis_inv_2}
+ * 
+ * color_fg_title_unf:  #{$color_fg_title_unf}
+ * 
+ * color_fg_fix:            #{$color_fg_fix}
+ * color_fg_fix_2:          #{$color_fg_fix_2}
+ * color_fg_fix_3:          #{$color_fg_fix_3}
+ * color_fg_fix_dis:        #{$color_fg_fix_dis}
+ *
+ * color_bg:                #{$color_bg}
+ * color_base:              #{$color_base}
+ * color_bg_dark:           #{$color_bg_dark}
+ * 
+ * color_bg_inv:            #{$color_bg_inv}
+ * color_base_inv:          #{$color_base_inv}
+ * color_bg_dark_inv:       #{$color_bg_dark_inv}
+ *
+ * color_base_fix:          #{$color_base_fix}
+ * 
+ * color_bg_sel:            #{$color_bg_sel}
+ * color_lbl_sel:           #{$color_lbl_sel}
+ * color_lbl_sel_inv:       #{$color_lbl_sel_inv}
+ *
+ * color_bg_acc:            #{$color_bg_acc}
+ * color_fg_acc:            #{$color_fg_acc}
+ * color_fg_acc_2:          #{$color_fg_acc_2}
+ * color_fg_drop:           #{$color_fg_drop}
+ * color_bg_drop:           #{$color_bg_drop}
+ * color_fg_acc_inv:        #{$color_fg_acc_inv}
+ * color_fg_acc_inv_2:      #{$color_fg_acc_inv_2}
+ * color_fg_drop_inv:       #{$color_fg_drop_inv}
+ * 
+ * color_bg_trk:            #{$color_bg_trk}
+ * color_fg_trk_out:        #{$color_fg_trk_out}
+ *
+ * color_fg_div:            #{$color_fg_div}
+ * color_fg_div_sld:        #{$color_fg_div_sld}
+ * color_fg_div_sld_dark:   #{$color_fg_div_sld_dark}
+ * color_fg_div_top:        #{$color_fg_div_top}
+ * color_fg_div_pane:       #{$color_fg_div_pane}
+ *
+ * color_lnk:               #{$color_lnk}
+ * color_lnk_vst:           #{$color_lnk}
+ * color_fg_lnk:            #{$color_fg_lnk}
+ * color_fg_lnk_vst:        #{$color_fg_lnk_vst}
+ * 
+ * color_bg_sgst:           #{$color_bg_sgst}
+ * color_bg_dest:           #{$color_bg_dest}
+ * 
+ * color_info:              #{$color_info}
+ * color_warn:              #{$color_warn}
+ * color_err:               #{$color_err}
+ *
+ * color_bg_sccs:           #{$color_bg_sccs}
+ * color_bg_info:           #{$color_bg_info}
+ * color_bg_ques:           #{$color_bg_ques}
+ * color_bg_warn:           #{$color_bg_warn}
+ * color_bg_err:            #{$color_bg_err}
+ *
+ * color_bg_tooltip:        #{$color_bg_tooltip}
+ * color_bg_tooltip_inv:    #{$color_bg_tooltip_inv}
+ *
+ * color_bg_panel:          #{$color_bg_panel}
+ * color_fg_panel_inv:      #{$color_fg_panel_inv}
+ *
+ * color_bg_sel_dark:       #{$color_bg_sel_dark}
+ * color_fg_div_sel_top:    #{$color_fg_div_sel_top}
+ */

@@ -3,10 +3,10 @@
 //
 
 // Import key color-scheme defined at build-time.
-@import '../../../gtk/sass/common/resources/color_palette';
-@import '../../../gtk/sass/common/resources/functions';
-@import '../../../gtk/sass/common/resources/variables';
-@import '../../../gtk/sass/common/colors';
+@import '../../palette';
+@import '../../functions';
+@import '../../variables';
+@import '../../colors';
 
 colors {
   sel_bg: $color_bg_sel;
