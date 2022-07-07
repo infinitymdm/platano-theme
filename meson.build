@@ -20,7 +20,7 @@ if sass.found()
     sass_has_module_system = sass_full_version.version_compare('>=1.23.0')
 endif
 
-if sass_is_ruby_sass or not sass_has_module_system
+if not sass.found() or sass_is_ruby_sass or not sass_has_module_system
     error('dart-sass >= 1.23.0 not found')
 endif
 
