@@ -27,9 +27,8 @@ endif
 themes = []
 foreach variant: get_option('variants')
     foreach size: get_option('sizes')
-        variant_suffix = '-@0@'.format(variant)
+        variant_suffix = variant == 'mixed' ? '' : '-@0@'.format(variant)
         size_suffix = size == 'default' ? '' : '-@0@'.format(size)
-
         scss_scale = size == 'default' ? '1.0' : '0.76'
 
         themes += {
