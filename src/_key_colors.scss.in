@@ -1,0 +1,4 @@
+$key_selection_color: @scss_sel_color@;
+$key_accent_color: @scss_acc_color@;
+$key_suggestion_color: @scss_sgst_color@;
+$key_destruction_color: @scss_dest_color@;

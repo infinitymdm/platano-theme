@@ -25,22 +25,18 @@ if sass_is_ruby_sass or not sass_has_module_system
 endif
 
 themes = []
-foreach color: get_option('colors')
+foreach variant: get_option('variants')
     foreach size: get_option('sizes')
-        color_suffix = color == 'default' ? '-mixed' : '-@0@'.format(color)
+        variant_suffix = '-@0@'.format(variant)
         size_suffix = size == 'default' ? '' : '-@0@'.format(size)
 
-        scss_dark_theme = color == 'dark' ? 'true' : 'false'
-        scss_light_topbar = color == 'light' ? 'true' : 'false'
-        scss_compact = size == 'compact' ? 'true' : 'false'
+        scss_scale = size == 'default' ? '1.0' : '0.76'
 
         themes += {
-            'name': theme_base_name + size_suffix + color_suffix,
-            'dir': theme_base_dir + size_suffix + color_suffix,
-            'color': color_suffix,
-            'size': size_suffix,
-            'scss_color': color,
-            'scss_size': size,
+            'name': theme_base_name + size_suffix + variant_suffix,
+            'dir': theme_base_dir + size_suffix + variant_suffix,
+            'variant': variant,
+            'size': scss_scale,
         }
     endforeach
 endforeach

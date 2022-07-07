@@ -1,6 +1,7 @@
 $maj_ver: 3;
 $mnr_ver: 24;
-$variant: @gtk3_theme_color@;
-$ref_weight: @gtk3_theme_size@;
+$variant: @scss_variant@;
+$ref_weight: @scss_size@;
 
-@import '../../main';
+@import '../key_colors';
+@import '../../../src/main';
