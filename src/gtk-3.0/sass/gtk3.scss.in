@@ -4,4 +4,5 @@ $variant: @scss_variant@;
 $ref_weight: @scss_size@;
 
 @import '../key_colors';
-@import '../../../src/main';
+@import '@current_src_dir@/../main';
+@import '@current_src_dir@/sass/budgie/main'

@@ -18,13 +18,13 @@ foreach theme: themes
     gtk3_scss_conf = configuration_data()
     gtk3_scss_conf.set('scss_variant', theme['variant'])
     gtk3_scss_conf.set('scss_size', theme['size'])
-    gtk3_scss_conf.set('current_source_dir', meson.current_source_dir())
+    gtk3_scss_conf.set('current_src_dir', meson.current_source_dir())
 
     foreach gtk3_variant: gtk3_variants
         gtk3_temp_name = '@0@.gtk3.@1@'.format(theme['name'], gtk3_variant)
 
         gtk3_scss = configure_file(
-            input: 'sass/gtk.scss.in',
+            input: 'sass/gtk3.scss.in',
             output: '@0@.scss'.format(gtk3_temp_name),
             configuration: gtk3_scss_conf,
         )

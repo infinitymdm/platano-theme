@@ -1,0 +1,291 @@
+// raven styling
+$raven_box_spacing: 4px;
+$switcher_width: (250px + $raven_box_spacing * 2) / 2;
+$switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
+
+%raven_switcher_radio_button {
+  min-height: rem($switcher_height, $sw: 1.0);
+  outline-style: none; // unset outlines
+}
+
+// Not needed (?) See main.scss
+// .raven-frame { // hide frame
+//   > border { border: none 0 transparent; }
+// }
+
+.raven {
+  padding: 0;
+  border: none;
+  color: $color_fg_2;
+  background-color: $color_bg;
+
+  .raven-header {
+    color: $color_fg_3;
+    font-weight: 500;
+
+    &.top {
+      background-color: transparent;
+
+      stackswitcher.linked {
+        margin: -$raven_box_spacing 0 0;
+
+        button.text-button.radio { // switcher buttons
+          @extend %raven_switcher_radio_button;
+          min-width: $switcher_width;
+        }
+      }
+    }
+  }
+
+  scrolledwindow > .frame { // stacking raised-grid
+    // FIXME: Do not set any L/R margins and borders
+    padding: 0 $raven_box_spacing;
+
+    > box.vertical > box.vertical {
+      margin: $raven_box_spacing 0; // do not set L/R margins
+      border-radius: $r_2;
+      background-color: $color_base;
+      // draw side edges via opaque box-shadows
+      box-shadow: inset 1px 0 $color_fg_div_sld,
+                  inset -1px 0 $color_fg_div_sld,
+                  $z-depth-1;
+    }
+
+    .raven-header {
+      margin-top: -$raven_box_spacing * 2; // unset parent margin
+      border-radius: $r_2 $r_2 0 0;
+    }
+
+    .raven-background {
+      margin-bottom: -$raven_box_spacing * 2; // unset parent margin
+      border-radius: 0 0 $r_2 $r_2;
+    }
+
+    // audio app/device switcher
+    box.audio-widget {
+      // placehoder label
+      widget.raven-background stack > box > revealer > box.vertical > label {
+        @extend %dim_label;
+        font-size: 90%;
+      }
+
+      list { // apps/devices list
+        &.apps-list,
+        &.sound-devices {
+          margin: 0 1px; // stop touching the parent L/R edges
+        }
+
+        &.sound-devices row.activatable { // devices list rows
+          &:selected {
+            background-color: track($color_bg_sel, $alpha_track_2);
+            &:dir(ltr) { box-shadow: inset 4px 0 $color_bg_sel; }
+            &:dir(rtl) { box-shadow: inset -4px 0 $color_bg_sel; }
+
+            &, label { color: $color_fg; }
+          }
+
+          > box > label {
+            &:dir(ltr) { margin-left: 4px; }
+            &:dir(rtl) { margin-right: 4px; }
+          }
+        }
+      }
+
+      stackswitcher.linked {
+        padding: 0 $raven_box_spacing; // limit child spacing
+
+        > button.text-button.radio {
+          @extend %raven_switcher_radio_button;
+          min-width: rem($switcher_height, $sw: 1.0);
+          margin-bottom: if($ref_weight < 1.0, 3px, 4px);
+          border: 1px solid transparent;
+          @include button(normal);
+          box-shadow: none;
+          &:hover { @include button(hover); }
+          &:active { @include button(active); }
+          &:checked {
+            @include button(checked);
+            &:hover { @include button(checked-hover); }
+          }
+          &:disabled { @include button(flat-disabled); }
+
+          &:dir(ltr),
+          &:dir(rtl) { @include radius($r, none); }
+
+          &:first-child {
+            &:dir(ltr) { margin-right: if($ref_weight < 1.0, 3px, 4px); }
+            &:dir(rtl) { margin-left: if($ref_weight < 1.0, 3px, 4px); }
+          }
+          &:last-child {
+            &:dir(ltr) { margin-left: if($ref_weight < 1.0, 3px, 4px); }
+            &:dir(rtl) { margin-right: if($ref_weight < 1.0, 3px, 4px); }
+          }
+        }
+      }
+    }
+  }
+
+  .powerstrip {
+    background-color: $color_bg_dark;
+    box-shadow: none;
+
+    button.flat.image-button {
+      min-width: rem($switcher_width, $sw: 1.0) * 2  / 3;
+      min-height: rem($switcher_height + 1px, $sw: 1.0);
+      margin: -($raven_box_spacing + 1px); // vertically gapless placement
+      padding: 0;
+    }
+  }
+
+  button.flat.expander-button { // expander arrow buttons
+    min-width: rem($widget_size);
+    min-height: rem($widget_size);
+    padding: 0;
+    @include radius($r);
+    color: $color_fg_3;
+    &:hover,
+    &:active { color: $color_fg; }
+
+    &:dir(ltr) { margin-right: rem($baseline * 2); }
+    &:dir(rtl) { margin-left: rem($baseline * 2); }
+  }
+
+  button.flat.image-button.primary-control { // 'close' button in MPRIS
+    color: $color_fg_3;
+    &:hover { @include button(flat-hover, $tc: $color_bg_dest); }
+    &:active {
+      @include button(flat-active, $tc: $color_bg_dest);
+      @include ink-reaction(active-dec, $fc: $color_bg_dest, $tr: ink-active-dec);
+    }
+  }
+
+  calendar {
+    border: none;
+    background-color: transparent;
+  }
+
+  // notification list
+  box.vertical > stack > box.vertical {
+    > .raven-header {
+      margin-top: -$raven_box_spacing; // reduce top margin
+      border-bottom: 1px solid $color_fg_div;
+    }
+
+    > .raven-background > viewport.frame {
+      padding: 0; // reset padding for full-width list node
+
+      list { background-color: transparent; }
+
+      > list > row.activatable {
+        padding-bottom: 4px;
+        border-bottom: 1px solid $color_fg_div;
+        background-color: transparent;
+        &:selected {
+          background-color: track($color_bg_sel, $alpha_track_2);
+          &:dir(ltr) { box-shadow: inset 4px 0 $color_bg_sel; }
+          &:dir(rtl) { box-shadow: inset -4px 0 $color_bg_sel; }
+
+          > grid > *, // legacy
+          > box.vertical * {
+            color: $color_fg;
+            opacity: 1.0;
+          }
+        }
+
+        > box.vertical > box.horizontal > button.image-button { // 'dismiss'
+          // left-most image size = 32px?
+          min-width: if($ref_weight < 1.0, $icon_size * 1.5, $icon_size * 2);
+          min-height: if($ref_weight < 1.0, $icon_size * 1.5, $icon_size * 2);
+          margin: if($ref_weight < 1.0, $icon_size * 0.5 0, 0);
+        }
+
+        // sub-list rows grouping
+        list {
+          @include radius($r_2, none);
+          border: 1px solid $color_fg_div;
+
+          > row.activatable {
+            border-bottom: 1px solid $color_fg_div;
+            &:last-child { border-bottom: none; }
+            &:dir(ltr) { padding: 2px rem($baseline * 2) 2px 8px; }
+            &:dir(rtl) { padding: 2px 8px 2px rem($baseline * 2); }
+
+            &:selected {
+              background-color: track($color_bg_sel, $alpha_track_2);
+            }
+
+            // title labels
+            box.horizontal > label:first-child { font-weight: 700; }
+          }
+        }
+      }
+    }
+  }
+
+  box.mpris-widget { // MPRIS root box container
+    // dim placeholder asset
+    &.no-album-art widget > image { opacity: $alpha_foreground_3rd; }
+  }
+
+  .raven-mpris { // MPRIS overlaid widget
+    margin-bottom: $raven_box_spacing * 2; // bottom-most 8px is dead
+    background-color: track($color_base, (1 - $alpha_track_1));
+    color: $color_fg;
+    box-shadow: inset 1px 0 $color_fg_div_sld,
+                inset -1px 0 $color_fg_div_sld,
+                inset 0 -1px $color_fg_div_sld;
+
+    button.image-button {
+      margin: 0 rem(5.3px) if($ref_weight < 1.0, $raven_box_spacing * 1.5,
+                                                 $raven_box_spacing * 2);
+      @extend %action-area-button;
+    }
+
+    > box.vertical > box.horizontal > image { // header icons
+      padding: rem(5.3px / 2) 0;
+      color: $color_fg_3; // tone down
+      &:dir(ltr) { margin: 0 (4px + 1px) 0 -4px; }
+      &:dir(rtl) { margin: 0 -4px 0 (4px + 1px); }
+    }
+  }
+}
+
+// raven-controller applet
+button.flat.raven-trigger {
+  @extend %budgie_trigger_button;
+
+  image { margin: 0 3px; } // add internal spacing
+
+  .left &,
+  .right & {
+    image { margin: 3px 0; } // add internal spacing
+  }
+}
+
+// some specific scale styling
+box.audio-widget,
+window.sound-popover.background {
+  scale.horizontal.marks-after { // overdrive-mode scale
+    padding-top: 0; // unset default padding
+    padding-bottom: 0;
+
+    trough { // overdrive-mode trough styling
+      background-color: transparent; // unset default trough color
+      @each $_dir, $_opp_end in (ltr, right),
+                                (rtl, left) {
+        &:dir(#{$_dir}) {
+          background-image:
+            linear-gradient(to $_opp_end,
+                            $color_fg_trk_out calc(66% - 1px),
+                            track($color_bg_dest, $alpha_track_out) calc(66% - 1px),
+                            track($color_bg_dest, $alpha_track_out) 100%);
+        }
+      }
+    }
+
+    mark {
+      // hide label for vertically centered troughs
+      label { font-size: 0; }
+    }
+  }
+}
