@@ -84,4 +84,5 @@ foreach theme: themes
     )
 endforeach
 
+subdir('assets')
 subdir('gtk-3.0')

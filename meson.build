@@ -2,7 +2,7 @@ project(
     'platano-theme',
     version: '0.1.0',
     license: 'GPLv2+',
-    meson_version: '>=0.55.0',
+    meson_version: '>=0.57.0',
     default_options: ['prefix=/usr'],
 )
 

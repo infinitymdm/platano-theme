@@ -9,6 +9,7 @@ foreach theme: themes
         gtk3_variants += 'gtk-dark'
     endif
 
+    # This may need tweaking
     install_subdir(
         'assets',
         install_dir: gtk3_dir,

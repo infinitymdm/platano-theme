@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -x
 #
 # This file is part of plata-theme
 #
@@ -12,11 +12,11 @@
 
 INKSCAPE="`command -v inkscape`"
 
-SRC_FILE="../assets-gtk3.svg"
-ASSETS_DIR="../assets-gtk3"
-INDEX_SRC="assets-gtk3.txt"
+SRC_FILE="assets.svg"
+ASSETS_DIR="assets"
+INDEX_SRC="assets.txt"
 INDEX=""
-KEY_FILE="../../sass/common/_key_colors.scss"
+KEY_FILE="../../build/src/_key_colors.scss"
 
 ink_maj_ver="`$INKSCAPE --version | grep Ink | awk '{print $2}' | cut -c 1`"
 ink_mnr_ver="`$INKSCAPE --version | grep Ink | awk '{print $2}' | cut -c 3-4`"
