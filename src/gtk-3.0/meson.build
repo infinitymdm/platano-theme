@@ -11,7 +11,7 @@ foreach theme: themes
 
     # This may need tweaking
     install_subdir(
-        'assets',
+        assets_dir,
         install_dir: gtk3_dir,
     )
 
