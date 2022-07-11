@@ -82,5 +82,5 @@ Public License
  Special Thanks
  --------------
 
- * Tista500 on Gitlab for their work on Plata-theme
- * The Buddies of Budgie organization who taught me about tools for theme development
+ * Tista500 for their work on Plata-theme
+ * The [Buddies of Budgie](https://github.com/BuddiesOfBudgie) folks who taught me about tools for theme development
