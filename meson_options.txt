@@ -1,0 +1,48 @@
+option(
+  'theme_name',
+  type: 'string',
+  value: 'Platano',
+  description: 'Base theme name',
+)
+
+option(
+  'sizes',
+  type: 'array',
+  choices: ['default', 'compact'],
+  description: 'List of size variants to build',
+)
+
+option(
+  'variants',
+  type: 'array',
+  choices: ['mixed', 'light', 'dark'],
+  description: 'List of color variants to build',
+)
+
+option(
+  'key_selection_color',
+  type: 'string',
+  value: '#5294e2',
+  description: 'Primary/selection color',
+)
+
+option(
+  'key_accent_color',
+  type: 'string',
+  value: '#84beea',
+  description: 'Accent/secondary color',
+)
+
+option(
+  'key_suggestion_color',
+  type: 'string',
+  value: '#4fa2e1',
+  description: 'Suggestion color',
+)
+
+option(
+  'key_destruction_color',
+  type: 'string',
+  value: '#f05f7e',
+  description: 'Destruction/tertiary color',
+)

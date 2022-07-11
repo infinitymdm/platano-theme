@@ -1,0 +1,63 @@
+// notifications
+%budgie_notification_window_base,
+.budgie-notification-window,
+.budgie-osd-window {
+  border-radius: $r_8;
+  background-color: transparent;
+
+  .drop-shadow { border-radius: $r_8; }
+}
+
+%budgie_notification_window_styling,
+.budgie-notification-window .drop-shadow {
+  // draw actual backgrounds
+  @if $variant == mixed { background-color: track($color_bg_tooltip_inv, $alpha_osd); }
+  @else { background-color: track($color_bg_tooltip, $alpha_osd); }
+}
+
+.budgie-osd-window .drop-shadow {
+  @if $variant == mixed { background-color: track($color_bg_dark_inv, $alpha_osd); }
+  @else { background-color: track($color_bg_dark, $alpha_osd); }
+  margin: $shadow_margin_2;
+}
+
+%budgie_notification,
+.budgie-notification,
+.budgie-osd {
+  background-color: transparent;
+  @if $variant == mixed { color: $color_fg_inv; }
+  @else { color: $color_fg; }
+  
+  .notification-title {
+    @if $variant == mixed { color: $color_fg_inv_2; }
+    @else { color: $color_fg_2; }
+    font-size: 110%;
+    font-weight: 500;
+  }
+
+  .notification-body {
+    @if $variant == mixed { color: $color_fg_inv; }
+    @else { color: $color_fg; }
+    font-size: 90%;
+    font-weight: 400;
+  }
+
+  .budgie-osd-text {
+    @if $variant == mixed { color: $color_fg_inv; }
+    @else { color: $color_fg; }
+    font-size: 110%;
+  }
+
+  progressbar { // mimic level-bar
+    min-height: 4px;
+    padding: 2px;
+
+    trough {
+      background-color: $color_fg_trk_out;
+      @if $variant == mixed { color: $color_fg_inv; }
+      @else { color: $color_fg; }
+    }
+
+    progress { background-color: $color_bg_sccs; }
+  }
+}

@@ -1,0 +1,8 @@
+$maj_ver: 3;
+$mnr_ver: 24;
+$variant: @scss_variant@;
+$ref_weight: @scss_size@;
+
+@import '../key_colors';
+@import '@current_src_dir@/../main';
+@import '@current_src_dir@/sass/budgie/main'
