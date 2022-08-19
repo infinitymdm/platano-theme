@@ -24,9 +24,9 @@ colorswatch {
   }
 
   // indicator and keynav outline colors
-  &.color-dark { color: track(white, $alpha_foreground_2nd); }
+  &.color-dark { color: track(white, $a_fg_2); }
 
-  &.color-light { color: track(black, $alpha_foreground_2nd); }
+  &.color-light { color: track(black, $a_fg_2); }
 
   // make the add color button looks like, well, a button
   &#add-color-button {

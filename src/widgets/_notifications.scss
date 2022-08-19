@@ -13,11 +13,11 @@
 .app-notification {
   @extend %app_slider;
   @if $variant == mixed {
-    background-color: track($color_bg_tooltip_inv, $alpha_osd);
+    background-color: track($color_bg_tooltip_inv, $a_osd);
     color: $color_fg_inv;
   }
   @else {
-    background-color: track($color_bg_tooltip, $alpha_osd);
+    background-color: track($color_bg_tooltip, $a_osd);
     color: $color_fg;
   }
 

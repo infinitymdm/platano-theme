@@ -9,10 +9,10 @@ tooltip {
       // even if alpha-value was 0.1%, so real backgrounds are drawn with
       // background-image property instead.
       background-color: track($color_base, 0.001);
-      background-image: image(track($color_bg_tooltip_inv, ($alpha_osd + 0.001)));
+      background-image: image(track($color_bg_tooltip_inv, ($a_osd + 0.001)));
     }
     @else {
-      background-color: track($color_bg_tooltip, $alpha_osd);
+      background-color: track($color_bg_tooltip, $a_osd);
     }
   }
 

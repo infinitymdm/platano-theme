@@ -43,28 +43,28 @@ infobar {
     @if $maj_ver == 3 {
       @if $mnr_ver < 23 {
         background-color: if($variant == dark,
-                              mix($_color, $color_bg, percentage($alpha_track_1)),
-                              mix($_color, $color_bg_dark, percentage($alpha_track_2)));
+                              mix($_color, $color_bg, percentage($a_trk_1)),
+                              mix($_color, $color_bg_dark, percentage($a_trk_2)));
       }
       @else {
         > revealer > box {
           background-color: if($variant == dark,
-                                mix($_color, $color_bg, percentage($alpha_track_1)),
-                                mix($_color, $color_bg_dark, percentage($alpha_track_2)));
+                                mix($_color, $color_bg, percentage($a_trk_1)),
+                                mix($_color, $color_bg_dark, percentage($a_trk_2)));
         }
       }
     }
     @else {
       > revealer > box {
         background-color: if($variant == dark,
-                              mix($_color, $color_bg, percentage($alpha_track_1)),
-                              mix($_color, $color_bg_dark, percentage($alpha_track_2)));
+                              mix($_color, $color_bg, percentage($a_trk_1)),
+                              mix($_color, $color_bg_dark, percentage($a_trk_2)));
       }
     }
-    color: mix($color_fg, $_color, percentage($alpha_foreground_3rd));
+    color: mix($color_fg, $_color, percentage($a_fg_3));
 
     progressbar { // use 'white' bit and trough
-      trough { background-color: track($_color, $alpha_track_out); }
+      trough { background-color: track($_color, $a_trk_out); }
 
       progress { background-color: $_color; }
     }

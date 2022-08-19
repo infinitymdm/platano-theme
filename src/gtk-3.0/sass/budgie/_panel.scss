@@ -16,7 +16,7 @@
 
   &.transparent {
       background-color: if($variant == light, 
-        track($color_bg_panel, $alpha_foreground_3rd), 
+        track($color_bg_panel, $a_fg_3), 
         transparent);
 
       @if $variant != light {

@@ -38,7 +38,7 @@ progressbar {
   trough {
     box-shadow: none;
     border-radius: 0;
-    background-color: track($color_bg_acc, $alpha_track_out);
+    background-color: track($color_bg_acc, $a_trk_out);
   }
 
   progress {
@@ -76,7 +76,7 @@ progressbar {
     trough {
       border-style: none;
       box-shadow: none;
-      background-color: track($color_bg_acc, $alpha_track_out);
+      background-color: track($color_bg_acc, $a_trk_out);
     }
 
     @if $maj_ver == 4 {

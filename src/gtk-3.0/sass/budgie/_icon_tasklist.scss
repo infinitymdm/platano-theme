@@ -17,7 +17,7 @@
   }
 
   label,
-  image { opacity: $alpha_foreground_2nd; }
+  image { opacity: $a_fg_2; }
 
   &:hover,
   &:active,
@@ -63,7 +63,7 @@ box.pinned { // drop-target
     }
 
     > image {
-      opacity: $alpha_foreground_2nd;
+      opacity: $a_fg_2;
       transition: opacity $transition_d_standard $transition_t_dec,
                   background-image 0s;
     }
@@ -137,10 +137,10 @@ box.pinned { // drop-target
     button.flat.launcher {
       &:hover {
         @if $variant == mixed {
-          box-shadow: inset #{$_line} track($color_fg_inv, $alpha_foreground_bdp);
+          box-shadow: inset #{$_line} track($color_fg_inv, $a_fg_bdp);
         }
         @else {
-          box-shadow: inset #{$_line} track($color_fg, $alpha_foreground_bdp);
+          box-shadow: inset #{$_line} track($color_fg, $a_fg_bdp);
         }
       }
       &:active,
@@ -155,8 +155,8 @@ box.pinned { // drop-target
         background-image:
           if($variant == light,
               image($color_bg_sel),
-              image(saturate(lighten($color_bg_sel, percentage($alpha_track_2)),
-                    percentage($alpha_track_2))));
+              image(saturate(lighten($color_bg_sel, percentage($a_trk_2)),
+                    percentage($a_trk_2))));
         background-size: #{$_dot};
         background-position: #{$position} center;
       }

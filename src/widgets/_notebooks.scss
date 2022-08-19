@@ -179,7 +179,7 @@ notebook {
       @include ink-reaction(tab-normal, $fc: $color_bg_sel, $bs: 10, $i: 2); }
     &:hover {
       // do not use alpha-blended borders
-      border-color: mix($color_fg, $color_bg, percentage($alpha_track_out));
+      border-color: mix($color_fg, $color_bg, percentage($a_trk_out));
       color: $color_fg_2;
       transition-duration: $transition_d_standard;
     }

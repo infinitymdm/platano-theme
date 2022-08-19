@@ -33,7 +33,7 @@
   @at-root %selected_link,
   &:selected { color: $color_fg_sel_2; }
 
-  &:disabled { opacity: $alpha_foreground_bdp; }
+  &:disabled { opacity: $a_fg_bdp; }
 }
 
 link {
@@ -43,7 +43,7 @@ link {
 
 button.flat.link { // specificity bump with .flat class
   @extend %link;
-  &:hover { background-color: track(currentColor, $alpha_track_1); }
+  &:hover { background-color: track(currentColor, $a_trk_1); }
 
   > label {
     color: inherit;

@@ -21,7 +21,7 @@ button {
 
   // active state for non-native apps
   &:active {
-    background-color: mix($color_fg, $color_base, percentage($alpha_track_2));
+    background-color: mix($color_fg, $color_base, percentage($a_trk_2));
   }
 
   // active state for native apps
@@ -265,15 +265,15 @@ button {
       min-width: rem($widget_size);
       padding: rem($txt_button_lr_space / 2);
       &:not(:disabled) {
-        background-color: if($variant == light, track($color_bg_dark, $alpha_osd),
-                                                track($color_bg_dark_inv, $alpha_osd));
+        background-color: if($variant == light, track($color_bg_dark, $a_osd),
+                                                track($color_bg_dark_inv, $a_osd));
         &:hover {
           background-color:
             if($variant == light,
-                track(mix($color_bg_dark, $color_fg_acc, percentage($alpha_foreground_2nd)),
-                      $alpha_osd),
-                track(mix($color_bg_dark_inv, $color_fg_acc, percentage($alpha_foreground_2nd)),
-                      $alpha_osd));
+                track(mix($color_bg_dark, $color_fg_acc, percentage($a_fg_2)),
+                      $a_osd),
+                track(mix($color_bg_dark_inv, $color_fg_acc, percentage($a_fg_2)),
+                      $a_osd));
         }
       }
     }
@@ -285,15 +285,15 @@ button {
           padding: rem($txt_button_lr_space / 2);
           @include radius($r_2);
           background-color: if($variant == light,
-                                track($color_bg_dark, $alpha_osd),
-                                track($color_bg_dark_inv, $alpha_osd));
+                                track($color_bg_dark, $a_osd),
+                                track($color_bg_dark_inv, $a_osd));
           &:hover {
             background-color:
               if($variant == light,
-                  track(mix($color_bg_dark, $color_fg_acc, percentage($alpha_foreground_2nd)),
-                        $alpha_osd),
-                  track(mix($color_bg_dark_inv, $color_fg_acc, percentage($alpha_foreground_2nd)),
-                        $alpha_osd));
+                  track(mix($color_bg_dark, $color_fg_acc, percentage($a_fg_2)),
+                        $a_osd),
+                  track(mix($color_bg_dark_inv, $color_fg_acc, percentage($a_fg_2)),
+                        $a_osd));
           }
         }
         &:first-child {
@@ -332,8 +332,8 @@ button {
         &:checked {
           @include button(raised-checked);
           &:disabled {
-            border-color: mix($b_color, $color_bg, percentage($alpha_track_1));
-            background-color: mix($b_color, $color_bg, percentage($alpha_track_1));
+            border-color: mix($b_color, $color_bg, percentage($a_trk_1));
+            background-color: mix($b_color, $color_bg, percentage($a_trk_1));
             color: $color_fg_dis_sel;
           }
         }
@@ -708,7 +708,7 @@ button.color {
 
   &:disabled colorswatch {
     &, &:disabled {
-      &, overlay { opacity: $alpha_foreground_dis; }
+      &, overlay { opacity: $a_fg_dis; }
     }
   }
 }

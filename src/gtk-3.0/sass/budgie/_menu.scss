@@ -35,14 +35,14 @@
     &:dir(ltr) {
       margin-right: $popover_padding;
       border-right: 1px solid if($variant == dark, 
-                                 track(white, $alpha_div_2),
+                                 track(white, $a_div_2),
                                  $color_fg_div);
     }
 
     &:dir(rtl) {
       margin-left: $popover_padding;
       border-left: 1px solid if($variant == dark, 
-                                track(white, $alpha_div_2),
+                                track(white, $a_div_2),
                                 $color_fg_div);
     }
   }
@@ -68,7 +68,7 @@
       }
 
       &:disabled {
-        color: track($color_fg_sel, $alpha_foreground_bdp);
+        color: track($color_fg_sel, $a_fg_bdp);
 
         label { 
           color: inherit; 
@@ -134,7 +134,7 @@
 
             &:first-child { // avatar image
               min-width: $icon_size * 1.5;
-              opacity: $alpha_foreground_2nd;
+              opacity: $a_fg_2;
             }
           }
     

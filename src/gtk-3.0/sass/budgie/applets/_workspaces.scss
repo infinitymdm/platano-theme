@@ -45,9 +45,9 @@
     .workspace-layout {
       .workspace-item {
         @if $variant == mixed {
-          background-image: image(track($color_fg_inv, $alpha_foreground_bdp));
+          background-image: image(track($color_fg_inv, $a_fg_bdp));
         } @else {
-          background-image: image(track($color_fg, $alpha_foreground_bdp));
+          background-image: image(track($color_fg, $a_fg_bdp));
         }
         background-repeat: no-repeat;
         transition-duration: $transition_d_none; // for underline-indicators
@@ -73,7 +73,7 @@
         // counter
         label.workspace-more-label {
           font-weight: 700;
-          opacity: $alpha_foreground_3rd;
+          opacity: $a_fg_3;
         }
 
         @each $position, $_size in (top, calc(100% - 4px) 3px),
@@ -103,13 +103,13 @@
       padding: 4px;
       @include radius($r_2, none);
 
-      > image { opacity: $alpha_foreground_3rd; }
+      > image { opacity: $a_fg_3; }
 
       &:hover,
       &:active {
         #{$iname}: if($maj_ver >= 4, brightness(1.2), highlight);
 
-        > image { opacity: $alpha_foreground_2nd; }
+        > image { opacity: $a_fg_2; }
       }
     }
   }

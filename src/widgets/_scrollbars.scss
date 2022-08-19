@@ -10,7 +10,7 @@ scrollbar {
     }
   }
 
-  background-color: track($color_base, $alpha_foreground_3rd);
+  background-color: track($color_base, $a_fg_3);
 
   // scrollbar border
   @each $_side,$_margin in ('top', '0 0 -2px 0'),
@@ -32,11 +32,11 @@ scrollbar {
 
   // slider coloring
   slider {
-    background-color: track($color_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+    background-color: track($color_fg, $a_fg_3 * $a_fg_3);
     @include transition(std);
-    &:hover { background-color: track($color_fg, $alpha_foreground_2nd * $alpha_foreground_3rd); }
+    &:hover { background-color: track($color_fg, $a_fg_2 * $a_fg_3); }
     &:active { background-color: $color_fg; }
-    &:disabled { opacity: $alpha_foreground_bdp; }
+    &:disabled { opacity: $a_fg_bdp; }
   }
 
   // slider sizing
@@ -81,10 +81,10 @@ scrollbar {
         margin: 0;
         border: 0 none transparent;
         // FIXME: for WebKitGtk2
-        background-color: track(mix($color_fg_fix, $color_base_fix), $alpha_foreground_3rd);
+        background-color: track(mix($color_fg_fix, $color_base_fix), $a_fg_3);
 
         .background & { // standard color
-          background-color: track($color_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+          background-color: track($color_fg, $a_fg_3 * $a_fg_3);
         }
       }
 
@@ -93,7 +93,7 @@ scrollbar {
         min-height: $slider_min_width;
         border-radius: 0;
         border: none;
-        background-color: track($color_fg, $alpha_foreground_3rd * $alpha_foreground_3rd);
+        background-color: track($color_fg, $a_fg_3 * $a_fg_3);
         -gtk-icon-source: none;
       }
 
@@ -117,7 +117,7 @@ scrollbar {
     }
 
     &.dragging,
-    &.hovering { opacity: $alpha_foreground_bdp * 2; }
+    &.hovering { opacity: $a_fg_bdp * 2; }
 
     &.hovering { // slow-down when deforming
       &.vertical slider {

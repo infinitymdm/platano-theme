@@ -183,15 +183,15 @@ headerbar.titlebar.default-decoration {
     &:not(.close) {
       &:active { // draw solid bg instead
         background-color: if($variant == mixed,
-                              track($color_fg_inv,  $alpha_track_2),
-                              track($color_fg, $alpha_track_2));
+                              track($color_fg_inv,  $a_trk_2),
+                              track($color_fg, $a_trk_2));
       }
       &:backdrop {
-        color: if($variant == mixed, track($color_fg_inv_2, $alpha_foreground_bdp),
-                                      track($color_fg_2, $alpha_foreground_bdp));
+        color: if($variant == mixed, track($color_fg_inv_2, $a_fg_bdp),
+                                      track($color_fg_2, $a_fg_bdp));
         &:hover {
-          color: if($variant == mixed, track($color_fg_inv, $alpha_foreground_bdp),
-                                        track($color_fg, $alpha_foreground_bdp));
+          color: if($variant == mixed, track($color_fg_inv, $a_fg_bdp),
+                                        track($color_fg, $a_fg_bdp));
         }
         &:active { color: if($variant == mixed, $color_fg_inv, $color_fg); }
       }
@@ -208,11 +208,11 @@ headerbar.titlebar.default-decoration {
         color: $color_fg_sel;
       }
       &:backdrop {
-        color: if($variant == mixed, track($color_fg_inv_2, $alpha_foreground_bdp),
-                                      track($color_fg_2, $alpha_foreground_bdp));
+        color: if($variant == mixed, track($color_fg_inv_2, $a_fg_bdp),
+                                      track($color_fg_2, $a_fg_bdp));
         &:hover {
-          background-color: track($color_bg_dest, $alpha_foreground_bdp);
-          color: track($color_fg_sel, $alpha_foreground_bdp);
+          background-color: track($color_bg_dest, $a_fg_bdp);
+          color: track($color_fg_sel, $a_fg_bdp);
         }
         &:active {
           background-color: $color_bg_sel;

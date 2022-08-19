@@ -48,14 +48,14 @@ spinbutton {
       &.down { // '-' button
         &:hover,
         &:active {
-          background-color: track($color_err, $alpha_track_1);
+          background-color: track($color_err, $a_trk_1);
           color: $color_err;
         }
       }
       &.up { // '+' button
         &:hover,
         &:active {
-          background-color: track($color_bg_sccs, $alpha_track_1);
+          background-color: track($color_bg_sccs, $a_trk_1);
           color: $color_bg_sccs;
         }
       }
@@ -67,11 +67,11 @@ spinbutton {
       &:not(.vertical),
       &.vertical { // specificity bump
         // set default foregrounds in top node
-        background-color: track($color_fg_inv, $alpha_track_1);
+        background-color: track($color_fg_inv, $a_trk_1);
         color: $color_fg_inv;
         caret-color: $color_fg_inv;
         &:focus {
-          background-color: track($color_fg_inv, $alpha_track_2);
+          background-color: track($color_fg_inv, $a_trk_2);
           color: $color_fg_inv;
           caret-color: $color_fg_inv;
         }
@@ -157,7 +157,7 @@ spinbutton {
         @include radius($r_4 $r_4 0 0);
         &:hover,
         &:active {
-          background-color: track($color_bg_sccs, $alpha_track_1);
+          background-color: track($color_bg_sccs, $a_trk_1);
           color: $color_bg_sccs;
         }
       }
@@ -166,7 +166,7 @@ spinbutton {
         @include radius(0 0 $r_4 $r_4);
         &:hover,
         &:active {
-          background-color: track($color_err, $alpha_track_1);
+          background-color: track($color_err, $a_trk_1);
           color: $color_err;
         }
       }

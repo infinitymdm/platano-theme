@@ -77,7 +77,7 @@
 // Text color for entries, views and content in general on backdrop windows
 //
 
-@define-color theme_unfocused_text_color #{"" + track($color_fg, $alpha_foreground_bdp)};
+@define-color theme_unfocused_text_color #{"" + track($color_fg, $a_fg_bdp)};
 
 //
 // Widget base background color on backdrop windows
@@ -150,8 +150,8 @@
 @define-color budgie_tasklist_indicator_color #{"" +
                 if($variant == light,
                    $color_bg_sel,
-                   saturate(lighten($color_bg_sel, percentage($alpha_track_2)),
-                     percentage($alpha_track_2)))};
+                   saturate(lighten($color_bg_sel, percentage($a_trk_2)),
+                     percentage($a_trk_2)))};
 
 // focused window 'line'
 @define-color budgie_tasklist_indicator_color_active #{"" + $color_bg_sel};
@@ -159,10 +159,10 @@
 // group-ed and unfocused window 'line(s)'
 @define-color budgie_tasklist_indicator_color_active_window #{"" +
                 if($variant == light,
-                   saturate(lighten($color_bg_sel, percentage($alpha_track_2)),
-                     percentage($alpha_track_2)),
-                   saturate(darken($color_bg_sel, percentage($alpha_track_2)),
-                     percentage($alpha_track_2)))};
+                   saturate(lighten($color_bg_sel, percentage($a_trk_2)),
+                     percentage($a_trk_2)),
+                   saturate(darken($color_bg_sel, percentage($a_trk_2)),
+                     percentage($a_trk_2)))};
 
 // attention 'dot'
 // FIXME: we can't fill whole widget backgrounds with our suggestion color

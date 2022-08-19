@@ -81,7 +81,7 @@
 }
 
 *:disabled {
-  @if $maj_ver == 4 { -gtk-icon-filter: opacity($alpha_foreground_3rd); }
+  @if $maj_ver == 4 { -gtk-icon-filter: opacity($a_fg_3); }
   @else { -gtk-icon-effect: dim; }
 }
 
@@ -90,7 +90,7 @@
   > * { @include transition(acc-acc, $p: $transition_p_hdb); }
 
   &:backdrop > * {
-    opacity: $alpha_foreground_bdp;
+    opacity: $a_fg_bdp;
     @include transition(dec-dec, $p: $transition_p_hdb);
   }
 }
@@ -99,11 +99,11 @@
   background-color: $color_bg;
   color: $color_fg_2;
   &:hover {
-    background-color: mix($color_fg, $color_bg, percentage($alpha_track_1));
+    background-color: mix($color_fg, $color_bg, percentage($a_trk_1));
     color: $color_fg;
   }
   &:active {
-    background-color: mix($color_fg, $color_bg, percentage($alpha_track_2));
+    background-color: mix($color_fg, $color_bg, percentage($a_trk_2));
     color: $color_fg;
   }
   &:disabled {
@@ -157,7 +157,7 @@ iconview { @extend %view; }
 
 %rubberband {
   border: 1px solid $color_bg_sel;
-  background-color: track($color_bg_sel, $alpha_track_out);
+  background-color: track($color_bg_sel, $a_trk_out);
 }
 
 rubberband {
@@ -190,10 +190,10 @@ label {
 }
 
 %dim_label,
-.dim-label { opacity: $alpha_foreground_3rd; }
+.dim-label { opacity: $a_fg_3; }
 
 %osd,
-.osd { opacity: $alpha_osd; }
+.osd { opacity: $a_osd; }
 
 .monospace { font-family: Monospace; }
 
@@ -207,7 +207,7 @@ separator {
   menu > &,
   menuitem & { // dark variant specific
     @if $variant == dark {
-      background-color: track(white, $alpha_div_2);
+      background-color: track(white, $a_div_2);
     }
   }
 }

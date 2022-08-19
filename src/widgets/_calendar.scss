@@ -19,7 +19,7 @@ calendar {
 
   &.header {
     border: 1px solid transparent;
-    border-bottom-color: if($variant == dark, track(white, $alpha_div_2),
+    border-bottom-color: if($variant == dark, track(white, $a_div_2),
                                               $color_fg_div);
   }
 
@@ -37,7 +37,7 @@ calendar {
     }
   }
 
-  &:indeterminate { color: track($color_fg, $alpha_foreground_3rd * $alpha_foreground_3rd); }
+  &:indeterminate { color: track($color_fg, $a_fg_3 * $a_fg_3); }
 
   &.highlight { // padding for week-number column
     padding-top: 0;

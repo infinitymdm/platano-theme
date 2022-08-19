@@ -14,7 +14,7 @@ spinner {
     animation: spinner $transition_d_spin $transition_t_lin infinite;
     &:backdrop { opacity: 1.0; }
   }
-  &:disabled { color: track($color_fg_acc, $alpha_foreground_bdp); }
+  &:disabled { color: track($color_fg_acc, $a_fg_bdp); }
   &:backdrop { opacity: 0; }
 
   .osd &,
@@ -24,7 +24,7 @@ spinner {
   messagedialog & {
     @if $variant == mixed {
       color: $color_fg_acc_inv;
-      &:disabled { color: track($color_fg_acc_inv, $alpha_foreground_bdp); }
+      &:disabled { color: track($color_fg_acc_inv, $a_fg_bdp); }
     }
   }
 }

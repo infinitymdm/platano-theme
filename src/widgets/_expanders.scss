@@ -22,7 +22,7 @@
   -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
   &:dir(rtl) { -gtk-icon-source: -gtk-icontheme('pan-end-symbolic-rtl'); }
   &:checked { -gtk-icon-source: -gtk-icontheme('pan-down-symbolic'); }
-  &:not(:hover):not(:active) { color: track(currentColor, $alpha_foreground_2nd); }
+  &:not(:hover):not(:active) { color: track(currentColor, $a_fg_2); }
   &:selected { color: $color_fg_sel; }
   &:disabled { color: $color_fg_dis; }
 }

@@ -115,7 +115,7 @@ scale {
   fill {
     @extend %scale_trough;
 
-    background-color: track($color_bg_acc, $alpha_track_1);
+    background-color: track($color_bg_acc, $a_trk_1);
 
     &:disabled {
       border-color: transparent;
@@ -131,11 +131,11 @@ scale {
       .floating-bar &,
       headerbar &,
       messagedialog & {
-        value { color: track($color_fg_inv, $alpha_foreground_3rd); }
+        value { color: track($color_fg_inv, $a_fg_3); }
       }
     }
     @else {
-      value { color: track($color_fg, $alpha_foreground_3rd); }
+      value { color: track($color_fg, $a_fg_3); }
     }
   }
 
@@ -148,7 +148,7 @@ scale {
 scale { // marks color
   @if $maj_ver == 3 {
     marks {
-      color: track(currentColor, $alpha_foreground_3rd);
+      color: track(currentColor, $a_fg_3);
       @each $marks_class, $marks_pos, $marks_margin in (top, top, bottom),
                                                         (bottom, bottom, top),
                                                         (top, left, right),
@@ -177,7 +177,7 @@ scale { // marks color
   @else {
     &.horizontal > marks,
     &.vertical > marks {
-      color: track(currentColor, $alpha_foreground_3rd);
+      color: track(currentColor, $a_fg_3);
 
       indicator { background-color: currentColor; }
     }
@@ -185,7 +185,7 @@ scale { // marks color
     &.horizontal > value,
     &.vertical > value {
       // same opacity value with dim-label
-      color: track(currentColor, $alpha_foreground_3rd);
+      color: track(currentColor, $a_fg_3);
     }
 
     // NEED_REVIEW: need to compute proper values in future

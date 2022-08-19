@@ -37,7 +37,7 @@ row.activatable {
   }
   &:selected {
     &:hover {
-      background-color: mix($color_fg_sel, $color_bg_sel, percentage($alpha_track_1));
+      background-color: mix($color_fg_sel, $color_bg_sel, percentage($a_trk_1));
     }
   }
 }

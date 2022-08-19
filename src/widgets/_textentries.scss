@@ -99,7 +99,7 @@ entry {
     &:focus > placeholder { opacity: 0; } // hide placeholders when focused
 
     &.password image.caps-lock-indicator {
-      color: track(currentColor, $alpha_foreground_3rd); // dim CapsLock icon
+      color: track(currentColor, $a_fg_3); // dim CapsLock icon
     }
   }
 
@@ -419,16 +419,16 @@ entry {
 }
 
 %entry_icon {
-  &:not(:hover):not(:active) { color: track(currentColor, $alpha_foreground_2nd); }
+  &:not(:hover):not(:active) { color: track(currentColor, $a_fg_2); }
   &:active { color: $color_bg_sel; }
-  &:disabled { color: track(currentColor, $alpha_foreground_dis); }
+  &:disabled { color: track(currentColor, $a_fg_dis); }
 }
 
 %entry_progress {
   margin: 0 rem(-$entry_lr_space);
   padding: 0 rem($entry_lr_space);
   @include radius($r, none);
-  background-color: track($color_bg_acc, $alpha_track_out);
+  background-color: track($color_bg_acc, $a_trk_out);
 }
 
 %inv_entry {

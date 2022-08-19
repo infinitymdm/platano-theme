@@ -6,8 +6,8 @@ messagedialog {
   &.background {
     color: if($variant == light, $color_fg, $color_fg_inv);
     background-color:
-      if($variant == light, track($color_bg_dark, $alpha_osd),
-                            track($color_bg_dark_inv, $alpha_osd));
+      if($variant == light, track($color_bg_dark, $a_osd),
+                            track($color_bg_dark_inv, $a_osd));
 
     &.csd {
       // rounded bottom border styling for csd version
@@ -23,8 +23,8 @@ messagedialog {
               border-top-left-radius: $r_8;
               border-top-right-radius: $r_8;
               background-color:
-                if($variant == light, track($color_bg_dark, $alpha_osd),
-                                      track($color_bg_dark_inv, $alpha_osd));
+                if($variant == light, track($color_bg_dark, $a_osd),
+                                      track($color_bg_dark_inv, $a_osd));
             }
           }
         }

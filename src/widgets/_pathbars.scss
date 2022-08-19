@@ -106,7 +106,7 @@
       &:hover,
       &:active {
         background-color: track(if($variant == mixed, $color_fg_inv, $color_fg),
-                                $alpha_track_1);
+                                $a_trk_1);
       }
     }
   }

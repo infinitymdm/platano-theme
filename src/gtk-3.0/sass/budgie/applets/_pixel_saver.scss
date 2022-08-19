@@ -31,19 +31,19 @@
   %pixel_saver_button_ink_reaction {
     &:hover image {
       @if $variant != light {
-        background-image: image(track($color_fg_sel, $alpha_track_1));
+        background-image: image(track($color_fg_sel, $a_trk_1));
       }
       @else {
-        background-image: image(track(black, $alpha_track_1));
+        background-image: image(track(black, $a_trk_1));
       }
     }
   
     &:active image {
       @if $variant != light {
-        background-image: image(track($color_fg_sel, $alpha_track_2));
+        background-image: image(track($color_fg_sel, $a_trk_2));
       }
       @else {
-        background-image: image(track(black, $alpha_track_2));
+        background-image: image(track(black, $a_trk_2));
       }
     }
   }

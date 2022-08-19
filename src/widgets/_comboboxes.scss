@@ -42,10 +42,10 @@ combobox {
       background-color: $color_base; // tone down
       &:hover,
       &:active,
-      &:checked { background-color: track($color_fg, $alpha_track_1); }
+      &:checked { background-color: track($color_fg, $a_trk_1); }
       &:disabled {
         background-color:
-          mix($color_fg, $color_base, percentage(($alpha_track_1 * 2 / 3) * $alpha_foreground_dis));
+          mix($color_fg, $color_base, percentage(($a_trk_1 * 2 / 3) * $a_fg_dis));
       }
     }
   }
@@ -65,16 +65,16 @@ combobox {
   @if $variant == mixed {
     @at-root %inv_combobox,
     .osd & {
-      background-color: track($color_fg_inv_2, $alpha_track_1 / 2);
+      background-color: track($color_fg_inv_2, $a_trk_1 / 2);
       color: $color_fg_inv_2;
       &:hover,
       &:active,
       &:checked {
-        background-color: track($color_fg_inv, $alpha_track_1);
+        background-color: track($color_fg_inv, $a_trk_1);
         color: $color_fg_inv;
       }
       &:disabled {
-        background-color: track($color_fg_dis_inv, $alpha_track_1 / 2 * $alpha_foreground_dis);
+        background-color: track($color_fg_dis_inv, $a_trk_1 / 2 * $a_fg_dis);
         color: $color_fg_dis_inv;
       }
 

@@ -103,7 +103,7 @@ button.flat.scale { // standalone Speaker/Mic buttons
   background-color: if($variant == mixed, $color_bg_tooltip_inv,
                                           $color_bg_tooltip);
   font-size: 90%;
-  opacity: $alpha_osd;
+  opacity: $a_osd;
 }
 
 .floating-bar {

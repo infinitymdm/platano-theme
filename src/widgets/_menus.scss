@@ -13,7 +13,7 @@
 
   .background & {
     border-bottom: 1px solid if($variant == mixed,
-                                mix(black, $color_bg_dark_inv, percentage($alpha_div_0)),
+                                mix(black, $color_bg_dark_inv, percentage($a_div_0)),
                                 $color_fg_div_sld);
     @extend %fade_effect; // add fade_effect
   }
@@ -135,7 +135,7 @@ menu {
       padding: 0 0 rem($menu_padding);
       -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
       @include radius($r_4 $r_4 0 0, none);
-      border-bottom: 1px solid if($variant == dark, track(white, $alpha_div_2),
+      border-bottom: 1px solid if($variant == dark, track(white, $a_div_2),
                                                     $color_fg_div);
     }
     &:last-child {
@@ -144,7 +144,7 @@ menu {
       padding: rem($menu_padding) 0 0;
       -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
       @include radius(0 0 $r_4 $r_4, none);
-      border-top: 1px solid if($variant == dark, track(white, $alpha_div_2),
+      border-top: 1px solid if($variant == dark, track(white, $a_div_2),
                                                  $color_fg_div);
     }
   }
@@ -153,7 +153,7 @@ menu {
 }
 
 menuitem {
-  accelerator { color: track(currentColor, $alpha_foreground_3rd); }
+  accelerator { color: track(currentColor, $a_fg_3); }
 
   separator { margin: rem($menu_padding) 0; }
 }

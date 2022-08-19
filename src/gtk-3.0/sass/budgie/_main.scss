@@ -177,10 +177,10 @@ box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
     box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
       &:not(:checked):hover {
         @if $variant == mixed {
-          box-shadow: inset #{$_line} track($color_fg_inv, $alpha_foreground_bdp);
+          box-shadow: inset #{$_line} track($color_fg_inv, $a_fg_bdp);
         }
         @else {
-          box-shadow: inset #{$_line} track($color_fg, $alpha_foreground_bdp);
+          box-shadow: inset #{$_line} track($color_fg, $a_fg_bdp);
         }
 
         &.running { box-shadow: inset #{$_line} $color_bg_sel; }
@@ -196,10 +196,10 @@ box:not(.unpinned):not(.pinned) > revealer > button.flat.launcher {
           background-size: #{$_bg_s};
           background-repeat: no-repeat;
           @if $variant == mixed {
-            background-image: image(track($color_fg_inv, $alpha_track_1));
+            background-image: image(track($color_fg_inv, $a_trk_1));
           }
           @else {
-            background-image: image(track($color_fg, $alpha_track_1));
+            background-image: image(track($color_fg, $a_trk_1));
           }
         }
       }

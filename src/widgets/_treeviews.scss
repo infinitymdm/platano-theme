@@ -101,9 +101,9 @@ treeview.view {
   }
 
   &.trough { // progressbar trough in treeviews
-    box-shadow: inset 0 (-$progress_size) track($color_bg_acc, $alpha_track_out);
+    box-shadow: inset 0 (-$progress_size) track($color_bg_acc, $a_trk_out);
     &:selected {
-      box-shadow: inset 0 (-$progress_size) track($color_fg_sel, $alpha_track_out);
+      box-shadow: inset 0 (-$progress_size) track($color_fg_sel, $a_trk_out);
     }
   }
 

@@ -77,7 +77,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
         &.sound-devices row.activatable { // devices list rows
           &:selected {
-            background-color: track($color_bg_sel, $alpha_track_2);
+            background-color: track($color_bg_sel, $a_trk_2);
             &:dir(ltr) { box-shadow: inset 4px 0 $color_bg_sel; }
             &:dir(rtl) { box-shadow: inset -4px 0 $color_bg_sel; }
 
@@ -181,7 +181,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
         border-bottom: 1px solid $color_fg_div;
         background-color: transparent;
         &:selected {
-          background-color: track($color_bg_sel, $alpha_track_2);
+          background-color: track($color_bg_sel, $a_trk_2);
           &:dir(ltr) { box-shadow: inset 4px 0 $color_bg_sel; }
           &:dir(rtl) { box-shadow: inset -4px 0 $color_bg_sel; }
 
@@ -211,7 +211,7 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
             &:dir(rtl) { padding: 2px 8px 2px rem($baseline * 2); }
 
             &:selected {
-              background-color: track($color_bg_sel, $alpha_track_2);
+              background-color: track($color_bg_sel, $a_trk_2);
             }
 
             // title labels
@@ -224,12 +224,12 @@ $switcher_height: $widget_size - if($ref_weight < 1.0, 10.7px, 5.3px);
 
   box.mpris-widget { // MPRIS root box container
     // dim placeholder asset
-    &.no-album-art widget > image { opacity: $alpha_foreground_3rd; }
+    &.no-album-art widget > image { opacity: $a_fg_3; }
   }
 
   .raven-mpris { // MPRIS overlaid widget
     margin-bottom: $raven_box_spacing * 2; // bottom-most 8px is dead
-    background-color: track($color_base, (1 - $alpha_track_1));
+    background-color: track($color_base, (1 - $a_trk_1));
     color: $color_fg;
     box-shadow: inset 1px 0 $color_fg_div_sld,
                 inset -1px 0 $color_fg_div_sld,
@@ -277,8 +277,8 @@ window.sound-popover.background {
           background-image:
             linear-gradient(to $_opp_end,
                             $color_fg_trk_out calc(66% - 1px),
-                            track($color_bg_dest, $alpha_track_out) calc(66% - 1px),
-                            track($color_bg_dest, $alpha_track_out) 100%);
+                            track($color_bg_dest, $a_trk_out) calc(66% - 1px),
+                            track($color_bg_dest, $a_trk_out) 100%);
         }
       }
     }

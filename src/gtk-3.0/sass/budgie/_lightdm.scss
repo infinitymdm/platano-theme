@@ -128,11 +128,11 @@
         border-radius: $r_8;
         box-shadow: $z-depth-4;
         @if $variant == mixed {
-          background-color: track($color_bg_dark_inv, $alpha_osd);
+          background-color: track($color_bg_dark_inv, $a_osd);
           color: $color_fg_inv;
         }
         @else {
-          background-color: track($color_bg_dark, $alpha_osd);
+          background-color: track($color_bg_dark, $a_osd);
           color: $color_fg;
         }
       }
@@ -277,7 +277,7 @@
         @if $variant != dark { @extend %inv_flat_button; }
         @else { @extend %flat_button; }
   
-        image { opacity: $alpha_foreground_2nd; }
+        image { opacity: $a_fg_2; }
   
         &:hover,
         &:active {
@@ -292,7 +292,7 @@
         @if $variant != dark { @extend %inv_flat_button; }
         @else { @extend %flat_button; }
   
-        image { opacity: $alpha_foreground_2nd; }
+        image { opacity: $a_fg_2; }
   
         &:hover,
         &:active,

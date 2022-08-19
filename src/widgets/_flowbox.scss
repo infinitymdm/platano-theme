@@ -19,7 +19,7 @@ flowbox {
     box-shadow: $z-depth-1;
     @include transition(dec);
     &:selected {
-      background-color: track($color_bg_sel, $alpha_track_out);
+      background-color: track($color_bg_sel, $a_trk_out);
       color: $color_fg;
       box-shadow: $z-depth-2;
       @include transition(dec);

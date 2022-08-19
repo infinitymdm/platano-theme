@@ -10,9 +10,9 @@
     border-radius: $r_8;
     box-shadow: $z-depth-4; // raise to level-4
     @if $variant == mixed { 
-      background-color: track($color_bg_dark_inv, $alpha_osd); 
+      background-color: track($color_bg_dark_inv, $a_osd); 
     } @else {
-      background-color: track($color_bg_dark, $alpha_osd);
+      background-color: track($color_bg_dark, $a_osd);
     }
 
     .budgie-switcher-title { // bottom label for app titles
@@ -30,12 +30,12 @@
     background-color: transparent;
     
     &:hover, &:active {
-      background-color: track($color_bg_acc, $alpha_track_1);
+      background-color: track($color_bg_acc, $a_trk_1);
       color: if($variant == mixed, $color_fg_acc_inv, $color_fg_acc);
     }
 
     &:selected { // use the same values with Gnome-Shell
-      background-color: track($color_bg_acc, $alpha_track_2);
+      background-color: track($color_bg_acc, $a_trk_2);
       color: if($variant == mixed, $color_fg_acc_inv, $color_fg_acc);
       @if $maj_ver == 3 { 
         -gtk-icon-effect: highlight;
@@ -45,9 +45,9 @@
 
       &:disabled {
         @if $variant == mixed {
-          background-color: track($color_fg_inv, $alpha_track_1);
+          background-color: track($color_fg_inv, $a_trk_1);
         } @else {
-          background-color: track($color_fg, $alpha_track_1);
+          background-color: track($color_fg, $a_trk_1);
         }
 
         @if $maj_ver == 3 {

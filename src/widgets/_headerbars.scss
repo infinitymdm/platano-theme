@@ -136,15 +136,15 @@ headerbar {
     &:backdrop {
       @if $variant == mixed {
         border-top-color: mix($color_bg_sel_dark,
-                              $color_bg_inv, percentage($alpha_foreground_bdp));
+                              $color_bg_inv, percentage($a_fg_bdp));
         background-color: mix($color_bg_sel_dark,
-                              $color_bg_inv, percentage($alpha_foreground_bdp));
+                              $color_bg_inv, percentage($a_fg_bdp));
       }
       @else {
         border-top-color: mix($color_bg_sel_dark,
-                              $color_bg, percentage($alpha_foreground_bdp));
+                              $color_bg, percentage($a_fg_bdp));
         background-color: mix($color_bg_sel_dark,
-                              $color_bg, percentage($alpha_foreground_bdp));
+                              $color_bg, percentage($a_fg_bdp));
       }
     }
 
@@ -171,11 +171,11 @@ headerbar {
       &:backdrop {
         @if $variant == mixed {
           border-top-color: mix($color_bg_sel_dark,
-                                $color_bg_inv, percentage($alpha_foreground_bdp));
+                                $color_bg_inv, percentage($a_fg_bdp));
         }
         @else {
           border-top-color: mix($color_bg_sel_dark,
-                                $color_bg, percentage($alpha_foreground_bdp));
+                                $color_bg, percentage($a_fg_bdp));
         }
       }
     }
@@ -230,8 +230,8 @@ headerbar {
 
 %incognito_headerbar_bg {
   border-top-color: if($variant == mixed,
-                       mix(white, $color_bg_tooltip_inv, percentage($alpha_div_1)),
-                       mix(white, $color_bg_tooltip, percentage($alpha_div_2)));
+                       mix(white, $color_bg_tooltip_inv, percentage($a_div_1)),
+                       mix(white, $color_bg_tooltip, percentage($a_div_2)));
   background-color: if($variant == mixed, $color_bg_tooltip_inv, $color_bg_tooltip);
   &:backdrop {
     border-top-color: if($variant == mixed, $color_bg_inv, $color_bg);
@@ -467,13 +467,13 @@ window:not(.maximized):not(.fullscreen):not(.tiled):not(.solid-csd) {
   background-repeat: no-repeat;
   &:backdrop {
     @if $variant == light {
-      background-image: image(track($color_bg, $alpha_foreground_bdp)),
+      background-image: image(track($color_bg, $a_fg_bdp)),
                         -gtk-scaled(
                         url("assets/dev-mode.png"),
                         url("assets/dev-mode@2.png"));
     }
     @else {
-      background-image: image(track($color_bg_inv, $alpha_foreground_bdp)),
+      background-image: image(track($color_bg_inv, $a_fg_bdp)),
                         -gtk-scaled(
                         url("assets/dev-mode-dark.png"),
                         url("assets/dev-mode-dark@2.png")),
@@ -515,11 +515,11 @@ dialog.background.csd > headerbar.titlebar {
     &:backdrop { // override default border-top color
       @if $variant == mixed {
         border-top-color: mix($color_bg_sel_dark,
-                              $color_bg_inv, percentage($alpha_foreground_bdp));
+                              $color_bg_inv, percentage($a_fg_bdp));
       }
       @else {
         border-top-color: mix($color_bg_sel_dark,
-                              $color_bg, percentage($alpha_foreground_bdp));
+                              $color_bg, percentage($a_fg_bdp));
       }
     }
 

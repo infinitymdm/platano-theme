@@ -6,14 +6,14 @@
   background-color: $color_bg_sel;
   color: $color_fg_sel;
   &:disabled {
-    background-color: track($color_bg_sel, $alpha_foreground_dis);
+    background-color: track($color_bg_sel, $a_fg_dis);
     color: $color_fg_dis_sel;
   }
   &:focus {
     background-color: $color_bg_sel;
     color: $color_fg_sel;
     &:disabled {
-      background-color: track($color_bg_sel, $alpha_foreground_dis);
+      background-color: track($color_bg_sel, $a_fg_dis);
       color: $color_fg_dis_sel;
     }
   }
@@ -24,15 +24,15 @@
     background-color: $color_bg_sel;
     color: $color_fg_sel;
     &:disabled {
-      background-color: track($color_bg_sel, $alpha_foreground_dis);
+      background-color: track($color_bg_sel, $a_fg_dis);
       color: $color_fg_dis_sel;
     }
   }
   @else {
-    background-color: track($color_bg_sel, $alpha_foreground_bdp);
+    background-color: track($color_bg_sel, $a_fg_bdp);
     color: $color_fg;
     &:disabled {
-      background-color: track($color_bg_sel, $alpha_track_out);
+      background-color: track($color_bg_sel, $a_trk_out);
       color: $color_fg_dis;
     }
   }
@@ -41,15 +41,15 @@
       background-color: $color_bg_sel;
       color: $color_fg_sel;
       &:disabled {
-        background-color: track($color_bg_sel, $alpha_foreground_dis);
+        background-color: track($color_bg_sel, $a_fg_dis);
         color: $color_fg_dis_sel;
       }
     }
     @else {
-      background-color: track($color_bg_sel, $alpha_foreground_bdp);
+      background-color: track($color_bg_sel, $a_fg_bdp);
       color: $color_fg;
       &:disabled {
-        background-color: track($color_bg_sel, $alpha_track_out);
+        background-color: track($color_bg_sel, $a_trk_out);
         color: $color_fg_dis;
       }
     }
