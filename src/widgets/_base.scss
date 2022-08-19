@@ -70,9 +70,6 @@
 .background {
   background-color: $color_bg;
   color: $color_fg;
-
-  &.csd { border-radius: $r_4; }
-  &.maximized, &.solid-csd { border-radius: 0; }
 }
 
 @if $maj_ver == 4 {

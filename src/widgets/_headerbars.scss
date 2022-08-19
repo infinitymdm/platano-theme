@@ -7,6 +7,9 @@ headerbar {
   background-color: if($variant == mixed, $color_bg_dark_inv, $color_bg_dark);
   background-clip: border-box;
 
+  .csd & { border-radius: 0 0 $r_8 $r_8; }
+  .maximized &, .solid-csd & { border-radius: 0; }
+
   // text colors
   color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
 
