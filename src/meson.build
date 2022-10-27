@@ -67,7 +67,7 @@ key_color_scss = configure_file(
 )
 
 # Build index file for each theme
-foreach theme: themes
+foreach theme : themes
     index_theme_conf = configuration_data()
     index_theme_conf.set('theme_name', theme['name'])
 
@@ -86,3 +86,4 @@ endforeach
 
 subdir('assets')
 subdir('gtk-3.0')
+subdir('gtk-4.0')

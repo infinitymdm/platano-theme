@@ -1,8 +1,0 @@
-/* Custom colors for libadwaita go here */
-/* See https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1.1/named-colors.html */
-@define-color accent_color #84beea;
-@define-color accent_bg_color #84beea;
-@define-color window_bg_color #242424;
-@define-color window_fg_color white;
-@define-color headerbar_bg_color #090909;
-@define-color headerbar_fg_color white;

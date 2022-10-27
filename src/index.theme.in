@@ -7,6 +7,6 @@ Encoding=UTF-8
 [X-GNOME-Metatheme]
 GtkTheme=@theme_name@
 MetacityTheme=@theme_name@
-IconTheme=Adwaita
-CursorTheme=Adwaita
+IconTheme=Papirus-dark
+CursorTheme=breeze_cursors
 CursorSize=24

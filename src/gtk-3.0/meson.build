@@ -1,4 +1,4 @@
-foreach theme: themes
+foreach theme : themes
     gtk3_dir = join_paths(theme['dir'], 'gtk-3.0')
     gtk3_variants = [
         'gtk',
@@ -21,7 +21,7 @@ foreach theme: themes
     gtk3_scss_conf.set('scss_size', theme['size'])
     gtk3_scss_conf.set('current_src_dir', meson.current_source_dir())
 
-    foreach gtk3_variant: gtk3_variants
+    foreach gtk3_variant : gtk3_variants
         gtk3_temp_name = '@0@.gtk3.@1@'.format(theme['name'], gtk3_variant)
 
         gtk3_scss = configure_file(

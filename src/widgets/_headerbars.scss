@@ -7,9 +7,6 @@ headerbar {
   background-color: if($variant == mixed, $color_bg_dark_inv, $color_bg_dark);
   background-clip: border-box;
 
-  .csd & { border-radius: 0 0 $r_8 $r_8; }
-  .maximized &, .solid-csd & { border-radius: 0; }
-
   // text colors
   color: if($variant == mixed, $color_fg_inv_2, $color_fg_2);
 
@@ -82,7 +79,7 @@ headerbar {
   &.default-decoration {
     min-height: $titlebutton_small;
     padding: if($ref_weight < 1.0, 2px 3px, 4px 5px);
-    border-radius: $r_2 $r_2 0 0;
+    border-radius: $r_8 $r_8 0 0;
     border-width: 1px 0 0;
     border-top-color: $color_fg_div_top;
 

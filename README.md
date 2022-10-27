@@ -70,6 +70,19 @@ Installation
 
 Platano is not yet ready for use. Watch this repository for release announcements!
 
+In the meantime, if you'd like to test things, here are some basic build instructions:
+
+1. Make sure you have the Meson build system and `sassc` installed.
+    - Note that `sassc` will be replaced by a more modern sass compiler at some point in the future.
+2. Open a terminal and clone the repository. Navigate into the newly cloned folder.
+3. `mkdir build && cd build`
+4. `meson configure`. I'd suggest looking over the options as well, and making sure everything is to your liking.
+5. `ninja build`
+6. `ninja install`
+7. If you want to theme libadwaita apps as well, copy `path/to/installed/themes/Platano<-variant>/gtk-4.0/gtk.css` to `~/.config/gtk-4.0/gtk.css`. 
+7. You should be all set up now. Enjoy!
+
+
 Public License
 --------------
  * GPLv2.0 (Codebase)
@@ -79,8 +92,8 @@ Public License
  >
  > [**Paper Icons**](http://snwh.org/paper/icons) by Sam Hewitt is licensed under CC-SA-4.0.
 
- Special Thanks
- --------------
+Special Thanks
+--------------
 
  * Tista500 for their work on Plata-theme
  * The [Buddies of Budgie](https://github.com/BuddiesOfBudgie) folks who taught me about tools for theme development
